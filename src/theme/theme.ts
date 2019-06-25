@@ -1,11 +1,13 @@
-import color from 'color'
-
 import { isFunction } from '../_internal/data'
 import { themeAccessor } from '../_internal/types'
 
-import ThunderUITheme, { ThunderUIPalette } from './theme.interface'
+import DesignSystemTheme, { DesignSystemPalette, DesignSystemTypography } from './theme.interface'
 
-const PALETTE: ThunderUIPalette = {
+const TYPOGRAPHY: DesignSystemTypography = {
+
+}
+
+const PALETTE: DesignSystemPalette = {
   darkBlue900: '#061A3C',
   darkBlue800: '#354661',
   darkBlue700: '#606D82',
@@ -67,7 +69,7 @@ const PALETTE: ThunderUIPalette = {
   green100: 'NONE',
 }
 
-const THEME: ThunderUITheme = {
+const THEME: DesignSystemTheme = {
   ...PALETTE,
 
   name: 'light',
@@ -79,17 +81,20 @@ const THEME: ThunderUITheme = {
   text: PALETTE.darkBlue500,
   title: PALETTE.darkBlue900,
   warning: PALETTE.orange500,
+
+  titleFont: 'EuclidCircularB',
+  textFont: 'EuclidCircularB',
 }
 
 const getter = (
-  themeKey: keyof ThunderUITheme | 'inherit',
+  themeKey: keyof DesignSystemTheme | 'inherit',
   config: { propName?: string; dynamic?: boolean } = {}
 ): themeAccessor => {
   const { propName = 'color', dynamic = false } = config
 
   return (props, runtimeConfig: { isRecursive?: boolean } = {}) => {
-    const { theme = {} as { thunderUI: ThunderUITheme } } = props
-    const thunderTheme = theme.thunderUI || THEME
+    const { theme = {} as { designSystem: DesignSystemTheme } } = props
+    const designSystem = theme.designSystem || THEME
 
     if (propName && props[propName] && !runtimeConfig.isRecursive) {
       if (isFunction(props[propName])) {
@@ -100,46 +105,19 @@ const getter = (
     }
 
     if (dynamic && props.warning) {
-      return thunderTheme.warning
-    }
-
-    if (dynamic && props.error) {
-      return thunderTheme.error
+      return designSystem.warning
     }
 
     if (themeKey === 'inherit') {
       return 'inherit'
     }
 
-    return thunderTheme[themeKey]
+    return designSystem[themeKey]
   }
-}
-
-const activeGetter = (
-  customColor: string,
-  baseColor?: string,
-  config: { reverse?: boolean } = {}
-) => {
-  const { reverse = false } = config
-
-  if (customColor) {
-    return customColor
-  }
-
-  if (baseColor) {
-    const mixedColor = reverse ? color('#000') : color('#fff')
-
-    return color(baseColor)
-      .mix(mixedColor, 0.2)
-      .string()
-  }
-
-  return THEME.text
 }
 
 const theme = {
   get: getter,
-  getActive: activeGetter,
   light: THEME,
 }
 

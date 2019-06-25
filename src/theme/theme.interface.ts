@@ -1,4 +1,4 @@
-export interface ThunderUIPalette {
+export interface DesignSystemPalette {
   darkBlue900: string
   darkBlue800: string
   darkBlue700: string
@@ -60,7 +60,11 @@ export interface ThunderUIPalette {
   green100: string
 }
 
-export default interface ThunderUITheme extends ThunderUIPalette {
+export interface DesignSystemTypography {
+
+}
+
+export default interface DesignSystemTheme extends DesignSystemPalette, DesignSystemTypography {
   name: string
 
   text: string
@@ -70,4 +74,7 @@ export default interface ThunderUITheme extends ThunderUIPalette {
   shadowLight: string
   shadow: string
   shadowStrong: string
+
+  titleFont: string
+  textFont: string
 }
