@@ -1,11 +1,7 @@
 import { isFunction } from '../_internal/data'
 import { themeAccessor } from '../_internal/types'
 
-import DesignSystemTheme, { DesignSystemPalette, DesignSystemTypography } from './theme.interface'
-
-const TYPOGRAPHY: DesignSystemTypography = {
-
-}
+import DesignSystemTheme, { DesignSystemPalette } from './theme.interface'
 
 const PALETTE: DesignSystemPalette = {
   darkBlue900: '#061A3C',

@@ -60,11 +60,7 @@ export interface DesignSystemPalette {
   green100: string
 }
 
-export interface DesignSystemTypography {
-
-}
-
-export default interface DesignSystemTheme extends DesignSystemPalette, DesignSystemTypography {
+export default interface DesignSystemTheme extends DesignSystemPalette {
   name: string
 
   textColor: string
