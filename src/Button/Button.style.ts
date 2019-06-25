@@ -82,7 +82,7 @@ export const ButtonContainer = styled.button`
     background-color: transparent;
     color: ${theme.get('darkBlue900')};
     border: 2px solid ${theme.get('darkBlue900')};
-    
+
     &:hover,
     &:active {
       border-width: 4px;

@@ -20,7 +20,7 @@ export interface DesignSystemPalette {
   blue100: string
 
   lightBlue900: string
-  lightBlue800: string,
+  lightBlue800: string
   lightBlue700: string
   lightBlue600: string
   lightBlue500: string

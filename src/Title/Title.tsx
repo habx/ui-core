@@ -49,7 +49,7 @@ const components = {
   hero2: Hero2Component,
   sectionTitle: SectionTitleComponent,
   columnTitle: ColumnTitleComponent,
-  title: TitleComponent
+  title: TitleComponent,
 }
 
 const Title: React.FunctionComponent<TitleProps> = ({ type, ...props }) => {

@@ -25,6 +25,4 @@ const breakpoints: breakpoints = {
   ) as { [key in sizes]: string },
 }
 
-console.log(breakpoints)
-
 export default breakpoints
