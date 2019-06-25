@@ -1,0 +1,58 @@
+{
+  "name": "@habx/lib-design-system",
+  "version": "1.0.0",
+  "description": "HABX Design System",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/typings/index.d.ts",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && bili && npm run build:types",
+    "build:dev": "npm run clean && tsc",
+    "build:watch": "npm run clean && tsc --watch",
+    "build:types": "tsc --emitDeclarationOnly",
+    "postbuild": "node ./scripts/postbuild.js",
+    "publish": "cd dist && npm publish && cd ..",
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "storybook:build": "build-storybook -c .storybook -o .storybook-static",
+    "storybook:deploy": "storybook-to-ghpages -s storybook:build",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint \"src/**\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/habx/lib-design-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/habx/lib-design-system/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "homepage": "https://github.com/habx/lib-design-system#readme",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.22",
+    "@types/react-dom": "^16.8.4",
+    "bili": "^4.8.0",
+    "cross-env": "^5.2.0",
+    "husky": "^2.5.0",
+    "lint-staged": "^8.2.1",
+    "typescript": "^3.5.2"
+  }
+}
