@@ -67,9 +67,8 @@ export interface DesignSystemTypography {
 export default interface DesignSystemTheme extends DesignSystemPalette, DesignSystemTypography {
   name: string
 
-  text: string
-  title: string
-  warning: string
+  textColor: string
+  warningColor: string
 
   shadowLight: string
   shadow: string

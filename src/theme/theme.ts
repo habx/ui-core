@@ -78,9 +78,8 @@ const THEME: DesignSystemTheme = {
   shadow: '0 2px 6px 0 rgba(2, 26, 60, 0.16)',
   shadowStrong: '0 2px 6px 0 rgba(153, 117, 113, 0.16)',
 
-  text: PALETTE.darkBlue500,
-  title: PALETTE.darkBlue900,
-  warning: PALETTE.orange500,
+  textColor: PALETTE.darkBlue900,
+  warningColor: PALETTE.orange500,
 
   titleFont: 'EuclidCircularB',
   textFont: 'EuclidCircularB',
@@ -105,7 +104,7 @@ const getter = (
     }
 
     if (dynamic && props.warning) {
-      return designSystem.warning
+      return designSystem.warningColor
     }
 
     if (themeKey === 'inherit') {
