@@ -58,6 +58,8 @@ export interface DesignSystemPalette {
   green300: string
   green200: string
   green100: string
+
+  white: string
 }
 
 export default interface DesignSystemTheme extends DesignSystemPalette {
@@ -72,4 +74,6 @@ export default interface DesignSystemTheme extends DesignSystemPalette {
 
   titleFont: string
   textFont: string
+
+  useArrowOnButtons: boolean
 }
