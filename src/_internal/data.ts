@@ -16,7 +16,7 @@ export const pick = (obj: object, keys: string[]): object =>
 
 export const mapValues = (
   obj: object,
-  iteratee: (value: any, key: string, obj: object) => object
+  iteratee: (value: any, key: string, obj: unknown) => unknown
 ) =>
   Object.entries(obj).reduce(
     (acc, [key, value]) => ({

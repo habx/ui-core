@@ -63,9 +63,11 @@ const PALETTE: DesignSystemPalette = {
   green300: '#B4EDF0',
   green200: '#E8FAFB',
   green100: 'NONE',
+
+  white: '#fff',
 }
 
-const THEME: DesignSystemTheme = {
+export const BASE_THEME: DesignSystemTheme = {
   ...PALETTE,
 
   name: 'light',
@@ -79,6 +81,8 @@ const THEME: DesignSystemTheme = {
 
   titleFont: 'EuclidCircularB',
   textFont: 'EuclidCircularB',
+
+  useArrowOnButtons: true,
 }
 
 const getter = (
@@ -89,7 +93,7 @@ const getter = (
 
   return (props, runtimeConfig: { isRecursive?: boolean } = {}) => {
     const { theme = {} as { designSystem: DesignSystemTheme } } = props
-    const designSystem = theme.designSystem || THEME
+    const designSystem = theme.designSystem || BASE_THEME
 
     if (propName && props[propName] && !runtimeConfig.isRecursive) {
       if (isFunction(props[propName])) {
@@ -113,7 +117,7 @@ const getter = (
 
 const theme = {
   get: getter,
-  light: THEME,
+  light: BASE_THEME,
 }
 
 export default theme

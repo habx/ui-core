@@ -13,13 +13,7 @@ export type themeAccessor = (props: {
 
 export interface Button extends React.HTMLAttributes<HTMLButtonElement> {
   warning?: boolean
-  info?: boolean
   disabled?: boolean
   small?: boolean
   large?: boolean
-
-  color?: string
-  hoverColor?: string
-
-  type?: string
 }
