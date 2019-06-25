@@ -42,6 +42,7 @@
   },
   "homepage": "https://github.com/habx/lib-design-system#readme",
   "dependencies": {
+    "@testing-library/react": "^8.0.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.3.2"
@@ -56,6 +57,7 @@
     "@storybook/addon-viewport": "^5.1.9",
     "@storybook/react": "^5.1.9",
     "@storybook/storybook-deployer": "^2.8.1",
+    "@types/jest": "^24.0.15",
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
     "@types/storybook__react": "^4.0.2",
@@ -63,11 +65,14 @@
     "bili": "^4.8.0",
     "cross-env": "^5.2.0",
     "husky": "^2.5.0",
+    "jest": "^24.8.0",
+    "jest-dom": "^3.1.4",
     "lint-staged": "^8.2.1",
     "react-docgen-typescript-loader": "^3.1.0",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "rollup-plugin-typescript2": "^0.21.2",
     "styled-normalize": "^8.0.6",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.5.2"
   }
 }
