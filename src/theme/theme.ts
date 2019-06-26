@@ -1,88 +1,102 @@
 import { isFunction } from '../_internal/data'
 import { themeAccessor } from '../_internal/types'
 
-import DesignSystemTheme, { DesignSystemPalette } from './theme.interface'
+import DesignSystemTheme, {
+  DesignSystemPalette,
+  Palette,
+} from './theme.interface'
 
 const PALETTE: DesignSystemPalette = {
-  darkBlue900: '#061A3C',
-  darkBlue800: '#354661',
-  darkBlue700: '#606D82',
-  darkBlue600: '#717C90',
-  darkBlue500: '#949DAB',
-  darkBlue400: '#B8BEC7',
-  darkBlue300: '#DBDEE3',
-  darkBlue200: '#F3F4F5',
-  darkBlue100: '#F8F8F9',
-
-  blue900: '#053061',
-  blue800: '#034685',
-  blue700: '#025BAA',
-  blue600: '#0071CE',
-  blue500: '#4094DA',
-  blue400: '#80B8E7',
-  blue300: '#BFDCF3',
-  blue200: '#E6F1FA',
-  blue100: '#F7FBFE',
-
-  lightBlue900: '#254162',
-  lightBlue800: '#456887',
-  lightBlue700: '#6490AD',
-  lightBlue600: '#84B7D2',
-  lightBlue500: '#A3DEF8',
-  lightBlue400: '#D1EFFC',
-  lightBlue300: '#E8F7FD',
-  lightBlue200: '#F6FCFE',
-  lightBlue100: 'NONE',
-
-  yellow900: '#44472D',
-  yellow800: '#83741E',
-  yellow700: '#C1A10F',
-  yellow600: '#FFCE00',
-  yellow500: '#FFDA40',
-  yellow400: '#FFE780',
-  yellow300: '#FFF3BF',
-  yellow200: '#FFFAE6',
-  yellow100: 'NONE',
-
-  orange900: '#44282D',
-  orange800: '#83351E',
-  orange700: '#A83B0E',
-  orange600: '#C1430F',
-  orange500: '#FF5100',
-  orange400: '#FF7D40',
-  orange300: '#FFA880',
-  orange200: '#FFD3BF',
-  orange100: '#FFEEE6',
-
-  green900: '#0B3D5A',
-  green800: '#0F6078',
-  green700: '#148497',
-  green600: '#18A7B5',
-  green500: '#1DCAD3',
-  green400: '#68DCE2',
-  green300: '#B4EDF0',
-  green200: '#E8FAFB',
-  green100: 'NONE',
-
-  white: '#fff',
+  darkBlue: {
+    900: '#061A3C',
+    800: '#354661',
+    700: '#606D82',
+    600: '#717C90',
+    500: '#949DAB',
+    400: '#B8BEC7',
+    300: '#DBDEE3',
+    200: '#F3F4F5',
+    100: '#F8F8F9',
+  },
+  blue: {
+    900: '#053061',
+    800: '#034685',
+    700: '#025BAA',
+    600: '#0071CE',
+    500: '#4094DA',
+    400: '#80B8E7',
+    300: '#BFDCF3',
+    200: '#E6F1FA',
+    100: '#F7FBFE',
+  },
+  lightBlue: {
+    900: '#254162',
+    800: '#456887',
+    700: '#6490AD',
+    600: '#84B7D2',
+    500: '#A3DEF8',
+    400: '#D1EFFC',
+    300: '#E8F7FD',
+    200: '#F6FCFE',
+    100: 'NONE',
+  },
+  yellow: {
+    900: '#44472D',
+    800: '#83741E',
+    700: '#C1A10F',
+    600: '#FFCE00',
+    500: '#FFDA40',
+    400: '#FFE780',
+    300: '#FFF3BF',
+    200: '#FFFAE6',
+    100: 'NONE',
+  },
+  orange: {
+    900: '#44282D',
+    800: '#83351E',
+    700: '#A83B0E',
+    600: '#C1430F',
+    500: '#FF5100',
+    400: '#FF7D40',
+    300: '#FFA880',
+    200: '#FFD3BF',
+    100: '#FFEEE6',
+  },
+  green: {
+    900: '#0B3D5A',
+    800: '#0F6078',
+    700: '#148497',
+    600: '#18A7B5',
+    500: '#1DCAD3',
+    400: '#68DCE2',
+    300: '#B4EDF0',
+    200: '#E8FAFB',
+    100: 'NONE',
+  },
 }
 
 export const BASE_THEME: DesignSystemTheme = {
-  ...PALETTE,
-
   name: 'light',
 
   shadowLight: '0 4px 12px 0 rgba(80, 79, 79, 0.24)',
   shadow: '0 2px 6px 0 rgba(2, 26, 60, 0.16)',
   shadowStrong: '0 2px 6px 0 rgba(153, 117, 113, 0.16)',
 
-  textColor: PALETTE.darkBlue900,
-  warningColor: PALETTE.orange500,
+  textColor: PALETTE.darkBlue[900],
+  warningColor: PALETTE.orange[500],
+  white: '#fff',
 
   titleFont: 'EuclidCircularB',
   textFont: 'EuclidCircularB',
 
   useArrowOnButtons: true,
+
+  palettes: {
+    primary: PALETTE.blue,
+    secondary: PALETTE.yellow,
+    tertiary: PALETTE.orange,
+    quaternary: PALETTE.darkBlue,
+  },
 }
 
 const getter = (
@@ -115,9 +129,22 @@ const getter = (
   }
 }
 
+const paletteGetter = (
+  paletteName: 'primary' | 'secondary' | 'tertiary' | 'quaternary',
+  colorDepth: keyof Palette
+): themeAccessor => {
+  return props => {
+    const { theme = {} as { designSystem: DesignSystemTheme } } = props
+    const designSystem = theme.designSystem || BASE_THEME
+
+    return designSystem.palettes[paletteName][colorDepth]
+  }
+}
+
 const theme = {
   get: getter,
-  light: BASE_THEME,
+  palette: paletteGetter,
+  raw: BASE_THEME,
 }
 
 export default theme
