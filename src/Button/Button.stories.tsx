@@ -2,27 +2,79 @@ import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import styled from 'styled-components'
 
+import Title from '../Title'
+
 import Button from './index'
 
 const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  margin: 64px;
+`
 
-  > * {
-    margin-bottom: 24px;
+const ButtonSizeContainer = styled.div`
+  margin-bottom: 24px;
+`
+
+export const ButtonList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin: 8px -8px -8px -8px;
+
+  & > button {
+    margin: 8px;
   }
 `
 
 storiesOf('Actions|Button', module).add('full example', () => (
   <ButtonContainer>
-    <Button>Click on me !</Button>
-    <Button outline>Click on me !</Button>
-    <Button disabled>Click on me !</Button>
-    <Button outline disabled>
-      Click on me !
-    </Button>
-    <Button small>Click on me !</Button>
-    <Button large>Click on me !</Button>
+    <ButtonSizeContainer>
+      <Title type="columnTitle">Taille "regular"</Title>
+      <ButtonList>
+        <Button>Voir tous nos projets</Button>
+        <Button outline>Voir tous nos projets</Button>
+        <Button disabled>Voir tous nos projets</Button>
+        <Button outline disabled>
+          Voir tous nos projets
+        </Button>
+        <Button showArrow>Voir tous nos projets</Button>
+      </ButtonList>
+    </ButtonSizeContainer>
+
+    <ButtonSizeContainer>
+      <Title type="columnTitle">Taille "small"</Title>
+      <ButtonList>
+        <Button small>Voir tous nos projets</Button>
+        <Button small outline>
+          Voir tous nos projets
+        </Button>
+        <Button small disabled>
+          Voir tous nos projets
+        </Button>
+        <Button small outline disabled>
+          Voir tous nos projets
+        </Button>
+        <Button small showArrow>
+          Voir tous nos projets
+        </Button>
+      </ButtonList>
+    </ButtonSizeContainer>
+
+    <ButtonSizeContainer>
+      <Title type="columnTitle">Taille "large"</Title>
+      <ButtonList>
+        <Button large>Voir tous nos projets</Button>
+        <Button large outline>
+          Voir tous nos projets
+        </Button>
+        <Button large disabled>
+          Voir tous nos projets
+        </Button>
+        <Button large outline disabled>
+          Voir tous nos projets
+        </Button>
+        <Button large showArrow>
+          Voir tous nos projets
+        </Button>
+      </ButtonList>
+    </ButtonSizeContainer>
   </ButtonContainer>
 ))

@@ -51,7 +51,8 @@ export const ButtonContainer = styled.button`
   border-radius: 2px;
   font-weight: 500;
 
-  padding: 12px 23px;
+  padding: 0 23px;
+  height: 48px;
   max-width: 100%;
   font-size: 16px;
   line-height: 20px;
@@ -62,8 +63,9 @@ export const ButtonContainer = styled.button`
   transition-timing-function: ease-in-out;
 
   &[data-small='true'] {
-    padding: 6px 16px;
+    padding: 0 16px;
     line-height: 18px;
+    height: 34px;
     font-size: 14px;
 
     & ${IconContainer} {
@@ -74,42 +76,56 @@ export const ButtonContainer = styled.button`
   &[data-large='true'] {
     font-size: 18px;
     line-height: 27px;
-    padding: 16.5px 70px 16.5px 70px;
+    height: 64px;
+    padding: 0 70px;
     max-width: calc(100vw - 48px);
   }
 
   &[data-outline='true'] {
     background-color: transparent;
-    color: ${theme.get('darkBlue900')};
-    border: 2px solid ${theme.get('darkBlue900')};
+    color: ${theme.palette('quaternary', 900, { dynamic: true })};
+    border: 2px solid ${theme.palette('quaternary', 900, { dynamic: true })};
 
     &:hover,
     &:active {
       border-width: 4px;
-      padding: 10px 21px;
+      padding: 0 21px;
 
       &[data-large='true'] {
-        padding: 15.5px 68px 15.5px 68px;
+        padding: 0 68px;
       }
 
       &[data-small='true'] {
-        padding: 4px 14px;
+        padding: 0 14px;
       }
     }
 
-    &:active {
-      opacity: 0.7;
+    &:focus {
+      border-width: 6px;
+      padding: 0 19px;
+
+      &[data-large='true'] {
+        padding: 0 66px;
+      }
+
+      &[data-small='true'] {
+        padding: 0 12px;
+      }
     }
   }
 
   &[data-outline='false'] {
-    border: 2px solid transparent;
-    background-color: ${theme.get('blue600')};
+    border: 4px solid transparent;
+    background-color: ${theme.palette('primary', 600, { dynamic: true })};
     color: ${theme.get('white')};
 
     &:hover,
     &:active {
-      background-color: ${theme.get('blue500')};
+      background-color: ${theme.palette('primary', 700, { dynamic: true })};
+    }
+
+    &:focus {
+      border-color: ${theme.palette('primary', 800, { dynamic: true })};
     }
   }
 
@@ -119,19 +135,19 @@ export const ButtonContainer = styled.button`
 
   &:disabled {
     pointer-events: none;
-    opacity: 0.5;
 
     &[data-outline='false'] {
-      background-color: ${theme.get('darkBlue900')};
+      background-color: ${theme.palette('quaternary', 400)};
     }
 
     &[data-outline='true'] {
-      color: ${theme.get('textColor')};
+      color: ${theme.palette('quaternary', 400)};
+      border-color: ${theme.palette('quaternary', 400)};
     }
   }
 
   &[data-arrow] {
-    :hover ${ButtonContent}:after, :active arrow${ButtonContent}:after {
+    &:hover ${ButtonContent}:after, :active arrow${ButtonContent}:after {
       right: -4px;
     }
   }
