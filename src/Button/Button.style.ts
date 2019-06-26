@@ -83,8 +83,8 @@ export const ButtonContainer = styled.button`
 
   &[data-outline='true'] {
     background-color: transparent;
-    color: ${theme.palette('quaternary', 900)};
-    border: 2px solid ${theme.palette('quaternary', 900)};
+    color: ${theme.palette('quaternary', 900, { dynamic: true })};
+    border: 2px solid ${theme.palette('quaternary', 900, { dynamic: true })};
 
     &:hover,
     &:active {
@@ -116,16 +116,16 @@ export const ButtonContainer = styled.button`
 
   &[data-outline='false'] {
     border: 4px solid transparent;
-    background-color: ${theme.palette('primary', 600)};
+    background-color: ${theme.palette('primary', 600, { dynamic: true })};
     color: ${theme.get('white')};
 
     &:hover,
     &:active {
-      background-color: ${theme.palette('primary', 700)};
+      background-color: ${theme.palette('primary', 700, { dynamic: true })};
     }
 
     &:focus {
-      border-color: ${theme.palette('primary', 800)};
+      border-color: ${theme.palette('primary', 800, { dynamic: true })};
     }
   }
 

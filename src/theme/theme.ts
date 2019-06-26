@@ -117,10 +117,6 @@ const getter = (
       return props[propName]
     }
 
-    if (dynamic && props.warning) {
-      return designSystem.warningColor
-    }
-
     if (themeKey === 'inherit') {
       return 'inherit'
     }
@@ -131,13 +127,40 @@ const getter = (
 
 const paletteGetter = (
   paletteName: 'primary' | 'secondary' | 'tertiary' | 'quaternary',
-  colorDepth: keyof Palette
+  colorDepth: keyof Palette,
+  config: { dynamic?: boolean } = {}
 ): themeAccessor => {
+  const { dynamic = false } = config
+
   return props => {
+    const getPaletteName = () => {
+      if (!dynamic) {
+        return paletteName
+      }
+
+      if (props.primary) {
+        return 'primary'
+      }
+
+      if (props.secondary) {
+        return 'secondary'
+      }
+
+      if (props.tertiary) {
+        return 'tertiary'
+      }
+
+      if (props.quaternary) {
+        return 'quaternary'
+      }
+
+      return paletteName
+    }
+
     const { theme = {} as { designSystem: DesignSystemTheme } } = props
     const designSystem = theme.designSystem || BASE_THEME
 
-    return designSystem.palettes[paletteName][colorDepth]
+    return designSystem.palettes[getPaletteName()][colorDepth]
   }
 }
 

@@ -19,7 +19,7 @@ export const ButtonList = styled.div`
   flex-wrap: wrap;
   margin: 8px -8px -8px -8px;
 
-  > button {
+  & > button {
     margin: 8px;
   }
 `
