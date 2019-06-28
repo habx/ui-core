@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 
-import breakpoints from '../breakpoints'
 import palette from '../palette'
 import theme from '../theme'
 
 export const IconContainer = styled.div`
   height: 13px;
   display: flex;
+  margin-top: -2px;
 
   &[data-position='left'] {
     margin-right: 8px;
@@ -73,19 +73,14 @@ export const ButtonContainer = styled.button`
     }
   }
 
-  &[data-outline='true'] {
+  &[data-outline='true'],
+  &[data-link='true'] {
     background-color: transparent;
-    color: ${theme.color('secondary', { dynamic: true })};
-    border: 2px solid ${theme.color('secondary', { dynamic: true })};
-
-    & svg {
-      fill: ${theme.color('secondary', { dynamic: true })};
-    }
 
     &:hover,
     &:active {
-      border-width: 4px;
       padding: 0 22px;
+      border-width: 4px;
 
       &[data-large='true'] {
         padding: 0 68px;
@@ -97,8 +92,8 @@ export const ButtonContainer = styled.button`
     }
 
     &:focus {
-      border-width: 6px;
       padding: 0 20px;
+      border-width: 6px;
 
       &[data-large='true'] {
         padding: 0 66px;
@@ -110,7 +105,42 @@ export const ButtonContainer = styled.button`
     }
   }
 
-  &[data-outline='false'] {
+  &[data-outline='true'] {
+    border: 2px solid ${theme.color('secondary', { dynamic: true })};
+    color: ${theme.color('secondary', { dynamic: true })};
+
+    & svg {
+      fill: ${theme.color('secondary', { dynamic: true })};
+    }
+  }
+
+  &[data-link='true'] {
+    border: 2px solid transparent;
+    color: ${theme.color('primary', { dynamic: true })};
+
+    & svg {
+      fill: ${theme.color('primary', { dynamic: true })};
+    }
+
+    &:hover,
+    &:active {
+      color: ${theme.color('primary', { dynamic: true, variation: 'hover' })};
+
+      & svg {
+        fill: ${theme.color('primary', { dynamic: true, variation: 'hover' })};
+      }
+    }
+
+    &:focus {
+      color: ${theme.color('primary', { dynamic: true, variation: 'focus' })};
+
+      & svg {
+        fill: ${theme.color('primary', { dynamic: true, variation: 'focus' })};
+      }
+    }
+  }
+
+  &[data-outline='false'][data-link='false'] {
     border: 4px solid transparent;
     background-color: ${theme.color('primary', { dynamic: true })};
     color: ${theme.get('white')};
@@ -142,7 +172,7 @@ export const ButtonContainer = styled.button`
   &:disabled {
     pointer-events: none;
 
-    &[data-outline='false'] {
+    &[data-outline='false'][data-link='false'] {
       background-color: ${palette.darkBlue[400]};
     }
 
@@ -150,13 +180,9 @@ export const ButtonContainer = styled.button`
       color: ${palette.darkBlue[400]};
       border-color: ${palette.darkBlue[400]};
     }
-  }
 
-  @media (${breakpoints.below.phone}) {
-    font-size: 16px;
-
-    & svg {
-      height: 12px;
+    &[data-link='true'] {
+      color: ${palette.darkBlue[400]};
     }
   }
 `

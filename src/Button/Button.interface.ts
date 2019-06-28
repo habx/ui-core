@@ -4,5 +4,6 @@ export default interface ButtonProps extends Button {
   iconLeft?: JSX.Element
   iconRight?: JSX.Element
   outline?: boolean
+  link?: boolean
   fullWidth?: boolean
 }

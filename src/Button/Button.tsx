@@ -8,6 +8,7 @@ const Button: React.FunctionComponent<ButtonProps> = ({
   iconLeft,
   iconRight,
   outline = false,
+  link = false,
   small = false,
   large = false,
   fullWidth = false,
@@ -15,6 +16,7 @@ const Button: React.FunctionComponent<ButtonProps> = ({
 }) => (
   <ButtonContainer
     data-outline={outline}
+    data-link={link}
     data-large={large}
     data-small={small}
     data-full-width={fullWidth}
