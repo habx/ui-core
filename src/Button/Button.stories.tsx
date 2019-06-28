@@ -9,15 +9,15 @@ import Title from '../Title'
 
 import Button from './index'
 
-const ButtonContainer = styled.div`
+const StoryContainer = styled.div`
   margin: 64px;
 `
 
-const ButtonSizeContainer = styled.div`
+const LineContainer = styled.div`
   margin-bottom: 24px;
 `
 
-export const ButtonList = styled.div`
+const ButtonList = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 8px -8px -8px -8px;
@@ -28,7 +28,7 @@ export const ButtonList = styled.div`
 `
 
 const createLine = (title, props) => (
-  <ButtonSizeContainer>
+  <LineContainer>
     <Title type="columnTitle">{title}</Title>
     <ButtonList>
       <Button {...props}>Voir tous nos projets</Button>
@@ -45,16 +45,16 @@ const createLine = (title, props) => (
         Supprimer
       </Button>
     </ButtonList>
-  </ButtonSizeContainer>
+  </LineContainer>
 )
 
 storiesOf('Actions|Button', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
   .add(
-    'solid',
+    'gallery',
     () => (
-      <ButtonContainer>
+      <StoryContainer>
         {createLine('Solid + regular', {})}
         {createLine('Solid + small', { small: true })}
         {createLine('Solid + large', { large: true })}
@@ -64,7 +64,7 @@ storiesOf('Actions|Button', module)
         {createLine('Link + regular', { link: true })}
         {createLine('Link + small', { link: true, small: true })}
         {createLine('Link + large', { link: true, large: true })}
-      </ButtonContainer>
+      </StoryContainer>
     ),
     {
       design: {

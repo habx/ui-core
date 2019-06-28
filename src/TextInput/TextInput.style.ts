@@ -16,7 +16,7 @@ export const Input = styled.input`
   font-size: 16px;
 
   background-color: ${palette.darkBlue[200]};
-  color: ${palette.darkBlue[700]};
+  color: ${theme.get('textColor')};
 
   outline: none;
   -moz-appearance: none;
@@ -27,7 +27,7 @@ export const Input = styled.input`
   transition: all 150ms ease-in-out;
 
   &::placeholder {
-    color: #768294;
+    color: ${palette.darkBlue[400]};
   }
 
   &[data-small='true'] {
@@ -36,27 +36,25 @@ export const Input = styled.input`
     max-height: 2.3rem;
   }
 
-  &:hover,
-  &:focus {
-    border-color: ${palette.darkBlue[300]};
-  }
-
-  &:hover {
-    background-color: ${palette.darkBlue[200]};
-  }
-
-  &[data-error='true'] {
-    border-color: ${palette.orange[400]};
-    background-color: #fff;
-  }
-
   &:disabled {
-    border-color: #d0e4e6;
+    border-color: ${palette.darkBlue[200]};
     background-color: ${palette.darkBlue[200]};
-    color: #d0e4e6;
+    color: ${palette.darkBlue[700]};
+  }
 
-    &::placeholder {
-      color: #d0e4e6;
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      border-color: ${palette.darkBlue[300]};
+    }
+
+    &:focus {
+      background-color: #fff;
+    }
+
+    &[data-error='true'] {
+      border-color: ${palette.orange[400]};
+      color: ${palette.orange[400]};
     }
   }
 
