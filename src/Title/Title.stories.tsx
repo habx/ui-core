@@ -6,8 +6,9 @@ import Title from './index'
 
 const TitleContainer = styled.div`
   max-width: 750px;
+  margin: 64px;
 
-  > * {
+  & > * {
     margin-bottom: 24px;
   }
 `

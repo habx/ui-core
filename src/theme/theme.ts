@@ -26,8 +26,8 @@ export const BASE_THEME: DesignSystemTheme = {
     },
     secondary: {
       base: palette.darkBlue[900],
-      hover: palette.darkBlue[700],
-      focus: palette.darkBlue[800],
+      hover: palette.darkBlue[800],
+      focus: palette.darkBlue[700],
     },
     warning: {
       base: palette.orange[700],
@@ -41,7 +41,7 @@ const getter = (
   themeKey: keyof DesignSystemTheme | 'inherit',
   config: { propName?: string; dynamic?: boolean } = {}
 ): themeAccessor => {
-  const { propName = 'color', dynamic = false } = config
+  const { propName = 'color' } = config
 
   return (props, runtimeConfig: { isRecursive?: boolean } = {}) => {
     const { theme = {} as { designSystem: DesignSystemTheme } } = props

@@ -4,6 +4,7 @@ import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
+import Facebook from '../icons/Facebook'
 import Title from '../Title'
 
 import Button from './index'
@@ -38,10 +39,9 @@ storiesOf('Actions|Button', module)
           <ButtonList>
             <Button>Voir tous nos projets</Button>
             <Button outline>Voir tous nos projets</Button>
+            <Button iconLeft={<Facebook />}>Partager</Button>
+            <Button iconRight={<Facebook />}>Partager</Button>
             <Button disabled>Voir tous nos projets</Button>
-            <Button outline disabled>
-              Voir tous nos projets
-            </Button>
           </ButtonList>
         </ButtonSizeContainer>
 
@@ -94,6 +94,8 @@ storiesOf('Actions|Button', module)
       primary={boolean('Color override : Primary', false)}
       secondary={boolean('Color override : Secondary', false)}
       warning={boolean('Color override : Warning', false)}
+      iconLeft={boolean('Icon left', false) ? <Facebook /> : null}
+      iconRight={boolean('Icon right', false) ? <Facebook /> : null}
     >
       Voir tous nos projets
     </Button>

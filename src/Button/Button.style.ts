@@ -5,15 +5,19 @@ import palette from '../palette'
 import theme from '../theme'
 
 export const IconContainer = styled.div`
+  height: 13px;
   display: flex;
-  font-size: 17px;
 
   &[data-position='left'] {
-    margin-right: 12px;
+    margin-right: 8px;
   }
 
   &[data-position='right'] {
-    margin-left: 16px;
+    margin-left: 8px;
+  }
+
+  & > svg {
+    height: 100%;
   }
 `
 
@@ -35,7 +39,7 @@ export const ButtonContainer = styled.button`
   border-radius: 2px;
   font-weight: 500;
 
-  padding: 0 23px;
+  padding: 0 24px;
   height: 48px;
   max-width: 100%;
   font-size: 16px;
@@ -53,7 +57,7 @@ export const ButtonContainer = styled.button`
     font-size: 14px;
 
     & ${IconContainer} {
-      font-size: 15px;
+      height: 11px;
     }
   }
 
@@ -63,6 +67,10 @@ export const ButtonContainer = styled.button`
     height: 64px;
     padding: 0 70px;
     max-width: calc(100vw - 48px);
+
+    & ${IconContainer} {
+      height: 15px;
+    }
   }
 
   &[data-outline='true'] {
@@ -70,10 +78,14 @@ export const ButtonContainer = styled.button`
     color: ${theme.color('secondary', { dynamic: true })};
     border: 2px solid ${theme.color('secondary', { dynamic: true })};
 
+    & svg {
+      fill: ${theme.color('secondary', { dynamic: true })};
+    }
+
     &:hover,
     &:active {
       border-width: 4px;
-      padding: 0 21px;
+      padding: 0 22px;
 
       &[data-large='true'] {
         padding: 0 68px;
@@ -86,7 +98,7 @@ export const ButtonContainer = styled.button`
 
     &:focus {
       border-width: 6px;
-      padding: 0 19px;
+      padding: 0 20px;
 
       &[data-large='true'] {
         padding: 0 66px;
@@ -102,6 +114,10 @@ export const ButtonContainer = styled.button`
     border: 4px solid transparent;
     background-color: ${theme.color('primary', { dynamic: true })};
     color: ${theme.get('white')};
+
+    & svg {
+      fill: ${theme.get('white')};
+    }
 
     &:hover,
     &:active {
@@ -138,5 +154,9 @@ export const ButtonContainer = styled.button`
 
   @media (${breakpoints.below.phone}) {
     font-size: 16px;
+
+    & svg {
+      height: 12px;
+    }
   }
 `
