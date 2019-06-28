@@ -34,6 +34,11 @@ export const BASE_THEME: DesignSystemTheme = {
       hover: palette.orange[700],
       focus: palette.orange[800],
     },
+    input: {
+      background: palette.darkBlue[200],
+      border: palette.darkBlue[300],
+      text: palette.darkBlue[400],
+    },
   },
 }
 
@@ -64,8 +69,8 @@ const getter = (
 }
 
 const colorGetter = (
-  colorName: 'primary' | 'secondary' | 'tertiary' | 'quaternary',
-  config: { dynamic?: boolean; variation?: keyof ColorVariations } = {}
+  colorName: 'primary' | 'secondary' | 'input',
+  config: { dynamic?: boolean; variation?: string } = {}
 ): themeAccessor => {
   const { dynamic = false, variation = 'base' } = config
 

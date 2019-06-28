@@ -14,7 +14,7 @@ const StoryContainer = styled.div`
 `
 
 const LineContainer = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 36px;
 `
 
 const ButtonList = styled.div`
