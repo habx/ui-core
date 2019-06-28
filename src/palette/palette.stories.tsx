@@ -38,7 +38,7 @@ const Circle = styled.div`
   box-shadow: ${theme.raw.shadow};
 `
 
-storiesOf('Theme|palette', module).add('all colors', () => (
+storiesOf('Theme|palette', module).add('galery', () => (
   <Container>
     {Object.entries(palette).map(([colorName, colorGradient]) => (
       <Line>

@@ -15,19 +15,19 @@ export const Input = styled.input`
   min-width: 0;
   font-size: 16px;
 
-  background-color: ${palette.darkBlue[200]};
-  color: ${theme.get('textColor')};
+  background-color: ${theme.color('input', { variation: 'background' })};
+  color: ${theme.color('secondary')};
 
   outline: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border: solid 1.5px ${palette.darkBlue[200]};
+  border: solid 1.5px ${theme.color('input', { variation: 'background' })};
   border-radius: 4px;
 
   transition: all 150ms ease-in-out;
 
   &::placeholder {
-    color: ${palette.darkBlue[400]};
+    color: ${theme.color('input', { variation: 'text' })};
   }
 
   &[data-small='true'] {
@@ -37,15 +37,15 @@ export const Input = styled.input`
   }
 
   &:disabled {
-    border-color: ${palette.darkBlue[200]};
-    background-color: ${palette.darkBlue[200]};
+    border-color: ${theme.color('input', { variation: 'background' })};
+    background-color: ${theme.color('input', { variation: 'background' })};
     color: ${palette.darkBlue[700]};
   }
 
   &:not(:disabled) {
     &:hover,
     &:focus {
-      border-color: ${palette.darkBlue[300]};
+      border-color: ${theme.color('input', { variation: 'border' })};
     }
 
     &:focus {

@@ -13,7 +13,7 @@ const StoryContainer = styled.div`
 `
 
 const LineContainer = styled.div`
-  margin-bottom: 24px;
+  margin-bottom: 48px;
 `
 
 const TextInputList = styled.div`
@@ -41,26 +41,29 @@ const createLine = (title, props) => (
         <TextInput placeholder="votre@mail.com" {...props} />
       </TextInputContainer>
       <TextInputContainer>
-        <TextInput placeholder="votre@mail.com" disabled {...props} />
+        <TextInput
+          placeholder="votre@mail.com"
+          value="habx@habx.fr"
+          onChange={() => {}}
+          {...props}
+        />
       </TextInputContainer>
       <TextInputContainer>
         <TextInput
           placeholder="votre@mail.com"
           error
           value="06 01 01 01 01"
+          onChange={() => {}}
           {...props}
         />
       </TextInputContainer>
       <TextInputContainer>
-        <TextInput
-          placeholder="votre@mail.com"
-          value="habx@habx.fr"
-          {...props}
-        />
+        <TextInput placeholder="votre@mail.com" disabled {...props} />
       </TextInputContainer>
     </TextInputList>
   </LineContainer>
 )
+
 storiesOf('Input|TextInput', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)

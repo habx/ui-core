@@ -15,6 +15,11 @@ export default interface DesignSystemTheme {
     primary: ColorVariations
     secondary: ColorVariations
     warning: ColorVariations
+    input: {
+      background: string
+      border: string
+      text: string
+    }
   }
 
   shadowLight: string
