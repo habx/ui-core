@@ -5,14 +5,12 @@ import DesignSystemTheme from '../theme/theme.interface'
 export interface ThemeOverridesProps {
   primary?: boolean
   secondary?: boolean
-  tertiary?: boolean
-  quaternary?: boolean
+  warning?: boolean
 }
 
 export interface Button
   extends React.HTMLAttributes<HTMLButtonElement>,
     ThemeOverridesProps {
-  warning?: boolean
   disabled?: boolean
   small?: boolean
   large?: boolean

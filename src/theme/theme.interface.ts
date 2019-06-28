@@ -1,22 +1,7 @@
-export interface Palette {
-  100: string
-  200: string
-  300: string
-  400: string
-  500: string
-  600: string
-  700: string
-  800: string
-  900: string
-}
-
-export interface DesignSystemPalette {
-  darkBlue: Palette
-  blue: Palette
-  lightBlue: Palette
-  yellow: Palette
-  orange: Palette
-  green: Palette
+export interface ColorVariations {
+  base: string
+  hover: string
+  focus: string
 }
 
 export default interface DesignSystemTheme {
@@ -26,11 +11,10 @@ export default interface DesignSystemTheme {
   warningColor: string
   white: string
 
-  palettes: {
-    primary: Palette
-    secondary: Palette
-    tertiary: Palette
-    quaternary: Palette
+  colors: {
+    primary: ColorVariations
+    secondary: ColorVariations
+    warning: ColorVariations
   }
 
   shadowLight: string
@@ -39,6 +23,4 @@ export default interface DesignSystemTheme {
 
   titleFont: string
   textFont: string
-
-  useArrowOnButtons: boolean
 }

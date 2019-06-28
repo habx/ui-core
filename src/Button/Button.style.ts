@@ -1,41 +1,29 @@
 import styled from 'styled-components'
 
 import breakpoints from '../breakpoints'
+import palette from '../palette'
 import theme from '../theme'
 
 export const IconContainer = styled.div`
+  height: 13px;
   display: flex;
-  font-size: 17px;
 
   &[data-position='left'] {
-    margin-right: 12px;
+    margin-right: 8px;
   }
 
   &[data-position='right'] {
-    margin-left: 16px;
+    margin-left: 8px;
+  }
+
+  & > svg {
+    height: 100%;
   }
 `
 
 export const ButtonContent = styled.div`
   position: relative;
   white-space: nowrap;
-
-  &[data-arrow='true'] {
-    padding-right: 48px;
-
-    &:after {
-      content: '\\02192';
-      font-family: habx-icon;
-      font-size: 22px;
-      position: absolute;
-      display: flex;
-      align-items: center;
-      top: 0;
-      bottom: 8px;
-      right: 0;
-      transition: all 0.5s;
-    }
-  }
 `
 
 export const ButtonContainer = styled.button`
@@ -51,7 +39,7 @@ export const ButtonContainer = styled.button`
   border-radius: 2px;
   font-weight: 500;
 
-  padding: 0 23px;
+  padding: 0 24px;
   height: 48px;
   max-width: 100%;
   font-size: 16px;
@@ -69,7 +57,7 @@ export const ButtonContainer = styled.button`
     font-size: 14px;
 
     & ${IconContainer} {
-      font-size: 15px;
+      height: 11px;
     }
   }
 
@@ -79,17 +67,25 @@ export const ButtonContainer = styled.button`
     height: 64px;
     padding: 0 70px;
     max-width: calc(100vw - 48px);
+
+    & ${IconContainer} {
+      height: 15px;
+    }
   }
 
   &[data-outline='true'] {
     background-color: transparent;
-    color: ${theme.palette('quaternary', 900, { dynamic: true })};
-    border: 2px solid ${theme.palette('quaternary', 900, { dynamic: true })};
+    color: ${theme.color('secondary', { dynamic: true })};
+    border: 2px solid ${theme.color('secondary', { dynamic: true })};
+
+    & svg {
+      fill: ${theme.color('secondary', { dynamic: true })};
+    }
 
     &:hover,
     &:active {
       border-width: 4px;
-      padding: 0 21px;
+      padding: 0 22px;
 
       &[data-large='true'] {
         padding: 0 68px;
@@ -102,7 +98,7 @@ export const ButtonContainer = styled.button`
 
     &:focus {
       border-width: 6px;
-      padding: 0 19px;
+      padding: 0 20px;
 
       &[data-large='true'] {
         padding: 0 66px;
@@ -116,16 +112,26 @@ export const ButtonContainer = styled.button`
 
   &[data-outline='false'] {
     border: 4px solid transparent;
-    background-color: ${theme.palette('primary', 600, { dynamic: true })};
+    background-color: ${theme.color('primary', { dynamic: true })};
     color: ${theme.get('white')};
+
+    & svg {
+      fill: ${theme.get('white')};
+    }
 
     &:hover,
     &:active {
-      background-color: ${theme.palette('primary', 700, { dynamic: true })};
+      background-color: ${theme.color('primary', {
+        dynamic: true,
+        variation: 'hover',
+      })};
     }
 
     &:focus {
-      border-color: ${theme.palette('primary', 800, { dynamic: true })};
+      border-color: ${theme.color('primary', {
+        dynamic: true,
+        variation: 'focus',
+      })};
     }
   }
 
@@ -137,22 +143,20 @@ export const ButtonContainer = styled.button`
     pointer-events: none;
 
     &[data-outline='false'] {
-      background-color: ${theme.palette('quaternary', 400)};
+      background-color: ${palette.darkBlue[400]};
     }
 
     &[data-outline='true'] {
-      color: ${theme.palette('quaternary', 400)};
-      border-color: ${theme.palette('quaternary', 400)};
-    }
-  }
-
-  &[data-arrow] {
-    &:hover ${ButtonContent}:after, :active arrow${ButtonContent}:after {
-      right: -4px;
+      color: ${palette.darkBlue[400]};
+      border-color: ${palette.darkBlue[400]};
     }
   }
 
   @media (${breakpoints.below.phone}) {
     font-size: 16px;
+
+    & svg {
+      height: 12px;
+    }
   }
 `
