@@ -9,15 +9,15 @@ import Title from '../Title'
 
 import Button from './index'
 
-const ButtonContainer = styled.div`
+const StoryContainer = styled.div`
   margin: 64px;
 `
 
-const ButtonSizeContainer = styled.div`
+const LineContainer = styled.div`
   margin-bottom: 24px;
 `
 
-export const ButtonList = styled.div`
+const ButtonList = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 8px -8px -8px -8px;
@@ -27,56 +27,44 @@ export const ButtonList = styled.div`
   }
 `
 
+const createLine = (title, props) => (
+  <LineContainer>
+    <Title type="columnTitle">{title}</Title>
+    <ButtonList>
+      <Button {...props}>Voir tous nos projets</Button>
+      <Button {...props} disabled>
+        Voir tous nos projets
+      </Button>
+      <Button {...props} iconLeft={<Facebook />}>
+        Partager
+      </Button>
+      <Button {...props} iconRight={<Facebook />}>
+        Partager
+      </Button>
+      <Button {...props} warning>
+        Supprimer
+      </Button>
+    </ButtonList>
+  </LineContainer>
+)
+
 storiesOf('Actions|Button', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
   .add(
-    'full example',
+    'gallery',
     () => (
-      <ButtonContainer>
-        <ButtonSizeContainer>
-          <Title type="columnTitle">Taille "regular"</Title>
-          <ButtonList>
-            <Button>Voir tous nos projets</Button>
-            <Button outline>Voir tous nos projets</Button>
-            <Button iconLeft={<Facebook />}>Partager</Button>
-            <Button iconRight={<Facebook />}>Partager</Button>
-            <Button disabled>Voir tous nos projets</Button>
-          </ButtonList>
-        </ButtonSizeContainer>
-
-        <ButtonSizeContainer>
-          <Title type="columnTitle">Taille "small"</Title>
-          <ButtonList>
-            <Button small>Voir tous nos projets</Button>
-            <Button small outline>
-              Voir tous nos projets
-            </Button>
-            <Button small disabled>
-              Voir tous nos projets
-            </Button>
-            <Button small outline disabled>
-              Voir tous nos projets
-            </Button>
-          </ButtonList>
-        </ButtonSizeContainer>
-
-        <ButtonSizeContainer>
-          <Title type="columnTitle">Taille "large"</Title>
-          <ButtonList>
-            <Button large>Voir tous nos projets</Button>
-            <Button large outline>
-              Voir tous nos projets
-            </Button>
-            <Button large disabled>
-              Voir tous nos projets
-            </Button>
-            <Button large outline disabled>
-              Voir tous nos projets
-            </Button>
-          </ButtonList>
-        </ButtonSizeContainer>
-      </ButtonContainer>
+      <StoryContainer>
+        {createLine('Solid + regular', {})}
+        {createLine('Solid + small', { small: true })}
+        {createLine('Solid + large', { large: true })}
+        {createLine('Outline + regular', { outline: true })}
+        {createLine('Outline + small', { outline: true, small: true })}
+        {createLine('Outline + large', { outline: true, large: true })}
+        {createLine('Link + regular', { link: true })}
+        {createLine('Link + small', { link: true, small: true })}
+        {createLine('Link + large', { link: true, large: true })}
+      </StoryContainer>
     ),
     {
       design: {
@@ -89,6 +77,7 @@ storiesOf('Actions|Button', module)
   .add('dynamic', () => (
     <Button
       outline={boolean('Outline', false)}
+      link={boolean('Link', false)}
       small={boolean('Small', false)}
       large={boolean('Large', false)}
       primary={boolean('Color override : Primary', false)}

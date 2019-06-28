@@ -9,7 +9,7 @@ export interface ThemeOverridesProps {
 }
 
 export interface Button
-  extends React.HTMLAttributes<HTMLButtonElement>,
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     ThemeOverridesProps {
   disabled?: boolean
   small?: boolean

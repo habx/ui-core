@@ -6,7 +6,7 @@ const FONT_ROOT = 'https://cdn.habx.fr/assets/fonts'
 
 const GlobalStyle = createGlobalStyle`
   ${styledNormalize};
-
+  
   html {
     -moz-osx-font-smoothing: grayscale;
     font-smoothing: antialiased;
@@ -60,6 +60,12 @@ const GlobalStyle = createGlobalStyle`
     font-stretch: normal;
     font-display: fallback;
   }
+  
+  
+  * {
+    box-sizing: border-box;
+  }
+
 `
 
 export default storyFn => (
