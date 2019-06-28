@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import breakpoints from '../breakpoints'
+import palette from '../palette'
 import theme from '../theme'
 
 export const IconContainer = styled.div`
@@ -19,23 +20,6 @@ export const IconContainer = styled.div`
 export const ButtonContent = styled.div`
   position: relative;
   white-space: nowrap;
-
-  &[data-arrow='true'] {
-    padding-right: 48px;
-
-    &:after {
-      content: '\\02192';
-      font-family: habx-icon;
-      font-size: 22px;
-      position: absolute;
-      display: flex;
-      align-items: center;
-      top: 0;
-      bottom: 8px;
-      right: 0;
-      transition: all 0.5s;
-    }
-  }
 `
 
 export const ButtonContainer = styled.button`
@@ -83,8 +67,8 @@ export const ButtonContainer = styled.button`
 
   &[data-outline='true'] {
     background-color: transparent;
-    color: ${theme.palette('quaternary', 900, { dynamic: true })};
-    border: 2px solid ${theme.palette('quaternary', 900, { dynamic: true })};
+    color: ${theme.color('secondary', { dynamic: true })};
+    border: 2px solid ${theme.color('secondary', { dynamic: true })};
 
     &:hover,
     &:active {
@@ -116,16 +100,22 @@ export const ButtonContainer = styled.button`
 
   &[data-outline='false'] {
     border: 4px solid transparent;
-    background-color: ${theme.palette('primary', 600, { dynamic: true })};
+    background-color: ${theme.color('primary', { dynamic: true })};
     color: ${theme.get('white')};
 
     &:hover,
     &:active {
-      background-color: ${theme.palette('primary', 700, { dynamic: true })};
+      background-color: ${theme.color('primary', {
+        dynamic: true,
+        variation: 'hover',
+      })};
     }
 
     &:focus {
-      border-color: ${theme.palette('primary', 800, { dynamic: true })};
+      border-color: ${theme.color('primary', {
+        dynamic: true,
+        variation: 'focus',
+      })};
     }
   }
 
@@ -137,18 +127,12 @@ export const ButtonContainer = styled.button`
     pointer-events: none;
 
     &[data-outline='false'] {
-      background-color: ${theme.palette('quaternary', 400)};
+      background-color: ${palette.darkBlue[400]};
     }
 
     &[data-outline='true'] {
-      color: ${theme.palette('quaternary', 400)};
-      border-color: ${theme.palette('quaternary', 400)};
-    }
-  }
-
-  &[data-arrow] {
-    &:hover ${ButtonContent}:after, :active arrow${ButtonContent}:after {
-      right: -4px;
+      color: ${palette.darkBlue[400]};
+      border-color: ${palette.darkBlue[400]};
     }
   }
 

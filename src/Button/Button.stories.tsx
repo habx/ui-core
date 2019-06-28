@@ -1,3 +1,4 @@
+import { withKnobs, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
@@ -27,6 +28,7 @@ export const ButtonList = styled.div`
 
 storiesOf('Actions|Button', module)
   .addDecorator(withDesign)
+  .addDecorator(withKnobs)
   .add(
     'full example',
     () => (
@@ -40,7 +42,6 @@ storiesOf('Actions|Button', module)
             <Button outline disabled>
               Voir tous nos projets
             </Button>
-            <Button showArrow>Voir tous nos projets</Button>
           </ButtonList>
         </ButtonSizeContainer>
 
@@ -55,9 +56,6 @@ storiesOf('Actions|Button', module)
               Voir tous nos projets
             </Button>
             <Button small outline disabled>
-              Voir tous nos projets
-            </Button>
-            <Button small showArrow>
               Voir tous nos projets
             </Button>
           </ButtonList>
@@ -76,9 +74,6 @@ storiesOf('Actions|Button', module)
             <Button large outline disabled>
               Voir tous nos projets
             </Button>
-            <Button large showArrow>
-              Voir tous nos projets
-            </Button>
           </ButtonList>
         </ButtonSizeContainer>
       </ButtonContainer>
@@ -91,3 +86,12 @@ storiesOf('Actions|Button', module)
       },
     }
   )
+  .add('dynamic', () => (
+    <Button
+      outline={boolean('Outline', false)}
+      small={boolean('Small', false)}
+      large={boolean('Large', false)}
+    >
+      Voir tous nos projets
+    </Button>
+  ))
