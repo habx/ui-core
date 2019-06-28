@@ -11,10 +11,10 @@ const config: Config = {
         },
       },
     },
+    'multi-input': true,
   },
 
-  // Let's take this opportunity to move the CLI flags here as well
-  input: 'src/index.ts',
+  input: ['src/index.ts', 'src/icons/**/*.tsx'],
   output: {
     format: ['cjs', 'esm'],
   },

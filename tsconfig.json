@@ -14,5 +14,5 @@
     "module": "commonjs",
     "esModuleInterop": true
   },
-  "files": ["./src/index.ts"]
+  "files": ["./src/index.ts", "./src/icons/index.ts"]
 }
