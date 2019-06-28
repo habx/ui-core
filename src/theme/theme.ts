@@ -29,6 +29,11 @@ export const BASE_THEME: DesignSystemTheme = {
       hover: palette.darkBlue[700],
       focus: palette.darkBlue[800],
     },
+    warning: {
+      base: palette.orange[700],
+      hover: palette.orange[700],
+      focus: palette.orange[800],
+    },
   },
 }
 
@@ -70,20 +75,16 @@ const colorGetter = (
         return colorName
       }
 
+      if (props.warning) {
+        return 'warning'
+      }
+
       if (props.primary) {
         return 'primary'
       }
 
       if (props.secondary) {
         return 'secondary'
-      }
-
-      if (props.tertiary) {
-        return 'tertiary'
-      }
-
-      if (props.quaternary) {
-        return 'quaternary'
       }
 
       return colorName

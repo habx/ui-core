@@ -14,6 +14,7 @@ export default interface DesignSystemTheme {
   colors: {
     primary: ColorVariations
     secondary: ColorVariations
+    warning: ColorVariations
   }
 
   shadowLight: string

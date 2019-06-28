@@ -91,6 +91,9 @@ storiesOf('Actions|Button', module)
       outline={boolean('Outline', false)}
       small={boolean('Small', false)}
       large={boolean('Large', false)}
+      primary={boolean('Color override : Primary', false)}
+      secondary={boolean('Color override : Secondary', false)}
+      warning={boolean('Color override : Warning', false)}
     >
       Voir tous nos projets
     </Button>
