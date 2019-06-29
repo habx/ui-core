@@ -2,6 +2,11 @@ import * as React from 'react'
 
 import DesignSystemTheme from '../theme/theme.interface'
 
+export type Except<BaseType, ExcludedElements> = Pick<
+  BaseType,
+  Exclude<keyof BaseType, ExcludedElements>
+>
+
 export interface ThemeOverridesProps {
   primary?: boolean
   secondary?: boolean

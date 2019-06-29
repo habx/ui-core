@@ -2,7 +2,7 @@ import { isFunction } from '../_internal/data'
 import { themeAccessor } from '../_internal/types'
 import palette from '../palette'
 
-import DesignSystemTheme, { ColorVariations } from './theme.interface'
+import DesignSystemTheme from './theme.interface'
 
 export const BASE_THEME: DesignSystemTheme = {
   name: 'light',
@@ -37,7 +37,8 @@ export const BASE_THEME: DesignSystemTheme = {
     input: {
       background: palette.darkBlue[200],
       border: palette.darkBlue[300],
-      text: palette.darkBlue[400],
+      placeholder: palette.darkBlue[600],
+      disabledPlaceholder: palette.darkBlue[400],
     },
   },
 }

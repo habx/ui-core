@@ -18,7 +18,8 @@ export default interface DesignSystemTheme {
     input: {
       background: string
       border: string
-      text: string
+      placeholder: string
+      disabledPlaceholder: string
     }
   }
 

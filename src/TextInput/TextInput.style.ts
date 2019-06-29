@@ -27,11 +27,11 @@ export const Input = styled.input`
   transition: all 150ms ease-in-out;
 
   &::placeholder {
-    color: ${theme.color('input', { variation: 'text' })};
+    color: ${theme.color('input', { variation: 'placeholder' })};
   }
 
   &[data-small='true'] {
-    padding: 12px;
+    padding: 0 12px;
     min-height: 2.3rem;
     max-height: 2.3rem;
   }
@@ -40,6 +40,10 @@ export const Input = styled.input`
     border-color: ${theme.color('input', { variation: 'background' })};
     background-color: ${theme.color('input', { variation: 'background' })};
     color: ${palette.darkBlue[700]};
+
+    &::placeholder {
+      color: ${theme.color('input', { variation: 'disabledPlaceholder' })};
+    }
   }
 
   &:not(:disabled) {
@@ -55,6 +59,7 @@ export const Input = styled.input`
     &[data-error='true'] {
       border-color: ${palette.orange[400]};
       color: ${palette.orange[400]};
+      box-shadow: 0 1px 0 ${palette.orange[400]};
     }
   }
 
