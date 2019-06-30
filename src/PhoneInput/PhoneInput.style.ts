@@ -15,9 +15,9 @@ export const MainInput = styled(TextInput)`
 export const CountryOptions = styled.div`
   user-select: none;
   width: 110px;
-  background-color: ${theme.color('input', { variation: 'background' })};
-  color: ${theme.color('input', { variation: 'placeholder' })};
-  font-family: ${theme.get('textFont')}, sans-serif;
+  background-color: ${palette.darkBlue[200]};
+  color: ${theme.textColor('placeholder')};
+  font-family: ${theme.font()};
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -37,12 +37,12 @@ export const PhoneInputContainer = styled.div`
   outline: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border: solid 1.5px ${theme.color('input', { variation: 'background' })};
+  border: solid 1.5px ${palette.darkBlue[200]};
   border-radius: 4px;
 
   &:hover,
   &:focus-within {
-    border-color: ${theme.color('input', { variation: 'border' })};
+    border-color: ${palette.darkBlue[300]};
   }
 
   &[data-error='true'] {
@@ -56,11 +56,11 @@ export const PhoneInputContainer = styled.div`
 
   &[data-disabled='true'] {
     pointer-events: none;
-    border-color: ${theme.color('input', { variation: 'background' })};
+    border-color: ${palette.darkBlue[200]};
 
     & ${CountryOptions} {
       border-right-color: #d0e4e6;
-      color: ${theme.color('input', { variation: 'disabledPlaceholder' })};
+      color: ${theme.textColor('disabledPlaceholder')};
 
       & svg {
         filter: grayscale();
@@ -83,7 +83,7 @@ export const PhoneInputContainer = styled.div`
 
 export const FlagContainer = styled.div`
   border-radius: 2px;
-  border: 1px ${theme.color('input', { variation: 'background' })} solid;
+  border: 1px ${palette.darkBlue[200]} solid;
   display: flex;
   overflow: hidden;
   height: 15px;

@@ -44,7 +44,7 @@ export const ButtonContainer = styled.button`
   max-width: 100%;
   font-size: 16px;
   line-height: 20px;
-  font-family: ${theme.get('textFont')}, sans-serif;
+  font-family: ${theme.font()};
 
   transition-property: border, padding, background-color;
   transition-duration: 50ms;
@@ -143,10 +143,10 @@ export const ButtonContainer = styled.button`
   &[data-outline='false'][data-link='false'] {
     border: 4px solid transparent;
     background-color: ${theme.color('primary', { dynamic: true })};
-    color: ${theme.get('white')};
+    color: #fff;
 
     & svg {
-      fill: ${theme.get('white')};
+      fill: #fff;
     }
 
     &:hover,

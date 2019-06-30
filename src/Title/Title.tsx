@@ -7,7 +7,7 @@ import TitleProps from './Title.interface'
 
 const BaseTitle = styled.h1`
   color: ${theme.color('secondary', { dynamic: true })};
-  font-family: ${theme.get('textFont')}, sans-serif;
+  font-family: ${theme.font('title')};
   font-weight: 400;
   margin: 0;
 `

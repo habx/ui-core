@@ -24,9 +24,3 @@ export interface Button
 export interface styledTheme {
   designSystem: DesignSystemTheme
 }
-
-interface themeAccessorProps extends ThemeOverridesProps {
-  theme: styledTheme
-}
-
-export type themeAccessor = (props: themeAccessorProps) => string
