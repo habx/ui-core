@@ -4,29 +4,39 @@ export interface ColorVariations {
   focus: string
 }
 
+export interface TextColorVariations {
+  base: string
+  title: string
+  placeholder: string
+  disabledPlaceholder: string
+}
+
+export interface ColorFamilies {
+  primary: ColorVariations
+  secondary: ColorVariations
+  warning: ColorVariations
+}
+
+export interface Fonts {
+  title: string
+  text: string
+}
+
+export interface Shadows {
+  light: string
+  base: string
+  strong: string
+}
+
 export default interface DesignSystemTheme {
-  name: string
+  colors: ColorFamilies
+  textColors: TextColorVariations
+  fonts: Fonts
+  shadows: Shadows
+}
 
-  textColor: string
-  warningColor: string
-  white: string
-
-  colors: {
-    primary: ColorVariations
-    secondary: ColorVariations
-    warning: ColorVariations
-    input: {
-      background: string
-      border: string
-      placeholder: string
-      disabledPlaceholder: string
-    }
+export interface GetterProps {
+  theme?: {
+    designSystem?: DesignSystemTheme
   }
-
-  shadowLight: string
-  shadow: string
-  shadowStrong: string
-
-  titleFont: string
-  textFont: string
 }

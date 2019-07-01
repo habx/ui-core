@@ -1,23 +1,15 @@
-import { isFunction } from '../_internal/data'
-import { themeAccessor } from '../_internal/types'
 import palette from '../palette'
 
-import DesignSystemTheme from './theme.interface'
+import DesignSystemTheme, {
+  ColorFamilies,
+  ColorVariations,
+  Fonts,
+  Shadows,
+  TextColorVariations,
+  GetterProps,
+} from './theme.interface'
 
 export const BASE_THEME: DesignSystemTheme = {
-  name: 'light',
-
-  shadowLight: '0 4px 12px 0 rgba(80, 79, 79, 0.24)',
-  shadow: '0 2px 6px 0 rgba(2, 26, 60, 0.16)',
-  shadowStrong: '0 2px 6px 0 rgba(153, 117, 113, 0.16)',
-
-  textColor: palette.darkBlue[900],
-  warningColor: palette.orange[500],
-  white: '#fff',
-
-  titleFont: 'EuclidCircularB',
-  textFont: 'EuclidCircularB',
-
   colors: {
     primary: {
       base: palette.blue[600],
@@ -34,45 +26,48 @@ export const BASE_THEME: DesignSystemTheme = {
       hover: palette.orange[700],
       focus: palette.orange[800],
     },
-    input: {
-      background: palette.darkBlue[200],
-      border: palette.darkBlue[300],
-      placeholder: palette.darkBlue[600],
-      disabledPlaceholder: palette.darkBlue[400],
-    },
+  },
+
+  textColors: {
+    base: palette.darkBlue[900],
+    title: palette.darkBlue[900],
+    placeholder: palette.darkBlue[600],
+    disabledPlaceholder: palette.darkBlue[400],
+  },
+
+  fonts: {
+    title: 'EuclidCircularB, sans-serif',
+    text: 'EuclidCircularB, sans-serif',
+  },
+
+  shadows: {
+    light: '0 4px 12px 0 rgba(80, 79, 79, 0.24)',
+    base: '0 2px 6px 0 rgba(2, 26, 60, 0.16)',
+    strong: '0 2px 6px 0 rgba(153, 117, 113, 0.16)',
   },
 }
 
-const getter = (
-  themeKey: keyof DesignSystemTheme | 'inherit',
-  config: { propName?: string; dynamic?: boolean } = {}
-): themeAccessor => {
-  const { propName = 'color' } = config
+const getTheme = (props: GetterProps): DesignSystemTheme => {
+  const { theme: { designSystem = BASE_THEME } = {} } = props
 
-  return (props, runtimeConfig: { isRecursive?: boolean } = {}) => {
-    const { theme = {} as { designSystem: DesignSystemTheme } } = props
-    const designSystem = theme.designSystem || BASE_THEME
-
-    if (propName && props[propName] && !runtimeConfig.isRecursive) {
-      if (isFunction(props[propName])) {
-        return props[propName](props, { isRecursive: true })
-      }
-
-      return props[propName]
-    }
-
-    if (themeKey === 'inherit') {
-      return 'inherit'
-    }
-
-    return designSystem[themeKey]
-  }
+  return designSystem
 }
 
+const fontGetter = (variation: keyof Fonts = 'text') => (props: GetterProps) =>
+  getTheme(props).fonts[variation]
+
+const shadowGetter = (variation: keyof Shadows = 'base') => (
+  props: GetterProps
+) => getTheme(props).shadows[variation]
+
+const textColorGetter = (variation: keyof TextColorVariations = 'base') => (
+  props: GetterProps
+) => getTheme(props).textColors[variation]
+
 const colorGetter = (
-  colorName: 'primary' | 'secondary' | 'input',
-  config: { dynamic?: boolean; variation?: string } = {}
-): themeAccessor => {
+  colorName: keyof ColorFamilies,
+  config: { dynamic?: boolean; variation?: keyof ColorVariations } = {}
+) => {
   const { dynamic = false, variation = 'base' } = config
 
   return props => {
@@ -96,16 +91,15 @@ const colorGetter = (
       return colorName
     }
 
-    const { theme = {} as { designSystem: DesignSystemTheme } } = props
-    const designSystem = theme.designSystem || BASE_THEME
-
-    return designSystem.colors[getColorName()][variation]
+    return getTheme(props).colors[getColorName()][variation]
   }
 }
 
 const theme = {
-  get: getter,
   color: colorGetter,
+  textColor: textColorGetter,
+  font: fontGetter,
+  shadow: shadowGetter,
   raw: BASE_THEME,
 }
 

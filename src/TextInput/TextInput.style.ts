@@ -5,7 +5,7 @@ import palette from '../palette'
 import theme from '../theme'
 
 export const Input = styled.input`
-  font-family: ${theme.get('textFont')}, sans-serif;
+  font-family: ${theme.font()};
   flex: 1;
   margin: 0;
   padding: 0 16px;
@@ -15,19 +15,19 @@ export const Input = styled.input`
   min-width: 0;
   font-size: 16px;
 
-  background-color: ${theme.color('input', { variation: 'background' })};
+  background-color: ${palette.darkBlue[200]};
   color: ${theme.color('secondary')};
 
   outline: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border: solid 1.5px ${theme.color('input', { variation: 'background' })};
+  border: solid 1.5px ${palette.darkBlue[200]};
   border-radius: 4px;
 
   transition: all 150ms ease-in-out;
 
   &::placeholder {
-    color: ${theme.color('input', { variation: 'placeholder' })};
+    color: ${theme.textColor('placeholder')};
   }
 
   &[data-small='true'] {
@@ -37,19 +37,19 @@ export const Input = styled.input`
   }
 
   &:disabled {
-    border-color: ${theme.color('input', { variation: 'background' })};
-    background-color: ${theme.color('input', { variation: 'background' })};
+    border-color: ${palette.darkBlue[200]};
+    background-color: ${palette.darkBlue[200]};
     color: ${palette.darkBlue[700]};
 
     &::placeholder {
-      color: ${theme.color('input', { variation: 'disabledPlaceholder' })};
+      color: ${theme.textColor('disabledPlaceholder')};
     }
   }
 
   &:not(:disabled) {
     &:hover,
     &:focus {
-      border-color: ${theme.color('input', { variation: 'border' })};
+      border-color: ${palette.darkBlue[300]};
     }
 
     &:focus {

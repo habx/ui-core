@@ -2,10 +2,9 @@ import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import styled from 'styled-components'
 
-import theme from '../theme'
 import Title from '../Title'
 
-import palette from './palette'
+import theme from './theme'
 
 const Container = styled.div`
   display: flex;
@@ -38,17 +37,27 @@ const Circle = styled.div`
   box-shadow: ${theme.shadow()};
 `
 
-storiesOf('Utility|palette', module).add('galery', () => (
+storiesOf('Utility|theme', module).add('colors', () => (
   <Container>
-    {Object.entries(palette).map(([colorName, colorGradient]) => (
-      <Line>
-        <ColorLabel>{colorName}</ColorLabel>
-        {[...Object.values(colorGradient).reverse()].map(color => (
-          <Color>
-            <Circle color={color} />
-          </Color>
-        ))}
-      </Line>
-    ))}
+    <Line>
+      <ColorLabel />
+      {Object.keys(Object.values(theme.raw.colors)[0]).map(colorName => (
+        <Color>
+          <Title type="columnTitle">{colorName}</Title>
+        </Color>
+      ))}
+    </Line>
+    {Object.entries(theme.raw.colors).map(
+      ([colorFamilyName, colorFamilyVariations]) => (
+        <Line>
+          <ColorLabel>{colorFamilyName}</ColorLabel>
+          {Object.values(colorFamilyVariations).map(color => (
+            <Color>
+              <Circle color={color} />
+            </Color>
+          ))}
+        </Line>
+      )
+    )}
   </Container>
 ))
