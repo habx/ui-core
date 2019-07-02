@@ -9,7 +9,7 @@
     "clean": "rimraf ./dist",
     "build": "npm run clean && bili && npm run build:types",
     "build:dev": "npm run clean && tsc",
-    "build:watch": "npm run clean && tsc --watch",
+    "build:watch": "npm run clean && npx babel src --watch --out-dir dist --extensions .ts,.tsx",
     "build:types": "tsc --emitDeclarationOnly",
     "postbuild": "node ./scripts/postbuild.js",
     "publish": "cd dist && npm publish && cd ..",
@@ -42,11 +42,18 @@
   },
   "homepage": "https://github.com/habx/lib-design-system#readme",
   "dependencies": {
+    "merge": "^1.2.1"
+  },
+  "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
     "@habx/eslint-config-client": "^2.0.6",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-centered": "^5.1.9",
@@ -61,7 +68,9 @@
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
     "@types/storybook__react": "^4.0.2",
+    "@types/styled-components": "^4.1.16",
     "awesome-typescript-loader": "^5.2.1",
+    "babel-plugin-styled-components": "^1.10.6",
     "bili": "^4.8.0",
     "cross-env": "^5.2.0",
     "husky": "^2.5.0",

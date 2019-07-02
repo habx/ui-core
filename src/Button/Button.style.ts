@@ -7,6 +7,7 @@ export const IconContainer = styled.div`
   height: 13px;
   display: flex;
   margin-top: -2px;
+  align-items: center;
 
   &[data-position='left'] {
     margin-right: 8px;
