@@ -2,7 +2,7 @@ import { get, set, find } from 'lodash'
 import * as React from 'react'
 
 import { useSSRLayoutEffect } from '../_internal/ssr'
-import FlagFrance from '../icons/FlagFrance'
+import Icon from '../Icon'
 
 import PhoneInputProps from './PhoneInput.interface'
 import {
@@ -13,7 +13,7 @@ import {
   FlagContainer,
 } from './PhoneInput.style'
 
-const COUNTRIES = [{ code: 'fr', indicator: 33, flag: FlagFrance }]
+const COUNTRIES = [{ code: 'fr', indicator: 33, flag: () => <Icon icon='arrow-right' /> }]
 
 const PHONE_REGEXP = /\+([0-9]{2})(.*)/
 

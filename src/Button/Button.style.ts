@@ -4,10 +4,10 @@ import palette from '../palette'
 import theme from '../theme'
 
 export const IconContainer = styled.div`
-  height: 13px;
+  height: 16px;
+  width: 16px;
   display: flex;
-  margin-top: -2px;
-  align-items: center;
+  margin-top: 1px;
 
   &[data-position='left'] {
     margin-right: 8px;
