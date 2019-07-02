@@ -7,9 +7,9 @@
   "types": "./dist/typings/index.d.ts",
   "scripts": {
     "clean": "rimraf ./dist",
-    "build": "npm run clean && bili && npm run build:types",
-    "build:dev": "npm run clean && tsc",
-    "build:watch": "npm run clean && npx babel src --watch --out-dir dist --extensions .ts,.tsx",
+    "build": "npm run clean && bili",
+    "build:dev": "npm run clean && npx babel src --out-dir dist --extensions .ts,.tsx",
+    "build:watch": "npm run clean && npx babel src --out-dir dist --extensions .ts,.tsx --watch",
     "build:types": "tsc --emitDeclarationOnly",
     "postbuild": "node ./scripts/postbuild.js",
     "publish": "cd dist && npm publish && cd ..",
