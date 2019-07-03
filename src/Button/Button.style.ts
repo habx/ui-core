@@ -4,9 +4,9 @@ import palette from '../palette'
 import theme from '../theme'
 
 export const IconContainer = styled.div`
-  height: 13px;
+  font-size: 0.9em;
   display: flex;
-  margin-top: -2px;
+  margin-top: 1px;
 
   &[data-position='left'] {
     margin-right: 8px;

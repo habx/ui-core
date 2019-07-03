@@ -4,7 +4,7 @@ import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
-import Facebook from '../icons/Facebook'
+import Icon from '../Icon'
 import Title from '../Title'
 
 import Button from './index'
@@ -35,10 +35,10 @@ const createLine = (title, props) => (
       <Button {...props} disabled>
         Voir tous nos projets
       </Button>
-      <Button {...props} iconLeft={<Facebook />}>
+      <Button {...props} iconLeft={<Icon icon="arrow-right" />}>
         Partager
       </Button>
-      <Button {...props} iconRight={<Facebook />}>
+      <Button {...props} iconRight={<Icon icon="arrow-right" />}>
         Partager
       </Button>
       <Button {...props} warning>
@@ -83,8 +83,12 @@ storiesOf('Actions|Button', module)
       primary={boolean('Color override : Primary', false)}
       secondary={boolean('Color override : Secondary', false)}
       warning={boolean('Color override : Warning', false)}
-      iconLeft={boolean('Icon left', false) ? <Facebook /> : null}
-      iconRight={boolean('Icon right', false) ? <Facebook /> : null}
+      iconLeft={
+        boolean('Icon left', false) ? <Icon icon="arrow-right" /> : null
+      }
+      iconRight={
+        boolean('Icon right', false) ? <Icon icon="arrow-right" /> : null
+      }
     >
       Voir tous nos projets
     </Button>
