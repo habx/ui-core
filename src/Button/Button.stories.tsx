@@ -35,10 +35,10 @@ const createLine = (title, props) => (
       <Button {...props} disabled>
         Voir tous nos projets
       </Button>
-      <Button {...props} iconLeft={<Icon icon='arrow-right' />}>
+      <Button {...props} iconLeft={<Icon icon="arrow-right" />}>
         Partager
       </Button>
-      <Button {...props} iconRight={<Icon icon='arrow-right' />}>
+      <Button {...props} iconRight={<Icon icon="arrow-right" />}>
         Partager
       </Button>
       <Button {...props} warning>
@@ -83,8 +83,12 @@ storiesOf('Actions|Button', module)
       primary={boolean('Color override : Primary', false)}
       secondary={boolean('Color override : Secondary', false)}
       warning={boolean('Color override : Warning', false)}
-      iconLeft={boolean('Icon left', false) ? <Icon icon='arrow-right' /> : null}
-      iconRight={boolean('Icon right', false) ? <Icon icon='arrow-right' /> : null}
+      iconLeft={
+        boolean('Icon left', false) ? <Icon icon="arrow-right" /> : null
+      }
+      iconRight={
+        boolean('Icon right', false) ? <Icon icon="arrow-right" /> : null
+      }
     >
       Voir tous nos projets
     </Button>
