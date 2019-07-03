@@ -4,7 +4,7 @@
     "rootDirs": ["./src", "./.storybook"],
     "outDir": "./dist",
     "declarationDir": "./dist/typings",
-    "lib": ["es7", "dom"],
+    "lib": [],
     "moduleResolution": "node",
     "removeComments": true,
     "sourceMap": true,
@@ -12,7 +12,8 @@
     "declarationMap": true,
     "target": "esnext",
     "module": "commonjs",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "strict": false,
   },
   "files": ["./src/index.ts"]
 }

@@ -1,11 +1,7 @@
 import { Config } from 'bili'
 
 const config: Config = {
-  plugins: {
-    'multi-input': true,
-  },
-
-  input: ['src/index.ts', 'src/icons/**/*.tsx'],
+  input: './dist/index.js',
   output: {
     format: ['cjs', 'esm'],
   },

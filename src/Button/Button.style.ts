@@ -4,8 +4,7 @@ import palette from '../palette'
 import theme from '../theme'
 
 export const IconContainer = styled.div`
-  height: 16px;
-  width: 16px;
+  font-size: 0.9em;
   display: flex;
   margin-top: 1px;
 

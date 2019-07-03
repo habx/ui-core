@@ -13,7 +13,13 @@ import {
   FlagContainer,
 } from './PhoneInput.style'
 
-const COUNTRIES = [{ code: 'fr', indicator: 33, flag: () => <Icon icon='arrow-right' /> }]
+const COUNTRIES = [
+  {
+    code: 'fr',
+    indicator: 33,
+    flag: () => <Icon colored icon="flag-france" />,
+  },
+]
 
 const PHONE_REGEXP = /\+([0-9]{2})(.*)/
 
