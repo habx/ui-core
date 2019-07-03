@@ -51,7 +51,7 @@ storiesOf('Utility|theme', module).add('colors', () => (
       ([colorFamilyName, colorFamilyVariations]) => (
         <Line>
           <ColorLabel>{colorFamilyName}</ColorLabel>
-          {Object.values(colorFamilyVariations).map(color => (
+          {Object.values(colorFamilyVariations).map((color: string) => (
             <Color>
               <Circle color={color} />
             </Color>

@@ -6,11 +6,10 @@
   "main": "./dist/index.js",
   "types": "./dist/typings/index.d.ts",
   "scripts": {
-    "clean": "rimraf ./dist",
-    "build": "npm run build:dev && bili && npm run build:types",
-    "build:dev": "npm run clean && npx babel src --out-dir dist --extensions .ts,.tsx",
-    "build:watch": "npm run clean && npx babel src --out-dir dist --extensions .ts,.tsx --watch",
     "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "webpack --mode=production",
+    "build:watch": "webpack --mode=development --watch",
+    "build": "npm run build:types && npm run build:js",
     "postbuild": "node ./scripts/postbuild.js",
     "publish": "cd dist && npm publish && cd ..",
     "storybook": "start-storybook -p 9001 -c .storybook",
@@ -18,7 +17,9 @@
     "storybook:deploy": "storybook-to-ghpages -s storybook:build",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "lint": "eslint \"src/**\""
+    "lint": "eslint \"src/**\"",
+    "typecheck": "tsc --noEmit",
+    "typecheck:watch": "npm run type-check -- --watch"
   },
   "repository": {
     "type": "git",
@@ -52,6 +53,8 @@
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@habx/eslint-config-client": "^2.0.6",
@@ -65,34 +68,29 @@
     "@storybook/storybook-deployer": "^2.8.1",
     "@testing-library/react": "^8.0.4",
     "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.10",
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
     "@types/storybook__react": "^4.0.2",
     "@types/styled-components": "^4.1.16",
-    "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.6",
     "babel-plugin-styled-components": "^1.10.6",
-    "bili": "^4.8.0",
     "cross-env": "^5.2.0",
+    "fork-ts-checker-webpack-plugin": "1.3.3",
     "husky": "^2.5.0",
     "jest": "^24.8.0",
     "jest-dom": "^3.1.4",
     "lint-staged": "^8.2.1",
     "react-docgen-typescript-loader": "^3.1.0",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
-    "rollup": "^1.16.4",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-commonjs": "^10.0.1",
-    "rollup-plugin-filesize": "^6.1.1",
-    "rollup-plugin-local-resolve": "^1.0.7",
-    "rollup-plugin-multi-input": "^1.0.2",
-    "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-terser": "^5.1.0",
     "storybook-addon-designs": "^5.1.0",
     "styled-normalize": "^8.0.6",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.2",
+    "webpack": "4.31.0",
+    "webpack-cli": "3.3.2"
+  },
+  "resolutions": {
+    "terser": "3.14.1"
   }
 }
