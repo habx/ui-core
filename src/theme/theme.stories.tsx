@@ -43,7 +43,7 @@ storiesOf('Utility|theme', module).add('colors', () => (
       <ColorLabel />
       {Object.keys(Object.values(theme.raw.colors)[0]).map(colorName => (
         <Color>
-          <Title type="columnTitle">{colorName}</Title>
+          <Title type="section">{colorName}</Title>
         </Color>
       ))}
     </Line>
