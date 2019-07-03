@@ -23,7 +23,7 @@ const HeaderMaxiTitleComponent = styled(BaseTitle)`
   ${size('milkyWay')};
 
   @media (${breakpoints.below.smallTablet}) {
-    ${size('superNova')};
+    ${size('nova')};
   }
 `
 
