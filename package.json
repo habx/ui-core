@@ -43,9 +43,7 @@
   },
   "homepage": "https://github.com/habx/lib-design-system#readme",
   "dependencies": {
-    "merge": "^1.2.1"
-  },
-  "peerDependencies": {
+    "merge": "^1.2.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.3.2"
@@ -68,6 +66,7 @@
     "@storybook/storybook-deployer": "^2.8.1",
     "@testing-library/react": "^8.0.4",
     "@types/jest": "^24.0.15",
+    "@types/lodash": "^4.14.135",
     "@types/node": "^12.0.10",
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
@@ -81,6 +80,7 @@
     "jest": "^24.8.0",
     "jest-dom": "^3.1.4",
     "lint-staged": "^8.2.1",
+    "lodash": "^4.17.11",
     "react-docgen-typescript-loader": "^3.1.0",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "storybook-addon-designs": "^5.1.0",
