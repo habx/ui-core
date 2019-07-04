@@ -13,14 +13,16 @@ const size = (name: keyof FontScale) => css`
   line-height: ${fontScale[name].lineHeight}px;
 `
 
-const BaseTitle = styled.h1`
+const baseTitleStyle = css`
   color: ${theme.color('secondary', { dynamic: true, propName: 'color' })};
   font-family: ${theme.font('title')};
   font-weight: 400;
   margin: 0;
 `
 
-const HeaderMaxiTitleComponent = styled(BaseTitle)`
+const headerMaxiTitleStyle = css`
+  ${baseTitleStyle};
+
   ${size('milkyWay')};
 
   @media (${breakpoints.below.smallTablet}) {
@@ -28,7 +30,9 @@ const HeaderMaxiTitleComponent = styled(BaseTitle)`
   }
 `
 
-const HeaderBigTitleComponent = styled(BaseTitle)`
+const headerBigTitleStyle = css`
+  ${baseTitleStyle};
+
   ${size('superNova')};
 
   @media (${breakpoints.below.smallTablet}) {
@@ -36,7 +40,9 @@ const HeaderBigTitleComponent = styled(BaseTitle)`
   }
 `
 
-const HeaderTitleComponent = styled(BaseTitle)`
+const headerTitleStyle = css`
+  ${baseTitleStyle};
+
   ${size('nova')};
 
   @media (${breakpoints.below.smallTablet}) {
@@ -44,7 +50,9 @@ const HeaderTitleComponent = styled(BaseTitle)`
   }
 `
 
-const HeaderSmallTitleComponent = styled(BaseTitle)`
+const headerSmallTitleStyle = css`
+  ${baseTitleStyle};
+
   ${size('sun')};
 
   @media (${breakpoints.below.smallTablet}) {
@@ -52,18 +60,62 @@ const HeaderSmallTitleComponent = styled(BaseTitle)`
   }
 `
 
-const ArticleTitleComponent = styled(BaseTitle.withComponent('h2'))`
+const articleTitleStyle = css`
+  ${baseTitleStyle};
+
   ${size('jupiter')};
 `
 
-const SectionTitleComponent = styled(BaseTitle.withComponent('h3'))`
+const sectionTitleStyle = css`
+  ${baseTitleStyle};
+
   ${size('earth')};
 `
 
-const RegularTitleComponent = styled(BaseTitle.withComponent('h4'))`
+const regularTitleStyle = css`
+  ${baseTitleStyle};
+
   font-weight: 500;
 
   ${size('mars')};
+`
+
+export const titleStyles = {
+  headerMaxi: headerMaxiTitleStyle,
+  headerBig: headerBigTitleStyle,
+  header: headerTitleStyle,
+  headerSmall: headerSmallTitleStyle,
+  article: articleTitleStyle,
+  section: sectionTitleStyle,
+  regular: regularTitleStyle,
+}
+
+const HeaderMaxiTitleComponent = styled.h1`
+  ${headerMaxiTitleStyle};
+`
+
+const HeaderBigTitleComponent = styled.h1`
+  ${headerBigTitleStyle};
+`
+
+const HeaderTitleComponent = styled.h1`
+  ${headerTitleStyle};
+`
+
+const HeaderSmallTitleComponent = styled.h1`
+  ${headerSmallTitleStyle};
+`
+
+const ArticleTitleComponent = styled.h2`
+  ${articleTitleStyle};
+`
+
+const SectionTitleComponent = styled.h3`
+  ${sectionTitleStyle};
+`
+
+const RegularTitleComponent = styled.h4`
+  ${regularTitleStyle};
 `
 
 const components = {
