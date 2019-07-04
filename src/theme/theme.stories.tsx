@@ -17,7 +17,7 @@ const Line = styled.div`
   align-items: center;
 `
 
-const ColorLabel = styled(Title).attrs(() => ({ type: 'columnTitle' }))`
+const ColorLabel = styled(Title)`
   width: 170px;
 `
 
@@ -40,17 +40,17 @@ const Circle = styled.div`
 storiesOf('Utility|theme', module).add('colors', () => (
   <Container>
     <Line>
-      <ColorLabel />
+      <ColorLabel type="section" />
       {Object.keys(Object.values(theme.raw.colors)[0]).map(colorName => (
         <Color>
-          <Title type="columnTitle">{colorName}</Title>
+          <Title type="section">{colorName}</Title>
         </Color>
       ))}
     </Line>
     {Object.entries(theme.raw.colors).map(
       ([colorFamilyName, colorFamilyVariations]) => (
         <Line>
-          <ColorLabel>{colorFamilyName}</ColorLabel>
+          <ColorLabel type="section">{colorFamilyName}</ColorLabel>
           {Object.values(colorFamilyVariations).map((color: string) => (
             <Color>
               <Circle color={color} />

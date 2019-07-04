@@ -5,27 +5,29 @@ import {
   ThemeProvider as BaseThemeProvider,
 } from 'styled-components'
 
-import { BASE_THEME } from '../theme'
+import { BASE_THEME, THEME_PATCHES } from '../theme'
 
 import ThemeProviderProps from './ThemeProvider.interface'
 
 const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
+  backgroundColor,
   children,
 }) => {
   const currentTheme = React.useContext(ThemeContext) || {}
 
-  const newTheme = React.useMemo(
-    () => ({
+  const newTheme = React.useMemo(() => {
+    const patch = backgroundColor ? THEME_PATCHES[backgroundColor] : theme
+
+    return {
       ...currentTheme,
       designSystem: merge.recursive(
         true,
         currentTheme.designSystem || BASE_THEME,
-        theme
+        patch
       ),
-    }),
-    [currentTheme, theme]
-  )
+    }
+  }, [backgroundColor, currentTheme, theme])
 
   return <BaseThemeProvider theme={newTheme}>{children}</BaseThemeProvider>
 }

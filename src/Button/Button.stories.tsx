@@ -29,7 +29,7 @@ const ButtonList = styled.div`
 
 const createLine = (title, props) => (
   <LineContainer>
-    <Title type="columnTitle">{title}</Title>
+    <Title type="section">{title}</Title>
     <ButtonList>
       <Button {...props}>Voir tous nos projets</Button>
       <Button {...props} disabled>

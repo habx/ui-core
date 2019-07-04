@@ -77,8 +77,7 @@ export const ButtonContainer = styled.button`
   &[data-link='true'] {
     background-color: transparent;
 
-    &:hover,
-    &:active {
+    &:hover {
       padding: 0 22px;
       border-width: 4px;
 
@@ -91,7 +90,8 @@ export const ButtonContainer = styled.button`
       }
     }
 
-    &:focus {
+    &:focus,
+    &:active {
       padding: 0 20px;
       border-width: 6px;
 
@@ -122,8 +122,7 @@ export const ButtonContainer = styled.button`
       fill: ${theme.color('primary', { dynamic: true })};
     }
 
-    &:hover,
-    &:active {
+    &:hover {
       color: ${theme.color('primary', { dynamic: true, variation: 'hover' })};
 
       & svg {
@@ -131,7 +130,8 @@ export const ButtonContainer = styled.button`
       }
     }
 
-    &:focus {
+    &:focus,
+    &:active {
       color: ${theme.color('primary', { dynamic: true, variation: 'focus' })};
 
       & svg {
@@ -149,15 +149,15 @@ export const ButtonContainer = styled.button`
       fill: #fff;
     }
 
-    &:hover,
-    &:active {
+    &:hover {
       background-color: ${theme.color('primary', {
         dynamic: true,
         variation: 'hover',
       })};
     }
 
-    &:focus {
+    &:focus,
+    &:active {
       border-color: ${theme.color('primary', {
         dynamic: true,
         variation: 'focus',

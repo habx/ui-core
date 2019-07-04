@@ -35,7 +35,7 @@ const TextInputContainer = styled.div`
 
 const createLine = (title, props) => (
   <LineContainer>
-    <Title type="columnTitle">{title}</Title>
+    <Title type="section">{title}</Title>
     <TextInputList>
       <TextInputContainer>
         <PhoneInput placeholder="votre numéro" {...props} />

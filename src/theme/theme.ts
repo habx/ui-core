@@ -1,3 +1,6 @@
+import colorUtils from 'color'
+
+import { isNil } from '../_internal/data'
 import palette from '../palette'
 
 import DesignSystemTheme, {
@@ -66,9 +69,14 @@ const textColorGetter = (variation: keyof TextColorVariations = 'base') => (
 
 const colorGetter = (
   colorName: keyof ColorFamilies,
-  config: { dynamic?: boolean; variation?: keyof ColorVariations } = {}
+  config: {
+    dynamic?: boolean
+    propName?: string
+    variation?: keyof ColorVariations
+    opacity?: number
+  } = {}
 ) => {
-  const { dynamic = false, variation = 'base' } = config
+  const { dynamic = false, variation = 'base', propName, opacity } = config
 
   return props => {
     const getColorName = () => {
@@ -91,7 +99,18 @@ const colorGetter = (
       return colorName
     }
 
-    return getTheme(props).colors[getColorName()][variation]
+    const color =
+      propName && !isNil(props[propName])
+        ? props[propName]
+        : getTheme(props).colors[getColorName()][variation]
+
+    if (isNil(opacity)) {
+      return color
+    }
+
+    return colorUtils(color)
+      .fade(1 - opacity)
+      .string()
   }
 }
 

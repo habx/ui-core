@@ -1,61 +1,137 @@
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
+import breakpoints from '../breakpoints'
+import fontScale, { FontScale } from '../fontScale'
 import theme from '../theme'
+import withMarkdown from '../withMarkdown'
 
 import TitleProps from './Title.interface'
 
-const BaseTitle = styled.h1`
-  color: ${theme.color('secondary', { dynamic: true })};
+const size = (name: keyof FontScale) => css`
+  font-size: ${fontScale[name].size}px;
+  line-height: ${fontScale[name].lineHeight}px;
+`
+
+const baseTitleStyle = css`
+  color: ${theme.color('secondary', { dynamic: true, propName: 'color' })};
   font-family: ${theme.font('title')};
   font-weight: 400;
   margin: 0;
 `
 
-const DisplayComponent = styled(BaseTitle)`
-  font-size: 96px;
-  line-height: 96px;
+const headerMaxiTitleStyle = css`
+  ${baseTitleStyle};
+
+  ${size('milkyWay')};
+
+  @media (${breakpoints.below.smallTablet}) {
+    ${size('nova')};
+  }
 `
 
-const Hero1Component = styled(BaseTitle)`
-  font-size: 52px;
-  line-height: 60px;
+const headerBigTitleStyle = css`
+  ${baseTitleStyle};
+
+  ${size('superNova')};
+
+  @media (${breakpoints.below.smallTablet}) {
+    ${size('nova')};
+  }
 `
 
-const Hero2Component = styled(BaseTitle.withComponent('h2'))`
-  font-size: 46px;
-  line-height: 54px;
+const headerTitleStyle = css`
+  ${baseTitleStyle};
+
+  ${size('nova')};
+
+  @media (${breakpoints.below.smallTablet}) {
+    ${size('sun')};
+  }
 `
 
-const SectionTitleComponent = styled(BaseTitle.withComponent('h3'))`
-  font-size: 38px;
-  line-height: 48px;
+const headerSmallTitleStyle = css`
+  ${baseTitleStyle};
+
+  ${size('sun')};
+
+  @media (${breakpoints.below.smallTablet}) {
+    ${size('jupiter')};
+  }
 `
 
-const ColumnTitleComponent = styled(BaseTitle.withComponent('h4'))`
-  font-size: 24px;
-  line-height: 36px;
+const articleTitleStyle = css`
+  ${baseTitleStyle};
+
+  ${size('jupiter')};
 `
 
-const TitleComponent = styled(BaseTitle.withComponent('h5'))`
-  font-size: 18px;
-  line-height: 24px;
+const sectionTitleStyle = css`
+  ${baseTitleStyle};
+
+  ${size('earth')};
+`
+
+const regularTitleStyle = css`
+  ${baseTitleStyle};
+
   font-weight: 500;
+
+  ${size('mars')};
+`
+
+export const titleStyles = {
+  headerMaxi: headerMaxiTitleStyle,
+  headerBig: headerBigTitleStyle,
+  header: headerTitleStyle,
+  headerSmall: headerSmallTitleStyle,
+  article: articleTitleStyle,
+  section: sectionTitleStyle,
+  regular: regularTitleStyle,
+}
+
+const HeaderMaxiTitleComponent = styled.h1`
+  ${headerMaxiTitleStyle};
+`
+
+const HeaderBigTitleComponent = styled.h1`
+  ${headerBigTitleStyle};
+`
+
+const HeaderTitleComponent = styled.h1`
+  ${headerTitleStyle};
+`
+
+const HeaderSmallTitleComponent = styled.h1`
+  ${headerSmallTitleStyle};
+`
+
+const ArticleTitleComponent = styled.h2`
+  ${articleTitleStyle};
+`
+
+const SectionTitleComponent = styled.h3`
+  ${sectionTitleStyle};
+`
+
+const RegularTitleComponent = styled.h4`
+  ${regularTitleStyle};
 `
 
 const components = {
-  display: DisplayComponent,
-  hero1: Hero1Component,
-  hero2: Hero2Component,
-  sectionTitle: SectionTitleComponent,
-  columnTitle: ColumnTitleComponent,
-  title: TitleComponent,
+  headerMaxi: HeaderMaxiTitleComponent,
+  headerBig: HeaderBigTitleComponent,
+  header: HeaderTitleComponent,
+  headerSmall: HeaderSmallTitleComponent,
+  article: ArticleTitleComponent,
+  section: SectionTitleComponent,
+  regular: RegularTitleComponent,
 }
 
 const Title: React.FunctionComponent<TitleProps> = ({ type, ...props }) => {
-  const TitleComponent = components[type]
+  const TitleComponent = components[type] || HeaderMaxiTitleComponent
 
   return <TitleComponent {...props} />
 }
 
-export default Title
+export default withMarkdown({ inline: true })(Title)
