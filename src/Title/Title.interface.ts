@@ -15,4 +15,5 @@ export default interface TitleProps
   extends ThemeOverridesProps,
     React.HTMLAttributes<HTMLHeadingElement> {
   type: TitleTypes
+  color?: string
 }

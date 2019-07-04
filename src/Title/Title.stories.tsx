@@ -1,4 +1,4 @@
-import { withKnobs, select, boolean } from '@storybook/addon-knobs'
+import { withKnobs, select, boolean, text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import styled from 'styled-components'
@@ -54,12 +54,17 @@ storiesOf('Typography|Title', module)
     </TitleContainer>
   ))
   .add('dynamic', () => (
-    <Title
-      type={select('Type', types, 'headerBig')}
-      primary={boolean('Color override : Primary', false)}
-      secondary={boolean('Color override : Secondary', false)}
-      warning={boolean('Color override : Warning', false)}
-    >
-      Big bad  and boujee
-    </Title>
+    <TitleContainer>
+      <Title
+        type={select('Type', types, 'headerBig')}
+        children={text(
+          'Title content',
+          'Devenez propriétaire d’un appartement neuf en plein centre d’Antony'
+        )}
+        primary={boolean('Color override : Primary', false)}
+        secondary={boolean('Color override : Secondary', false)}
+        warning={boolean('Color override : Warning', false)}
+        markdown={boolean('Markdown support', false)}
+      />
+    </TitleContainer>
   ))

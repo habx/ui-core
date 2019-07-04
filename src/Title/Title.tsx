@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 import breakpoints from '../breakpoints'
 import fontScale, { FontScale } from '../fontScale'
 import theme from '../theme'
+import withMarkdown from '../withMarkdown'
 
 import TitleProps from './Title.interface'
 
@@ -13,7 +14,7 @@ const size = (name: keyof FontScale) => css`
 `
 
 const BaseTitle = styled.h1`
-  color: ${theme.color('secondary', { dynamic: true })};
+  color: ${theme.color('secondary', { dynamic: true, propName: 'color' })};
   font-family: ${theme.font('title')};
   font-weight: 400;
   margin: 0;
@@ -51,15 +52,15 @@ const HeaderSmallTitleComponent = styled(BaseTitle)`
   }
 `
 
-const ArticleTitleComponent = styled(BaseTitle)`
+const ArticleTitleComponent = styled(BaseTitle.withComponent('h2'))`
   ${size('jupiter')};
 `
 
-const SectionTitleComponent = styled(BaseTitle)`
+const SectionTitleComponent = styled(BaseTitle.withComponent('h3'))`
   ${size('earth')};
 `
 
-const RegularTitleComponent = styled(BaseTitle)`
+const RegularTitleComponent = styled(BaseTitle.withComponent('h4'))`
   font-weight: 500;
 
   ${size('mars')};
@@ -81,4 +82,4 @@ const Title: React.FunctionComponent<TitleProps> = ({ type, ...props }) => {
   return <TitleComponent {...props} />
 }
 
-export default Title
+export default withMarkdown({ inline: true })(Title)

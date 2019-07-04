@@ -1,3 +1,4 @@
+import { isNil } from '../_internal/data'
 import palette from '../palette'
 
 import DesignSystemTheme, {
@@ -66,9 +67,13 @@ const textColorGetter = (variation: keyof TextColorVariations = 'base') => (
 
 const colorGetter = (
   colorName: keyof ColorFamilies,
-  config: { dynamic?: boolean; variation?: keyof ColorVariations } = {}
+  config: {
+    dynamic?: boolean
+    propName?: string
+    variation?: keyof ColorVariations
+  } = {}
 ) => {
-  const { dynamic = false, variation = 'base' } = config
+  const { dynamic = false, variation = 'base', propName } = config
 
   return props => {
     const getColorName = () => {
@@ -89,6 +94,10 @@ const colorGetter = (
       }
 
       return colorName
+    }
+
+    if (propName && !isNil(props[propName])) {
+      return props[propName]
     }
 
     return getTheme(props).colors[getColorName()][variation]

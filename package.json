@@ -43,6 +43,8 @@
   },
   "homepage": "https://github.com/habx/lib-design-system#readme",
   "dependencies": {
+    "markdown-it": "^8.4.2",
+    "markdown-it-sup": "^1.0.0",
     "merge": "^1.2.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
