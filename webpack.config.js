@@ -1,9 +1,6 @@
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const path = require('path')
 
-const isProduction = process.env.WEBPACK_MODE === 'production'
-
-
 module.exports = {
   entry: path.resolve(__dirname, 'src'),
 
@@ -37,23 +34,11 @@ module.exports = {
   plugins: [new ForkTsCheckerWebpackPlugin()],
 
   externals: {
-    react: {
-      commonjs: 'react',
-      commonjs2: 'react',
-      amd: 'React',
-      root: 'React',
-    },
-    'react-dom': {
-      commonjs: 'react-dom',
-      commonjs2: 'react-dom',
-      amd: 'ReactDOM',
-      root: 'ReactDOM',
-    },
-    'styled-components': {
-      commonjs: 'styled-components',
-      commonjs2: 'styled-components',
-      amd: 'StyledComponents',
-      root: 'StyledComponents',
-    },
+    react: 'react',
+    'react-dom': 'react-dom',
+    'styled-components': 'styled-components',
+    'markdown-it': 'markdown-it',
+    'markdown-it-sup': 'markdown-it-sup',
+    'color': 'color',
   },
 }

@@ -2,9 +2,10 @@ import * as React from 'react'
 
 import TextInput from '../TextInput'
 
+import PasswordInputProps from './PasswordInput.interface'
 import { HiddenInputContainer, HideButton } from './PasswordInput.style'
 
-const PasswordInput = props => {
+const PasswordInput: React.FunctionComponent<PasswordInputProps> = props => {
   const ref = React.useRef(null)
   const [isContentHidden, setContentHidden] = React.useState(true)
 
