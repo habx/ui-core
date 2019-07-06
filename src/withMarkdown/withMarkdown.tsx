@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { isFunction } from '../_internal/data'
 import useTheme from '../useTheme'
 
 import {
@@ -12,6 +13,7 @@ const parse = ({ inline, theme, children }) => {
   const env = {
     theme,
   }
+
   const mdParse = inline ? parseInline : parseFull
 
   return mdParse(children || '', env)
@@ -24,7 +26,8 @@ const withMarkdown = ({ inline = false }: WithMarkdownConfig = {}) => <
 ) => {
   const Component: React.FunctionComponent<
     Props & WithMarkdownReceivedProps
-  > = ({ markdown, children, ...rest }) => {
+  > = props => {
+    const { markdown, children, ...rest } = props
     const theme = useTheme()
 
     if (!markdown) {
@@ -33,11 +36,15 @@ const withMarkdown = ({ inline = false }: WithMarkdownConfig = {}) => <
       )
     }
 
+    const isInline = isFunction(inline) ? inline(props) : !!inline
+
     return (
       <WrappedComponent
         {...(rest as Props)}
         data-markdown
-        dangerouslySetInnerHTML={{ __html: parse({ children, inline, theme }) }}
+        dangerouslySetInnerHTML={{
+          __html: parse({ children, inline: isInline, theme }),
+        }}
       />
     )
   }

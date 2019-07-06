@@ -73,9 +73,14 @@ export const ButtonContainer = styled.button`
     }
   }
 
-  &[data-outline='true'],
-  &[data-link='true'] {
+  &[data-outline='true'] {
     background-color: transparent;
+    border: 2px solid ${theme.color('secondary', { dynamic: true })};
+    color: ${theme.color('secondary', { dynamic: true })};
+
+    & svg {
+      fill: ${theme.color('secondary', { dynamic: true })};
+    }
 
     &:hover {
       padding: 0 22px;
@@ -105,18 +110,12 @@ export const ButtonContainer = styled.button`
     }
   }
 
-  &[data-outline='true'] {
-    border: 2px solid ${theme.color('secondary', { dynamic: true })};
-    color: ${theme.color('secondary', { dynamic: true })};
-
-    & svg {
-      fill: ${theme.color('secondary', { dynamic: true })};
-    }
-  }
-
   &[data-link='true'] {
-    border: 2px solid transparent;
+    background-color: transparent;
+    border: none;
+    padding: 0;
     color: ${theme.color('primary', { dynamic: true })};
+    height: 20px;
 
     & svg {
       fill: ${theme.color('primary', { dynamic: true })};
@@ -137,6 +136,14 @@ export const ButtonContainer = styled.button`
       & svg {
         fill: ${theme.color('primary', { dynamic: true, variation: 'focus' })};
       }
+    }
+
+    &[data-small='true'] {
+      height: 18px;
+    }
+
+    &[data-large='true'] {
+      height: 27px;
     }
   }
 

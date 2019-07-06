@@ -75,7 +75,10 @@ const PhoneInput: React.FunctionComponent<PhoneInputProps> = ({
       const result = PHONE_REGEXP.exec(rawValue)
       const indicator = parseInt(result[1], 10)
       const country = find(COUNTRIES, el => el.indicator === indicator)
-      setCountry(country)
+
+      if (country) {
+        setCountry(country.code)
+      }
     }
   }, [])
 

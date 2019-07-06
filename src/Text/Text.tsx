@@ -18,7 +18,7 @@ const baseTextStyle = css`
     propName: 'color',
     opacity: 0.72,
   })};
-  font-family: ${theme.font('text')};
+  font-family: ${theme.font()};
   font-weight: 400;
 
   &[data-bold='true'] {
@@ -28,6 +28,12 @@ const baseTextStyle = css`
   > p {
     margin: 0;
   }
+`
+
+const largeTextStyle = css`
+  ${baseTextStyle};
+
+  ${size('earth')};
 `
 
 const emphasisTextStyle = css`
@@ -61,29 +67,35 @@ const captionSmallTextStyle = css`
 `
 
 export const textStyles = {
+  large: largeTextStyle,
   emphasis: emphasisTextStyle,
   regular: regularTextStyle,
   caption: captionTextStyle,
   captionSmall: captionSmallTextStyle,
 }
 
-const EmphasisTextComponent = styled.span`
+const LargeTextComponent = styled.div`
+  ${largeTextStyle};
+`
+
+const EmphasisTextComponent = styled.div`
   ${emphasisTextStyle};
 `
 
-const RegularTextComponent = styled.span`
+const RegularTextComponent = styled.div`
   ${regularTextStyle};
 `
 
-const CaptionTextComponent = styled.span`
+const CaptionTextComponent = styled.div`
   ${captionTextStyle};
 `
 
-const CaptionSmallTextComponent = styled.span`
+const CaptionSmallTextComponent = styled.div`
   ${captionSmallTextStyle};
 `
 
 const components = {
+  large: LargeTextComponent,
   emphasis: EmphasisTextComponent,
   regular: RegularTextComponent,
   caption: CaptionTextComponent,

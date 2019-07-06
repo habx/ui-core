@@ -1,8 +1,8 @@
 import colorUtils from 'color'
 
 import { isNil } from '../_internal/data'
-import palette from '../palette'
 
+import { BASE_THEME } from './theme.data'
 import DesignSystemTheme, {
   ColorFamilies,
   ColorVariations,
@@ -11,44 +11,6 @@ import DesignSystemTheme, {
   TextColorVariations,
   GetterProps,
 } from './theme.interface'
-
-export const BASE_THEME: DesignSystemTheme = {
-  colors: {
-    primary: {
-      base: palette.blue[600],
-      hover: palette.blue[700],
-      focus: palette.blue[800],
-    },
-    secondary: {
-      base: palette.darkBlue[900],
-      hover: palette.darkBlue[800],
-      focus: palette.darkBlue[700],
-    },
-    warning: {
-      base: palette.orange[700],
-      hover: palette.orange[700],
-      focus: palette.orange[800],
-    },
-  },
-
-  textColors: {
-    base: palette.darkBlue[900],
-    title: palette.darkBlue[900],
-    placeholder: palette.darkBlue[600],
-    disabledPlaceholder: palette.darkBlue[400],
-  },
-
-  fonts: {
-    title: 'EuclidCircularB, sans-serif',
-    text: 'EuclidCircularB, sans-serif',
-  },
-
-  shadows: {
-    light: '0 4px 12px 0 rgba(80, 79, 79, 0.24)',
-    base: '0 2px 6px 0 rgba(2, 26, 60, 0.16)',
-    strong: '0 2px 6px 0 rgba(153, 117, 113, 0.16)',
-  },
-}
 
 const getTheme = (props: GetterProps): DesignSystemTheme => {
   const { theme: { designSystem = BASE_THEME } = {} } = props
@@ -68,7 +30,7 @@ const textColorGetter = (variation: keyof TextColorVariations = 'base') => (
 ) => getTheme(props).textColors[variation]
 
 const colorGetter = (
-  colorName: keyof ColorFamilies,
+  colorName: keyof ColorFamilies | 'background',
   config: {
     dynamic?: boolean
     propName?: string
@@ -79,6 +41,8 @@ const colorGetter = (
   const { dynamic = false, variation = 'base', propName, opacity } = config
 
   return props => {
+    const theme = getTheme(props)
+
     const getColorName = () => {
       if (!dynamic) {
         return colorName
@@ -99,17 +63,27 @@ const colorGetter = (
       return colorName
     }
 
-    const color =
-      propName && !isNil(props[propName])
-        ? props[propName]
-        : getTheme(props).colors[getColorName()][variation]
+    const getColorValue = () => {
+      if (propName && !isNil(props[propName])) {
+        return props[propName]
+      }
 
-    if (isNil(opacity)) {
+      if (colorName === 'background') {
+        return theme.backgroundColor
+      }
+
+      return theme.colors[getColorName()][variation]
+    }
+
+    const realOpacity = isNil(props.opacity) ? opacity : props.opacity
+    const color = getColorValue()
+
+    if (isNil(realOpacity)) {
       return color
     }
 
     return colorUtils(color)
-      .fade(1 - opacity)
+      .fade(1 - realOpacity)
       .string()
   }
 }
