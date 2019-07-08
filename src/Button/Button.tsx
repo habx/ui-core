@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import withMarkdown from '../withMarkdown'
+
 import ButtonProps from './Button.interface'
 import { ButtonContainer, ButtonContent, IconContainer } from './Button.style'
 
@@ -12,6 +14,7 @@ const Button: React.FunctionComponent<ButtonProps> = ({
   small = false,
   large = false,
   fullWidth = false,
+  dangerouslySetInnerHTML,
   ...props
 }) => (
   <ButtonContainer
@@ -23,11 +26,13 @@ const Button: React.FunctionComponent<ButtonProps> = ({
     {...props}
   >
     {iconLeft && <IconContainer data-position="left">{iconLeft}</IconContainer>}
-    <ButtonContent>{children}</ButtonContent>
+    <ButtonContent dangerouslySetInnerHTML={dangerouslySetInnerHTML}>
+      {children}
+    </ButtonContent>
     {iconRight && (
       <IconContainer data-position="right">{iconRight}</IconContainer>
     )}
   </ButtonContainer>
 )
 
-export default Button
+export default withMarkdown({ inline: true })(Button)

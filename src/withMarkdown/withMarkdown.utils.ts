@@ -1,6 +1,7 @@
-import { isEmpty } from 'lodash'
 import MarkdownIt from 'markdown-it'
 import markdownItSupPlugin from 'markdown-it-sup'
+
+import { isNil } from '../_internal/data'
 
 import { logo, coloredText } from './custom-rules'
 
@@ -36,7 +37,7 @@ md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
 }
 
 const cleanValue = value => {
-  if (isEmpty(value)) {
+  if (isNil(value)) {
     return ''
   }
 

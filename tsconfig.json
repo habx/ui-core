@@ -4,7 +4,7 @@
     "rootDirs": ["./src", "./.storybook"],
     "outDir": "./dist",
     "declarationDir": "./dist/typings",
-    "lib": [],
+    "lib": ["dom"],
     "moduleResolution": "node",
     "removeComments": true,
     "sourceMap": true,
@@ -12,7 +12,13 @@
     "declarationMap": true,
     "target": "esnext",
     "module": "commonjs",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": [
+      "react",
+      "react-dom",
+      "styled-components",
+      "node"
+    ]
   },
   "files": ["./src/index.ts"]
 }

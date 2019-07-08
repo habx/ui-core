@@ -31,6 +31,7 @@ export interface Shadows {
 export default interface DesignSystemTheme {
   colors?: ColorFamilies
   textColors?: TextColorVariations
+  backgroundColor?: string
   fonts?: Fonts
   shadows?: Shadows
 }

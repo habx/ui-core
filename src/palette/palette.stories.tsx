@@ -18,7 +18,7 @@ const Line = styled.div`
   align-items: center;
 `
 
-const ColorLabel = styled(Title).attrs(() => ({ type: 'columnTitle' }))`
+const ColorLabel = styled(Title)`
   width: 170px;
 `
 
@@ -42,8 +42,8 @@ storiesOf('Utility|palette', module).add('galery', () => (
   <Container>
     {Object.entries(palette).map(([colorName, colorGradient]) => (
       <Line>
-        <ColorLabel>{colorName}</ColorLabel>
-        {[...Object.values(colorGradient).reverse()].map(color => (
+        <ColorLabel type="section">{colorName}</ColorLabel>
+        {[...Object.values(colorGradient).reverse()].map((color: string) => (
           <Color>
             <Circle color={color} />
           </Color>

@@ -17,7 +17,9 @@ const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   const currentTheme = React.useContext(ThemeContext) || {}
 
   const newTheme = React.useMemo(() => {
-    const patch = backgroundColor ? THEME_PATCHES[backgroundColor] : theme
+    const patch = backgroundColor
+      ? { ...THEME_PATCHES[backgroundColor.toUpperCase()], backgroundColor }
+      : theme
 
     return {
       ...currentTheme,
@@ -29,7 +31,11 @@ const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
     }
   }, [backgroundColor, currentTheme, theme])
 
-  return <BaseThemeProvider theme={newTheme}>{children}</BaseThemeProvider>
+  return (
+    <BaseThemeProvider theme={newTheme}>
+      <React.Fragment>{children}</React.Fragment>
+    </BaseThemeProvider>
+  )
 }
 
 export default ThemeProvider

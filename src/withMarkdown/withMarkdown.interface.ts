@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 export interface WithMarkdownConfig {
-  inline?: boolean
+  inline?: boolean | ((props: { [key: string]: any }) => boolean)
 }
 
 export interface WithMarkdownReceivedProps {

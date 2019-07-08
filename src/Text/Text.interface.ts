@@ -3,18 +3,16 @@ import * as React from 'react'
 import { ThemeOverridesProps } from '../_internal/types'
 
 export type TitleTypes =
-  | 'headerMaxi'
-  | 'headerBig'
-  | 'header'
-  | 'headerSmall'
-  | 'article'
-  | 'section'
+  | 'large'
+  | 'emphasis'
   | 'regular'
+  | 'caption'
+  | 'captionSmall'
 
-export default interface TitleProps
+export default interface TextProps
   extends ThemeOverridesProps,
     React.HTMLAttributes<HTMLHeadingElement> {
-  type: TitleTypes
+  type?: TitleTypes
   color?: string
   opacity?: number
 }
