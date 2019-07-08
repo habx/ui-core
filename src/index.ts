@@ -1,7 +1,7 @@
 export { default as Background, BackgroundProps } from './Background'
 export { default as Button, ButtonProps } from './Button'
 export { default as Icon, IconProps } from './Icon'
-export { default as Link, LinkProps } from './Link'
+export { default as Link, LinkProps, linkStyle } from './Link'
 export { default as Text, TextProps, textStyles } from './Text'
 export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider'
 export { default as Title, TitleProps, titleStyles } from './Title'

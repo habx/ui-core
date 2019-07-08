@@ -69,9 +69,9 @@ export const THEME_PATCHES = {
     colors: {
       primary: PATCH_WHITE,
       secondary: {
-        base: '#ffa880',
-        hover: '#ffa880',
-        focus: '#ffa880',
+        base: palette.orange[300],
+        hover: palette.orange[300],
+        focus: palette.orange[300],
       },
     },
   },

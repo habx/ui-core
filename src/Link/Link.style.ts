@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import theme from '../theme'
 
-export const LinkContainer = styled.a`
+export const linkStyle = css`
   color: ${theme.color('primary', { dynamic: true })};
   font-family: ${theme.font()};
   font-weight: bold;
@@ -13,4 +13,8 @@ export const LinkContainer = styled.a`
   &:hover {
     opacity: 0.72;
   }
+`
+
+export const LinkContainer = styled.a`
+  ${linkStyle};
 `
