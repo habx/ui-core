@@ -9,8 +9,10 @@ export { default as Title, TitleProps, titleStyles } from './Title'
 /*
   Inputs
  */
+export { default as Checkbox, CheckboxProps } from './Checkbox'
 export { default as PasswordInput, PasswordInputProps } from './PasswordInput'
 export { default as PhoneInput, PhoneInputProps } from './PhoneInput'
+export { default as TextArea, TextAreaProps } from './TextArea'
 export { default as TextInput, TextInputProps } from './TextInput'
 
 export { default as breakpoints } from './breakpoints'

@@ -1,18 +1,11 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import breakpoints from '../breakpoints'
 import palette from '../palette'
 import theme from '../theme'
 
-export const Input = styled.input`
+export const inputStyle = css`
   font-family: ${theme.font()};
-  flex: 1;
-  margin: 0;
-  padding: 0 16px;
-  max-height: 3rem;
-  min-height: 3rem;
-  max-width: 100%;
-  min-width: 0;
   font-size: 16px;
 
   background-color: ${palette.darkBlue[200]};
@@ -28,12 +21,6 @@ export const Input = styled.input`
 
   &::placeholder {
     color: ${theme.textColor('placeholder')};
-  }
-
-  &[data-small='true'] {
-    padding: 0 12px;
-    min-height: 2.3rem;
-    max-height: 2.3rem;
   }
 
   &:disabled {
@@ -66,4 +53,22 @@ export const Input = styled.input`
   @media (${breakpoints.below.phone}) {
     font-size: 14px;
   }
+`
+
+export const Input = styled.input`
+  flex: 1;
+  margin: 0;
+  padding: 0 16px;
+  max-height: 3rem;
+  min-height: 3rem;
+  max-width: 100%;
+  min-width: 0;
+
+  &[data-small='true'] {
+    padding: 0 12px;
+    min-height: 2.3rem;
+    max-height: 2.3rem;
+  }
+
+  ${inputStyle};
 `
