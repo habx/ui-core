@@ -17,7 +17,8 @@
       "react",
       "react-dom",
       "styled-components",
-      "node"
+      "node",
+      "jest"
     ]
   },
   "files": ["./src/index.ts"]
