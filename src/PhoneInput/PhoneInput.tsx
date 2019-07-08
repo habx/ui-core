@@ -1,4 +1,3 @@
-import { get, set, find } from 'lodash'
 import * as React from 'react'
 
 import { useSSRLayoutEffect } from '../_internal/ssr'
@@ -55,7 +54,7 @@ const PhoneInput: React.FunctionComponent<PhoneInputProps> = ({
 
   const handleChange = React.useCallback(
     e => {
-      const newValue = get(e, 'target.value')
+      const newValue = e.target.value
 
       const cleanValue = newValue.replace(/[^0-9]/g, '')
       const phoneNumber =
@@ -63,7 +62,7 @@ const PhoneInput: React.FunctionComponent<PhoneInputProps> = ({
           ? cleanValue.substring(1)
           : cleanValue
 
-      set(e, 'target.value', `+${indicator}${phoneNumber}`)
+      e.target.value = `+${indicator}${phoneNumber}`
 
       onChange(e)
     },
@@ -74,7 +73,7 @@ const PhoneInput: React.FunctionComponent<PhoneInputProps> = ({
     if (rawValue.match(PHONE_REGEXP)) {
       const result = PHONE_REGEXP.exec(rawValue)
       const indicator = parseInt(result[1], 10)
-      const country = find(COUNTRIES, el => el.indicator === indicator)
+      const country = COUNTRIES.find(el => el.indicator === indicator)
 
       if (country) {
         setCountry(country.code)

@@ -15,14 +15,6 @@ module.exports = {
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
-    alias: {
-      react: path.resolve(__dirname, './node_modules/react'),
-      'react-dom': path.resolve(__dirname, './node_modules/react-dom'),
-      'styled-components': path.resolve(
-        __dirname,
-        './node_modules/styled-components'
-      ),
-    },
   },
 
   module: {
@@ -39,6 +31,6 @@ module.exports = {
     'styled-components': 'styled-components',
     'markdown-it': 'markdown-it',
     'markdown-it-sup': 'markdown-it-sup',
-    'color': 'color',
+    color: 'color',
   },
 }
