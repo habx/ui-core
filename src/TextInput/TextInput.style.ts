@@ -7,9 +7,8 @@ import theme from '../theme'
 export const inputStyle = css`
   font-family: ${theme.font()};
   font-size: 16px;
-
+  color: ${theme.textColor('base')};
   background-color: ${palette.darkBlue[200]};
-  color: ${theme.color('secondary')};
 
   outline: none;
   -moz-appearance: none;
@@ -27,27 +26,31 @@ export const inputStyle = css`
     border-color: ${palette.darkBlue[200]};
     background-color: ${palette.darkBlue[200]};
     color: ${palette.darkBlue[700]};
+    pointer-events: none;
 
     &::placeholder {
       color: ${theme.textColor('disabledPlaceholder')};
     }
   }
 
-  &:not(:disabled) {
-    &:hover,
-    &:focus {
-      border-color: ${palette.darkBlue[300]};
-    }
+  &:hover,
+  &:focus {
+    border-color: ${palette.darkBlue[300]};
+  }
 
-    &:focus {
-      background-color: #fff;
-    }
+  &:focus {
+    background-color: #fff;
+  }
 
-    &[data-error='true'] {
-      border-color: ${palette.orange[400]};
-      color: ${palette.orange[400]};
-      box-shadow: 0 1px 0 ${palette.orange[400]};
-    }
+  &[data-error='true'] {
+    border-color: ${palette.orange[400]};
+    color: ${palette.orange[400]};
+    box-shadow: 0 1px 0 ${palette.orange[400]};
+  }
+
+  &[data-background='true'] {
+    background-color: #fff;
+    border-color: #fff;
   }
 
   @media (${breakpoints.below.phone}) {

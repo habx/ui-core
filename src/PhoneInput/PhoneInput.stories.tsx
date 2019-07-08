@@ -4,6 +4,8 @@ import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
+import Background from '../Background'
+import palette from '../palette'
 import Title from '../Title'
 
 import PhoneInput from './index'
@@ -13,7 +15,7 @@ const StoryContainer = styled.div`
 `
 
 const LineContainer = styled.div`
-  margin-bottom: 48px;
+  padding: 12px 48px 36px 48px;
 `
 
 const TextInputList = styled.div`
@@ -33,36 +35,44 @@ const TextInputContainer = styled.div`
   padding-right: 24px;
 `
 
-const createLine = (title, props) => (
-  <LineContainer>
-    <Title type="section">{title}</Title>
-    <TextInputList>
-      <TextInputContainer>
-        <PhoneInput placeholder="votre numéro" {...props} />
-      </TextInputContainer>
-      <TextInputContainer>
-        <PhoneInput
-          placeholder="votre numéro"
-          value="06 11 11 11 11"
-          onChange={() => {}}
-          {...props}
-        />
-      </TextInputContainer>
-      <TextInputContainer>
-        <PhoneInput
-          placeholder="votre numéro"
-          error
-          value="habx@habx.fr"
-          onChange={() => {}}
-          {...props}
-        />
-      </TextInputContainer>
-      <TextInputContainer>
-        <PhoneInput placeholder="votre numéro" disabled {...props} />
-      </TextInputContainer>
-    </TextInputList>
-  </LineContainer>
-)
+const createLine = (title, props, { colored = false } = {}) => {
+  const content = (
+    <LineContainer>
+      <Title type="section">{title}</Title>
+      <TextInputList>
+        <TextInputContainer>
+          <PhoneInput placeholder="votre numéro" {...props} />
+        </TextInputContainer>
+        <TextInputContainer>
+          <PhoneInput
+            placeholder="votre numéro"
+            value="06 11 11 11 11"
+            onChange={() => {}}
+            {...props}
+          />
+        </TextInputContainer>
+        <TextInputContainer>
+          <PhoneInput
+            placeholder="votre numéro"
+            error
+            value="habx@habx.fr"
+            onChange={() => {}}
+            {...props}
+          />
+        </TextInputContainer>
+        <TextInputContainer>
+          <PhoneInput placeholder="votre numéro" disabled {...props} />
+        </TextInputContainer>
+      </TextInputList>
+    </LineContainer>
+  )
+
+  return colored ? (
+    <Background backgroundColor={palette.green[600]}>{content}</Background>
+  ) : (
+    content
+  )
+}
 
 storiesOf('Input|PhoneInput', module)
   .addDecorator(withDesign)
@@ -71,6 +81,7 @@ storiesOf('Input|PhoneInput', module)
     <StoryContainer>
       {createLine('Regular', {})}
       {createLine('Small', { small: true })}
+      {createLine('Colored background', {}, { colored: true })}
     </StoryContainer>
   ))
   .add('dynamic', () => (

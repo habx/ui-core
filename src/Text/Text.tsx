@@ -18,6 +18,7 @@ const baseTextStyle = css`
     propName: 'color',
     opacity: 0.72,
   })};
+
   font-family: ${theme.font()};
   font-weight: 400;
 

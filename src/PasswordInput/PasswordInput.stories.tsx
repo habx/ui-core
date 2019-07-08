@@ -4,6 +4,8 @@ import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
+import Background from '../Background'
+import palette from '../palette'
 import Title from '../Title'
 
 import PasswordInput from './index'
@@ -13,7 +15,7 @@ const StoryContainer = styled.div`
 `
 
 const LineContainer = styled.div`
-  margin-bottom: 48px;
+  padding: 12px 48px 36px 48px;
 `
 
 const TextInputList = styled.div`
@@ -33,36 +35,44 @@ const TextInputContainer = styled.div`
   padding-right: 24px;
 `
 
-const createLine = (title, props) => (
-  <LineContainer>
-    <Title type="section">{title}</Title>
-    <TextInputList>
-      <TextInputContainer>
-        <PasswordInput placeholder="votre mot de passe" {...props} />
-      </TextInputContainer>
-      <TextInputContainer>
-        <PasswordInput
-          placeholder="votre mot de passe"
-          value="azerty :)"
-          onChange={() => {}}
-          {...props}
-        />
-      </TextInputContainer>
-      <TextInputContainer>
-        <PasswordInput
-          placeholder="votre mot de passe"
-          error
-          value="a"
-          onChange={() => {}}
-          {...props}
-        />
-      </TextInputContainer>
-      <TextInputContainer>
-        <PasswordInput placeholder="votre mot de passe" disabled {...props} />
-      </TextInputContainer>
-    </TextInputList>
-  </LineContainer>
-)
+const createLine = (title, props, { colored = false } = {}) => {
+  const content = (
+    <LineContainer>
+      <Title type="section">{title}</Title>
+      <TextInputList>
+        <TextInputContainer>
+          <PasswordInput placeholder="votre mot de passe" {...props} />
+        </TextInputContainer>
+        <TextInputContainer>
+          <PasswordInput
+            placeholder="votre mot de passe"
+            value="azerty :)"
+            onChange={() => {}}
+            {...props}
+          />
+        </TextInputContainer>
+        <TextInputContainer>
+          <PasswordInput
+            placeholder="votre mot de passe"
+            error
+            value="a"
+            onChange={() => {}}
+            {...props}
+          />
+        </TextInputContainer>
+        <TextInputContainer>
+          <PasswordInput placeholder="votre mot de passe" disabled {...props} />
+        </TextInputContainer>
+      </TextInputList>
+    </LineContainer>
+  )
+
+  return colored ? (
+    <Background backgroundColor={palette.green[600]}>{content}</Background>
+  ) : (
+    content
+  )
+}
 
 storiesOf('Input|PasswordInput', module)
   .addDecorator(withDesign)
@@ -71,6 +81,7 @@ storiesOf('Input|PasswordInput', module)
     <StoryContainer>
       {createLine('Regular', {})}
       {createLine('Small', { small: true })}
+      {createLine('Colored background', {}, { colored: true })}
     </StoryContainer>
   ))
   .add('dynamic', () => (
