@@ -2,6 +2,8 @@ import * as React from 'react'
 
 import { useSSRLayoutEffect } from '../_internal/ssr'
 import Icon from '../Icon'
+import { Input } from '../TextInput/TextInput.style'
+import useTheme from '../useTheme'
 
 import PhoneInputProps from './PhoneInput.interface'
 import {
@@ -31,6 +33,7 @@ const PhoneInput: React.FunctionComponent<PhoneInputProps> = ({
   ...props
 }) => {
   const [country, setCountry] = React.useState('fr')
+  const theme = useTheme()
 
   const { indicator, flag: Flag } = React.useMemo(
     () => COUNTRIES.find(({ code }) => code === country),
@@ -86,6 +89,7 @@ const PhoneInput: React.FunctionComponent<PhoneInputProps> = ({
       data-error={error}
       data-disabled={disabled}
       data-small={small}
+      data-background={theme.backgroundColor !== '#FFFFFF'}
       {...props}
     >
       <CountryOptions>

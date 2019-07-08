@@ -45,6 +45,14 @@ export const PhoneInputContainer = styled.div`
     border-color: ${palette.darkBlue[300]};
   }
 
+  &[data-background='true'] {
+    border-color: #fff;
+
+    & ${CountryOptions} {
+      background-color: #fff;
+    }
+  }
+
   &[data-error='true'] {
     border-color: ${palette.orange[400]};
     box-shadow: 0 1px 0 ${palette.orange[400]};
@@ -75,7 +83,7 @@ export const PhoneInputContainer = styled.div`
   }
 
   &:focus-within {
-    ${CountryOptions} {
+    & ${CountryOptions} {
       background-color: #fff;
     }
   }

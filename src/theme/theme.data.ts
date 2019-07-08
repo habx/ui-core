@@ -65,7 +65,7 @@ export const THEME_PATCHES = {
       secondary: PATCH_WHITE,
     },
   },
-  '#179EAD': {
+  [palette.green[600]]: {
     colors: {
       primary: PATCH_WHITE,
       secondary: {
