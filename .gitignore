@@ -41,3 +41,4 @@ flow-coverage/
 .DS_Store
 
 .storybook-static/
+storybook-deploy

@@ -4,6 +4,8 @@ import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
+import Background from '../Background'
+import palette from '../palette'
 import Text from '../Text'
 import Title from '../Title'
 
@@ -14,7 +16,7 @@ const StoryContainer = styled.div`
 `
 
 const LineContainer = styled.div`
-  margin-bottom: 48px;
+  padding: 12px 48px 36px 48px;
 `
 
 const CheckboxList = styled.div`
@@ -28,9 +30,9 @@ const CheckboxList = styled.div`
 `
 
 const CheckboxContainer = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 300px;
+  display: flex;
+  align-items: center;
   padding-right: 24px;
 `
 
@@ -47,31 +49,42 @@ const CheckboxWithLabel = props => {
   )
 }
 
-const createLine = (title, props) => (
-  <LineContainer>
-    <Title type="section">{title}</Title>
-    <CheckboxList>
-      <CheckboxContainer>
-        <CheckboxWithLabel />
-      </CheckboxContainer>
-      <CheckboxContainer>
-        <CheckboxWithLabel value onChange={() => {}} {...props} />
-      </CheckboxContainer>
-      <CheckboxContainer>
-        <CheckboxWithLabel error value onChange={() => {}} {...props} />
-      </CheckboxContainer>
-      <CheckboxContainer>
-        <CheckboxWithLabel disabled {...props} />
-      </CheckboxContainer>
-    </CheckboxList>
-  </LineContainer>
-)
+const createLine = (title, props, { colored = false } = {}) => {
+  const content = (
+    <LineContainer>
+      <Title type="section">{title}</Title>
+      <CheckboxList>
+        <CheckboxContainer>
+          <CheckboxWithLabel />
+        </CheckboxContainer>
+        <CheckboxContainer>
+          <CheckboxWithLabel value onChange={() => {}} {...props} />
+        </CheckboxContainer>
+        <CheckboxContainer>
+          <CheckboxWithLabel error value onChange={() => {}} {...props} />
+        </CheckboxContainer>
+        <CheckboxContainer>
+          <CheckboxWithLabel disabled {...props} />
+        </CheckboxContainer>
+      </CheckboxList>
+    </LineContainer>
+  )
+
+  return colored ? (
+    <Background backgroundColor={palette.yellow[600]}>{content}</Background>
+  ) : (
+    content
+  )
+}
 
 storiesOf('Input|Checkbox', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
   .add('gallery', () => (
-    <StoryContainer>{createLine('Regular', {})}</StoryContainer>
+    <StoryContainer>
+      {createLine('Regular', {})}
+      {createLine('Regular', {}, { colored: true })}
+    </StoryContainer>
   ))
   .add('dynamic', () => (
     <CheckboxContainer>

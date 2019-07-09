@@ -59,6 +59,7 @@ export const PhoneInputContainer = styled.div`
 
     & ${CountryOptions} {
       border-color: ${palette.orange[400]};
+      color: ${palette.orange[400]};
     }
   }
 

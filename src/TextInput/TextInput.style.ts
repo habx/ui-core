@@ -42,15 +42,15 @@ export const inputStyle = css`
     background-color: #fff;
   }
 
+  &[data-background='true'] {
+    background-color: #fff;
+    border-color: #fff;
+  }
+
   &[data-error='true'] {
     border-color: ${palette.orange[400]};
     color: ${palette.orange[400]};
     box-shadow: 0 1px 0 ${palette.orange[400]};
-  }
-
-  &[data-background='true'] {
-    background-color: #fff;
-    border-color: #fff;
   }
 
   @media (${breakpoints.below.phone}) {
