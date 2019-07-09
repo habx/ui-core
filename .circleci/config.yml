@@ -39,7 +39,7 @@ workflows:
             branches:
               ignore: /.*/
       - publish-storybook-on-tag:
-          context: default_env_vars
+          context: github_token
           requires:
           - test
           filters:
