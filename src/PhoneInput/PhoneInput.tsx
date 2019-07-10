@@ -100,6 +100,7 @@ const PhoneInput: React.FunctionComponent<PhoneInputProps> = ({
       </CountryOptions>
       <MainInput
         {...props}
+        error={error}
         onChange={handleChange}
         value={value}
         disabled={disabled}
