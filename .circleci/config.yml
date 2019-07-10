@@ -126,6 +126,6 @@ jobs:
           at: /root/
       - run:
           command: |
-            echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
             apk add --no-cache openssh-client
+            echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
             npm run storybook:deploy
