@@ -8,11 +8,11 @@ export const FakeInputContainer = styled.span`
   position: relative;
 `
 
-export const FakeInput = styled.span`
-  display: inline-block;
+export const FakeInput = styled.label`
   user-select: none;
   cursor: pointer;
   outline: none;
+  display: inline-block;
   width: 21px;
   min-width: 21px;
   height: 21px;
