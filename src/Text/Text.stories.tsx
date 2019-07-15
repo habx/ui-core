@@ -23,6 +23,8 @@ const TextContainer = styled.div`
 `
 
 const types: { [key: string]: TitleTypes } = {
+  'Large Text': 'large',
+  'Emphasis text': 'emphasis',
   'Regular Text': 'regular',
   'Caption Text': 'caption',
   'Caption Small Text': 'captionSmall',
@@ -32,24 +34,14 @@ storiesOf('Typography|Text', module)
   .addDecorator(withKnobs)
   .add('galery', () => (
     <TextContainer>
-      <Text type="regular">
-        Les volumes et la forme des pièces sont représentés à titre indicatif.
-        Ils ne constituent pas le plan definitif de votre futur appartement mais
-        bien une suggestion d'agencement. C'est notre architecte qui finalisera
-        ce plan pour vous.
-      </Text>
-      <Text type="caption">
-        Les volumes et la forme des pièces sont représentés à titre indicatif.
-        Ils ne constituent pas le plan definitif de votre futur appartement mais
-        bien une suggestion d'agencement. C'est notre architecte qui finalisera
-        ce plan pour vous.
-      </Text>
-      <Text type="captionSmall">
-        Les volumes et la forme des pièces sont représentés à titre indicatif.
-        Ils ne constituent pas le plan definitif de votre futur appartement mais
-        bien une suggestion d'agencement. C'est notre architecte qui finalisera
-        ce plan pour vous.
-      </Text>
+      {Object.values(types).map(type => (
+        <Text type={type} key={type}>
+          Les volumes et la forme des pièces sont représentés à titre indicatif.
+          Ils ne constituent pas le plan definitif de votre futur appartement
+          mais bien une suggestion d'agencement. C'est notre architecte qui
+          finalisera ce plan pour vous.
+        </Text>
+      ))}
     </TextContainer>
   ))
   .add('dynamic', () => (

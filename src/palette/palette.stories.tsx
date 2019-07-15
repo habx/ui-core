@@ -43,11 +43,13 @@ storiesOf('Utility|palette', module).add('galery', () => (
     {Object.entries(palette).map(([colorName, colorGradient]) => (
       <Line>
         <ColorLabel type="section">{colorName}</ColorLabel>
-        {[...Object.values(colorGradient).reverse()].map((color: string) => (
-          <Color>
-            <Circle color={color} />
-          </Color>
-        ))}
+        {Object.values(colorGradient)
+          .reverse()
+          .map((color: string, index) => (
+            <Color key={index}>
+              <Circle color={color} />
+            </Color>
+          ))}
       </Line>
     ))}
   </Container>

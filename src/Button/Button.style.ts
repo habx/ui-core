@@ -150,10 +150,10 @@ export const ButtonContainer = styled.button`
   &[data-outline='false'][data-link='false'] {
     border: 4px solid transparent;
     background-color: ${theme.color('primary', { dynamic: true })};
-    color: #fff;
+    color: ${theme.color('primary', { variation: 'contrastText' })};
 
     & svg {
-      fill: #fff;
+      fill: ${theme.color('primary', { variation: 'contrastText' })};
     }
 
     &:hover {
