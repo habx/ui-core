@@ -9,6 +9,7 @@ const Checkbox: React.FunctionComponent<CheckboxProps> = ({
   error,
   value,
   checked,
+  disabled,
   ...props
 }) => {
   const theme = useTheme()
@@ -20,9 +21,10 @@ const Checkbox: React.FunctionComponent<CheckboxProps> = ({
         data-error={error}
         data-background={theme.backgroundColor !== '#FFFFFF'}
         checked={!!value || !!checked}
+        disabled={disabled}
         type="checkbox"
       />
-      <FakeInput tabIndex={0} />
+      <FakeInput tabIndex={disabled ? null : 0} />
     </FakeInputContainer>
   )
 }

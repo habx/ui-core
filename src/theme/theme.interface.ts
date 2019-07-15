@@ -2,6 +2,7 @@ export interface ColorVariations {
   base?: string
   hover?: string
   focus?: string
+  contrastText?: string
 }
 
 export interface TextColorVariations {

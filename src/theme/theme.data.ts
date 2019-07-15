@@ -1,6 +1,8 @@
 import palette from '../palette'
 
-import DesignSystemTheme from './theme.interface'
+import DesignSystemTheme, { ColorVariations } from './theme.interface'
+
+const WHITE = '#FFFFFF'
 
 export const BASE_THEME: DesignSystemTheme = {
   colors: {
@@ -8,16 +10,19 @@ export const BASE_THEME: DesignSystemTheme = {
       base: palette.blue[600],
       hover: palette.blue[700],
       focus: palette.blue[800],
+      contrastText: WHITE,
     },
     secondary: {
       base: palette.darkBlue[900],
       hover: palette.darkBlue[800],
       focus: palette.darkBlue[700],
+      contrastText: WHITE,
     },
     warning: {
       base: palette.orange[700],
       hover: palette.orange[700],
       focus: palette.orange[800],
+      contrastText: WHITE,
     },
   },
 
@@ -28,7 +33,7 @@ export const BASE_THEME: DesignSystemTheme = {
     disabledPlaceholder: palette.darkBlue[400],
   },
 
-  backgroundColor: '#FFFFFF',
+  backgroundColor: WHITE,
 
   fonts: {
     title: 'EuclidCircularB, sans-serif',
@@ -42,13 +47,14 @@ export const BASE_THEME: DesignSystemTheme = {
   },
 }
 
-const PATCH_WHITE = {
-  base: 'white',
-  hover: 'white',
-  focus: 'white',
+const PATCH_WHITE: ColorVariations = {
+  base: WHITE,
+  hover: WHITE,
+  focus: WHITE,
+  contrastText: palette.darkBlue[900],
 }
 
-export const THEME_PATCHES = {
+export const THEME_PATCHES: { [key: string]: DesignSystemTheme } = {
   '#FFFFFF': BASE_THEME,
   [palette.darkBlue[900]]: {
     colors: {
@@ -72,6 +78,7 @@ export const THEME_PATCHES = {
         base: palette.orange[300],
         hover: palette.orange[300],
         focus: palette.orange[300],
+        contrastText: WHITE,
       },
     },
   },
