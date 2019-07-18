@@ -124,6 +124,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /root/
+      - add_ssh_keys
       - run:
           command: |
             apk add --no-cache openssh-client
