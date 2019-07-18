@@ -8,6 +8,8 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+            branches:
+              ignore: gh-pages
       - lint:
           context: default_env_vars
           requires:
@@ -15,6 +17,8 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+            branches:
+              ignore: gh-pages              
       - build:
           context: default_env_vars
           requires:
@@ -22,6 +26,8 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+            branches:
+              ignore: gh-pages              
       - test:
           context: default_env_vars
           requires:
@@ -29,6 +35,8 @@ workflows:
           filters:
             tags:
               only: /^v.*/
+            branches:
+              ignore: gh-pages              
       - publish-on-tag:
           context: default_env_vars
           requires:
@@ -124,10 +132,6 @@ jobs:
     steps:
       - attach_workspace:
           at: /root/
-      - add_ssh_keys
       - run:
           command: |
-            apk add --no-cache openssh-client
-            mkdir -pv ~/.ssh/
-            echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
             npm run storybook:deploy
