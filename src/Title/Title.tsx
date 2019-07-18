@@ -53,12 +53,20 @@ const headerSmallTitleStyle = css`
   ${baseTitleStyle};
 
   ${size('jupiter')};
+
+  @media (${breakpoints.below.smallTablet}) {
+    ${size('earth')};
+  }
 `
 
 const articleTitleStyle = css`
   ${baseTitleStyle};
 
   ${size('jupiter')};
+
+  @media (${breakpoints.below.smallTablet}) {
+    ${size('earth')};
+  }
 `
 
 const sectionTitleStyle = css`
