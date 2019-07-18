@@ -15,7 +15,7 @@
     "publish": "cd dist && npm publish && cd ..",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o .storybook-static",
-    "storybook:deploy": "storybook-to-ghpages -s storybook:build",
+    "storybook:deploy": "storybook-to-ghpages -s storybook:build --ci",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint \"src/**\"",
