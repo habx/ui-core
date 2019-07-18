@@ -23,24 +23,13 @@ const baseTitleStyle = css`
 const headerMaxiTitleStyle = css`
   ${baseTitleStyle};
 
-  ${size('milkyWay')};
-
-  @media (${breakpoints.below.smallTablet}) {
-    ${size('nova')};
-  }
-`
-
-const headerBigTitleStyle = css`
-  ${baseTitleStyle};
-
   ${size('superNova')};
 
   @media (${breakpoints.below.smallTablet}) {
     ${size('nova')};
-  }
 `
 
-const headerTitleStyle = css`
+const headerBigTitleStyle = css`
   ${baseTitleStyle};
 
   ${size('nova')};
@@ -50,7 +39,7 @@ const headerTitleStyle = css`
   }
 `
 
-const headerSmallTitleStyle = css`
+const headerTitleStyle = css`
   ${baseTitleStyle};
 
   ${size('sun')};
@@ -58,6 +47,12 @@ const headerSmallTitleStyle = css`
   @media (${breakpoints.below.smallTablet}) {
     ${size('jupiter')};
   }
+`
+
+const headerSmallTitleStyle = css`
+  ${baseTitleStyle};
+
+  ${size('jupiter')};
 `
 
 const articleTitleStyle = css`
