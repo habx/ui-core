@@ -40,5 +40,6 @@ export default interface DesignSystemTheme {
 export interface GetterProps {
   theme?: {
     designSystem?: DesignSystemTheme
+    designSystemRoot?: DesignSystemTheme
   }
 }

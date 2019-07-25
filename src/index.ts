@@ -5,6 +5,7 @@ export { default as Link, LinkProps, linkStyle } from './Link'
 export { default as Text, TextProps, textStyles } from './Text'
 export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider'
 export { default as Title, TitleProps, titleStyles } from './Title'
+export { default as Tag, TagProps } from './Tag'
 
 /*
   Inputs

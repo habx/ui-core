@@ -12,10 +12,15 @@ import DesignSystemTheme, {
   GetterProps,
 } from './theme.interface'
 
-const getTheme = (props: GetterProps): DesignSystemTheme => {
-  const { theme: { designSystem = BASE_THEME } = {} } = props
+const getTheme = (
+  props: GetterProps,
+  { useRootTheme }: { useRootTheme?: boolean } = {}
+): DesignSystemTheme => {
+  const {
+    theme: { designSystem = BASE_THEME, designSystemRoot = BASE_THEME } = {},
+  } = props
 
-  return designSystem
+  return useRootTheme ? designSystemRoot : designSystem
 }
 
 const fontGetter = (variation: keyof Fonts = 'text') => (props: GetterProps) =>
@@ -33,15 +38,22 @@ const colorGetter = (
   colorName: keyof ColorFamilies | 'background',
   config: {
     dynamic?: boolean
+    useRootTheme?: boolean
     propName?: string
     variation?: keyof ColorVariations
     opacity?: number
   } = {}
 ) => {
-  const { dynamic = false, variation = 'base', propName, opacity } = config
+  const {
+    dynamic = false,
+    useRootTheme = false,
+    variation = 'base',
+    propName,
+    opacity,
+  } = config
 
   return props => {
-    const theme = getTheme(props)
+    const theme = getTheme(props, { useRootTheme })
 
     const getColorName = () => {
       if (!dynamic) {
