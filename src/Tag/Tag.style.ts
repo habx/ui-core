@@ -29,6 +29,13 @@ export const TagContainer = styled.button`
     opacity: 0.72,
   })};
 
+  &[data-large='true'] {
+    padding: 0 24px;
+    height: 48px;
+    border-width: 2px;
+    font-size: 16px;
+  }
+
   &:not([data-active='true']) {
     &:hover:not(:focus):not(:active) {
       background-color: ${palette.darkBlue[200]};
@@ -47,11 +54,6 @@ export const TagContainer = styled.button`
     }
 
     &[data-large='true'] {
-      padding: 0 24px;
-      height: 48px;
-      border-width: 2px;
-      font-size: 16px;
-
       &:focus,
       &:active {
         border-width: 4px;
@@ -73,6 +75,11 @@ export const TagContainer = styled.button`
     border: none;
     color: ${theme.color('primary', { useRootTheme: true })};
     background-color: ${palette.blue[200]};
+    padding: 0 13.5px;
+
+    &[data-large='true'] {
+      padding: 0 26px;
+    }
 
     &[data-background='true'] {
       background-color: #fff;

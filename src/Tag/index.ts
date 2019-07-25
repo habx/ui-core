@@ -1,5 +1,5 @@
 import Tag from './Tag'
 
-export { default as Tag } from './Tag.interface'
+export { default as TagProps } from './Tag.interface'
 
 export default Tag
