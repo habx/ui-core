@@ -65,5 +65,6 @@ storiesOf('Miscellaneous|Tag', module)
       children={text('Value', 'Agencement 1')}
       large={boolean('Large', false)}
       active={boolean('Active', false)}
+      markdown={boolean('Markdown support', false)}
     />
   ))

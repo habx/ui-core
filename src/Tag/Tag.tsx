@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import useTheme from '../useTheme'
+import withMarkdown from '../withMarkdown'
 
 import TagProps from './Tag.interface'
 import { TagContainer } from './Tag.style'
@@ -22,4 +23,4 @@ const Tag: React.FunctionComponent<TagProps> = ({
   )
 }
 
-export default Tag
+export default withMarkdown({ inline: true })(Tag)
