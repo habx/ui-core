@@ -11,6 +11,7 @@ import ThemeProviderProps from './ThemeProvider.interface'
 
 const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
+  isRoot = false,
   backgroundColor,
   children,
 }) => {
@@ -21,15 +22,18 @@ const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
       ? { ...THEME_PATCHES[backgroundColor.toUpperCase()], backgroundColor }
       : theme
 
+    const designSystem = merge.recursive(
+      true,
+      currentTheme.designSystem || BASE_THEME,
+      patch
+    )
+
     return {
       ...currentTheme,
-      designSystem: merge.recursive(
-        true,
-        currentTheme.designSystem || BASE_THEME,
-        patch
-      ),
+      designSystem,
+      ...(isRoot && { designSystemRoot: designSystem }),
     }
-  }, [backgroundColor, currentTheme, theme])
+  }, [backgroundColor, currentTheme, isRoot, theme])
 
   return (
     <BaseThemeProvider theme={newTheme}>
