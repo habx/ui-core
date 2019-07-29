@@ -1,7 +1,10 @@
+import MarkdownIt from 'markdown-it'
+import StateCore from 'markdown-it/lib/rules_core/state_core'
+
 // same as UNESCAPE_MD_RE plus a space
 const UNESCAPE_RE = /\\([ \\!"#$%&'()*+,./:;<=>?@[\]^_`{|}~-])/g
 
-function logo(state, silent) {
+function logo(state: StateCore, silent?: boolean) {
   let found
   let token
   const max = state.posMax
@@ -61,4 +64,5 @@ function logo(state, silent) {
   return true
 }
 
-export default md => md.inline.ruler.after('emphasis', 'sub', logo)
+export default (md: MarkdownIt) =>
+  md.inline.ruler.after('emphasis', 'sub', logo)

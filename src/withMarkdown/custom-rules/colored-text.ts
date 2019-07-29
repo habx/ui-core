@@ -1,9 +1,17 @@
+import MarkdownIt from 'markdown-it'
+import StateCore from 'markdown-it/lib/rules_core/state_core'
+
 const CHAR_COLOR_CODE_START = 0x5b // [
 const CHAR_COLOR_CODE_END = 0x5d // ]
 const CHAR_TEXT_START = 0x7b // {
 const CHAR_TEXT_END = 0x7d // }
 
-function parseAttribute(startChar, endChar, state, start) {
+function parseAttribute(
+  startChar: number,
+  endChar: number,
+  state: StateCore,
+  start: number
+) {
   let level
   let found
   let marker
@@ -59,7 +67,7 @@ const parseColoredText = parseAttribute.bind(
   CHAR_TEXT_END
 )
 
-function coloredText(state, silent) {
+function coloredText(state: StateCore, silent?: boolean) {
   let colorStart
   let colorEnd
   let textStart
@@ -122,4 +130,5 @@ function coloredText(state, silent) {
   return true
 }
 
-export default md => md.inline.ruler.after('emphasis', 'sub', coloredText)
+export default (md: MarkdownIt) =>
+  md.inline.ruler.after('emphasis', 'sub', coloredText)

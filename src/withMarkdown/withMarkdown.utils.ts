@@ -2,6 +2,7 @@ import MarkdownIt from 'markdown-it'
 import markdownItSupPlugin from 'markdown-it-sup'
 
 import { isNil } from '../_internal/data'
+import DesignSystemTheme from '../theme/theme.interface'
 
 import { logo, coloredText } from './custom-rules'
 
@@ -36,7 +37,7 @@ md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
   return defaultRender(tokens, idx, options, env, self)
 }
 
-const cleanValue = value => {
+const cleanValue = (value: string | null): string => {
   if (isNil(value)) {
     return ''
   }
@@ -44,7 +45,12 @@ const cleanValue = value => {
   return value
 }
 
-export const parseInline = (value, env) =>
-  md.renderInline(cleanValue(value), env)
+export const parseInline = (
+  value: string | null,
+  env: { theme: DesignSystemTheme }
+) => md.renderInline(cleanValue(value), env)
 
-export const parseFull = (value, env) => md.render(cleanValue(value), env)
+export const parseFull = (
+  value: string | null,
+  env: { theme: DesignSystemTheme }
+) => md.render(cleanValue(value), env)

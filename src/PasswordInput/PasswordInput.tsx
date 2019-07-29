@@ -6,7 +6,7 @@ import PasswordInputProps from './PasswordInput.interface'
 import { HiddenInputContainer, HideButton } from './PasswordInput.style'
 
 const PasswordInput: React.FunctionComponent<PasswordInputProps> = props => {
-  const ref = React.useRef(null)
+  const ref = React.useRef<HTMLInputElement>(null)
   const [isContentHidden, setContentHidden] = React.useState(true)
 
   const handleToggleHidden = React.useCallback(() => {

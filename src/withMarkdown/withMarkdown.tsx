@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
+import DesignSystemTheme from '../theme/theme.interface'
 import useTheme from '../useTheme'
 
 import {
@@ -9,7 +10,15 @@ import {
 } from './withMarkdown.interface'
 import { parseFull, parseInline } from './withMarkdown.utils'
 
-const parse = ({ inline, theme, children }) => {
+const parse = ({
+  inline,
+  theme,
+  children,
+}: {
+  inline: boolean
+  theme: DesignSystemTheme
+  children: string
+}) => {
   const env = {
     theme,
   }
@@ -43,7 +52,11 @@ const withMarkdown = ({ inline = false }: WithMarkdownConfig = {}) => <
         {...(rest as Props)}
         data-markdown
         dangerouslySetInnerHTML={{
-          __html: parse({ children, inline: isInline, theme }),
+          __html: parse({
+            children: children as string,
+            inline: isInline,
+            theme,
+          }),
         }}
       />
     )

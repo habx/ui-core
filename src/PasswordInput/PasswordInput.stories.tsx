@@ -35,7 +35,7 @@ const TextInputContainer = styled.div`
   padding-right: 24px;
 `
 
-const createLine = (title, props, { colored = false } = {}) => {
+const createLine = (title: string, props: Object, { colored = false } = {}) => {
   const content = (
     <LineContainer>
       <Title type="section">{title}</Title>

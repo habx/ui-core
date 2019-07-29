@@ -13,9 +13,9 @@ export interface TextColorVariations {
 }
 
 export interface ColorFamilies {
-  primary?: ColorVariations
-  secondary?: ColorVariations
-  warning?: ColorVariations
+  primary: ColorVariations
+  secondary: ColorVariations
+  warning: ColorVariations
 }
 
 export interface Fonts {
@@ -31,20 +31,20 @@ export interface Shadow {
 }
 
 export interface Shadows {
-  flat?: Shadow[]
-  lower?: Shadow[]
-  low?: Shadow[]
-  regular?: Shadow[]
-  high?: Shadow[]
-  higher?: Shadow[]
+  flat: Shadow[]
+  lower: Shadow[]
+  low: Shadow[]
+  regular: Shadow[]
+  high: Shadow[]
+  higher: Shadow[]
 }
 
 export default interface DesignSystemTheme {
-  colors?: ColorFamilies
-  textColors?: TextColorVariations
-  backgroundColor?: string
-  fonts?: Fonts
-  shadows?: Shadows
+  colors: ColorFamilies
+  textColors: TextColorVariations
+  backgroundColor: string
+  fonts: Fonts
+  shadows: Shadows
 }
 
 export interface GetterProps {

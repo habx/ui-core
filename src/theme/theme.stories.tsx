@@ -13,6 +13,7 @@ import useTheme from '../useTheme'
 
 import theme from './theme'
 import { THEME_PATCHES } from './theme.data'
+import { Shadows } from './theme.interface'
 
 const Container = styled.div`
   display: flex;
@@ -37,16 +38,20 @@ const Color = styled.div`
   align-items: center;
 `
 
-const Circle = styled.div<{ color?: string; depth?: string }>`
+const Circle = styled.div<{ color?: string; depth?: keyof Shadows }>`
   height: 64px;
   width: 64px;
   border-radius: 50%;
   background-color: ${({ color }) => color};
   box-shadow: ${theme.shadow('regular', { dynamic: true })};
-  transition: box-shadow 150ms ease-in-out;
+  transition: box-shadow 50ms ease-in-out;
 
   &:hover {
     box-shadow: ${theme.shadow('regular', { hover: true, dynamic: true })};
+  }
+
+  &:active {
+    box-shadow: ${theme.shadow('lower')};
   }
 `
 
