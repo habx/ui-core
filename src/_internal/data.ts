@@ -46,5 +46,5 @@ export const isObject = (value: object): value is object =>
 
 export const isNil = (value: any): value is null | undefined => value == null
 
-export const has = (value: object, key): boolean =>
+export const has = (value: object, key: string | number): boolean =>
   isObject(value) && !isNil(value) && value.hasOwnProperty(key)

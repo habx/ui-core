@@ -12,7 +12,7 @@ const size = (name: keyof FontScale) => css`
   line-height: ${fontScale[name].lineHeight}px;
 `
 
-const baseTextStyle = css`
+const baseTextStyle = css<{ color?: string }>`
   color: ${theme.color('secondary', {
     dynamic: true,
     propName: 'color',
@@ -37,7 +37,7 @@ const largeTextStyle = css`
   ${size('earth')};
 `
 
-const emphasisTextStyle = css`
+const emphasisTextStyle = css<{ color?: string }>`
   ${baseTextStyle};
 
   font-weight: 600;

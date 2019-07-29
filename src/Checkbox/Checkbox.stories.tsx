@@ -39,7 +39,7 @@ const CheckboxContainer = styled.div`
 const Label = props => <Text {...props} as="label" />
 
 const CheckboxWithLabel = props => {
-  const id = React.useRef(Math.random)
+  const id = React.useRef<string>(Math.random().toString())
 
   return (
     <React.Fragment>

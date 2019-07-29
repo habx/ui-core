@@ -15,4 +15,5 @@ export default interface TextProps
   type?: TitleTypes
   color?: string
   opacity?: number
+  as?: React.ComponentType
 }

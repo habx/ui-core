@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import Title from '../Title'
 
 import TextArea from './index'
+import TextAreaProps from './TextArea.interface'
 
 const StoryContainer = styled.div`
   margin: 64px;
@@ -33,7 +34,7 @@ const TextAreaContainer = styled.div`
   padding-right: 24px;
 `
 
-const createLine = (title, props) => (
+const createLine = (title: string, props: Partial<TextAreaProps>) => (
   <LineContainer>
     <Title type="section">{title}</Title>
     <TextAreaList>

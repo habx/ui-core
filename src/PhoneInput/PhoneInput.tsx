@@ -2,7 +2,6 @@ import * as React from 'react'
 
 import { useSSRLayoutEffect } from '../_internal/ssr'
 import Icon from '../Icon'
-import { Input } from '../TextInput/TextInput.style'
 import useTheme from '../useTheme'
 
 import PhoneInputProps from './PhoneInput.interface'
@@ -14,7 +13,13 @@ import {
   FlagContainer,
 } from './PhoneInput.style'
 
-const COUNTRIES = [
+type COUNTRY = {
+  code: string
+  indicator: number
+  flag: React.FunctionComponent<{}>
+}
+
+const COUNTRIES: COUNTRY[] = [
   {
     code: 'fr',
     indicator: 33,
@@ -35,15 +40,15 @@ const PhoneInput: React.FunctionComponent<PhoneInputProps> = ({
   const [country, setCountry] = React.useState('fr')
   const theme = useTheme()
 
-  const { indicator, flag: Flag } = React.useMemo(
-    () => COUNTRIES.find(({ code }) => code === country),
+  const { indicator, flag: Flag } = React.useMemo<COUNTRY>(
+    () => COUNTRIES.find(({ code }) => code === country) as COUNTRY,
     [country]
   )
 
   const value = React.useMemo(() => {
-    if (rawValue.match(PHONE_REGEXP)) {
-      const result = PHONE_REGEXP.exec(rawValue)
+    const result = PHONE_REGEXP.exec(rawValue)
 
+    if (result) {
       const phoneNumber = result[2]
       const cleanPhoneNumber =
         phoneNumber !== '' && !phoneNumber.startsWith('0')
@@ -67,14 +72,16 @@ const PhoneInput: React.FunctionComponent<PhoneInputProps> = ({
 
       e.target.value = `+${indicator}${phoneNumber}`
 
-      onChange(e)
+      if (onChange) {
+        onChange(e)
+      }
     },
     [indicator, onChange]
   )
 
   useSSRLayoutEffect(() => {
-    if (rawValue.match(PHONE_REGEXP)) {
-      const result = PHONE_REGEXP.exec(rawValue)
+    const result = PHONE_REGEXP.exec(rawValue)
+    if (result) {
       const indicator = parseInt(result[1], 10)
       const country = COUNTRIES.find(el => el.indicator === indicator)
 

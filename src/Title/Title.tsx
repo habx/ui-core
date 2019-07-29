@@ -13,7 +13,7 @@ const size = (name: keyof FontScale) => css`
   line-height: ${fontScale[name].lineHeight}px;
 `
 
-const baseTitleStyle = css`
+const baseTitleStyle = css<{ color?: string }>`
   color: ${theme.color('secondary', { dynamic: true, propName: 'color' })};
   font-family: ${theme.font('title')};
   font-weight: 400;

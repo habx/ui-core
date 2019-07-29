@@ -26,7 +26,7 @@ const Checkbox: React.FunctionComponent<CheckboxProps> = ({
         type="checkbox"
         id={id}
       />
-      <FakeInput tabIndex={disabled ? null : 0} htmlFor={id} />
+      <FakeInput tabIndex={disabled ? undefined : 0} htmlFor={id} />
     </FakeInputContainer>
   )
 }

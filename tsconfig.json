@@ -10,16 +10,13 @@
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
+    "strict": true,
     "target": "esnext",
     "module": "commonjs",
     "esModuleInterop": true,
-    "types": [
-      "react",
-      "react-dom",
-      "styled-components",
-      "node",
-      "jest"
-    ]
+    "skipLibCheck": true,
+    "baseUrl": "typings",
+    "typeRoots": ["./node_modules/@types", "./typings"]
   },
   "files": ["./src/index.ts"]
 }

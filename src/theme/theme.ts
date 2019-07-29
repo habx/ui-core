@@ -34,18 +34,18 @@ const shadowGetter = (
     dynamic?: boolean
     propName?: string
   } = {}
-) => (props: GetterProps) => {
-  const { hover = false, dynamic = false, propName = 'depth' } = config
+) => (props: GetterProps & { depth?: keyof Shadows }) => {
+  const { hover = false, dynamic = false } = config
 
   const getShadowDepth = (): keyof Shadows => {
-    if (dynamic && !isNil(props[propName])) {
-      return props[propName]
+    if (dynamic && !isNil(props.depth)) {
+      return props.depth
     }
 
     return depth
   }
 
-  const shadowObject = getTheme(props).shadows[getShadowDepth()]
+  const shadowObject: Shadow[] = getTheme(props).shadows[getShadowDepth()]
 
   const buildShadow = ({ x, y, blur, opacity }: Shadow) =>
     `${x}px ${y}px ${blur}px rgba(6, 26, 60, ${opacity})`
@@ -69,12 +69,12 @@ const textColorGetter = (variation: keyof TextColorVariations = 'base') => (
   props: GetterProps
 ) => getTheme(props).textColors[variation]
 
-const colorGetter = (
+const colorGetter = <Props extends GetterProps>(
   colorName: keyof ColorFamilies | 'background',
   config: {
     dynamic?: boolean
     useRootTheme?: boolean
-    propName?: string
+    propName?: keyof Props
     variation?: keyof ColorVariations
     opacity?: number
   } = {}
@@ -87,10 +87,21 @@ const colorGetter = (
     opacity,
   } = config
 
-  return props => {
+  return (
+    props: Props & {
+      warning?: boolean
+      primary?: boolean
+      secondary?: boolean
+      opacity?: number
+    }
+  ) => {
     const theme = getTheme(props, { useRootTheme })
 
-    const getColorName = () => {
+    const getColorName = (): keyof ColorFamilies => {
+      if (colorName === 'background') {
+        return 'primary'
+      }
+
       if (!dynamic) {
         return colorName
       }

@@ -1,4 +1,5 @@
 import palette from '../palette'
+import { DesignSystemThemePatch } from '../ThemeProvider/ThemeProvider.interface'
 
 import DesignSystemTheme, { ColorVariations } from './theme.interface'
 
@@ -44,11 +45,11 @@ export const BASE_THEME: DesignSystemTheme = {
     flat: [],
     lower: [{ x: 0, y: 1, blur: 4, opacity: 0.2 }],
     low: [
-      { x: 0, y: 4, blur: 12, opacity: 0.1 },
+      { x: 0, y: 2, blur: 8, opacity: 0.1 },
       { x: 0, y: 0, blur: 12, opacity: 0.06 },
     ],
     regular: [
-      { x: 0, y: 2, blur: 8, opacity: 0.1 },
+      { x: 0, y: 4, blur: 12, opacity: 0.1 },
       { x: 0, y: 0, blur: 12, opacity: 0.06 },
     ],
     high: [
@@ -69,7 +70,7 @@ const PATCH_WHITE: ColorVariations = {
   contrastText: palette.darkBlue[900],
 }
 
-export const THEME_PATCHES: { [key: string]: DesignSystemTheme } = {
+export const THEME_PATCHES: { [key: string]: DesignSystemThemePatch } = {
   '#FFFFFF': BASE_THEME,
   [palette.darkBlue[900]]: {
     colors: {
