@@ -18,7 +18,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: gh-pages              
+              ignore: gh-pages
       - build:
           context: default_env_vars
           requires:
@@ -27,7 +27,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: gh-pages              
+              ignore: gh-pages
       - test:
           context: default_env_vars
           requires:
@@ -36,7 +36,7 @@ workflows:
             tags:
               only: /^v.*/
             branches:
-              ignore: gh-pages              
+              ignore: gh-pages
       - publish-on-tag:
           context: default_env_vars
           requires:

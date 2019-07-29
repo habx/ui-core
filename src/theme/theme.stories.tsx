@@ -37,12 +37,17 @@ const Color = styled.div`
   align-items: center;
 `
 
-const Circle = styled.div`
+const Circle = styled.div<{ color?: string; depth?: string }>`
   height: 64px;
   width: 64px;
   border-radius: 50%;
   background-color: ${({ color }) => color};
-  box-shadow: ${theme.shadow()};
+  box-shadow: ${theme.shadow('regular', { dynamic: true })};
+  transition: box-shadow 150ms ease-in-out;
+
+  &:hover {
+    box-shadow: ${theme.shadow('regular', { hover: true, dynamic: true })};
+  }
 `
 
 const ThemePatchContainer = styled.div`
@@ -99,6 +104,18 @@ storiesOf('Utility|theme', module)
     >
       <ThemePatchPalette />
     </Background>
+  ))
+  .add('shadows', () => (
+    <Container>
+      <Line>
+        <ColorLabel type="section">Shadows</ColorLabel>
+        {['lower', 'low', 'regular', 'high', 'higher'].map(shadowDepth => (
+          <Color key={shadowDepth}>
+            <Circle color="#FFFFFF" depth={shadowDepth} />
+          </Color>
+        ))}
+      </Line>
+    </Container>
   ))
   .add('patches', () => (
     <Background

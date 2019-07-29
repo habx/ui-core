@@ -3,6 +3,7 @@ import colorUtils from 'color'
 import { isNil } from '../_internal/data'
 
 import { BASE_THEME } from './theme.data'
+import { Shadow } from './theme.interface'
 import DesignSystemTheme, {
   ColorFamilies,
   ColorVariations,
@@ -26,9 +27,43 @@ const getTheme = (
 const fontGetter = (variation: keyof Fonts = 'text') => (props: GetterProps) =>
   getTheme(props).fonts[variation]
 
-const shadowGetter = (variation: keyof Shadows = 'base') => (
-  props: GetterProps
-) => getTheme(props).shadows[variation]
+const shadowGetter = (
+  depth: keyof Shadows = 'regular',
+  config: {
+    hover?: boolean
+    dynamic?: boolean
+    propName?: string
+  } = {}
+) => (props: GetterProps) => {
+  const { hover = false, dynamic = false, propName = 'depth' } = config
+
+  const getShadowDepth = (): keyof Shadows => {
+    if (dynamic && !isNil(props[propName])) {
+      return props[propName]
+    }
+
+    return depth
+  }
+
+  const shadowObject = getTheme(props).shadows[getShadowDepth()]
+
+  const buildShadow = ({ x, y, blur, opacity }: Shadow) =>
+    `${x}px ${y}px ${blur}px rgba(6, 26, 60, ${opacity})`
+
+  if (!hover) {
+    return `${shadowObject.map(buildShadow).join(', ')}`
+  }
+
+  return `${shadowObject
+    .map((shadow, index) =>
+      buildShadow(
+        index === 0
+          ? { ...shadow, opacity: shadow.opacity + 0.1, y: shadow.y + 4 }
+          : shadow
+      )
+    )
+    .join(', ')}`
+}
 
 const textColorGetter = (variation: keyof TextColorVariations = 'base') => (
   props: GetterProps
