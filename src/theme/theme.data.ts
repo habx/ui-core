@@ -41,9 +41,24 @@ export const BASE_THEME: DesignSystemTheme = {
   },
 
   shadows: {
-    light: '0 4px 12px 0 rgba(80, 79, 79, 0.24)',
-    base: '0 2px 6px 0 rgba(2, 26, 60, 0.16)',
-    strong: '0 2px 6px 0 rgba(153, 117, 113, 0.16)',
+    flat: [],
+    lower: [{ x: 0, y: 1, blur: 4, opacity: 0.2 }],
+    low: [
+      { x: 0, y: 4, blur: 12, opacity: 0.1 },
+      { x: 0, y: 0, blur: 12, opacity: 0.06 },
+    ],
+    regular: [
+      { x: 0, y: 2, blur: 8, opacity: 0.1 },
+      { x: 0, y: 0, blur: 12, opacity: 0.06 },
+    ],
+    high: [
+      { x: 0, y: 12, blur: 24, opacity: 0.15 },
+      { x: 0, y: 0, blur: 12, opacity: 0.06 },
+    ],
+    higher: [
+      { x: 0, y: 16, blur: 36, opacity: 0.15 },
+      { x: 0, y: 0, blur: 12, opacity: 0.06 },
+    ],
   },
 }
 

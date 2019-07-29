@@ -23,10 +23,20 @@ export interface Fonts {
   text?: string
 }
 
+export interface Shadow {
+  x: number
+  y: number
+  blur: number
+  opacity: number
+}
+
 export interface Shadows {
-  light?: string
-  base?: string
-  strong?: string
+  flat?: Shadow[]
+  lower?: Shadow[]
+  low?: Shadow[]
+  regular?: Shadow[]
+  high?: Shadow[]
+  higher?: Shadow[]
 }
 
 export default interface DesignSystemTheme {
