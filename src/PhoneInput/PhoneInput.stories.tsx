@@ -9,6 +9,7 @@ import palette from '../palette'
 import Title from '../Title'
 
 import PhoneInput from './index'
+import PhoneInputProps from './PhoneInput.interface'
 
 const StoryContainer = styled.div`
   margin: 64px;
@@ -35,7 +36,11 @@ const TextInputContainer = styled.div`
   padding-right: 24px;
 `
 
-const createLine = (title, props, { colored = false } = {}) => {
+const createLine = (
+  title: string,
+  props: Partial<PhoneInputProps>,
+  { colored = false } = {}
+) => {
   const content = (
     <LineContainer>
       <Title type="section">{title}</Title>

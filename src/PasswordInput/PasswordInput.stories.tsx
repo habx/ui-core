@@ -9,6 +9,7 @@ import palette from '../palette'
 import Title from '../Title'
 
 import PasswordInput from './index'
+import PasswordInputProps from './PasswordInput.interface'
 
 const StoryContainer = styled.div`
   margin: 64px;
@@ -35,7 +36,11 @@ const TextInputContainer = styled.div`
   padding-right: 24px;
 `
 
-const createLine = (title: string, props: Object, { colored = false } = {}) => {
+const createLine = (
+  title: string,
+  props: Partial<PasswordInputProps>,
+  { colored = false } = {}
+) => {
   const content = (
     <LineContainer>
       <Title type="section">{title}</Title>

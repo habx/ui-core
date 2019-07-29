@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import Icon from '../Icon'
 import Title from '../Title'
 
+import ButtonProps from './Button.interface'
 import Button from './index'
 
 const StoryContainer = styled.div`
@@ -27,7 +28,7 @@ const ButtonList = styled.div`
   }
 `
 
-const createLine = (title, props) => (
+const createLine = (title: string, props: Partial<ButtonProps>) => (
   <LineContainer>
     <Title type="section">{title}</Title>
     <ButtonList>
@@ -84,10 +85,10 @@ storiesOf('Actions|Button', module)
       secondary={boolean('Color override : Secondary', false)}
       warning={boolean('Color override : Warning', false)}
       iconLeft={
-        boolean('Icon left', false) ? <Icon icon="arrow-right" /> : null
+        boolean('Icon left', false) ? <Icon icon="arrow-right" /> : undefined
       }
       iconRight={
-        boolean('Icon right', false) ? <Icon icon="arrow-right" /> : null
+        boolean('Icon right', false) ? <Icon icon="arrow-right" /> : undefined
       }
     >
       Voir tous nos projets
