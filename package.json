@@ -19,8 +19,9 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint \"src/**\"",
-    "typecheck": "tsc --noEmit",
-    "typecheck:watch": "npm run type-check -- --watch"
+    "type": "tsc --noEmit",
+    "type:watch": "npm run type-check -- --watch",
+    "type:coverage": "tscov"
   },
   "repository": {
     "type": "git",
@@ -60,6 +61,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "@habx/eslint-config-client": "^2.0.6",
+    "@liftr/tscov": "^1.4.1",
     "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-centered": "^5.1.9",
     "@storybook/addon-info": "^5.1.9",
