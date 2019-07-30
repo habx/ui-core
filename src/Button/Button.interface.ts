@@ -1,4 +1,4 @@
-import { Button } from '../_internal/types'
+import { Button, styledAs } from '../_internal/types'
 
 export default interface ButtonProps extends Button {
   iconLeft?: JSX.Element
@@ -6,4 +6,5 @@ export default interface ButtonProps extends Button {
   outline?: boolean
   link?: boolean
   fullWidth?: boolean
+  as?: styledAs
 }
