@@ -56,7 +56,7 @@ const createLine = (
   )
 }
 
-storiesOf('Miscellaneous|Tag', module)
+storiesOf('Actions|Tag', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
   .add('gallery', () => (
