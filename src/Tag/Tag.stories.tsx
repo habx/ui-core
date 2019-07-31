@@ -39,6 +39,9 @@ const createLine = (
       <Title type="section">{title}</Title>
       <TagList>
         <Tag {...props}>Agencement 1</Tag>
+        <Tag {...props} disabled>
+          Agencement 1
+        </Tag>
         <Tag {...props} active>
           Agencement 1
         </Tag>
@@ -70,6 +73,7 @@ storiesOf('Miscellaneous|Tag', module)
       children={text('Value', 'Agencement 1')}
       large={boolean('Large', false)}
       active={boolean('Active', false)}
+      disabled={boolean('Disabled', false)}
       markdown={boolean('Markdown support', false)}
     />
   ))

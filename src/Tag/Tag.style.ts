@@ -37,36 +37,53 @@ export const TagContainer = styled.button`
   }
 
   &:not([data-active='true']) {
-    &:hover:not(:focus):not(:active) {
-      background-color: ${palette.darkBlue[200]};
-    }
-
-    &:focus,
-    &:active {
-      border-color: ${palette.blue[300]};
-    }
-
-    &:not([data-large='true']) {
-      &:focus {
-        border-width: 3px;
-        padding: 0 10.5px;
-      }
-    }
-
-    &[data-large='true'] {
+    &:not(:disabled) {
+      &:hover,
       &:focus,
       &:active {
-        border-width: 4px;
-        padding: 0 22px;
+        background-color: ${palette.darkBlue[200]};
+      }
+
+      &:hover {
+        border-color: ${palette.darkBlue[200]};
+      }
+
+      &:focus,
+      &:active {
+        border-color: ${palette.blue[300]};
+      }
+
+      &:not([data-large='true']) {
+        &:focus {
+          border-width: 3px;
+          padding: 0 10.5px;
+        }
+      }
+
+      &[data-large='true'] {
+        &:focus,
+        &:active {
+          border-width: 4px;
+          padding: 0 22px;
+        }
+      }
+
+      &[data-background='true'] {
+        border-color: rgba(255, 255, 255, 0.3);
+        color: ${theme.color('secondary')};
+
+        &:hover:not(:focus):not(:active) {
+          background-color: rgba(255, 255, 255, 0.7);
+        }
       }
     }
 
-    &[data-background='true'] {
-      border-color: rgba(255, 255, 255, 0.3);
-      color: ${theme.color('secondary')};
+    &:disabled {
+      color: ${palette.darkBlue[300]};
 
-      &:hover:not(:focus):not(:active) {
-        background-color: rgba(255, 255, 255, 0.7);
+      &[data-background='true'] {
+        color: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.3);
       }
     }
   }
