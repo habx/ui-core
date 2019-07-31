@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { styledAs } from '../_internal/types'
 import {
   ColorFamilies,
   Fonts,

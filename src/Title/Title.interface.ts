@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ThemeOverridesProps } from '../_internal/types'
+import { styledAs, ThemeOverridesProps } from '../_internal/types'
 
 export type TitleTypes =
   | 'headerMaxi'
@@ -17,4 +17,5 @@ export default interface TitleProps
   type: TitleTypes
   color?: string
   opacity?: number
+  as?: styledAs
 }

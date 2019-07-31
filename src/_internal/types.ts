@@ -7,6 +7,8 @@ export type Except<BaseType, ExcludedElements> = Pick<
   Exclude<keyof BaseType, ExcludedElements>
 >
 
+export type styledAs = keyof JSX.IntrinsicElements | React.ComponentType<any>
+
 export interface ThemeOverridesProps {
   primary?: boolean
   secondary?: boolean
