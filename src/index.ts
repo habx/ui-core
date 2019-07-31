@@ -14,6 +14,10 @@ export {
   default as NavigationButton,
   NavigationButtonProps,
 } from './NavigationButton'
+export {
+  default as NavigationDots,
+  NavigationDotsProps,
+} from './NavigationDots'
 export { default as Tag, TagProps } from './Tag'
 
 /*
