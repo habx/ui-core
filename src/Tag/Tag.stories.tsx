@@ -8,7 +8,8 @@ import Background from '../Background'
 import palette from '../palette'
 import Title from '../Title'
 
-import Tag from './index'
+import Tag from './Tag'
+import TagProps from './Tag.interface'
 
 const StoryContainer = styled.div`
   margin: 64px;
@@ -28,7 +29,11 @@ const TagList = styled.div`
   }
 `
 
-const createLine = (title, props, { colored = false } = {}) => {
+const createLine = (
+  title: string,
+  props: TagProps,
+  { colored = false } = {}
+) => {
   const content = (
     <LineContainer>
       <Title type="section">{title}</Title>
