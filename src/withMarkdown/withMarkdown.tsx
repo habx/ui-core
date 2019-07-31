@@ -28,13 +28,13 @@ const parse = ({
   return mdParse(children || '', env)
 }
 
-const withMarkdown = ({ inline = false }: WithMarkdownConfig = {}) => <
-  Props extends object
->(
+const withMarkdown = <ExtraProps extends object>({
+  inline = false,
+}: WithMarkdownConfig = {}) => <Props extends object>(
   WrappedComponent: React.ComponentType<Props>
 ) => {
   const Component: React.FunctionComponent<
-    Props & WithMarkdownReceivedProps
+    Props & WithMarkdownReceivedProps & ExtraProps
   > = props => {
     const { markdown, children, ...rest } = props
     const theme = useTheme()
