@@ -51,15 +51,11 @@ const NavigationDots: React.FunctionComponent<NavigationDotsProps> = ({
     }))
   }, [activeDot, size])
 
-  // console.log(visibleDots)
-
   const width = visibleDots.reduce(
     (acc, el, index) =>
       acc + (el.active ? 16 : el.small ? 6 : 8) + (index > 0 ? 4 : 0),
     0
   )
-
-  // console.log(width)
 
   return (
     <NavigationDotsContainer {...props} width={width}>
@@ -74,16 +70,6 @@ const NavigationDots: React.FunctionComponent<NavigationDotsProps> = ({
           onClick={onClickDot ? () => onClickDot(dot.index) : undefined}
         />
       ))}
-      {/* map(range(size), index => (
-        <Dot
-          key={index}
-          data-active={index === activeDot}
-          data-interactive={!!onClickDot}
-          data-background={theme.backgroundColor !== '#FFFFFF'}
-          data-small={!showAll && Math.abs(index - activeDot) > 1}
-          onClick={onClickDot ? () => onClickDot(index) : undefined}
-        />
-      )) */}
     </NavigationDotsContainer>
   )
 }
