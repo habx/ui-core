@@ -1,12 +1,24 @@
 export { default as Background, BackgroundProps } from './Background'
-export { default as Button, ButtonProps } from './Button'
 export { default as Icon, IconProps } from './Icon'
 export { default as Link, LinkProps, linkStyle } from './Link'
 export { default as Text, TextProps, textStyles } from './Text'
 export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider'
 export { default as Title, TitleProps, titleStyles } from './Title'
-export { default as Tag, TagProps } from './Tag'
 export { default as Card, CardProps } from './Card'
+
+/*
+  Actions
+ */
+export { default as Button, ButtonProps } from './Button'
+export {
+  default as NavigationButton,
+  NavigationButtonProps,
+} from './NavigationButton'
+export {
+  default as NavigationDots,
+  NavigationDotsProps,
+} from './NavigationDots'
+export { default as Tag, TagProps } from './Tag'
 
 /*
   Inputs
