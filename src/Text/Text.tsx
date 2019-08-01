@@ -112,4 +112,4 @@ const Text: React.FunctionComponent<TitleProps> = ({
   return <TitleComponent {...props} />
 }
 
-export default withMarkdown<{ inline: boolean }>({ inline: true })(Text)
+export default withMarkdown<{ inline?: boolean }>({ inline: true })(Text)
