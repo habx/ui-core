@@ -3,82 +3,75 @@ import { withKnobs, number, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
-import styled from 'styled-components'
 
-import Background from '../Background'
-import palette from '../palette'
-import Title from '../Title'
+import withGrid from '../_internal/StorybookGrid'
 
 import NavigationDots from './index'
 import NavigationDotsProps from './NavigationDots.interface'
 
-const StoryContainer = styled.div`
-  margin: 64px;
-`
-
-const LineContainer = styled.div`
-  padding: 12px 48px 36px 48px;
-`
-
-const NavigationDotsList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 8px -16px -8px -16px;
-
-  & > div {
-    margin: 8px 16px;
-  }
-`
-
-const createLine = (
-  title: string,
-  props: Partial<NavigationDotsProps>,
-  { colored = false } = {}
-) => {
-  const content = (
-    <LineContainer>
-      <Title type="section">{title}</Title>
-      <NavigationDotsList>
-        <NavigationDots {...props} size={3} activeDot={0} disabled />
-        <NavigationDots
-          {...props}
-          size={3}
-          activeDot={1}
-          onClickDot={action('Click dot')}
-        />
-        <NavigationDots {...props} size={6} onClickDot={action('Click dot')} />
-        <NavigationDots
-          {...props}
-          size={6}
-          activeDot={3}
-          onClickDot={action('Click dot')}
-        />
-        <NavigationDots
-          {...props}
-          size={6}
-          activeDot={5}
-          onClickDot={action('Click dot')}
-        />
-      </NavigationDotsList>
-    </LineContainer>
-  )
-
-  return colored ? (
-    <Background backgroundColor={palette.green[600]}>{content}</Background>
-  ) : (
-    content
-  )
+const GRID_PROPS = {
+  onClickDot: action('Click dot'),
+  size: 3,
+  activeDot: 0,
 }
+
+const GRID_LINES = [
+  {
+    title: 'Regular',
+    props: {},
+  },
+  {
+    title: 'Colored background',
+    props: {},
+    coloredBackground: true,
+  },
+]
+
+const GRID_ITEMS = [
+  {
+    label: 'Less than 5 items',
+    props: {},
+  },
+  {
+    label: 'Many items',
+    props: {
+      size: 6,
+      activeDot: 0,
+    },
+  },
+  {
+    label: 'Many items',
+    props: {
+      size: 6,
+      activeDot: 3,
+    },
+  },
+  {
+    label: 'Many items',
+    props: {
+      size: 6,
+      activeDot: 5,
+    },
+  },
+  {
+    label: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
+]
+
+const Grid = withGrid<NavigationDotsProps>({
+  props: GRID_PROPS,
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+  itemHorizontalSpace: 24,
+})(NavigationDots)
 
 storiesOf('Actions|NavigationDots', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
-  .add('gallery', () => (
-    <StoryContainer>
-      {createLine('Regular', {})}
-      {createLine('Colored background', {}, { colored: true })}
-    </StoryContainer>
-  ))
+  .add('gallery', () => <Grid />)
   .add('dynamic', () => (
     <NavigationDots
       size={number('Size', 3)}

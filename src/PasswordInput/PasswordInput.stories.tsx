@@ -4,99 +4,83 @@ import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
-import Background from '../Background'
-import palette from '../palette'
-import Title from '../Title'
+import withGrid from '../_internal/StorybookGrid'
 
 import PasswordInput from './index'
 import PasswordInputProps from './PasswordInput.interface'
 
-const StoryContainer = styled.div`
-  margin: 64px;
-`
-
-const LineContainer = styled.div`
-  padding: 12px 48px 36px 48px;
-`
-
-const TextInputList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 8px -8px -8px -8px;
-
-  & > button {
-    margin: 8px;
-  }
-`
-
-const TextInputContainer = styled.div`
+const PasswordInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
-  padding-right: 24px;
 `
 
-const createLine = (
-  title: string,
-  props: Partial<PasswordInputProps>,
-  { colored = false } = {}
-) => {
-  const content = (
-    <LineContainer>
-      <Title type="section">{title}</Title>
-      <TextInputList>
-        <TextInputContainer>
-          <PasswordInput placeholder="votre mot de passe" {...props} />
-        </TextInputContainer>
-        <TextInputContainer>
-          <PasswordInput
-            placeholder="votre mot de passe"
-            value="azerty :)"
-            onChange={() => {}}
-            {...props}
-          />
-        </TextInputContainer>
-        <TextInputContainer>
-          <PasswordInput
-            placeholder="votre mot de passe"
-            error
-            value="a"
-            onChange={() => {}}
-            {...props}
-          />
-        </TextInputContainer>
-        <TextInputContainer>
-          <PasswordInput placeholder="votre mot de passe" disabled {...props} />
-        </TextInputContainer>
-      </TextInputList>
-    </LineContainer>
-  )
-
-  return colored ? (
-    <Background backgroundColor={palette.green[600]}>{content}</Background>
-  ) : (
-    content
-  )
+const GRID_PROPS = {
+  placeholder: 'your password',
+  onChange: () => {},
 }
+
+const GRID_LINES = [
+  {
+    title: 'Regular',
+    props: {},
+  },
+  {
+    title: 'Small',
+    props: { small: true },
+  },
+  {
+    title: 'Colored background',
+    props: {},
+    coloredBackground: true,
+  },
+]
+
+const GRID_ITEMS = [
+  {
+    label: 'Empty',
+    props: {},
+  },
+  {
+    label: 'With value',
+    props: {
+      value: 'hiddenvalue',
+    },
+  },
+  {
+    label: 'Error',
+    props: {
+      value: 'hid',
+      error: true,
+    },
+  },
+  {
+    label: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
+]
+
+const Grid = withGrid<PasswordInputProps>({
+  props: GRID_PROPS,
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+  itemWrapper: PasswordInputContainer,
+})(PasswordInput)
 
 storiesOf('Input|PasswordInput', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
-  .add('gallery', () => (
-    <StoryContainer>
-      {createLine('Regular', {})}
-      {createLine('Small', { small: true })}
-      {createLine('Colored background', {}, { colored: true })}
-    </StoryContainer>
-  ))
+  .add('gallery', () => <Grid />)
   .add('dynamic', () => (
-    <TextInputContainer>
+    <PasswordInputContainer>
       <PasswordInput
         value={text('Value', '')}
-        placeholder="votre mot de passe"
+        placeholder="votre@mail.com"
         error={boolean('Error', false)}
-        disabled={boolean('Disabled', false)}
         small={boolean('Small', false)}
+        disabled={boolean('Disabled', false)}
       />
-    </TextInputContainer>
+    </PasswordInputContainer>
   ))

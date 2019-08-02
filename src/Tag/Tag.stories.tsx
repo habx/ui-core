@@ -2,72 +2,57 @@ import { withKnobs, boolean, text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
-import styled from 'styled-components'
 
-import Background from '../Background'
-import palette from '../palette'
-import Title from '../Title'
+import withGrid from '../_internal/StorybookGrid'
 
 import Tag from './Tag'
 import TagProps from './Tag.interface'
 
-const StoryContainer = styled.div`
-  margin: 64px;
-`
-
-const LineContainer = styled.div`
-  padding: 12px 48px 36px 48px;
-`
-
-const TagList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 8px -8px -8px -8px;
-
-  & > button {
-    margin: 8px;
-  }
-`
-
-const createLine = (
-  title: string,
-  props: TagProps,
-  { colored = false } = {}
-) => {
-  const content = (
-    <LineContainer>
-      <Title type="section">{title}</Title>
-      <TagList>
-        <Tag {...props}>Agencement 1</Tag>
-        <Tag {...props} disabled>
-          Agencement 1
-        </Tag>
-        <Tag {...props} active>
-          Agencement 1
-        </Tag>
-        <Tag large {...props}>
-          Agencement 1
-        </Tag>
-      </TagList>
-    </LineContainer>
-  )
-
-  return colored ? (
-    <Background backgroundColor={palette.green[600]}>{content}</Background>
-  ) : (
-    content
-  )
+const GRID_PROPS = {
+  children: 'Agencement 1',
 }
+
+const GRID_LINES = [
+  {
+    title: 'White background',
+    props: {},
+  },
+  {
+    title: 'Colored background',
+    props: {},
+    coloredBackground: true,
+  },
+]
+
+const GRID_ITEMS = [
+  {
+    label: 'Default',
+    props: {},
+  },
+  {
+    label: 'Disabled',
+    props: { disabled: true },
+  },
+  {
+    label: 'Active',
+    props: { active: true },
+  },
+  {
+    label: 'Large',
+    props: { large: true },
+  },
+]
+
+const Grid = withGrid<TagProps>({
+  props: GRID_PROPS,
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+})(Tag)
 
 storiesOf('Actions|Tag', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
-  .add('gallery', () => (
-    <StoryContainer>
-      {createLine('White background', {})}
-      {createLine('Colored background', {}, { colored: true })}
-    </StoryContainer>
-  ))
+  .add('gallery', () => <Grid />)
   .add('dynamic', () => (
     <Tag
       children={text('Value', 'Agencement 1')}

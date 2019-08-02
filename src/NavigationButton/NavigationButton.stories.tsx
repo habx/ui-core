@@ -2,73 +2,62 @@ import { withKnobs, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
-import styled from 'styled-components'
 
-import Background from '../Background'
-import palette from '../palette'
-import Title from '../Title'
+import withGrid from '../_internal/StorybookGrid'
 
 import NavigationButton from './NavigationButton'
 import NavigationButtonProps from './NavigationButton.interface'
 
-const StoryContainer = styled.div`
-  margin: 64px;
-`
+const GRID_LINES = [
+  {
+    title: 'Regular',
+    props: {},
+  },
+  {
+    title: 'Large',
+    props: { large: true },
+  },
+  {
+    title: 'Small',
+    props: { small: true },
+  },
+  {
+    title: 'Regular + Colored background',
+    props: {},
+    coloredBackground: true,
+  },
+]
 
-const LineContainer = styled.div`
-  padding: 12px 48px 36px 48px;
-`
+const GRID_ITEMS = [
+  {
+    label: 'Default',
+    props: {},
+  },
+  {
+    label: 'Secondary',
+    props: { secondary: true },
+  },
+  {
+    label: 'Disabled',
+    props: { disabled: true },
+  },
+  {
+    label: 'Previous',
+    props: { previous: true },
+  },
+]
 
-const NavigationButtonList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 8px -8px -8px -8px;
-
-  & > div {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 8px;
-  }
-
-  & button {
-    margin: 8px 16px;
-  }
-`
-
-const createLine = (title: string, props: NavigationButtonProps) => {
-  const getContent = () => (
-    <React.Fragment>
-      <NavigationButton {...props} />
-      <NavigationButton {...props} secondary />
-      <NavigationButton {...props} disabled />
-      <NavigationButton {...props} previous />
-    </React.Fragment>
-  )
-
-  return (
-    <LineContainer>
-      <Title type="section">{title}</Title>
-      <NavigationButtonList>
-        {getContent()}
-        <Background backgroundColor={palette.green[600]}>
-          {getContent()}
-        </Background>
-      </NavigationButtonList>
-    </LineContainer>
-  )
-}
+const Grid = withGrid<NavigationButtonProps>({
+  props: {},
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+  itemHorizontalSpace: 24,
+})(NavigationButton)
 
 storiesOf('Actions|NavigationButton', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
-  .add('gallery', () => (
-    <StoryContainer>
-      {createLine('White background', {})}
-      {createLine('Size : large', { large: true })}
-      {createLine('Size : small', { small: true })}
-    </StoryContainer>
-  ))
+  .add('gallery', () => <Grid />)
   .add('dynamic', () => (
     <NavigationButton
       disabled={boolean('Disabled', false)}
