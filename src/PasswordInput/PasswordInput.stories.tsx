@@ -23,7 +23,6 @@ const GRID_PROPS = {
 const GRID_LINES = [
   {
     title: 'Regular',
-    props: {},
   },
   {
     title: 'Small',
@@ -31,7 +30,6 @@ const GRID_LINES = [
   },
   {
     title: 'Colored background',
-    props: {},
     coloredBackground: true,
   },
 ]
@@ -39,7 +37,6 @@ const GRID_LINES = [
 const GRID_ITEMS = [
   {
     label: 'Empty',
-    props: {},
   },
   {
     label: 'With value',

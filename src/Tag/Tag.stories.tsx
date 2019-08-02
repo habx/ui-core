@@ -15,11 +15,9 @@ const GRID_PROPS = {
 const GRID_LINES = [
   {
     title: 'White background',
-    props: {},
   },
   {
     title: 'Colored background',
-    props: {},
     coloredBackground: true,
   },
 ]
@@ -27,7 +25,6 @@ const GRID_LINES = [
 const GRID_ITEMS = [
   {
     label: 'Default',
-    props: {},
   },
   {
     label: 'Disabled',

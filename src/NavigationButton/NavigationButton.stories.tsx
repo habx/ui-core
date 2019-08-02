@@ -11,7 +11,6 @@ import NavigationButtonProps from './NavigationButton.interface'
 const GRID_LINES = [
   {
     title: 'Regular',
-    props: {},
   },
   {
     title: 'Large',
@@ -23,7 +22,6 @@ const GRID_LINES = [
   },
   {
     title: 'Regular + Colored background',
-    props: {},
     coloredBackground: true,
   },
 ]
@@ -31,7 +29,6 @@ const GRID_LINES = [
 const GRID_ITEMS = [
   {
     label: 'Default',
-    props: {},
   },
   {
     label: 'Secondary',
@@ -48,7 +45,6 @@ const GRID_ITEMS = [
 ]
 
 const Grid = withGrid<NavigationButtonProps>({
-  props: {},
   lines: GRID_LINES,
   items: GRID_ITEMS,
   itemHorizontalSpace: 24,

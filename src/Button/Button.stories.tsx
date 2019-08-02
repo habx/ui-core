@@ -14,7 +14,6 @@ const GRID_PROPS = {
 const GRID_LINES = [
   {
     title: 'Solid + Regular',
-    props: {},
   },
   {
     title: 'Solid + Small',
@@ -51,9 +50,7 @@ const GRID_LINES = [
 ]
 
 const GRID_ITEMS = [
-  {
-    props: {},
-  },
+  {},
   {
     props: { disabled: true },
   },

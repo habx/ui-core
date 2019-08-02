@@ -18,11 +18,9 @@ const GRID_PROPS = {
 const GRID_LINES = [
   {
     title: 'Regular',
-    props: {},
   },
   {
     title: 'Colored background',
-    props: {},
     coloredBackground: true,
   },
 ]
@@ -30,7 +28,6 @@ const GRID_LINES = [
 const GRID_ITEMS = [
   {
     label: 'Less than 5 items',
-    props: {},
   },
   {
     label: 'Many items',

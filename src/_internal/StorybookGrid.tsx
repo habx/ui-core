@@ -35,17 +35,17 @@ const Label = styled(Text)`
 
 type GridLine<Props> = {
   title: React.ReactNode
-  props: Partial<Props>
+  props?: Partial<Props>
   coloredBackground?: boolean
 }
 
 type GridItem<Props> = {
   label?: string
-  props: Partial<Props>
+  props?: Partial<Props>
 }
 
 interface StorybookGridConfig<Props> {
-  props: Partial<Props>
+  props?: Partial<Props>
   lines: GridLine<Props>[]
   items: GridItem<Props>[]
   itemHorizontalSpace?: number
@@ -56,7 +56,7 @@ const withGrid = <Props extends object>(config: StorybookGridConfig<Props>) => (
   WrappedComponent: React.ComponentType<Props>
 ) => {
   const {
-    props,
+    props = {},
     lines,
     items,
     itemWrapper: ItemWrapper = React.Fragment,
