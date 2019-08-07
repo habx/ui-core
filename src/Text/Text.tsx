@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 
+import breakpoints from '../breakpoints'
 import fontScale, { FontScale } from '../fontScale'
 import theme from '../theme'
 import withMarkdown from '../withMarkdown'
@@ -35,13 +36,17 @@ const largeTextStyle = css`
   ${baseTextStyle};
 
   ${size('earth')};
+
+  @media (${breakpoints.below.smallTablet}) {
+    ${size('mars')};
+  }
 `
 
 const emphasisTextStyle = css<{ color?: string }>`
   ${baseTextStyle};
 
+  ${size('mars')};
   font-weight: 600;
-  font-size: 18px;
 
   color: ${theme.color('secondary', {
     dynamic: true,
