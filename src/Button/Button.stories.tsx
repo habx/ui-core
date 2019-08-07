@@ -1,80 +1,86 @@
 import { withKnobs, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { withDesign } from 'storybook-addon-designs'
-import styled from 'styled-components'
 
+import withGrid from '../_internal/StorybookGrid'
 import Icon from '../Icon'
-import Title from '../Title'
 
-import ButtonProps from './Button.interface'
-import Button from './index'
+import Button, { ButtonProps } from './index'
 
-const StoryContainer = styled.div`
-  margin: 64px;
-`
+const GRID_PROPS = {
+  children: 'Voir tous nos projets',
+}
 
-const LineContainer = styled.div`
-  margin-bottom: 36px;
-`
+const GRID_LINES = [
+  {
+    title: 'Solid + Regular',
+  },
+  {
+    title: 'Solid + Small',
+    props: { small: true },
+  },
+  {
+    title: 'Solid + Large',
+    props: { large: true },
+  },
+  {
+    title: 'Outline + Regular',
+    props: { outline: true },
+  },
+  {
+    title: 'Outline + Small',
+    props: { outline: true, small: true },
+  },
+  {
+    title: 'Outline + Large',
+    props: { outline: true, large: true },
+  },
+  {
+    title: 'Link + Regular',
+    props: { link: true },
+  },
+  {
+    title: 'Link + Small',
+    props: { link: true, small: true },
+  },
+  {
+    title: 'Link + Large',
+    props: { link: true, large: true },
+  },
+]
 
-const ButtonList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 8px -8px -8px -8px;
+const GRID_ITEMS = [
+  {},
+  {
+    props: { disabled: true },
+  },
+  {
+    props: {
+      iconLeft: <Icon icon="arrow-east" />,
+    },
+  },
+  {
+    props: {
+      iconRight: <Icon icon="arrow-east" />,
+    },
+  },
+  {
+    props: {
+      warning: true,
+      children: 'Supprimer',
+    },
+  },
+]
 
-  & > button {
-    margin: 8px;
-  }
-`
-
-const createLine = (title: string, props: Partial<ButtonProps>) => (
-  <LineContainer>
-    <Title type="section">{title}</Title>
-    <ButtonList>
-      <Button {...props}>Voir tous nos projets</Button>
-      <Button {...props} disabled>
-        Voir tous nos projets
-      </Button>
-      <Button {...props} iconLeft={<Icon icon="arrow-right" />}>
-        Partager
-      </Button>
-      <Button {...props} iconRight={<Icon icon="arrow-right" />}>
-        Partager
-      </Button>
-      <Button {...props} warning>
-        Supprimer
-      </Button>
-    </ButtonList>
-  </LineContainer>
-)
+const Grid = withGrid<ButtonProps>({
+  props: GRID_PROPS,
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+})(Button)
 
 storiesOf('Actions|Button', module)
-  .addDecorator(withDesign)
   .addDecorator(withKnobs)
-  .add(
-    'gallery',
-    () => (
-      <StoryContainer>
-        {createLine('Solid + regular', {})}
-        {createLine('Solid + small', { small: true })}
-        {createLine('Solid + large', { large: true })}
-        {createLine('Outline + regular', { outline: true })}
-        {createLine('Outline + small', { outline: true, small: true })}
-        {createLine('Outline + large', { outline: true, large: true })}
-        {createLine('Link + regular', { link: true })}
-        {createLine('Link + small', { link: true, small: true })}
-        {createLine('Link + large', { link: true, large: true })}
-      </StoryContainer>
-    ),
-    {
-      design: {
-        type: 'figma',
-        url:
-          'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1250',
-      },
-    }
-  )
+  .add('gallery', () => <Grid />)
   .add('dynamic', () => (
     <Button
       outline={boolean('Outline', false)}

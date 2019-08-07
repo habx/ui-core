@@ -4,91 +4,72 @@ import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
-import Background from '../Background'
-import palette from '../palette'
-import Title from '../Title'
+import withGrid from '../_internal/StorybookGrid'
 
 import TextInput from './index'
 import TextInputProps from './TextInput.interface'
-
-const StoryContainer = styled.div`
-  margin: 64px;
-`
-
-const LineContainer = styled.div`
-  padding: 12px 48px 36px 48px;
-`
-
-const TextInputList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 8px -8px -8px -8px;
-
-  & > button {
-    margin: 8px;
-  }
-`
 
 const TextInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
-  padding-right: 24px;
 `
 
-const createLine = (
-  title: string,
-  props: Partial<TextInputProps>,
-  { colored = false } = {}
-) => {
-  const content = (
-    <LineContainer>
-      <Title type="section">{title}</Title>
-      <TextInputList>
-        <TextInputContainer>
-          <TextInput placeholder="votre@mail.com" {...props} />
-        </TextInputContainer>
-        <TextInputContainer>
-          <TextInput
-            placeholder="votre@mail.com"
-            value="habx@habx.fr"
-            onChange={() => {}}
-            {...props}
-          />
-        </TextInputContainer>
-        <TextInputContainer>
-          <TextInput
-            placeholder="votre@mail.com"
-            error
-            value="06 01 01 01 01"
-            onChange={() => {}}
-            {...props}
-          />
-        </TextInputContainer>
-        <TextInputContainer>
-          <TextInput placeholder="votre@mail.com" disabled {...props} />
-        </TextInputContainer>
-      </TextInputList>
-    </LineContainer>
-  )
-
-  return colored ? (
-    <Background backgroundColor={palette.green[600]}>{content}</Background>
-  ) : (
-    content
-  )
+const GRID_PROPS = {
+  placeholder: 'votre@mail.com',
+  onChange: () => {},
 }
+
+const GRID_LINES = [
+  {
+    title: 'Regular',
+  },
+  {
+    title: 'Small',
+    props: { small: true },
+  },
+  {
+    title: 'Colored background',
+    coloredBackground: true,
+  },
+]
+
+const GRID_ITEMS = [
+  {
+    label: 'Empty',
+  },
+  {
+    label: 'With value',
+    props: {
+      value: 'habx@habx.fr',
+    },
+  },
+  {
+    label: 'Error',
+    props: {
+      value: '06 01 01 01 01',
+      error: true,
+    },
+  },
+  {
+    label: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
+]
+
+const Grid = withGrid<TextInputProps>({
+  props: GRID_PROPS,
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+  itemWrapper: TextInputContainer,
+})(TextInput)
 
 storiesOf('Input|TextInput', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
-  .add('gallery', () => (
-    <StoryContainer>
-      {createLine('Regular', {})}
-      {createLine('Small', { small: true })}
-      {createLine('Colored background', {}, { colored: true })}
-    </StoryContainer>
-  ))
+  .add('gallery', () => <Grid />)
   .add('dynamic', () => (
     <TextInputContainer>
       <TextInput

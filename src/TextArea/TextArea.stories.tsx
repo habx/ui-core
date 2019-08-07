@@ -4,84 +4,80 @@ import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
-import Title from '../Title'
+import withGrid from '../_internal/StorybookGrid'
 
 import TextArea from './index'
 import TextAreaProps from './TextArea.interface'
-
-const StoryContainer = styled.div`
-  margin: 64px;
-`
-
-const LineContainer = styled.div`
-  margin-bottom: 48px;
-`
-
-const TextAreaList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 8px -8px -8px -8px;
-
-  & > button {
-    margin: 8px;
-  }
-`
 
 const TextAreaContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
-  padding-right: 24px;
 `
 
-const createLine = (title: string, props: Partial<TextAreaProps>) => (
-  <LineContainer>
-    <Title type="section">{title}</Title>
-    <TextAreaList>
-      <TextAreaContainer>
-        <TextArea placeholder="votre numéro" {...props} />
-      </TextAreaContainer>
-      <TextAreaContainer>
-        <TextArea
-          placeholder="votre numéro"
-          value="06 11 11 11 11"
-          onChange={() => {}}
-          {...props}
-        />
-      </TextAreaContainer>
-      <TextAreaContainer>
-        <TextArea
-          placeholder="votre numéro"
-          error
-          value="habx@habx.fr"
-          onChange={() => {}}
-          {...props}
-        />
-      </TextAreaContainer>
-      <TextAreaContainer>
-        <TextArea placeholder="votre numéro" disabled {...props} />
-      </TextAreaContainer>
-    </TextAreaList>
-  </LineContainer>
-)
+const GRID_PROPS = {
+  placeholder: 'Tell us more',
+  onChange: () => {},
+}
+
+const GRID_LINES = [
+  {
+    title: 'Regular',
+  },
+  {
+    title: 'Small',
+    props: { small: true },
+  },
+  {
+    title: 'Colored background',
+    coloredBackground: true,
+  },
+]
+
+const GRID_ITEMS = [
+  {
+    label: 'Empty',
+  },
+  {
+    label: 'With value',
+    props: {
+      value: 'Hello',
+    },
+  },
+  {
+    label: 'Error',
+    props: {
+      value: 'He',
+      error: true,
+    },
+  },
+  {
+    label: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
+]
+
+const Grid = withGrid<TextAreaProps>({
+  props: GRID_PROPS,
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+  itemWrapper: TextAreaContainer,
+})(TextArea)
 
 storiesOf('Input|TextArea', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
-  .add('gallery', () => (
-    <StoryContainer>
-      {createLine('Regular', {})}
-      {createLine('Small', { small: true })}
-    </StoryContainer>
-  ))
+  .add('gallery', () => <Grid />)
   .add('dynamic', () => (
     <TextAreaContainer>
       <TextArea
         value={text('Value', '')}
-        placeholder="votre numéro"
+        placeholder="votre@mail.com"
         error={boolean('Error', false)}
-        disabled={boolean('Disabled', false)}
         small={boolean('Small', false)}
+        disabled={boolean('Disabled', false)}
       />
     </TextAreaContainer>
   ))

@@ -1,96 +1,76 @@
-import { withKnobs, boolean } from '@storybook/addon-knobs'
+import { withKnobs, boolean, text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
-import Background from '../Background'
-import palette from '../palette'
-import Text from '../Text'
-import Title from '../Title'
+import withGrid from '../_internal/StorybookGrid'
 
+import CheckboxProps from './Checkbox.interface'
 import Checkbox from './index'
 
-const StoryContainer = styled.div`
-  margin: 64px;
-`
-
-const LineContainer = styled.div`
-  padding: 12px 48px 36px 48px;
-`
-
-const CheckboxList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 8px -8px -8px -8px;
-
-  & > button {
-    margin: 8px;
-  }
-`
-
 const CheckboxContainer = styled.div`
-  width: 300px;
   display: flex;
-  align-items: center;
-  padding-right: 24px;
+  flex-direction: column;
+  width: 200px;
 `
 
-const Label = props => <Text {...props} as="label" />
-
-const CheckboxWithLabel = props => {
-  const id = React.useRef<string>(Math.random().toString())
-
-  return (
-    <React.Fragment>
-      <Checkbox {...props} id={id.current} />
-      <Label htmlFor={id.current}>Exemple de label</Label>
-    </React.Fragment>
-  )
+const GRID_PROPS = {
+  placeholder: 'Tell us more',
+  onChange: () => {},
 }
 
-const createLine = (title, props, { colored = false } = {}) => {
-  const content = (
-    <LineContainer>
-      <Title type="section">{title}</Title>
-      <CheckboxList>
-        <CheckboxContainer>
-          <CheckboxWithLabel />
-        </CheckboxContainer>
-        <CheckboxContainer>
-          <CheckboxWithLabel value onChange={() => {}} {...props} />
-        </CheckboxContainer>
-        <CheckboxContainer>
-          <CheckboxWithLabel error value onChange={() => {}} {...props} />
-        </CheckboxContainer>
-        <CheckboxContainer>
-          <CheckboxWithLabel disabled {...props} />
-        </CheckboxContainer>
-      </CheckboxList>
-    </LineContainer>
-  )
+const GRID_LINES = [
+  {
+    title: 'Regular',
+  },
+  {
+    title: 'Colored background',
+    coloredBackground: true,
+  },
+]
 
-  return colored ? (
-    <Background backgroundColor={palette.yellow[600]}>{content}</Background>
-  ) : (
-    content
-  )
-}
+const GRID_ITEMS = [
+  {
+    label: 'Empty',
+  },
+  {
+    label: 'With value',
+    props: {
+      value: 'Hello',
+    },
+  },
+  {
+    label: 'Error',
+    props: {
+      value: 'He',
+      error: true,
+    },
+  },
+  {
+    label: 'Disabled',
+    props: {
+      disabled: true,
+    },
+  },
+]
+
+const Grid = withGrid<CheckboxProps>({
+  props: GRID_PROPS,
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+  itemWrapper: CheckboxContainer,
+})(Checkbox)
 
 storiesOf('Input|Checkbox', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
-  .add('gallery', () => (
-    <StoryContainer>
-      {createLine('Regular', {})}
-      {createLine('Regular', {}, { colored: true })}
-    </StoryContainer>
-  ))
+  .add('gallery', () => <Grid />)
   .add('dynamic', () => (
     <CheckboxContainer>
-      <CheckboxWithLabel
-        value={boolean('Value', true)}
-        placeholder="votre numéro"
+      <Checkbox
+        value={text('Value', '')}
+        placeholder="votre@mail.com"
         error={boolean('Error', false)}
         disabled={boolean('Disabled', false)}
       />

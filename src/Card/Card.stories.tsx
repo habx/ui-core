@@ -4,33 +4,14 @@ import * as React from 'react'
 import { withDesign } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
-import Background from '../Background'
+import withGrid from '../_internal/StorybookGrid'
 import Button from '../Button'
 import Icon from '../Icon'
-import palette from '../palette'
 import Text from '../Text'
 import Title from '../Title'
 
 import Card from './Card'
 import CardProps from './Card.interface'
-
-const StoryContainer = styled.div`
-  margin: 64px;
-`
-
-const LineContainer = styled.div`
-  padding: 12px 48px 36px 48px;
-`
-
-const CardList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin: 8px -8px -8px -8px;
-
-  & > div {
-    margin: 8px;
-  }
-`
 
 const CardChildrenContainer = styled.div`
   display: flex;
@@ -68,47 +49,48 @@ const CardChildren = () => (
   </CardChildrenContainer>
 )
 
-const createLine = (
-  title: string,
-  props: CardProps,
-  { colored = false } = {}
-) => {
-  const content = (
-    <LineContainer>
-      <Title type="section">{title}</Title>
-      <CardList>
-        <Card {...props}>
-          <CardChildren />
-        </Card>
-        <Card {...props} animated>
-          <CardChildren />
-        </Card>
-        <Card {...props} flat>
-          <CardChildren />
-        </Card>
-        <Card {...props} flat animated>
-          <CardChildren />
-        </Card>
-      </CardList>
-    </LineContainer>
-  )
-
-  return colored ? (
-    <Background backgroundColor={palette.green[600]}>{content}</Background>
-  ) : (
-    content
-  )
+const GRID_PROPS = {
+  children: <CardChildren />,
 }
+
+const GRID_LINES = [
+  {
+    title: 'White background',
+  },
+  {
+    title: 'Colored background',
+    coloredBackground: true,
+  },
+]
+
+const GRID_ITEMS = [
+  {
+    label: 'Default',
+  },
+  {
+    label: 'Animated',
+    props: { animated: true },
+  },
+  {
+    label: 'Flat',
+    props: { flat: true },
+  },
+  {
+    label: 'Animated + Flat',
+    props: { animated: true, flat: true },
+  },
+]
+
+const Grid = withGrid<CardProps>({
+  props: GRID_PROPS,
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+})(Card)
 
 storiesOf('Miscellaneous|Card', module)
   .addDecorator(withDesign)
   .addDecorator(withKnobs)
-  .add('gallery', () => (
-    <StoryContainer>
-      {createLine('White background', {})}
-      {createLine('Colored background', {}, { colored: true })}
-    </StoryContainer>
-  ))
+  .add('gallery', () => <Grid />)
   .add('dynamic', () => (
     <Card animated={boolean('Animated', false)} flat={boolean('Flat', false)}>
       <CardChildren />
