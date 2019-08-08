@@ -34,6 +34,8 @@ export { default as palette } from './palette'
 export { default as theme } from './theme'
 
 export { default as withMarkdown } from './withMarkdown'
-export { default as withTriggerElement } from './withTriggerElement'
+export {
+  default as withTriggerElement,
+} from './withTriggerElement/withTriggerElement'
 
 export { default as useTheme } from './useTheme'

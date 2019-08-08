@@ -1,22 +1,16 @@
 import * as React from 'react'
 
-import { isFunction } from './_internal/data'
+import { isFunction } from '../_internal/data'
 
-type TriggerReceivedProps = {
-  triggerElement?: ((state: TriggerState) => JSX.Element) | JSX.Element
-  onClose?: (e: React.FormEvent<HTMLInputElement>) => void
-}
-
-type TriggerState = {
-  open: boolean
-}
+import {
+  WithTriggerElement,
+  TriggerReceivedProps,
+} from './withTriggerElement.interface'
 
 const withTriggerElement = <Props extends object>(
   WrappedComponent: React.ComponentType<Props>
 ) => {
-  const Wrapper: React.FunctionComponent<
-    Props & TriggerReceivedProps
-  > = props => {
+  const Wrapper: React.FunctionComponent<WithTriggerElement<Props>> = props => {
     const { triggerElement, onClose, ...rest } = props as TriggerReceivedProps
 
     const [open, setOpen] = React.useState(false)

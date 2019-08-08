@@ -1,6 +1,9 @@
 import * as React from 'react'
 
-export default interface MenuProps
-  extends React.HTMLAttributes<HTMLUListElement> {
+import { WithTriggerElement } from '../withTriggerElement'
+
+export interface MenuInnerProps extends React.HTMLAttributes<HTMLUListElement> {
   open?: boolean
 }
+
+export default interface MenuProps extends WithTriggerElement<MenuInnerProps> {}

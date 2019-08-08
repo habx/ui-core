@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import MenuSectionContext from '../MenuSection/MenuSection.context'
 import Text from '../Text'
 
 import MenuLineProps from './MenuLine.interface'
@@ -12,16 +13,18 @@ const MenuLine: React.FunctionComponent<MenuLineProps> = ({
   iconRight,
   ...props
 }) => {
+  const sectionContext = React.useContext(MenuSectionContext)
+
   return (
-    <MenuLineContainer {...props}>
+    <MenuLineContainer {...props} depth={sectionContext.depth}>
       {iconLeft && (
-        <IconContainer primary={active} data-position="left">
+        <IconContainer secondary={active} data-position="left">
           {iconLeft}
         </IconContainer>
       )}
-      <Text primary={active}>{children}</Text>
+      <Text primary={!active}>{children}</Text>
       {iconRight && (
-        <IconContainer primary={active} data-position="right">
+        <IconContainer secondary={active} data-position="right">
           {iconRight}
         </IconContainer>
       )}
