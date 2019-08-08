@@ -150,10 +150,16 @@ export const ButtonContainer = styled.button`
   &[data-outline='false'][data-link='false'] {
     border: 4px solid transparent;
     background-color: ${theme.color('primary', { dynamic: true })};
-    color: ${theme.color('primary', { variation: 'contrastText' })};
+    color: ${theme.color('primary', {
+      variation: 'contrastText',
+      dynamic: true,
+    })};
 
     & svg {
-      fill: ${theme.color('primary', { variation: 'contrastText' })};
+      fill: ${theme.color('primary', {
+        variation: 'contrastText',
+        dynamic: true,
+      })};
     }
 
     &:hover {
@@ -184,12 +190,24 @@ export const ButtonContainer = styled.button`
     }
 
     &[data-outline='true'] {
-      color: ${palette.darkBlue[400]};
-      border-color: ${palette.darkBlue[400]};
+      color: ${theme.color('secondary', {
+        variation: 'focus',
+        opacity: 0.45,
+        useRootTheme: true,
+      })};
+      border-color: ${theme.color('secondary', {
+        variation: 'focus',
+        opacity: 0.45,
+        useRootTheme: true,
+      })};
     }
 
     &[data-link='true'] {
-      color: ${palette.darkBlue[400]};
+      color: ${theme.color('secondary', {
+        variation: 'focus',
+        opacity: 0.45,
+        useRootTheme: true,
+      })};
     }
   }
 `
