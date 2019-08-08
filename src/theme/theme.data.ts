@@ -65,8 +65,8 @@ export const BASE_THEME: DesignSystemTheme = {
 
 const PATCH_WHITE: ColorVariations = {
   base: WHITE,
-  hover: WHITE,
-  focus: WHITE,
+  hover: palette.darkBlue[200],
+  focus: palette.darkBlue[400],
   contrastText: palette.darkBlue[900],
 }
 

@@ -47,6 +47,24 @@ const GRID_LINES = [
     title: 'Link + Large',
     props: { link: true, large: true },
   },
+  {
+    title: 'Colored background + Solid',
+    coloredBackground: true,
+  },
+  {
+    title: 'Colored background + Outline',
+    props: {
+      outline: true,
+    },
+    coloredBackground: true,
+  },
+  {
+    title: 'Colored background + Link',
+    props: {
+      link: true,
+    },
+    coloredBackground: true,
+  },
 ]
 
 const GRID_ITEMS = [
