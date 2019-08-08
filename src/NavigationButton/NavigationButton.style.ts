@@ -1,7 +1,24 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
+import breakpoints from '../breakpoints'
 import palette from '../palette'
 import theme from '../theme'
+
+const SIZES = {
+  s: { diameter: 24, fontSize: 12 },
+  m: { diameter: 36, fontSize: 16 },
+  l: { diameter: 50, fontSize: 20 },
+}
+
+const size = (sizeName: 's' | 'm' | 'l') => {
+  const sizeConfig = SIZES[sizeName]
+
+  return css`
+    height: ${sizeConfig.diameter}px;
+    width: ${sizeConfig.diameter}px;
+    font-size: ${sizeConfig.fontSize}px;
+  `
+}
 
 export const NavigationButtonContainer = styled.button`
   outline: none;
@@ -19,20 +36,28 @@ export const NavigationButtonContainer = styled.button`
   box-shadow: ${theme.shadow('low')};
   transition: all 150ms ease-in-out;
 
-  height: 36px;
-  width: 36px;
-  font-size: 16px;
-
   &[data-large='true'] {
-    height: 50px;
-    width: 50px;
-    font-size: 20px;
+    ${size('l')};
+
+    @media (${breakpoints.below.tablet}) {
+      ${size('m')};
+    }
+
+    @media (${breakpoints.below.phone}) {
+      ${size('s')};
+    }
   }
 
   &[data-small='true'] {
-    height: 24px;
-    width: 24px;
-    font-size: 12px;
+    ${size('s')};
+  }
+
+  &:not([data-large='true']):not([data-small='true']) {
+    ${size('m')};
+
+    @media (${breakpoints.below.phone}) {
+      ${size('s')};
+    }
   }
 
   &:not(:disabled) {
