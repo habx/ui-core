@@ -20,7 +20,7 @@ export const BASE_THEME: DesignSystemTheme = {
       contrastText: WHITE,
     },
     warning: {
-      base: palette.orange[700],
+      base: palette.orange[600],
       hover: palette.orange[700],
       focus: palette.orange[800],
       contrastText: WHITE,
