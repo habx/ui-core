@@ -11,11 +11,12 @@ export type ModalParams = {
   onClose?: (e: React.FormEvent<HTMLInputElement>) => void
 }
 
-export type ModalState = {
+export type ModalState<RefElement> = {
   state: 'opened' | 'closed' | 'opening' | 'closing'
   close: (e?: React.SyntheticEvent<HTMLElement>) => void
-  overlayClick: (e: React.MouseEvent<HTMLElement>) => void
-  ref: React.RefObject<HTMLDivElement>
+  overlayClick: (e: React.MouseEvent<HTMLElement> | MouseEvent) => void
+  ref: React.RefObject<RefElement>
+  hasAlreadyBeenOpened: boolean
 }
 
 const ESCAPE_KEY = 27
@@ -26,24 +27,28 @@ const useForceRender = () => {
   return React.useCallback(() => setState(null), [])
 }
 
-const useModal = ({
+const useModal = <RefElement extends HTMLElement>({
   animated,
   animationDuration,
   ...restParams
-}: ModalParams): ModalState => {
+}: ModalParams): ModalState<RefElement> => {
   const hasAlreadyRendered = React.useRef(false)
-  const domRef = React.useRef(null)
+  const domRef = React.useRef<RefElement>(null)
   const forceRender = useForceRender()
   const registerTimeout = useTimeout()
 
   const params = { animated, animationDuration, ...restParams } as ModalParams
   const paramsRef = React.useRef(params)
 
+  const hasAlreadyBeenOpened = React.useRef<boolean>(false)
+  const [isLocalOpened, setLocalOpened] = React.useState<boolean>(false)
+
+  if (!hasAlreadyBeenOpened.current && restParams.open) {
+    hasAlreadyBeenOpened.current = true
+  }
   if (!hasAlreadyRendered.current && animated) {
     params.open = false
   }
-
-  const [isLocalOpened, setLocalOpened] = React.useState(false)
 
   React.useEffect(() => {
     paramsRef.current = params
@@ -67,6 +72,7 @@ const useModal = ({
       if (
         !paramsRef.current.persistent &&
         paramsRef.current.open &&
+        domRef.current &&
         !domRef.current.contains(e.target)
       ) {
         handleClose(e)
@@ -79,7 +85,7 @@ const useModal = ({
     if (paramsRef.current.animated) {
       registerTimeout(
         setTimeout(
-          () => setLocalOpened(params.open),
+          () => setLocalOpened(!!params.open),
           paramsRef.current.animationDuration
         )
       )
@@ -87,7 +93,7 @@ const useModal = ({
   }, [params.open, registerTimeout])
 
   React.useEffect(() => {
-    const handleKeyDown = e => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (
         !paramsRef.current.persistent &&
         paramsRef.current.open &&
@@ -125,6 +131,7 @@ const useModal = ({
     close: handleClose,
     overlayClick: handleOverlayClick,
     ref: domRef,
+    hasAlreadyBeenOpened: hasAlreadyBeenOpened.current,
   }
 }
 
