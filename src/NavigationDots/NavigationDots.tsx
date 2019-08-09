@@ -12,6 +12,7 @@ const NavigationDots: React.FunctionComponent<NavigationDotsProps> = ({
   disabled,
   activeDot = 0,
   onClickDot,
+  secondary,
   ...props
 }) => {
   const theme = useTheme()
@@ -68,6 +69,7 @@ const NavigationDots: React.FunctionComponent<NavigationDotsProps> = ({
           data-small={dot.small}
           data-disabled={disabled}
           onClick={onClickDot ? () => onClickDot(dot.index) : undefined}
+          secondary={secondary}
         />
       ))}
     </NavigationDotsContainer>

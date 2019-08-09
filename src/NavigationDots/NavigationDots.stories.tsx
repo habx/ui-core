@@ -56,6 +56,12 @@ const GRID_ITEMS = [
       disabled: true,
     },
   },
+  {
+    label: 'Secondary',
+    props: {
+      secondary: true,
+    },
+  },
 ]
 
 const Grid = withGrid<NavigationDotsProps>({
