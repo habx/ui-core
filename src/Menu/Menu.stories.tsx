@@ -21,14 +21,19 @@ const GRID_ITEMS = [
     props: {
       children: (
         <React.Fragment>
-          <MenuLine iconLeft={<Icon icon="pin" />}>Menu Item one</MenuLine>
-          <MenuLine iconLeft={<Icon icon="pin" />}>Menu Item two</MenuLine>
-          <MenuSection title="Sub section" titleIconLeft={<Icon icon="pin" />}>
-            <MenuLine>Sub menu one</MenuLine>
-            <MenuLine>Sub menu two</MenuLine>
-            <MenuLine>Sub menu three</MenuLine>
-            <MenuLine>Sub menu foor</MenuLine>
+          <MenuLine iconLeft={<Icon icon="arrow-west" />}>
+            Page d'accueil
+          </MenuLine>
+          <MenuLine iconLeft={<Icon icon="person" />}>Mon profil</MenuLine>
+          <MenuSection
+            title="Mes projets"
+            titleIconLeft={<Icon icon="house-heart-outline" />}
+          >
+            <MenuLine>Paris Venelles</MenuLine>
+            <MenuLine>Résidence Aurore</MenuLine>
+            <MenuLine>Le Perchoir</MenuLine>
           </MenuSection>
+          <MenuLine iconLeft={<Icon icon="close" />}>Me déconnecter</MenuLine>
         </React.Fragment>
       ),
     },

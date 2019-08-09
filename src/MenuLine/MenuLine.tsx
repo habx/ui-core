@@ -22,7 +22,9 @@ const MenuLine: React.FunctionComponent<MenuLineProps> = ({
           {iconLeft}
         </IconContainer>
       )}
-      <Text primary={!active}>{children}</Text>
+      <Text primary={!active} opacity={1}>
+        {children}
+      </Text>
       {iconRight && (
         <IconContainer secondary={active} data-position="right">
           {iconRight}
