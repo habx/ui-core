@@ -10,7 +10,7 @@ export const NavigationDotsContainer = styled.div<{ width: number }>`
   width: ${({ width }) => width}px;
 `
 
-export const Dot = styled.div`
+export const Dot = styled.div<{ secondary?: boolean }>`
   display: inline-block;
   margin: 0 2px;
   border-radius: 4px;
@@ -28,7 +28,7 @@ export const Dot = styled.div`
     flex: 0 1 100%;
 
     &:not([data-disabled='true']) {
-      background-color: ${theme.color('primary')};
+      background-color: ${theme.color('primary', { dynamic: true })};
     }
   }
 
