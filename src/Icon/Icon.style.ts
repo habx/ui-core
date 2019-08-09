@@ -5,6 +5,9 @@ export const IconContainer = styled.span<{ url: string }>`
   display: block;
   height: 1em;
   width: 1em;
+  min-width: 1em;
+  min-height: 1em;
+  flex: 0 0 1em;
   background-position: center;
   
   &[data-colored='false'] {
