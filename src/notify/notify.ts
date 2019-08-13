@@ -1,13 +1,8 @@
 import { dispatch, types } from '../Provider/Provider.events'
 
-import {
-  NotificationOptions,
-  NotificationMessage,
-} from './NotificationList.interface'
+import { NotificationOptions } from './NotificationList.interface'
 
-const notify = (
-  message: NotificationMessage,
-  options: NotificationOptions = {}
-) => dispatch(types.NOTIFY, false, message, options)
+const notify = (message: string, options: NotificationOptions = {}) =>
+  dispatch(types.NOTIFY, false, message, options)
 
 export default notify

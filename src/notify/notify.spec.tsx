@@ -32,20 +32,6 @@ describe('notify function', () => {
     ).toEqual(MESSAGE_1)
   })
 
-  it('should allow to pass a component to notify function', () => {
-    const { getAllByTestId } = render(<Provider />)
-    const Component = () => <div>{MESSAGE_1}</div>
-    act(() => {
-      notify(Component)
-    })
-
-    const notifications = getAllByTestId('notification-container')
-    expect(notifications).toHaveLength(1)
-    expect(
-      within(notifications[0]).getByTestId('notification-content').textContent
-    ).toEqual(MESSAGE_1)
-  })
-
   it('should display two notifications in chronological order if called twice', () => {
     const { getAllByTestId } = render(<Provider />)
 
