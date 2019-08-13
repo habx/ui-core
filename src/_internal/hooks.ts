@@ -1,8 +1,10 @@
 import * as React from 'react'
 
 export const useTimeout = () => {
-  const timeouts = React.useRef([])
-  const register = React.useRef(timeout => timeouts.current.push(timeout))
+  const timeouts = React.useRef<number[]>([])
+  const register = React.useRef((timeout: number) =>
+    timeouts.current.push(timeout)
+  )
 
   React.useEffect(() => {
     return () => {
@@ -14,4 +16,16 @@ export const useTimeout = () => {
   }, [])
 
   return register.current
+}
+
+export const useIsMounted = () => {
+  const isMounted = React.useRef(true)
+
+  React.useEffect(() => {
+    return () => {
+      isMounted.current = false
+    }
+  }, [])
+
+  return isMounted
 }
