@@ -37,6 +37,10 @@ export const IllustrationContainer = styled.div`
   justify-content: center;
   font-size: 30px;
   margin-right: 24px;
+
+  & img {
+    height: 48px;
+  }
 `
 
 export const CloseContainer = styled.div`

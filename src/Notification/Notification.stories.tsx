@@ -34,11 +34,22 @@ const GRID_ITEMS = [
       illustration,
     },
   },
+  {
+    props: {
+      title: 'Plan envoyé',
+      description: "Transmis avec succès à l'adresse indiquée.",
+      illustration: (
+        <img src="https://res.cloudinary.com/habx/image/upload/v1561731410/illustrations/habxmojies/sun-inlove.svg" />
+      ),
+    },
+  },
 ]
 
 const Grid = withGrid<NotificationProps>({
   lines: GRID_LINES,
   items: GRID_ITEMS,
+  itemHorizontalSpace: 24,
+  itemVerticalSpace: 24,
 })(Notification)
 
 storiesOf('Miscellaneous|Notification', module).add('grid', () => <Grid />)
