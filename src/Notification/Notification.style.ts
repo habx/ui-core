@@ -11,10 +11,10 @@ export const NotificationContainer = styled.div<{
   border-radius: 4px;
   display: flex;
   align-items: center;
-  padding: 0 16px 0 24px;
+  padding: 12px 16px 12px 24px;
   width: 582px;
   max-width: calc(100vw - 48px);
-  height: 72px;
+  min-height: 72px;
   justify-content: space-between;
   overflow: hidden;
   box-shadow: ${theme.shadow()};

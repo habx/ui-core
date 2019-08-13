@@ -7,6 +7,7 @@ import { NotificationEventProps } from '../Notification/Notification.interface'
 import { StateNotification } from './NotificationList.interface'
 import {
   NotificationListContainer,
+  NotificationContainer,
   Notification,
   ANIMATION_DURATION,
 } from './NotificationList.style'
@@ -75,12 +76,16 @@ const NotificationList: React.FunctionComponent<{}> = () => {
           : (notification.message as NotificationEventProps)
 
         return (
-          <Notification
+          <NotificationContainer
             key={notification.id}
-            onClose={() => handleClose(notification)}
             data-closing={!notification.open}
-            {...props}
-          />
+          >
+            <Notification
+              onClose={() => handleClose(notification)}
+              data-closing={!notification.open}
+              {...props}
+            />
+          </NotificationContainer>
         )
       })}
     </NotificationListContainer>

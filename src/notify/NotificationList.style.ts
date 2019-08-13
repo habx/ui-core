@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { keyframes, css } from 'styled-components'
 
 import breakpoints from '../breakpoints'
 import BaseNotification from '../Notification'
@@ -17,10 +17,10 @@ export const NotificationListContainer = styled.div`
 `
 
 const PADDING = '16px 16px 16px 32px'
-const MAX_HEIGHT = '200px'
 const MARGIN_BOTTOM = '24px'
+const MAX_HEIGHT = '200px'
 
-const fadeIn = keyframes`
+const slideIn = keyframes`
   from {
     transform: translateX(602px);
   }
@@ -30,39 +30,39 @@ const fadeIn = keyframes`
   }
 `
 
-const fadeOut = keyframes`
-  0% {
-    max-height: ${MAX_HEIGHT};
-    margin-bottom: ${MARGIN_BOTTOM};
+const slideOut = keyframes`
+  from {
     transform: translateX(0px);
-    padding: ${PADDING};
   }
   
-  50% {
-    max-height: ${MAX_HEIGHT};
-    margin-bottom: ${MARGIN_BOTTOM};
+  to {
     transform: translateX(602px);
-    padding: ${PADDING};
   }
-  
-  100% {
-    padding: 0;
-    max-height: 0;
-    margin-bottom: 0;
-    transform: translateX(602px);
+`
+
+const shrink = keyframes`
+   from {
+      max-height: ${MAX_HEIGHT};
+    }
+    
+    to {
+      max-height: 0;
+    }
+`
+
+export const NotificationContainer = styled.div`
+  &[data-closing='true'] {
+    animation: ${shrink} ${ANIMATION_DURATION}ms ease-in-out normal
+      ${ANIMATION_DURATION}ms forwards;
   }
 `
 
 export const Notification = styled(BaseNotification)`
   padding: ${PADDING};
   margin-bottom: ${MARGIN_BOTTOM};
-  animation: ${fadeIn} ${ANIMATION_DURATION}ms ease-in-out;
+  animation: ${slideIn} ${ANIMATION_DURATION}ms linear forwards;
 
   &[data-closing='true'] {
-    animation: ${fadeOut} ${ANIMATION_DURATION * 2}ms ease-in-out;
-    max-height: 0;
-    margin-bottom: 0;
-    transform: translateX(602px);
-    padding: 0;
+    animation: ${slideOut} ${ANIMATION_DURATION}ms ease-in-out forwards;
   }
 `
