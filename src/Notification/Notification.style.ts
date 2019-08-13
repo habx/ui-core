@@ -13,6 +13,7 @@ export const NotificationContainer = styled.div<{
   align-items: center;
   padding: 0 16px 0 24px;
   width: 582px;
+  max-width: calc(100vw - 48px);
   height: 72px;
   justify-content: space-between;
   overflow: hidden;
