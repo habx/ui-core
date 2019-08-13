@@ -15,7 +15,7 @@ const GRID_LINES = [
   },
 ]
 
-const GRID_ITEMS = [
+export const GRID_ITEMS = [
   {
     props: {
       title: 'Plan envoyé sur votre adresse email',

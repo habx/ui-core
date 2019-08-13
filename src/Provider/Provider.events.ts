@@ -1,36 +1,32 @@
 import { isFunction } from '../_internal/data'
 
-import { subscriptionCallback } from './Provider.interface'
+import { subscriptionCallback, EventConfig } from './Provider.interface'
 
-let subscriptions: { [key: string]: subscriptionCallback } = {}
-
-export const subscribe = (
-  messageType: string,
-  callback: subscriptionCallback
+export default <Message = string, Options = {}>(
+  eventConfig: EventConfig = {}
 ) => {
-  subscriptions[messageType] = callback
+  let subscription: subscriptionCallback<Message, Options> | null
 
-  return () => {
-    delete subscriptions[messageType]
-  }
-}
+  const subscribe = (callback: subscriptionCallback<Message, Options>) => {
+    subscription = callback
 
-export const dispatch = (
-  messageType: string,
-  returnPromise: boolean,
-  message: string,
-  options = {}
-): Promise<any> | void => {
-  if (isFunction(subscriptions[messageType])) {
-    return subscriptions[messageType](message, options)
+    return () => {
+      subscription = null
+    }
   }
 
-  if (returnPromise) {
-    return Promise.reject('unknown event')
-  }
-}
+  const dispatch = (
+    message: Message,
+    options: Options = {} as Options
+  ): Promise<any> | void => {
+    if (isFunction(subscription)) {
+      return subscription(message, options)
+    }
 
-export const types = {
-  CONFIRM_MODAL: 'CONFIRM_MODAL',
-  NOTIFY: 'NOTIFY',
+    if (eventConfig.returnPromise) {
+      return Promise.reject('unknown event')
+    }
+  }
+
+  return { subscribe, dispatch }
 }

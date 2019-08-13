@@ -1,8 +1,11 @@
-import { dispatch, types } from '../Provider/Provider.events'
+import { NotificationEventProps } from '../Notification/Notification.interface'
+import buildEventHandler from '../Provider/Provider.events'
 
 import { NotificationOptions } from './NotificationList.interface'
 
-const notify = (message: string, options: NotificationOptions = {}) =>
-  dispatch(types.NOTIFY, false, message, options)
+export const { dispatch: notify, subscribe } = buildEventHandler<
+  NotificationEventProps | string,
+  NotificationOptions
+>({ returnPromise: false })
 
 export default notify

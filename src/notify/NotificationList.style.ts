@@ -18,7 +18,7 @@ export const NotificationListContainer = styled.div`
 
 const PADDING = '16px 16px 16px 32px'
 const MAX_HEIGHT = '200px'
-const MARGIN_BOTTOM = '16px'
+const MARGIN_BOTTOM = '24px'
 
 const fadeIn = keyframes`
   from {

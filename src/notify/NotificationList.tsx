@@ -1,17 +1,16 @@
 import * as React from 'react'
 
+import { isString } from '../_internal/data'
 import { useIsMounted, useTimeout } from '../_internal/hooks'
-import { subscribe, types } from '../Provider/Provider.events'
+import { NotificationEventProps } from '../Notification/Notification.interface'
 
-import {
-  NotificationOptions,
-  StateNotification,
-} from './NotificationList.interface'
+import { StateNotification } from './NotificationList.interface'
 import {
   NotificationListContainer,
   Notification,
   ANIMATION_DURATION,
 } from './NotificationList.style'
+import { subscribe } from './notify'
 
 const NotificationList: React.FunctionComponent<{}> = () => {
   const isMounted = useIsMounted()
@@ -46,40 +45,41 @@ const NotificationList: React.FunctionComponent<{}> = () => {
 
   React.useEffect(
     () =>
-      subscribe(
-        types.NOTIFY,
-        (message: string, options: NotificationOptions) => {
-          const notification = {
-            message,
-            options,
-            open: true,
-            id: Math.random(),
-          }
-
-          setNotifications(prev => [...prev, notification])
-
-          if (options.duration !== 0) {
-            registerTimeout(
-              setTimeout(
-                () => handleClose(notification),
-                options.duration || 5000
-              )
-            )
-          }
+      subscribe((message, options) => {
+        const notification = {
+          message,
+          options,
+          open: true,
+          id: Math.random(),
         }
-      ),
+
+        setNotifications(prev => [...prev, notification])
+
+        if (options.duration !== 0) {
+          registerTimeout(
+            setTimeout(
+              () => handleClose(notification),
+              options.duration || 5000
+            )
+          )
+        }
+      }),
     [registerTimeout, handleClose]
   )
 
   return (
     <NotificationListContainer>
       {notifications.map(notification => {
+        const props: NotificationEventProps = isString(notification.message)
+          ? { title: notification.message as string }
+          : (notification.message as NotificationEventProps)
+
         return (
           <Notification
             key={notification.id}
             onClose={() => handleClose(notification)}
             data-closing={!notification.open}
-            title={notification.message}
+            {...props}
           />
         )
       })}

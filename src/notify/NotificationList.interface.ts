@@ -1,3 +1,5 @@
+import { NotificationEventProps } from '../Notification/Notification.interface'
+
 export type NotificationOptions = {
   type?: 'info' | 'error' | 'warning'
   duration?: number
@@ -5,7 +7,7 @@ export type NotificationOptions = {
 }
 
 export type StateNotification = {
-  message: string
+  message: string | NotificationEventProps
   options: NotificationOptions
   open: boolean
   id: string | number
