@@ -5,7 +5,7 @@ import * as React from 'react'
 import withGrid from '../_internal/StorybookGrid'
 import Button from '../Button'
 import Icon from '../Icon'
-import notify from '../notify/notify'
+import notify from '../notify'
 
 import Notification from './Notification'
 import NotificationProps from './Notification.interface'
@@ -21,26 +21,26 @@ const GRID_LINES = [
 const GRID_ITEMS = [
   {
     props: {
-      title: 'Plan envoyé sur votre adresse email',
+      title: 'Blueprint sent by mail',
     },
   },
   {
     props: {
-      title: 'Plan envoyé',
+      title: 'Blueprint sent',
       illustration,
     },
   },
   {
     props: {
-      title: 'Plan envoyé',
-      description: "Transmis avec succès à l'adresse indiquée.",
+      title: 'Blueprint sent',
+      description: 'Successfully sent to the given address',
       illustration,
     },
   },
   {
     props: {
-      title: 'Plan envoyé',
-      description: "Transmis avec succès à l'adresse indiquée.",
+      title: 'Blueprint sent',
+      description: 'Successfully sent to the given address',
       illustration: (
         <img src="https://res.cloudinary.com/habx/image/upload/v1561731410/illustrations/habxmojies/sun-inlove.svg" />
       ),
@@ -60,10 +60,10 @@ storiesOf('Miscellaneous|Notification', module)
   .add('grid', () => <Grid />)
   .add('dynamic', () => (
     <Notification
-      title={text('Title', 'Plan envoyé')}
+      title={text('Title', 'Blueprint sent')}
       description={text(
         'Description',
-        "Transmis avec succès à l'adresse indiquée."
+        'Successfully sent to the given address'
       )}
       illustration={
         boolean('Illustration', true) ? (
@@ -78,6 +78,6 @@ storiesOf('Miscellaneous|Notification', module)
         notify(GRID_ITEMS[Math.floor(Math.random() * GRID_ITEMS.length)].props)
       }
     >
-      Trigger event
+      Notify me
     </Button>
   ))
