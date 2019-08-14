@@ -39,20 +39,26 @@ export { default as TextInput, TextInputProps } from './TextInput'
 /*
   Miscellaneous
  */
-export { default as Background, BackgroundProps } from './Background'
 export { default as Icon, IconProps } from './Icon'
 export { default as Card, CardProps } from './Card'
-export { default as Notification, NotificationProps } from './Notification'
 export { default as NavigationDots, NavigationDotsProps } from './NavigationDots'
 
 /*
   Modals
  */
 export { default as LightBox, LightBoxProps } from './LightBox'
+export { default as Modal, ModalProps } from './Modal'
+
+/*
+  Notifications
+ */
+export { default as Notification, NotificationProps } from './Notification'
+export { default as notify } from './notify'
 
 /*
   Theme
  */
+export { default as Background, BackgroundProps } from './Background'
 export { default as breakpoints } from './breakpoints'
 export { default as palette } from './palette'
 export { default as theme } from './theme'

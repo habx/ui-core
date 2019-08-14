@@ -55,7 +55,7 @@ const Grid = withGrid<NotificationProps>({
   itemVerticalSpace: 24,
 })(Notification)
 
-storiesOf('Miscellaneous|Notification', module)
+storiesOf('Notifications|Notification', module)
   .addDecorator(withKnobs)
   .add('grid', () => <Grid />)
   .add('dynamic', () => (
