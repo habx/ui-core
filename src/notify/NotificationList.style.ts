@@ -1,9 +1,10 @@
-import styled, { keyframes, css } from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 
 import breakpoints from '../breakpoints'
 import BaseNotification from '../Notification'
 
-export const ANIMATION_DURATION = 500
+export const SLIDE_DURATION = 300
+export const SHRINK_DURATION = 200
 
 export const NotificationListContainer = styled.div`
   position: fixed;
@@ -16,13 +17,9 @@ export const NotificationListContainer = styled.div`
   }
 `
 
-const PADDING = '16px 16px 16px 32px'
-const MARGIN_BOTTOM = '24px'
-const MAX_HEIGHT = '200px'
-
 const slideIn = keyframes`
   from {
-    transform: translateX(602px);
+    transform: translateX(calc(100% + 24px));
   }
   
   to {
@@ -36,13 +33,13 @@ const slideOut = keyframes`
   }
   
   to {
-    transform: translateX(602px);
+    transform: translateX(calc(100% + 24px));
   }
 `
 
 const shrink = keyframes`
    from {
-      max-height: ${MAX_HEIGHT};
+      max-height: 200px;
     }
     
     to {
@@ -52,17 +49,16 @@ const shrink = keyframes`
 
 export const NotificationContainer = styled.div`
   &[data-closing='true'] {
-    animation: ${shrink} ${ANIMATION_DURATION}ms ease-in-out normal
-      ${ANIMATION_DURATION}ms forwards;
+    animation: ${shrink} ${SHRINK_DURATION}ms linear normal ${SLIDE_DURATION}ms
+      forwards;
   }
 `
 
 export const Notification = styled(BaseNotification)`
-  padding: ${PADDING};
-  margin-bottom: ${MARGIN_BOTTOM};
-  animation: ${slideIn} ${ANIMATION_DURATION}ms linear forwards;
+  margin-bottom: 24px;
+  animation: ${slideIn} ${SLIDE_DURATION}ms linear forwards;
 
   &[data-closing='true'] {
-    animation: ${slideOut} ${ANIMATION_DURATION}ms ease-in-out forwards;
+    animation: ${slideOut} ${SLIDE_DURATION}ms ease-in-out forwards;
   }
 `

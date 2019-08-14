@@ -1,8 +1,11 @@
+import { withKnobs, text, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 
 import withGrid from '../_internal/StorybookGrid'
+import Button from '../Button'
 import Icon from '../Icon'
+import notify from '../notify/notify'
 
 import Notification from './Notification'
 import NotificationProps from './Notification.interface'
@@ -15,7 +18,7 @@ const GRID_LINES = [
   },
 ]
 
-export const GRID_ITEMS = [
+const GRID_ITEMS = [
   {
     props: {
       title: 'Plan envoyé sur votre adresse email',
@@ -52,4 +55,29 @@ const Grid = withGrid<NotificationProps>({
   itemVerticalSpace: 24,
 })(Notification)
 
-storiesOf('Miscellaneous|Notification', module).add('grid', () => <Grid />)
+storiesOf('Miscellaneous|Notification', module)
+  .addDecorator(withKnobs)
+  .add('grid', () => <Grid />)
+  .add('dynamic', () => (
+    <Notification
+      title={text('Title', 'Plan envoyé')}
+      description={text(
+        'Description',
+        "Transmis avec succès à l'adresse indiquée."
+      )}
+      illustration={
+        boolean('Illustration', true) ? (
+          <img src="https://res.cloudinary.com/habx/image/upload/v1561731410/illustrations/habxmojies/sun-inlove.svg" />
+        ) : null
+      }
+    />
+  ))
+  .add('event', () => (
+    <Button
+      onClick={() =>
+        notify(GRID_ITEMS[Math.floor(Math.random() * GRID_ITEMS.length)].props)
+      }
+    >
+      Trigger event
+    </Button>
+  ))

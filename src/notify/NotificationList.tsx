@@ -9,7 +9,8 @@ import {
   NotificationListContainer,
   NotificationContainer,
   Notification,
-  ANIMATION_DURATION,
+  SLIDE_DURATION,
+  SHRINK_DURATION,
 } from './NotificationList.style'
 import { subscribe } from './notify'
 
@@ -37,7 +38,7 @@ const NotificationList: React.FunctionComponent<{}> = () => {
                 prev.filter(el => el.id !== notification.id)
               )
             }
-          }, ANIMATION_DURATION * 2)
+          }, SLIDE_DURATION + SHRINK_DURATION)
         )
       }
     },
