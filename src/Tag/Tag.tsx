@@ -22,4 +22,4 @@ const Tag = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
   )
 })
 
-export default withMarkdown({ inline: true })(Tag)
+export default withMarkdown<HTMLButtonElement>({ inline: true })(Tag)

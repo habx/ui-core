@@ -116,4 +116,7 @@ const Text = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
   return <TitleComponent ref={ref} {...rest} />
 })
 
-export default withMarkdown<{ inline?: boolean }>({ inline: true })(Text)
+export default withMarkdown<HTMLDivElement, { inline?: boolean }>({
+  inline: props =>
+    props.inline || ['caption', 'captionSmall'].includes(props.type),
+})(Text)

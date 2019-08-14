@@ -28,14 +28,15 @@ const parse = ({
   return mdParse(children || '', env)
 }
 
-const withMarkdown = <ExtraProps extends object>({
+const withMarkdown = <RefElement extends HTMLElement, ExtraProps extends {}>({
   inline = false,
 }: WithMarkdownConfig = {}) => <Props extends object>(
   WrappedComponent: React.ComponentType<Props>
 ) => {
-  const Component: React.FunctionComponent<
+  const Component = React.forwardRef<
+    RefElement,
     Props & WithMarkdownReceivedProps & ExtraProps
-  > = props => {
+  >((props, ref) => {
     const { markdown, children, ...rest } = props
     const theme = useTheme()
 
@@ -49,6 +50,7 @@ const withMarkdown = <ExtraProps extends object>({
 
     return (
       <WrappedComponent
+        ref={ref}
         {...(rest as Props)}
         data-markdown
         dangerouslySetInnerHTML={{
@@ -60,7 +62,7 @@ const withMarkdown = <ExtraProps extends object>({
         }}
       />
     )
-  }
+  })
 
   return Component
 }
