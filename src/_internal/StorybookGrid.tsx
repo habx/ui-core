@@ -21,8 +21,12 @@ const LineContent = styled.div`
   margin: 8px -8px -8px -8px;
 `
 
-const ItemContainer = styled.div<{ itemHorizontalSpace: number }>`
-  margin: 8px ${({ itemHorizontalSpace }) => itemHorizontalSpace}px;
+const ItemContainer = styled.div<{
+  itemHorizontalSpace: number
+  itemVerticalSpace: number
+}>`
+  margin: ${({ itemVerticalSpace }) => itemVerticalSpace}px
+    ${({ itemHorizontalSpace }) => itemHorizontalSpace}px;
 
   display: flex;
   flex-direction: column;
@@ -49,6 +53,7 @@ interface StorybookGridConfig<Props> {
   lines: GridLine<Props>[]
   items: GridItem<Props>[]
   itemHorizontalSpace?: number
+  itemVerticalSpace?: number
   itemWrapper?: React.ComponentType<any>
 }
 
@@ -61,6 +66,7 @@ const withGrid = <Props extends object>(config: StorybookGridConfig<Props>) => (
     items,
     itemWrapper: ItemWrapper = React.Fragment,
     itemHorizontalSpace = 8,
+    itemVerticalSpace = 8,
   } = config
 
   const Component: React.FunctionComponent<{}> = () => (
@@ -78,7 +84,10 @@ const withGrid = <Props extends object>(config: StorybookGridConfig<Props>) => (
                 } as Props
 
                 return (
-                  <ItemContainer itemHorizontalSpace={itemHorizontalSpace}>
+                  <ItemContainer
+                    itemHorizontalSpace={itemHorizontalSpace}
+                    itemVerticalSpace={itemVerticalSpace}
+                  >
                     <ItemWrapper>
                       <WrappedComponent {...fullProps} />
                     </ItemWrapper>
