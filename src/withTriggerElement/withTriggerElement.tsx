@@ -7,11 +7,18 @@ import {
   TriggerReceivedProps,
 } from './withTriggerElement.interface'
 
-const withTriggerElement = <Props extends object>(
+const withTriggerElement = <RefElement extends HTMLElement>() => <
+  Props extends {} = {}
+>(
   WrappedComponent: React.ComponentType<Props>
 ) => {
-  const Wrapper: React.FunctionComponent<WithTriggerElement<Props>> = props => {
-    const { triggerElement, onClose, ...rest } = props as TriggerReceivedProps
+  const Wrapper = React.forwardRef<
+    RefElement,
+    WithTriggerElement<Props, RefElement>
+  >((props, ref) => {
+    const { triggerElement, onClose, ...rest } = props as TriggerReceivedProps<
+      RefElement
+    >
 
     const [open, setOpen] = React.useState(false)
 
@@ -41,19 +48,16 @@ const withTriggerElement = <Props extends object>(
           ? triggerElement({ open })
           : React.cloneElement(triggerElement, { onClick: handleToggle })}
         <WrappedComponent
+          ref={ref}
           {...(rest as Props)}
           open={open}
-          onClose={handleClose}
+          onClose={handleClose as (e: React.SyntheticEvent<RefElement>) => void}
         />
       </React.Fragment>
     )
-  }
+  })
 
   Wrapper.displayName = WrappedComponent.displayName || WrappedComponent.name
-
-  Wrapper.defaultProps = WrappedComponent.defaultProps
-
-  Wrapper.propTypes = WrappedComponent.propTypes
 
   return Wrapper
 }

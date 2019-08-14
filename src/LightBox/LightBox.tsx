@@ -43,4 +43,4 @@ const LightBox: React.FunctionComponent<LightHouseInnerProps> = ({
   return isClientSide ? ReactDOM.createPortal(content, document.body) : content
 }
 
-export default withTriggerElement(LightBox)
+export default withTriggerElement<HTMLDivElement>()(LightBox)

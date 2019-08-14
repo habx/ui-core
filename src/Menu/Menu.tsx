@@ -35,4 +35,4 @@ const Menu: React.FunctionComponent<MenuProps> = ({
   )
 }
 
-export default withTriggerElement(Menu)
+export default withTriggerElement<HTMLUListElement>()(Menu)
