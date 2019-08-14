@@ -15,6 +15,7 @@ const LightBox: React.FunctionComponent<LightHouseInnerProps> = ({
   open,
   onClose,
   children,
+  ...rest
 }) => {
   const modal = useModal<HTMLDivElement>({
     open,
@@ -25,7 +26,11 @@ const LightBox: React.FunctionComponent<LightHouseInnerProps> = ({
   })
 
   const content = (
-    <LightBoxOverlay backgroundColor="#FFFFFF" data-state={modal.state}>
+    <LightBoxOverlay
+      backgroundColor="#FFFFFF"
+      data-state={modal.state}
+      {...rest}
+    >
       <CloseIconContainer onClick={modal.close}>
         <Icon icon="close" />
       </CloseIconContainer>
