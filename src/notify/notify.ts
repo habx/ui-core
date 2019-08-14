@@ -6,6 +6,6 @@ import { NotificationOptions } from './NotificationList.interface'
 export const { dispatch: notify, subscribe } = buildEventHandler<
   NotificationEventProps | string,
   NotificationOptions
->({ returnPromise: false })
+>()
 
 export default notify

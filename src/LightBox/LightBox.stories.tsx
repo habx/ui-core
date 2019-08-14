@@ -35,4 +35,4 @@ const Grid = withGrid<LightBoxProps>({
   items: GRID_ITEMS,
 })(LightBox)
 
-storiesOf('Modal|LightBox', module).add('galery', () => <Grid />)
+storiesOf('Modals|LightBox', module).add('galery', () => <Grid />)
