@@ -54,4 +54,4 @@ const Grid = withGrid<ModalProps>({
   items: GRID_ITEMS,
 })(Modal)
 
-storiesOf('Modal|Modal', module).add('galery', () => <Grid />)
+storiesOf('Modals|Modal', module).add('galery', () => <Grid />)

@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import NotificationList from '../notify/NotificationList'
+import PromptModals from '../prompt/PromptModals'
 
 import ThunderProviderProps from './Provider.interface'
 
@@ -10,6 +11,7 @@ const Provider: React.FunctionComponent<ThunderProviderProps> = ({
   <React.Fragment>
     {children}
     <NotificationList />
+    <PromptModals />
   </React.Fragment>
 )
 

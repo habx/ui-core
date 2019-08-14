@@ -1,10 +1,8 @@
 import { isFunction } from '../_internal/data'
 
-import { subscriptionCallback, EventConfig } from './Provider.interface'
+import { subscriptionCallback } from './Provider.interface'
 
-export default <Message = string, Options = {}>(
-  eventConfig: EventConfig = {}
-) => {
+export default <Message = string, Options = {}>() => {
   let subscription: subscriptionCallback<Message, Options> | null
 
   const subscribe = (callback: subscriptionCallback<Message, Options>) => {
@@ -21,10 +19,6 @@ export default <Message = string, Options = {}>(
   ): Promise<any> | void => {
     if (isFunction(subscription)) {
       return subscription(message, options)
-    }
-
-    if (eventConfig.returnPromise) {
-      return Promise.reject('unknown event')
     }
   }
 
