@@ -48,6 +48,7 @@ export { default as NavigationDots, NavigationDotsProps } from './NavigationDots
  */
 export { default as LightBox, LightBoxProps } from './LightBox'
 export { default as Modal, ModalProps } from './Modal'
+export { default as prompt } from './prompt'
 
 /*
   Notifications

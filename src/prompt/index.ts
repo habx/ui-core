@@ -1,3 +1,3 @@
-import prompt from './confirm'
+import prompt from './prompt'
 
 export default prompt

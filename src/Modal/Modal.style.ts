@@ -40,8 +40,7 @@ const SLIDE_FROM_BELOW = keyframes`
 
 export const ModalContainer = styled(Background)`
   padding: 48px 36px;
-  max-width: 448px;
-  min-width: 448px;
+  width: 448px;
   position: relative;
 
   @media (${breakpoints.below.phone}) {
