@@ -6,32 +6,29 @@ import Text from '../Text'
 import MenuLineProps from './MenuLine.interface'
 import { MenuLineContainer, IconContainer } from './MenuLine.style'
 
-const MenuLine: React.FunctionComponent<MenuLineProps> = ({
-  children,
-  active,
-  iconLeft,
-  iconRight,
-  ...props
-}) => {
-  const sectionContext = React.useContext(MenuSectionContext)
+const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
+  (props, ref) => {
+    const { children, active, iconLeft, iconRight, ...rest } = props
+    const sectionContext = React.useContext(MenuSectionContext)
 
-  return (
-    <MenuLineContainer {...props} depth={sectionContext.depth}>
-      {iconLeft && (
-        <IconContainer secondary={active} data-position="left">
-          {iconLeft}
-        </IconContainer>
-      )}
-      <Text primary={!active} opacity={1}>
-        {children}
-      </Text>
-      {iconRight && (
-        <IconContainer secondary={active} data-position="right">
-          {iconRight}
-        </IconContainer>
-      )}
-    </MenuLineContainer>
-  )
-}
+    return (
+      <MenuLineContainer ref={ref} {...rest} depth={sectionContext.depth}>
+        {iconLeft && (
+          <IconContainer secondary={active} data-position="left">
+            {iconLeft}
+          </IconContainer>
+        )}
+        <Text primary={!active} opacity={1}>
+          {children}
+        </Text>
+        {iconRight && (
+          <IconContainer secondary={active} data-position="right">
+            {iconRight}
+          </IconContainer>
+        )}
+      </MenuLineContainer>
+    )
+  }
+)
 
 export default MenuLine

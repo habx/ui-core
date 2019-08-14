@@ -11,36 +11,38 @@ import withTriggerElement from '../withTriggerElement'
 import { LightHouseInnerProps } from './LightBox.interface'
 import { LightBoxOverlay, CloseIconContainer } from './LightBox.style'
 
-const LightBox: React.FunctionComponent<LightHouseInnerProps> = ({
-  open,
-  onClose,
-  children,
-  ...rest
-}) => {
-  const modal = useModal<HTMLDivElement>({
-    open,
-    onClose,
-    persistent: false,
-    animated: true,
-    animationDuration: ANIMATION_DURATION,
-  })
+const LightBox = React.forwardRef<HTMLDivElement, LightHouseInnerProps>(
+  (props, ref) => {
+    const { open, onClose, children, ...rest } = props
 
-  const content = (
-    <LightBoxOverlay
-      backgroundColor="#FFFFFF"
-      data-state={modal.state}
-      {...rest}
-    >
-      <CloseIconContainer onClick={modal.close}>
-        <Icon icon="close" />
-      </CloseIconContainer>
-      {isFunction(children)
-        ? children(modal as ModalState<HTMLDivElement>)
-        : children}
-    </LightBoxOverlay>
-  )
+    const modal = useModal<HTMLDivElement>({
+      open,
+      onClose,
+      persistent: false,
+      animated: true,
+      animationDuration: ANIMATION_DURATION,
+    })
 
-  return isClientSide ? ReactDOM.createPortal(content, document.body) : content
-}
+    const content = (
+      <LightBoxOverlay
+        ref={ref}
+        backgroundColor="#FFFFFF"
+        data-state={modal.state}
+        {...rest}
+      >
+        <CloseIconContainer onClick={modal.close}>
+          <Icon icon="close" />
+        </CloseIconContainer>
+        {isFunction(children)
+          ? children(modal as ModalState<HTMLDivElement>)
+          : children}
+      </LightBoxOverlay>
+    )
+
+    return isClientSide
+      ? ReactDOM.createPortal(content, document.body)
+      : content
+  }
+)
 
 export default withTriggerElement<HTMLDivElement>()(LightBox)
