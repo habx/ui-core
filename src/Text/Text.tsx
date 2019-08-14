@@ -108,13 +108,12 @@ const components = {
   captionSmall: CaptionSmallTextComponent,
 }
 
-const Text: React.FunctionComponent<TitleProps> = ({
-  type = 'regular',
-  ...props
-}) => {
+const Text = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
+  const { type = 'regular', ...rest } = props
+
   const TitleComponent = components[type] || RegularTextComponent
 
-  return <TitleComponent {...props} />
-}
+  return <TitleComponent ref={ref} {...rest} />
+})
 
 export default withMarkdown<{ inline?: boolean }>({ inline: true })(Text)

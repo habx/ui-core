@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { isFunction } from './data'
 import { useTimeout } from './hooks'
+import useMergedRef from './useMergedRef'
 
 export type ModalParams<RefElement> = {
   open?: boolean
@@ -26,14 +27,6 @@ const useForceRender = () => {
   const [, setState] = React.useState()
 
   return React.useCallback(() => setState(null), [])
-}
-
-const useMergedRef = <RefElement>(
-  ref: React.Ref<RefElement> | null | undefined
-): React.RefObject<RefElement> => {
-  const innerRef = React.useRef<RefElement>(null)
-
-  return (ref ? ref : innerRef) as React.RefObject<RefElement>
 }
 
 const useModal = <RefElement extends HTMLElement>({
