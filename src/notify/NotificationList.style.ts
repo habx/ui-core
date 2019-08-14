@@ -56,7 +56,7 @@ export const NotificationContainer = styled.div`
 
 export const Notification = styled(BaseNotification)`
   margin-bottom: 24px;
-  animation: ${slideIn} ${SLIDE_DURATION}ms linear forwards;
+  animation: ${slideIn} ${SLIDE_DURATION}ms ease-in-out forwards;
 
   &[data-closing='true'] {
     animation: ${slideOut} ${SLIDE_DURATION}ms ease-in-out forwards;

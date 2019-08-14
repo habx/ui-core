@@ -28,9 +28,10 @@ const parse = ({
   return mdParse(children || '', env)
 }
 
-const withMarkdown = <RefElement extends HTMLElement, ExtraProps extends {}>({
-  inline = false,
-}: WithMarkdownConfig = {}) => <Props extends object>(
+const withMarkdown = <
+  RefElement extends HTMLElement,
+  ExtraProps extends {} = {}
+>({ inline = false }: WithMarkdownConfig = {}) => <Props extends object>(
   WrappedComponent: React.ComponentType<Props>
 ) => {
   const Component = React.forwardRef<
