@@ -46,6 +46,11 @@ export { default as Notification, NotificationProps } from './Notification'
 export { default as NavigationDots, NavigationDotsProps } from './NavigationDots'
 
 /*
+  Modals
+ */
+export { default as LightBox, LightBoxProps } from './LightBox'
+
+/*
   Theme
  */
 export { default as breakpoints } from './breakpoints'
