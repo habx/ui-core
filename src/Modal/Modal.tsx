@@ -26,6 +26,7 @@ const Modal: React.FunctionComponent<ModalInnerProps> = ({
   title,
   animated = true,
   persistent = false,
+  ...rest
 }) => {
   const modal = useModal<HTMLDivElement>({
     open,
@@ -37,7 +38,7 @@ const Modal: React.FunctionComponent<ModalInnerProps> = ({
 
   const content = (
     <ModalOverlay data-state={modal.state} onClick={modal.overlayClick}>
-      <ModalContainer backgroundColor="#FFFFFF" ref={modal.ref}>
+      <ModalContainer backgroundColor="#FFFFFF" ref={modal.ref} {...rest}>
         <CloseIconContainer onClick={modal.close}>
           <Icon icon="close" />
         </CloseIconContainer>
