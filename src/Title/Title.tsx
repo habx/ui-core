@@ -131,10 +131,12 @@ const components = {
   regular: RegularTitleComponent,
 }
 
-const Title: React.FunctionComponent<TitleProps> = ({ type, ...props }) => {
+const Title = React.forwardRef<HTMLHeadingElement, TitleProps>((props, ref) => {
+  const { type, ...rest } = props
+
   const TitleComponent = components[type] || HeaderMaxiTitleComponent
 
-  return <TitleComponent {...props} />
-}
+  return <TitleComponent ref={ref} {...rest} />
+})
 
-export default withMarkdown({ inline: true })(Title)
+export default withMarkdown<HTMLHeadingElement>({ inline: true })(Title)

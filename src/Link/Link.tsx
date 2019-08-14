@@ -10,10 +10,12 @@ const NEW_TAB_PROPS = {
   rel: 'noopener noreferrer',
 }
 
-const Link: React.FunctionComponent<LinkProps> = ({ newTab, ...props }) => {
+const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
+  const { newTab, ...rest } = props
+
   const additionalProps = newTab ? NEW_TAB_PROPS : {}
 
-  return <LinkContainer {...additionalProps} {...props} />
-}
+  return <LinkContainer ref={ref} {...additionalProps} {...rest} />
+})
 
-export default withMarkdown({ inline: true })(Link)
+export default withMarkdown<HTMLAnchorElement>({ inline: true })(Link)

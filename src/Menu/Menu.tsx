@@ -6,13 +6,11 @@ import withTriggerElement from '../withTriggerElement'
 import MenuProps from './Menu.interface'
 import { MenuContainer, ANIMATION_DURATION } from './Menu.style'
 
-const Menu: React.FunctionComponent<MenuProps> = ({
-  children,
-  open,
-  onClose,
-  ...props
-}) => {
+const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
+  const { children, open, onClose, ...rest } = props
+
   const modal = useModal<HTMLUListElement>({
+    ref,
     open,
     onClose,
     persistent: false,
@@ -29,10 +27,10 @@ const Menu: React.FunctionComponent<MenuProps> = ({
   }, [modal.overlayClick])
 
   return (
-    <MenuContainer {...props} data-open={open} ref={modal.ref}>
+    <MenuContainer {...rest} data-open={open} ref={modal.ref}>
       {children}
     </MenuContainer>
   )
-}
+})
 
-export default withTriggerElement(Menu)
+export default withTriggerElement<HTMLUListElement>()(Menu)

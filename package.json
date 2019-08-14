@@ -45,6 +45,7 @@
   },
   "homepage": "https://github.com/habx/lib-design-system#readme",
   "dependencies": {
+    "@types/storybook__addon-info": "^4.1.2",
     "color": "^3.1.2",
     "markdown-it": "^9.0.1",
     "markdown-it-sup": "^1.0.0",

@@ -19,45 +19,52 @@ import {
   ANIMATION_DURATION,
 } from './Modal.style'
 
-const Modal: React.FunctionComponent<ModalInnerProps> = ({
-  open,
-  onClose,
-  children,
-  title,
-  animated = true,
-  persistent = false,
-  ...rest
-}) => {
-  const modal = useModal<HTMLDivElement>({
-    open,
-    onClose,
-    persistent,
-    animated,
-    animationDuration: ANIMATION_DURATION,
-  })
+const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
+  (props, ref) => {
+    const {
+      open,
+      onClose,
+      children,
+      title,
+      animated = true,
+      persistent = false,
+      ...rest
+    } = props
 
-  const content = (
-    <ModalOverlay data-state={modal.state} onClick={modal.overlayClick}>
-      <ModalContainer backgroundColor="#FFFFFF" ref={modal.ref} {...rest}>
-        <CloseIconContainer onClick={modal.close}>
-          <Icon icon="close" />
-        </CloseIconContainer>
-        {title && (
-          <TitleContainer>
-            <DesktopTitle type="section">{title}</DesktopTitle>
-            <MobileTitle type="regular">{title}</MobileTitle>
-          </TitleContainer>
-        )}
-        <ModalContent>
-          {isFunction(children)
-            ? children(modal as ModalState<HTMLDivElement>)
-            : children}
-        </ModalContent>
-      </ModalContainer>
-    </ModalOverlay>
-  )
+    const modal = useModal<HTMLDivElement>({
+      ref,
+      open,
+      onClose,
+      persistent,
+      animated,
+      animationDuration: ANIMATION_DURATION,
+    })
 
-  return isClientSide ? ReactDOM.createPortal(content, document.body) : content
-}
+    const content = (
+      <ModalOverlay data-state={modal.state} onClick={modal.overlayClick}>
+        <ModalContainer backgroundColor="#FFFFFF" ref={modal.ref} {...rest}>
+          <CloseIconContainer onClick={modal.close}>
+            <Icon icon="close" />
+          </CloseIconContainer>
+          {title && (
+            <TitleContainer>
+              <DesktopTitle type="section">{title}</DesktopTitle>
+              <MobileTitle type="regular">{title}</MobileTitle>
+            </TitleContainer>
+          )}
+          <ModalContent>
+            {isFunction(children)
+              ? children(modal as ModalState<HTMLDivElement>)
+              : children}
+          </ModalContent>
+        </ModalContainer>
+      </ModalOverlay>
+    )
 
-export default withTriggerElement(Modal)
+    return isClientSide
+      ? ReactDOM.createPortal(content, document.body)
+      : content
+  }
+)
+
+export default withTriggerElement<HTMLDivElement>()(Modal)

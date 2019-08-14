@@ -24,7 +24,7 @@ const req = process.env.NODE_ENV === 'test' ?
   require.context('../src/', true, /\.stories\.(tsx)$/)
 
 function loadStories () {
-  req.keys().forEach(filename => req(filename))
+  req.keys().forEach((filename: string) => req(filename))
 }
 
 configure(loadStories, module)

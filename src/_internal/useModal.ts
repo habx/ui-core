@@ -2,20 +2,22 @@ import * as React from 'react'
 
 import { isFunction } from './data'
 import { useTimeout } from './hooks'
+import useMergedRef from './useMergedRef'
 
-export type ModalParams = {
+export type ModalParams<RefElement> = {
   open?: boolean
   persistent?: boolean
   animated?: boolean
   animationDuration?: number
-  onClose?: (e: React.FormEvent<HTMLInputElement>) => void
+  onClose?: (e: Event) => void
+  ref?: React.Ref<RefElement>
 }
 
 export type ModalState<RefElement> = {
   state: 'opened' | 'closed' | 'opening' | 'closing'
   close: (e?: React.SyntheticEvent<HTMLElement>) => void
   overlayClick: (e: React.MouseEvent<HTMLElement> | MouseEvent) => void
-  ref: React.RefObject<RefElement>
+  ref: React.Ref<RefElement>
   hasAlreadyBeenOpened: boolean
 }
 
@@ -30,14 +32,17 @@ const useForceRender = () => {
 const useModal = <RefElement extends HTMLElement>({
   animated,
   animationDuration,
+  ref,
   ...restParams
-}: ModalParams): ModalState<RefElement> => {
+}: ModalParams<RefElement>): ModalState<RefElement> => {
   const hasAlreadyRendered = React.useRef(false)
-  const domRef = React.useRef<RefElement>(null)
+  const domRef = useMergedRef<RefElement>(ref)
   const forceRender = useForceRender()
   const registerTimeout = useTimeout()
 
-  const params = { animated, animationDuration, ...restParams } as ModalParams
+  const params = { animated, animationDuration, ...restParams } as ModalParams<
+    RefElement
+  >
   const paramsRef = React.useRef(params)
 
   const hasAlreadyBeenOpened = React.useRef<boolean>(false)
@@ -78,7 +83,7 @@ const useModal = <RefElement extends HTMLElement>({
         handleClose(e)
       }
     },
-    [handleClose]
+    [domRef, handleClose]
   )
 
   React.useEffect(() => {
