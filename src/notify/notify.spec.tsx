@@ -4,7 +4,7 @@ import * as React from 'react'
 import Provider from '../Provider'
 
 import notify from './index'
-import { ANIMATION_DURATION } from './NotificationList.style'
+import { SHRINK_DURATION, SLIDE_DURATION } from './NotificationList.style'
 
 jest.useFakeTimers()
 
@@ -50,7 +50,7 @@ describe('notify function', () => {
     ).toEqual(MESSAGE_2)
   })
 
-  it('should remove notification after timeout', done => {
+  it('should remove notification after timeout', () => {
     const { queryAllByTestId, rerender } = render(<Provider />)
 
     const duration = 200
@@ -59,16 +59,14 @@ describe('notify function', () => {
       notify(MESSAGE_1, { duration })
     })
 
-    setTimeout(async () => {
-      rerender(<Provider />)
-      await Promise.resolve()
-      const notifications = queryAllByTestId('notification-container')
-      expect(notifications).toHaveLength(0)
-      done()
-    }, ANIMATION_DURATION + duration + 5000)
-
     act(() => {
-      jest.runAllTimers()
+      jest.advanceTimersByTime(
+        SLIDE_DURATION + SHRINK_DURATION + duration + 5000
+      )
     })
+
+    rerender(<Provider />)
+    const notifications = queryAllByTestId('notification-container')
+    expect(notifications).toHaveLength(0)
   })
 })
