@@ -24,13 +24,7 @@ const GRID_LINES = [{ title: 'Basic' }]
 const GRID_ITEMS = [
   {
     props: {
-      children: (
-        <React.Fragment>
-          <FakeImage />
-        </React.Fragment>
-      ),
-      open: true,
-      // triggerElement: undefined,
+      children: <FakeImage />,
     },
   },
 ]
