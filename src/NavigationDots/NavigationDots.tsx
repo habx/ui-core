@@ -41,7 +41,7 @@ const NavigationDots = React.forwardRef<HTMLDivElement, NavigationDotsProps>(
 
         return Array.from({ length: MAX_VISIBLE_DOTS }).map((_, index) => ({
           active: index === activeDot - offset,
-          index,
+          index: index + offset,
           small: index === 0,
         }))
       }
@@ -50,7 +50,7 @@ const NavigationDots = React.forwardRef<HTMLDivElement, NavigationDotsProps>(
 
       return Array.from({ length: MAX_VISIBLE_DOTS }).map((_, index) => ({
         active: index === activeDot - offset,
-        index,
+        index: index + offset,
         small: [0, MAX_VISIBLE_DOTS - 1].includes(index),
       }))
     }, [activeDot, size])
