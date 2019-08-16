@@ -1,6 +1,7 @@
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
+import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import breakpoints from '../breakpoints'
@@ -32,18 +33,28 @@ const types: { [key: string]: TitleTypes } = {
 
 storiesOf('Typography|Text', module)
   .addDecorator(withKnobs)
-  .add('galery', () => (
-    <TextContainer>
-      {Object.values(types).map(type => (
-        <Text type={type} key={type}>
-          Les volumes et la forme des pièces sont représentés à titre indicatif.
-          Ils ne constituent pas le plan definitif de votre futur appartement
-          mais bien une suggestion d'agencement. C'est notre architecte qui
-          finalisera ce plan pour vous.
-        </Text>
-      ))}
-    </TextContainer>
-  ))
+  .add(
+    'galery',
+    () => (
+      <TextContainer>
+        {Object.values(types).map(type => (
+          <Text type={type} key={type}>
+            Les volumes et la forme des pièces sont représentés à titre
+            indicatif. Ils ne constituent pas le plan definitif de votre futur
+            appartement mais bien une suggestion d'agencement. C'est notre
+            architecte qui finalisera ce plan pour vous.
+          </Text>
+        ))}
+      </TextContainer>
+    ),
+    {
+      design: config({
+        type: 'figma',
+        url:
+          'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A2',
+      }),
+    }
+  )
   .add('dynamic', () => (
     <TextContainer>
       <Text

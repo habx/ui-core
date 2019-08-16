@@ -1,6 +1,7 @@
 import { withKnobs, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
+import { config } from 'storybook-addon-designs'
 
 import withGrid from '../_internal/StorybookGrid'
 import Icon from '../Icon'
@@ -98,7 +99,13 @@ const Grid = withGrid<ButtonProps>({
 
 storiesOf('Actions|Button', module)
   .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />)
+  .add('gallery', () => <Grid />, {
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1250',
+    }),
+  })
   .add('dynamic', () => (
     <Button
       outline={boolean('Outline', false)}

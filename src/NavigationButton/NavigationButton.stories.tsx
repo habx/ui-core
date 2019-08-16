@@ -1,7 +1,7 @@
 import { withKnobs, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { withDesign } from 'storybook-addon-designs'
+import { config } from 'storybook-addon-designs'
 
 import withGrid from '../_internal/StorybookGrid'
 
@@ -50,10 +50,15 @@ const Grid = withGrid<NavigationButtonProps>({
   itemHorizontalSpace: 24,
 })(NavigationButton)
 
-storiesOf('Actions|NavigationButton', module)
-  .addDecorator(withDesign)
+storiesOf('Navigation|NavigationButton', module)
   .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />)
+  .add('gallery', () => <Grid />, {
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A2116',
+    }),
+  })
   .add('dynamic', () => (
     <NavigationButton
       disabled={boolean('Disabled', false)}

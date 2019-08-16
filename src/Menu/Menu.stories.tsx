@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
+import { config } from 'storybook-addon-designs'
 
 import withGrid from '../_internal/StorybookGrid'
 import Button from '../Button'
@@ -46,4 +47,10 @@ const Grid = withGrid<MenuProps>({
   items: GRID_ITEMS,
 })(Menu)
 
-storiesOf('Actions|Menu', module).add('galery', () => <Grid />)
+storiesOf('Actions|Menu', module).add('galery', () => <Grid />, {
+  design: config({
+    type: 'figma',
+    url:
+      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=827%3A957',
+  }),
+})
