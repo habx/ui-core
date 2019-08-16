@@ -65,8 +65,9 @@ const NavigationDots = React.forwardRef<HTMLDivElement, NavigationDotsProps>(
       <NavigationDotsContainer ref={ref} {...rest} width={width}>
         {visibleDots.map(dot => (
           <Dot
+            data-testid="navigation-dot"
             key={dot.index}
-            data-active={dot.active}
+            data-active={!!dot.active}
             data-interactive={!!onClickDot}
             data-background={theme.backgroundColor !== '#FFFFFF'}
             data-small={dot.small}
