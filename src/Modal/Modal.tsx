@@ -28,6 +28,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
       title,
       animated = true,
       persistent = false,
+      alwaysRenderChildren = false,
       ...rest
     } = props
 
@@ -41,8 +42,17 @@ const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
     })
 
     const content = (
-      <ModalOverlay data-state={modal.state} onClick={modal.overlayClick}>
-        <ModalContainer backgroundColor="#FFFFFF" ref={modal.ref} {...rest}>
+      <ModalOverlay
+        data-state={modal.state}
+        onClick={modal.overlayClick}
+        data-testid="modal-overlay"
+      >
+        <ModalContainer
+          backgroundColor="#FFFFFF"
+          ref={modal.ref}
+          data-testid="modal-container"
+          {...rest}
+        >
           <CloseIconContainer onClick={modal.close}>
             <Icon icon="close" />
           </CloseIconContainer>
@@ -60,6 +70,10 @@ const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
         </ModalContainer>
       </ModalOverlay>
     )
+
+    if (!alwaysRenderChildren && !modal.hasAlreadyBeenOpened) {
+      return null
+    }
 
     return isClientSide
       ? ReactDOM.createPortal(content, document.body)
