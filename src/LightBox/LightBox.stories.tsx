@@ -1,5 +1,6 @@
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
+import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -35,4 +36,10 @@ const Grid = withGrid<LightBoxProps>({
   items: GRID_ITEMS,
 })(LightBox)
 
-storiesOf('Modals|LightBox', module).add('galery', () => <Grid />)
+storiesOf('Modals|LightBox', module).add('galery', () => <Grid />, {
+  design: config({
+    type: 'figma',
+    url:
+      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=62%3A2',
+  }),
+})

@@ -1,6 +1,7 @@
 import { withKnobs, select } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
+import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import Background from '../Background'
@@ -99,48 +100,78 @@ const ThemePatchPalette = () => {
 
 storiesOf('Utility|theme', module)
   .addDecorator(withKnobs)
-  .add('colors', () => (
-    <Background
-      backgroundColor={select(
-        'Background color',
-        Object.keys(THEME_PATCHES),
-        '#FFFFFF'
-      )}
-    >
-      <ThemePatchPalette />
-    </Background>
-  ))
-  .add('shadows', () => (
-    <Container>
-      <Line>
-        <ColorLabel type="section">Shadows</ColorLabel>
-        {['lower', 'low', 'regular', 'high', 'higher'].map(shadowDepth => (
-          <Color key={shadowDepth}>
-            <Circle color="#FFFFFF" depth={shadowDepth} />
-          </Color>
-        ))}
-      </Line>
-    </Container>
-  ))
-  .add('patches', () => (
-    <Background
-      backgroundColor={select(
-        'Background color',
-        Object.keys(THEME_PATCHES),
-        palette.darkBlue[900]
-      )}
-    >
-      <ThemePatchContainer>
-        <Title type="section">Exemple de section colorée</Title>
-        <TextInput placeholder="votre@mail.com" />
-        <Text>
-          Les volumes et la forme des pièces sont représentés à titre indicatif.
-          Ils ne constituent pas le plan definitif de votre futur appartement
-          mais bien une suggestion d'agencement. C'est notre architecte qui
-          finalisera ce plan pour vous.
-        </Text>
-        <Button>Bouton</Button>
-        <Button outline>Bouton outline</Button>
-      </ThemePatchContainer>
-    </Background>
-  ))
+  .add(
+    'colors',
+    () => (
+      <Background
+        backgroundColor={select(
+          'Background color',
+          Object.keys(THEME_PATCHES),
+          '#FFFFFF'
+        )}
+      >
+        <ThemePatchPalette />
+      </Background>
+    ),
+    {
+      design: config({
+        type: 'figma',
+        url:
+          'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A3',
+      }),
+    }
+  )
+  .add(
+    'shadows',
+    () => (
+      <Container>
+        <Line>
+          <ColorLabel type="section">Shadows</ColorLabel>
+          {['lower', 'low', 'regular', 'high', 'higher'].map(shadowDepth => (
+            <Color key={shadowDepth}>
+              <Circle color="#FFFFFF" depth={shadowDepth} />
+            </Color>
+          ))}
+        </Line>
+      </Container>
+    ),
+    {
+      design: config({
+        type: 'figma',
+        url:
+          'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=10%3A214',
+      }),
+    }
+  )
+  .add(
+    'patches',
+    () => (
+      <Background
+        backgroundColor={select(
+          'Background color',
+          Object.keys(THEME_PATCHES),
+          palette.darkBlue[900]
+        )}
+      >
+        <ThemePatchContainer>
+          <Title type="section">Exemple de section colorée</Title>
+          <TextInput placeholder="votre@mail.com" />
+          <Text>
+            Les volumes et la forme des pièces sont représentés à titre
+            indicatif. Ils ne constituent pas le plan definitif de votre futur
+            appartement mais bien une suggestion d'agencement. C'est notre
+            architecte qui finalisera ce plan pour vous.
+          </Text>
+          <Button>Bouton</Button>
+          <Button outline>Bouton outline</Button>
+        </ThemePatchContainer>
+      </Background>
+    ),
+    {
+      design: config({
+        type: 'figma',
+        url:
+          'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A3',
+      }),
+    }
+  )
