@@ -4,7 +4,7 @@ import { WithTriggerElement } from '../withTriggerElement'
 
 export interface MenuInnerProps extends React.HTMLAttributes<HTMLUListElement> {
   open?: boolean
-  onClose?: (e: Event) => void
+  onClose?: () => void
 }
 
 export default interface MenuProps

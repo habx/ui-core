@@ -1,9 +1,9 @@
+import useModal, { Modal } from '@delangle/use-modal'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
-import useModal, { ModalState } from '../_internal/useModal'
 import Icon from '../Icon'
 import { ANIMATION_DURATION } from '../Menu/Menu.style'
 import withTriggerElement from '../withTriggerElement'
@@ -34,7 +34,7 @@ const LightBox = React.forwardRef<HTMLDivElement, LightHouseInnerProps>(
           <Icon icon="close" />
         </CloseIconContainer>
         {isFunction(children)
-          ? children(modal as ModalState<HTMLDivElement>)
+          ? children(modal as Modal<HTMLDivElement>)
           : children}
       </LightBoxOverlay>
     )
