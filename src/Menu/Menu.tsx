@@ -1,6 +1,6 @@
+import useModal from '@delangle/use-modal'
 import * as React from 'react'
 
-import useModal from '../_internal/useModal'
 import withTriggerElement from '../withTriggerElement'
 
 import MenuProps from './Menu.interface'
@@ -17,14 +17,6 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
     animated: true,
     animationDuration: ANIMATION_DURATION,
   })
-
-  React.useEffect(() => {
-    window.addEventListener('click', modal.overlayClick)
-
-    return () => {
-      window.removeEventListener('click', modal.overlayClick)
-    }
-  }, [modal.overlayClick])
 
   return (
     <MenuContainer {...rest} data-open={open} ref={modal.ref}>
