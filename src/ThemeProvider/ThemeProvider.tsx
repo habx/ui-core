@@ -5,6 +5,7 @@ import {
   ThemeProvider as BaseThemeProvider,
 } from 'styled-components'
 
+import { styledTheme } from '../_internal/types'
 import { BASE_THEME, THEME_PATCHES } from '../theme'
 import DesignSystemTheme from '../theme/theme.interface'
 
@@ -18,9 +19,9 @@ const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   backgroundColor,
   children,
 }) => {
-  const currentTheme = React.useContext(ThemeContext) || {}
+  const currentTheme = React.useContext<styledTheme>(ThemeContext) || {}
 
-  const newTheme = React.useMemo(() => {
+  const newTheme = React.useMemo<styledTheme>(() => {
     const patch: DesignSystemThemePatch = backgroundColor
       ? {
           ...THEME_PATCHES[backgroundColor.toUpperCase()],

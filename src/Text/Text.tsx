@@ -6,6 +6,7 @@ import fontScale, { FontScale } from '../fontScale'
 import theme from '../theme'
 import withMarkdown from '../withMarkdown'
 
+import { TextProps } from './index'
 import TitleProps from './Text.interface'
 
 const size = (name: keyof FontScale) => css`
@@ -116,7 +117,7 @@ const Text = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
   return <TitleComponent ref={ref} {...rest} />
 })
 
-export default withMarkdown<HTMLDivElement, { inline?: boolean }>({
+export default withMarkdown<HTMLDivElement, TextProps, { inline?: boolean }>({
   inline: props =>
     props.inline || ['caption', 'captionSmall'].includes(props.type),
 })(Text)
