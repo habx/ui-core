@@ -15,12 +15,20 @@ import {
 
 const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
   (props, ref) => {
-    const { onClose, title, description, illustration, ...rest } = props
+    const {
+      onClose,
+      title,
+      description,
+      illustration,
+      warning,
+      ...rest
+    } = props
 
     return (
       <NotificationContainer
         ref={ref}
         data-testid="notification-container"
+        data-warning={warning}
         {...rest}
       >
         <NotificationContent data-testid="notification-content">
