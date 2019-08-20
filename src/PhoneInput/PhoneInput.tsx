@@ -40,7 +40,7 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
       ...rest
     } = props
 
-    const [country, setCountry] = React.useState('fr')
+    const [country, setCountry] = React.useState<string>('fr')
     const theme = useTheme()
 
     const { indicator, flag: Flag } = React.useMemo<COUNTRY>(
@@ -64,10 +64,10 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
     }, [rawValue])
 
     const handleChange = React.useCallback(
-      e => {
+      (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value
 
-        const cleanValue = newValue.replace(/[^0-9]/g, '')
+        const cleanValue: string = newValue.replace(/[^0-9]/g, '')
         const phoneNumber =
           cleanValue.startsWith('0') && cleanValue !== '0'
             ? cleanValue.substring(1)

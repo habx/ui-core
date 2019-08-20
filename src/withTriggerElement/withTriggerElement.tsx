@@ -28,7 +28,7 @@ const withTriggerElement = <RefElement extends HTMLElement>() => <
     )
 
     const handleClose = React.useCallback(
-      e => {
+      (e: React.SyntheticEvent<RefElement>) => {
         if (isFunction(onClose)) {
           onClose(e)
         }
@@ -51,7 +51,7 @@ const withTriggerElement = <RefElement extends HTMLElement>() => <
           ref={ref}
           {...(rest as Props)}
           open={open}
-          onClose={handleClose as (e: React.SyntheticEvent<RefElement>) => void}
+          onClose={handleClose}
         />
       </React.Fragment>
     )
