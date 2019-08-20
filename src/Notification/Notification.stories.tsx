@@ -46,6 +46,14 @@ const GRID_ITEMS = [
       ),
     },
   },
+  {
+    props: {
+      title: 'Blueprint failed',
+      description: 'Successfully sent to the given address',
+      illustration,
+      warning: true,
+    },
+  },
 ]
 
 const Grid = withGrid<NotificationProps>({

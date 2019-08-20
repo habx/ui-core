@@ -19,6 +19,10 @@ export const NotificationContainer = styled.div<{
   overflow: hidden;
   box-shadow: ${theme.shadow()};
   font-family: ${theme.font()};
+
+  &[data-warning='true'] {
+    background-color: ${palette.orange[400]};
+  }
 `
 
 export const NotificationContent = styled.div`

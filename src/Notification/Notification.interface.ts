@@ -6,6 +6,7 @@ export interface NotificationEventProps {
   title: string
   description?: string
   illustration?: React.ReactNode
+  warning?: boolean
 }
 
 export default interface NotificationProps
