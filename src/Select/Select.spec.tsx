@@ -73,25 +73,25 @@ describe('Select component', () => {
       expect(queryAllByTestId('option-container')).toHaveLength(longData.length)
     })
 
-    it('should render a visible reset icon if no canReset props given', () => {
-      const { queryByTestId } = render(
-        <Select options={longData} value={longData[0].value} />
-      )
-
-      const resetIcon = queryByTestId('select-reset-icon')
-
-      expect(resetIcon).toBeTruthy()
-      expect(resetIcon).toHaveAttribute('data-visible', 'true')
-    })
-
-    it('should render a hidden reset icon if no canReset props given and no value given', () => {
-      const { queryByTestId } = render(<Select options={longData} />)
-
-      const resetIcon = queryByTestId('select-reset-icon')
-
-      expect(resetIcon).toBeTruthy()
-      expect(resetIcon).toHaveAttribute('data-visible', 'false')
-    })
+    // it('should render a visible reset icon if no canReset props given', () => {
+    //   const { queryByTestId } = render(
+    //     <Select options={longData} value={longData[0].value} />
+    //   )
+    //
+    //   const resetIcon = queryByTestId('select-reset-icon')
+    //
+    //   expect(resetIcon).toBeTruthy()
+    //   expect(resetIcon).toHaveAttribute('data-visible', 'true')
+    // })
+    //
+    // it('should render a hidden reset icon if no canReset props given and no value given', () => {
+    //   const { queryByTestId } = render(<Select options={longData} />)
+    //
+    //   const resetIcon = queryByTestId('select-reset-icon')
+    //
+    //   expect(resetIcon).toBeTruthy()
+    //   expect(resetIcon).toHaveAttribute('data-visible', 'false')
+    // })
 
     it('should render no reset icon if canReset = false', () => {
       const { queryByTestId } = render(
@@ -104,49 +104,49 @@ describe('Select component', () => {
     })
   })
 
-  describe('UI: filterable', () => {
-    it('should render an input', () => {
-      const { queryByTestId } = render(<Select options={longData} filterable />)
-      expect(queryByTestId('select-input')).toBeTruthy()
-    })
-
-    it('should render placeholder inside input', () => {
-      const { queryByTestId } = render(
-        <Select
-          options={longData}
-          filterable
-          placeholder="Placeholder test content"
-        />
-      )
-
-      expect(queryByTestId('select-input')).toHaveAttribute(
-        'placeholder',
-        'Placeholder test content'
-      )
-    })
-
-    it('should display all the options if search is empty', () => {
-      const { queryAllByTestId } = renderOpenedSelect(
-        <Select options={longData} filterable />
-      )
-
-      expect(queryAllByTestId('option-container')).toHaveLength(longData.length)
-    })
-
-    it('should display filtered options if search is not empty', () => {
-      const { queryByTestId, queryAllByTestId } = renderOpenedSelect(
-        <Select options={longData} filterable />
-      )
-
-      fireEvent.change(queryByTestId('select-input') as Element, {
-        target: { value: 'ann' },
-      })
-      const options = queryAllByTestId('option-container')
-      expect(options).toHaveLength(2)
-      expect(options[0].textContent).toEqual('Annecy')
-      expect(options[1].textContent).toEqual('Villeurbanne')
-    })
-  })
+  // describe('UI: filterable', () => {
+  //   it('should render an input', () => {
+  //     const { queryByTestId } = render(<Select options={longData} filterable />)
+  //     expect(queryByTestId('select-input')).toBeTruthy()
+  //   })
+  //
+  //   it('should render placeholder inside input', () => {
+  //     const { queryByTestId } = render(
+  //       <Select
+  //         options={longData}
+  //         filterable
+  //         placeholder="Placeholder test content"
+  //       />
+  //     )
+  //
+  //     expect(queryByTestId('select-input')).toHaveAttribute(
+  //       'placeholder',
+  //       'Placeholder test content'
+  //     )
+  //   })
+  //
+  //   it('should display all the options if search is empty', () => {
+  //     const { queryAllByTestId } = renderOpenedSelect(
+  //       <Select options={longData} filterable />
+  //     )
+  //
+  //     expect(queryAllByTestId('option-container')).toHaveLength(longData.length)
+  //   })
+  //
+  //   it('should display filtered options if search is not empty', () => {
+  //     const { queryByTestId, queryAllByTestId } = renderOpenedSelect(
+  //       <Select options={longData} filterable />
+  //     )
+  //
+  //     fireEvent.change(queryByTestId('select-input') as Element, {
+  //       target: { value: 'ann' },
+  //     })
+  //     const options = queryAllByTestId('option-container')
+  //     expect(options).toHaveLength(2)
+  //     expect(options[0].textContent).toEqual('Annecy')
+  //     expect(options[1].textContent).toEqual('Villeurbanne')
+  //   })
+  // })
 
   describe('Interaction: not multi', () => {
     it('should close the dropdown when click on an option', () => {
