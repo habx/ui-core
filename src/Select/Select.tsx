@@ -220,6 +220,10 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           return { ...state, focusedItem: null }
         }
 
+        case ActionType.HoverReset: {
+          return { ...state, hoverReset: action.value }
+        }
+
         case ActionType.AddFocusItem: {
           if (!action.value) {
             return state
@@ -264,6 +268,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     const initialState: SelectState = {
       isOpened: false,
       query: '',
+      hoverReset: false,
       wrapperRect:
         typeof DOMRect === 'function' ? new DOMRect() : ssrClientRect,
       focusedItem:
@@ -390,7 +395,10 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
           if (key === 'ArrowUp' && focusedIndex > 0) {
             event.preventDefault()
-            dispatch({ type: ActionType.RemoveFocusItem })
+            dispatch({
+              type: ActionType.AddFocusItem,
+              value: options[focusedIndex - 1],
+            })
           }
 
           if (key === 'Enter' && focusedIndex >= 0) {
@@ -421,6 +429,12 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       state.isOpened,
       visibleOptions,
     ])
+
+    const handleHover = (e: React.MouseEvent) => {
+      dispatch({ type: ActionType.HoverReset, value: !state.hoverReset })
+      e.preventDefault()
+      e.stopPropagation()
+    }
 
     const isOptionSelected = React.useCallback(
       option => {
@@ -474,8 +488,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
               {placeholder}
             </Placeholder>
           )}
-          <LabelIcons>
-            {canReset && (
+          <LabelIcons onMouseEnter={handleHover} onMouseLeave={handleHover}>
+            {canReset && state.hoverReset && (
               <ResetIcon
                 data-testid="select-reset-icon"
                 data-visible={!disabled && hasValue}
@@ -483,7 +497,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                 icon="close"
               />
             )}
-            <Icon icon={state.isOpened ? 'chevron-north' : 'chevron-south'} />
+            {(!canReset || !state.hoverReset || !hasValue) && (
+              <Icon icon={state.isOpened ? 'chevron-north' : 'chevron-south'} />
+            )}
           </LabelIcons>
         </SelectContent>
         {state.isOpened &&

@@ -31,6 +31,7 @@ export interface SelectState {
   query: string
   focusedItem: any
   wrapperRect: ClientRect
+  hoverReset: boolean
 }
 
 export enum ActionType {
@@ -39,6 +40,7 @@ export enum ActionType {
   RemoveFocusItem = 'REMOVE_FOCUS_ITEM',
   AddFocusItem = 'ADD_FOCUS_ITEM',
   Resize = 'RESIZE',
+  HoverReset = 'HOVER_RESET',
 }
 
 export type SelectAction =
@@ -47,3 +49,4 @@ export type SelectAction =
   | { type: ActionType.Resize }
   | { type: ActionType.UpdateQuery; value: string }
   | { type: ActionType.AddFocusItem; value: any }
+  | { type: ActionType.HoverReset; value: boolean }

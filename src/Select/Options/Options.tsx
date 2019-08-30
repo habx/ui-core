@@ -40,9 +40,6 @@ const Options: React.FunctionComponent<OptionsProps> = ({
 }) => {
   const isSmallScreen = useIsSmallScreen()
   const position = React.useMemo(() => {
-    if (!open) {
-      return 'bottom'
-    }
     return isClientSide &&
       !isSmallScreen &&
       wrapperRect.top + MAX_HEIGHT > window.innerHeight &&

@@ -1,4 +1,4 @@
-import { withKnobs, boolean, text } from '@storybook/addon-knobs'
+import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { config } from 'storybook-addon-designs'
@@ -14,7 +14,11 @@ const TextInputContainer = styled.div`
   flex-direction: column;
   width: 300px;
 `
-
+const OPTIONS = [
+  { label: 'France', value: 'fr' },
+  { label: 'Germany', value: 'dl' },
+  { label: 'England', value: 'en' },
+]
 const GRID_PROPS = {
   placeholder: 'Regions',
   onChange: () => {},
@@ -28,9 +32,6 @@ const GRID_PROPS = {
 const GRID_LINES = [
   {
     title: 'Regular',
-  },
-  {
-    title: 'Small',
   },
   {
     title: 'Colored background',
@@ -73,14 +74,12 @@ storiesOf('Input|Select', module)
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1846',
     }),
   })
-// .add('dynamic', () => (
-//   <TextInputContainer>
-//     <Select
-//       value={text('Value', '')}
-//       placeholder="votre@mail.com"
-//       error={boolean('Error', false)}
-//       small={boolean('Small', false)}
-//       disabled={boolean('Disabled', false)}
-//     />
-//   </TextInputContainer>
-// ))
+  .add('dynamic', () => (
+    <TextInputContainer>
+      <Select
+        options={OPTIONS}
+        value={select('Value', ['fr', 'dl', 'en'], 'fr')}
+        disabled={boolean('Disabled', false)}
+      />
+    </TextInputContainer>
+  ))
