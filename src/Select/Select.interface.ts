@@ -3,7 +3,10 @@ import * as React from 'react'
 import { formValue } from '../_internal/types'
 
 export default interface SelectProps
-  extends Omit<React.InputHTMLAttributes<HTMLSelectElement>, 'onChange'> {
+  extends Omit<
+    React.InputHTMLAttributes<HTMLSelectElement>,
+    'onChange' | 'value'
+  > {
   options: any[]
   description?: string
   placeholderClassName?: string
@@ -19,7 +22,8 @@ export default interface SelectProps
   selectAllLabel?: string
 
   optionDisabled?: (option: any) => boolean
-  onChange: (value: formValue | formValue[]) => void
+  onChange?: (value: formValue | formValue[] | null) => void
+  value?: formValue | formValue[]
 }
 
 export interface SelectState {

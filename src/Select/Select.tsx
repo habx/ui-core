@@ -47,7 +47,7 @@ const useValue = ({
   multi,
   options,
 }: {
-  rawValue: formValue | formValue[]
+  rawValue?: formValue | formValue[]
   multi: boolean
   options: formOption[]
 }) =>
@@ -80,7 +80,7 @@ const useValueFormat = ({
   rawValue,
   multi,
 }: {
-  rawValue: formOption | formOption[] | string | string[] | number
+  rawValue?: formValue | formValue[]
   multi: boolean
   rawValueFormat: 'full' | 'simple' | undefined
 }) =>
