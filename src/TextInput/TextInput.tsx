@@ -12,7 +12,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       error = false,
       className,
       style,
-      rightElement,
+      elementRight,
       ...rest
     } = props
     const theme = useTheme()
@@ -26,8 +26,8 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           {...rest}
           ref={ref}
         />
-        {rightElement && (
-          <RightElementContainer>{rightElement}</RightElementContainer>
+        {elementRight && (
+          <RightElementContainer>{elementRight}</RightElementContainer>
         )}
       </InputContainer>
     )

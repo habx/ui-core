@@ -61,7 +61,7 @@ const GRID_ITEMS = [
   {
     label: 'With icon',
     props: {
-      rightElement: <Icon icon="close" />,
+      elementRight: <Icon icon="close" />,
     },
   },
 ]

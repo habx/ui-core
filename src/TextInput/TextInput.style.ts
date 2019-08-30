@@ -81,6 +81,7 @@ export const InputContainer = styled.div`
   ${inputStyle};
   border: none;
   position: relative;
+  width: 100%;
 `
 
 export const RightElementContainer = styled.div`
