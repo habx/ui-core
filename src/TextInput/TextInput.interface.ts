@@ -7,4 +7,5 @@ export default interface TextInputProps
   small?: boolean
   error?: boolean
   as?: styledAs
+  elementRight?: React.ReactNode
 }
