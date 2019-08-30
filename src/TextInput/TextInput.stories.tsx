@@ -5,6 +5,7 @@ import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
+import Icon from '../Icon'
 
 import TextInput from './index'
 import TextInputProps from './TextInput.interface'
@@ -55,6 +56,12 @@ const GRID_ITEMS = [
     label: 'Disabled',
     props: {
       disabled: true,
+    },
+  },
+  {
+    label: 'With icon',
+    props: {
+      rightElement: <Icon icon="close" />,
     },
   },
 ]
