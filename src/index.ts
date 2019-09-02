@@ -33,6 +33,7 @@ export { default as Tag, TagProps } from './Tag'
 export { default as Checkbox, CheckboxProps } from './Checkbox'
 export { default as PasswordInput, PasswordInputProps } from './PasswordInput'
 export { default as PhoneInput, PhoneInputProps } from './PhoneInput'
+export { default as Select, SelectProps } from './Select'
 export { default as TextArea, TextAreaProps } from './TextArea'
 export { default as TextInput, TextInputProps } from './TextInput'
 
