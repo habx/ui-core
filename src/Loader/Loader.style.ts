@@ -72,12 +72,7 @@ export const LoaderContainer = styled.div<{
   }
 `
 
-const prepareProps = ({
-  size,
-  ...props
-}: {
-  size: 'large' | 'medium' | 'small'
-}) => {
+const prepareProps = ({ size }: { size: 'large' | 'medium' | 'small' }) => {
   let height = 185
 
   if (size === 'large') {
@@ -89,7 +84,6 @@ const prepareProps = ({
 
   return {
     height,
-    ...props,
   }
 }
 export const LoaderContent = styled.div.attrs(prepareProps)<{
