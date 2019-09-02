@@ -4,5 +4,5 @@ export default interface LoaderProps
   extends React.HTMLAttributes<HTMLSpanElement> {
   colored?: boolean
   size?: 'large' | 'medium' | 'small'
-  outlined?: boolean
+  outline?: boolean
 }

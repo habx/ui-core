@@ -42,6 +42,7 @@ export { default as TextInput, TextInputProps } from './TextInput'
 export { default as Icon, IconProps } from './Icon'
 export { default as Card, CardProps } from './Card'
 export { default as NavigationDots, NavigationDotsProps } from './NavigationDots'
+export { default as Loader } from './Loader'
 
 /*
   Modals

@@ -22,7 +22,7 @@ const GRID_LINES = [
   },
   {
     title: 'Outlined',
-    props: { outlined: true },
+    props: { outline: true },
   },
   {
     title: 'Grey',
@@ -31,7 +31,7 @@ const GRID_LINES = [
   {
     title: 'Color background',
     coloredBackground: true,
-    props: { outlined: true, colored: false },
+    props: { outline: true, colored: false },
   },
 ]
 
@@ -75,7 +75,7 @@ storiesOf('Miscellaneous|Loader', module)
           ['large', 'medium', 'small'],
           'medium'
         )}
-        outlined={boolean('Outlined', false)}
+        outline={boolean('Outlined', false)}
         colored={boolean('Color', true)}
       />
     </LoaderContainer>
