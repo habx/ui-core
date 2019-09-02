@@ -367,7 +367,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     const handleReset = React.useCallback(
       e => {
         e.stopPropagation()
-
+        dispatch({ type: ActionType.HoverReset, value: false })
         onChange(multi ? [] : null)
       },
       [multi, onChange]
@@ -430,8 +430,13 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       visibleOptions,
     ])
 
-    const handleHover = (e: React.MouseEvent) => {
-      dispatch({ type: ActionType.HoverReset, value: !state.hoverReset })
+    const handleMouseEnter = (e: React.MouseEvent) => {
+      dispatch({ type: ActionType.HoverReset, value: true })
+      e.preventDefault()
+      e.stopPropagation()
+    }
+    const handleMouseLeave = (e: React.MouseEvent) => {
+      dispatch({ type: ActionType.HoverReset, value: false })
       e.preventDefault()
       e.stopPropagation()
     }
@@ -488,7 +493,10 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
               {placeholder}
             </Placeholder>
           )}
-          <LabelIcons onMouseEnter={handleHover} onMouseLeave={handleHover}>
+          <LabelIcons
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
             {canReset && state.hoverReset && (
               <ResetIcon
                 data-testid="select-reset-icon"
