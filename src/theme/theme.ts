@@ -9,6 +9,7 @@ import DesignSystemTheme, {
   ColorVariations,
   Fonts,
   Shadows,
+  Animations,
   TextColorVariations,
   GetterProps,
 } from './theme.interface'
@@ -146,11 +147,18 @@ const colorGetter = <Props extends GetterProps>(
   }
 }
 
+const animationGetter = (name: keyof Animations, config: {} = {}) => (
+  props: GetterProps
+) => {
+  return getTheme(props).animations[name]
+}
+
 const theme = {
   color: colorGetter,
   textColor: textColorGetter,
   font: fontGetter,
   shadow: shadowGetter,
+  animation: animationGetter,
   raw: BASE_THEME,
 }
 

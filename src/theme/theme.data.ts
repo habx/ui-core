@@ -61,6 +61,10 @@ export const BASE_THEME: DesignSystemTheme = {
       { x: 0, y: 0, blur: 12, opacity: 0.06 },
     ],
   },
+
+  animations: {
+    emerge: {},
+  },
 }
 
 const PATCH_WHITE: ColorVariations = {

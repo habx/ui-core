@@ -39,12 +39,23 @@ export interface Shadows {
   higher: Shadow[]
 }
 
+export type AnimationConfig = {
+  duration: 'xs' | 's' | 'm' | 'l'
+}
+
+export type Animation = {}
+
+export interface Animations {
+  emerge: Animation
+}
+
 export default interface DesignSystemTheme {
   colors: ColorFamilies
   textColors: TextColorVariations
   backgroundColor: string
   fonts: Fonts
   shadows: Shadows
+  animations: Animations
 }
 
 export interface GetterProps {
