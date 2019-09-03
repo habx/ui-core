@@ -67,6 +67,7 @@ const AnimationCardContent = styled.div<{ animation: keyof Animations }>`
   width: 300px;
   box-shadow: ${theme.shadow()};
   margin-bottom: 24px;
+  background-color: ${palette.darkBlue[300]};
 
   &:not([data-animated='true']) {
     &:not([data-visible='true']) {
@@ -75,8 +76,8 @@ const AnimationCardContent = styled.div<{ animation: keyof Animations }>`
   }
 
   &[data-animated='true'] {
-    ${({ animation, ...props }) =>
-      theme.animation(animation, { testMode: true, duration: 'l' })(props)};
+    animation: ${({ animation, ...props }) =>
+      theme.animation(animation, { testMode: true })(props)};
   }
 `
 
@@ -172,12 +173,6 @@ const ANIMATION_GRID_ITEMS = [
     },
   },
   {
-    label: 'Dive',
-    props: {
-      animation: 'dive',
-    },
-  },
-  {
     label: 'Emerge Z-Slant (from top)',
     props: {
       animation: 'emergeSlantFromTop',
@@ -189,6 +184,18 @@ const ANIMATION_GRID_ITEMS = [
     props: {
       animation: 'emergeSlantFromBottom',
       visible: false,
+    },
+  },
+  {
+    label: 'Dive',
+    props: {
+      animation: 'dive',
+    },
+  },
+  {
+    label: 'Dive Z-Slant',
+    props: {
+      animation: 'diveSlant',
     },
   },
 ]

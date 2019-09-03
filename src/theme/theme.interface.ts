@@ -53,9 +53,10 @@ export interface Animation extends AnimationConfig {
 
 export interface Animations {
   emerge: Animation
-  dive: Animation
   emergeSlantFromTop: Animation
   emergeSlantFromBottom: Animation
+  dive: Animation
+  diveSlant: Animation
 }
 
 export default interface DesignSystemTheme {

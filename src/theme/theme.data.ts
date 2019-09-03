@@ -79,6 +79,34 @@ export const BASE_THEME: DesignSystemTheme = {
         }
       `,
     },
+    emergeSlantFromTop: {
+      duration: 'm',
+      keyframes: keyframes`
+        from {
+          transform: perspective(600px) rotateX(30deg) translateY(40px) scale(0.95);
+          opacity: 0;
+        }
+        
+        to {
+          transform: perspective(600px) rotate3d(0) translateY(0) scale(1);
+          opacity: 1;
+        }
+      `,
+    },
+    emergeSlantFromBottom: {
+      duration: 'm',
+      keyframes: keyframes`
+        from {
+          transform: perspective(600px) rotateX(-30deg) translateY(40px) scale(0.95);
+          opacity: 0;
+        }
+        
+        to {
+          transform: perspective(600px) rotateX(0) translateY(0) scale(1);
+          opacity: 1;
+        }
+      `,
+    },
     dive: {
       duration: 'l',
       keyframes: keyframes`
@@ -93,31 +121,17 @@ export const BASE_THEME: DesignSystemTheme = {
         }
       `,
     },
-    emergeSlantFromTop: {
-      duration: 's',
+    diveSlant: {
+      duration: 'l',
       keyframes: keyframes`
         from {
-          transform: rotateX(30deg) translateY(40px);
-          opacity: 0;
+          transform: perspective(600px) rotateX(0) scale(1);
+          opacity: 1
         }
         
         to {
-          transform: rotate3d(0) translateY(0);
-          opacity: 1;
-        }
-      `,
-    },
-    emergeSlantFromBottom: {
-      duration: 's',
-      keyframes: keyframes`
-        from {
-          transform: rotateX(-30deg) translateY(40px);
+          transform: perspective(600px) rotateX(30deg) scale(0.95);
           opacity: 0;
-        }
-        
-        to {
-          transform: rotateX(0) translateY(0);
-          opacity: 1;
         }
       `,
     },
