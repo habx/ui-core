@@ -1,9 +1,13 @@
+import { keyframes } from 'styled-components'
+
 import palette from '../palette'
 import { DesignSystemThemePatch } from '../ThemeProvider/ThemeProvider.interface'
 
 import DesignSystemTheme, { ColorVariations } from './theme.interface'
 
 const WHITE = '#FFFFFF'
+
+const DEFAULT_ANIMATION_TIMING_FUNCTION = 'cubic-bezier(.04,.8,.61,1)'
 
 export const BASE_THEME: DesignSystemTheme = {
   colors: {
@@ -63,7 +67,21 @@ export const BASE_THEME: DesignSystemTheme = {
   },
 
   animations: {
-    emerge: {},
+    emerge: {
+      timingFunction: DEFAULT_ANIMATION_TIMING_FUNCTION,
+      duration: 'm',
+      keyframes: keyframes`
+        from {
+          transform: scale(0.95);
+          opacity: 0
+        }
+        
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      `,
+    },
   },
 }
 

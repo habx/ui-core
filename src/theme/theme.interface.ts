@@ -1,3 +1,5 @@
+import { Keyframes } from 'styled-components'
+
 export interface ColorVariations {
   base?: string
   hover?: string
@@ -39,11 +41,14 @@ export interface Shadows {
   higher: Shadow[]
 }
 
-export type AnimationConfig = {
+export interface AnimationConfig {
   duration: 'xs' | 's' | 'm' | 'l'
 }
 
-export type Animation = {}
+export interface Animation extends AnimationConfig {
+  keyframes: Keyframes
+  timingFunction: string
+}
 
 export interface Animations {
   emerge: Animation

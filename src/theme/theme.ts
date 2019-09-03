@@ -1,18 +1,27 @@
 import colorUtils from 'color'
+import { css } from 'styled-components'
 
 import { isNil } from '../_internal/data'
 
 import { BASE_THEME } from './theme.data'
-import { Shadow } from './theme.interface'
+import { AnimationConfig, Shadow } from './theme.interface'
 import DesignSystemTheme, {
   ColorFamilies,
   ColorVariations,
   Fonts,
   Shadows,
   Animations,
+  Animation,
   TextColorVariations,
   GetterProps,
 } from './theme.interface'
+
+const ANIMATION_DURATIONS = {
+  xs: 30,
+  s: 75,
+  m: 150,
+  l: 250,
+}
 
 const getTheme = (
   props: GetterProps,
@@ -147,10 +156,19 @@ const colorGetter = <Props extends GetterProps>(
   }
 }
 
-const animationGetter = (name: keyof Animations, config: {} = {}) => (
-  props: GetterProps
-) => {
-  return getTheme(props).animations[name]
+const animationGetter = (
+  name: keyof Animations,
+  config: Partial<AnimationConfig> = {}
+) => (props: GetterProps) => {
+  const animation = getTheme(props).animations[name]
+
+  const customAnimation: Animation = { ...animation, ...config }
+
+  return css`
+    ${customAnimation.keyframes} ${
+    ANIMATION_DURATIONS[customAnimation.duration]
+  }ms ${customAnimation.timingFunction};
+  `
 }
 
 const theme = {

@@ -56,6 +56,16 @@ const Circle = styled.div<{ color?: string; depth?: keyof Shadows }>`
   }
 `
 
+const AnimationCard = styled.div`
+  height: 300px;
+  width: 300px;
+  box-shadow: ${theme.shadow()};
+
+  &:hover {
+    animation: ${theme.animation('emerge', { duration: 'l' })};
+  }
+`
+
 const ThemePatchContainer = styled.div`
   max-width: 520px;
   padding: 24px;
@@ -140,6 +150,22 @@ storiesOf('Utility|theme', module)
         type: 'figma',
         url:
           'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=10%3A214',
+      }),
+    }
+  )
+
+  .add(
+    'animations',
+    () => (
+      <Container>
+        <AnimationCard />
+      </Container>
+    ),
+    {
+      design: config({
+        type: 'figma',
+        url:
+          'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=849%3A0',
       }),
     }
   )
