@@ -10,7 +10,7 @@ import palette from '../palette'
 import theme from '../theme'
 
 import animations from './animations'
-import { Animations } from './animations.interface'
+import { Animations, Durations } from './animations.interface'
 
 const AnimationCardContainer = styled.div`
   display: flex;
@@ -19,7 +19,7 @@ const AnimationCardContainer = styled.div`
 
 const AnimationCardContent = styled.div<{
   animation: keyof Animations
-  duration?: 'xs' | 's' | 'm' | 'l'
+  duration?: Durations
 }>`
   height: 300px;
   width: 300px;
@@ -68,7 +68,7 @@ const AnimationCard: React.FunctionComponent<AnimationCardProps> = ({
         data-animated={isAnimated}
         data-visible={visible}
         animation={animation as keyof Animations}
-        {...(duration ? { duration: duration as 'xs' | 's' | 'm' | 'l' } : {})}
+        {...(duration ? { duration: duration as Durations } : {})}
       />
       <Button small onClick={() => setAnimated(prev => !prev)}>
         {isAnimated ? 'Stop' : 'Start'}

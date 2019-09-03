@@ -1,7 +1,9 @@
 import { Keyframes } from 'styled-components'
 
+export type Durations = 'xs' | 's' | 'm' | 'l'
+
 export interface AnimationConfig {
-  duration: 'xs' | 's' | 'm' | 'l'
+  duration: Durations
   timingFunction?: string
   testMode?: boolean
 }
