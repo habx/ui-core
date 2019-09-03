@@ -76,7 +76,7 @@ const ANIMATIONS: Animations = {
         }
         
         to {
-          transform: perspective(600px) rotateX(30deg) scale(0.95);
+          transform: perspective(600px) rotateX(10deg) scale(0.95);
           opacity: 0;
         }
       `,
