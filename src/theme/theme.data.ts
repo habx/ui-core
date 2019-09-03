@@ -7,8 +7,6 @@ import DesignSystemTheme, { ColorVariations } from './theme.interface'
 
 const WHITE = '#FFFFFF'
 
-const DEFAULT_ANIMATION_TIMING_FUNCTION = 'cubic-bezier(.04,.8,.61,1)'
-
 export const BASE_THEME: DesignSystemTheme = {
   colors: {
     primary: {
@@ -68,8 +66,7 @@ export const BASE_THEME: DesignSystemTheme = {
 
   animations: {
     emerge: {
-      timingFunction: DEFAULT_ANIMATION_TIMING_FUNCTION,
-      duration: 'm',
+      duration: 'l',
       keyframes: keyframes`
         from {
           transform: scale(0.95);
@@ -79,6 +76,20 @@ export const BASE_THEME: DesignSystemTheme = {
         to {
           transform: scale(1);
           opacity: 1;
+        }
+      `,
+    },
+    dive: {
+      duration: 'l',
+      keyframes: keyframes`
+        from {
+          transform: scale(1);
+          opacity: 1;
+        }
+        
+        to {
+          transform: scale(0.95);
+          opacity: 0;
         }
       `,
     },

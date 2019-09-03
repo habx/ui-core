@@ -43,15 +43,17 @@ export interface Shadows {
 
 export interface AnimationConfig {
   duration: 'xs' | 's' | 'm' | 'l'
+  timingFunction?: string
+  testMode?: boolean
 }
 
 export interface Animation extends AnimationConfig {
   keyframes: Keyframes
-  timingFunction: string
 }
 
 export interface Animations {
   emerge: Animation
+  dive: Animation
 }
 
 export default interface DesignSystemTheme {

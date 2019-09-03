@@ -22,6 +22,7 @@ const ANIMATION_DURATIONS = {
   m: 150,
   l: 250,
 }
+const DEFAULT_ANIMATION_TIMING_FUNCTION = 'cubic-bezier(.04,.8,.61,1)'
 
 const getTheme = (
   props: GetterProps,
@@ -162,12 +163,18 @@ const animationGetter = (
 ) => (props: GetterProps) => {
   const animation = getTheme(props).animations[name]
 
-  const customAnimation: Animation = { ...animation, ...config }
+  const {
+    keyframes,
+    duration,
+    timingFunction = DEFAULT_ANIMATION_TIMING_FUNCTION,
+  }: Animation = {
+    ...animation,
+    ...config,
+  }
 
   return css`
-    ${customAnimation.keyframes} ${
-    ANIMATION_DURATIONS[customAnimation.duration]
-  }ms ${customAnimation.timingFunction};
+    animation: ${keyframes} ${ANIMATION_DURATIONS[duration]}ms ${timingFunction}
+      0ms 1 normal forwards;
   `
 }
 
