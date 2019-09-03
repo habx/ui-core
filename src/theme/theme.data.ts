@@ -93,6 +93,34 @@ export const BASE_THEME: DesignSystemTheme = {
         }
       `,
     },
+    emergeSlantFromTop: {
+      duration: 's',
+      keyframes: keyframes`
+        from {
+          transform: rotateX(30deg) translateY(40px);
+          opacity: 0;
+        }
+        
+        to {
+          transform: rotate3d(0) translateY(0);
+          opacity: 1;
+        }
+      `,
+    },
+    emergeSlantFromBottom: {
+      duration: 's',
+      keyframes: keyframes`
+        from {
+          transform: rotateX(-30deg) translateY(40px);
+          opacity: 0;
+        }
+        
+        to {
+          transform: rotateX(0) translateY(0);
+          opacity: 1;
+        }
+      `,
+    },
   },
 }
 

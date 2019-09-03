@@ -173,8 +173,8 @@ const animationGetter = (
   }
 
   return css`
-    animation: ${keyframes} ${ANIMATION_DURATIONS[duration]}ms ${timingFunction}
-      0ms 1 normal forwards;
+    animation: ${keyframes} ${ANIMATION_DURATIONS[duration] * 7}ms
+      ${timingFunction} 0ms 1 normal forwards;
   `
 }
 

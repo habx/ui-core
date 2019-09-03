@@ -76,7 +76,7 @@ const AnimationCardContent = styled.div<{ animation: keyof Animations }>`
 
   &[data-animated='true'] {
     ${({ animation, ...props }) =>
-      theme.animation(animation, { testMode: true })(props)};
+      theme.animation(animation, { testMode: true, duration: 'l' })(props)};
   }
 `
 
@@ -175,6 +175,20 @@ const ANIMATION_GRID_ITEMS = [
     label: 'Dive',
     props: {
       animation: 'dive',
+    },
+  },
+  {
+    label: 'Emerge Z-Slant (from top)',
+    props: {
+      animation: 'emergeSlantFromTop',
+      visible: false,
+    },
+  },
+  {
+    label: 'Emerge Z-Slant (from bottom)',
+    props: {
+      animation: 'emergeSlantFromBottom',
+      visible: false,
     },
   },
 ]
