@@ -4,7 +4,6 @@ import * as React from 'react'
 import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
-import withGrid from '../_internal/StorybookGrid'
 import Background from '../Background'
 import Button from '../Button'
 import palette from '../palette'
@@ -15,7 +14,7 @@ import useTheme from '../useTheme'
 
 import theme from './theme'
 import { THEME_PATCHES } from './theme.data'
-import { Animations, Shadows } from './theme.interface'
+import { Shadows } from './theme.interface'
 
 const Container = styled.div`
   display: flex;
@@ -56,65 +55,6 @@ const Circle = styled.div<{ color?: string; depth?: keyof Shadows }>`
     box-shadow: ${theme.shadow('lower')};
   }
 `
-
-const AnimationCardContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`
-
-const AnimationCardContent = styled.div<{ animation: keyof Animations }>`
-  height: 300px;
-  width: 300px;
-  box-shadow: ${theme.shadow()};
-  margin-bottom: 24px;
-  background-color: ${palette.darkBlue[300]};
-
-  &:not([data-animated='true']) {
-    &:not([data-visible='true']) {
-      opacity: 0;
-    }
-  }
-
-  &[data-animated='true'] {
-    animation: ${({ animation, ...props }) =>
-      theme.animation(animation, { testMode: true })(props)};
-  }
-`
-
-interface AnimationCardProps {
-  visible?: boolean
-  animation: string
-}
-
-const AnimationCard: React.FunctionComponent<AnimationCardProps> = ({
-  visible = true,
-  animation,
-}) => {
-  const [isAnimated, setAnimated] = React.useState<boolean>(false)
-
-  React.useEffect(() => {
-    if (isAnimated) {
-      const timeout = setTimeout(() => {
-        setAnimated(false)
-      }, 2000)
-
-      return () => clearTimeout(timeout)
-    }
-  })
-
-  return (
-    <AnimationCardContainer>
-      <AnimationCardContent
-        data-animated={isAnimated}
-        data-visible={visible}
-        animation={animation as keyof Animations}
-      />
-      <Button small onClick={() => setAnimated(prev => !prev)}>
-        {isAnimated ? 'Stop' : 'Start'}
-      </Button>
-    </AnimationCardContainer>
-  )
-}
 
 const ThemePatchContainer = styled.div`
   max-width: 520px;
@@ -157,54 +97,6 @@ const ThemePatchPalette = () => {
     </Container>
   )
 }
-
-const ANIMATION_GRID_LINES = [
-  {
-    title: 'Animations',
-  },
-]
-
-const ANIMATION_GRID_ITEMS = [
-  {
-    label: 'Emerge',
-    props: {
-      animation: 'emerge',
-      visible: false,
-    },
-  },
-  {
-    label: 'Emerge Z-Slant (from top)',
-    props: {
-      animation: 'emergeSlantFromTop',
-      visible: false,
-    },
-  },
-  {
-    label: 'Emerge Z-Slant (from bottom)',
-    props: {
-      animation: 'emergeSlantFromBottom',
-      visible: false,
-    },
-  },
-  {
-    label: 'Dive',
-    props: {
-      animation: 'dive',
-    },
-  },
-  {
-    label: 'Dive Z-Slant',
-    props: {
-      animation: 'diveSlant',
-    },
-  },
-]
-
-const AnimationGrid = withGrid<AnimationCardProps>({
-  lines: ANIMATION_GRID_LINES,
-  items: ANIMATION_GRID_ITEMS,
-  itemHorizontalSpace: 36,
-})(AnimationCard)
 
 storiesOf('Utility|theme', module)
   .addDecorator(withKnobs)
@@ -251,14 +143,6 @@ storiesOf('Utility|theme', module)
       }),
     }
   )
-
-  .add('animations', () => <AnimationGrid />, {
-    design: config({
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=849%3A0',
-    }),
-  })
   .add(
     'patches',
     () => (

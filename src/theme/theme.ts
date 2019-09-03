@@ -1,28 +1,17 @@
 import colorUtils from 'color'
-import { css } from 'styled-components'
 
 import { isNil } from '../_internal/data'
 
 import { BASE_THEME } from './theme.data'
-import { AnimationConfig, Shadow } from './theme.interface'
+import { Shadow } from './theme.interface'
 import DesignSystemTheme, {
   ColorFamilies,
   ColorVariations,
   Fonts,
   Shadows,
-  Animations,
-  Animation,
   TextColorVariations,
   GetterProps,
 } from './theme.interface'
-
-const ANIMATION_DURATIONS = {
-  xs: 30,
-  s: 75,
-  m: 150,
-  l: 250,
-}
-const DEFAULT_ANIMATION_TIMING_FUNCTION = 'cubic-bezier(.04,.8,.61,1)'
 
 const getTheme = (
   props: GetterProps,
@@ -157,33 +146,11 @@ const colorGetter = <Props extends GetterProps>(
   }
 }
 
-const animationGetter = (
-  name: keyof Animations,
-  config: Partial<AnimationConfig> = {}
-) => (props: GetterProps) => {
-  const animation = getTheme(props).animations[name]
-
-  const {
-    keyframes,
-    duration,
-    timingFunction = DEFAULT_ANIMATION_TIMING_FUNCTION,
-  }: Animation = {
-    ...animation,
-    ...config,
-  }
-
-  return css`
-    ${keyframes} ${ANIMATION_DURATIONS[duration]}ms
-      ${timingFunction} 0ms 1 normal forwards;
-  `
-}
-
 const theme = {
   color: colorGetter,
   textColor: textColorGetter,
   font: fontGetter,
   shadow: shadowGetter,
-  animation: animationGetter,
   raw: BASE_THEME,
 }
 

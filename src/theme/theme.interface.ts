@@ -41,31 +41,12 @@ export interface Shadows {
   higher: Shadow[]
 }
 
-export interface AnimationConfig {
-  duration: 'xs' | 's' | 'm' | 'l'
-  timingFunction?: string
-  testMode?: boolean
-}
-
-export interface Animation extends AnimationConfig {
-  keyframes: Keyframes
-}
-
-export interface Animations {
-  emerge: Animation
-  emergeSlantFromTop: Animation
-  emergeSlantFromBottom: Animation
-  dive: Animation
-  diveSlant: Animation
-}
-
 export default interface DesignSystemTheme {
   colors: ColorFamilies
   textColors: TextColorVariations
   backgroundColor: string
   fonts: Fonts
   shadows: Shadows
-  animations: Animations
 }
 
 export interface GetterProps {
