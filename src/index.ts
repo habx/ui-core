@@ -61,6 +61,7 @@ export { default as notify } from './notify'
 /*
   Theme
  */
+export { default as animations } from './animations'
 export { default as Background, BackgroundProps } from './Background'
 export { default as breakpoints } from './breakpoints'
 export { default as palette } from './palette'
