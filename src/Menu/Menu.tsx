@@ -19,7 +19,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
   })
 
   return (
-    <MenuContainer {...rest} data-open={open} ref={modal.ref}>
+    <MenuContainer {...rest} data-state={modal.state} ref={modal.ref}>
       {children}
     </MenuContainer>
   )
