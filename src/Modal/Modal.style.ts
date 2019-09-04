@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
+import animations from '../animations'
 import Background from '../Background'
 import breakpoints from '../breakpoints'
 import Title from '../Title'
@@ -16,38 +17,21 @@ const FADE_IN = keyframes`
   }
 `
 
-const SLIDE_FROM_ABOVE = keyframes`
-  from {
-    transform: translateY(-24px);
-    opacity: 0;
-  }
-  
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`
-
-const SLIDE_FROM_BELOW = keyframes`
-  from {
-    transform: translateY(100%);
-  }
-  
-  to {
-    transform: translateY(0);
-  }
-`
-
 export const ModalContainer = styled(Background)`
   padding: 48px 36px;
   width: 448px;
   position: relative;
+  overflow: hidden;
+
+  @media (${breakpoints.above.phone}) {
+    border-radius: 2px;
+  }
 
   @media (${breakpoints.below.phone}) {
     width: 100vw;
     height: 100vh;
     align-self: flex-end;
-    padding: 48px 24px;
+    padding: 104px 24px 48px 24px;
   }
 `
 
@@ -64,47 +48,39 @@ export const ModalOverlay = styled.div`
   justify-content: center;
 
   @media (${breakpoints.below.phone}) {
+    background-color: transparent;
+
     &[data-state='opening'] {
       & ${ModalContainer} {
-        animation: ${SLIDE_FROM_BELOW} ${ANIMATION_DURATION}ms linear 0ms
-          forwards;
+        animation: ${animations('emergeSlantFromTop')};
       }
     }
 
     &[data-state='closing'] {
       & ${ModalContainer} {
-        animation: ${SLIDE_FROM_BELOW} ${ANIMATION_DURATION}ms linear 0ms
-          reverse;
-        transform: translateY(100%);
+        animation: ${animations('diveSlant')};
       }
     }
   }
 
   @media (${breakpoints.above.phone}) {
     &[data-state='opening'] {
+      animation: ${FADE_IN} ${ANIMATION_DURATION}ms linear 0ms;
+
       & ${ModalContainer} {
-        animation: ${SLIDE_FROM_ABOVE} ${ANIMATION_DURATION}ms linear 0ms
-          forwards;
+        animation: ${animations('emergeSlantFromBottom')};
       }
     }
 
     &[data-state='closing'] {
+      animation: ${FADE_IN} ${ANIMATION_DURATION}ms linear 0ms reverse;
+      pointer-events: none;
+      background-color: transparent;
+
       & ${ModalContainer} {
-        animation: ${SLIDE_FROM_ABOVE} ${ANIMATION_DURATION}ms linear 0ms
-          reverse;
-        opacity: 0;
+        animation: ${animations('diveSlant')};
       }
     }
-  }
-
-  &[data-state='opening'] {
-    animation: ${FADE_IN} ${ANIMATION_DURATION}ms linear 0ms;
-  }
-
-  &[data-state='closing'] {
-    animation: ${FADE_IN} ${ANIMATION_DURATION}ms linear 0ms reverse;
-    pointer-events: none;
-    background-color: transparent;
   }
 
   &[data-state='closed'] {
@@ -139,4 +115,8 @@ export const CloseIconContainer = styled.div`
   top: 12px;
   right: 12px;
   cursor: pointer;
+
+  @media (${breakpoints.below.phone}) {
+    top: 68px;
+  }
 `

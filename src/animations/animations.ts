@@ -54,7 +54,7 @@ const ANIMATIONS: Animations = {
       `,
   },
   dive: {
-    duration: 'l',
+    duration: 's',
     keyframes: keyframes`
         from {
           transform: scale(1);
