@@ -28,10 +28,12 @@ export const ModalContainer = styled(Background)`
   }
 
   @media (${breakpoints.below.phone}) {
-    width: 100vw;
-    height: 100vh;
-    align-self: flex-end;
-    padding: 104px 24px 48px 24px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
   }
 `
 
@@ -117,6 +119,6 @@ export const CloseIconContainer = styled.div`
   cursor: pointer;
 
   @media (${breakpoints.below.phone}) {
-    top: 68px;
+    position: fixed;
   }
 `
