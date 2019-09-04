@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/habx/lib-design-system#readme",
   "dependencies": {
-    "@delangle/use-modal": "^0.2.1",
+    "@delangle/use-modal": "^0.1.2",
     "color": "^3.1.2",
     "lodash.deburr": "^4.1.0",
     "lodash.get": "^4.4.2",

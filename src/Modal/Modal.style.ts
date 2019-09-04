@@ -19,11 +19,11 @@ const FADE_IN = keyframes`
 
 export const ModalContainer = styled(Background)`
   padding: 48px 36px;
-  width: 448px;
   position: relative;
   overflow: hidden;
 
   @media (${breakpoints.above.phone}) {
+    width: 448px;
     border-radius: 2px;
   }
 

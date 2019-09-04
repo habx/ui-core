@@ -15,7 +15,10 @@ const GRID_PROPS = {
   triggerElement: <Button outline>Open</Button>,
 }
 
-const GRID_LINES = [{ title: 'Basic' }]
+const GRID_LINES = [
+  { title: 'Basic' },
+  { title: 'Full screen on mobile', props: { fullScreenOnMobile: true } },
+]
 
 const GRID_ITEMS = [
   {
