@@ -5,13 +5,14 @@ import { isFunction } from '../_internal/data'
 import {
   WithTriggerElement,
   TriggerReceivedProps,
+  TriggerElementConfig,
 } from './withTriggerElement.interface'
 
-const withTriggerElement = <RefElement extends HTMLElement>() => <
-  Props extends {} = {}
->(
-  WrappedComponent: React.ComponentType<Props>
-) => {
+const withTriggerElement = <RefElement extends HTMLElement>(
+  config: TriggerElementConfig = {}
+) => <Props extends {} = {}>(WrappedComponent: React.ComponentType<Props>) => {
+  const { passTriggerElementAsProp = false } = config
+
   const Wrapper = React.forwardRef<
     RefElement,
     WithTriggerElement<Props, RefElement>
@@ -42,14 +43,19 @@ const withTriggerElement = <RefElement extends HTMLElement>() => <
       return <WrappedComponent {...(rest as Props)} onClose={onClose} />
     }
 
+    const fullTriggerElement = isFunction(triggerElement)
+      ? triggerElement({ open, onClick: handleToggle })
+      : React.cloneElement(triggerElement, { onClick: handleToggle })
+
     return (
       <React.Fragment>
-        {isFunction(triggerElement)
-          ? triggerElement({ open })
-          : React.cloneElement(triggerElement, { onClick: handleToggle })}
+        {!passTriggerElementAsProp && fullTriggerElement}
         <WrappedComponent
           ref={ref}
           {...(rest as Props)}
+          {...(passTriggerElementAsProp && {
+            triggerElement: fullTriggerElement,
+          })}
           open={open}
           onClose={handleClose}
         />
