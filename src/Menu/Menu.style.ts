@@ -45,6 +45,10 @@ export const MenuContent = styled.ul`
 `
 
 export const MenuFullScreenDesktop = styled(Modal)`
+  @media (${breakpoints.above.phone}) {
+    display: none;
+  }
+
   @media (${breakpoints.below.phone}) {
     padding: 12px 0;
   }

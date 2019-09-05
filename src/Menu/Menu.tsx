@@ -2,6 +2,8 @@ import useModal, { Modal as ModalType } from '@delangle/use-modal'
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
+import useWindowSize from '../_internal/useWindowSize'
+import breakpoints from '../breakpoints'
 import withTriggerElement from '../withTriggerElement'
 
 import MenuProps, { MenuInstance } from './Menu.interface'
@@ -55,6 +57,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
     triggerElement,
     ...rest
   } = props
+  const { width } = useWindowSize()
 
   useOnlyOneMenuOpened({ open, onClose })
 
@@ -80,7 +83,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
           ? children(modal as ModalType<HTMLUListElement>)
           : children}
       </MenuContent>
-      {fullScreenOnMobile && (
+      {fullScreenOnMobile && width < breakpoints.raw.phone && (
         <MenuFullScreenDesktop open={open} onClose={onClose}>
           {isFunction(children)
             ? children(modal as ModalType<HTMLUListElement>)
