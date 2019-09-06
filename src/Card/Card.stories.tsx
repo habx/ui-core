@@ -1,7 +1,7 @@
 import { withKnobs, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { withDesign } from 'storybook-addon-designs'
+import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -88,9 +88,14 @@ const Grid = withGrid<CardProps>({
 })(Card)
 
 storiesOf('Miscellaneous|Card', module)
-  .addDecorator(withDesign)
   .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />)
+  .add('gallery', () => <Grid />, {
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=4%3A0',
+    }),
+  })
   .add('dynamic', () => (
     <Card animated={boolean('Animated', false)} flat={boolean('Flat', false)}>
       <CardChildren />

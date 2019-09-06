@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions'
 import { withKnobs, number, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { withDesign } from 'storybook-addon-designs'
+import { config } from 'storybook-addon-designs'
 
 import withGrid from '../_internal/StorybookGrid'
 
@@ -71,10 +71,15 @@ const Grid = withGrid<NavigationDotsProps>({
   itemHorizontalSpace: 24,
 })(NavigationDots)
 
-storiesOf('Actions|NavigationDots', module)
-  .addDecorator(withDesign)
+storiesOf('Navigation|NavigationDots', module)
   .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />)
+  .add('gallery', () => <Grid />, {
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A2116',
+    }),
+  })
   .add('dynamic', () => (
     <NavigationDots
       size={number('Size', 3)}

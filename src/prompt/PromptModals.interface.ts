@@ -4,7 +4,7 @@ export type StateModal = {
   props: (injectedProps: PromptInjectedProps) => ModalProps
   options?: {}
   open: boolean
-  resolve: (success: boolean) => void
+  resolve: (response: unknown) => void
   id: number
 }
 

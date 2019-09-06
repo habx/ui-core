@@ -66,6 +66,7 @@ export const Input = styled.input`
   min-height: 3rem;
   max-width: 100%;
   min-width: 0;
+  width: 100%;
 
   &[data-small='true'] {
     padding: 0 12px;
@@ -74,4 +75,21 @@ export const Input = styled.input`
   }
 
   ${inputStyle};
+`
+
+export const InputContainer = styled.div`
+  ${inputStyle};
+  border: none;
+  position: relative;
+  width: 100%;
+`
+
+export const RightElementContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
 `

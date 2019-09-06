@@ -1,10 +1,11 @@
 import { withKnobs, boolean, text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { withDesign } from 'storybook-addon-designs'
+import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
+import Icon from '../Icon'
 
 import TextInput from './index'
 import TextInputProps from './TextInput.interface'
@@ -57,6 +58,12 @@ const GRID_ITEMS = [
       disabled: true,
     },
   },
+  {
+    label: 'With icon',
+    props: {
+      elementRight: <Icon icon="close" />,
+    },
+  },
 ]
 
 const Grid = withGrid<TextInputProps>({
@@ -67,9 +74,14 @@ const Grid = withGrid<TextInputProps>({
 })(TextInput)
 
 storiesOf('Input|TextInput', module)
-  .addDecorator(withDesign)
   .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />)
+  .add('gallery', () => <Grid />, {
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1845',
+    }),
+  })
   .add('dynamic', () => (
     <TextInputContainer>
       <TextInput

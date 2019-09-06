@@ -4,10 +4,11 @@ import { WithTriggerElement } from '../withTriggerElement'
 
 export interface ModalInnerProps extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean
-  onClose?: (e: Event) => void
+  onClose?: () => void
   title?: string
   persistent?: boolean
   animated?: boolean
+  alwaysRenderChildren?: boolean
 }
 
 export default interface ModalProps

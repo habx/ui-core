@@ -1,23 +1,18 @@
 import { withKnobs, select, boolean, text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
+import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
+import withGrid from '../_internal/StorybookGrid'
 import breakpoints from '../breakpoints'
 
-import Title from './index'
-import { TitleTypes } from './Title.interface'
+import Title from './Title'
+import TitleProps, { TitleTypes } from './Title.interface'
 
 const TitleContainer = styled.div`
   width: 750px;
-  margin: 64px;
-
-  & > * {
-    margin-bottom: 1em;
-  }
-
   @media (${breakpoints.below.phone}) {
-    margin: 24px;
     max-width: calc(100vw - 48px);
   }
 `
@@ -32,27 +27,50 @@ const types: { [key: string]: TitleTypes } = {
   'Regular Title': 'regular',
 }
 
+const WrappedTitle: React.FunctionComponent<TitleProps> = props => (
+  <TitleContainer>
+    <Title {...props} />
+  </TitleContainer>
+)
+
+const GRID_PROPS = {
+  children:
+    'Devenez propriétaire d’un appartement neuf en plein centre d’Antony',
+}
+
+const GRID_LINES = [
+  ...Object.entries(types).map(([typeName, type]) => ({
+    title: typeName,
+    props: {
+      type: type,
+    },
+  })),
+  {
+    title: 'Colored background',
+    props: {
+      type: 'article' as TitleTypes,
+    },
+    coloredBackground: true,
+  },
+]
+
+const GRID_ITEMS = [{}]
+
+const Grid = withGrid<TitleProps>({
+  props: GRID_PROPS,
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+})(WrappedTitle)
+
 storiesOf('Typography|Title', module)
   .addDecorator(withKnobs)
-  .add('galery', () => (
-    <TitleContainer>
-      <Title type="headerMaxi">Big bad and boujee</Title>
-      <Title type="headerBig">
-        Raindrops, drop tops, smokin’ on cookie in the
-      </Title>
-      <Title type="header">
-        Devenez propriétaire d’un appartement neuf en plein centre d’Antony
-      </Title>
-      <Title type="headerSmall">
-        La nouvelle façon d’acheter  un appartement neuf
-      </Title>
-      <Title type="article">Everything You Need for Successful Holiday</Title>
-      <Title type="section">
-        Une démarche simple et rapide, une démarche rapide et simple
-      </Title>
-      <Title type="regular">Les murs porteurs et leur représentation</Title>
-    </TitleContainer>
-  ))
+  .add('galery', () => <Grid />, {
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A2',
+    }),
+  })
   .add('dynamic', () => (
     <TitleContainer>
       <Title

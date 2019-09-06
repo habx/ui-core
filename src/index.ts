@@ -33,6 +33,7 @@ export { default as Tag, TagProps } from './Tag'
 export { default as Checkbox, CheckboxProps } from './Checkbox'
 export { default as PasswordInput, PasswordInputProps } from './PasswordInput'
 export { default as PhoneInput, PhoneInputProps } from './PhoneInput'
+export { default as Select, SelectProps } from './Select'
 export { default as TextArea, TextAreaProps } from './TextArea'
 export { default as TextInput, TextInputProps } from './TextInput'
 
@@ -42,6 +43,7 @@ export { default as TextInput, TextInputProps } from './TextInput'
 export { default as Icon, IconProps } from './Icon'
 export { default as Card, CardProps } from './Card'
 export { default as NavigationDots, NavigationDotsProps } from './NavigationDots'
+export { default as Loader, LoaderProps } from './Loader'
 
 /*
   Modals
@@ -59,6 +61,7 @@ export { default as notify } from './notify'
 /*
   Theme
  */
+export { default as animations } from './animations'
 export { default as Background, BackgroundProps } from './Background'
 export { default as breakpoints } from './breakpoints'
 export { default as palette } from './palette'

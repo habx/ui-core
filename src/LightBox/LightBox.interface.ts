@@ -5,7 +5,7 @@ import { WithTriggerElement } from '../withTriggerElement'
 export interface LightHouseInnerProps
   extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean
-  onClose?: (e: Event) => void
+  onClose?: () => void
 }
 
 export default interface LightHouseProps

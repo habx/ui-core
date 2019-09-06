@@ -1,7 +1,7 @@
 import { withKnobs, boolean, text } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { withDesign } from 'storybook-addon-designs'
+import { config } from 'storybook-addon-designs'
 
 import withGrid from '../_internal/StorybookGrid'
 
@@ -46,10 +46,15 @@ const Grid = withGrid<TagProps>({
   items: GRID_ITEMS,
 })(Tag)
 
-storiesOf('Actions|Tag', module)
-  .addDecorator(withDesign)
+storiesOf('Navigation|Tag', module)
   .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />)
+  .add('gallery', () => <Grid />, {
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A2116',
+    }),
+  })
   .add('dynamic', () => (
     <Tag
       children={text('Value', 'Agencement 1')}

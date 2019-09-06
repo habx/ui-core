@@ -31,13 +31,23 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
       >
         {iconLeft && (
-          <IconContainer data-position="left">{iconLeft}</IconContainer>
+          <IconContainer data-position="left" data-testid="icon-left-container">
+            {iconLeft}
+          </IconContainer>
         )}
-        <ButtonContent dangerouslySetInnerHTML={dangerouslySetInnerHTML}>
+        <ButtonContent
+          dangerouslySetInnerHTML={dangerouslySetInnerHTML}
+          data-testid="label-container"
+        >
           {children}
         </ButtonContent>
         {iconRight && (
-          <IconContainer data-position="right">{iconRight}</IconContainer>
+          <IconContainer
+            data-position="right"
+            data-testid="icon-right-container"
+          >
+            {iconRight}
+          </IconContainer>
         )}
       </ButtonContainer>
     )

@@ -16,10 +16,12 @@ const ConfirmModal: React.FunctionComponent<{}> = () => {
   const [modals, setModals] = React.useState<StateModal[]>([])
 
   const handleResolve = React.useCallback(
-    (modal, response: any) => {
+    (modal: StateModal, response: unknown) => {
       if (isMounted.current) {
         setModals(prev =>
-          prev.map(el => (el.id === modal.id ? { ...el, open: false } : el))
+          prev.map<StateModal>(el =>
+            el.id === modal.id ? { ...el, open: false } : el
+          )
         )
 
         registerTimeout(
@@ -57,7 +59,7 @@ const ConfirmModal: React.FunctionComponent<{}> = () => {
 
   return (
     <React.Fragment>
-      {modals.map(modal => {
+      {modals.map((modal: StateModal) => {
         const { props } = modal
 
         const content = (

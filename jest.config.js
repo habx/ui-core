@@ -17,5 +17,6 @@ module.exports = {
     '!src/**/*.data.tsx',
     '!src/**/*.stories.ts',
     '!src/**/*.stories.tsx',
+    '!src/_internal/StorybookGrid.tsx',
   ],
 }

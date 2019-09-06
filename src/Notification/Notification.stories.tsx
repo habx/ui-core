@@ -1,6 +1,7 @@
 import { withKnobs, text, boolean } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
+import { config } from 'storybook-addon-designs'
 
 import withGrid from '../_internal/StorybookGrid'
 import Button from '../Button'
@@ -63,9 +64,15 @@ const Grid = withGrid<NotificationProps>({
   itemVerticalSpace: 24,
 })(Notification)
 
-storiesOf('Notifications|Notification', module)
+storiesOf('Alerts|Notification', module)
   .addDecorator(withKnobs)
-  .add('grid', () => <Grid />)
+  .add('grid', () => <Grid />, {
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=60%3A4',
+    }),
+  })
   .add('dynamic', () => (
     <Notification
       title={text('Title', 'Blueprint sent')}

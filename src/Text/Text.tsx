@@ -6,6 +6,7 @@ import fontScale, { FontScale } from '../fontScale'
 import theme from '../theme'
 import withMarkdown from '../withMarkdown'
 
+import { TextProps } from './index'
 import TitleProps from './Text.interface'
 
 const size = (name: keyof FontScale) => css`
