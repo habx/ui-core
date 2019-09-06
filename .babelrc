@@ -1,6 +1,13 @@
 {
   "presets": [
-    "@babel/env",
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "ie": "11"
+        }
+      }
+    ],
     "@babel/react",
     "@babel/typescript"
   ],
