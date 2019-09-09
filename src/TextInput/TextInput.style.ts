@@ -7,50 +7,63 @@ import theme from '../theme'
 export const inputStyle = css`
   font-family: ${theme.font()};
   font-size: 16px;
-  color: ${theme.textColor('base')};
-  background-color: ${palette.darkBlue[200]};
 
   outline: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border: solid 1.5px ${palette.darkBlue[200]};
   border-radius: 4px;
 
   transition: all 150ms ease-in-out;
 
-  &::placeholder {
-    color: ${theme.textColor('placeholder')};
+  &:disabled {
+    pointer-events: none;
   }
 
-  &:disabled {
-    border-color: ${palette.darkBlue[200]};
+  &:not([data-light='true']) {
+    border: solid 1.5px ${palette.darkBlue[200]};
+    color: ${theme.textColor('base')};
     background-color: ${palette.darkBlue[200]};
-    color: ${palette.darkBlue[700]};
-    pointer-events: none;
 
     &::placeholder {
-      color: ${theme.textColor('disabledPlaceholder')};
+      color: ${theme.textColor('placeholder')};
+    }
+
+    &:disabled {
+      border-color: ${palette.darkBlue[200]};
+      background-color: ${palette.darkBlue[200]};
+      color: ${palette.darkBlue[700]};
+      pointer-events: none;
+
+      &::placeholder {
+        color: ${theme.textColor('disabledPlaceholder')};
+      }
+    }
+
+    &:hover,
+    &:focus {
+      border-color: ${palette.darkBlue[300]};
+    }
+
+    &:focus {
+      background-color: #fff;
+    }
+
+    &[data-background='true'] {
+      background-color: #fff;
+      border-color: #fff;
+    }
+
+    &[data-error='true'] {
+      border-color: ${palette.orange[400]};
+      color: ${palette.orange[400]};
+      box-shadow: 0 1px 0 ${palette.orange[400]};
     }
   }
 
-  &:hover,
-  &:focus {
-    border-color: ${palette.darkBlue[300]};
-  }
-
-  &:focus {
-    background-color: #fff;
-  }
-
-  &[data-background='true'] {
-    background-color: #fff;
-    border-color: #fff;
-  }
-
-  &[data-error='true'] {
-    border-color: ${palette.orange[400]};
-    color: ${palette.orange[400]};
-    box-shadow: 0 1px 0 ${palette.orange[400]};
+  &[data-light='true'] {
+    color: ${theme.color('primary')};
+    font-size: 18px;
+    padding: 0;
   }
 
   @media (${breakpoints.below.phone}) {
@@ -75,11 +88,14 @@ export const Input = styled.input`
   }
 
   ${inputStyle};
+
+  &[data-light='true'] {
+    background-color: transparent;
+    border: none;
+  }
 `
 
 export const InputContainer = styled.div`
-  ${inputStyle};
-  border: none;
   position: relative;
   width: 100%;
 `
@@ -92,4 +108,5 @@ export const RightElementContainer = styled.div`
   display: flex;
   align-items: center;
   font-size: 18px;
+  font-family: ${theme.font()};
 `
