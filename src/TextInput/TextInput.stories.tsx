@@ -30,6 +30,10 @@ const GRID_LINES = [
     props: { small: true },
   },
   {
+    title: 'Light',
+    props: { light: true },
+  },
+  {
     title: 'Colored background',
     coloredBackground: true,
   },
@@ -61,7 +65,7 @@ const GRID_ITEMS = [
   {
     label: 'With icon',
     props: {
-      elementRight: <Icon icon="close" />,
+      elementRight: '€',
     },
   },
 ]

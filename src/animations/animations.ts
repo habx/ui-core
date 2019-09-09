@@ -43,7 +43,7 @@ const ANIMATIONS: Animations = {
     duration: 'm',
     keyframes: keyframes`
         from {
-          transform: perspective(600px) rotateX(-30deg) translateY(40px) scale(0.95);
+          transform: perspective(600px) rotateX(-30deg) translateY(400px) scale(0.95);
           opacity: 0;
         }
         
@@ -68,7 +68,7 @@ const ANIMATIONS: Animations = {
       `,
   },
   diveSlant: {
-    duration: 'l',
+    duration: 's',
     keyframes: keyframes`
         from {
           transform: perspective(600px) rotateX(0) scale(1);

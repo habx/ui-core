@@ -10,6 +10,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     const {
       small = false,
       error = false,
+      light = false,
       className,
       style,
       elementRight,
@@ -22,6 +23,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         <Input
           data-small={small}
           data-error={error}
+          data-light={light}
           data-background={theme.backgroundColor !== '#FFFFFF'}
           {...rest}
           ref={ref}
