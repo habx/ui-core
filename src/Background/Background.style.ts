@@ -6,5 +6,9 @@ export const BackgroundContainer = styled.div<{
   opacity: number
   backgroundColor: string
 }>`
-  background-color: ${theme.color('primary', { propName: 'backgroundColor' })};
+  &:not([data-simulated='true']) {
+    background-color: ${theme.color('primary', {
+      propName: 'backgroundColor',
+    })};
+  }
 `
