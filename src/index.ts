@@ -26,6 +26,8 @@ export { default as MenuLine, MenuLineProps } from './MenuLine'
 export { default as Button, ButtonProps } from './Button'
 export { default as NavigationButton, NavigationButtonProps } from './NavigationButton'
 export { default as Tag, TagProps } from './Tag'
+export { default as NavBar,  NavBarProps } from './NavBar'
+export { default as NavBarItem,  NavBarItemProps } from './NavBarItem'
 
 /*
   Inputs
