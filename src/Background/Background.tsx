@@ -7,7 +7,7 @@ import { BackgroundContainer } from './Background.style'
 
 const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
   (props, ref) => {
-    const { backgroundColor, opacity = 1, ...rest } = props
+    const { backgroundColor, opacity = 1, simulated, ...rest } = props
 
     return (
       <ThemeProvider backgroundColor={backgroundColor}>
@@ -16,6 +16,7 @@ const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
           {...rest}
           backgroundColor={backgroundColor}
           opacity={opacity}
+          data-simulated={simulated}
         />
       </ThemeProvider>
     )
