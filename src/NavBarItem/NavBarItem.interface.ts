@@ -5,10 +5,10 @@ import { styledAs } from '../_internal/types'
 export default interface NavBarItemProps
   extends React.LiHTMLAttributes<HTMLLIElement> {
   backgroundColor?: string
-  activeBackgroundColor?: string
   icon?: React.ReactNode
-  tooltip?: React.ReactNode
+  label?: React.ReactNode
   active?: boolean
   bottom?: boolean
+  disabled?: boolean
   as?: styledAs
 }

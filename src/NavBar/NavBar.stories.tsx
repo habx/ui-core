@@ -30,43 +30,19 @@ const navDecorator = (storyFn: Function) => (
 storiesOf('Navigation|NavBar', module)
   .addDecorator(navDecorator)
   .add('basic', () => (
-    <NavBar>
-      <NavBarItem icon={<Icon icon="home" />} tooltip="Accueil" active />
-      <NavBarItem icon={<Icon icon="person" />} tooltip="Profil" />
-    </NavBar>
-  ))
-  .add('with custom background color', () => (
-    <NavBar backgroundColor="red">
-      <NavBarItem icon={<Icon icon="home" />} tooltip="Accueil" active />
-      <NavBarItem icon={<Icon icon="person" />} tooltip="Profil" />
-    </NavBar>
-  ))
-  .add('with custom active color', () => (
-    <NavBar activeBackgroundColor="green">
-      <NavBarItem icon={<Icon icon="home" />} tooltip="Accueil" active />
-      <NavBarItem icon={<Icon icon="person" />} tooltip="Profil" />
-    </NavBar>
-  ))
-  .add('with custom active color on second item', () => (
-    <NavBar>
-      <NavBarItem icon={<Icon icon="home" />} tooltip="Accueil" active />
+    <NavBar title="Home">
       <NavBarItem
-        icon={<Icon icon="person" />}
-        tooltip="Profil"
-        activeBackgroundColor="blue"
+        icon={<Icon icon="house-building-outline" />}
+        label="Programmes"
+        active
       />
-    </NavBar>
-  ))
-  .add('with title', () => (
-    <NavBar title={<span>H</span>}>
-      <NavBarItem icon={<Icon icon="home" />} tooltip="Accueil" active />
-      <NavBarItem icon={<Icon icon="person" />} tooltip="Profil" />
-    </NavBar>
-  ))
-  .add('with bottom elements', () => (
-    <NavBar title={<span>H</span>}>
-      <NavBarItem icon={<Icon icon="home" />} tooltip="Accueil" active />
-      <NavBarItem icon={<Icon icon="person" />} tooltip="Profil" />
-      <NavBarItem icon={<Icon icon="rss_feed" />} tooltip="Feed" bottom />
+      <NavBarItem icon={<Icon icon="person-outline" />} label="Contacts" />
+      <NavBarItem icon={<Icon icon="calendar-event" />} label="Événements" />
+      <NavBarItem icon={<Icon icon="share" />} label="Partager" disabled />
+      <NavBarItem
+        icon={<Icon icon="person-outline" />}
+        label="Mon compte"
+        bottom
+      />
     </NavBar>
   ))
