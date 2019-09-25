@@ -8,18 +8,20 @@ import NavBarItemProps from './NavBarItem.interface'
 import {
   IconContainer,
   NavBarItemContainer,
-  NavBarItemTooltip,
-  NavBarItemTooltipContent,
+  TitleContainer,
 } from './NavBarItem.style'
 
 const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
   (props, ref) => {
     const {
       icon,
-      tooltip,
-      activeBackgroundColor,
+      label,
       isInsideANavBar,
+      isExpanded,
       bottom,
+      active,
+      disabled,
+      color,
       ...rest
     } = useMergedContext(NavBarContext, props)
 
@@ -32,22 +34,14 @@ const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
       <NavBarItemContainer
         data-testid="nav-bar-item"
         tabIndex={0}
-        activebackgroundcolor={activeBackgroundColor as string}
         data-bottom={bottom}
+        data-active={active}
+        data-disabled={disabled}
         {...rest}
         ref={ref}
       >
         <IconContainer>{icon}</IconContainer>
-        {tooltip && (
-          <React.Fragment>
-            <NavBarItemTooltip
-              activebackgroundcolor={activeBackgroundColor as string}
-            >
-              <IconContainer>{icon}</IconContainer>
-              <NavBarItemTooltipContent>{tooltip}</NavBarItemTooltipContent>
-            </NavBarItemTooltip>
-          </React.Fragment>
-        )}
+        {isExpanded && <TitleContainer color={color}>{label}</TitleContainer>}
       </NavBarItemContainer>
     )
   }

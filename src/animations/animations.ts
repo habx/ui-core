@@ -2,13 +2,14 @@ import { css, keyframes } from 'styled-components'
 
 import { Animations, Animation, AnimationConfig } from './animations.interface'
 
-const ANIMATION_DURATIONS = {
+export const ANIMATION_DURATIONS = {
   xs: 30,
   s: 75,
   m: 150,
   l: 250,
 }
-const ANIMATION_TIMING_FUNCTION = 'cubic-bezier(.04,.8,.61,1)'
+
+export const ANIMATION_TIMING_FUNCTION = 'cubic-bezier(.04,.8,.61,1)'
 
 const ANIMATIONS: Animations = {
   emerge: {

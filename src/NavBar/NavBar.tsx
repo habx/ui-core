@@ -1,22 +1,19 @@
 import * as React from 'react'
 
-import Button from '../Button'
-import FontIcon from '../Icon'
+import Icon from '../Icon'
 import palette from '../palette'
 import useTheme from '../useTheme'
 
+import GeometricalShapes from './GeometricalShapes'
 import NavBarContext from './NavBar.context'
 import NavBarProps from './NavBar.interface'
 import {
   NavBarContainer,
-  NavBarSideContainer,
+  NavBarContent,
+  NavBarHeader,
+  NavBarPageLogo,
   NavBarItemsContainer,
-  NavBarTitle,
-  NavBarPaddingTop,
-  NavBarTopBar,
-  NavBarTopBarTitle,
-  NavBarClose,
-  NavBarTopBarSquare,
+  NavBarToggleButton,
 } from './NavBar.style'
 
 const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
@@ -28,53 +25,41 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
     const {
       children,
       title,
-      backgroundColor: rawBackgroundColor,
+      color = palette.darkBlue[900],
+      backgroundColor = palette.yellow[600],
       ...rest
     } = props
 
-    const [isOpenedOnMobile, setOpenedOnMobile] = React.useState(false)
+    const [isExpanded, setExpanded] = React.useState(false)
 
-    const handleMobileToggle = React.useCallback(
-      () => setOpenedOnMobile(prev => !prev),
-      []
-    )
-
-    const backgroundColor = props.backgroundColor || palette.blue[500]
-    const activeBackgroundColor =
-      props.activeBackgroundColor || palette.blue[800]
+    const handleToggle = React.useCallback(() => setExpanded(prev => !prev), [])
 
     const context = React.useMemo(
-      () => ({ activeBackgroundColor, isInsideANavBar: true }),
-      [activeBackgroundColor]
+      () => ({ isInsideANavBar: true, isExpanded, color }),
+      [color, isExpanded]
     )
 
     return (
       <NavBarContext.Provider value={context}>
         <NavBarContainer data-testid="nav-bar-container" {...rest} ref={ref}>
-          <NavBarPaddingTop />
-
-          <NavBarTopBar>
-            <NavBarTopBarSquare>
-              <Button onClick={handleMobileToggle}>
-                <FontIcon icon="menu" onClick={handleMobileToggle} />
-              </Button>
-            </NavBarTopBarSquare>
-
-            {title && <NavBarTopBarTitle>{title}</NavBarTopBarTitle>}
-
-            <NavBarTopBarSquare />
-          </NavBarTopBar>
-
-          <NavBarSideContainer
-            backgroundcolor={backgroundColor}
-            data-mobile-open={isOpenedOnMobile}
+          <NavBarContent
+            data-expanded={isExpanded}
+            color={color}
+            backgroundColor={backgroundColor}
           >
-            <NavBarClose>
-              <FontIcon icon="arrow_back" onClick={handleMobileToggle} />
-            </NavBarClose>
-            {title && <NavBarTitle>{title}</NavBarTitle>}
+            <GeometricalShapes isExpanded={isExpanded} />
+            <NavBarHeader>
+              {isExpanded && (
+                <NavBarPageLogo color={color} type="caption">
+                  {title}
+                </NavBarPageLogo>
+              )}
+              <NavBarToggleButton onClick={handleToggle}>
+                <Icon icon="hamburger-menu" />
+              </NavBarToggleButton>
+            </NavBarHeader>
             <NavBarItemsContainer>{children}</NavBarItemsContainer>
-          </NavBarSideContainer>
+          </NavBarContent>
         </NavBarContainer>
       </NavBarContext.Provider>
     )
