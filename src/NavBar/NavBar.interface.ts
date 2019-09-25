@@ -4,11 +4,13 @@ import { Except } from '../_internal/types'
 
 export default interface NavBarProps
   extends Except<React.HTMLAttributes<HTMLUListElement>, 'title'> {
-  backgroundColor?: string
   title?: string
+  color?: string
+  backgroundColor?: string
 }
 
 export interface NavBarContextProps {
   isInsideANavBar: boolean
   isExpanded: boolean
+  color: string
 }

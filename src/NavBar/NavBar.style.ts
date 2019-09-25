@@ -4,7 +4,6 @@ import {
   ANIMATION_DURATIONS,
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
-import palette from '../palette'
 import Text from '../Text'
 import theme from '../theme'
 
@@ -18,7 +17,18 @@ export const NavBarContainer = styled.ul`
   position: relative;
 `
 
-export const NavBarContent = styled.div`
+export const NavBarToggleButton = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+`
+
+export const NavBarContent = styled.div<{
+  color?: string
+  backgroundColor?: string
+}>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -26,11 +36,15 @@ export const NavBarContent = styled.div`
   transition: width ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
   font-family: ${theme.font()};
 
-  background-color: ${palette.yellow[600]};
-  color: ${palette.darkBlue[900]};
+  background-color: ${({ backgroundColor }) => backgroundColor};
+  color: ${({ color }) => color};
 
   &[data-expanded='true'] {
     width: 250px;
+  }
+
+  & ${NavBarToggleButton} {
+    color: ${({ color }) => color};
   }
 `
 
@@ -49,14 +63,6 @@ export const NavBarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
-
-export const NavBarToggleButton = styled.button`
-  background: none;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 0;
 `
 
 export const NavBarPageLogo = styled(Text)`

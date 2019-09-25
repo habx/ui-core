@@ -21,6 +21,7 @@ const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
       bottom,
       active,
       disabled,
+      color,
       ...rest
     } = useMergedContext(NavBarContext, props)
 
@@ -40,7 +41,7 @@ const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
         ref={ref}
       >
         <IconContainer>{icon}</IconContainer>
-        {isExpanded && <TitleContainer>{label}</TitleContainer>}
+        {isExpanded && <TitleContainer color={color}>{label}</TitleContainer>}
       </NavBarItemContainer>
     )
   }
