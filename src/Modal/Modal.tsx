@@ -75,4 +75,4 @@ const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
   }
 )
 
-export default withTriggerElement<HTMLDivElement>()(Modal)
+export default withTriggerElement<HTMLDivElement>()<ModalInnerProps>(Modal)

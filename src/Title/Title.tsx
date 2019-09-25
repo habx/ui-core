@@ -139,4 +139,6 @@ const Title = React.forwardRef<HTMLHeadingElement, TitleProps>((props, ref) => {
   return <TitleComponent ref={ref} {...rest} />
 })
 
-export default withMarkdown<HTMLHeadingElement>({ inline: true })(Title)
+export default withMarkdown<HTMLHeadingElement>({ inline: true })<TitleProps>(
+  Title
+)

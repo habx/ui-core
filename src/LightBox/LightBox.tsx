@@ -8,10 +8,10 @@ import Icon from '../Icon'
 import { ANIMATION_DURATION } from '../Menu/Menu.style'
 import withTriggerElement from '../withTriggerElement'
 
-import { LightHouseInnerProps } from './LightBox.interface'
+import { LightBoxInnerProps } from './LightBox.interface'
 import { LightBoxOverlay, CloseIconContainer } from './LightBox.style'
 
-const LightBox = React.forwardRef<HTMLDivElement, LightHouseInnerProps>(
+const LightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
   (props, ref) => {
     const { open, onClose, children, ...rest } = props
 
@@ -45,4 +45,6 @@ const LightBox = React.forwardRef<HTMLDivElement, LightHouseInnerProps>(
   }
 )
 
-export default withTriggerElement<HTMLDivElement>()(LightBox)
+export default withTriggerElement<HTMLDivElement>()<LightBoxInnerProps>(
+  LightBox
+)

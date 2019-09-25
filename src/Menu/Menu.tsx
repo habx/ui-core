@@ -6,7 +6,7 @@ import useWindowSize from '../_internal/useWindowSize'
 import breakpoints from '../breakpoints'
 import withTriggerElement from '../withTriggerElement'
 
-import MenuProps, { MenuInstance } from './Menu.interface'
+import { MenuInstance, MenuInnerProps } from './Menu.interface'
 import {
   MenuContainer,
   MenuContent,
@@ -48,52 +48,54 @@ const useOnlyOneMenuOpened = (menu: MenuInstance) => {
   }, [menu.open])
 }
 
-const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
-  const {
-    children,
-    open,
-    onClose,
-    fullScreenOnMobile = false,
-    triggerElement,
-    ...rest
-  } = props
-  const { width } = useWindowSize()
+const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
+  (props, ref) => {
+    const {
+      children,
+      open,
+      onClose,
+      fullScreenOnMobile = false,
+      triggerElement,
+      ...rest
+    } = props
+    const { width } = useWindowSize()
 
-  useOnlyOneMenuOpened({ open, onClose })
+    useOnlyOneMenuOpened({ open, onClose })
 
-  const modal = useModal<HTMLUListElement>({
-    ref,
-    open,
-    onClose,
-    persistent: false,
-    animated: true,
-    animationDuration: ANIMATION_DURATION,
-  })
+    const modal = useModal<HTMLUListElement>({
+      ref,
+      open,
+      onClose,
+      persistent: false,
+      animated: true,
+      animationDuration: ANIMATION_DURATION,
+    })
 
-  return (
-    <MenuContainer>
-      {triggerElement}
-      <MenuContent
-        {...rest}
-        data-state={modal.state}
-        data-full-screen-on-mobile={fullScreenOnMobile}
-        ref={modal.ref}
-      >
-        {isFunction(children)
-          ? children(modal as ModalType<HTMLUListElement>)
-          : children}
-      </MenuContent>
-      {fullScreenOnMobile && width < breakpoints.raw.phone && (
-        <MenuFullScreenDesktop open={open} onClose={onClose}>
+    return (
+      <MenuContainer>
+        {triggerElement}
+        <MenuContent
+          {...rest}
+          data-state={modal.state}
+          data-full-screen-on-mobile={fullScreenOnMobile}
+          ref={modal.ref}
+        >
           {isFunction(children)
             ? children(modal as ModalType<HTMLUListElement>)
             : children}
-        </MenuFullScreenDesktop>
-      )}
-    </MenuContainer>
-  )
-})
+        </MenuContent>
+        {fullScreenOnMobile && width < breakpoints.raw.phone && (
+          <MenuFullScreenDesktop open={open} onClose={onClose}>
+            {isFunction(children)
+              ? children(modal as ModalType<HTMLUListElement>)
+              : children}
+          </MenuFullScreenDesktop>
+        )}
+      </MenuContainer>
+    )
+  }
+)
 
 export default withTriggerElement<HTMLUListElement>({
   passTriggerElementAsProp: true,
-})(Menu)
+})<MenuInnerProps>(Menu)

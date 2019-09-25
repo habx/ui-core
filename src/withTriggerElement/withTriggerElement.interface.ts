@@ -5,7 +5,7 @@ export interface TriggerReceivedProps<RefElement> {
   onClose?: (e: React.SyntheticEvent<RefElement>) => void
 }
 
-type TriggerState = {
+export type TriggerState = {
   open: boolean
   onClick?: () => void
 }

@@ -2,11 +2,11 @@ import * as React from 'react'
 
 import { WithTriggerElement } from '../withTriggerElement'
 
-export interface LightHouseInnerProps
+export interface LightBoxInnerProps
   extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean
   onClose?: () => void
 }
 
-export default interface LightHouseProps
-  extends WithTriggerElement<LightHouseInnerProps, HTMLDivElement> {}
+export default interface LightBoxProps
+  extends WithTriggerElement<LightBoxInnerProps, HTMLDivElement> {}
