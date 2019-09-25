@@ -38,7 +38,9 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
           <NavBarContent data-expanded={isExpanded}>
             <GeometricalShapes isExpanded={isExpanded} />
             <NavBarHeader>
-              {isExpanded && <NavBarPageLogo>T</NavBarPageLogo>}
+              {isExpanded && (
+                <NavBarPageLogo type="caption">{title}</NavBarPageLogo>
+              )}
               <NavBarToggleButton onClick={handleToggle}>
                 <Icon icon="hamburger-menu" />
               </NavBarToggleButton>

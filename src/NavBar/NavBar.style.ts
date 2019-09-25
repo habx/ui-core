@@ -5,6 +5,7 @@ import {
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
 import palette from '../palette'
+import Text from '../Text'
 import theme from '../theme'
 
 export const NavBarContainer = styled.ul`
@@ -58,4 +59,14 @@ export const NavBarToggleButton = styled.button`
   padding: 0;
 `
 
-export const NavBarPageLogo = styled.div``
+export const NavBarPageLogo = styled(Text)`
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  background-color: ${theme.color('secondary', { opacity: 0.4 })};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+`

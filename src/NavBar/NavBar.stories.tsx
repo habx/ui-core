@@ -39,10 +39,6 @@ storiesOf('Navigation|NavBar', module)
       <NavBarItem icon={<Icon icon="person-outline" />} label="Contacts" />
       <NavBarItem icon={<Icon icon="calendar-event" />} label="Événements" />
       <NavBarItem icon={<Icon icon="share" />} label="Partager" disabled />
-      <NavBarItem
-        icon={<Icon icon="person-outline" />}
-        label="Mon compte"
-        bottom
-      />
+      <NavBarItem icon={<Icon icon="settings" />} label="Mon compte" bottom />
     </NavBar>
   ))
