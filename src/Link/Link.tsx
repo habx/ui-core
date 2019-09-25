@@ -18,4 +18,6 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   return <LinkContainer ref={ref} {...additionalProps} {...rest} />
 })
 
-export default withMarkdown<HTMLAnchorElement>({ inline: true })(Link)
+export default withMarkdown<HTMLAnchorElement>({ inline: true })<LinkProps>(
+  Link
+)

@@ -45,4 +45,4 @@ const LightBox = React.forwardRef<HTMLDivElement, LightHouseInnerProps>(
   }
 )
 
-export default withTriggerElement<HTMLDivElement>()(LightBox)
+export default withTriggerElement<HTMLDivElement>()<LightBoxProps>(LightBox)

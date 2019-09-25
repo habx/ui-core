@@ -96,4 +96,4 @@ const Menu = React.forwardRef<HTMLUListElement, MenuProps>((props, ref) => {
 
 export default withTriggerElement<HTMLUListElement>({
   passTriggerElementAsProp: true,
-})(Menu)
+})<MenuProps>(Menu)

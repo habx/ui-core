@@ -54,4 +54,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 )
 
-export default withMarkdown<HTMLButtonElement>({ inline: true })(Button)
+export default withMarkdown<HTMLButtonElement>({ inline: true })<ButtonProps>(
+  Button
+)

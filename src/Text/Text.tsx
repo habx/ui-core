@@ -120,4 +120,4 @@ const Text = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
 export default withMarkdown<HTMLDivElement, { inline?: boolean }>({
   inline: props =>
     props.inline || ['caption', 'captionSmall'].includes(props.type),
-})(Text)
+})<TextProps>(Text)

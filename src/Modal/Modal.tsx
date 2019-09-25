@@ -7,6 +7,7 @@ import { isClientSide } from '../_internal/ssr'
 import Icon from '../Icon'
 import withTriggerElement from '../withTriggerElement'
 
+import { ModalProps } from './index'
 import { ModalInnerProps } from './Modal.interface'
 import {
   ModalOverlay,
@@ -75,4 +76,4 @@ const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
   }
 )
 
-export default withTriggerElement<HTMLDivElement>()(Modal)
+export default withTriggerElement<HTMLDivElement>()<ModalProps>(Modal)
