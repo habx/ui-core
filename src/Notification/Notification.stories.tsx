@@ -43,7 +43,10 @@ const GRID_ITEMS = [
       title: 'Blueprint sent',
       description: 'Successfully sent to the given address',
       illustration: (
-        <img src="https://res.cloudinary.com/habx/image/upload/v1561731410/illustrations/habxmojies/sun-inlove.svg" />
+        <img
+          alt="Illu"
+          src="https://res.cloudinary.com/habx/image/upload/v1561731410/illustrations/habxmojies/sun-inlove.svg"
+        />
       ),
     },
   },
@@ -82,7 +85,10 @@ storiesOf('Alerts|Notification', module)
       )}
       illustration={
         boolean('Illustration', true) ? (
-          <img src="https://res.cloudinary.com/habx/image/upload/v1561731410/illustrations/habxmojies/sun-inlove.svg" />
+          <img
+            alt="Illu"
+            src="https://res.cloudinary.com/habx/image/upload/v1561731410/illustrations/habxmojies/sun-inlove.svg"
+          />
         ) : null
       }
     />
