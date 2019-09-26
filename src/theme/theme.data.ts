@@ -1,5 +1,3 @@
-import { keyframes } from 'styled-components'
-
 import palette from '../palette'
 import { DesignSystemThemePatch } from '../ThemeProvider/ThemeProvider.interface'
 

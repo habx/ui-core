@@ -469,6 +469,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         data-disabled={disabled}
         data-open={state.isOpened}
         data-background={theme.backgroundColor !== '#FFFFFF'}
+        {...rest}
       >
         <SelectContent
           data-testid="select-content"

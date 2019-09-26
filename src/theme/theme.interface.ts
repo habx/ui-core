@@ -1,5 +1,3 @@
-import { Keyframes } from 'styled-components'
-
 export interface ColorVariations {
   base?: string
   hover?: string

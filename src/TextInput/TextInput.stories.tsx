@@ -5,7 +5,6 @@ import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
-import Icon from '../Icon'
 
 import TextInput from './index'
 import TextInputProps from './TextInput.interface'

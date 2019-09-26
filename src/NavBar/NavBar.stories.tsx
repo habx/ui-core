@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 import Icon from '../Icon'
 import NavBarItem from '../NavBarItem'
-import palette from '../palette'
 
 import NavBar from './index'
 

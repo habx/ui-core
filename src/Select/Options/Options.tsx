@@ -3,9 +3,7 @@ import { createPortal } from 'react-dom'
 
 import { useIsSmallScreen } from '../../_internal/hooks'
 import { isClientSide } from '../../_internal/ssr'
-import { Input } from '../../Checkbox/Checkbox.style'
 import Modal from '../../Modal'
-import useTheme from '../../useTheme'
 import Option from '../Option'
 
 import OptionsProps from './Options.interface'
