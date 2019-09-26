@@ -4,10 +4,10 @@ import Text from '../Text'
 
 export const IconContainer = styled.div`
   height: 24px;
+  width: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
   font-size: 18px;
 `
 
@@ -34,7 +34,8 @@ export const NavBarItemContainer = styled.li`
     margin-top: initial;
   }
 
-  &[data-active='true'] {
+  &[data-active='true'],
+  &.active {
     background-color: rgba(255, 255, 255, 0.3);
   }
 

@@ -23,12 +23,15 @@ export const NavBarToggleButton = styled.button`
   outline: none;
   cursor: pointer;
   padding: 0;
+  font-size: 20px;
 `
 
 export const NavBarContent = styled.div<{
   color?: string
   backgroundColor?: string
 }>`
+  position: absolute;
+  z-index: 100;
   width: 100%;
   height: 100%;
   display: flex;
