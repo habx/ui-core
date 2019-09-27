@@ -35,7 +35,10 @@ const CardChildrenContent = styled.div`
 
 const CardChildren = () => (
   <CardChildrenContainer>
-    <img src="https://vivreparis.fr/wp-content/uploads/2019/03/paris-louvre-record-touristes.png" />
+    <img
+      alt="Illu"
+      src="https://vivreparis.fr/wp-content/uploads/2019/03/paris-louvre-record-touristes.png"
+    />
     <CardChildrenContent>
       <Title type="regular">Paris</Title>
       <Text markdown>

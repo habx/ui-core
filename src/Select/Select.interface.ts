@@ -4,7 +4,7 @@ import { formValue } from '../_internal/types'
 
 export default interface SelectProps
   extends Omit<
-    React.InputHTMLAttributes<HTMLSelectElement>,
+    React.InputHTMLAttributes<HTMLDivElement>,
     'onChange' | 'value'
   > {
   options: any[]
