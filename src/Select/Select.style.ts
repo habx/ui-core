@@ -12,8 +12,30 @@ export const Placeholder = styled.div`
   text-overflow: ellipsis;
   transition: color 150ms ease-in-out;
   color: ${theme.textColor('base')};
+
   &[data-empty='true'] {
     color: ${theme.textColor('placeholder')};
+  }
+`
+
+export const SelectContent = styled.div`
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  z-index: 0;
+  padding: 12px 16px;
+  height: 48px;
+  line-height: 24px;
+
+  font-size: ${theme.font('text')};
+  user-select: none;
+
+  &[data-open='true'] {
+    transition: z-index ease-in 0s;
+    z-index: 10;
   }
 `
 
@@ -24,14 +46,27 @@ export const SelectContainer = styled.div`
   display: block;
   font-family: ${theme.font()};
   font-size: 16px;
-  color: ${theme.textColor('base')};
-  background-color: ${palette.darkBlue[200]};
-
   outline: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  border: solid 1.5px ${palette.darkBlue[200]};
   border-radius: 4px;
+
+  &:not([data-light='true']) {
+    color: ${theme.textColor('base')};
+    background-color: ${palette.darkBlue[200]};
+    border: solid 1.5px ${palette.darkBlue[200]};
+  }
+
+  &[data-light='true'] {
+    font-size: 18px;
+
+    & ${SelectContent} {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    & ${Placeholder}:not([data-empty='true']) {
+      color: ${theme.color('primary')};
+    }
+  }
 
   transition: all 150ms ease-in-out;
 
@@ -64,27 +99,6 @@ export const SelectContainer = styled.div`
   &:focus,
   &[data-open='true'] {
     background-color: #fff;
-  }
-`
-
-export const SelectContent = styled.div`
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  box-sizing: border-box;
-  cursor: pointer;
-
-  z-index: 0;
-  padding: 8px 16px;
-  height: 40px;
-  line-height: 24px;
-
-  font-size: ${theme.font('text')};
-  user-select: none;
-
-  &[data-open='true'] {
-    transition: z-index ease-in 0s;
-    z-index: 10;
   }
 `
 

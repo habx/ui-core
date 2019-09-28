@@ -169,6 +169,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
     const {
       multi = false,
+      light = false,
       description,
       placeholderClassName,
       icon,
@@ -469,6 +470,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         data-disabled={disabled}
         data-open={state.isOpened}
         data-background={theme.backgroundColor !== '#FFFFFF'}
+        data-light={light}
         {...rest}
       >
         <SelectContent
