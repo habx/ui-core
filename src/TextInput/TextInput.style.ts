@@ -109,4 +109,8 @@ export const RightElementContainer = styled.div`
   align-items: center;
   font-size: 18px;
   font-family: ${theme.font()};
+
+  &[data-light='true'] {
+    right: 0;
+  }
 `

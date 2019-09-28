@@ -7,6 +7,7 @@ export default interface SelectProps
     React.InputHTMLAttributes<HTMLDivElement>,
     'onChange' | 'value'
   > {
+  light?: boolean
   options: any[]
   description?: string
   placeholderClassName?: string

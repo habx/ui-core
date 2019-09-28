@@ -29,7 +29,9 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           ref={ref}
         />
         {elementRight && (
-          <RightElementContainer>{elementRight}</RightElementContainer>
+          <RightElementContainer data-light={light}>
+            {elementRight}
+          </RightElementContainer>
         )}
       </InputContainer>
     )
