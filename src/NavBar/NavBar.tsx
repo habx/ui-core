@@ -9,7 +9,6 @@ import NavBarContext from './NavBar.context'
 import NavBarProps from './NavBar.interface'
 import {
   NavBarContainer,
-  NavBarContent,
   NavBarHeader,
   NavBarPageLogo,
   NavBarItemsContainer,
@@ -41,25 +40,32 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
 
     return (
       <NavBarContext.Provider value={context}>
-        <NavBarContainer data-testid="nav-bar-container" {...rest} ref={ref}>
-          <NavBarContent
-            data-expanded={isExpanded}
-            color={color}
-            backgroundColor={backgroundColor}
-          >
-            <GeometricalShapes isExpanded={isExpanded} />
-            <NavBarHeader>
-              {isExpanded && (
-                <NavBarPageLogo color={color} type="caption">
-                  {title}
-                </NavBarPageLogo>
-              )}
-              <NavBarToggleButton onClick={handleToggle}>
-                <Icon icon="hamburger-menu" />
-              </NavBarToggleButton>
-            </NavBarHeader>
-            <NavBarItemsContainer>{children}</NavBarItemsContainer>
-          </NavBarContent>
+        <NavBarContainer
+          data-testid="nav-bar-container"
+          {...rest}
+          ref={ref}
+          data-expanded={isExpanded}
+          color={color}
+          backgroundColor={backgroundColor}
+        >
+          <GeometricalShapes isExpanded={isExpanded} />
+          <NavBarHeader>
+            {isExpanded && (
+              <NavBarPageLogo color={color} type="caption">
+                {title}
+              </NavBarPageLogo>
+            )}
+            <NavBarToggleButton onClick={handleToggle}>
+              <Icon
+                icon={
+                  isExpanded
+                    ? 'burger-menu-light-minimize'
+                    : 'burger-menu-light'
+                }
+              />
+            </NavBarToggleButton>
+          </NavBarHeader>
+          <NavBarItemsContainer>{children}</NavBarItemsContainer>
         </NavBarContainer>
       </NavBarContext.Provider>
     )

@@ -7,16 +7,6 @@ import {
 import Text from '../Text'
 import theme from '../theme'
 
-export const NavBarContainer = styled.ul`
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  flex: 0 0 auto;
-  height: 100vh;
-  width: 48px;
-  position: relative;
-`
-
 export const NavBarToggleButton = styled.button`
   background: none;
   border: none;
@@ -26,14 +16,18 @@ export const NavBarToggleButton = styled.button`
   font-size: 20px;
 `
 
-export const NavBarContent = styled.div<{
+export const NavBarContainer = styled.ul<{
   color?: string
   backgroundColor?: string
 }>`
-  position: absolute;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+  height: 100vh;
+  width: 48px;
+  position: relative;
   z-index: 100;
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   transition: width ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
