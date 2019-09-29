@@ -71,7 +71,7 @@ const withGrid = <Props extends object>(config: StorybookGridConfig<Props>) => (
 
   const Component: React.FunctionComponent<{}> = () => (
     <StorybookGridContainer>
-      {lines.map(line => {
+      {lines.map((line, lineIndex) => {
         const content = (
           <LineContainer>
             <Title type="section">{line.title}</Title>
@@ -100,11 +100,11 @@ const withGrid = <Props extends object>(config: StorybookGridConfig<Props>) => (
         )
 
         return line.coloredBackground ? (
-          <Background backgroundColor={palette.green[600]}>
+          <Background backgroundColor={palette.green[600]} key={lineIndex}>
             {content}
           </Background>
         ) : (
-          content
+          <React.Fragment key={lineIndex}>{content}</React.Fragment>
         )
       })}
     </StorybookGridContainer>

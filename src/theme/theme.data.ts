@@ -77,6 +77,11 @@ export const THEME_PATCHES: { [key: string]: DesignSystemThemePatch } = {
       secondary: PATCH_WHITE,
     },
   },
+  [palette.darkBlue[700]]: {
+    colors: {
+      secondary: PATCH_WHITE,
+    },
+  },
   [palette.blue[800]]: {
     colors: {
       secondary: PATCH_WHITE,
