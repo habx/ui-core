@@ -3,15 +3,34 @@ import styled from 'styled-components'
 import palette from '../../palette'
 import theme from '../../theme'
 
+export const OptionContent = styled.div``
+
+export const IconContainer = styled.div`
+  position: relative;
+  font-size: 20px;
+
+  & > *[data-hover='true'] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+  }
+
+  & > * {
+    transition: all ease-in 150ms;
+  }
+`
+
 export const OptionContainer = styled.li`
-  transition: background-color ease-in 150ms;
+  transition: all ease-in 150ms;
   outline: none;
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
   display: flex;
   align-items: center;
-  height: 48px;
+  justify-content: space-between;
+  height: 42px;
   font-family: ${theme.font()};
   padding: 0 12px;
   font-size: ${theme.font('text')};
@@ -28,8 +47,8 @@ export const OptionContainer = styled.li`
     color: ${theme.color('secondary', { opacity: 1 })};
   }
 
-  &[data-selected='true'] {
-    background-color: ${palette.darkBlue[200]};
+  &:not(:hover)[data-selected='true'] {
+    color: ${theme.color('primary')};
   }
 
   &[data-disabled='true'] {
@@ -39,6 +58,18 @@ export const OptionContainer = styled.li`
     &:focus {
       background-color: transparent;
       cursor: auto;
+    }
+  }
+
+  &:hover {
+    & > ${IconContainer} {
+      & > *:not([data-hover='true']) {
+        opacity: 0;
+      }
+
+      & > *[data-hover='true'] {
+        opacity: 1;
+      }
     }
   }
 `

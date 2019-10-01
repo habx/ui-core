@@ -26,6 +26,11 @@ export const mapValues = (
     {}
   )
 
+export const some = (
+  obj: object,
+  iteratee: (value: any, key: string, object: unknown) => unknown
+) => Object.entries(obj).some(([key, value]) => iteratee(value, key, obj))
+
 export const isFunction = (value: any): value is (...args: any[]) => any =>
   value &&
   ['[object Function]', '[object AsyncFunction]'].includes(

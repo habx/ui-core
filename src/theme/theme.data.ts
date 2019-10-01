@@ -30,7 +30,7 @@ export const BASE_THEME: DesignSystemTheme = {
   textColors: {
     base: palette.darkBlue[900],
     title: palette.darkBlue[900],
-    placeholder: palette.darkBlue[600],
+    placeholder: palette.darkBlue[700],
     disabledPlaceholder: palette.darkBlue[400],
   },
 

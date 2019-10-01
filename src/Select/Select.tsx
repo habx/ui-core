@@ -2,7 +2,7 @@ import get from 'lodash.get'
 import * as React from 'react'
 import { createPortal } from 'react-dom'
 
-import { isNil, has, isString } from '../_internal/data'
+import { isNil, has, isString, some } from '../_internal/data'
 import { isClientSide, ssrClientRect } from '../_internal/ssr'
 import { searchInString } from '../_internal/strings'
 import { formOption, formValue } from '../_internal/types'
@@ -62,6 +62,7 @@ const useValue = ({
       }
 
       const matchingOption = options.find(el => el.value === value)
+
       return {
         value,
         label: matchingOption ? matchingOption.label : value,
@@ -138,7 +139,9 @@ const useSelectedOptions = ({
     }
 
     if (multi) {
-      return options.filter(el => (value as formOption[]).includes(el.value))
+      return options.filter(el =>
+        some(value as formOption[], el2 => el2.value === el.value)
+      )
     }
 
     return options.find(el => el.value === (value as formOption).value)
@@ -155,6 +158,11 @@ const usePlaceholder = ({
 }) =>
   React.useMemo(() => {
     if (multi) {
+      const options = selectedOptions as formOption[]
+      if (selectedOptions && options.length > 0) {
+        return options.map(option => option.label).join(', ')
+      }
+
       return rawPlaceholder
     }
 
@@ -172,7 +180,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       light = false,
       description,
       placeholderClassName,
-      icon,
+      elementLeft,
+      elementRight,
       annotation,
       canReset = true,
       disabled,
@@ -479,7 +488,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           className={placeholderClassName}
           onClick={handleToggle}
         >
-          {icon && <CustomIconContainer>{icon}</CustomIconContainer>}
+          {elementLeft && (
+            <CustomIconContainer>{elementLeft}</CustomIconContainer>
+          )}
           {filterable ? (
             <SearchInput
               data-testid="select-input"
@@ -508,9 +519,12 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                 icon="close"
               />
             )}
-            {(!canReset || !state.hoverReset || !hasValue) && (
-              <Icon icon={state.isOpened ? 'chevron-north' : 'chevron-south'} />
-            )}
+            {(!canReset || !state.hoverReset || !hasValue) &&
+              (elementRight || (
+                <Icon
+                  icon={state.isOpened ? 'chevron-north' : 'chevron-south'}
+                />
+              ))}
           </LabelIcons>
         </SelectContent>
         {state.isOpened &&
