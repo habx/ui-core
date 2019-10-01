@@ -18,6 +18,19 @@ export const Placeholder = styled.div`
   }
 `
 
+export const LabelIcons = styled.div`
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  color: ${theme.textColor('placeholder')};
+
+  span {
+    font-size: 18px;
+    margin-left: 6px;
+  }
+`
+
 export const SelectContent = styled.div`
   position: relative;
   display: flex;
@@ -59,8 +72,8 @@ export const SelectContainer = styled.div`
     font-size: 18px;
 
     & ${SelectContent} {
-      padding-left: 0;
-      padding-right: 0;
+      padding-left: 12px;
+      padding-right: 12px;
     }
 
     & ${Placeholder}:not([data-empty='true']) {
@@ -73,15 +86,18 @@ export const SelectContainer = styled.div`
   &:disabled,
   &[data-disabled='true'] {
     border-color: ${palette.darkBlue[200]};
-    background-color: ${palette.darkBlue[200]};
     color: ${palette.darkBlue[700]};
     pointer-events: none;
 
-    &[data-background='true'] {
-      background-color: ${theme.color('background', {
-        opacity: 0.9,
-        useRootTheme: true,
-      })};
+    &:not([data-light='true']) {
+      background-color: ${palette.darkBlue[200]};
+
+      &[data-background='true'] {
+        background-color: ${theme.color('background', {
+          opacity: 0.9,
+          useRootTheme: true,
+        })};
+      }
     }
 
     &::placeholder,
@@ -94,11 +110,21 @@ export const SelectContainer = styled.div`
   &:focus,
   &[data-open='true'] {
     border-color: ${palette.darkBlue[300]};
+
+    & ${LabelIcons} {
+      color: ${theme.color('secondary')};
+    }
   }
 
   &:focus,
   &[data-open='true'] {
-    background-color: #fff;
+    &[data-light='true'] {
+      background-color: ${palette.darkBlue[200]};
+    }
+
+    &:not([data-light='true']) {
+      background-color: #fff;
+    }
   }
 `
 
@@ -126,18 +152,6 @@ export const SearchInput = styled.input.attrs(() => ({
     &::placeholder {
       opacity: 0;
     }
-  }
-`
-
-export const LabelIcons = styled.div`
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  height: 100%;
-
-  span {
-    font-size: 18px;
-    margin-left: 6px;
   }
 `
 

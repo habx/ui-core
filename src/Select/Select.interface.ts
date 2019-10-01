@@ -11,7 +11,8 @@ export default interface SelectProps
   options: any[]
   description?: string
   placeholderClassName?: string
-  icon?: React.ReactNode
+  elementRight?: React.ReactNode
+  elementLeft?: React.ReactNode
   valueFormat?: 'full' | 'simple'
 
   annotation?: string

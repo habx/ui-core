@@ -12,6 +12,7 @@ export const inputStyle = css`
   -moz-appearance: none;
   -webkit-appearance: none;
   border-radius: 4px;
+  border: solid 1.5px transparent;
 
   transition: all 150ms ease-in-out;
 
@@ -20,7 +21,7 @@ export const inputStyle = css`
   }
 
   &:not([data-light='true']) {
-    border: solid 1.5px ${palette.darkBlue[200]};
+    border-color: ${palette.darkBlue[200]};
     color: ${theme.textColor('base')};
     background-color: ${palette.darkBlue[200]};
 
@@ -29,7 +30,6 @@ export const inputStyle = css`
     }
 
     &:disabled {
-      border-color: ${palette.darkBlue[200]};
       background-color: ${palette.darkBlue[200]};
       color: ${palette.darkBlue[700]};
       pointer-events: none;
@@ -55,15 +55,29 @@ export const inputStyle = css`
 
     &[data-error='true'] {
       border-color: ${palette.orange[400]};
-      color: ${palette.orange[400]};
       box-shadow: 0 1px 0 ${palette.orange[400]};
     }
   }
 
   &[data-light='true'] {
     color: ${theme.color('primary')};
+    background-color: unset;
     font-size: 18px;
-    padding: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+
+    &:hover:not(:focus) {
+      background-color: ${palette.darkBlue[200]};
+    }
+
+    &:focus {
+      border-color: ${palette.darkBlue[300]};
+      color: ${theme.color('secondary')};
+    }
+  }
+
+  &[data-error='true'] {
+    color: ${palette.orange[400]};
   }
 
   @media (${breakpoints.below.phone}) {
@@ -88,16 +102,17 @@ export const Input = styled.input`
   }
 
   ${inputStyle};
-
-  &[data-light='true'] {
-    background-color: transparent;
-    border: none;
-  }
 `
 
 export const InputContainer = styled.div`
   position: relative;
   width: 100%;
+  color: ${theme.textColor('placeholder')};
+
+  &:hover,
+  &:focus-within {
+    color: ${theme.color('secondary')};
+  }
 `
 
 export const RightElementContainer = styled.div`
@@ -111,6 +126,6 @@ export const RightElementContainer = styled.div`
   font-family: ${theme.font()};
 
   &[data-light='true'] {
-    right: 0;
+    right: 12px;
   }
 `

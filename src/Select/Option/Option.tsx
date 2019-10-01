@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import Toggle from '../Toggle'
+import Icon from '../../Icon'
 
 import OptionProps from './Option.interface'
-import { OptionContainer } from './Option.style'
+import { OptionContainer, OptionContent, IconContainer } from './Option.style'
 
 const Option: React.FunctionComponent<OptionProps> = ({
   multi,
@@ -30,8 +30,17 @@ const Option: React.FunctionComponent<OptionProps> = ({
       tabIndex={0}
       {...props}
     >
-      {multi && <Toggle state={selected ? 'full' : 'empty'} />}
-      {label}
+      <OptionContent>{label}</OptionContent>
+      {multi && (
+        <IconContainer>
+          {selected && (
+            <React.Fragment>
+              <Icon icon="check" />
+              <Icon icon="close" data-hover />
+            </React.Fragment>
+          )}
+        </IconContainer>
+      )}
     </OptionContainer>
   )
 }

@@ -5,8 +5,9 @@ import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
+import Icon from '../Icon'
 
-import Select from './index'
+import Select from './Select'
 import SelectProps from './Select.interface'
 
 const TextInputContainer = styled.div`
@@ -34,6 +35,12 @@ const GRID_LINES = [
     title: 'Regular',
   },
   {
+    title: 'Light',
+    props: {
+      light: true,
+    },
+  },
+  {
     title: 'Colored background',
     coloredBackground: true,
   },
@@ -54,6 +61,20 @@ const GRID_ITEMS = [
     label: 'Disabled',
     props: {
       disabled: true,
+    },
+  },
+  {
+    label: 'Multi',
+    props: {
+      multi: true,
+      value: ['fr', 'en'],
+    },
+  },
+  {
+    label: 'Right element',
+    props: {
+      value: 'fr',
+      elementRight: <Icon icon="house-building-outline" />,
     },
   },
 ]
