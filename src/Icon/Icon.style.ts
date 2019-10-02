@@ -18,6 +18,8 @@ export const IconContainer = styled.span<{ url: string }>`
   }
   
   &[data-colored='true'] {
+    background-color: transparent;
+    background-size: contain;
     background-image: url('${({ url }) => url}');
   }
 `
