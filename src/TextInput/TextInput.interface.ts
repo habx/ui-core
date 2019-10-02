@@ -9,4 +9,6 @@ export default interface TextInputProps
   light?: boolean
   as?: styledAs
   elementRight?: React.ReactNode
+  elementLeft?: React.ReactNode
+  canReset?: boolean
 }
