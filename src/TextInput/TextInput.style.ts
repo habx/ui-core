@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 
 import breakpoints from '../breakpoints'
+import Icon from '../Icon'
 import palette from '../palette'
 import theme from '../theme'
 
@@ -85,6 +86,37 @@ export const inputStyle = css`
   }
 `
 
+export const LeftElementContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-family: ${theme.font()};
+  transition: all ease-in-out 150ms;
+
+  &[data-light='true'] {
+    right: 12px;
+  }
+`
+
+export const RightElementContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-family: ${theme.font()};
+
+  &[data-light='true'] {
+    right: 12px;
+  }
+`
+
 export const Input = styled.input`
   flex: 1;
   margin: 0;
@@ -95,6 +127,12 @@ export const Input = styled.input`
   min-width: 0;
   width: 100%;
 
+  &[data-padding-left='true'] {
+    padding-left: 48px;
+  }
+  &:focus + ${LeftElementContainer} {
+    color: ${theme.color('primary')};
+  }
   &[data-small='true'] {
     padding: 0 12px;
     min-height: 2.3rem;
@@ -115,17 +153,8 @@ export const InputContainer = styled.div`
   }
 `
 
-export const RightElementContainer = styled.div`
-  position: absolute;
-  top: 0;
-  right: 16px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  font-family: ${theme.font()};
-
-  &[data-light='true'] {
-    right: 12px;
+export const IconButton = styled(Icon)`
+  &:hover {
+    cursor: pointer;
   }
 `

@@ -1,9 +1,17 @@
 import * as React from 'react'
+import { ChangeEvent } from 'react'
 
+import { isFunction } from '../_internal/data'
 import useTheme from '../useTheme'
 
 import TextInputProps from './TextInput.interface'
-import { Input, InputContainer, RightElementContainer } from './TextInput.style'
+import {
+  IconButton,
+  Input,
+  InputContainer,
+  LeftElementContainer,
+  RightElementContainer,
+} from './TextInput.style'
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   (props, ref) => {
@@ -14,6 +22,8 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       className,
       style,
       elementRight,
+      elementLeft,
+      canReset,
       ...rest
     } = props
     const theme = useTheme()
@@ -24,13 +34,30 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           data-small={small}
           data-error={error}
           data-light={light}
+          data-padding-left={!!elementLeft}
           data-background={theme.backgroundColor !== '#FFFFFF'}
           {...rest}
           ref={ref}
         />
-        {elementRight && (
+        {elementLeft && (
+          <LeftElementContainer data-light={light}>
+            {elementLeft}
+          </LeftElementContainer>
+        )}
+        {(elementRight || canReset) && (
           <RightElementContainer data-light={light}>
-            {elementRight}
+            {elementRight && elementRight}
+            {canReset && props.value && `${props.value}`.length > 0 && (
+              <IconButton
+                icon="close"
+                onClick={e =>
+                  isFunction(props.onChange) &&
+                  props.onChange({
+                    target: { ...e.target, value: '' },
+                  } as ChangeEvent<HTMLInputElement>)
+                }
+              />
+            )}
           </RightElementContainer>
         )}
       </InputContainer>
