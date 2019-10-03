@@ -6,15 +6,29 @@ import useTheme from '../useTheme'
 import NavigationButtonProps from './NavigationButton.interface'
 import { NavigationButtonContainer } from './NavigationButton.style'
 
+const getIcon = (usage: 'navigation' | 'toggle', previous?: boolean) => {
+  switch (usage) {
+    case 'navigation': {
+      return previous ? 'arrow-west' : 'arrow-east'
+    }
+
+    case 'toggle': {
+      return previous ? 'chevron-west' : 'chevron-east'
+    }
+
+    default: {
+      return ''
+    }
+  }
+}
+
 const NavigationButton = React.forwardRef<
   HTMLButtonElement,
   NavigationButtonProps
 >((props, ref) => {
-  const { previous, large, small, ...rest } = props
+  const { previous, large, small, usage = 'navigation', ...rest } = props
 
   const theme = useTheme()
-
-  const icon = previous ? 'arrow-west' : 'arrow-east'
 
   return (
     <NavigationButtonContainer
@@ -24,7 +38,7 @@ const NavigationButton = React.forwardRef<
       data-background={theme.backgroundColor !== '#FFFFFF'}
       {...rest}
     >
-      <Icon icon={icon} />
+      <Icon icon={getIcon(usage, previous)} />
     </NavigationButtonContainer>
   )
 })
