@@ -9,4 +9,5 @@ export default interface NavigationButtonProps
   previous?: boolean
   large?: boolean
   small?: boolean
+  usage?: 'navigation' | 'toggle'
 }
