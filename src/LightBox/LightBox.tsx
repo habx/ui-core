@@ -13,13 +13,13 @@ import { LightBoxOverlay, CloseIconContainer } from './LightBox.style'
 
 const LightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
   (props, ref) => {
-    const { open, onClose, children, ...rest } = props
+    const { open, onClose, children, persistent, animated, ...rest } = props
 
     const modal = useModal<HTMLDivElement>({
       open,
       onClose,
-      persistent: false,
-      animated: true,
+      persistent,
+      animated,
       animationDuration: ANIMATION_DURATION,
     })
 
