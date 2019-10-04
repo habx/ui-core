@@ -36,6 +36,10 @@ export const NavBarContainer = styled.ul<{
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${({ color }) => color};
 
+  &[data-hover-icon='true'] {
+    width: 54px;
+  }
+
   &[data-expanded='true'] {
     width: 250px;
   }
