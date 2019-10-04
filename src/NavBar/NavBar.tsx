@@ -18,6 +18,7 @@ import {
 const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
   (baseProps, ref) => {
     const theme = useTheme()
+    const [isHoveringIcon, setHoveringIcon] = React.useState<boolean>(false)
 
     const props = { ...baseProps, theme }
 
@@ -45,6 +46,7 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
           {...rest}
           ref={ref}
           data-expanded={isExpanded}
+          data-hover-icon={isHoveringIcon || isExpanded}
           color={color}
           backgroundColor={backgroundColor}
         >
@@ -57,6 +59,8 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
             )}
             <NavBarToggleButton onClick={handleToggle}>
               <Icon
+                onMouseEnter={() => setHoveringIcon(true)}
+                onMouseLeave={() => setHoveringIcon(false)}
                 icon={
                   isExpanded
                     ? 'burger-menu-light-minimize'
