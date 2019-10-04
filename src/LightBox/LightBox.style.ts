@@ -23,7 +23,6 @@ export const LightBoxOverlay = styled(Background)`
   left: 0;
   right: 0;
   z-index: 99999;
-  padding: 48px 54px;
 
   &[data-state='opening'] {
     animation: ${FADE_IN} ${ANIMATION_DURATION}ms linear 0ms;

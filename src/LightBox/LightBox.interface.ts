@@ -6,6 +6,8 @@ export interface LightBoxInnerProps
   extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean
   onClose?: () => void
+  persistent?: boolean
+  animated?: boolean
 }
 
 export default interface LightBoxProps
