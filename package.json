@@ -6,11 +6,9 @@
   "main": "./dist/index.js",
   "types": "./dist/typings/index.d.ts",
   "scripts": {
-    "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "webpack --mode=production",
-    "build:watch": "webpack --mode=development --watch",
-    "build:dev": "webpack --mode=development",
-    "build": "npm run build:types && npm run build:js",
+    "clean": "rimraf ./dist",
+    "build": "npm run clean && bili",
+    "build:watch": "npm run clean && bili --watch",
     "postbuild": "node ./scripts/postbuild.js",
     "publish": "cd dist && npm publish && cd ..",
     "storybook": "start-storybook -p 9001 -c .storybook",
@@ -19,8 +17,6 @@
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint \"src/**\"",
-    "type": "tsc --noEmit",
-    "type:watch": "npm run type-check -- --watch",
     "type:coverage": "tscov"
   },
   "repository": {
@@ -58,12 +54,6 @@
     "styled-components": "^4.4.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.4.0",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
     "@habx/eslint-config-client": "^2.0.6",
     "@liftr/tscov": "^1.4.1",
     "@storybook/addon-actions": "^5.2.1",
@@ -89,23 +79,18 @@
     "@types/storybook__addon-knobs": "^5.0.4",
     "@types/storybook__react": "^4.0.2",
     "@types/styled-components": "^4.1.19",
-    "babel-loader": "^8.0.6",
-    "babel-plugin-styled-components": "^1.10.6",
-    "cross-env": "^6.0.2",
-    "fork-ts-checker-webpack-plugin": "1.5.0",
+    "bili": "^4.8.0",
     "husky": "^3.0.3",
     "jest": "^24.8.0",
     "lint-staged": "^9.2.1",
     "lodash": "^4.17.11",
-    "react-docgen-typescript-loader": "^3.1.0",
-    "react-docgen-typescript-webpack-plugin": "^1.1.0",
+    "rimraf": "^3.0.0",
+    "rollup-plugin-typescript2": "^0.24.0",
     "sinon": "^7.4.1",
     "storybook-addon-designs": "^5.1.1",
     "styled-normalize": "^8.0.6",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.5.2",
-    "webpack": "4.41.0",
-    "webpack-cli": "3.3.9"
+    "typescript": "^3.5.2"
   },
   "resolutions": {
     "terser": "3.14.1"
