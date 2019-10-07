@@ -7,16 +7,18 @@
   "types": "./dist/typings/index.d.ts",
   "scripts": {
     "clean": "rimraf ./dist",
-    "build": "npm run clean && bili",
-    "build:watch": "npm run clean && bili --watch",
+    "build": "npm run clean && bili && npm run build:types",
+    "build:dev": "npm run clean && tsc",
+    "build:watch": "npm run clean && tsc --watch",
+    "build:types": "tsc --emitDeclarationOnly",
     "postbuild": "node ./scripts/postbuild.js",
     "publish": "cd dist && npm publish && cd ..",
+    "lint": "eslint \"src/**\"",
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o .storybook-static",
     "storybook:deploy": "storybook-to-ghpages -s storybook:build --ci -t=GITHUB_TOKEN",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "lint": "eslint \"src/**\"",
     "type:coverage": "tscov"
   },
   "repository": {
