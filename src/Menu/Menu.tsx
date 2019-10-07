@@ -8,8 +8,9 @@ import withTriggerElement from '../withTriggerElement'
 
 import { MenuInstance, MenuInnerProps } from './Menu.interface'
 import {
-  MenuContainer,
+  MenuTriggerContainer,
   MenuContent,
+  MenuContainer,
   MenuFullScreenDesktop,
   ANIMATION_DURATION,
 } from './Menu.style'
@@ -55,6 +56,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
       open,
       onClose,
       fullScreenOnMobile = false,
+      position = 'bottom-left',
       triggerElement,
       ...rest
     } = props
@@ -72,18 +74,21 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
     })
 
     return (
-      <MenuContainer>
+      <MenuTriggerContainer>
         {triggerElement}
-        <MenuContent
-          {...rest}
-          data-state={modal.state}
+        <MenuContainer
           data-full-screen-on-mobile={fullScreenOnMobile}
+          data-position={position}
+          data-state={modal.state}
           ref={modal.ref}
+          {...rest}
         >
-          {isFunction(children)
-            ? children(modal as ModalType<HTMLUListElement>)
-            : children}
-        </MenuContent>
+          <MenuContent>
+            {isFunction(children)
+              ? children(modal as ModalType<HTMLUListElement>)
+              : children}
+          </MenuContent>
+        </MenuContainer>
         {fullScreenOnMobile && width < breakpoints.raw.phone && (
           <MenuFullScreenDesktop open={open} onClose={onClose}>
             {isFunction(children)
@@ -91,7 +96,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
               : children}
           </MenuFullScreenDesktop>
         )}
-      </MenuContainer>
+      </MenuTriggerContainer>
     )
   }
 )

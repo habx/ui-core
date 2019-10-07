@@ -7,22 +7,26 @@ import theme from '../theme'
 
 export const ANIMATION_DURATION = 150
 
-export const MenuContainer = styled.div`
+export const MenuTriggerContainer = styled.span`
   position: relative;
+  align-self: flex-start;
 `
 
-export const MenuContent = styled.ul`
-  z-index: 10;
+export const MenuContent = styled.div`
+  background-color: ${theme.color('background', { useRootTheme: true })};
+  padding: 12px 0;
   box-shadow: ${theme.shadow()};
+`
+
+export const MenuContainer = styled.ul`
+  z-index: 10;
   opacity: 1;
   border-radius: 4px;
-  padding: 12px 0;
   list-style-type: none;
   min-width: 100%;
-  background-color: ${theme.color('background', { useRootTheme: true })};
+  padding: 0;
 
   position: absolute;
-  top: 100%;
 
   &:not([data-state='opened']) {
     pointer-events: none;
@@ -35,6 +39,19 @@ export const MenuContent = styled.ul`
 
   &[data-state='closing'] {
     animation: ${animations('diveSlant')};
+  }
+
+  &[data-position='bottom-right'] {
+    top: 100%;
+  }
+
+  &[data-position='bottom-left'] {
+    top: 100%;
+    left: 100%;
+
+    & ${MenuContent} {
+      transform: translateX(-100%);
+    }
   }
 
   @media (${breakpoints.below.phone}) {

@@ -13,6 +13,7 @@ export interface MenuInnerProps extends React.HTMLAttributes<HTMLUListElement> {
   onClose?: () => void
   fullScreenOnMobile?: boolean
   triggerElement?: ((state: TriggerState) => JSX.Element) | JSX.Element
+  position: 'bottom-left' | 'bottom-right'
 }
 
 export default interface MenuProps
