@@ -13,6 +13,21 @@ import MenuProps from './Menu.interface'
 
 const GRID_PROPS = {
   triggerElement: <Button outline>Open</Button>,
+  children: (
+    <React.Fragment>
+      <MenuLine iconLeft={<Icon icon="arrow-west" />}>Page d'accueil</MenuLine>
+      <MenuLine iconLeft={<Icon icon="person" />}>Mon profil</MenuLine>
+      <MenuSection
+        title="Mes projets"
+        titleIconLeft={<Icon icon="house-heart-outline" />}
+      >
+        <MenuLine>Paris Venelles</MenuLine>
+        <MenuLine>Résidence Aurore</MenuLine>
+        <MenuLine>Le Perchoir</MenuLine>
+      </MenuSection>
+      <MenuLine iconLeft={<Icon icon="close" />}>Me déconnecter</MenuLine>
+    </React.Fragment>
+  ),
 }
 
 const GRID_LINES = [
@@ -22,24 +37,12 @@ const GRID_LINES = [
 
 const GRID_ITEMS = [
   {
+    label: 'Position bottom left',
+  },
+  {
+    label: 'Position bottom right',
     props: {
-      children: (
-        <React.Fragment>
-          <MenuLine iconLeft={<Icon icon="arrow-west" />}>
-            Page d'accueil
-          </MenuLine>
-          <MenuLine iconLeft={<Icon icon="person" />}>Mon profil</MenuLine>
-          <MenuSection
-            title="Mes projets"
-            titleIconLeft={<Icon icon="house-heart-outline" />}
-          >
-            <MenuLine>Paris Venelles</MenuLine>
-            <MenuLine>Résidence Aurore</MenuLine>
-            <MenuLine>Le Perchoir</MenuLine>
-          </MenuSection>
-          <MenuLine iconLeft={<Icon icon="close" />}>Me déconnecter</MenuLine>
-        </React.Fragment>
-      ),
+      position: 'bottom-right' as 'bottom-right',
     },
   },
 ]
