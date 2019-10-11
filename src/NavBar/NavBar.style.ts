@@ -14,6 +14,10 @@ export const NavBarToggleButton = styled.button`
   cursor: pointer;
   padding: 0;
   font-size: 20px;
+
+  @media (hover: none) and (pointer: coarse) {
+    font-size: 24px;
+  }
 `
 
 export const NavBarContainer = styled.ul<{

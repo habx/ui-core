@@ -9,6 +9,12 @@ export const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 18px;
+
+  @media (hover: none) and (pointer: coarse) {
+    font-size: 24px;
+    width: 24px;
+    height: 32px;
+  }
 `
 
 export const NavBarItemContainer = styled.li`
@@ -18,6 +24,7 @@ export const NavBarItemContainer = styled.li`
   padding: 8px 15px;
   outline: none;
   display: flex;
+  align-items: center;
   overflow: hidden;
   transition: background-color 150ms ease-in-out;
   cursor: pointer;
@@ -42,6 +49,10 @@ export const NavBarItemContainer = styled.li`
   &[data-disabled='true'] {
     pointer-events: none;
     opacity: 0.4;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    padding: 12px;
   }
 `
 

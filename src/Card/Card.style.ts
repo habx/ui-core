@@ -4,7 +4,7 @@ import Background from '../Background'
 import theme from '../theme'
 
 export const CardContainer = styled(Background)`
-  border-radius: 2px;
+  border-radius: 4px;
   overflow: hidden;
   position: relative;
   transition: all 150ms ease-in-out;
