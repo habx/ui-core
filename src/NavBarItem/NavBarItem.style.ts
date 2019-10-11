@@ -61,3 +61,11 @@ export const TitleContainer = styled(Text).attrs(() => ({ opacity: 1 }))`
   flex: 1 1 100%;
   white-space: nowrap;
 `
+
+export const DescriptionContainer = styled(Text).attrs(() => ({
+  opacity: 0.6,
+  type: 'caption',
+}))`
+  margin-left: 18px;
+  flex: 1 1 100%;
+`

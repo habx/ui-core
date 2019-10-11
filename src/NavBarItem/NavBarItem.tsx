@@ -6,6 +6,7 @@ import NavBarContext from '../NavBar/NavBar.context'
 
 import NavBarItemProps from './NavBarItem.interface'
 import {
+  DescriptionContainer,
   IconContainer,
   NavBarItemContainer,
   TitleContainer,
@@ -22,6 +23,7 @@ const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
       active,
       disabled,
       color,
+      description,
       ...rest
     } = useMergedContext(NavBarContext, props)
 
@@ -41,7 +43,16 @@ const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
         ref={ref}
       >
         <IconContainer>{icon}</IconContainer>
-        {isExpanded && <TitleContainer color={color}>{label}</TitleContainer>}
+        {isExpanded && (
+          <div>
+            <TitleContainer color={color}>{label}</TitleContainer>
+            {description && (
+              <DescriptionContainer color={color}>
+                {description}
+              </DescriptionContainer>
+            )}
+          </div>
+        )}
       </NavBarItemContainer>
     )
   }
