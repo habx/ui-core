@@ -43,6 +43,10 @@ const TooltipWithTriggerElement: React.FunctionComponent<
     onMouseLeave: handleMouseLeave,
   })
 
+  const contentRef = React.useRef<HTMLDivElement>(null)
+  const tooltipWidth = contentRef.current
+    ? contentRef.current.clientWidth / 2
+    : 0
   return (
     <TooltipTriggerContainer data-state={modal.state}>
       {trigger}
@@ -52,9 +56,14 @@ const TooltipWithTriggerElement: React.FunctionComponent<
       >
         {followCursor ? (
           <TooltipTriggerCursorWrapper
+            ref={contentRef}
             style={{
               position: 'fixed' as 'fixed',
-              transform: `translate(${mousePosition.x}px, ${mousePosition.y -
+              transform: `translate(${
+                tooltipWidth && tooltipWidth - mousePosition.x > 0
+                  ? '50%'
+                  : `${mousePosition.x}px`
+              }, ${mousePosition.y -
                 (hasDescription ? 24 : 12)}px) translateX(-50%)`,
               top: 0,
               left: 0,
