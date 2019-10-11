@@ -48,9 +48,9 @@ storiesOf('Utility|palette', module).add(
           <ColorLabel type="section">{colorName}</ColorLabel>
           {Object.values(colorGradient)
             .reverse()
-            .map((color: string, index) => (
+            .map((color, index) => (
               <Color key={index}>
-                <Circle color={color} />
+                <Circle color={color as string} />
               </Color>
             ))}
         </Line>

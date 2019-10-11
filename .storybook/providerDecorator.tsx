@@ -2,8 +2,6 @@ import * as React from 'react'
 import { createGlobalStyle } from 'styled-components'
 import styledNormalize from 'styled-normalize'
 
-import { RenderFunction } from "@storybook/react";
-
 import Provider from '../src/Provider'
 
 const FONT_ROOT = 'https://cdn.habx.fr/assets/fonts'
@@ -72,7 +70,7 @@ const GlobalStyle = createGlobalStyle`
 
 `
 
-export default (storyFn: RenderFunction) => (
+export default (storyFn: Function) => (
   <React.Fragment>
     <Provider>
       <GlobalStyle />

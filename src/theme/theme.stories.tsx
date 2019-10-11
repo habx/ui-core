@@ -84,13 +84,11 @@ const ThemePatchPalette = () => {
         ([colorFamilyName, colorFamilyVariations]) => (
           <Line key={colorFamilyName}>
             <ColorLabel type="section">{colorFamilyName}</ColorLabel>
-            {Object.values(colorFamilyVariations).map(
-              (color: string, index) => (
-                <Color key={index}>
-                  <Circle color={color} />
-                </Color>
-              )
-            )}
+            {Object.values(colorFamilyVariations).map((color, index) => (
+              <Color key={index}>
+                <Circle color={color as string} />
+              </Color>
+            ))}
           </Line>
         )
       )}
@@ -127,7 +125,13 @@ storiesOf('Utility|theme', module)
       <Container>
         <Line>
           <ColorLabel type="section">Shadows</ColorLabel>
-          {['lower', 'low', 'regular', 'high', 'higher'].map(shadowDepth => (
+          {([
+            'lower',
+            'low',
+            'regular',
+            'high',
+            'higher',
+          ] as (keyof Shadows)[]).map(shadowDepth => (
             <Color key={shadowDepth}>
               <Circle color="#FFFFFF" depth={shadowDepth} />
             </Color>
