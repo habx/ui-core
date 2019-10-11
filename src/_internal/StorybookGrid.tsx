@@ -7,11 +7,11 @@ import Text from '../Text'
 import Title from '../Title'
 
 const StorybookGridContainer = styled.div`
-  //margin: 64px;
+  margin: 64px;
 `
 
 const LineContainer = styled.div`
-  //padding: 24px 36px;
+  padding: 24px 36px;
 `
 
 const LineContent = styled.div`

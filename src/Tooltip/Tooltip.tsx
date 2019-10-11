@@ -44,7 +44,7 @@ const TooltipWithTriggerElement: React.FunctionComponent<
   })
 
   const contentRef = React.useRef<HTMLDivElement>(null)
-  const tooltipWidth = contentRef.current
+  const tooltipHalfWidth = contentRef.current
     ? contentRef.current.clientWidth / 2
     : 0
   return (
@@ -60,7 +60,7 @@ const TooltipWithTriggerElement: React.FunctionComponent<
             style={{
               position: 'fixed' as 'fixed',
               transform: `translate(${
-                tooltipWidth && tooltipWidth - mousePosition.x > 0
+                tooltipHalfWidth && tooltipHalfWidth - mousePosition.x > 0
                   ? '50%'
                   : `${mousePosition.x}px`
               }, ${mousePosition.y -
