@@ -7,6 +7,7 @@ export default interface NavBarItemProps
   backgroundColor?: string
   icon?: React.ReactNode
   label?: React.ReactNode
+  description?: React.ReactNode
   active?: boolean
   bottom?: boolean
   disabled?: boolean
