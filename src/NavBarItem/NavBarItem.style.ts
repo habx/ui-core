@@ -59,7 +59,6 @@ export const NavBarItemContainer = styled.li`
 export const TitleContainer = styled(Text).attrs(() => ({ opacity: 1 }))`
   margin-left: 18px;
   flex: 1 1 100%;
-  white-space: nowrap;
 `
 
 export const DescriptionContainer = styled(Text).attrs(() => ({
