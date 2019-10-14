@@ -44,19 +44,38 @@ const TooltipWithTriggerElement: React.FunctionComponent<
   })
 
   const contentRef = React.useRef<HTMLDivElement>(null)
-  const tooltipHalfWidth = contentRef.current
-    ? contentRef.current.clientWidth / 2
+  const tooltipRef = React.useRef<HTMLDivElement>(null)
+  const tooltipHalfWidth = tooltipRef.current
+    ? tooltipRef.current.clientWidth / 2
     : 0
+  const tooltipPosition = (contentRef.current
+    ? contentRef.current.getBoundingClientRect()
+    : new DOMRect()) as DOMRect
+  const [contentStyle, setContentStyle] = React.useState({})
+  React.useLayoutEffect(() => {
+    const style = {} as any
+    if (tooltipPosition.x && tooltipPosition.x < 0) {
+      style.left = 0
+      style.right = 'auto'
+    }
+    if (tooltipPosition.x + tooltipHalfWidth * 2 > window.innerWidth) {
+      style.left = 'auto'
+      style.right = 0
+    }
+    setContentStyle(style)
+  }, [tooltipHalfWidth]) // eslint-disable-line
   return (
     <TooltipTriggerContainer data-state={modal.state}>
       {trigger}
       <TooltipTriggerContent
+        ref={contentRef}
+        style={contentStyle}
         data-has-description={hasDescription}
         data-follow-cursor={followCursor}
       >
         {followCursor ? (
           <TooltipTriggerCursorWrapper
-            ref={contentRef}
+            ref={tooltipRef}
             style={{
               position: 'fixed' as 'fixed',
               transform: `translate(${
@@ -73,7 +92,7 @@ const TooltipWithTriggerElement: React.FunctionComponent<
             {tooltip}
           </TooltipTriggerCursorWrapper>
         ) : (
-          tooltip
+          <div ref={tooltipRef}>{tooltip}</div>
         )}
       </TooltipTriggerContent>
     </TooltipTriggerContainer>
