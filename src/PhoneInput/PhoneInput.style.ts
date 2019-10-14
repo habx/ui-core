@@ -6,10 +6,11 @@ import theme from '../theme'
 
 export const MainInput = styled(TextInput)`
   flex: 1 1 100%;
-  border-radius: 0;
-  border: none;
-  max-height: unset;
-  min-height: unset;
+
+  & > input {
+    border-radius: 0;
+    border-width: 0;
+  }
 `
 
 export const CountryOptions = styled.div`

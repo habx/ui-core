@@ -115,6 +115,7 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
           onChange={handleChange}
           value={value}
           disabled={disabled}
+          data-small={small}
         />
       </PhoneInputContainer>
     )
