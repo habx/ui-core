@@ -42,7 +42,11 @@ storiesOf('Navigation|NavBar', module)
         label="Événements"
         description="Super event !"
       />
-      <NavBarItem icon={<Icon icon="share" />} label="Partager" disabled />
+      <NavBarItem
+        icon={<Icon icon="share" />}
+        label="Partager le super long texte"
+        disabled
+      />
       <NavBarItem icon={<Icon icon="settings" />} label="Mon compte" bottom />
     </NavBar>
   ))
