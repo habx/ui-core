@@ -58,7 +58,7 @@ const TooltipWithTriggerElement: React.FunctionComponent<
       style.left = 0
       style.right = 'auto'
     }
-    if (tooltipPosition.x + tooltipHalfWidth * 2 > window.innerWidth) {
+    if (tooltipPosition.x + tooltipHalfWidth * 2 + 100 > window.innerWidth) {
       style.left = 'auto'
       style.right = 0
     }
