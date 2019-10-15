@@ -37,12 +37,39 @@ const GRID_LINES = [
 
 const GRID_ITEMS = [
   {
+    label: 'Position top left',
+    props: {
+      position: 'top-left' as 'top-left',
+    },
+  },
+  {
+    label: 'Position top right',
+    props: {
+      position: 'top-right' as 'top-right',
+    },
+  },
+  {
     label: 'Position bottom left',
+    props: {
+      position: 'bottom-left' as 'bottom-left',
+    },
   },
   {
     label: 'Position bottom right',
     props: {
       position: 'bottom-right' as 'bottom-right',
+    },
+  },
+  {
+    label: 'Position left top',
+    props: {
+      position: 'left-top' as 'left-top',
+    },
+  },
+  {
+    label: 'Position right top',
+    props: {
+      position: 'right-top' as 'right-top',
     },
   },
 ]
