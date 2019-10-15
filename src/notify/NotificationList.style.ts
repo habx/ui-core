@@ -10,7 +10,7 @@ export const NotificationListContainer = styled.div`
   position: fixed;
   right: 24px;
   top: 24px;
-  z-index: 99;
+  z-index: 99999999;
 
   @media (${breakpoints.below.phone}) {
     left: 24px;
