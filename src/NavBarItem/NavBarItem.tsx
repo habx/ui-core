@@ -9,6 +9,7 @@ import {
   DescriptionContainer,
   IconContainer,
   NavBarItemContainer,
+  TextContainer,
   TitleContainer,
 } from './NavBarItem.style'
 
@@ -44,14 +45,14 @@ const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
       >
         <IconContainer>{icon}</IconContainer>
         {isExpanded && (
-          <div>
+          <TextContainer>
             <TitleContainer color={color}>{label}</TitleContainer>
             {description && (
               <DescriptionContainer color={color}>
                 {description}
               </DescriptionContainer>
             )}
-          </div>
+          </TextContainer>
         )}
       </NavBarItemContainer>
     )
