@@ -4,6 +4,6 @@ export default interface MenuLineProps
   extends React.LiHTMLAttributes<HTMLLIElement> {
   iconLeft?: JSX.Element
   iconRight?: JSX.Element
-  primary?: boolean
+  secondary?: boolean
   active?: boolean
 }

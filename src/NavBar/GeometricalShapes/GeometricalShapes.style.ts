@@ -12,6 +12,7 @@ export const GeometricalShapesContainer = styled.div`
   height: 100%;
   overflow: hidden;
   transition: width ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
+  pointer-events: none;
 
   &[data-expanded='true'] {
     width: 250px;
