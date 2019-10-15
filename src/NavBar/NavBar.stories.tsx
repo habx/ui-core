@@ -3,9 +3,11 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import Icon from '../Icon'
+import Menu from '../Menu'
+import MenuLine from '../MenuLine'
 import NavBarItem from '../NavBarItem'
 
-import NavBar from './index'
+import NavBar from './NavBar'
 
 const Container = styled.div`
   position: fixed;
@@ -47,6 +49,18 @@ storiesOf('Navigation|NavBar', module)
         label="Partager le super long texte"
         disabled
       />
-      <NavBarItem icon={<Icon icon="settings" />} label="Mon compte" bottom />
+      <NavBarItem icon={null} bottom />
+      <Menu
+        position="right-top"
+        triggerElement={
+          <NavBarItem
+            icon={<Icon icon="settings" />}
+            label="Mon compte"
+            bottom
+          />
+        }
+      >
+        <MenuLine>Menu</MenuLine>
+      </Menu>
     </NavBar>
   ))
