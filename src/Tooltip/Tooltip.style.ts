@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
+import animations from '../animations'
 import { ANIMATION_DURATIONS } from '../animations/animations'
 import Background from '../Background'
-import { animations } from '../index'
 import theme from '../theme'
 
 export const ANIMATION_DURATION = ANIMATION_DURATIONS.s

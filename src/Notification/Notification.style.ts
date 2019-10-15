@@ -8,7 +8,6 @@ export const NotificationContainer = styled.div<{
   error?: boolean
 }>`
   background-color: ${palette.darkBlue[100]};
-  z-index: 999999;
   border-radius: 4px;
   display: flex;
   align-items: center;
