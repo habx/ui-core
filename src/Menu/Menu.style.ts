@@ -25,6 +25,7 @@ export const MenuContainer = styled.ul`
   list-style-type: none;
   min-width: 100%;
   padding: 0;
+  margin: 0;
 
   position: absolute;
 
@@ -41,16 +42,51 @@ export const MenuContainer = styled.ul`
     animation: ${animations('diveSlant')};
   }
 
-  &[data-position='bottom-right'] {
-    top: 100%;
+  &[data-position='top-left'] {
+    top: -12px;
+    left: 100%;
+
+    & ${MenuContent} {
+      transform: translateY(-100%) translateX(-100%);
+    }
+  }
+
+  &[data-position='top-right'] {
+    top: -12px;
+
+    & ${MenuContent} {
+      transform: translateY(-100%);
+    }
   }
 
   &[data-position='bottom-left'] {
-    top: 100%;
+    top: calc(100% + 12px);
     left: 100%;
 
     & ${MenuContent} {
       transform: translateX(-100%);
+    }
+  }
+
+  &[data-position='bottom-right'] {
+    top: calc(100% + 12px);
+  }
+
+  &[data-position='left-top'] {
+    top: 100%;
+    left: -18px;
+
+    & ${MenuContent} {
+      transform: translateY(-100%) translateX(-100%);
+    }
+  }
+
+  &[data-position='right-top'] {
+    top: 100%;
+    left: calc(100% + 18px);
+
+    & ${MenuContent} {
+      transform: translateY(-100%);
     }
   }
 
