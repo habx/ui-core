@@ -25,6 +25,7 @@ export interface Button
 
 export interface styledTheme {
   designSystem: DesignSystemTheme
+  designSystemRoot: DesignSystemTheme
 }
 
 export type formOption = { value: any; label: string }

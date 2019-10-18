@@ -15,40 +15,53 @@ import ThemeProviderProps, {
 
 const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
-  themeFamily = 'habx',
+  themeFamily,
   isRoot = false,
   backgroundColor,
   children,
 }) => {
   const currentTheme = React.useContext<styledTheme>(ThemeContext) || {}
 
-  const newTheme = React.useMemo<styledTheme>(() => {
-    const patch: DesignSystemThemePatch = backgroundColor
-      ? {
-          ...THEME_PATCHES[backgroundColor.toUpperCase()],
-          backgroundColor,
-        }
-      : (theme as DesignSystemThemePatch)
-
-    const base =
-      currentTheme.designSystem ||
+  const baseTheme = React.useMemo(
+    () =>
+      currentTheme.designSystemRoot ||
       merge.recursive<DesignSystemTheme, DesignSystemThemePatch>(
         true,
         BASE_THEME,
-        FAMILY_PATCHES[themeFamily]
-      )
+        themeFamily ? FAMILY_PATCHES[themeFamily] : {}
+      ),
+    [currentTheme.designSystemRoot, themeFamily]
+  )
 
+  const patch = React.useMemo<DesignSystemThemePatch>(() => {
+    if (backgroundColor === '#FFFFFF') {
+      return baseTheme
+    }
+
+    if (backgroundColor) {
+      return {
+        ...THEME_PATCHES[backgroundColor.toUpperCase()],
+        backgroundColor,
+      }
+    }
+
+    return theme as DesignSystemThemePatch
+  }, [backgroundColor, baseTheme, theme])
+
+  const newTheme = React.useMemo<styledTheme>(() => {
     const designSystem = merge.recursive<
       DesignSystemTheme,
       DesignSystemThemePatch
-    >(true, base, patch)
+    >(true, baseTheme, patch)
 
     return {
       ...currentTheme,
       designSystem,
-      ...(isRoot && { designSystemRoot: designSystem }),
+      ...((isRoot || !currentTheme.designSystem) && {
+        designSystemRoot: designSystem,
+      }),
     }
-  }, [backgroundColor, currentTheme, isRoot, theme, themeFamily])
+  }, [baseTheme, currentTheme, isRoot, patch])
 
   return (
     <BaseThemeProvider theme={newTheme}>

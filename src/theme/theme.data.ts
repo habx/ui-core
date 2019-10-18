@@ -71,7 +71,6 @@ const PATCH_WHITE: ColorVariations = {
 }
 
 export const THEME_PATCHES: { [key: string]: DesignSystemThemePatch } = {
-  '#FFFFFF': BASE_THEME,
   [palette.darkBlue[900]]: {
     colors: {
       secondary: PATCH_WHITE,
