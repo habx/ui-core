@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 import styledNormalize from 'styled-normalize'
 
 import Provider from '../src/Provider'
+import ThemeProvider from '../src/ThemeProvider'
 
 const FONT_ROOT = 'https://cdn.habx.fr/assets/fonts'
 
@@ -72,9 +73,11 @@ const GlobalStyle = createGlobalStyle`
 
 export default (storyFn: Function) => (
   <React.Fragment>
-    <Provider>
-      <GlobalStyle />
-      {storyFn()}
-    </Provider>
+    <ThemeProvider themeFamily='icade' isRoot>
+      <Provider>
+        <GlobalStyle />
+        {storyFn()}
+      </Provider>
+    </ThemeProvider>
   </React.Fragment>
 )
