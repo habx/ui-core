@@ -6,7 +6,7 @@ import {
 } from 'styled-components'
 
 import { styledTheme } from '../_internal/types'
-import { BASE_THEME, THEME_PATCHES } from '../theme'
+import { BASE_THEME, FAMILY_PATCHES, THEME_PATCHES } from '../theme'
 import DesignSystemTheme from '../theme/theme.interface'
 
 import ThemeProviderProps, {
@@ -15,6 +15,7 @@ import ThemeProviderProps, {
 
 const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
+  themeFamily = 'habx',
   isRoot = false,
   backgroundColor,
   children,
@@ -29,17 +30,25 @@ const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
         }
       : (theme as DesignSystemThemePatch)
 
+    const base =
+      currentTheme.designSystem ||
+      merge.recursive<DesignSystemTheme, DesignSystemThemePatch>(
+        true,
+        BASE_THEME,
+        FAMILY_PATCHES[themeFamily]
+      )
+
     const designSystem = merge.recursive<
       DesignSystemTheme,
       DesignSystemThemePatch
-    >(true, currentTheme.designSystem || BASE_THEME, patch)
+    >(true, base, patch)
 
     return {
       ...currentTheme,
       designSystem,
       ...(isRoot && { designSystemRoot: designSystem }),
     }
-  }, [backgroundColor, currentTheme, isRoot, theme])
+  }, [backgroundColor, currentTheme, isRoot, theme, themeFamily])
 
   return (
     <BaseThemeProvider theme={newTheme}>

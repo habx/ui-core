@@ -104,3 +104,16 @@ export const THEME_PATCHES: { [key: string]: DesignSystemThemePatch } = {
     },
   },
 }
+
+export const FAMILY_PATCHES: { [key: string]: DesignSystemThemePatch } = {
+  habx: {},
+  icade: {
+    colors: {
+      primary: {
+        base: '#A2217D',
+        hover: '#9C1877',
+        focus: '#950d72',
+      },
+    },
+  },
+}
