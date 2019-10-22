@@ -36,6 +36,7 @@ const NavigationButton = React.forwardRef<
       data-large={large}
       data-small={small}
       data-background={theme.backgroundColor !== '#FFFFFF'}
+      data-usage={usage}
       {...rest}
     >
       <Icon icon={getIcon(usage, previous)} />

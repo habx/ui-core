@@ -5,9 +5,9 @@ import palette from '../palette'
 import theme from '../theme'
 
 const SIZES = {
-  s: { diameter: 24, fontSize: 12 },
-  m: { diameter: 36, fontSize: 16 },
-  l: { diameter: 50, fontSize: 20 },
+  s: { diameter: 24, fontSizes: { navigation: 12, toggle: 16 } },
+  m: { diameter: 36, fontSizes: { navigation: 16, toggle: 24 } },
+  l: { diameter: 50, fontSizes: { navigation: 20, toggle: 30 } },
 }
 
 const size = (sizeName: 's' | 'm' | 'l') => {
@@ -16,7 +16,14 @@ const size = (sizeName: 's' | 'm' | 'l') => {
   return css`
     height: ${sizeConfig.diameter}px;
     width: ${sizeConfig.diameter}px;
-    font-size: ${sizeConfig.fontSize}px;
+
+    &[data-usage='navigation'] {
+      font-size: ${sizeConfig.fontSizes.navigation}px;
+    }
+
+    &[data-usage='toggle'] {
+      font-size: ${sizeConfig.fontSizes.toggle}px;
+    }
   `
 }
 

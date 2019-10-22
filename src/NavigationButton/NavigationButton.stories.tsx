@@ -21,6 +21,18 @@ const GRID_LINES = [
     props: { small: true },
   },
   {
+    title: 'Toggle regular',
+    props: { usage: 'toggle' as 'toggle' },
+  },
+  {
+    title: 'Toggle large',
+    props: { usage: 'toggle' as 'toggle', large: true },
+  },
+  {
+    title: 'Toggle small',
+    props: { usage: 'toggle' as 'toggle', small: true },
+  },
+  {
     title: 'Regular + Colored background',
     coloredBackground: true,
   },
