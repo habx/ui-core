@@ -47,7 +47,7 @@ const emphasisTextStyle = css<{ color?: string }>`
   ${baseTextStyle};
 
   ${size('mars')};
-  font-weight: 600;
+  font-weight: 500;
 
   color: ${theme.color('secondary', {
     dynamic: true,
