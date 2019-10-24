@@ -13,6 +13,8 @@ import {
   NavBarPageLogo,
   NavBarItemsContainer,
   NavBarToggleButton,
+  NavBarAbsoluteContainer,
+  NavBarFakeContainer,
 } from './NavBar.style'
 
 const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
@@ -41,36 +43,45 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
 
     return (
       <NavBarContext.Provider value={context}>
-        <NavBarContainer
-          data-testid="nav-bar-container"
-          {...rest}
-          ref={ref}
-          data-expanded={isExpanded}
-          data-hover-icon={isHoveringIcon || isExpanded}
-          color={color}
-          backgroundColor={backgroundColor}
-        >
-          <GeometricalShapes isExpanded={isExpanded} />
-          <NavBarHeader>
-            {isExpanded && (
-              <NavBarPageLogo color={color} type="caption">
-                {title}
-              </NavBarPageLogo>
-            )}
-            <NavBarToggleButton onClick={handleToggle}>
-              <Icon
-                onMouseEnter={() => setHoveringIcon(true)}
-                onMouseLeave={() => setHoveringIcon(false)}
-                icon={
-                  isExpanded
-                    ? 'burger-menu-light-minimize'
-                    : 'burger-menu-light'
-                }
-              />
-            </NavBarToggleButton>
-          </NavBarHeader>
-          <NavBarItemsContainer>{children}</NavBarItemsContainer>
-        </NavBarContainer>
+        <NavBarAbsoluteContainer>
+          <NavBarContainer
+            data-testid="nav-bar-container"
+            {...rest}
+            ref={ref}
+            data-expanded={isExpanded}
+            data-hover-icon={isHoveringIcon || isExpanded}
+            color={color}
+            backgroundColor={backgroundColor}
+          >
+            <GeometricalShapes isExpanded={isExpanded} />
+            <NavBarHeader>
+              {isExpanded && (
+                <React.Fragment>
+                  {typeof title === 'string' ? (
+                    <NavBarPageLogo color={color} type="caption">
+                      {title}
+                    </NavBarPageLogo>
+                  ) : (
+                    title
+                  )}
+                </React.Fragment>
+              )}
+              <NavBarToggleButton onClick={handleToggle}>
+                <Icon
+                  onMouseEnter={() => setHoveringIcon(true)}
+                  onMouseLeave={() => setHoveringIcon(false)}
+                  icon={
+                    isExpanded
+                      ? 'burger-menu-light-minimize'
+                      : 'burger-menu-light'
+                  }
+                />
+              </NavBarToggleButton>
+            </NavBarHeader>
+            <NavBarItemsContainer>{children}</NavBarItemsContainer>
+          </NavBarContainer>
+        </NavBarAbsoluteContainer>
+        <NavBarFakeContainer data-expanded={isExpanded} />
       </NavBarContext.Provider>
     )
   }
