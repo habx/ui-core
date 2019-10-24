@@ -17,7 +17,7 @@ export interface DesignSystemThemePatch {
 
 export default interface ThemeProviderProps {
   theme?: DesignSystemThemePatch
-  themeFamily?: 'habx' | 'icade'
+  themeFamily?: 'habx' | 'icade' | 'cogedim'
   isRoot?: boolean
   backgroundColor?: string
   children?: React.ReactChild
