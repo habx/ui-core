@@ -7,6 +7,9 @@ import {
 import Text from '../Text'
 import theme from '../theme'
 
+const EXPANDED_SIZE = 250
+const DEFAULT_SIZE = 48
+
 export const NavBarToggleButton = styled.button`
   background: none;
   border: none;
@@ -20,6 +23,19 @@ export const NavBarToggleButton = styled.button`
   }
 `
 
+export const NavBarAbsoluteContainer = styled.div`
+  position: absolute;
+`
+
+export const NavBarFakeContainer = styled.div`
+  height: 100vh;
+  transition: width ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
+  width: ${DEFAULT_SIZE}px;
+  &[data-expanded='true'] {
+    width: ${EXPANDED_SIZE}px;
+  }
+`
+
 export const NavBarContainer = styled.ul<{
   color?: string
   backgroundColor?: string
@@ -29,7 +45,7 @@ export const NavBarContainer = styled.ul<{
   padding: 0;
   flex: 0 0 auto;
   height: 100vh;
-  width: 48px;
+  width: ${DEFAULT_SIZE}px;
   position: relative;
   z-index: 100;
   display: flex;
@@ -45,7 +61,7 @@ export const NavBarContainer = styled.ul<{
   }
 
   &[data-expanded='true'] {
-    width: 250px;
+    width: ${EXPANDED_SIZE}px;
   }
 
   & ${NavBarToggleButton} {
@@ -68,6 +84,10 @@ export const NavBarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  img {
+    height: 48px;
+    width: 48px;
+  }
 `
 
 export const NavBarPageLogo = styled(Text)`
