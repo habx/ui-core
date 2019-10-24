@@ -109,6 +109,25 @@ export const FAMILY_PATCHES: { [key: string]: DesignSystemThemePatch } = {
   icade: {
     colors: {
       primary: {
+        base: '#00B1E5',
+        hover: '#0097C3',
+        focus: '#007CA1',
+        contrastText: '#FFFFFF',
+      },
+      secondary: {
+        base: '#363636',
+        hover: '#474747',
+        focus: '#585858',
+      },
+    },
+    textColors: {
+      base: '#363636',
+      title: '#363636',
+    },
+  },
+  cogedim: {
+    colors: {
+      primary: {
         base: '#A2217D',
         hover: '#9C1877',
         focus: '#950d72',
