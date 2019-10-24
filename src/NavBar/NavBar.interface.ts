@@ -4,7 +4,7 @@ import { Except } from '../_internal/types'
 
 export default interface NavBarProps
   extends Except<React.HTMLAttributes<HTMLUListElement>, 'title'> {
-  title?: string | React.ReactNode
+  title?: React.ReactNode
   color?: string
   backgroundColor?: string
 }
