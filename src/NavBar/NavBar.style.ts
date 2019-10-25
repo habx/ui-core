@@ -25,10 +25,11 @@ export const NavBarToggleButton = styled.button`
 
 export const NavBarAbsoluteContainer = styled.div`
   position: absolute;
+  height: 100%;
 `
 
 export const NavBarFakeContainer = styled.div`
-  height: 100vh;
+  height: 100%;
   transition: width ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
   width: ${DEFAULT_SIZE}px;
   &[data-expanded='true'] {
@@ -44,7 +45,7 @@ export const NavBarContainer = styled.ul<{
   margin: 0;
   padding: 0;
   flex: 0 0 auto;
-  height: 100vh;
+  height: 100%;
   width: ${DEFAULT_SIZE}px;
   position: relative;
   z-index: 100;
