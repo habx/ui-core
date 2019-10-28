@@ -27,6 +27,11 @@ const headerMaxiTitleStyle = css`
 
   @media (${breakpoints.below.smallTablet}) {
     ${size('nova')};
+  }
+
+  @media (${breakpoints.below.phone}) {
+    ${size('sun')};
+  }
 `
 
 const headerBigTitleStyle = css`
@@ -36,6 +41,10 @@ const headerBigTitleStyle = css`
 
   @media (${breakpoints.below.smallTablet}) {
     ${size('sun')};
+  }
+
+  @media (${breakpoints.below.phone}) {
+    ${size('jupiter')};
   }
 `
 
