@@ -18,4 +18,5 @@ const SSR_DOM_RECT: DOMRect = {
   toJSON: () => '',
 }
 
-export const getDOMRect = () => (isClientSide ? new DOMRect() : SSR_DOM_RECT)
+export const getDOMRect = () =>
+  typeof DOMRect === 'function' ? new DOMRect() : SSR_DOM_RECT
