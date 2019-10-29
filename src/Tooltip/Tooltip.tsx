@@ -1,6 +1,7 @@
 import useModal from '@delangle/use-modal'
 import * as React from 'react'
 
+import { getDOMRect } from '../_internal/ssr'
 import useMousePosition from '../_internal/useMousePosition'
 import palette from '../palette'
 import Text from '../Text'
@@ -48,9 +49,9 @@ const TooltipWithTriggerElement: React.FunctionComponent<
   const tooltipHalfWidth = tooltipRef.current
     ? tooltipRef.current.clientWidth / 2
     : 0
-  const tooltipPosition = (contentRef.current
-    ? contentRef.current.getBoundingClientRect()
-    : new DOMRect()) as DOMRect
+  const tooltipPosition = contentRef.current
+    ? (contentRef.current.getBoundingClientRect() as DOMRect)
+    : getDOMRect()
   const [contentStyle, setContentStyle] = React.useState({})
   React.useLayoutEffect(() => {
     const style = {} as any

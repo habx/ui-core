@@ -3,7 +3,7 @@ import * as React from 'react'
 import { createPortal } from 'react-dom'
 
 import { isNil, has, isString, some } from '../_internal/data'
-import { isClientSide, ssrClientRect } from '../_internal/ssr'
+import { isClientSide, getDOMRect } from '../_internal/ssr'
 import { searchInString } from '../_internal/strings'
 import { formOption, formValue } from '../_internal/types'
 import useMergedRef from '../_internal/useMergedRef'
@@ -279,8 +279,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       isOpened: false,
       query: '',
       hoverReset: false,
-      wrapperRect:
-        typeof DOMRect === 'function' ? new DOMRect() : ssrClientRect,
+      wrapperRect: getDOMRect(),
       focusedItem:
         rawValueFormat === 'simple'
           ? get(rawValue, 'value') || rawValue
