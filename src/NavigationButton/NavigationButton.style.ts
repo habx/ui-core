@@ -42,6 +42,7 @@ export const NavigationButtonContainer = styled.button`
   color: ${theme.color('primary', { dynamic: true })};
   box-shadow: ${theme.shadow('low')};
   transition: all 150ms ease-in-out;
+  padding: 0;
 
   &[data-large='true'] {
     ${size('l')};
