@@ -86,7 +86,7 @@
     "lint-staged": "^9.2.1",
     "lodash": "^4.17.11",
     "rimraf": "^3.0.0",
-    "rollup-plugin-typescript2": "^0.24.0",
+    "rollup-plugin-typescript2": "^0.25.1",
     "sinon": "^7.4.1",
     "storybook-addon-designs": "^5.1.1",
     "styled-normalize": "^8.0.6",
