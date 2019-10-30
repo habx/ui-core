@@ -87,7 +87,7 @@ const ANIMATIONS: Animations = {
 const animationGetter = <GetterProps extends {}>(
   name: keyof Animations,
   config: Partial<AnimationConfig> = {}
-) => (props: GetterProps) => {
+) => (_props: GetterProps) => {
   const animation = ANIMATIONS[name]
 
   const {
