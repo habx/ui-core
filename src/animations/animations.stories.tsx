@@ -34,7 +34,7 @@ const AnimationCardContent = styled.div<{
   }
 
   &[data-animated='true'] {
-    animation: ${({ animation: animationName, children, ...props }) =>
+    animation: ${({ animation: animationName, ...props }) =>
       animations(animationName, { testMode: true, ...props })(props)};
   }
 `
