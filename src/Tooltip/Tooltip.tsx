@@ -1,7 +1,7 @@
 import useModal from '@delangle/use-modal'
 import * as React from 'react'
 
-import { getDOMRect } from '../_internal/ssr'
+import { getDOMRect, useSSRLayoutEffect } from '../_internal/ssr'
 import useMousePosition from '../_internal/useMousePosition'
 import palette from '../palette'
 import Text from '../Text'
@@ -53,7 +53,8 @@ const TooltipWithTriggerElement: React.FunctionComponent<
     ? (contentRef.current.getBoundingClientRect() as DOMRect)
     : getDOMRect()
   const [contentStyle, setContentStyle] = React.useState({})
-  React.useLayoutEffect(() => {
+
+  useSSRLayoutEffect(() => {
     const style = {} as any
     if (tooltipPosition.x && tooltipPosition.x < 0) {
       style.left = 0
@@ -65,6 +66,7 @@ const TooltipWithTriggerElement: React.FunctionComponent<
     }
     setContentStyle(style)
   }, [tooltipHalfWidth]) // eslint-disable-line
+
   return (
     <TooltipTriggerContainer data-state={modal.state}>
       {trigger}

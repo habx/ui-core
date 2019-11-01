@@ -32,6 +32,8 @@ export const NavBarFakeContainer = styled.div`
   height: 100%;
   transition: width ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
   width: ${DEFAULT_SIZE}px;
+  flex: 0 0 auto;
+
   &[data-expanded='true'] {
     width: ${EXPANDED_SIZE}px;
   }
