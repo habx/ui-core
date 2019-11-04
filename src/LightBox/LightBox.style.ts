@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
 import Background from '../Background'
-import breakpoints from '../breakpoints'
 import theme from '../theme'
 
 export const ANIMATION_DURATION = 300
@@ -37,10 +36,6 @@ export const LightBoxOverlay = styled(Background)`
   &[data-state='closed'] {
     opacity: 0;
     pointer-events: none;
-  }
-
-  @media (${breakpoints.below.phone}) {
-    padding: 24px;
   }
 `
 
