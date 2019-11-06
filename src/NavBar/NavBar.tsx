@@ -17,10 +17,14 @@ import {
   NavBarFakeContainer,
 } from './NavBar.style'
 
+const HOVER_AUTO_OPENING_DELAY = 750
+
 const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
   (baseProps, ref) => {
     const theme = useTheme()
     const [isHoveringIcon, setHoveringIcon] = React.useState<boolean>(false)
+    const [isHoveringNavBar, setHoveringNavBar] = React.useState<boolean>(false)
+    const clickRef = React.useRef<boolean>(false)
 
     const props = { ...baseProps, theme }
 
@@ -41,9 +45,28 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
       [color, isExpanded]
     )
 
+    React.useEffect(() => {
+      if (isHoveringNavBar) {
+        clickRef.current = false
+        const t = setTimeout(() => {
+          if (!clickRef.current) {
+            setExpanded(true)
+          }
+        }, HOVER_AUTO_OPENING_DELAY)
+
+        return () => {
+          clearTimeout(t)
+        }
+      }
+    }, [isHoveringNavBar])
+
     return (
       <NavBarContext.Provider value={context}>
-        <NavBarAbsoluteContainer>
+        <NavBarAbsoluteContainer
+          onMouseEnter={() => setHoveringNavBar(true)}
+          onMouseLeave={() => setHoveringNavBar(false)}
+          onClick={() => (clickRef.current = true)}
+        >
           <NavBarContainer
             data-testid="nav-bar-container"
             {...rest}
