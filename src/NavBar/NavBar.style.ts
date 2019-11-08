@@ -78,6 +78,10 @@ export const NavBarItemsContainer = styled.div`
   flex-direction: column;
   align-items: stretch;
   flex: 1;
+
+  > * {
+    align-self: stretch;
+  }
 `
 
 export const NavBarHeader = styled.div`

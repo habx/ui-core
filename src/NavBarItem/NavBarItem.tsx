@@ -19,7 +19,6 @@ const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
       icon,
       label,
       isInsideANavBar,
-      isExpanded,
       bottom,
       active,
       disabled,
@@ -44,16 +43,14 @@ const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
         ref={ref}
       >
         <IconContainer>{icon}</IconContainer>
-        {isExpanded && (
-          <TextContainer>
-            <TitleContainer color={color}>{label}</TitleContainer>
-            {description && (
-              <DescriptionContainer color={color}>
-                {description}
-              </DescriptionContainer>
-            )}
-          </TextContainer>
-        )}
+        <TextContainer>
+          <TitleContainer color={color}>{label}</TitleContainer>
+          {description && (
+            <DescriptionContainer color={color}>
+              {description}
+            </DescriptionContainer>
+          )}
+        </TextContainer>
       </NavBarItemContainer>
     )
   }
