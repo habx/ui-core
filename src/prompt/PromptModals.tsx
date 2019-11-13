@@ -66,6 +66,7 @@ const ConfirmModal: React.FunctionComponent<{}> = () => {
           <Modal
             open={modal.open}
             key={modal.id}
+            onClose={() => handleResolve(modal, undefined)}
             {...props({
               onResolve: response => handleResolve(modal, response),
             })}
