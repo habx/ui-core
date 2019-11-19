@@ -8,7 +8,7 @@ import Text from '../Text'
 import theme from '../theme'
 
 const EXPANDED_SIZE = 250
-const DEFAULT_SIZE = 48
+const DEFAULT_SIZE = 64
 
 export const NavBarToggleButton = styled.button`
   background: none;
@@ -16,11 +16,7 @@ export const NavBarToggleButton = styled.button`
   outline: none;
   cursor: pointer;
   padding: 0;
-  font-size: 20px;
-
-  @media (hover: none) and (pointer: coarse) {
-    font-size: 24px;
-  }
+  font-size: 24px;
 `
 
 export const NavBarAbsoluteContainer = styled.div`
@@ -60,7 +56,7 @@ export const NavBarContainer = styled.ul<{
   color: ${({ color }) => color};
 
   &[data-hover-icon='true'] {
-    width: 54px;
+    width: ${DEFAULT_SIZE + 6}px;
   }
 
   &[data-expanded='true'] {
@@ -91,15 +87,16 @@ export const NavBarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  img {
-    height: 48px;
-    width: 48px;
+
+  & img {
+    height: ${DEFAULT_SIZE}px;
+    width: ${DEFAULT_SIZE}px;
   }
 `
 
 export const NavBarPageLogo = styled(Text)`
-  height: 48px;
-  width: 48px;
+  height: ${DEFAULT_SIZE}px;
+  width: ${DEFAULT_SIZE}px;
   border-radius: 50%;
   background-color: ${theme.color('secondary', { opacity: 0.4 })};
   display: flex;
