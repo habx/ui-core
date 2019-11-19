@@ -3,25 +3,19 @@ import styled from 'styled-components'
 import Text from '../Text'
 
 export const IconContainer = styled.div`
-  height: 24px;
-  width: 18px;
+  height: 32px;
+  width: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
-
-  @media (hover: none) and (pointer: coarse) {
-    font-size: 24px;
-    width: 24px;
-    height: 32px;
-  }
+  font-size: 24px;
 `
 
 export const NavBarItemContainer = styled.li`
   position: relative;
   font-size: 12px;
   font-weight: bold;
-  padding: 8px 15px;
+  padding: 8px 20px;
   outline: none;
   display: flex;
   align-items: center;
@@ -49,10 +43,6 @@ export const NavBarItemContainer = styled.li`
   &[data-disabled='true'] {
     pointer-events: none;
     opacity: 0.4;
-  }
-
-  @media (hover: none) and (pointer: coarse) {
-    padding: 12px;
   }
 `
 
