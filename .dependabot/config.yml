@@ -6,8 +6,12 @@ update_configs:
     version_requirement_updates: "auto"
     # https://dependabot.com/docs/config-file/#automerged_updates
     automerged_updates:
-      - match: { dependency_type: "development", update_type: "security:patch" }
-      - match: { dependency_type: "production", update_type: "security:patch" }
+      - match:
+          dependency_type: "all"
+          update_type: "semver:minor"
+      - match:
+          dependency_type: "all"
+          update_type: "in_range"
       - match:
           dependency_name: "lodash"
       - match:
@@ -16,3 +20,11 @@ update_configs:
           dependency_name: "@habx/*"
       - match:
           dependency_name: "lint-staged"
+      - match:
+          dependency_name: "typescript"
+      - match:
+          dependency_name: "@sentry/*"
+          update_type: "semver:minor"
+  - package_manager: "docker"
+    directory: "/"
+    update_schedule: "daily"
