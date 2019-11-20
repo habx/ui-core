@@ -70,7 +70,7 @@ const NotificationList: React.FunctionComponent<{}> = () => {
   )
 
   return (
-    <NotificationListContainer>
+    <NotificationListContainer onClick={e => e.stopPropagation()}>
       {notifications.map(notification => {
         const props: NotificationEventProps = isString(notification.message)
           ? { title: notification.message as string }
