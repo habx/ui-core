@@ -6,24 +6,67 @@ import useTheme from '../useTheme'
 
 import GeometricalShapes from './GeometricalShapes'
 import NavBarContext from './NavBar.context'
-import NavBarProps from './NavBar.interface'
+import NavBarProps, {
+  ActionType,
+  NavBarAction,
+  NavBarState,
+} from './NavBar.interface'
 import {
-  NavBarContainer,
-  NavBarHeader,
-  NavBarPageLogo,
-  NavBarItemsContainer,
-  NavBarToggleButton,
   NavBarAbsoluteContainer,
+  NavBarContainer,
   NavBarFakeContainer,
+  NavBarHeader,
+  NavBarItemsContainer,
+  NavBarPageLogo,
+  NavBarToggleButton,
 } from './NavBar.style'
 
 const HOVER_AUTO_OPENING_DELAY = 750
+const HOVER_AUTO_CLOSE_DELAY = 150
+
+const reducer: React.Reducer<NavBarState, NavBarAction> = (state, action) => {
+  switch (action.type) {
+    case ActionType.SetExpanded: {
+      return { ...state, isPersistent: action.isPersistent, isExpanded: true }
+    }
+
+    case ActionType.SetClosed: {
+      return { ...state, isExpanded: false }
+    }
+
+    case ActionType.ToggleOpen: {
+      return {
+        ...state,
+        isPersistent: action.isPersistent,
+        isExpanded: !state.isExpanded,
+      }
+    }
+
+    case ActionType.SetHover: {
+      return { ...state, isHovering: action.value }
+    }
+
+    case ActionType.SetHoverTitleIcon: {
+      return { ...state, isHoveringTitleIcon: action.value }
+    }
+
+    default: {
+      return state
+    }
+  }
+}
+
+const INITIAL_STATE: NavBarState = {
+  isHovering: false,
+  isHoveringTitleIcon: false,
+  isExpanded: false,
+  isPersistent: false,
+}
 
 const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
   (baseProps, ref) => {
+    const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
     const theme = useTheme()
-    const [isHoveringIcon, setHoveringIcon] = React.useState<boolean>(false)
-    const [isHoveringNavBar, setHoveringNavBar] = React.useState<boolean>(false)
     const clickRef = React.useRef<boolean>(false)
 
     const props = { ...baseProps, theme }
@@ -36,49 +79,53 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
       ...rest
     } = props
 
-    const [isExpanded, setExpanded] = React.useState(false)
-
-    const handleToggle = React.useCallback(() => setExpanded(prev => !prev), [])
-
     const context = React.useMemo(
-      () => ({ isInsideANavBar: true, isExpanded, color }),
-      [color, isExpanded]
+      () => ({ isInsideANavBar: true, isExpanded: state.isExpanded, color }),
+      [color, state.isExpanded]
     )
 
     React.useEffect(() => {
-      if (isHoveringNavBar) {
+      if (state.isHovering) {
         clickRef.current = false
         const t = setTimeout(() => {
           if (!clickRef.current) {
-            setExpanded(true)
+            dispatch({ type: ActionType.SetExpanded, isPersistent: false })
           }
         }, HOVER_AUTO_OPENING_DELAY)
 
         return () => {
           clearTimeout(t)
         }
+      } else if (!state.isPersistent) {
+        setTimeout(() => {
+          dispatch({ type: ActionType.SetClosed })
+        }, HOVER_AUTO_CLOSE_DELAY)
       }
-    }, [isHoveringNavBar])
+    }, [state.isHovering, state.isPersistent])
 
     return (
       <NavBarContext.Provider value={context}>
         <NavBarAbsoluteContainer
-          onMouseEnter={() => setHoveringNavBar(true)}
-          onMouseLeave={() => setHoveringNavBar(false)}
+          onMouseEnter={() =>
+            dispatch({ type: ActionType.SetHover, value: true })
+          }
+          onMouseLeave={() =>
+            dispatch({ type: ActionType.SetHover, value: false })
+          }
           onClick={() => (clickRef.current = true)}
         >
           <NavBarContainer
             data-testid="nav-bar-container"
             {...rest}
             ref={ref}
-            data-expanded={isExpanded}
-            data-hover-icon={isHoveringIcon || isExpanded}
+            data-expanded={state.isExpanded}
+            data-hover-icon={state.isHoveringTitleIcon || state.isExpanded}
             color={color}
             backgroundColor={backgroundColor}
           >
-            <GeometricalShapes isExpanded={isExpanded} />
+            <GeometricalShapes isExpanded={state.isExpanded} />
             <NavBarHeader>
-              {isExpanded && (
+              {state.isExpanded && (
                 <React.Fragment>
                   {typeof title === 'string' ? (
                     <NavBarPageLogo color={color} type="caption">
@@ -89,12 +136,26 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
                   )}
                 </React.Fragment>
               )}
-              <NavBarToggleButton onClick={handleToggle}>
+              <NavBarToggleButton
+                onClick={() =>
+                  dispatch({ type: ActionType.ToggleOpen, isPersistent: true })
+                }
+              >
                 <Icon
-                  onMouseEnter={() => setHoveringIcon(true)}
-                  onMouseLeave={() => setHoveringIcon(false)}
+                  onMouseEnter={() =>
+                    dispatch({
+                      type: ActionType.SetHoverTitleIcon,
+                      value: true,
+                    })
+                  }
+                  onMouseLeave={() =>
+                    dispatch({
+                      type: ActionType.SetHoverTitleIcon,
+                      value: false,
+                    })
+                  }
                   icon={
-                    isExpanded
+                    state.isExpanded
                       ? 'burger-menu-light-minimize'
                       : 'burger-menu-light'
                   }
@@ -104,7 +165,7 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
             <NavBarItemsContainer>{children}</NavBarItemsContainer>
           </NavBarContainer>
         </NavBarAbsoluteContainer>
-        <NavBarFakeContainer data-expanded={isExpanded} />
+        <NavBarFakeContainer data-expanded={state.isExpanded} />
       </NavBarContext.Provider>
     )
   }

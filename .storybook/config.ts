@@ -14,7 +14,8 @@ addParameters({
       base: 'light',
       brandTitle: 'Habx'
     })
-  }
+  },
+  info: {},
 })
 
 const req = process.env.NODE_ENV === 'test' ?
