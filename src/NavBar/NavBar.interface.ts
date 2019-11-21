@@ -14,3 +14,25 @@ export interface NavBarContextProps {
   isExpanded: boolean
   color: string
 }
+
+export interface NavBarState {
+  isOpened: boolean
+  isPersistent: boolean
+  isHovering: boolean
+  isHoveringTitleIcon: boolean
+}
+
+export enum ActionType {
+  SetOpen = 0,
+  SetClose = 1,
+  ToggleOpen = 2,
+  SetHover = 3,
+  SetHoverTitleIcon = 4,
+}
+
+export type NavBarAction =
+  | { type: ActionType.SetOpen; isPersistent: boolean }
+  | { type: ActionType.SetClose }
+  | { type: ActionType.ToggleOpen; isPersistent: boolean }
+  | { type: ActionType.SetHover; value: boolean }
+  | { type: ActionType.SetHoverTitleIcon; value: boolean }
