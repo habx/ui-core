@@ -26,19 +26,19 @@ const HOVER_AUTO_CLOSE_DELAY = 150
 
 const reducer: React.Reducer<NavBarState, NavBarAction> = (state, action) => {
   switch (action.type) {
-    case ActionType.SetOpen: {
-      return { ...state, isPersistent: action.isPersistent, isOpened: true }
+    case ActionType.SetExpanded: {
+      return { ...state, isPersistent: action.isPersistent, isExpanded: true }
     }
 
-    case ActionType.SetClose: {
-      return { ...state, isOpened: false }
+    case ActionType.SetClosed: {
+      return { ...state, isExpanded: false }
     }
 
     case ActionType.ToggleOpen: {
       return {
         ...state,
         isPersistent: action.isPersistent,
-        isOpened: !state.isOpened,
+        isExpanded: !state.isExpanded,
       }
     }
 
@@ -59,7 +59,7 @@ const reducer: React.Reducer<NavBarState, NavBarAction> = (state, action) => {
 const INITIAL_STATE: NavBarState = {
   isHovering: false,
   isHoveringTitleIcon: false,
-  isOpened: false,
+  isExpanded: false,
   isPersistent: false,
 }
 
@@ -80,8 +80,8 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
     } = props
 
     const context = React.useMemo(
-      () => ({ isInsideANavBar: true, isExpanded: state.isOpened, color }),
-      [color, state.isOpened]
+      () => ({ isInsideANavBar: true, isExpanded: state.isExpanded, color }),
+      [color, state.isExpanded]
     )
 
     React.useEffect(() => {
@@ -89,7 +89,7 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
         clickRef.current = false
         const t = setTimeout(() => {
           if (!clickRef.current) {
-            dispatch({ type: ActionType.SetOpen, isPersistent: false })
+            dispatch({ type: ActionType.SetExpanded, isPersistent: false })
           }
         }, HOVER_AUTO_OPENING_DELAY)
 
@@ -98,7 +98,7 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
         }
       } else if (!state.isPersistent) {
         setTimeout(() => {
-          dispatch({ type: ActionType.SetClose })
+          dispatch({ type: ActionType.SetClosed })
         }, HOVER_AUTO_CLOSE_DELAY)
       }
     }, [state.isHovering, state.isPersistent])
@@ -118,14 +118,14 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
             data-testid="nav-bar-container"
             {...rest}
             ref={ref}
-            data-expanded={state.isOpened}
-            data-hover-icon={state.isHoveringTitleIcon || state.isOpened}
+            data-expanded={state.isExpanded}
+            data-hover-icon={state.isHoveringTitleIcon || state.isExpanded}
             color={color}
             backgroundColor={backgroundColor}
           >
-            <GeometricalShapes isExpanded={state.isOpened} />
+            <GeometricalShapes isExpanded={state.isExpanded} />
             <NavBarHeader>
-              {state.isOpened && (
+              {state.isExpanded && (
                 <React.Fragment>
                   {typeof title === 'string' ? (
                     <NavBarPageLogo color={color} type="caption">
@@ -155,7 +155,7 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
                     })
                   }
                   icon={
-                    state.isOpened
+                    state.isExpanded
                       ? 'burger-menu-light-minimize'
                       : 'burger-menu-light'
                   }
@@ -165,7 +165,7 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
             <NavBarItemsContainer>{children}</NavBarItemsContainer>
           </NavBarContainer>
         </NavBarAbsoluteContainer>
-        <NavBarFakeContainer data-expanded={state.isOpened} />
+        <NavBarFakeContainer data-expanded={state.isExpanded} />
       </NavBarContext.Provider>
     )
   }

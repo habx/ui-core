@@ -16,23 +16,23 @@ export interface NavBarContextProps {
 }
 
 export interface NavBarState {
-  isOpened: boolean
+  isExpanded: boolean
   isPersistent: boolean
   isHovering: boolean
   isHoveringTitleIcon: boolean
 }
 
 export enum ActionType {
-  SetOpen = 0,
-  SetClose = 1,
+  SetExpanded = 0,
+  SetClosed = 1,
   ToggleOpen = 2,
   SetHover = 3,
   SetHoverTitleIcon = 4,
 }
 
 export type NavBarAction =
-  | { type: ActionType.SetOpen; isPersistent: boolean }
-  | { type: ActionType.SetClose }
+  | { type: ActionType.SetExpanded; isPersistent: boolean }
+  | { type: ActionType.SetClosed }
   | { type: ActionType.ToggleOpen; isPersistent: boolean }
   | { type: ActionType.SetHover; value: boolean }
   | { type: ActionType.SetHoverTitleIcon; value: boolean }
