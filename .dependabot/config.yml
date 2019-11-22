@@ -7,10 +7,16 @@ update_configs:
     # https://dependabot.com/docs/config-file/#automerged_updates
     automerged_updates:
       - match:
-          dependency_type: "all"
-          update_type: "semver:minor"
+          dependency_type: "development"
+          update_type: "semver:major"
       - match:
-          dependency_type: "all"
+          dependency_type: "development"
+          update_type: "in_range"
+      - match:
+          dependency_type: "production"
+          update_type: "semver:patch"
+      - match:
+          dependency_type: "production"
           update_type: "in_range"
       - match:
           dependency_name: "lodash"
@@ -25,6 +31,3 @@ update_configs:
       - match:
           dependency_name: "@sentry/*"
           update_type: "semver:minor"
-  - package_manager: "docker"
-    directory: "/"
-    update_schedule: "daily"
