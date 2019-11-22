@@ -1,5 +1,5 @@
 import palette from '../palette'
-import { DesignSystemThemePatch } from '../ThemeProvider/ThemeProvider.interface'
+import { DesignSystemThemePatch } from '../ThemeProvider'
 
 import DesignSystemTheme, { ColorVariations } from './theme.interface'
 

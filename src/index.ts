@@ -4,7 +4,7 @@
   Providers
  */
 export { default as Provider, ProviderProps } from './Provider'
-export { default as ThemeProvider, ThemeProviderProps } from './ThemeProvider'
+export { default as ThemeProvider, ThemeProviderProps, DesignSystemThemePatch } from './ThemeProvider'
 
 /*
   Typography
@@ -69,7 +69,7 @@ export { default as animations } from './animations'
 export { default as Background, BackgroundProps } from './Background'
 export { default as breakpoints } from './breakpoints'
 export { default as palette } from './palette'
-export { default as theme } from './theme'
+export { default as theme, DesignSystemTheme } from './theme'
 export { default as useTheme } from './useTheme'
 
 /*
