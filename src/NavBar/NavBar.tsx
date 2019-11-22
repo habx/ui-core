@@ -19,6 +19,7 @@ import {
   NavBarItemsContainer,
   NavBarPageLogo,
   NavBarToggleButton,
+  TitleContainer,
 } from './NavBar.style'
 
 const HOVER_AUTO_OPENING_DELAY = 750
@@ -126,7 +127,7 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
             <GeometricalShapes isExpanded={state.isExpanded} />
             <NavBarHeader>
               {state.isExpanded && (
-                <React.Fragment>
+                <TitleContainer>
                   {typeof title === 'string' ? (
                     <NavBarPageLogo color={color} type="caption">
                       {title}
@@ -134,7 +135,7 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
                   ) : (
                     title
                   )}
-                </React.Fragment>
+                </TitleContainer>
               )}
               <NavBarToggleButton
                 onClick={() =>
