@@ -20,5 +20,5 @@ export default interface ThemeProviderProps {
   themeFamily?: 'habx' | 'icade' | 'cogedim'
   isRoot?: boolean
   backgroundColor?: string
-  children?: React.ReactChild
+  children?: React.ReactNode
 }
