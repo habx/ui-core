@@ -17,6 +17,7 @@ export const NavBarToggleButton = styled.button`
   cursor: pointer;
   padding: 0;
   font-size: 24px;
+  margin: auto;
 `
 
 export const NavBarAbsoluteContainer = styled.div`
