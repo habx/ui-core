@@ -2,8 +2,8 @@ import * as React from 'react'
 
 export default interface MenuLineProps
   extends React.LiHTMLAttributes<HTMLLIElement> {
-  iconLeft?: JSX.Element
-  iconRight?: JSX.Element
+  iconLeft?: React.ReactNode
+  iconRight?: React.ReactNode
   secondary?: boolean
   active?: boolean
 }
