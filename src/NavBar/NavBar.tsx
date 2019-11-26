@@ -23,7 +23,7 @@ import {
 } from './NavBar.style'
 
 const HOVER_AUTO_OPENING_DELAY = 750
-const HOVER_AUTO_CLOSE_DELAY = 150
+const HOVER_AUTO_CLOSE_DELAY = 500
 
 const reducer: React.Reducer<NavBarState, NavBarAction> = (state, action) => {
   switch (action.type) {
