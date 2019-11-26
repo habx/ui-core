@@ -51,6 +51,10 @@ const reducer: React.Reducer<NavBarState, NavBarAction> = (state, action) => {
       return { ...state, isHoveringTitleIcon: action.value }
     }
 
+    case ActionType.SetPersistent: {
+      return { ...state, isPersistent: action.value }
+    }
+
     default: {
       return state
     }
@@ -69,6 +73,8 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
     const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
     const theme = useTheme()
     const clickRef = React.useRef<boolean>(false)
+    const stateRef = React.useRef<NavBarState>(state)
+    stateRef.current = state
 
     const props = { ...baseProps, theme }
 
@@ -81,15 +87,22 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
     } = props
 
     const context = React.useMemo(
-      () => ({ isInsideANavBar: true, isExpanded: state.isExpanded, color }),
-      [color, state.isExpanded]
+      () => ({
+        isInsideANavBar: true,
+        isExpanded: state.isExpanded,
+        isPersistent: state.isPersistent,
+        setPersistent: (value: boolean) =>
+          dispatch({ type: ActionType.SetPersistent, value }),
+        color,
+      }),
+      [color, state.isExpanded, state.isPersistent]
     )
 
     React.useEffect(() => {
       if (state.isHovering) {
         clickRef.current = false
         const t = setTimeout(() => {
-          if (!clickRef.current) {
+          if (!clickRef.current && !stateRef.current.isPersistent) {
             dispatch({ type: ActionType.SetExpanded, isPersistent: false })
           }
         }, HOVER_AUTO_OPENING_DELAY)
@@ -97,12 +110,14 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
         return () => {
           clearTimeout(t)
         }
-      } else if (!state.isPersistent) {
+      } else {
         setTimeout(() => {
-          dispatch({ type: ActionType.SetClosed })
+          if (!stateRef.current.isPersistent) {
+            dispatch({ type: ActionType.SetClosed })
+          }
         }, HOVER_AUTO_CLOSE_DELAY)
       }
-    }, [state.isHovering, state.isPersistent])
+    }, [state.isHovering])
 
     return (
       <NavBarContext.Provider value={context}>

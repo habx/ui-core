@@ -1,3 +1,4 @@
+import { Modal } from '@delangle/use-modal'
 import * as React from 'react'
 
 import { WithTriggerElement } from '../withTriggerElement'
@@ -13,6 +14,9 @@ export interface MenuInnerProps extends React.HTMLAttributes<HTMLUListElement> {
   onClose?: () => void
   fullScreenOnMobile?: boolean
   triggerElement?: ((state: TriggerState) => React.ReactNode) | React.ReactNode
+  children?:
+    | React.ReactNode
+    | ((modal: Modal<HTMLUListElement>) => React.ReactNode)
   position?:
     | 'bottom-left'
     | 'bottom-right'

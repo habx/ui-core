@@ -12,6 +12,8 @@ export default interface NavBarProps
 export interface NavBarContextProps {
   isInsideANavBar: boolean
   isExpanded: boolean
+  isPersistent: boolean
+  setPersistent: (isPersistent: boolean) => void
   color: string
 }
 
@@ -28,6 +30,7 @@ export enum ActionType {
   ToggleOpen = 2,
   SetHover = 3,
   SetHoverTitleIcon = 4,
+  SetPersistent = 5,
 }
 
 export type NavBarAction =
@@ -36,3 +39,4 @@ export type NavBarAction =
   | { type: ActionType.ToggleOpen; isPersistent: boolean }
   | { type: ActionType.SetHover; value: boolean }
   | { type: ActionType.SetHoverTitleIcon; value: boolean }
+  | { type: ActionType.SetPersistent; value: boolean }

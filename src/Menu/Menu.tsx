@@ -40,10 +40,9 @@ const useOnlyOneMenuOpened = (menu: MenuInstance) => {
         instanceToClose.current.open &&
         instanceToClose.current.onClose
       ) {
-        instanceToClose.current.onClose({} as React.SyntheticEvent<
-          HTMLUListElement,
-          Event
-        >)
+        instanceToClose.current.onClose(
+          {} as React.SyntheticEvent<HTMLUListElement, Event>
+        )
       }
     })
   }, [menu.open])
