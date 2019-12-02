@@ -73,11 +73,9 @@ const GlobalStyle = createGlobalStyle`
 
 export default (storyFn: Function) => (
   <React.Fragment>
-    <ThemeProvider themeFamily='icade' isRoot>
       <Provider>
         <GlobalStyle />
         {storyFn()}
       </Provider>
-    </ThemeProvider>
   </React.Fragment>
 )

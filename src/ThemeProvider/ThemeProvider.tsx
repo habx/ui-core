@@ -57,11 +57,11 @@ const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
     return {
       ...currentTheme,
       designSystem,
-      ...((isRoot || !currentTheme.designSystem) && {
+      ...((isRoot || (!currentTheme.designSystem && patch === theme)) && {
         designSystemRoot: designSystem,
       }),
     }
-  }, [baseTheme, currentTheme, isRoot, patch])
+  }, [baseTheme, currentTheme, isRoot, patch, theme])
 
   return (
     <BaseThemeProvider theme={newTheme}>
