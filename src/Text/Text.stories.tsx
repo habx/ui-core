@@ -8,7 +8,7 @@ import withGrid from '../_internal/StorybookGrid'
 import breakpoints from '../breakpoints'
 
 import Text from './Text'
-import { TitleTypes } from './Text.interface'
+import { TextTypes } from './Text.interface'
 import TextProps from './Text.interface'
 
 const TextContainer = styled.div`
@@ -19,7 +19,8 @@ const TextContainer = styled.div`
   }
 `
 
-const types: { [key: string]: TitleTypes } = {
+const types: { [key: string]: TextTypes } = {
+  'Very Large Text': 'veryLarge',
   'Large Text': 'large',
   'Emphasis text': 'emphasis',
   'Regular Text': 'regular',
