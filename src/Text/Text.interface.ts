@@ -2,7 +2,8 @@ import * as React from 'react'
 
 import { styledAs, ThemeOverridesProps } from '../_internal/types'
 
-export type TitleTypes =
+export type TextTypes =
+  | 'veryLarge'
   | 'large'
   | 'emphasis'
   | 'regular'
@@ -12,7 +13,7 @@ export type TitleTypes =
 export default interface TextProps
   extends ThemeOverridesProps,
     React.HTMLAttributes<HTMLHeadingElement> {
-  type?: TitleTypes
+  type?: TextTypes
   color?: string
   opacity?: number
   as?: styledAs

@@ -33,6 +33,16 @@ const baseTextStyle = css<{ color?: string }>`
   }
 `
 
+export const veryLargeTextStyle = css`
+  ${baseTextStyle};
+
+  ${size('nova')};
+
+  @media (${breakpoints.below.smallTablet}) {
+    ${size('sun')};
+  }
+`
+
 const largeTextStyle = css`
   ${baseTextStyle};
 
@@ -74,6 +84,7 @@ const captionSmallTextStyle = css`
 `
 
 export const textStyles = {
+  veryLarge: veryLargeTextStyle,
   large: largeTextStyle,
   emphasis: emphasisTextStyle,
   regular: regularTextStyle,
@@ -81,6 +92,9 @@ export const textStyles = {
   captionSmall: captionSmallTextStyle,
 }
 
+const VeryLargeTextComponent = styled.div`
+  ${veryLargeTextStyle};
+`
 const LargeTextComponent = styled.div`
   ${largeTextStyle};
 `
@@ -102,6 +116,7 @@ const CaptionSmallTextComponent = styled.div`
 `
 
 const components = {
+  veryLarge: VeryLargeTextComponent,
   large: LargeTextComponent,
   emphasis: EmphasisTextComponent,
   regular: RegularTextComponent,
