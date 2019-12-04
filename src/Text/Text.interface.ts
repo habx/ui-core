@@ -17,4 +17,5 @@ export default interface TextProps
   color?: string
   opacity?: number
   as?: styledAs
+  inline?: boolean
 }

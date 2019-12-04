@@ -1,13 +1,13 @@
 import * as React from 'react'
 import styled, { css } from 'styled-components'
 
+import { mapValues } from '../_internal/data'
 import breakpoints from '../breakpoints'
 import fontScale, { FontScale } from '../fontScale'
 import theme from '../theme'
 import withMarkdown from '../withMarkdown'
 
-import { TextProps } from './index'
-import TitleProps from './Text.interface'
+import TextProps, { TextTypes } from './Text.interface'
 
 const size = (name: keyof FontScale) => css`
   font-size: ${fontScale[name].size}px;
@@ -92,42 +92,25 @@ export const textStyles = {
   captionSmall: captionSmallTextStyle,
 }
 
-const VeryLargeTextComponent = styled.div`
-  ${veryLargeTextStyle};
-`
-const LargeTextComponent = styled.div`
-  ${largeTextStyle};
-`
+const components = mapValues(textStyles, style => ({
+  span: styled.span`
+    ${style}
+  `,
+  div: styled.div`
+    ${style}
+  `,
+})) as Record<
+  TextTypes,
+  { span: React.ComponentType<any>; div: React.ComponentType<any> }
+>
 
-const EmphasisTextComponent = styled.div`
-  ${emphasisTextStyle};
-`
+const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => {
+  const { type = 'regular', inline, ...rest } = props
 
-const RegularTextComponent = styled.div`
-  ${regularTextStyle};
-`
-
-const CaptionTextComponent = styled.div`
-  ${captionTextStyle};
-`
-
-const CaptionSmallTextComponent = styled.div`
-  ${captionSmallTextStyle};
-`
-
-const components = {
-  veryLarge: VeryLargeTextComponent,
-  large: LargeTextComponent,
-  emphasis: EmphasisTextComponent,
-  regular: RegularTextComponent,
-  caption: CaptionTextComponent,
-  captionSmall: CaptionSmallTextComponent,
-}
-
-const Text = React.forwardRef<HTMLDivElement, TitleProps>((props, ref) => {
-  const { type = 'regular', ...rest } = props
-
-  const TitleComponent = components[type] || RegularTextComponent
+  const TitleComponent = React.useMemo(
+    () => components[type][inline ? 'span' : 'div'],
+    [inline, type]
+  )
 
   return <TitleComponent ref={ref} {...rest} />
 })
