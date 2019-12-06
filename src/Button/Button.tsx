@@ -17,6 +17,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       large = false,
       fullWidth = false,
       dangerouslySetInnerHTML,
+      type = 'button',
       ...rest
     } = props
 
@@ -28,6 +29,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         data-large={large}
         data-small={small}
         data-full-width={fullWidth}
+        type={type}
         {...rest}
       >
         {iconLeft && (
