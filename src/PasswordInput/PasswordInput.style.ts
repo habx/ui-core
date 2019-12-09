@@ -6,6 +6,7 @@ export const HiddenInputContainer = styled.div`
   position: relative;
   display: inline-flex;
   flex: 1;
+  width: 100%;
 `
 
 export const HideButton = styled.div`
