@@ -27,13 +27,18 @@ const defaultRender =
   }
 
 md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
-  const aIndex = tokens[idx].attrIndex('target')
+  const hrefAttrIndex = tokens[idx].attrIndex('href')
+  const href = hrefAttrIndex < 0 ? '' : tokens[idx].attrs[hrefAttrIndex][1]
 
-  if (aIndex < 0) {
-    tokens[idx].attrPush(['target', '_blank'])
-  } else {
-    tokens[idx].attrs[aIndex][1] = '_blank'
+  if (!href.startsWith('#')) {
+    const targetAttrIndex = tokens[idx].attrIndex('target')
+    if (targetAttrIndex < 0) {
+      tokens[idx].attrPush(['target', '_blank'])
+    } else {
+      tokens[idx].attrs[targetAttrIndex][1] = '_blank'
+    }
   }
+
   return defaultRender(tokens, idx, options, env, self)
 }
 
