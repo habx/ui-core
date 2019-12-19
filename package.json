@@ -75,8 +75,6 @@
     "@types/react-dom": "^16.8.4",
     "@types/sinon": "^7.0.13",
     "@types/storybook__addon-info": "^5.2.1",
-    "@types/storybook__addon-knobs": "^5.0.4",
-    "@types/storybook__react": "^4.0.2",
     "@types/styled-components": "^4.1.19",
     "awesome-typescript-loader": "^5.2.1",
     "bili": "^4.8.0",
