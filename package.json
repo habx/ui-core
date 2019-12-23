@@ -70,7 +70,7 @@
     "@types/lodash.deburr": "^4.1.6",
     "@types/lodash.get": "^4.4.6",
     "@types/markdown-it": "0.0.9",
-    "@types/node": "^12.0.10",
+    "@types/node": "^13.1.0",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "@types/sinon": "^7.0.13",
