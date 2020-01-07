@@ -305,8 +305,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
             />
           ))}
       </SliderContent>
-      {tooltips.map(tooltip => (
+      {tooltips.map((tooltip, index) => (
         <SliderTooltip
+          key={index}
           data-testid="slider-tooltip"
           style={{ paddingLeft: `${tooltip.position}%` }}
           opacity={1}
