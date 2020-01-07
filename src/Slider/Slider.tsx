@@ -1,8 +1,14 @@
 import * as React from 'react'
 
 import { isFunction, isNil } from '../_internal/data'
+import palette from '../palette'
 
-import SliderProps, { Tooltip, Value, Element } from './Slider.interface'
+import SliderProps, {
+  Tooltip,
+  Value,
+  Element,
+  Indicator,
+} from './Slider.interface'
 import {
   SliderContainer,
   SliderContent,
@@ -24,7 +30,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     tooltipFormatter,
     tooltipSuffix = '',
     customValues,
-    indicators = [],
+    indicators: rawIndicators = [],
     min = 0,
     max: rawMax = 100,
     step: rawStep = 5,
@@ -46,14 +52,6 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       !isNil((localValue as [Element, Element])[1])
     : !isNil(localValue)
 
-  React.useEffect(() => {
-    localValueRef.current = localValue
-  }, [localValue])
-
-  React.useEffect(() => {
-    setLocalValue(value)
-  }, [value])
-
   const getPositionFromValue = React.useCallback(
     (currentValue?: number) => {
       if (isNil(currentValue)) {
@@ -64,6 +62,36 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     },
     [max, min]
   )
+
+  const indicators = React.useMemo<Indicator[]>(
+    () =>
+      rawIndicators.map(indicator => {
+        const indicatorMinInRange = Math.min(...indicator.range)
+        const indicatorMaxInRange = Math.max(...indicator.range)
+        const indicatorMin =
+          indicatorMinInRange > min ? indicatorMinInRange : min
+        const indicatorMax =
+          indicatorMaxInRange < max ? indicatorMaxInRange : max
+
+        return {
+          color: palette.orange[400],
+          ...indicator,
+          range: [
+            getPositionFromValue(indicatorMin),
+            getPositionFromValue(indicatorMax),
+          ],
+        }
+      }),
+    [getPositionFromValue, max, min, rawIndicators]
+  )
+
+  React.useEffect(() => {
+    localValueRef.current = localValue
+  }, [localValue])
+
+  React.useEffect(() => {
+    setLocalValue(value)
+  }, [value])
 
   const getValueFromPosition = (currentPosition: number) => {
     const boundedPosition = Math.min(Math.max(currentPosition, 0), 100)
@@ -179,11 +207,14 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     onChange(sanitizedValue)
   }
 
-  const buildBar = () => {
+  const valueDots = range ? [buildDot(0), buildDot(1)] : buildDot()
+
+  const valueBar = React.useMemo(() => {
     const getComponent = ({ from, to }: { from: number; to: number }) => (
       <SliderBar
         from={getPositionFromValue(from)}
         to={getPositionFromValue(to)}
+        indicators={indicators}
       />
     )
 
@@ -195,7 +226,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         return getComponent({ from: min, to: max })
       }
 
-      const value = (hasValue ? localValue : [min, max]) as [number, number]
+      const value = (hasValue ? localValue : [min, min]) as [number, number]
 
       return getComponent({
         from: Math.min(...value),
@@ -207,31 +238,41 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       from: min,
       to: (hasValue ? localValue : max) as number,
     })
-  }
+  }, [
+    customValues,
+    getPositionFromValue,
+    hasValue,
+    indicators,
+    localValue,
+    max,
+    min,
+    range,
+  ])
 
-  const buildIndicator = () =>
-    indicators.map(({ color, range }) => {
-      const indicatorMinInRange = Math.min(...range)
-      const indicatorMaxInRange = Math.max(...range)
-      const indicatorMin = indicatorMinInRange > min ? indicatorMinInRange : min
-      const indicatorMax = indicatorMaxInRange < max ? indicatorMaxInRange : max
-      return (
-        <SliderIndicator
-          key={range.join('.')}
-          color={color}
-          style={{
-            left: `${((indicatorMin - min) / (max - min)) * 100}%`,
-            right: `${(1 - (indicatorMax - min) / (max - min)) * 100}%`,
-          }}
-        />
-      )
-    })
+  const valueIndicator = React.useMemo(
+    () =>
+      indicators.map(indicator => {
+        const getPosition = ([from, to]: [number, number], opacity = 1) => ({
+          left: `${from}%`,
+          right: `${100 - to}%`,
+          opacity,
+        })
 
-  const valueDots = range ? [buildDot(0), buildDot(1)] : buildDot()
-
-  const valueBar = buildBar()
-
-  const valueIndicator = buildIndicator()
+        return (
+          <React.Fragment key={indicator.range.join('.')}>
+            <SliderIndicator
+              color="#fff"
+              style={getPosition(indicator.range)}
+            />
+            <SliderIndicator
+              color={indicator.color}
+              style={getPosition(indicator.range, 0.5)}
+            />
+          </React.Fragment>
+        )
+      }),
+    [indicators]
+  )
 
   const tooltips = React.useMemo<Tooltip[]>(() => {
     const getValue = (value: number, rangeIndex?: 0 | 1): number => {
