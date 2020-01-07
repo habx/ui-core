@@ -50,6 +50,14 @@ const GRID_LINES = [
     },
   },
   {
+    title: 'Indicator',
+    props: {
+      value: [0, 30] as [number, number],
+      indicators: [{ range: [70, 100] as [number, number] }],
+      range: true,
+    },
+  },
+  {
     title: 'Custom min / max',
     props: {
       min: 10,
@@ -91,6 +99,6 @@ storiesOf('Input|Slider', module)
     design: config({
       type: 'figma',
       url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1845',
+        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=60%3A6',
     }),
   })

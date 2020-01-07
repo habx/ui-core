@@ -27,10 +27,3 @@ export const SliderDotContainer = styled.div`
   margin-left: calc(var(--dot-radius) * -1);
   margin-top: calc(var(--dot-radius) * -1 + 2px);
 `
-
-export const SliderInnerDot = styled.div`
-  margin: 25% auto auto;
-  height: 50%;
-  width: 50%;
-  border-radius: 100%;
-`

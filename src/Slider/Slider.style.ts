@@ -24,7 +24,7 @@ export const SliderContent = styled.div`
   padding: 8px 0;
   cursor: pointer;
 
-  & ${SliderDotContainer}, & ${SliderBarContainer} {
+  & ${SliderDotContainer}, & ${SliderBarContainer}[data-main='true'] {
     background-color: ${theme.color('primary', { dynamic: true })};
   }
 
@@ -60,7 +60,10 @@ export const SliderBackgroundDot = styled.div`
 export const SliderIndicator = styled.div`
   position: absolute;
 
-  background-color: ${theme.color('warning')};
+  background-color: ${theme.color('warning', {
+    dynamic: true,
+    propName: 'color',
+  })};
   height: 4px;
   border-radius: 8px;
   z-index: 4;
