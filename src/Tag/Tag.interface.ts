@@ -7,4 +7,6 @@ export default interface Tag
   large?: boolean
   active?: boolean
   as?: styledAs
+  elementRight?: React.ReactNode
+  elementLeft?: React.ReactNode
 }

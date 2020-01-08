@@ -15,10 +15,6 @@ export const IconContainer = styled.div`
   &[data-position='right'] {
     margin-left: 8px;
   }
-
-  & > svg {
-    height: 100%;
-  }
 `
 
 export const ButtonContent = styled.div`
