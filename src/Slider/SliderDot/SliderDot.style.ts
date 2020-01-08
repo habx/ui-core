@@ -6,7 +6,7 @@ export const SliderDotContainer = styled.div`
   position: absolute;
   z-index: 6;
   cursor: grab;
-  box-shadow: ${theme.shadow('lower')};
+  box-shadow: ${theme.shadow('low')};
   border: 2px solid #fff;
   touch-action: pan-x;
   border-radius: 50%;
@@ -18,8 +18,16 @@ export const SliderDotContainer = styled.div`
     --dot-radius: 10px;
   }
 
+  &:active {
+    box-shadow: ${theme.shadow('lower')};
+  }
+
   &[data-large='true'] {
     --dot-radius: 10px;
+
+    &:hover {
+      --dot-radius: 12px;
+    }
   }
 
   width: calc(var(--dot-radius) * 2);
