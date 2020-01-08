@@ -4,6 +4,7 @@ import * as React from 'react'
 import { config } from 'storybook-addon-designs'
 
 import withGrid from '../_internal/StorybookGrid'
+import Icon from '../Icon'
 
 import Tag from './Tag'
 import TagProps from './Tag.interface'
@@ -37,6 +38,18 @@ const GRID_ITEMS = [
   {
     label: 'Large',
     props: { large: true },
+  },
+  {
+    label: 'Element left',
+    props: {
+      elementLeft: <Icon icon="close" />,
+    },
+  },
+  {
+    label: 'Element right',
+    props: {
+      elementRight: <Icon icon="close" />,
+    },
   },
 ]
 
