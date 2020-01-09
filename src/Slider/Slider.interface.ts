@@ -29,4 +29,5 @@ export default interface SliderProps {
   value: Value
   onChange?: (value: Value) => void
   disabled?: boolean
+  shouldTooltipFollowDot?: boolean
 }

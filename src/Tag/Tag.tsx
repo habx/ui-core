@@ -4,10 +4,10 @@ import useTheme from '../useTheme'
 import withMarkdown from '../withMarkdown'
 
 import TagProps from './Tag.interface'
-import { TagContainer } from './Tag.style'
+import { TagContainer, IconContainer } from './Tag.style'
 
 const Tag = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
-  const { large, active, ...rest } = props
+  const { large, active, elementLeft, elementRight, children, ...rest } = props
 
   const theme = useTheme()
 
@@ -18,7 +18,25 @@ const Tag = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
       data-active={active}
       data-background={theme.backgroundColor !== '#FFFFFF'}
       {...rest}
-    />
+    >
+      {elementLeft && (
+        <IconContainer
+          data-position="left"
+          data-testid="element-left-container"
+        >
+          {elementLeft}
+        </IconContainer>
+      )}
+      {children}
+      {elementRight && (
+        <IconContainer
+          data-position="right"
+          data-testid="element-right-container"
+        >
+          {elementRight}
+        </IconContainer>
+      )}
+    </TagContainer>
   )
 })
 

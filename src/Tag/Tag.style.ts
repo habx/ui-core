@@ -103,3 +103,17 @@ export const TagContainer = styled.button`
     }
   }
 `
+
+export const IconContainer = styled.div`
+  font-size: 0.9em;
+  display: flex;
+  margin-top: 1px;
+
+  &[data-position='left'] {
+    margin-right: 6px;
+  }
+
+  &[data-position='right'] {
+    margin-left: 6px;
+  }
+`

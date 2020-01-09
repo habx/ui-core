@@ -13,6 +13,7 @@ import {
   SliderContainer,
   SliderContent,
   SliderMainBar,
+  SliderTooltips,
   SliderTooltip,
   SliderBackgroundDot,
   SliderIndicator,
@@ -25,6 +26,7 @@ const EMPTY_RANGE: [Element, Element] = [null, null]
 const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const {
     disabled = false,
+    shouldTooltipFollowDot = true,
     range = false,
     onChange = () => {},
     tooltipFormatter,
@@ -138,15 +140,21 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 
       const newValue = getValueFromPosition(newPosition)
 
-      setLocalValue(prev =>
-        range
-          ? ([
-              ...(prev as [Element, Element]).slice(0, rangeIndex),
-              newValue,
-              ...(prev as [Element, Element]).slice(rangeIndex + 1),
-            ] as [Element, Element])
-          : newValue
-      )
+      setLocalValue(prev => {
+        if (!range) {
+          return newValue
+        }
+
+        const prevValue = isNil(prev)
+          ? [null, null]
+          : (prev as [Element, Element])
+
+        if (rangeIndex === 0) {
+          return [newValue, isNil(prevValue[1]) ? max : prevValue[1]]
+        }
+
+        return [isNil(prevValue[0]) ? min : prevValue[0], newValue]
+      })
     }
 
     return (
@@ -223,10 +231,10 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         !hasValue ||
         (Array.isArray(customValues) && customValues.length === 0)
       ) {
-        return getComponent({ from: min, to: max })
+        return null
       }
 
-      const value = (hasValue ? localValue : [min, min]) as [number, number]
+      const value = localValue as [number, number]
 
       return getComponent({
         from: Math.min(...value),
@@ -236,7 +244,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
 
     return getComponent({
       from: min,
-      to: (hasValue ? localValue : max) as number,
+      to: (hasValue ? localValue : min) as number,
     })
   }, [
     customValues,
@@ -244,7 +252,6 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     hasValue,
     indicators,
     localValue,
-    max,
     min,
     range,
   ])
@@ -275,20 +282,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   )
 
   const tooltips = React.useMemo<Tooltip[]>(() => {
-    const getValue = (value: number, rangeIndex?: 0 | 1): number => {
-      if (isNil(value)) {
-        return rangeIndex === 1 ? max : min
-      }
-
-      return value
-    }
-
-    const buildTooltip = (value: number, rangeIndex?: 0 | 1): Tooltip => {
-      const sanitizedValue = getValue(value, rangeIndex)
-      const label = customValues
-        ? customValues[sanitizedValue] || ''
-        : sanitizedValue
-      const raw = `${label}${tooltipSuffix}`
+    const buildTooltip = (value: number): Tooltip => {
+      const label = customValues ? customValues[value] : value
+      const raw = `${isNil(label) ? '-' : label}${tooltipSuffix}`
 
       const content = isFunction(tooltipFormatter)
         ? tooltipFormatter(value, raw)
@@ -304,8 +300,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       const rangeLocalValue = localValue as [number, number]
 
       return [
-        buildTooltip(rangeLocalValue[0], 0),
-        buildTooltip(rangeLocalValue[1], 1),
+        buildTooltip(rangeLocalValue[0]),
+        buildTooltip(rangeLocalValue[1]),
       ]
     }
 
@@ -314,8 +310,6 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
     customValues,
     getPositionFromValue,
     localValue,
-    max,
-    min,
     range,
     tooltipFormatter,
     tooltipSuffix,
@@ -331,6 +325,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
       <SliderContent
         {...rest}
         data-disabled={disabled}
+        data-has-value={hasValue}
         onClick={handleBarClick}
         ref={ref}
       >
@@ -346,16 +341,26 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
             />
           ))}
       </SliderContent>
-      {tooltips.map((tooltip, index) => (
-        <SliderTooltip
-          key={index}
-          data-testid="slider-tooltip"
-          style={{ paddingLeft: `${tooltip.position}%` }}
-          opacity={1}
-        >
-          {tooltip.content}
-        </SliderTooltip>
-      ))}
+      <SliderTooltips data-fixed={!shouldTooltipFollowDot}>
+        {tooltips.map((tooltip, index) => (
+          <SliderTooltip
+            key={index}
+            data-testid="slider-tooltip"
+            style={
+              shouldTooltipFollowDot
+                ? {
+                    paddingLeft: `${tooltip.position}%`,
+                    top: 0,
+                    position: 'absolute',
+                  }
+                : undefined
+            }
+            opacity={1}
+          >
+            {tooltip.content}
+          </SliderTooltip>
+        ))}
+      </SliderTooltips>
     </SliderContainer>
   )
 })
