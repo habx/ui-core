@@ -36,6 +36,16 @@ const GRID_LINES = [
     },
   },
   {
+    title: 'No value',
+    props: {},
+  },
+  {
+    title: 'No value range',
+    props: {
+      range: true,
+    },
+  },
+  {
     title: 'Custom suffix',
     props: {
       tooltipSuffix: 'm²',
@@ -84,6 +94,12 @@ const GRID_ITEMS = [
       disabled: true,
     },
   },
+  {
+    label: 'Fixed tooltip',
+    props: {
+      shouldTooltipFollowDot: false,
+    },
+  },
 ]
 
 const Grid = withGrid<Props>({
@@ -91,6 +107,7 @@ const Grid = withGrid<Props>({
   lines: GRID_LINES,
   items: GRID_ITEMS,
   itemWrapper: TextInputContainer,
+  itemHorizontalSpace: 16,
 })(SliderWithState)
 
 storiesOf('Input|Slider', module)
