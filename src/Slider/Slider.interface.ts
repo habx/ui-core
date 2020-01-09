@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export type Tooltip = { content: React.ReactNode; position: number | null }
+export type Tooltip = { content: React.ReactNode; position: number }
 
 export type Element = number | null
 
