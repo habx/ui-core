@@ -9,22 +9,34 @@ import { SliderDotContainer } from './SliderDot/SliderDot.style'
 
 export const SliderContainer = styled.div`
   position: relative;
+  margin: 0 4px;
   padding-top: 32px;
-  margin: 8px;
 `
 
-export const SliderTooltip = styled(Text)`
-  position: absolute;
-  top: 0;
-  margin-left: -4px;
+export const SliderTooltips = styled.div`
+  display: flex;
+
+  &[data-fixed='true'] {
+    position: absolute;
+    top: 0;
+
+    & > *:not(:last-child) {
+      &::after {
+        content: '-';
+        padding: 0 4px;
+      }
+    }
+  }
 `
+
+export const SliderTooltip = styled(Text)``
 
 export const SliderContent = styled.div`
   position: relative;
   padding: 8px 0;
   cursor: pointer;
 
-  & ${SliderDotContainer}, & ${SliderBarContainer}[data-main='true'] {
+  &[data-has-value='true'] ${SliderDotContainer}, & ${SliderBarContainer}[data-main='true'] {
     background-color: ${theme.color('primary', { dynamic: true })};
   }
 

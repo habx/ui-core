@@ -10,6 +10,7 @@ export const SliderDotContainer = styled.div`
   border: 2px solid #fff;
   touch-action: pan-x;
   border-radius: 50%;
+  background-color: #fff;
 
   --dot-radius: 8px;
 

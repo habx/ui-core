@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export type Tooltip = { content: React.ReactNode; position: number }
+export type Tooltip = { content: React.ReactNode; position: number | null }
 
 export type Element = number | null
 
@@ -29,4 +29,5 @@ export default interface SliderProps {
   value: Value
   onChange?: (value: Value) => void
   disabled?: boolean
+  shouldTooltipFollowDot?: boolean
 }
