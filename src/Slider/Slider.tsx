@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { isFunction, isNil } from '../_internal/data'
+import { clamp, isFunction, isNil } from '../_internal/data'
 import palette from '../palette'
 
 import SliderProps, {
@@ -60,7 +60,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
         return 0
       }
 
-      return (100 * (currentValue - min)) / (max - min)
+      return (100 * (clamp(currentValue, min, max) - min)) / (max - min)
     },
     [max, min]
   )

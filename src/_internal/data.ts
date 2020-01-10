@@ -53,3 +53,17 @@ export const isNil = (value: any): value is null | undefined => value == null
 
 export const has = (value: object, key: string | number): boolean =>
   isObject(value) && !isNil(value) && value.hasOwnProperty(key)
+
+export const clamp = (value: number, min: number, max: number) => {
+  let temp = value
+
+  if (temp < min) {
+    temp = min
+  }
+
+  if (temp > max) {
+    temp = max
+  }
+
+  return temp
+}
