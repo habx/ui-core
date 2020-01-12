@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
+import zIndex from '../_internal/zIndex'
 import Background from '../Background'
 import theme from '../theme'
 
@@ -21,7 +22,7 @@ export const LightBoxOverlay = styled(Background)`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 99999;
+  z-index: ${zIndex.modal};
 
   &[data-state='opening'] {
     animation: ${FADE_IN} ${ANIMATION_DURATION}ms linear 0ms;
