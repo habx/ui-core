@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
+import zIndex from '../_internal/zIndex'
 import animations from '../animations'
 import Background from '../Background'
 import breakpoints from '../breakpoints'
@@ -43,7 +44,7 @@ export const ModalOverlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 99999;
+  z-index: ${zIndex.modal};
   background-color: rgba(50, 50, 50, 0.7);
   display: flex;
   align-items: center;
