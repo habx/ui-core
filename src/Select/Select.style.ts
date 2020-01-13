@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import zIndex from '../_internal/zIndex'
 import Icon from '../Icon'
 import palette from '../palette'
 import theme from '../theme'
@@ -174,5 +175,5 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 99998;
+  z-index: ${zIndex.dropDown};
 `
