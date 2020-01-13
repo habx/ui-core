@@ -51,6 +51,11 @@ export const SelectContent = styled.div`
     transition: z-index ease-in 0s;
     z-index: 10;
   }
+
+  &[data-small='true'] {
+    padding: 7px 12px;
+    height: 38px;
+  }
 `
 
 export const SelectContainer = styled.div`

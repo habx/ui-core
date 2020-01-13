@@ -35,6 +35,12 @@ const GRID_LINES = [
     title: 'Regular',
   },
   {
+    title: 'Small',
+    props: {
+      small: true,
+    },
+  },
+  {
     title: 'Light',
     props: {
       light: true,
@@ -101,6 +107,8 @@ storiesOf('Input|Select', module)
         options={OPTIONS}
         value={select('Value', ['fr', 'dl', 'en'], 'fr')}
         disabled={boolean('Disabled', false)}
+        light={boolean('Light', false)}
+        small={boolean('Small', false)}
       />
     </TextInputContainer>
   ))

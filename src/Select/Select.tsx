@@ -42,6 +42,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     const {
       multi = false,
       light = false,
+      small = false,
       description,
       placeholderClassName,
       elementLeft,
@@ -348,6 +349,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         <SelectContent
           data-testid="select-content"
           data-open={state.isOpened}
+          data-small={small}
           className={placeholderClassName}
           onClick={handleToggle}
         >
