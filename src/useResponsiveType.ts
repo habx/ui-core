@@ -9,12 +9,11 @@ const useResponsiveType = (defaultValue = 'phone') => {
     return defaultValue
   }
 
-  Object.entries(breakpoints.raw)
+  const matchingBreakpoint = Object.entries(breakpoints.raw)
     .reverse()
     .find(([_, breakpointWidth]) => width <= breakpointWidth)
 
-  return 'phone'
-  // return findLastKey(breakpoints.raw, el => width <= el)
+  return matchingBreakpoint ? (matchingBreakpoint[0] as string) : 'desktop'
 }
 
 export default useResponsiveType

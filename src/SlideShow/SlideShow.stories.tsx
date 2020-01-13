@@ -10,7 +10,7 @@ import SlideShowProps from './SlideShow.interface'
 
 const Container = styled.div`
   position: relative;
-  width: 500px;
+  width: 450px;
   height: 400px;
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 48px);
@@ -21,13 +21,17 @@ const GRID_PROPS = {
   renderItem: () => <CardChildren />,
 }
 
-const GRID_LINES = [{ title: 'Basic' }]
-
-const GRID_ITEMS = [
+const GRID_LINES = [
+  { title: 'Basic' },
+  { title: 'Hide navigation dots', props: { hideNavigationDots: true } },
+  { title: 'Secondary', props: { secondary: true } },
   {
-    props: {},
+    title: 'Hide navigation buttons',
+    props: { navigationComponent: () => null },
   },
 ]
+
+const GRID_ITEMS = [{}]
 
 const SlideShow: React.FunctionComponent<SlideShowProps> = props => (
   <Container>
