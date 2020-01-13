@@ -111,6 +111,7 @@ const Options: React.FunctionComponent<OptionsProps> = ({
       wrapperRect={wrapperRect}
       maxHeight={maxHeight}
       backgroundColor={'#FFFFFF'}
+      onClick={e => e.stopPropagation()}
     >
       {content}
     </OptionsContainer>

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import zIndex from '../../_internal/zIndex'
 import Background from '../../Background'
 import theme from '../../theme'
 import Option from '../Option'
@@ -11,7 +12,7 @@ export const OptionsContainer = styled(Background)<{
   maxHeight?: number
 }>`
   position: fixed;
-  z-index: 99999;
+  z-index: ${zIndex.dropDown + 1};
   pointer-events: none;
 
   box-shadow: ${theme.shadow('regular')};
