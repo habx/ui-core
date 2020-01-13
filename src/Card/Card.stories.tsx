@@ -33,7 +33,7 @@ const CardChildrenContent = styled.div`
   }
 `
 
-const CardChildren = () => (
+export const CardChildren = () => (
   <CardChildrenContainer>
     <img
       alt="Illu"

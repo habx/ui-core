@@ -67,3 +67,68 @@ export const clamp = (value: number, min: number, max: number) => {
 
   return temp
 }
+
+const extremumBy = <Value = any>(
+  values: Value[],
+  iteratee: (value: Value) => number,
+  extremum: (...numbers: number[]) => number
+): Value => {
+  const bestPair = values.reduce(
+    (best: [number, Value] | null, next: Value) => {
+      const pair: [number, Value] = [iteratee(next), next]
+
+      if (!best) {
+        return pair
+      } else if (extremum.apply(null, [best[0], pair[0]]) === best[0]) {
+        return best
+      } else {
+        return pair
+      }
+    },
+    null
+  )
+
+  if (!bestPair) {
+    return (null as any) as Value
+  }
+
+  return bestPair[1]
+}
+
+export const minBy = <Value = any>(
+  values: Value[],
+  iteratee: (value: Value) => number
+) => extremumBy(values, iteratee, Math.min)
+
+export const maxBy = <Value = any>(
+  values: Value[],
+  iteratee: (value: Value) => number
+) => extremumBy(values, iteratee, Math.max)
+
+export const throttle = <Callback extends Function>(
+  callback: Callback,
+  wait: number,
+  immediate: boolean = false
+): Callback => {
+  let timeout: number | null = null
+  let initialCall = true
+
+  const wrappedCallback = (...args: any[]) => {
+    const callNow = immediate && initialCall
+    const next = () => {
+      callback(...args)
+      timeout = null
+    }
+
+    if (callNow) {
+      initialCall = false
+      next()
+    }
+
+    if (!timeout) {
+      timeout = setTimeout(next, wait)
+    }
+  }
+
+  return (wrappedCallback as any) as Callback
+}
