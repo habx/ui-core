@@ -56,6 +56,7 @@ export { default as Tooltip, TooltipProps } from './Tooltip'
 export { default as LightBox, LightBoxProps } from './LightBox'
 export { default as Modal, ModalProps } from './Modal'
 export { default as prompt } from './prompt'
+export { default as confirm } from './confirm'
 
 /*
   Notifications
