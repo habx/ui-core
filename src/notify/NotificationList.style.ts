@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
+import zIndex from '../_internal/zIndex'
 import breakpoints from '../breakpoints'
 import BaseNotification from '../Notification'
 
@@ -10,7 +11,7 @@ export const NotificationListContainer = styled.div`
   position: fixed;
   right: 24px;
   top: 24px;
-  z-index: 99999999;
+  z-index: ${zIndex.notifications};
 
   @media (${breakpoints.below.phone}) {
     left: 24px;
