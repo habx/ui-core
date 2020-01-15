@@ -1,6 +1,6 @@
 {
   "name": "@habx/ui-core",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "HABX Design System",
   "sideEffects": false,
   "main": "./dist/index.js",
