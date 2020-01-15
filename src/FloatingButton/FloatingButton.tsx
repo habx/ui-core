@@ -3,6 +3,7 @@ import * as React from 'react'
 import FloatingButtonProps from './FloatingButton.interface'
 import {
   FloatingButtonContainer,
+  FloatingButtonContent,
   SideElementContainer,
 } from './FloatingButton.style'
 
@@ -13,13 +14,21 @@ const FloatingButton = React.forwardRef<HTMLButtonElement, FloatingButtonProps>(
     return (
       <FloatingButtonContainer ref={ref} {...rest} data-small={small}>
         {elementLeft && (
-          <SideElementContainer data-position="left">
+          <SideElementContainer
+            data-position="left"
+            data-testid="element-left-container"
+          >
             {elementLeft}
           </SideElementContainer>
         )}
-        {children}
+        <FloatingButtonContent data-testid="label-container">
+          {children}
+        </FloatingButtonContent>
         {elementRight && (
-          <SideElementContainer data-position="right">
+          <SideElementContainer
+            data-position="right"
+            data-testid="element-right-container"
+          >
             {elementRight}
           </SideElementContainer>
         )}

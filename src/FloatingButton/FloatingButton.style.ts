@@ -17,6 +17,11 @@ export const SideElementContainer = styled.div`
   }
 `
 
+export const FloatingButtonContent = styled.div`
+  position: relative;
+  white-space: nowrap;
+`
+
 export const FloatingButtonContainer = styled.button`
   display: flex;
   justify-content: center;
