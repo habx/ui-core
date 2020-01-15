@@ -45,7 +45,7 @@ export const CardChildren = () => (
         The **Louvre Museum** is the world's largest art museum and a historic
         monument in Paris, France.
       </Text>
-      <Button link iconRight={<Icon icon="arrow-east" />}>
+      <Button link elementRight={<Icon icon="arrow-east" />}>
         Visit
       </Button>
     </CardChildrenContent>

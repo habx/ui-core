@@ -9,8 +9,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {
       children,
-      iconLeft,
-      iconRight,
+      elemenftLeft,
+      elementRight,
       outline = false,
       link = false,
       small = false,
@@ -32,9 +32,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         {...rest}
       >
-        {iconLeft && (
+        {elemenftLeft && (
           <IconContainer data-position="left" data-testid="icon-left-container">
-            {iconLeft}
+            {elemenftLeft}
           </IconContainer>
         )}
         <ButtonContent
@@ -43,12 +43,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         >
           {children}
         </ButtonContent>
-        {iconRight && (
+        {elementRight && (
           <IconContainer
             data-position="right"
             data-testid="icon-right-container"
           >
-            {iconRight}
+            {elementRight}
           </IconContainer>
         )}
       </ButtonContainer>
