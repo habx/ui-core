@@ -36,7 +36,7 @@ describe('FloatingButton component', () => {
   it('should display element right', () => {
     const { queryAllByTestId } = render(
       <FloatingButton
-        elementLeft={<Icon data-testid="face-icon" icon="face" />}
+        elementRight={<Icon data-testid="face-icon" icon="face" />}
       >
         Label
       </FloatingButton>
