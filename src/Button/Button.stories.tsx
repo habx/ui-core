@@ -75,7 +75,7 @@ const GRID_ITEMS = [
   },
   {
     props: {
-      elemenftLeft: <Icon icon="arrow-east" />,
+      elementLeft: <Icon icon="arrow-east" />,
     },
   },
   {
@@ -115,7 +115,7 @@ storiesOf('Actions|Button', module)
       primary={boolean('Color override : Primary', false)}
       secondary={boolean('Color override : Secondary', false)}
       warning={boolean('Color override : Warning', false)}
-      elemenftLeft={
+      elementLeft={
         boolean('Icon left', false) ? <Icon icon="arrow-right" /> : undefined
       }
       elementRight={
