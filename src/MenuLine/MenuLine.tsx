@@ -8,14 +8,14 @@ import { MenuLineContainer, IconContainer } from './MenuLine.style'
 
 const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
   (props, ref) => {
-    const { children, active, elemenftLeft, elementRight, ...rest } = props
+    const { children, active, elementLeft, elementRight, ...rest } = props
     const sectionContext = React.useContext(MenuSectionContext)
 
     return (
       <MenuLineContainer ref={ref} {...rest} depth={sectionContext.depth}>
-        {elemenftLeft && (
+        {elementLeft && (
           <IconContainer secondary={active} data-position="left">
-            {elemenftLeft}
+            {elementLeft}
           </IconContainer>
         )}
         <Text primary={!active} opacity={1}>

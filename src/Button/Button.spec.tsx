@@ -15,7 +15,7 @@ describe('Button component', () => {
 
   it('should display icon left', () => {
     const { queryAllByTestId } = render(
-      <Button elemenftLeft={<Icon data-testid="face-icon" icon="face" />}>
+      <Button elementLeft={<Icon data-testid="face-icon" icon="face" />}>
         Label
       </Button>
     )
