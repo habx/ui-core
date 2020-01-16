@@ -12,7 +12,7 @@ export const OptionsContainer = styled(Background)<{
   maxHeight?: number
 }>`
   position: fixed;
-  z-index: ${zIndex.dropDown + 1};
+  z-index: ${zIndex.dropDowns + 1};
   pointer-events: none;
 
   box-shadow: ${theme.shadow('regular')};

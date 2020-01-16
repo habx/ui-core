@@ -1,13 +1,26 @@
-import { withKnobs, boolean } from '@storybook/addon-knobs'
+import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { config } from 'storybook-addon-designs'
+import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
+import Card from '../Card'
 import Icon from '../Icon'
 
-import FloatingButton from './FloatingButton'
+import BaseFloatingButton from './FloatingButton'
 import FloatingButtonProps from './FloatingButton.interface'
+
+const Container = styled(Card)`
+  width: 300px;
+  height: 200px;
+`
+
+const FloatingButton: React.FunctionComponent<FloatingButtonProps> = props => (
+  <Container>
+    <BaseFloatingButton {...props} />
+  </Container>
+)
 
 const GRID_PROPS = {
   children: 'Liste',
@@ -56,6 +69,11 @@ const Grid = withGrid<FloatingButtonProps>({
   items: GRID_ITEMS,
 })(FloatingButton)
 
+const positions: { [key: string]: 'top' | 'bottom' } = {
+  Top: 'top',
+  Bottom: 'bottom',
+}
+
 storiesOf('Actions|FloatingButton', module)
   .addDecorator(withKnobs)
   .add('gallery', () => <Grid />, {
@@ -71,13 +89,14 @@ storiesOf('Actions|FloatingButton', module)
       primary={boolean('Color override : Primary', false)}
       secondary={boolean('Color override : Secondary', false)}
       warning={boolean('Color override : Warning', false)}
+      position={select('Position', positions, 'bottom')}
       elementLeft={
-        boolean('Icon left', false) ? <Icon icon="arrow-right" /> : undefined
+        boolean('Icon left', false) ? <Icon icon="list" /> : undefined
       }
       elementRight={
-        boolean('Icon right', false) ? <Icon icon="arrow-right" /> : undefined
+        boolean('Icon right', false) ? <Icon icon="list" /> : undefined
       }
     >
-      Voir tous nos projets
+      Liste
     </FloatingButton>
   ))

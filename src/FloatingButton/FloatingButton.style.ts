@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import zIndex from '../_internal/zIndex'
+import breakpoints from '../breakpoints'
 import palette from '../palette'
 import theme from '../theme'
 
@@ -43,9 +45,32 @@ export const FloatingButtonContainer = styled.button`
   font-family: ${theme.font()};
   text-transform: uppercase;
 
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: ${zIndex.floatingButtons};
+
   transition-property: border, padding, background-color;
   transition-duration: 50ms;
   transition-timing-function: ease-in-out;
+
+  &[data-position='bottom'] {
+    bottom: 24px;
+
+    @media (${breakpoints.below.phone}) {
+      bottom: 12px;
+    }
+  }
+
+  &[data-position='top'] {
+    top: 24px;
+
+    @media (${breakpoints.below.phone}) {
+      top: 12px;
+    }
+  }
 
   &[data-small='true'] {
     padding: 0 12px;

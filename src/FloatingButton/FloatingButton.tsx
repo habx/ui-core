@@ -9,10 +9,22 @@ import {
 
 const FloatingButton = React.forwardRef<HTMLButtonElement, FloatingButtonProps>(
   (props, ref) => {
-    const { children, small, elementLeft, elementRight, ...rest } = props
+    const {
+      children,
+      small,
+      elementLeft,
+      elementRight,
+      position = 'bottom',
+      ...rest
+    } = props
 
     return (
-      <FloatingButtonContainer ref={ref} {...rest} data-small={small}>
+      <FloatingButtonContainer
+        ref={ref}
+        {...rest}
+        data-small={small}
+        data-position={position}
+      >
         {elementLeft && (
           <SideElementContainer
             data-position="left"
