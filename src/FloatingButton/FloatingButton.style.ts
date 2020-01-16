@@ -56,6 +56,10 @@ export const FloatingButtonContainer = styled.button`
   transition-duration: 50ms;
   transition-timing-function: ease-in-out;
 
+  &[data-fixed='true'] {
+    position: fixed;
+  }
+
   &[data-position='bottom'] {
     bottom: 24px;
 

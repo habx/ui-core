@@ -14,6 +14,7 @@ const FloatingButton = React.forwardRef<HTMLButtonElement, FloatingButtonProps>(
       small,
       elementLeft,
       elementRight,
+      fixed = false,
       position = 'bottom',
       ...rest
     } = props
@@ -23,6 +24,7 @@ const FloatingButton = React.forwardRef<HTMLButtonElement, FloatingButtonProps>(
         ref={ref}
         {...rest}
         data-small={small}
+        data-fixed={fixed}
         data-position={position}
       >
         {elementLeft && (
