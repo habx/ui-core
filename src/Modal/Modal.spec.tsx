@@ -15,7 +15,7 @@ describe('Modal component', () => {
         </Modal>
       )
 
-      const modalContainer = queryByTestId('modals-container')
+      const modalContainer = queryByTestId('modal-container')
 
       expect(modalContainer).toBeNull()
     })
@@ -32,10 +32,10 @@ describe('Modal component', () => {
         </Modal>
       )
 
-      fireEvent.click(getByTestId('modals-trigger-element'))
-      fireEvent.click(getByTestId('modals-overlay'))
+      fireEvent.click(getByTestId('modal-trigger-element'))
+      fireEvent.click(getByTestId('modal-overlay'))
 
-      const modalContainer = queryByTestId('modals-container') as HTMLElement
+      const modalContainer = queryByTestId('modal-container') as HTMLElement
 
       expect(modalContainer).toBeTruthy()
       expect(within(modalContainer).queryByTestId('content')).toBeTruthy()
@@ -48,7 +48,7 @@ describe('Modal component', () => {
         </Modal>
       )
 
-      const modalContainer = queryByTestId('modals-container')
+      const modalContainer = queryByTestId('modal-container')
 
       expect(modalContainer).toBeNull()
     })
@@ -60,7 +60,7 @@ describe('Modal component', () => {
         </Modal>
       )
 
-      const modalContainer = queryByTestId('modals-container') as HTMLElement
+      const modalContainer = queryByTestId('modal-container') as HTMLElement
 
       expect(modalContainer).toBeTruthy()
       expect(within(modalContainer).queryByTestId('content')).toBeTruthy()
@@ -68,7 +68,7 @@ describe('Modal component', () => {
   })
 
   describe('with render props children', () => {
-    it('should have state="closed" if modals is closed', () => {
+    it('should have state="closed" if modal is closed', () => {
       const spyChildren = sinon.spy()
 
       render(
@@ -80,7 +80,7 @@ describe('Modal component', () => {
       expect(spyChildren.lastCall.args[0].state).toEqual('closed')
     })
 
-    it('should have state = "opening" if modals is mounted with open=true"', () => {
+    it('should have state = "opening" if modal is mounted with open=true"', () => {
       const spyChildren = sinon.spy()
 
       render(
