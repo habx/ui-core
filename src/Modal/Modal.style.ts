@@ -44,7 +44,7 @@ export const ModalOverlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: ${zIndex.modal};
+  z-index: ${zIndex.modals};
   background-color: rgba(50, 50, 50, 0.7);
   display: flex;
   align-items: center;

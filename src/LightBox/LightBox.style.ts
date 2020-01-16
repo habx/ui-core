@@ -22,7 +22,7 @@ export const LightBoxOverlay = styled(Background)`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: ${zIndex.modal};
+  z-index: ${zIndex.modals};
 
   &[data-state='opening'] {
     animation: ${FADE_IN} ${ANIMATION_DURATION}ms linear 0ms;

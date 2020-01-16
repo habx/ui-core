@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import palette from '../palette'
 import theme from '../theme'
 
-export const TagContainer = styled.button`
+export const TabContainer = styled.button`
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
@@ -14,10 +14,11 @@ export const TagContainer = styled.button`
   vertical-align: middle;
   text-align: left;
   text-decoration: none;
-  border-radius: 14px;
+  border-radius: 2px;
   background-color: transparent;
-  border: 1px solid ${palette.darkBlue[300]};
+  border: 1.5px solid ${palette.darkBlue[300]};
   font-family: ${theme.font()};
+  font-weight: 500;
   line-height: 1;
   transition: background-color 50ms ease-in-out;
 
@@ -27,6 +28,13 @@ export const TagContainer = styled.button`
   color: ${theme.color('secondary', {
     opacity: 0.72,
   })};
+
+  &[data-large='true'] {
+    padding: 0 24px;
+    height: 48px;
+    border-width: 2px;
+    font-size: 16px;
+  }
 
   &:not([data-active='true']) {
     &:not(:disabled) {
@@ -45,9 +53,19 @@ export const TagContainer = styled.button`
         border-color: ${palette.blue[300]};
       }
 
-      &:focus {
-        border-width: 2px;
-        padding: 0 11px;
+      &:not([data-large='true']) {
+        &:focus {
+          border-width: 3px;
+          padding: 0 10.5px;
+        }
+      }
+
+      &[data-large='true'] {
+        &:focus,
+        &:active {
+          border-width: 4px;
+          padding: 0 22px;
+        }
       }
 
       &[data-background='true'] {
@@ -75,6 +93,10 @@ export const TagContainer = styled.button`
     color: ${theme.color('primary', { useRootTheme: true })};
     background-color: ${palette.blue[200]};
     padding: 0 13.5px;
+
+    &[data-large='true'] {
+      padding: 0 26px;
+    }
 
     &[data-background='true'] {
       background-color: #fff;
