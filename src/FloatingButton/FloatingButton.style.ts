@@ -46,10 +46,8 @@ export const FloatingButtonContainer = styled.button`
   text-transform: uppercase;
 
   position: absolute;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: ${zIndex.floatingButtons};
 
   transition-property: border, padding, background-color;
