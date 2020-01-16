@@ -16,7 +16,7 @@ export const TagContainer = styled.button`
   text-decoration: none;
   border-radius: 14px;
   background-color: transparent;
-  border: 1.5px solid ${palette.darkBlue[300]};
+  border: 1px solid ${palette.darkBlue[300]};
   font-family: ${theme.font()};
   line-height: 1;
   transition: background-color 50ms ease-in-out;
@@ -46,8 +46,8 @@ export const TagContainer = styled.button`
       }
 
       &:focus {
-        border-width: 3px;
-        padding: 0 10.5px;
+        border-width: 2px;
+        padding: 0 11px;
       }
 
       &[data-background='true'] {
