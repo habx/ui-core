@@ -30,6 +30,7 @@ export { default as Tag, TagProps } from './Tag'
 export { default as NavBar,  NavBarProps } from './NavBar'
 export { default as NavBarItem,  NavBarItemProps } from './NavBarItem'
 export { default as NavBarMenuItem,  NavBarMenuItemProps } from './NavBarMenuItem'
+export { default as Tab, TabProps } from './Tab'
 
 /*
   Inputs

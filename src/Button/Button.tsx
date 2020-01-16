@@ -3,7 +3,11 @@ import * as React from 'react'
 import withMarkdown from '../withMarkdown'
 
 import ButtonProps from './Button.interface'
-import { ButtonContainer, ButtonContent, IconContainer } from './Button.style'
+import {
+  ButtonContainer,
+  ButtonContent,
+  SideElementContainer,
+} from './Button.style'
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -33,9 +37,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
       >
         {elementLeft && (
-          <IconContainer data-position="left" data-testid="icon-left-container">
+          <SideElementContainer
+            data-position="left"
+            data-testid="icon-left-container"
+          >
             {elementLeft}
-          </IconContainer>
+          </SideElementContainer>
         )}
         <ButtonContent
           dangerouslySetInnerHTML={dangerouslySetInnerHTML}
@@ -44,12 +51,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {children}
         </ButtonContent>
         {elementRight && (
-          <IconContainer
+          <SideElementContainer
             data-position="right"
             data-testid="icon-right-container"
           >
             {elementRight}
-          </IconContainer>
+          </SideElementContainer>
         )}
       </ButtonContainer>
     )
