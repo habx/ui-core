@@ -5,7 +5,7 @@ import theme from '../../theme'
 
 export const OptionContent = styled.div``
 
-export const IconContainer = styled.div`
+export const SideElementContainer = styled.div`
   position: relative;
   font-size: 20px;
 
@@ -62,7 +62,7 @@ export const OptionContainer = styled.li`
   }
 
   &:hover {
-    & > ${IconContainer} {
+    & > ${SideElementContainer} {
       & > *:not([data-hover='true']) {
         opacity: 0;
       }

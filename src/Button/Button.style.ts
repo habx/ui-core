@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import palette from '../palette'
 import theme from '../theme'
 
-export const IconContainer = styled.div`
+export const SideElementContainer = styled.div`
   font-size: 0.9em;
   display: flex;
   margin-top: 1px;
@@ -52,7 +52,7 @@ export const ButtonContainer = styled.button`
     height: 34px;
     font-size: 14px;
 
-    & ${IconContainer} {
+    & ${SideElementContainer} {
       height: 11px;
     }
   }
@@ -64,7 +64,7 @@ export const ButtonContainer = styled.button`
     padding: 0 70px;
     max-width: calc(100vw - 48px);
 
-    & ${IconContainer} {
+    & ${SideElementContainer} {
       height: 15px;
     }
   }

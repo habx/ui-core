@@ -3,7 +3,11 @@ import * as React from 'react'
 import Icon from '../../Icon'
 
 import OptionProps from './Option.interface'
-import { OptionContainer, OptionContent, IconContainer } from './Option.style'
+import {
+  OptionContainer,
+  OptionContent,
+  SideElementContainer,
+} from './Option.style'
 
 const Option: React.FunctionComponent<OptionProps> = ({
   multi,
@@ -32,14 +36,14 @@ const Option: React.FunctionComponent<OptionProps> = ({
     >
       <OptionContent>{label}</OptionContent>
       {multi && (
-        <IconContainer>
+        <SideElementContainer>
           {selected && (
             <React.Fragment>
               <Icon icon="check" />
               <Icon icon="close" data-hover />
             </React.Fragment>
           )}
-        </IconContainer>
+        </SideElementContainer>
       )}
     </OptionContainer>
   )

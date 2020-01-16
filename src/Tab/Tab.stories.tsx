@@ -6,8 +6,8 @@ import { config } from 'storybook-addon-designs'
 import withGrid from '../_internal/StorybookGrid'
 import Icon from '../Icon'
 
-import Tag from './Tag'
-import TagProps from './Tag.interface'
+import Tab from './Tab'
+import TabProps from './Tab.interface'
 
 const GRID_PROPS = {
   children: 'Agencement 1',
@@ -36,45 +36,50 @@ const GRID_ITEMS = [
     props: { active: true },
   },
   {
+    label: 'Large',
+    props: { large: true },
+  },
+  {
     label: 'Element left',
     props: {
-      elementLeft: <Icon icon="close" />,
+      elementLeft: <Icon icon="list" />,
     },
   },
   {
     label: 'Element right',
     props: {
-      elementRight: <Icon icon="close" />,
+      elementRight: <Icon icon="list" />,
     },
   },
 ]
 
-const Grid = withGrid<TagProps>({
+const Grid = withGrid<TabProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
-})(Tag)
+})(Tab)
 
-storiesOf('Actions|Tag', module)
+storiesOf('Navigation|Tab', module)
   .addDecorator(withKnobs)
   .add('gallery', () => <Grid />, {
     design: config({
       type: 'figma',
       url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1475%3A0',
+        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1393%3A0',
     }),
   })
   .add('dynamic', () => (
-    <Tag
+    <Tab
       children={text('Value', 'Agencement 1')}
+      large={boolean('Large', false)}
       active={boolean('Active', false)}
       disabled={boolean('Disabled', false)}
       markdown={boolean('Markdown support', false)}
       elementLeft={
-        boolean('Icon left', false) ? <Icon icon="close" /> : undefined
+        boolean('Icon left', false) ? <Icon icon="list" /> : undefined
       }
       elementRight={
-        boolean('Icon right', false) ? <Icon icon="close" /> : undefined
+        boolean('Icon right', false) ? <Icon icon="list" /> : undefined
       }
     />
   ))

@@ -3,17 +3,18 @@ import * as React from 'react'
 import useTheme from '../useTheme'
 import withMarkdown from '../withMarkdown'
 
-import TagProps from './Tag.interface'
-import { TagContainer, SideElementContainer } from './Tag.style'
+import TagProps from './Tab.interface'
+import { TabContainer, SideElementContainer } from './Tab.style'
 
-const Tag = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
-  const { active, elementLeft, elementRight, children, ...rest } = props
+const Tab = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
+  const { large, active, elementLeft, elementRight, children, ...rest } = props
 
   const theme = useTheme()
 
   return (
-    <TagContainer
+    <TabContainer
       ref={ref}
+      data-large={large}
       data-active={active}
       data-background={theme.backgroundColor !== '#FFFFFF'}
       {...rest}
@@ -35,8 +36,8 @@ const Tag = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
           {elementRight}
         </SideElementContainer>
       )}
-    </TagContainer>
+    </TabContainer>
   )
 })
 
-export default withMarkdown<HTMLButtonElement>({ inline: true })<TagProps>(Tag)
+export default withMarkdown<HTMLButtonElement>({ inline: true })<TagProps>(Tab)
