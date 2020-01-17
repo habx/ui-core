@@ -69,7 +69,6 @@ storiesOf('Actions|Tag', module)
       children={text('Value', 'Agencement 1')}
       active={boolean('Active', false)}
       disabled={boolean('Disabled', false)}
-      markdown={boolean('Markdown support', false)}
       elementLeft={
         boolean('Icon left', false) ? <Icon icon="close" /> : undefined
       }

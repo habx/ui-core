@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import useTheme from '../useTheme'
-import withMarkdown from '../withMarkdown'
 
 import TagProps from './Tag.interface'
 import { TagContainer, SideElementContainer } from './Tag.style'
@@ -39,4 +38,4 @@ const Tag = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
   )
 })
 
-export default withMarkdown<HTMLButtonElement>({ inline: true })<TagProps>(Tag)
+export default Tag

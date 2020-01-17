@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import useTheme from '../useTheme'
-import withMarkdown from '../withMarkdown'
 
 import TagProps from './Tab.interface'
 import { TabContainer, SideElementContainer } from './Tab.style'
@@ -40,4 +39,4 @@ const Tab = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
   )
 })
 
-export default withMarkdown<HTMLButtonElement>({ inline: true })<TagProps>(Tab)
+export default Tab
