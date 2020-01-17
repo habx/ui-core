@@ -19,12 +19,24 @@ const FADE_IN = keyframes`
 `
 
 export const ModalContainer = styled(Background)`
-  padding: 48px 36px;
   position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  --modal-width: 448px;
+
+  &[data-width='small'] {
+    --modal-width: 344px;
+  }
+
+  &[data-width='large'] {
+    --modal-width: 654px;
+  }
 
   @media (${breakpoints.above.phone}) {
-    width: 448px;
+    width: var(--modal-width);
+    max-width: calc(100vw - 48px);
+    max-height: calc(100vh - 96px);
     border-radius: 2px;
   }
 
@@ -34,7 +46,6 @@ export const ModalContainer = styled(Background)`
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 24px;
   }
 `
 
@@ -92,8 +103,39 @@ export const ModalOverlay = styled.div`
   }
 `
 
-export const TitleContainer = styled.div`
-  margin-bottom: 12px;
+export const HeaderBarContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 0 0 auto;
+
+  &[data-has-title='true'] {
+    padding: 48px 36px 24px 36px;
+
+    @media (${breakpoints.below.phone}) {
+      padding: 16px 24px;
+    }
+  }
+`
+
+export const CloseIconContainer = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  @media (${breakpoints.below.phone}) {
+    &:not([data-has-title='true']) {
+      position: fixed;
+    }
+  }
+
+  @media (${breakpoints.below.phone}) {
+    &[data-has-title='true'] {
+      position: static;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  }
 `
 
 export const DesktopTitle = styled(Title)`
@@ -109,17 +151,28 @@ export const MobileTitle = styled(Title)`
 `
 
 export const ModalContent = styled.div`
+  flex: 1 1 100%;
+  min-height: 0;
   display: flex;
-  flex-direction: column;
 `
 
-export const CloseIconContainer = styled.div`
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  cursor: pointer;
+export const ModalScrollableContent = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 36px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &[data-has-title='true'] {
+    padding-top: 24px;
+  }
 
   @media (${breakpoints.below.phone}) {
-    position: fixed;
+    padding: 36px 24px;
+
+    &[data-has-title='true'] {
+      padding-top: 6px;
+    }
   }
 `
