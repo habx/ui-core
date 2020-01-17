@@ -74,7 +74,6 @@ storiesOf('Navigation|Tab', module)
       large={boolean('Large', false)}
       active={boolean('Active', false)}
       disabled={boolean('Disabled', false)}
-      markdown={boolean('Markdown support', false)}
       elementLeft={
         boolean('Icon left', false) ? <Icon icon="list" /> : undefined
       }

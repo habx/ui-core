@@ -86,7 +86,6 @@ storiesOf('Actions|FloatingButton', module)
   .add('dynamic', () => (
     <FloatingButton
       small={boolean('Small', false)}
-      primary={boolean('Color override : Primary', false)}
       secondary={boolean('Color override : Secondary', false)}
       warning={boolean('Color override : Warning', false)}
       position={select('Position', positions, 'bottom')}
