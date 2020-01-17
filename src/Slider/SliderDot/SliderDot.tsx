@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import SliderDotProps from './SliderDot.interface'
-import { SliderDotContainer } from './SliderDot.style'
+import { SliderDotContainer, SliderDotContent } from './SliderDot.style'
 
 type Listeners = {
   mousemove?: EventListener
@@ -54,10 +54,12 @@ const useMouseMove = ({
       onRest()
     }
 
-    addListener('mousemove', handleMouseMove)
-    addListener('mouseup', handleMouseUp)
+    if (e.button === 0) {
+      addListener('mousemove', handleMouseMove)
+      addListener('mouseup', handleMouseUp)
 
-    restPosition.current = getMousePosition(e)
+      restPosition.current = getMousePosition(e)
+    }
   }
 
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -72,10 +74,12 @@ const useMouseMove = ({
       onRest()
     }
 
-    addListener('touchmove', handleTouchMove)
-    addListener('touchend', handleTouchEnd)
+    if (e.targetTouches.length === 1) {
+      addListener('touchmove', handleTouchMove)
+      addListener('touchend', handleTouchEnd)
 
-    restPosition.current = getTouchPosition(e)
+      restPosition.current = getTouchPosition(e)
+    }
   }
 
   return { onMouseDown: handleMouseDown, onTouchStart: handleTouchStart }
@@ -93,10 +97,12 @@ const SliderDot: React.FunctionComponent<SliderDotProps> = ({
   return (
     <SliderDotContainer
       data-testid="slider-dot"
-      style={{ left: `${position}%`, backgroundColor: innerColor }}
+      style={{ left: `${position}%` }}
       data-large={large}
       {...eventProps}
-    />
+    >
+      <SliderDotContent style={{ backgroundColor: innerColor }} />
+    </SliderDotContainer>
   )
 }
 
