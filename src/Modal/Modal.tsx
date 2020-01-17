@@ -11,11 +11,12 @@ import { ModalInnerProps } from './Modal.interface'
 import {
   ModalOverlay,
   ModalContainer,
-  TitleContainer,
   DesktopTitle,
   MobileTitle,
   ModalContent,
+  ModalScrollableContent,
   CloseIconContainer,
+  HeaderBarContainer,
   ANIMATION_DURATION,
 } from './Modal.style'
 
@@ -29,6 +30,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
       animated = true,
       persistent = false,
       alwaysRenderChildren = false,
+      width = 'regular',
       ...rest
     } = props
 
@@ -47,19 +49,24 @@ const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
           backgroundColor="#FFFFFF"
           ref={modal.ref}
           data-testid="modal-container"
+          data-width={width}
           {...rest}
         >
-          <CloseIconContainer onClick={modal.close}>
-            <Icon icon="close" />
-          </CloseIconContainer>
-          {title && (
-            <TitleContainer>
-              <DesktopTitle type="section">{title}</DesktopTitle>
-              <MobileTitle type="regular">{title}</MobileTitle>
-            </TitleContainer>
-          )}
+          <HeaderBarContainer data-has-title={!!title}>
+            {title && (
+              <React.Fragment>
+                <DesktopTitle type="section">{title}</DesktopTitle>
+                <MobileTitle type="regular">{title}</MobileTitle>
+              </React.Fragment>
+            )}
+            <CloseIconContainer data-has-title={!!title} onClick={modal.close}>
+              <Icon icon="close" />
+            </CloseIconContainer>
+          </HeaderBarContainer>
           <ModalContent>
-            {isFunction(children) ? children(modal as ModalType) : children}
+            <ModalScrollableContent data-has-title={!!title}>
+              {isFunction(children) ? children(modal as ModalType) : children}
+            </ModalScrollableContent>
           </ModalContent>
         </ModalContainer>
       </ModalOverlay>
