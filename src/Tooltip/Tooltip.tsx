@@ -17,9 +17,7 @@ import {
   TooltipTriggerCursorWrapper,
 } from './Tooltip.style'
 
-const TooltipWithTriggerElement: React.FunctionComponent<
-  TooltipWithTriggerElementProps
-> = ({
+const TooltipWithTriggerElement: React.FunctionComponent<TooltipWithTriggerElementProps> = ({
   tooltip,
   hasDescription,
   followCursor = false,
@@ -103,7 +101,15 @@ const TooltipWithTriggerElement: React.FunctionComponent<
 }
 
 const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
-  const { title, description, small, children, followCursor, ...rest } = props
+  const {
+    title,
+    description,
+    small,
+    children,
+    followCursor,
+    disabled,
+    ...rest
+  } = props
 
   const hasDescription = !!description
 
@@ -125,6 +131,10 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
 
   if (!React.isValidElement(children)) {
     return tooltip
+  }
+
+  if (disabled) {
+    return children
   }
 
   return (

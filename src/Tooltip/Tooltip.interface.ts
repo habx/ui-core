@@ -6,6 +6,7 @@ export default interface TooltipProps
   description?: string
   small?: boolean
   followCursor?: boolean
+  disabled?: boolean
 }
 
 export interface TooltipWithTriggerElementProps {
