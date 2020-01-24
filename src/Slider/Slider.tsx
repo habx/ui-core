@@ -284,7 +284,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>((props, ref) => {
   const tooltips = React.useMemo<Tooltip[]>(() => {
     const buildTooltip = (value: number): Tooltip => {
       const label = customValues ? customValues[value] : value
-      const raw = `${isNil(label) ? '-' : label}${tooltipSuffix}`
+      const raw = `${isNil(label) ? '' : label}${tooltipSuffix}`
 
       const content = isFunction(tooltipFormatter)
         ? tooltipFormatter(value, raw)
