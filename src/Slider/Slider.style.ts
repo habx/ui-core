@@ -5,7 +5,6 @@ import Text from '../Text'
 import theme from '../theme'
 
 import { SliderBarContainer } from './SliderBar/SliderBar.style'
-import { SliderDotContent } from './SliderDot/SliderDot.style'
 
 export const SliderContainer = styled.div`
   position: relative;
@@ -36,7 +35,7 @@ export const SliderContent = styled.div`
   padding: 8px 0;
   cursor: pointer;
 
-  &[data-has-value='true'] ${SliderDotContent}, & ${SliderBarContainer}[data-main='true'] {
+  & ${SliderBarContainer}[data-main='true'] {
     background-color: ${theme.color('primary', { dynamic: true })};
   }
 

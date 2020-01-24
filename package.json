@@ -36,8 +36,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "homepage": "https://github.com/habx/ui-core#readme",
