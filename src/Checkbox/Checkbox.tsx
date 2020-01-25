@@ -1,7 +1,7 @@
 import * as React from 'react'
 
+import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import useUniqID from '../_internal/useUniqId'
-import useTheme from '../useTheme'
 
 import CheckboxProps from './Checkbox.interface'
 import { Input, FakeInputContainer, FakeInput } from './Checkbox.style'
@@ -10,14 +10,15 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (props, ref) => {
     const { error, value, checked, disabled, id, ...rest } = props
     const checkboxId = useUniqID(id)
-    const theme = useTheme()
+    const hasBackground = useHasColoredBackground()
+
     return (
       <FakeInputContainer>
         <Input
           ref={ref}
           {...rest}
           data-error={error}
-          data-background={theme.backgroundColor !== '#FFFFFF'}
+          data-background={hasBackground}
           checked={!!value || !!checked}
           disabled={disabled}
           type="checkbox"

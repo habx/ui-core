@@ -46,10 +46,6 @@ const GRID_LINES = [
       light: true,
     },
   },
-  {
-    title: 'Colored background',
-    coloredBackground: true,
-  },
 ]
 
 const GRID_ITEMS = [
@@ -101,6 +97,8 @@ storiesOf('Input|Select', module)
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1846',
     }),
   })
+  .add('light background', () => <Grid background="light" />)
+  .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
     <TextInputContainer>
       <Select

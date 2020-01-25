@@ -24,10 +24,6 @@ const GRID_LINES = [
   {
     title: 'Regular',
   },
-  {
-    title: 'Colored background',
-    coloredBackground: true,
-  },
 ]
 
 const GRID_ITEMS = [
@@ -71,6 +67,8 @@ storiesOf('Input|Checkbox', module)
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=62%3A0',
     }),
   })
+  .add('light background', () => <Grid background="light" />)
+  .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
     <CheckboxContainer>
       <Checkbox

@@ -17,7 +17,7 @@ export const CountryOptions = styled.div`
   user-select: none;
   width: 110px;
   background-color: ${palette.darkBlue[200]};
-  color: ${theme.textColor('placeholder')};
+  color: ${theme.textColor({ useRootTheme: true })};
   font-family: ${theme.font()};
   display: flex;
   justify-content: space-evenly;
@@ -32,8 +32,8 @@ export const PhoneInputContainer = styled.div`
   max-width: 100%;
   overflow: hidden;
   transition: all 150ms ease-in-out;
-  max-height: 3rem;
-  min-height: 3rem;
+  max-height: 48px;
+  min-height: 48px;
 
   outline: none;
   -moz-appearance: none;
@@ -70,7 +70,7 @@ export const PhoneInputContainer = styled.div`
 
     & ${CountryOptions} {
       border-right-color: #d0e4e6;
-      color: ${theme.textColor('disabledPlaceholder')};
+      color: ${theme.textColor({ useRootTheme: true })};
 
       & svg {
         filter: grayscale();
@@ -80,8 +80,8 @@ export const PhoneInputContainer = styled.div`
   }
 
   &[data-small='true'] {
-    min-height: 2.3rem;
-    max-height: 2.3rem;
+    min-height: 36px;
+    max-height: 36px;
   }
 
   &:focus-within {

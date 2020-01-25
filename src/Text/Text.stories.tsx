@@ -1,4 +1,10 @@
-import { withKnobs, select, boolean, text } from '@storybook/addon-knobs'
+import {
+  withKnobs,
+  select,
+  boolean,
+  text,
+  number,
+} from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { config } from 'storybook-addon-designs'
@@ -38,13 +44,6 @@ const GRID_LINES = [
     title: typeName,
     props: { type },
   })),
-  {
-    title: 'Colored background',
-    coloredBackground: true,
-    props: {
-      opacity: 1,
-    },
-  },
 ]
 
 const GRID_ITEMS = [{}]
@@ -70,6 +69,8 @@ storiesOf('Typography|Text', module)
         'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A2',
     }),
   })
+  .add('light background', () => <Grid background="light" />)
+  .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
     <TextContainer>
       <Text
@@ -82,6 +83,12 @@ storiesOf('Typography|Text', module)
         secondary={boolean('Color override : Secondary', false)}
         warning={boolean('Color override : Warning', false)}
         markdown={boolean('Markdown support', false)}
+        opacity={number('Opacity', 0.72, {
+          range: true,
+          min: 0,
+          max: 1,
+          step: 0.01,
+        })}
       />
     </TextContainer>
   ))

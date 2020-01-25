@@ -6,9 +6,20 @@ import palette from '../palette'
 import Text from '../Text'
 import Title from '../Title'
 
-const StorybookGridContainer = styled.div`
-  margin: 64px;
+const StorybookGridContainer = styled(Background)`
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `
+
+const StorybookGridContent = styled.div``
 
 const LineContainer = styled.div`
   padding: 24px 36px;
@@ -38,9 +49,8 @@ const Label = styled(Text)`
 `
 
 type GridLine<Props> = {
-  title: React.ReactNode
+  title?: React.ReactNode
   props?: Partial<Props>
-  coloredBackground?: boolean
 }
 
 type GridItem<Props> = {
@@ -55,6 +65,7 @@ interface StorybookGridConfig<Props> {
   itemHorizontalSpace?: number
   itemVerticalSpace?: number
   itemWrapper?: React.ComponentType<any>
+  showBackgroundVariations?: boolean
 }
 
 const withGrid = <Props extends object>(config: StorybookGridConfig<Props>) => (
@@ -65,50 +76,70 @@ const withGrid = <Props extends object>(config: StorybookGridConfig<Props>) => (
     lines,
     items,
     itemWrapper: ItemWrapper = React.Fragment,
-    itemHorizontalSpace = 8,
-    itemVerticalSpace = 8,
+    itemHorizontalSpace = 18,
+    itemVerticalSpace = 12,
   } = config
 
-  const Component: React.FunctionComponent<{}> = () => (
-    <StorybookGridContainer>
-      {lines.map((line, lineIndex) => {
-        const content = (
-          <LineContainer>
-            <Title type="section">{line.title}</Title>
-            <LineContent>
-              {items.map(item => {
-                const fullProps = {
-                  ...props,
-                  ...line.props,
-                  ...item.props,
-                } as Props
+  const Component: React.FunctionComponent<{
+    background?: 'light' | 'dark' | 'none'
+  }> = ({ background = 'none' }) => {
+    const backgroundColor = React.useMemo(() => {
+      switch (background) {
+        case 'dark': {
+          return palette.darkBlue[900]
+        }
 
-                return (
-                  <ItemContainer
-                    itemHorizontalSpace={itemHorizontalSpace}
-                    itemVerticalSpace={itemVerticalSpace}
-                  >
-                    <ItemWrapper>
-                      <WrappedComponent {...fullProps} />
-                    </ItemWrapper>
-                    {item.label && <Label opacity={1}>{item.label} </Label>}
-                  </ItemContainer>
-                )
-              })}
-            </LineContent>
-          </LineContainer>
-        )
+        case 'light': {
+          return palette.blue[300]
+        }
 
-        return line.coloredBackground ? (
-          <Background backgroundColor={palette.green[600]} key={lineIndex}>
-            {content}
-          </Background>
-        ) : (
-          <React.Fragment key={lineIndex}>{content}</React.Fragment>
-        )
-      })}
-    </StorybookGridContainer>
-  )
+        case 'none': {
+          return '#FFFFFF'
+        }
+
+        default: {
+          return '#FFFFFF'
+        }
+      }
+    }, [background])
+
+    return (
+      <StorybookGridContainer backgroundColor={backgroundColor}>
+        <StorybookGridContent>
+          {lines.map((line, lineIndex) => {
+            const content = (
+              <LineContainer>
+                <Title type="section">{line.title}</Title>
+                <LineContent>
+                  {items.map(item => {
+                    const fullProps = {
+                      ...props,
+                      ...line.props,
+                      ...item.props,
+                    } as Props
+
+                    return (
+                      <ItemContainer
+                        itemHorizontalSpace={itemHorizontalSpace}
+                        itemVerticalSpace={itemVerticalSpace}
+                      >
+                        <ItemWrapper>
+                          <WrappedComponent {...fullProps} />
+                        </ItemWrapper>
+                        {item.label && <Label opacity={1}>{item.label} </Label>}
+                      </ItemContainer>
+                    )
+                  })}
+                </LineContent>
+              </LineContainer>
+            )
+
+            return <React.Fragment key={lineIndex}>{content}</React.Fragment>
+          })}
+        </StorybookGridContent>
+      </StorybookGridContainer>
+    )
+  }
 
   return Component
 }

@@ -9,7 +9,6 @@ import DesignSystemTheme, {
   ColorVariations,
   Fonts,
   Shadows,
-  TextColorVariations,
   GetterProps,
 } from './theme.interface'
 
@@ -17,11 +16,9 @@ const getTheme = (
   props: GetterProps,
   { useRootTheme }: { useRootTheme?: boolean } = {}
 ): DesignSystemTheme => {
-  const {
-    theme: { designSystem = BASE_THEME, designSystemRoot = BASE_THEME } = {},
-  } = props
+  const { theme: { uiCore = BASE_THEME, uiCoreRoot = BASE_THEME } = {} } = props
 
-  return useRootTheme ? designSystemRoot : designSystem
+  return useRootTheme ? uiCoreRoot : uiCore
 }
 
 const fontGetter = (variation: keyof Fonts = 'text') => (props: GetterProps) =>
@@ -65,9 +62,56 @@ const shadowGetter = (
     .join(', ')}`
 }
 
-const textColorGetter = (variation: keyof TextColorVariations = 'base') => (
-  props: GetterProps
-) => getTheme(props).textColors[variation]
+const textColorGetter = <Props extends GetterProps>(
+  config: {
+    opacity?: number
+    useRootTheme?: boolean
+    dynamic?: boolean
+  } = {}
+) => (
+  props: Props & {
+    warning?: boolean
+    primary?: boolean
+    secondary?: boolean
+    opacity?: number
+  }
+) => {
+  const { dynamic = false, useRootTheme = false, opacity } = config
+
+  const realOpacity = isNil(props.opacity) ? opacity : props.opacity
+
+  const getColor = (): string => {
+    const theme = getTheme(props, { useRootTheme })
+
+    if (!dynamic) {
+      return theme.textColor
+    }
+
+    if (props.warning) {
+      return theme.colors.warning.base
+    }
+
+    if (props.primary) {
+      return theme.colors.primary.base
+    }
+
+    if (props.secondary) {
+      return theme.colors.secondary.base
+    }
+
+    return theme.textColor
+  }
+
+  const color = getColor()
+
+  if (isNil(realOpacity)) {
+    return color
+  }
+
+  return colorUtils(color)
+    .fade(1 - realOpacity)
+    .string()
+}
 
 const colorGetter = <Props extends GetterProps>(
   colorName: keyof ColorFamilies | 'background',

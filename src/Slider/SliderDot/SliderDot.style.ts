@@ -11,7 +11,7 @@ export const SliderDotContent = styled.div`
   background-color: ${theme.color('primary', { dynamic: true })};
 
   &:hover {
-    box-shadow: ${theme.shadow('regular')};
+    box-shadow: ${theme.shadow('low', { hover: true })};
   }
 
   &:active {

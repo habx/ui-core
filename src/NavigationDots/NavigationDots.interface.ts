@@ -5,7 +5,6 @@ export default interface NavigationDotsProps
   size: number
   activeDot?: number
   disabled?: boolean
-  secondary?: boolean
   onClickDot?: (activeDot: number) => void
 }
 

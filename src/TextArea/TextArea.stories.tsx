@@ -28,10 +28,6 @@ const GRID_LINES = [
     title: 'Small',
     props: { small: true },
   },
-  {
-    title: 'Colored background',
-    coloredBackground: true,
-  },
 ]
 
 const GRID_ITEMS = [
@@ -75,6 +71,8 @@ storiesOf('Input|TextArea', module)
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1845',
     }),
   })
+  .add('light background', () => <Grid background="light" />)
+  .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
     <TextAreaContainer>
       <TextArea

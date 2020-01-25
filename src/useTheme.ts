@@ -1,16 +1,14 @@
 import * as React from 'react'
 import { ThemeContext } from 'styled-components'
 
-import { styledTheme } from './_internal/types'
+import { StyledTheme } from './_internal/types'
 import { BASE_THEME } from './theme'
 import DesignSystemTheme from './theme/theme.interface'
 
 const useTheme = (): DesignSystemTheme => {
-  const fullTheme = React.useContext<styledTheme>(ThemeContext)
+  const fullTheme = React.useContext<StyledTheme>(ThemeContext)
 
-  return fullTheme && fullTheme.designSystem
-    ? fullTheme.designSystem
-    : BASE_THEME
+  return fullTheme && fullTheme.uiCore ? fullTheme.uiCore : BASE_THEME
 }
 
 export default useTheme

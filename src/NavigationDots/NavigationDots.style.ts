@@ -16,19 +16,23 @@ export const Dot = styled.div<{ secondary?: boolean }>`
   border-radius: 4px;
   min-width: 8px;
   height: 8px;
-  background-color: ${palette.darkBlue[400]};
+  background-color: var(--navigation-dot-empty-color);
   vertical-align: middle;
   transition: all 300ms ease-in-out;
 
+  --navigation-dot-empty-color: ${palette.darkBlue[400]};
+  --navigation-dot-active-color: ${theme.color('primary')};
+
   &[data-background='true'] {
-    background-color: rgba(255, 255, 255, 0.3);
+    --navigation-dot-empty-color: rgba(255, 255, 255, 0.3);
+    --navigation-dot-active-color: #fff;
   }
 
   &[data-active='true'] {
     flex: 0 1 100%;
 
     &:not([data-disabled='true']) {
-      background-color: ${theme.color('primary', { dynamic: true })};
+      background-color: var(--navigation-dot-active-color);
     }
   }
 

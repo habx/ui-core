@@ -32,10 +32,6 @@ const GRID_LINES = [
     title: 'Toggle small',
     props: { usage: 'toggle' as 'toggle', small: true },
   },
-  {
-    title: 'Regular + Colored background',
-    coloredBackground: true,
-  },
 ]
 
 const GRID_ITEMS = [
@@ -71,6 +67,8 @@ storiesOf('Navigation|NavigationButton', module)
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A2116',
     }),
   })
+  .add('light background', () => <Grid background="light" />)
+  .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
     <NavigationButton
       disabled={boolean('Disabled', false)}

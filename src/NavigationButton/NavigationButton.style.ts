@@ -34,15 +34,16 @@ export const NavigationButtonContainer = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${theme.color('background')};
   border: none;
   border-radius: 50%;
   z-index: 1;
   opacity: 1;
-  color: ${theme.color('primary', { dynamic: true })};
   box-shadow: ${theme.shadow('low')};
   transition: all 150ms ease-in-out;
   padding: 0;
+
+  color: ${theme.color('primary', { dynamic: true })};
+  background-color: ${theme.color('background')};
 
   &[data-large='true'] {
     ${size('l')};
@@ -82,8 +83,12 @@ export const NavigationButtonContainer = styled.button`
 
   &:disabled {
     color: ${palette.darkBlue[400]};
+  }
 
-    &[data-background='true'] {
+  &[data-background='true'] {
+    color: #fff;
+
+    &:disabled {
       color: ${theme.color('secondary', { opacity: 0.3, useRootTheme: true })};
     }
   }

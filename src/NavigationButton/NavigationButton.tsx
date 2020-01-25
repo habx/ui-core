@@ -1,7 +1,7 @@
 import * as React from 'react'
 
+import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import Icon from '../Icon'
-import useTheme from '../useTheme'
 
 import NavigationButtonProps from './NavigationButton.interface'
 import { NavigationButtonContainer } from './NavigationButton.style'
@@ -26,16 +26,22 @@ const NavigationButton = React.forwardRef<
   HTMLButtonElement,
   NavigationButtonProps
 >((props, ref) => {
-  const { previous, large, small, usage = 'navigation', ...rest } = props
+  const {
+    previous = false,
+    large = false,
+    small = false,
+    usage = 'navigation',
+    ...rest
+  } = props
 
-  const theme = useTheme()
+  const hasBackground = useHasColoredBackground()
 
   return (
     <NavigationButtonContainer
       ref={ref}
       data-large={large}
       data-small={small}
-      data-background={theme.backgroundColor !== '#FFFFFF'}
+      data-background={hasBackground}
       data-usage={usage}
       {...rest}
     >

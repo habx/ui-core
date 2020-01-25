@@ -1,6 +1,6 @@
 import React from 'react'
 
-import useTheme from '../useTheme'
+import useHasColoredBackground from '../_internal/useHasColoredBackground'
 
 import NavigationDotsProps, { DotObject } from './NavigationDots.interface'
 import { NavigationDotsContainer, Dot } from './NavigationDots.style'
@@ -9,16 +9,9 @@ const MAX_VISIBLE_DOTS = 5
 
 const NavigationDots = React.forwardRef<HTMLDivElement, NavigationDotsProps>(
   (props, ref) => {
-    const {
-      size,
-      disabled,
-      activeDot = 0,
-      onClickDot,
-      secondary,
-      ...rest
-    } = props
+    const { size, disabled, activeDot = 0, onClickDot, ...rest } = props
 
-    const theme = useTheme()
+    const hasBackground = useHasColoredBackground()
 
     const visibleDots = React.useMemo<DotObject[]>(() => {
       if (size < MAX_VISIBLE_DOTS) {
@@ -69,11 +62,10 @@ const NavigationDots = React.forwardRef<HTMLDivElement, NavigationDotsProps>(
             key={dot.index}
             data-active={!!dot.active}
             data-interactive={!!onClickDot}
-            data-background={theme.backgroundColor !== '#FFFFFF'}
+            data-background={hasBackground}
             data-small={dot.small}
             data-disabled={disabled}
             onClick={onClickDot ? () => onClickDot(dot.index) : undefined}
-            secondary={secondary}
           />
         ))}
       </NavigationDotsContainer>

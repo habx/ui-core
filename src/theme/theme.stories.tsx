@@ -1,19 +1,13 @@
-import { withKnobs, select } from '@storybook/addon-knobs'
+import { withKnobs } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
-import Background from '../Background'
-import Button from '../Button'
-import palette from '../palette'
-import Text from '../Text'
-import TextInput from '../TextInput'
 import Title from '../Title'
 import useTheme from '../useTheme'
 
 import theme from './theme'
-import { THEME_PATCHES } from './theme.data'
 import { Shadows } from './theme.interface'
 
 const Container = styled.div`
@@ -56,17 +50,6 @@ const Circle = styled.div<{ color?: string; depth?: keyof Shadows }>`
   }
 `
 
-const ThemePatchContainer = styled.div`
-  max-width: 520px;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-
-  & > *:not(:last-child) {
-    margin-bottom: 24px;
-  }
-`
-
 const ThemePatchPalette = () => {
   const { colors } = useTheme()
 
@@ -98,27 +81,13 @@ const ThemePatchPalette = () => {
 
 storiesOf('Utility|theme', module)
   .addDecorator(withKnobs)
-  .add(
-    'colors',
-    () => (
-      <Background
-        backgroundColor={select(
-          'Background color',
-          Object.keys(THEME_PATCHES),
-          '#FFFFFF'
-        )}
-      >
-        <ThemePatchPalette />
-      </Background>
-    ),
-    {
-      design: config({
-        type: 'figma',
-        url:
-          'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A3',
-      }),
-    }
-  )
+  .add('colors', () => <ThemePatchPalette />, {
+    design: config({
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A3',
+    }),
+  })
   .add(
     'shadows',
     () => (
@@ -144,38 +113,6 @@ storiesOf('Utility|theme', module)
         type: 'figma',
         url:
           'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=10%3A214',
-      }),
-    }
-  )
-  .add(
-    'patches',
-    () => (
-      <Background
-        backgroundColor={select(
-          'Background color',
-          Object.keys(THEME_PATCHES),
-          palette.darkBlue[900]
-        )}
-      >
-        <ThemePatchContainer>
-          <Title type="section">Exemple de section colorée</Title>
-          <TextInput placeholder="votre@mail.com" />
-          <Text>
-            Les volumes et la forme des pièces sont représentés à titre
-            indicatif. Ils ne constituent pas le plan definitif de votre futur
-            appartement mais bien une suggestion d'agencement. C'est notre
-            architecte qui finalisera ce plan pour vous.
-          </Text>
-          <Button>Bouton</Button>
-          <Button outline>Bouton outline</Button>
-        </ThemePatchContainer>
-      </Background>
-    ),
-    {
-      design: config({
-        type: 'figma',
-        url:
-          'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A3',
       }),
     }
   )

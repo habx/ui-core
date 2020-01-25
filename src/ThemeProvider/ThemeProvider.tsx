@@ -1,12 +1,13 @@
 import merge from 'merge'
 import * as React from 'react'
 import {
-  ThemeContext,
   ThemeProvider as BaseThemeProvider,
+  ThemeContext,
 } from 'styled-components'
 
-import { styledTheme } from '../_internal/types'
-import { BASE_THEME, FAMILY_PATCHES, THEME_PATCHES } from '../theme'
+import { isColorDark } from '../_internal/color'
+import { StyledTheme } from '../_internal/types'
+import { BASE_THEME, PATCH_WHITE } from '../theme'
 import DesignSystemTheme from '../theme/theme.interface'
 
 import ThemeProviderProps, {
@@ -15,56 +16,72 @@ import ThemeProviderProps, {
 
 const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
-  themeFamily,
-  isRoot = false,
   backgroundColor,
   children,
 }) => {
-  const currentTheme = React.useContext<styledTheme>(ThemeContext) || {}
+  const styledTheme = React.useContext<StyledTheme>(ThemeContext)
 
-  const baseTheme = React.useMemo(
-    () =>
-      currentTheme.designSystemRoot ||
-      merge.recursive<DesignSystemTheme, DesignSystemThemePatch>(
-        true,
-        BASE_THEME,
-        themeFamily ? FAMILY_PATCHES[themeFamily] : {}
-      ),
-    [currentTheme.designSystemRoot, themeFamily]
-  )
+  const currentTheme =
+    styledTheme && styledTheme.uiCore ? styledTheme.uiCore : BASE_THEME
 
-  const patch = React.useMemo<DesignSystemThemePatch>(() => {
-    if (backgroundColor === '#FFFFFF') {
-      return baseTheme
-    }
+  const currentThemeRoot =
+    styledTheme && styledTheme.uiCoreRoot ? styledTheme.uiCoreRoot : BASE_THEME
 
-    if (backgroundColor) {
+  const newStyledTheme = React.useMemo<StyledTheme>(() => {
+    // Creating a custom theme
+    if (theme) {
+      const fullTheme = merge.recursive<
+        DesignSystemTheme,
+        DesignSystemThemePatch
+      >(true, currentTheme, theme)
+
+      const newTheme = {
+        ...fullTheme,
+        isDark: isColorDark(fullTheme.backgroundColor),
+      }
+
       return {
-        ...THEME_PATCHES[backgroundColor.toUpperCase()],
-        backgroundColor,
+        ...styledTheme,
+        uiCore: newTheme,
+        uiCoreRoot: newTheme,
       }
     }
 
-    return theme as DesignSystemThemePatch
-  }, [backgroundColor, baseTheme, theme])
+    // Applying a custom background
+    if (backgroundColor) {
+      const isDark = isColorDark(backgroundColor)
 
-  const newTheme = React.useMemo<styledTheme>(() => {
-    const designSystem = merge.recursive<
-      DesignSystemTheme,
-      DesignSystemThemePatch
-    >(true, baseTheme, patch)
+      if (!isDark) {
+        return {
+          ...styledTheme,
+          uiCore: {
+            ...currentThemeRoot,
+            backgroundColor,
+            isDark: false,
+          },
+        }
+      }
 
-    return {
-      ...currentTheme,
-      designSystem,
-      ...((isRoot || (!currentTheme.designSystem && patch === theme)) && {
-        designSystemRoot: designSystem,
-      }),
+      return {
+        ...styledTheme,
+        uiCore: {
+          ...currentTheme,
+          backgroundColor,
+          isDark: true,
+          textColor: '#FFFFFF',
+          colors: {
+            ...currentThemeRoot.colors,
+            secondary: PATCH_WHITE,
+          },
+        },
+      }
     }
-  }, [baseTheme, currentTheme, isRoot, patch, theme])
+
+    return styledTheme
+  }, [backgroundColor, currentTheme, currentThemeRoot, styledTheme, theme])
 
   return (
-    <BaseThemeProvider theme={newTheme}>
+    <BaseThemeProvider theme={newStyledTheme}>
       <React.Fragment>{children}</React.Fragment>
     </BaseThemeProvider>
   )
