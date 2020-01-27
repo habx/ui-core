@@ -77,7 +77,11 @@ const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
       }
     }
 
-    return styledTheme
+    return {
+      ...styledTheme,
+      uiCore: currentTheme,
+      uiCoreRoot: currentThemeRoot,
+    }
   }, [backgroundColor, currentTheme, currentThemeRoot, styledTheme, theme])
 
   return (

@@ -67,6 +67,7 @@ const textColorGetter = <Props extends GetterProps>(
     opacity?: number
     useRootTheme?: boolean
     dynamic?: boolean
+    propName?: keyof Props
   } = {}
 ) => (
   props: Props & {
@@ -76,12 +77,16 @@ const textColorGetter = <Props extends GetterProps>(
     opacity?: number
   }
 ) => {
-  const { dynamic = false, useRootTheme = false, opacity } = config
+  const { dynamic = false, useRootTheme = false, opacity, propName } = config
 
   const realOpacity = isNil(props.opacity) ? opacity : props.opacity
 
   const getColor = (): string => {
     const theme = getTheme(props, { useRootTheme })
+
+    if (propName && !isNil(props[propName])) {
+      return (props[propName] as any) as string
+    }
 
     if (!dynamic) {
       return theme.textColor

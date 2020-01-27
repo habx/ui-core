@@ -14,6 +14,13 @@ export { default as Title, TitleProps, titleStyles } from './Title'
 export { default as Link, LinkProps, linkStyle } from './Link'
 
 /*
+  Menu
+ */
+export { default as Menu, MenuProps } from './Menu'
+export { default as MenuSection, MenuSectionProps } from './MenuSection'
+export { default as MenuLine, MenuLineProps } from './MenuLine'
+
+/*
   Buttons / Tags
  */
 export { default as Button, ButtonProps } from './Button'
@@ -41,6 +48,7 @@ export { default as Select, SelectProps } from './Select'
 export { default as Slider, SliderProps } from './Slider'
 export { default as TextArea, TextAreaProps } from './TextArea'
 export { default as TextInput, TextInputProps } from './TextInput'
+
 
 /*
   Miscellaneous

@@ -18,6 +18,7 @@ const baseTextStyle = css<{ color?: string }>`
   color: ${theme.textColor({
     opacity: 0.72,
     dynamic: true,
+    propName: 'color',
   })};
 
   font-family: ${theme.font()};
@@ -58,7 +59,7 @@ const emphasisTextStyle = css<{ color?: string }>`
   ${size('mars')};
   font-weight: 500;
 
-  color: ${theme.textColor({ dynamic: true })};
+  color: ${theme.textColor({ dynamic: true, propName: 'color' })};
 `
 
 const regularTextStyle = css`
