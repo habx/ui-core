@@ -14,19 +14,22 @@ export const TagContainer = styled.button`
   vertical-align: middle;
   text-align: left;
   text-decoration: none;
-  border-radius: 14px;
   background-color: transparent;
   border: 1px solid ${palette.darkBlue[300]};
   font-family: ${theme.font()};
   line-height: 1;
   transition: background-color 50ms ease-in-out;
-
-  padding: 0 12px;
-  height: 28px;
-  font-size: 12px;
   color: ${theme.color('secondary', {
     opacity: 0.72,
   })};
+
+  padding: 0 var(--tag-horizontal-padding);
+  height: var(--tag-height);
+  border-radius: calc(var(--tag-height) / 2);
+  font-size: 12px;
+
+  --tag-horizontal-padding: 12px;
+  --tag-height: 32px;
 
   &:not([data-active='true']) {
     &:not(:disabled) {
@@ -47,7 +50,7 @@ export const TagContainer = styled.button`
 
       &:focus {
         border-width: 2px;
-        padding: 0 11px;
+        padding: 0 calc(var(--tag-horizontal-padding) - 1px);
       }
 
       &[data-background='true'] {
@@ -75,11 +78,17 @@ export const TagContainer = styled.button`
     border: none;
     color: ${theme.color('primary', { useRootTheme: true })};
     background-color: ${palette.blue[200]};
-    padding: 0 13.5px;
+    padding: 0 calc(var(--tag-horizontal-padding) + 1px);
 
     &[data-background='true'] {
       background-color: #fff;
     }
+  }
+
+  &[data-large='true'] {
+    --tag-horizontal-padding: 16px;
+    --tag-height: 40px;
+    font-size: 16px;
   }
 `
 

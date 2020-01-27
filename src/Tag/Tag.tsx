@@ -6,7 +6,14 @@ import TagProps from './Tag.interface'
 import { TagContainer, SideElementContainer } from './Tag.style'
 
 const Tag = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
-  const { active, elementLeft, elementRight, children, ...rest } = props
+  const {
+    active = false,
+    large = false,
+    elementLeft,
+    elementRight,
+    children,
+    ...rest
+  } = props
 
   const hasBackground = useHasColoredBackground()
 
@@ -14,6 +21,7 @@ const Tag = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
     <TagContainer
       ref={ref}
       data-active={active}
+      data-large={large}
       data-background={hasBackground}
       {...rest}
     >
