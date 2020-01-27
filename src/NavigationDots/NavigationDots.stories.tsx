@@ -19,10 +19,6 @@ const GRID_LINES = [
   {
     title: 'Regular',
   },
-  {
-    title: 'Colored background',
-    coloredBackground: true,
-  },
 ]
 
 const GRID_ITEMS = [
@@ -56,12 +52,6 @@ const GRID_ITEMS = [
       disabled: true,
     },
   },
-  {
-    label: 'Secondary',
-    props: {
-      secondary: true,
-    },
-  },
 ]
 
 const Grid = withGrid<NavigationDotsProps>({
@@ -80,6 +70,8 @@ storiesOf('Navigation|NavigationDots', module)
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A2116',
     }),
   })
+  .add('light background', () => <Grid background="light" />)
+  .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
     <NavigationDots
       size={number('Size', 3)}

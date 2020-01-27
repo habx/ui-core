@@ -56,15 +56,7 @@ const GRID_PROPS = {
   children: <CardChildren />,
 }
 
-const GRID_LINES = [
-  {
-    title: 'White background',
-  },
-  {
-    title: 'Colored background',
-    coloredBackground: true,
-  },
-]
+const GRID_LINES = [{}]
 
 const GRID_ITEMS = [
   {
@@ -99,6 +91,8 @@ storiesOf('Miscellaneous|Card', module)
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=4%3A0',
     }),
   })
+  .add('light background', () => <Grid background="light" />)
+  .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
     <Card animated={boolean('Animated', false)} flat={boolean('Flat', false)}>
       <CardChildren />

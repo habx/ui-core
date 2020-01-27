@@ -6,24 +6,23 @@ import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 import Card from '../Card'
-import Icon from '../Icon'
 
-import BaseFloatingButton from './FloatingButton'
-import FloatingButtonProps from './FloatingButton.interface'
+import BaseFloatingIconButton from './FloatingIconButton'
+import FloatingIconButtonProps from './FloatingIconButton.interface'
 
 const Container = styled(Card)`
   width: 300px;
   height: 200px;
 `
 
-const FloatingButton: React.FunctionComponent<FloatingButtonProps> = props => (
+const FloatingIconButton: React.FunctionComponent<FloatingIconButtonProps> = props => (
   <Container>
-    <BaseFloatingButton {...props} />
+    <BaseFloatingIconButton {...props} />
   </Container>
 )
 
 const GRID_PROPS = {
-  children: 'Liste',
+  icon: 'list',
 }
 
 const GRID_LINES = [
@@ -31,12 +30,8 @@ const GRID_LINES = [
     title: 'Regular',
   },
   {
-    title: 'Small',
-    props: { small: true },
-  },
-  {
-    title: 'Position top',
-    props: { position: 'top' as 'top' },
+    title: 'Position bottom left',
+    props: { position: 'bottom-left' as 'bottom-left' },
   },
 ]
 
@@ -47,34 +42,23 @@ const GRID_ITEMS = [
   },
   {
     props: {
-      elementLeft: <Icon icon="list" />,
-    },
-  },
-  {
-    props: {
-      elementRight: <Icon icon="list" />,
-    },
-  },
-  {
-    props: {
       warning: true,
-      children: 'Supprimer',
     },
   },
 ]
 
-const Grid = withGrid<FloatingButtonProps>({
+const Grid = withGrid<FloatingIconButtonProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
-})(FloatingButton)
+})(FloatingIconButton)
 
-const positions: { [key: string]: 'top' | 'bottom' } = {
-  Top: 'top',
-  Bottom: 'bottom',
+const positions: { [key: string]: 'bottom-left' | 'bottom-right' } = {
+  'Bottom Left': 'bottom-left',
+  'Bottom Right': 'bottom-right',
 }
 
-storiesOf('Actions|FloatingButton', module)
+storiesOf('Actions|FloatingIconButton', module)
   .addDecorator(withKnobs)
   .add('gallery', () => <Grid />, {
     design: config({
@@ -86,19 +70,13 @@ storiesOf('Actions|FloatingButton', module)
   .add('light background', () => <Grid background="light" />)
   .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
-    <FloatingButton
-      small={boolean('Small', false)}
+    <FloatingIconButton
+      icon="list"
       secondary={boolean('Color override : Secondary', false)}
       warning={boolean('Color override : Warning', false)}
       disabled={boolean('Disabled', false)}
-      position={select('Position', positions, 'bottom')}
-      elementLeft={
-        boolean('Icon left', false) ? <Icon icon="list" /> : undefined
-      }
-      elementRight={
-        boolean('Icon right', false) ? <Icon icon="list" /> : undefined
-      }
+      position={select('Position', positions, 'bottom-right')}
     >
       Liste
-    </FloatingButton>
+    </FloatingIconButton>
   ))

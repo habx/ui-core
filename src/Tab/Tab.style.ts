@@ -25,7 +25,7 @@ export const TabContainer = styled.button`
   padding: 0 12px;
   height: 28px;
   font-size: 12px;
-  color: ${theme.color('secondary', {
+  color: ${theme.textColor({
     opacity: 0.72,
   })};
 
@@ -69,11 +69,17 @@ export const TabContainer = styled.button`
       }
 
       &[data-background='true'] {
-        border-color: rgba(255, 255, 255, 0.3);
-        color: ${theme.color('secondary')};
+        border-color: #fff;
+        color: #fff;
 
         &:hover:not(:focus):not(:active) {
+          color: ${theme.textColor({ opacity: 0.72, useRootTheme: true })};
           background-color: rgba(255, 255, 255, 0.7);
+          border-color: transparent;
+        }
+
+        &:focus {
+          background-color: transparent;
         }
       }
     }
@@ -100,6 +106,7 @@ export const TabContainer = styled.button`
 
     &[data-background='true'] {
       background-color: #fff;
+      color: ${theme.textColor({ opacity: 0.72, useRootTheme: true })};
     }
   }
 `

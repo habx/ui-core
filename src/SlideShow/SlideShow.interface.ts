@@ -21,7 +21,6 @@ export default interface SlideShowProps {
   ) => void
   hideNavigation?: boolean
   circular?: boolean
-  secondary?: boolean
   referenceSlideIndex?: number
   navigationComponent?: React.ComponentType<any>
   hideNavigationDots?: boolean

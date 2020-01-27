@@ -26,7 +26,6 @@ const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
       onSelectedSlideChange,
       registerActions,
       circular = true,
-      secondary,
       referenceSlideIndex = 0,
       ...rest
     } = props
@@ -101,7 +100,6 @@ const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
           </SlideShowSlidingContent>
         </SlideShowSlidingContainer>
         <SlideShowNavigation
-          secondary={secondary}
           next={slideShow.handleNextClick}
           previous={slideShow.handlePreviousClick}
           active={slideShow.currentSlide}

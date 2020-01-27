@@ -12,10 +12,10 @@ export const Placeholder = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   transition: color 150ms ease-in-out;
-  color: ${theme.textColor('base')};
+  color: ${theme.textColor({ useRootTheme: true })};
 
   &[data-empty='true'] {
-    color: ${theme.textColor('placeholder')};
+    color: ${theme.textColor({ opacity: 0.6, useRootTheme: true })};
   }
 `
 
@@ -24,7 +24,7 @@ export const LabelIcons = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  color: ${theme.textColor('placeholder')};
+  color: ${theme.textColor({ opacity: 0.6, useRootTheme: true })};
 
   span {
     font-size: 18px;
@@ -40,8 +40,8 @@ export const SelectContent = styled.div`
   cursor: pointer;
 
   z-index: 0;
-  padding: 12px 16px;
-  height: 48px;
+  padding: 11px 16px;
+  height: 45px;
   line-height: 24px;
 
   font-size: ${theme.font('text')};
@@ -53,8 +53,8 @@ export const SelectContent = styled.div`
   }
 
   &[data-small='true'] {
-    padding: 7px 12px;
-    height: 38px;
+    padding: 5.5px 12px;
+    height: 35px;
   }
 `
 
@@ -69,7 +69,7 @@ export const SelectContainer = styled.div`
   border-radius: 4px;
 
   &:not([data-light='true']) {
-    color: ${theme.textColor('base')};
+    color: ${theme.textColor({ useRootTheme: true })};
     background-color: ${palette.darkBlue[200]};
     border: solid 1.5px ${palette.darkBlue[200]};
   }
@@ -108,7 +108,7 @@ export const SelectContainer = styled.div`
 
     &::placeholder,
     ${Placeholder} {
-      color: ${theme.textColor('disabledPlaceholder')};
+      color: ${theme.textColor({ opacity: 0.4, useRootTheme: true })};
     }
   }
 
@@ -118,7 +118,7 @@ export const SelectContainer = styled.div`
     border-color: ${palette.darkBlue[300]};
 
     & ${LabelIcons} {
-      color: ${theme.color('secondary')};
+      color: ${theme.textColor({ useRootTheme: true })};
     }
   }
 

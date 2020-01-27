@@ -1,15 +1,8 @@
 export interface ColorVariations {
-  base?: string
-  hover?: string
-  focus?: string
-  contrastText?: string
-}
-
-export interface TextColorVariations {
-  base?: string
-  title?: string
-  placeholder?: string
-  disabledPlaceholder?: string
+  base: string
+  hover: string
+  focus: string
+  contrastText: string
 }
 
 export interface ColorFamilies {
@@ -41,15 +34,16 @@ export interface Shadows {
 
 export default interface DesignSystemTheme {
   colors: ColorFamilies
-  textColors: TextColorVariations
+  textColor: string
   backgroundColor: string
   fonts: Fonts
   shadows: Shadows
+  isDark: boolean
 }
 
 export interface GetterProps {
   theme?: {
-    designSystem?: DesignSystemTheme
-    designSystemRoot?: DesignSystemTheme
+    uiCore?: DesignSystemTheme
+    uiCoreRoot?: DesignSystemTheme
   }
 }

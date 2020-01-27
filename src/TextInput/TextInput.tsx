@@ -2,7 +2,7 @@ import * as React from 'react'
 import { ChangeEvent } from 'react'
 
 import { isFunction } from '../_internal/data'
-import useTheme from '../useTheme'
+import useHasColoredBackground from '../_internal/useHasColoredBackground'
 
 import TextInputProps from './TextInput.interface'
 import {
@@ -26,7 +26,8 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       canReset,
       ...rest
     } = props
-    const theme = useTheme()
+
+    const hasBackground = useHasColoredBackground()
 
     return (
       <InputContainer className={className} style={style} data-error={error}>
@@ -35,7 +36,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           data-error={error}
           data-light={light}
           data-padding-left={!!elementLeft}
-          data-background={theme.backgroundColor !== '#FFFFFF'}
+          data-background={hasBackground}
           {...rest}
           ref={ref}
         />

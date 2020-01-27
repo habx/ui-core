@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable prettier/prettier */
 
 /*
   Providers
@@ -25,8 +25,14 @@ export { default as MenuLine, MenuLineProps } from './MenuLine'
  */
 export { default as Button, ButtonProps } from './Button'
 export { default as FloatingButton, FloatingButtonProps } from './FloatingButton'
+export { default as FloatingIconButton, FloatingIconButtonProps } from './FloatingIconButton'
+export { default as IconButton, IconButtonProps } from './IconButton'
 export { default as NavigationButton, NavigationButtonProps } from './NavigationButton'
 export { default as Tag, TagProps } from './Tag'
+
+/*
+  Navigation
+ */
 export { default as NavBar,  NavBarProps } from './NavBar'
 export { default as NavBarItem,  NavBarItemProps } from './NavBarItem'
 export { default as NavBarMenuItem,  NavBarMenuItemProps } from './NavBarMenuItem'
@@ -42,6 +48,7 @@ export { default as Select, SelectProps } from './Select'
 export { default as Slider, SliderProps } from './Slider'
 export { default as TextArea, TextAreaProps } from './TextArea'
 export { default as TextInput, TextInputProps } from './TextInput'
+
 
 /*
   Miscellaneous

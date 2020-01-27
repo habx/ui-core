@@ -38,6 +38,9 @@ export const ModalContainer = styled(Background)`
     max-width: calc(100vw - 48px);
     max-height: calc(100vh - 96px);
     border-radius: 2px;
+
+    --modal-horizontal-padding: 36px;
+    --modal-vertical-padding: 48px;
   }
 
   @media (${breakpoints.below.phone}) {
@@ -46,6 +49,9 @@ export const ModalContainer = styled(Background)`
     bottom: 0;
     left: 0;
     right: 0;
+
+    --modal-horizontal-padding: 24px;
+    --modal-vertical-padding: 24px;
   }
 `
 
@@ -108,13 +114,12 @@ export const HeaderBarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   flex: 0 0 auto;
+  padding-left: var(--modal-horizontal-padding);
+  padding-right: var(--modal-horizontal-padding);
 
   &[data-has-title='true'] {
-    padding: 48px 36px 24px 36px;
-
-    @media (${breakpoints.below.phone}) {
-      padding: 16px 24px;
-    }
+    padding-top: var(--modal-vertical-padding);
+    padding-bottom: 12px;
   }
 `
 
@@ -160,19 +165,12 @@ export const ModalScrollableContent = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 48px 36px;
   overflow-y: auto;
   overflow-x: hidden;
 
+  padding: var(--modal-vertical-padding) var(--modal-horizontal-padding);
+
   &[data-has-title='true'] {
-    padding-top: 24px;
-  }
-
-  @media (${breakpoints.below.phone}) {
-    padding: 36px 24px;
-
-    &[data-has-title='true'] {
-      padding-top: 6px;
-    }
+    padding-top: 12px;
   }
 `

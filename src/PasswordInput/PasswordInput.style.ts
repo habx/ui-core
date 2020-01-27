@@ -23,7 +23,7 @@ export const HideButton = styled.div`
   line-height: inherit;
   vertical-align: bottom;
   height: 24px;
-  color: ${theme.textColor('disabledPlaceholder')};
+  color: ${theme.textColor({ useRootTheme: true })};
 
   &[data-active='true'] {
     color: ${theme.color('primary')};

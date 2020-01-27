@@ -6,7 +6,8 @@ import { config } from 'storybook-addon-designs'
 import withGrid from '../_internal/StorybookGrid'
 import Icon from '../Icon'
 
-import Button, { ButtonProps } from './index'
+import Button from './Button'
+import ButtonProps from './Button.interface'
 
 const GRID_PROPS = {
   children: 'Voir tous nos projets',
@@ -48,24 +49,6 @@ const GRID_LINES = [
     title: 'Link + Large',
     props: { link: true, large: true },
   },
-  {
-    title: 'Colored background + Solid',
-    coloredBackground: true,
-  },
-  {
-    title: 'Colored background + Outline',
-    props: {
-      outline: true,
-    },
-    coloredBackground: true,
-  },
-  {
-    title: 'Colored background + Link',
-    props: {
-      link: true,
-    },
-    coloredBackground: true,
-  },
 ]
 
 const GRID_ITEMS = [
@@ -106,6 +89,8 @@ storiesOf('Actions|Button', module)
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1250',
     }),
   })
+  .add('light background', () => <Grid background="light" />)
+  .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
     <Button
       outline={boolean('Outline', false)}

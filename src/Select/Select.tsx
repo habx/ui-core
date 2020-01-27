@@ -5,9 +5,9 @@ import { createPortal } from 'react-dom'
 import { isNil, has } from '../_internal/data'
 import { isClientSide, getDOMRect } from '../_internal/ssr'
 import { formOption } from '../_internal/types'
+import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import useMergedRef from '../_internal/useMergedRef'
 import Icon from '../Icon'
-import useTheme from '../useTheme'
 
 import Options from './Options'
 import {
@@ -65,7 +65,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
     const inputRef = React.useRef<HTMLInputElement>(null)
     const wrapperRef = useMergedRef<HTMLDivElement>(ref)
-    const theme = useTheme()
+    const hasBackground = useHasColoredBackground()
 
     const reducer: React.Reducer<SelectState, SelectAction> = (
       state,
@@ -342,7 +342,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         ref={wrapperRef}
         data-disabled={disabled}
         data-open={state.isOpened}
-        data-background={theme.backgroundColor !== '#FFFFFF'}
+        data-background={hasBackground}
         data-light={light}
         {...rest}
       >

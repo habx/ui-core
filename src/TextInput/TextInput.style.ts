@@ -23,11 +23,11 @@ export const inputStyle = css`
 
   &:not([data-light='true']) {
     border-color: ${palette.darkBlue[200]};
-    color: ${theme.textColor('base')};
+    color: ${theme.textColor({ useRootTheme: true })};
     background-color: ${palette.darkBlue[200]};
 
     &::placeholder {
-      color: ${theme.textColor('placeholder')};
+      color: ${theme.textColor({ opacity: 0.6, useRootTheme: true })};
     }
 
     &:disabled {
@@ -36,7 +36,7 @@ export const inputStyle = css`
       pointer-events: none;
 
       &::placeholder {
-        color: ${theme.textColor('disabledPlaceholder')};
+        color: ${theme.textColor({ opacity: 0.4, useRootTheme: true })};
       }
     }
 
@@ -73,7 +73,7 @@ export const inputStyle = css`
 
     &:focus {
       border-color: ${palette.darkBlue[300]};
-      color: ${theme.color('secondary')};
+      color: ${theme.textColor({ useRootTheme: true })};
     }
   }
 
@@ -121,8 +121,8 @@ export const Input = styled.input`
   flex: 1;
   margin: 0;
   padding: 0 16px;
-  max-height: 3rem;
-  min-height: 3rem;
+  max-height: 48px;
+  min-height: 48px;
   max-width: 100%;
   min-width: 0;
   width: 100%;
@@ -130,13 +130,15 @@ export const Input = styled.input`
   &[data-padding-left='true'] {
     padding-left: 48px;
   }
+
   &:focus + ${LeftElementContainer} {
     color: ${theme.color('primary')};
   }
+
   &[data-small='true'] {
     padding: 0 12px;
-    min-height: 2.3rem;
-    max-height: 2.3rem;
+    min-height: 36px;
+    max-height: 36px;
   }
 
   ${inputStyle};
@@ -145,11 +147,11 @@ export const Input = styled.input`
 export const InputContainer = styled.div`
   position: relative;
   width: 100%;
-  color: ${theme.textColor('placeholder')};
+  color: ${theme.textColor({ useRootTheme: true })};
 
   &:hover,
   &:focus-within {
-    color: ${theme.color('secondary')};
+    color: ${theme.textColor({ useRootTheme: true })};
   }
 `
 

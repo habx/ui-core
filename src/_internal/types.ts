@@ -23,9 +23,9 @@ export interface Button
   large?: boolean
 }
 
-export interface styledTheme {
-  designSystem: DesignSystemTheme
-  designSystemRoot: DesignSystemTheme
+export interface StyledTheme {
+  uiCore: DesignSystemTheme
+  uiCoreRoot: DesignSystemTheme
 }
 
 export type formOption = { value: any; label: string }

@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import { useSSRLayoutEffect } from '../_internal/ssr'
+import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import Icon from '../Icon'
-import useTheme from '../useTheme'
 
 import PhoneInputProps from './PhoneInput.interface'
 import {
@@ -41,7 +41,7 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
     } = props
 
     const [country, setCountry] = React.useState<string>('fr')
-    const theme = useTheme()
+    const hasBackground = useHasColoredBackground()
 
     const { indicator, flag: Flag } = React.useMemo<COUNTRY>(
       () => COUNTRIES.find(({ code }) => code === country) as COUNTRY,
@@ -100,7 +100,7 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
         data-error={error}
         data-disabled={disabled}
         data-small={small}
-        data-background={theme.backgroundColor !== '#FFFFFF'}
+        data-background={hasBackground}
       >
         <CountryOptions>
           <FlagContainer>

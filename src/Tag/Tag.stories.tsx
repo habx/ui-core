@@ -13,15 +13,7 @@ const GRID_PROPS = {
   children: 'Agencement 1',
 }
 
-const GRID_LINES = [
-  {
-    title: 'White background',
-  },
-  {
-    title: 'Colored background',
-    coloredBackground: true,
-  },
-]
+const GRID_LINES = [{}]
 
 const GRID_ITEMS = [
   {
@@ -64,6 +56,8 @@ storiesOf('Actions|Tag', module)
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1475%3A0',
     }),
   })
+  .add('light background', () => <Grid background="light" />)
+  .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
     <Tag
       children={text('Value', 'Agencement 1')}

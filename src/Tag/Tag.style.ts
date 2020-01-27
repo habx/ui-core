@@ -51,8 +51,9 @@ export const TagContainer = styled.button`
       }
 
       &[data-background='true'] {
-        border-color: rgba(255, 255, 255, 0.3);
-        color: ${theme.color('secondary')};
+        color: ${theme.textColor({ opacity: 0.72, useRootTheme: true })};
+        background-color: #fff;
+        border-color: #fff;
 
         &:hover:not(:focus):not(:active) {
           background-color: rgba(255, 255, 255, 0.7);

@@ -1,5 +1,4 @@
 import palette from '../palette'
-import { DesignSystemThemePatch } from '../ThemeProvider'
 
 import DesignSystemTheme, { ColorVariations } from './theme.interface'
 
@@ -27,14 +26,9 @@ export const BASE_THEME: DesignSystemTheme = {
     },
   },
 
-  textColors: {
-    base: palette.darkBlue[900],
-    title: palette.darkBlue[900],
-    placeholder: palette.darkBlue[700],
-    disabledPlaceholder: palette.darkBlue[400],
-  },
-
   backgroundColor: WHITE,
+  textColor: palette.darkBlue[900],
+  isDark: false,
 
   fonts: {
     title: 'EuclidCircularB, sans-serif',
@@ -63,75 +57,9 @@ export const BASE_THEME: DesignSystemTheme = {
   },
 }
 
-const PATCH_WHITE: ColorVariations = {
+export const PATCH_WHITE: ColorVariations = {
   base: WHITE,
   hover: palette.darkBlue[200],
   focus: palette.darkBlue[400],
   contrastText: palette.darkBlue[900],
-}
-
-export const THEME_PATCHES: { [key: string]: DesignSystemThemePatch } = {
-  [palette.darkBlue[900]]: {
-    colors: {
-      secondary: PATCH_WHITE,
-    },
-  },
-  [palette.darkBlue[700]]: {
-    colors: {
-      secondary: PATCH_WHITE,
-    },
-  },
-  [palette.blue[800]]: {
-    colors: {
-      secondary: PATCH_WHITE,
-    },
-  },
-  [palette.blue[600]]: {
-    colors: {
-      secondary: PATCH_WHITE,
-    },
-  },
-  [palette.green[600]]: {
-    colors: {
-      primary: PATCH_WHITE,
-      secondary: {
-        base: palette.orange[300],
-        hover: palette.orange[300],
-        focus: palette.orange[300],
-        contrastText: WHITE,
-      },
-    },
-  },
-}
-
-export const FAMILY_PATCHES: { [key: string]: DesignSystemThemePatch } = {
-  habx: {},
-  icade: {
-    colors: {
-      primary: {
-        base: '#00B1E5',
-        hover: '#0097C3',
-        focus: '#007CA1',
-        contrastText: '#FFFFFF',
-      },
-      secondary: {
-        base: '#363636',
-        hover: '#474747',
-        focus: '#585858',
-      },
-    },
-    textColors: {
-      base: '#363636',
-      title: '#363636',
-    },
-  },
-  cogedim: {
-    colors: {
-      primary: {
-        base: '#A2217D',
-        hover: '#9C1877',
-        focus: '#950d72',
-      },
-    },
-  },
 }

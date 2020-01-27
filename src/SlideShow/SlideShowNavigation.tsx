@@ -16,7 +16,6 @@ const SlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps> = (
   circular,
   hideNavigationDots,
   navigationComponent,
-  secondary,
 }) => (
   <React.Fragment>
     <NavigationButtonContainer as={navigationComponent}>
@@ -25,7 +24,6 @@ const SlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps> = (
         large
         onClick={previous}
         disabled={!circular && active === 0}
-        secondary={secondary}
       />
     </NavigationButtonContainer>
     <NavigationButtonContainer data-right as={navigationComponent}>
@@ -33,16 +31,11 @@ const SlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps> = (
         large
         onClick={next}
         disabled={!circular && active === size - 1}
-        secondary={secondary}
       />
     </NavigationButtonContainer>
     {!hideNavigationDots && (
       <NavigationDotsContainer>
-        <NavigationDots
-          size={size}
-          activeDot={(active + size) % size}
-          secondary={secondary}
-        />
+        <NavigationDots size={size} activeDot={(active + size) % size} />
       </NavigationDotsContainer>
     )}
   </React.Fragment>
@@ -55,7 +48,6 @@ interface SlideShowNavigationProps {
   active: number
   hideNavigationDots: boolean
   circular: boolean
-  secondary?: boolean
   navigationComponent?: React.ComponentType<any>
 }
 

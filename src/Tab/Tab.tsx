@@ -1,21 +1,28 @@
 import * as React from 'react'
 
-import useTheme from '../useTheme'
+import useHasColoredBackground from '../_internal/useHasColoredBackground'
 
 import TagProps from './Tab.interface'
 import { TabContainer, SideElementContainer } from './Tab.style'
 
 const Tab = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
-  const { large, active, elementLeft, elementRight, children, ...rest } = props
+  const {
+    large = false,
+    active = false,
+    elementLeft,
+    elementRight,
+    children,
+    ...rest
+  } = props
 
-  const theme = useTheme()
+  const hasBackground = useHasColoredBackground()
 
   return (
     <TabContainer
       ref={ref}
       data-large={large}
       data-active={active}
-      data-background={theme.backgroundColor !== '#FFFFFF'}
+      data-background={hasBackground}
       {...rest}
     >
       {elementLeft && (

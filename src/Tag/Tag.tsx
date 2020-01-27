@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import useTheme from '../useTheme'
+import useHasColoredBackground from '../_internal/useHasColoredBackground'
 
 import TagProps from './Tag.interface'
 import { TagContainer, SideElementContainer } from './Tag.style'
@@ -8,13 +8,13 @@ import { TagContainer, SideElementContainer } from './Tag.style'
 const Tag = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
   const { active, elementLeft, elementRight, children, ...rest } = props
 
-  const theme = useTheme()
+  const hasBackground = useHasColoredBackground()
 
   return (
     <TagContainer
       ref={ref}
       data-active={active}
-      data-background={theme.backgroundColor !== '#FFFFFF'}
+      data-background={hasBackground}
       {...rest}
     >
       {elementLeft && (

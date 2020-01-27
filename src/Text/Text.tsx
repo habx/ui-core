@@ -15,10 +15,10 @@ const size = (name: keyof FontScale) => css`
 `
 
 const baseTextStyle = css<{ color?: string }>`
-  color: ${theme.color('secondary', {
+  color: ${theme.textColor({
+    opacity: 0.72,
     dynamic: true,
     propName: 'color',
-    opacity: 0.72,
   })};
 
   font-family: ${theme.font()};
@@ -59,10 +59,7 @@ const emphasisTextStyle = css<{ color?: string }>`
   ${size('mars')};
   font-weight: 500;
 
-  color: ${theme.color('secondary', {
-    dynamic: true,
-    propName: 'color',
-  })};
+  color: ${theme.textColor({ dynamic: true, propName: 'color' })};
 `
 
 const regularTextStyle = css`

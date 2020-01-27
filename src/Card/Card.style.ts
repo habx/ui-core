@@ -10,7 +10,7 @@ export const CardContainer = styled(Background)`
   transition: all 150ms ease-in-out;
 
   &:not([data-flat='true']) {
-    box-shadow: ${theme.shadow('regular')};
+    box-shadow: ${theme.shadow('low')};
   }
 
   &[data-animated='true'] {
@@ -19,7 +19,7 @@ export const CardContainer = styled(Background)`
       transform: translateY(-4px);
 
       &:not([data-flat='true']) {
-        box-shadow: ${theme.shadow('regular', { hover: true })};
+        box-shadow: ${theme.shadow('low', { hover: true })};
       }
     }
   }

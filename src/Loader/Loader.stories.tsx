@@ -28,11 +28,6 @@ const GRID_LINES = [
     title: 'Grey',
     props: { colored: false },
   },
-  {
-    title: 'Color background',
-    coloredBackground: true,
-    props: { outline: true, colored: false },
-  },
 ]
 
 const GRID_ITEMS = [
@@ -67,6 +62,8 @@ storiesOf('Miscellaneous|Loader', module)
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1845',
     }),
   })
+  .add('light background', () => <Grid background="light" />)
+  .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
     <LoaderContainer>
       <Loader
