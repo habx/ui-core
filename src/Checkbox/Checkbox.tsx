@@ -18,7 +18,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     const hasBackground = useHasColoredBackground()
 
     return (
-      <FakeInputContainer data-checked={checked}>
+      <FakeInputContainer>
         <Input
           ref={ref}
           {...rest}
