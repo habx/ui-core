@@ -53,7 +53,7 @@ const Grid = withGrid<LoaderProps>({
   itemHorizontalSpace: 24,
 })(Loader)
 
-storiesOf('Miscellaneous|Loader', module)
+storiesOf('Layouts|Loader', module)
   .addDecorator(withKnobs)
   .add('gallery', () => <Grid />, {
     design: config({

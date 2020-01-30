@@ -82,7 +82,7 @@ const Grid = withGrid<CardProps>({
   items: GRID_ITEMS,
 })(Card)
 
-storiesOf('Miscellaneous|Card', module)
+storiesOf('Layouts|Card', module)
   .addDecorator(withKnobs)
   .add('gallery', () => <Grid />, {
     design: config({
