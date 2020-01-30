@@ -42,6 +42,7 @@ export { default as Tab, TabProps } from './Tab'
   Inputs
  */
 export { default as Checkbox, CheckboxProps } from './Checkbox'
+export { default as RadioInput, RadioInputProps } from './RadioInput'
 export { default as PasswordInput, PasswordInputProps } from './PasswordInput'
 export { default as PhoneInput, PhoneInputProps } from './PhoneInput'
 export { default as Select, SelectProps } from './Select'
