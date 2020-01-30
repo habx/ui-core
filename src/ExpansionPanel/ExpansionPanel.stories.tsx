@@ -68,7 +68,7 @@ const Grid = withGrid<ExpansionPanelProps>({
   items: GRID_ITEMS,
 })(ExpansionPanel)
 
-storiesOf('Miscellaneous|Expansion Panel', module)
+storiesOf('Layouts|Expansion Panel', module)
   .addDecorator(withKnobs)
   .add('galery', () => <Grid />)
   .add('light background', () => <Grid background="light" />)

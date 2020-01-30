@@ -6,12 +6,14 @@
 export { default as Provider, ProviderProps } from './Provider'
 export { default as ThemeProvider, ThemeProviderProps, DesignSystemThemePatch } from './ThemeProvider'
 
+
 /*
   Typography
  */
 export { default as Text, TextProps, textStyles } from './Text'
 export { default as Title, TitleProps, titleStyles } from './Title'
 export { default as Link, LinkProps, linkStyle } from './Link'
+
 
 /*
   Menu
@@ -29,6 +31,7 @@ export { default as FloatingIconButton, FloatingIconButtonProps } from './Floati
 export { default as IconButton, IconButtonProps } from './IconButton'
 export { default as NavigationButton, NavigationButtonProps } from './NavigationButton'
 export { default as Tag, TagProps } from './Tag'
+
 
 /*
   Navigation
@@ -49,19 +52,25 @@ export { default as Select, SelectProps } from './Select'
 export { default as Slider, SliderProps } from './Slider'
 export { default as TextArea, TextAreaProps } from './TextArea'
 export { default as TextInput, TextInputProps } from './TextInput'
+export { default as ArrayInput, ArrayInputProps } from './ArrayInput'
 
 
 /*
   Miscellaneous
  */
 export { default as Icon, IconProps } from './Icon'
-export { default as Card, CardProps } from './Card'
 export { default as Loader, LoaderProps } from './Loader'
 export { default as NavigationDots, NavigationDotsProps } from './NavigationDots'
 export { default as Tooltip, TooltipProps } from './Tooltip'
+
+
+/*
+  Layouts
+ */
+export { default as Card, CardProps } from './Card'
 export { default as ExpansionPanel, ExpansionPanelProps } from './ExpansionPanel'
 export { default as ExpansionPanelItem, ExpansionPanelItemProps } from './ExpansionPanelItem'
-export { default as ArrayInput, ArrayInputProps } from './ArrayInput'
+
 
 /*
   Modals
@@ -71,11 +80,13 @@ export { default as Modal, ModalProps } from './Modal'
 export { default as prompt } from './prompt'
 export { default as confirm } from './confirm'
 
+
 /*
   Notifications
  */
 export { default as Notification, NotificationProps } from './Notification'
 export { default as notify } from './notify'
+
 
 /*
   Theme
@@ -86,6 +97,7 @@ export { default as breakpoints } from './breakpoints'
 export { default as palette } from './palette'
 export { default as theme, DesignSystemTheme } from './theme'
 export { default as useTheme } from './useTheme'
+
 
 /*
   Utils
