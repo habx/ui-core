@@ -6,10 +6,10 @@ import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 
-import CheckboxProps from './Checkbox.interface'
-import Checkbox from './index'
+import RadioInput from './RadioInput'
+import RadioInputProps from './RadioInput.interface'
 
-const CheckboxContainer = styled.div`
+const RadioInputContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 200px;
@@ -50,14 +50,14 @@ const GRID_ITEMS = [
   },
 ]
 
-const Grid = withGrid<CheckboxProps>({
+const Grid = withGrid<RadioInputProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
-  itemWrapper: CheckboxContainer,
-})(Checkbox)
+  itemWrapper: RadioInputContainer,
+})(RadioInput)
 
-storiesOf('Input|Checkbox', module)
+storiesOf('Input|RadioInput', module)
   .addDecorator(withKnobs)
   .add('gallery', () => <Grid />, {
     design: config({
@@ -69,11 +69,11 @@ storiesOf('Input|Checkbox', module)
   .add('light background', () => <Grid background="light" />)
   .add('dark background', () => <Grid background="dark" />)
   .add('dynamic', () => (
-    <CheckboxContainer>
-      <Checkbox
+    <RadioInputContainer>
+      <RadioInput
         value={boolean('Checked', false) ? 1 : 0}
         error={boolean('Error', false)}
         disabled={boolean('Disabled', false)}
       />
-    </CheckboxContainer>
+    </RadioInputContainer>
   ))

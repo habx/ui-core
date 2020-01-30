@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import Icon from '../Icon'
 import palette from '../palette'
 import theme from '../theme'
 
@@ -9,32 +10,29 @@ export const FakeInputContainer = styled.span`
 `
 
 export const FakeInput = styled.label`
+  --checkbox-diameter: 21px;
   user-select: none;
   cursor: pointer;
   outline: none;
-  display: inline-block;
-  width: 21px;
-  min-width: 21px;
-  height: 21px;
+  width: var(--checkbox-diameter);
+  min-width: var(--checkbox-diameter);
+  height: var(--checkbox-diameter);
   margin-right: 12px;
   border-radius: 4px;
   background: #fff;
   border: solid 1.5px ${palette.darkBlue[400]};
   transition: all 150ms ease-in-out;
-
-  &:after {
-    font-family: habx-icon;
-    content: '✔';
-    position: absolute;
-    top: 0;
-    left: 2px;
-    font-size: 18px;
-    transition: all 150ms ease-in-out;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     border-width: 3px;
   }
+`
+
+export const CheckIcon = styled(Icon)`
+  transition: all 150ms ease-in-out;
 `
 
 export const Input = styled.input`
@@ -50,12 +48,12 @@ export const Input = styled.input`
     border: 3px solid ${theme.color('primary')};
   }
 
-  &:not(:checked) + ${FakeInput}:after {
+  &:not(:checked) + ${FakeInput} ${CheckIcon} {
     opacity: 0;
     transform: scale(0);
   }
 
-  &:checked + ${FakeInput}:after {
+  &:checked + ${FakeInput} ${CheckIcon} {
     opacity: 1;
     transform: scale(1);
   }
@@ -75,13 +73,13 @@ export const Input = styled.input`
       }
     }
 
-    & + ${FakeInput}:after {
+    & + ${FakeInput} ${CheckIcon} {
       color: #fff;
     }
   }
 
   &[data-background='true'] {
-    &:checked + ${FakeInput}:after {
+    &:checked + ${FakeInput} ${CheckIcon} {
       color: ${theme.color('primary')};
     }
   }
@@ -97,13 +95,13 @@ export const Input = styled.input`
         background-color: ${palette.orange[400]};
       }
 
-      & + ${FakeInput}:after {
+      & + ${FakeInput} ${CheckIcon} {
         color: #fff;
       }
     }
 
     &[data-background='true'] {
-      &:checked + ${FakeInput}:after {
+      &:checked + ${FakeInput} ${CheckIcon} {
         color: ${palette.orange[400]};
       }
     }
@@ -114,7 +112,7 @@ export const Input = styled.input`
     border: none;
   }
 
-  &:disabled:checked + ${FakeInput}:after {
+  &:disabled:checked + ${FakeInput} ${CheckIcon} {
     color: #fff;
   }
 `

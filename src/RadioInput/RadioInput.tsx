@@ -3,22 +3,22 @@ import * as React from 'react'
 import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import useUniqID from '../_internal/useUniqId'
 
-import CheckboxProps from './Checkbox.interface'
+import RadioInputProps from './RadioInput.interface'
 import {
   Input,
   FakeInputContainer,
   FakeInput,
-  CheckIcon,
-} from './Checkbox.style'
+  InnerCircle,
+} from './RadioInput.style'
 
-const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+const RadioInput = React.forwardRef<HTMLInputElement, RadioInputProps>(
   (props, ref) => {
     const { error, value, checked, disabled, id, ...rest } = props
     const checkboxId = useUniqID(id)
     const hasBackground = useHasColoredBackground()
 
     return (
-      <FakeInputContainer data-checked={checked}>
+      <FakeInputContainer>
         <Input
           ref={ref}
           {...rest}
@@ -26,15 +26,15 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           data-background={hasBackground}
           checked={!!value || !!checked}
           disabled={disabled}
-          type="checkbox"
+          type="radio"
           id={checkboxId}
         />
         <FakeInput tabIndex={disabled ? undefined : 0} htmlFor={checkboxId}>
-          <CheckIcon icon="check" />
+          <InnerCircle />
         </FakeInput>
       </FakeInputContainer>
     )
   }
 )
 
-export default Checkbox
+export default RadioInput
