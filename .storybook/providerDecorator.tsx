@@ -51,20 +51,6 @@ const GlobalStyle = createGlobalStyle`
     font-display: swap;
   }  
   
-  @font-face {
-    font-family: 'habx-icon';
-    src:
-      url('${FONT_ROOT}/icons/habx.woff2') format('woff2'),
-      url('${FONT_ROOT}/icons/habx.woff') format('woff'),
-      url('${FONT_ROOT}/icons/habx.eot') format('eot'),
-      url('${FONT_ROOT}/icons/habx.eot?#iefix') format('embedded-opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-stretch: normal;
-    font-display: fallback;
-  }
-  
-  
   * {
     box-sizing: border-box;
   }

@@ -145,6 +145,7 @@ const Grid = withGrid<ArrayInputProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
+  itemVerticalSpace: 48,
 })(CountryArrayInput)
 
 storiesOf('Input|ArrayInput', module)
