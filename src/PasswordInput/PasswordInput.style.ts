@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import theme from '../theme'
+import IconButton from '../IconButton'
 
 export const HiddenInputContainer = styled.div`
   position: relative;
@@ -9,34 +9,9 @@ export const HiddenInputContainer = styled.div`
   width: 100%;
 `
 
-export const HideButton = styled.div`
+export const HideButton = styled(IconButton)`
   position: absolute;
   right: 16px;
   top: 50%;
   transform: translate(0, -50%);
-  cursor: pointer;
-  display: inline-block;
-  font: normal normal normal 16px/1 'habx-icon';
-  font-size: inherit;
-  text-rendering: auto;
-  text-transform: none;
-  line-height: inherit;
-  vertical-align: bottom;
-  height: 24px;
-  color: ${theme.textColor({ useRootTheme: true })};
-
-  &[data-active='true'] {
-    color: ${theme.color('primary')};
-  }
-
-  &:hover {
-    opacity: 1;
-    transition: opacity ease-in 200ms;
-  }
-
-  &:before {
-    content: '👁';
-    font-size: 24px;
-    vertical-align: -20%;
-  }
 `
