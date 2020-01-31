@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import * as React from 'react'
 
 import { isFunction } from '../../_internal/data'
 import ExpansionPanelItem from '../../ExpansionPanelItem'
@@ -52,15 +52,13 @@ const Item: React.FunctionComponent<ItemProps> = ({
       </ItemHeaderContent>
       <ItemActions>
         {!disabled && canBeReordered && (
-          <Fragment>
-            <IconButton
-              data-disabled={index === 0}
-              data-testid="array-input-item-mode-up"
-              icon="arrow-north"
-              onClick={handleMoveUp}
-              small
-            />
-          </Fragment>
+          <IconButton
+            data-disabled={index === 0}
+            data-testid="array-input-item-mode-up"
+            icon="arrow-north"
+            onClick={handleMoveUp}
+            small
+          />
         )}
         {!disabled && (
           <IconButton

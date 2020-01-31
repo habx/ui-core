@@ -4,40 +4,46 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
+import breakpoints from '../breakpoints'
 import ExpansionPanelItem from '../ExpansionPanelItem'
 import Text from '../Text'
 
 import ExpansionPanel from './ExpansionPanel'
 import ExpansionPanelProps from './ExpansionPanel.interface'
-const ExpansionPanelItemContent = styled(Text)`
-  max-width: 300px;
+
+export const Container = styled.div`
+  width: 450px;
+
+  @media (${breakpoints.below.phone}) {
+    width: 100vw;
+  }
 `
+
+const WrappedExpansionPanel: React.FunctionComponent<ExpansionPanelProps> = props => (
+  <Container>
+    <ExpansionPanel {...props} />
+  </Container>
+)
 
 export const ExpansionPanelItems = () => (
   <React.Fragment>
     <ExpansionPanelItem title="Article 1">
-      <ExpansionPanelItemContent>
+      <Text>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-        delectus distinctio eligendi eum exercitationem facilis, inventore ipsam
-        laboriosam magnam magni maiores molestias natus perferendis,
-        perspiciatis quidem ratione sint tenetur totam!
-      </ExpansionPanelItemContent>
+        delectus distinctio eligendi eum exercitationem facilis.
+      </Text>
     </ExpansionPanelItem>
     <ExpansionPanelItem title="Article 2">
-      <ExpansionPanelItemContent>
+      <Text>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-        delectus distinctio eligendi eum exercitationem facilis, inventore ipsam
-        laboriosam magnam magni maiores molestias natus perferendis,
-        perspiciatis quidem ratione sint tenetur totam!
-      </ExpansionPanelItemContent>{' '}
+        delectus distinctio eligendi eum exercitationem facilis.
+      </Text>
     </ExpansionPanelItem>
     <ExpansionPanelItem title="Article 3">
-      <ExpansionPanelItemContent>
+      <Text>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-        delectus distinctio eligendi eum exercitationem facilis, inventore ipsam
-        laboriosam magnam magni maiores molestias natus perferendis,
-        perspiciatis quidem ratione sint tenetur totam!
-      </ExpansionPanelItemContent>{' '}
+        delectus distinctio eligendi eum exercitationem facilis.
+      </Text>
     </ExpansionPanelItem>
   </React.Fragment>
 )
@@ -46,7 +52,7 @@ const GRID_PROPS = {
   children: <ExpansionPanelItems />,
 }
 
-const GRID_LINES = [{}]
+const GRID_LINES = [{}, { title: 'Light', props: { light: true } }]
 
 const GRID_ITEMS = [
   {
@@ -66,7 +72,7 @@ const Grid = withGrid<ExpansionPanelProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
-})(ExpansionPanel)
+})(WrappedExpansionPanel)
 
 storiesOf('Layouts|Expansion Panel', module)
   .addDecorator(withKnobs)

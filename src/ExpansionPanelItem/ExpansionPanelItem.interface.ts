@@ -5,11 +5,7 @@ export default interface ExpansionPanelItem
   title?: string
   header?: React.ReactNode
   error?: boolean
-  expandIcon?: React.ReactNode
-  collapseIcon?: React.ReactNode
   open?: boolean
   onToggle?: (e?: React.MouseEvent) => void
   children?: React.ReactNode | ((config: { open: boolean }) => JSX.Element)
 }
-
-export interface ExpansionPanelItemInnerProps extends ExpansionPanelItem {}

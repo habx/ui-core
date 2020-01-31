@@ -1,32 +1,40 @@
 import styled from 'styled-components'
 
+import {
+  ANIMATION_DURATIONS,
+  ANIMATION_TIMING_FUNCTION,
+} from '../animations/animations'
+import breakpoints from '../breakpoints'
+import palette from '../palette'
 import theme from '../theme'
-
-export const ANIMATION_DURATION = 300
 
 export const ExpansionPanelItemContainer = styled.div`
   display: flex;
   flex-direction: column;
+  --expansion-panel-horizontal-padding: 36px;
 
-  &:not(:last-child) {
-    border-bottom: 1px solid ${theme.color('secondary')};
+  &:not([data-light='true']):not(:last-child) {
+    border-bottom: 1px solid ${palette.darkBlue[300]};
+  }
+
+  @media (${breakpoints.below.phone}) {
+    --expansion-panel-horizontal-padding: 20px;
   }
 `
 
-export const TitleBar = styled.div`
+export const HeaderBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-height: 32px;
-  line-height: 1.3;
-  padding: 8px 16px;
+  padding: 6px var(--expansion-panel-horizontal-padding);
   cursor: pointer;
   user-select: none;
   color: ${theme.color('secondary')};
 `
 
 export const ExpansionPanelItemContent = styled.div<{ height: number }>`
-  transition: max-height ${ANIMATION_DURATION}ms ease-in-out;
+  transition: max-height ${ANIMATION_DURATIONS.l}ms ${ANIMATION_TIMING_FUNCTION};
   overflow: hidden;
 
   &[data-state='opening'],
@@ -40,5 +48,5 @@ export const ExpansionPanelItemContent = styled.div<{ height: number }>`
 `
 
 export const CoreContent = styled.div`
-  padding: 8px 16px 16px 16px;
+  padding: 12px var(--expansion-panel-horizontal-padding);
 `

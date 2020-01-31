@@ -3,33 +3,24 @@ import * as React from 'react'
 
 import { isFunction, isNil } from '../_internal/data'
 import { assert } from '../_internal/validityCheck'
+import { ANIMATION_DURATIONS } from '../animations/animations'
 import { ExpansionPanelContext } from '../ExpansionPanel/ExpansionPanel.context'
 import Icon from '../Icon'
-import Title from '../Title'
+import Text from '../Text'
 
 import ExpansionPanelItemProps from './ExpansionPanelItem.interface'
 import {
   ExpansionPanelItemContainer,
-  TitleBar,
+  HeaderBar,
   ExpansionPanelItemContent,
   CoreContent,
-  ANIMATION_DURATION,
 } from './ExpansionPanelItem.style'
 
 const ExpansionPanelItem = React.forwardRef<
   HTMLDivElement,
   ExpansionPanelItemProps
 >((props, ref) => {
-  const {
-    children,
-    title,
-    expandIcon,
-    collapseIcon,
-    open: rawOpen,
-    header,
-    onToggle,
-    ...rest
-  } = props
+  const { children, title, open: rawOpen, header, onToggle, ...rest } = props
 
   const isControlled = !isNil(rawOpen)
 
@@ -37,6 +28,7 @@ const ExpansionPanelItem = React.forwardRef<
     openedItems,
     setOpenedItems,
     multiOpen,
+    light,
     isInsideAnExpansionPanel,
   } = React.useContext(ExpansionPanelContext)
 
@@ -53,7 +45,7 @@ const ExpansionPanelItem = React.forwardRef<
     open,
     persistent: true,
     animated: true,
-    animationDuration: open ? ANIMATION_DURATION : 0,
+    animationDuration: open ? ANIMATION_DURATIONS.l : 0,
   })
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -93,24 +85,23 @@ const ExpansionPanelItem = React.forwardRef<
   return (
     <ExpansionPanelItemContainer
       data-testid="expansion-panel-item"
+      data-light={light}
       {...rest}
       ref={ref}
     >
-      <TitleBar
+      <HeaderBar
         data-testid="expansion-panel-item-title-bar"
         onClick={handleToggle}
       >
         {header}
         {!header && (
           <React.Fragment>
-            {title && <Title type="regular">{title}</Title>}
-            {panel.state === 'closed' &&
-              (expandIcon || <Icon icon="chevron-south" />)}
-            {panel.state !== 'closed' &&
-              (collapseIcon || <Icon icon="chevron-north" />)}
+            {title && <Text opacity={1}>{title}</Text>}
+            {panel.state === 'closed' && <Icon icon="chevron-south" />}
+            {panel.state !== 'closed' && <Icon icon="chevron-north" />}
           </React.Fragment>
         )}
-      </TitleBar>
+      </HeaderBar>
       <ExpansionPanelItemContent
         data-testid="expansion-panel-item-content"
         ref={contentRef}

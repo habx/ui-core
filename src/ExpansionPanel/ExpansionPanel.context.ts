@@ -5,6 +5,7 @@ import { ExpansionPanelContextType } from './ExpansionPanel.interface'
 const DEFAULT_CONTEXT = {
   isInsideAnExpansionPanel: false,
   multiOpen: false,
+  light: false,
   openedItems: [],
   setOpenedItems: () => [],
 }
