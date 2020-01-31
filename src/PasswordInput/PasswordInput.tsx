@@ -27,7 +27,9 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
           type={isContentHidden ? 'password' : 'text'}
         />
         <HideButton
-          data-active={!isContentHidden}
+          icon="eye"
+          primary={!isContentHidden}
+          opacity={isContentHidden ? 0.5 : 1}
           onClick={handleToggleHidden}
         />
       </HiddenInputContainer>

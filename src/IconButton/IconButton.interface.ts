@@ -5,4 +5,5 @@ export default interface IconButtonProps
   extends Button,
     Pick<IconProps, 'icon' | 'colored'> {
   as?: styledAs
+  opacity?: number
 }
