@@ -38,6 +38,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   }
 )
 
-export default withLabel<HTMLInputElement>({ orientation: 'horizontal' })(
-  Checkbox
-)
+export default withLabel<HTMLInputElement>({ orientation: 'horizontal' })<
+  CheckboxProps
+>(Checkbox)
