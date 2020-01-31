@@ -103,5 +103,6 @@ export { default as useTheme } from './useTheme'
   Utils
  */
 export { default as useResponsiveType } from './useResponsiveType'
+export { default as withLabel } from './withLabel'
 export { default as withMarkdown } from './withMarkdown'
 export { default as withTriggerElement } from './withTriggerElement'
