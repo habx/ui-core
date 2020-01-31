@@ -6,8 +6,8 @@ import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 
+import Checkbox from './Checkbox'
 import CheckboxProps from './Checkbox.interface'
-import Checkbox from './index'
 
 const CheckboxContainer = styled.div`
   display: flex;
