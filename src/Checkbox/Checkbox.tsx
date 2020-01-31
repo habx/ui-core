@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import useUniqID from '../_internal/useUniqId'
+import withLabel from '../withLabel'
 
 import CheckboxProps from './Checkbox.interface'
 import {
@@ -37,4 +38,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   }
 )
 
-export default Checkbox
+export default withLabel<HTMLInputElement>({ orientation: 'horizontal' })(
+  Checkbox
+)
