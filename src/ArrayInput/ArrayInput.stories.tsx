@@ -4,7 +4,8 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
-import IconButton from '../IconButton'
+import Button from '../Button'
+import Icon from '../Icon'
 import Text from '../Text'
 import TextInput from '../TextInput'
 import Title from '../Title'
@@ -116,24 +117,35 @@ const ItemTitle: React.FunctionComponent<any> = ({ value }) => (
 
 const GRID_PROPS = {}
 
-const GRID_LINES = [{}]
+const GRID_LINES = [
+  {},
+  {
+    title: 'Can be reordered',
+    props: { canBeReordered: true },
+  },
+  {
+    title: 'Custom headers',
+    props: {
+      renderItemTitle: ({ value }: { value: { name: string } }) => (
+        <Title type="regular">{value.name}</Title>
+      ),
+    },
+  },
+  {
+    title: 'Custom add button',
+    props: {
+      addButtonComponent: ({ disabled }: { disabled?: boolean }) => (
+        <Button disabled={disabled} link elementRight={<Icon icon="add" />}>
+          Add
+        </Button>
+      ),
+    },
+  },
+]
 
 const GRID_ITEMS = [
   {
     label: 'Default',
-  },
-  {
-    label: 'Can be reordered',
-    props: { canBeReordered: true },
-  },
-  {
-    label: 'Custom',
-    props: {
-      addButtonComponent: () => <IconButton icon="add" />,
-      renderItemTitle: ({ value }: { value: { name: string } }) => (
-        <Title type="article">{value.name}</Title>
-      ),
-    },
   },
   {
     label: 'Disabled',

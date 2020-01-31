@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { ChangeEvent } from 'react'
 
 import { isFunction } from '../_internal/data'
 import useHasColoredBackground from '../_internal/useHasColoredBackground'
@@ -55,7 +54,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
                   isFunction(props.onChange) &&
                   props.onChange({
                     target: { ...e.target, value: '' },
-                  } as ChangeEvent<HTMLInputElement>)
+                  } as React.ChangeEvent<HTMLInputElement>)
                 }
               />
             )}

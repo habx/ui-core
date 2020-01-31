@@ -76,6 +76,7 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputProps>(
             <Button
               data-testid="array-input-add"
               disabled={disabled}
+              small
               onClick={() => onAppend()}
             >
               {addButtonLabel}

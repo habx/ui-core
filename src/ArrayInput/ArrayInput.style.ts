@@ -34,7 +34,7 @@ export const ItemActions = styled.div`
   align-items: center;
   color: ${theme.color('secondary')};
 
-  i {
+  & button {
     cursor: pointer;
 
     &:not(:first-child) {
