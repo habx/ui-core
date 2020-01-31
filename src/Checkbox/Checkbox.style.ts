@@ -17,7 +17,6 @@ export const FakeInput = styled.label`
   width: var(--checkbox-diameter);
   min-width: var(--checkbox-diameter);
   height: var(--checkbox-diameter);
-  margin-right: 12px;
   border-radius: 4px;
   background: #fff;
   border: solid 1.5px ${palette.darkBlue[400]};
@@ -37,7 +36,6 @@ export const CheckIcon = styled(Icon)`
 
 export const Input = styled.input`
   align-items: center;
-  margin-right: 12px;
   display: none;
 
   &:not(:checked) + ${FakeInput}:focus {

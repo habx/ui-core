@@ -16,7 +16,6 @@ export const FakeInput = styled.label`
   width: var(--radio-input-diameter);
   min-width: var(--radio-input-diameter);
   height: var(--radio-input-diameter);
-  margin-right: 12px;
   border-radius: 50%;
   background: #fff;
   border: solid 1.5px transparent;
@@ -39,7 +38,6 @@ export const InnerCircle = styled.div`
 
 export const Input = styled.input`
   align-items: center;
-  margin-right: 12px;
   display: none;
 
   &:not(:checked) + ${FakeInput}:focus {

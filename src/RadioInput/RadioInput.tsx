@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import useUniqID from '../_internal/useUniqId'
+import withLabel from '../withLabel'
 
 import RadioInputProps from './RadioInput.interface'
 import {
@@ -37,4 +38,6 @@ const RadioInput = React.forwardRef<HTMLInputElement, RadioInputProps>(
   }
 )
 
-export default RadioInput
+export default withLabel<HTMLInputElement>({ orientation: 'horizontal' })(
+  RadioInput
+)

@@ -18,6 +18,7 @@ const RadioInputContainer = styled.div`
 const GRID_PROPS = {
   placeholder: 'Tell us more',
   onChange: () => {},
+  label: 'Label',
 }
 
 const GRID_LINES = [
