@@ -13,7 +13,7 @@ export enum SlideChangeSource {
 }
 
 export default interface SlideShowProps {
-  defaultDevice: string
+  defaultDevice?: string
   registerActions?: (actions: SlideShowActions) => void
   onSelectedSlideChange?: (
     currentSlide: number,
@@ -24,6 +24,7 @@ export default interface SlideShowProps {
   referenceSlideIndex?: number
   navigationComponent?: React.ComponentType<any>
   hideNavigationDots?: boolean
+  currentSlide?: number
   items?: any[]
   renderItem: (
     item: any,

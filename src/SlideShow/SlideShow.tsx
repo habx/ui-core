@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { isNil } from '../_internal/data'
 import useMergedRef from '../_internal/useMergedRef'
 import useResponsiveType from '../useResponsiveType'
 
@@ -26,6 +27,7 @@ const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
       onSelectedSlideChange,
       registerActions,
       circular = true,
+      currentSlide,
       referenceSlideIndex = 0,
       ...rest
     } = props
@@ -38,6 +40,7 @@ const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
       onSelectedSlideChange,
       registerActions,
       circular,
+      currentSlide,
       ref: containerRef,
     })
 
@@ -99,15 +102,17 @@ const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
             />
           </SlideShowSlidingContent>
         </SlideShowSlidingContainer>
-        <SlideShowNavigation
-          next={slideShow.handleNextClick}
-          previous={slideShow.handlePreviousClick}
-          active={slideShow.currentSlide}
-          circular={circular}
-          size={slideShow.slideAmount}
-          hideNavigationDots={hideNavigationDots}
-          navigationComponent={navigationComponent}
-        />
+        {isNil(currentSlide) && (
+          <SlideShowNavigation
+            next={slideShow.handleNextClick}
+            previous={slideShow.handlePreviousClick}
+            active={slideShow.currentSlide}
+            circular={circular}
+            size={slideShow.slideAmount}
+            hideNavigationDots={hideNavigationDots}
+            navigationComponent={navigationComponent}
+          />
+        )}
       </SlideShowContainer>
     )
   }
