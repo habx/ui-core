@@ -70,6 +70,7 @@ export { default as Tooltip, TooltipProps } from './Tooltip'
 export { default as Card, CardProps } from './Card'
 export { default as ExpansionPanel, ExpansionPanelProps } from './ExpansionPanel'
 export { default as ExpansionPanelItem, ExpansionPanelItemProps } from './ExpansionPanelItem'
+export { default as SlideShow, SlideShowProps } from './SlideShow'
 
 
 /*

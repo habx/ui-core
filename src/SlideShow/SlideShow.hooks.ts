@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { throttle } from '../_internal/data'
+import { isNil, throttle } from '../_internal/data'
 import { useSSRLayoutEffect } from '../_internal/ssr'
 
 import SlideShowProps, {
@@ -33,10 +33,11 @@ export const useSlideShow = ({
   onSelectedSlideChange,
   registerActions,
   circular,
+  currentSlide,
   ref,
 }: Pick<
   SlideShowProps,
-  'onSelectedSlideChange' | 'registerActions' | 'circular'
+  'onSelectedSlideChange' | 'registerActions' | 'circular' | 'currentSlide'
 > & { items: any[]; ref: React.RefObject<HTMLDivElement> }) => {
   const slideAmount = items.length
 
@@ -124,50 +125,61 @@ export const useSlideShow = ({
   }
 
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
+  const isControlled = !isNil(currentSlide)
 
   const throttledKeyboardGoTo = React.useCallback(
     throttle<(delta: 1 | -1) => void>(delta => {
-      dispatch({
-        type: ActionType.GoToSlide,
-        value: delta,
-        isRelative: true,
-        source: SlideChangeSource.keyboard,
-      })
+      if (!isControlled) {
+        return dispatch({
+          type: ActionType.GoToSlide,
+          value: delta,
+          isRelative: true,
+          source: SlideChangeSource.keyboard,
+        })
+      }
     }, DESKTOP_ANIMATION_DURATION),
-    []
+    [isControlled]
   )
 
   const handleNextClick = () => {
-    dispatch({
-      type: ActionType.GoToSlide,
-      value: 1,
-      isRelative: true,
-      source: SlideChangeSource.navigationButton,
-    })
+    if (!isControlled) {
+      return dispatch({
+        type: ActionType.GoToSlide,
+        value: 1,
+        isRelative: true,
+        source: SlideChangeSource.navigationButton,
+      })
+    }
   }
 
   const handlePreviousClick = () => {
-    dispatch({
-      type: ActionType.GoToSlide,
-      value: -1,
-      isRelative: true,
-      source: SlideChangeSource.navigationButton,
-    })
+    if (!isControlled) {
+      return dispatch({
+        type: ActionType.GoToSlide,
+        value: -1,
+        isRelative: true,
+        source: SlideChangeSource.navigationButton,
+      })
+    }
   }
 
   const handleSwipeEnd = () => {
-    dispatch({ type: ActionType.SwipeEnd })
+    if (!isControlled) {
+      return dispatch({ type: ActionType.SwipeEnd })
+    }
   }
 
   const handleSwipeMove = (
     swipePosition: { x: number; y: number },
     event: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>
   ) => {
-    dispatch({
-      type: ActionType.SwipeMove,
-      value: swipePosition,
-      event,
-    })
+    if (!isControlled) {
+      return dispatch({
+        type: ActionType.SwipeMove,
+        value: swipePosition,
+        event,
+      })
+    }
   }
 
   React.useEffect(() => {
@@ -181,12 +193,14 @@ export const useSlideShow = ({
       }
     }
 
-    window.addEventListener('keydown', handleKeyDown)
+    if (!isControlled) {
+      window.addEventListener('keydown', handleKeyDown)
 
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown)
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown)
+      }
     }
-  }, [ref, throttledKeyboardGoTo])
+  }, [isControlled, ref, throttledKeyboardGoTo])
 
   React.useEffect(() => {
     if (registerActions) {
@@ -215,6 +229,16 @@ export const useSlideShow = ({
       })
     }
   }, [state.currentSlide, onSelectedSlideChange])
+
+  useSSRLayoutEffect(() => {
+    if (isControlled) {
+      dispatch({
+        type: ActionType.GoToSlide,
+        source: SlideChangeSource.parentCall,
+        value: currentSlide as number,
+      })
+    }
+  }, [isControlled, currentSlide])
 
   return {
     ...state,
