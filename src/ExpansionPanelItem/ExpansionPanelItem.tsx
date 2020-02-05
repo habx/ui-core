@@ -93,7 +93,7 @@ const ExpansionPanelItem = React.forwardRef<
         data-testid="expansion-panel-item-title-bar"
         onClick={handleToggle}
       >
-        {header}
+        {header && (isFunction(header) ? header(panel) : header)}
         {!header && (
           <React.Fragment>
             {title && <Text opacity={1}>{title}</Text>}
@@ -109,9 +109,7 @@ const ExpansionPanelItem = React.forwardRef<
         data-state={panel.state}
       >
         <CoreContent>
-          {isFunction(children)
-            ? children({ open: ['open', 'opening'].includes(panel.state) })
-            : children}
+          {isFunction(children) ? children(panel) : children}
         </CoreContent>
       </ExpansionPanelItemContent>
     </ExpansionPanelItemContainer>
