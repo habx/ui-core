@@ -4,21 +4,15 @@ import {
   ANIMATION_DURATIONS,
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
-import breakpoints from '../breakpoints'
 import palette from '../palette'
 import theme from '../theme'
 
 export const ExpansionPanelItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  --expansion-panel-horizontal-padding: 36px;
 
   &:not([data-light='true']):not(:last-child) {
     border-bottom: 1px solid ${palette.darkBlue[300]};
-  }
-
-  @media (${breakpoints.below.phone}) {
-    --expansion-panel-horizontal-padding: 20px;
   }
 `
 
@@ -27,7 +21,7 @@ export const HeaderBar = styled.div`
   justify-content: space-between;
   align-items: center;
   min-height: 32px;
-  padding: 6px var(--expansion-panel-horizontal-padding);
+  padding: 6px 0;
   cursor: pointer;
   user-select: none;
   color: ${theme.color('secondary')};
