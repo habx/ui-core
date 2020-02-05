@@ -158,7 +158,7 @@ describe('ExpansionPanel component', () => {
     ).toHaveAttribute('data-state', 'opening')
   })
 
-  it('should call the ExpansionPanelItem children render props with open: false by default', () => {
+  it('should call the ExpansionPanelItem children render props with state: closed by default', () => {
     const spyChildren = sinon.spy()
     render(
       <ExpansionPanel>
@@ -167,10 +167,10 @@ describe('ExpansionPanel component', () => {
       </ExpansionPanel>
     )
 
-    expect(spyChildren.lastCall.args[0].open).toEqual(false)
+    expect(spyChildren.lastCall.args[0].state).toEqual('closed')
   })
 
-  it("should call the ExpansionPanelItem children render props with open: true after click on it's title bar", () => {
+  it("should call the ExpansionPanelItem children render props with state: opening after click on it's title bar", () => {
     const spyChildren = sinon.spy()
 
     const { queryAllByTestId } = render(
@@ -184,7 +184,7 @@ describe('ExpansionPanel component', () => {
     fireEvent.click(
       within(items[0]).getByTestId('expansion-panel-item-title-bar')
     )
-    expect(spyChildren.lastCall.args[0].open).toEqual(true)
+    expect(spyChildren.lastCall.args[0].state).toEqual('opening')
   })
 
   it('should open the ExpansionPanelItem if it has open: true', () => {
