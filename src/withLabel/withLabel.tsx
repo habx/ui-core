@@ -12,9 +12,6 @@ const LabelContainer = styled(Text)`
   justify-content: flex-end;
   align-items: center;
 
-  &[data-error='true'] {
-    color: ${palette.orange[400]};
-  }
   &[data-disabled='true'] {
     color: ${palette.darkBlue[400]};
   }
@@ -73,7 +70,7 @@ const withLabel = <RefElement extends HTMLElement>({
             <LabelContainer
               type={labelType}
               opacity={1}
-              data-error={rest.error}
+              warning={rest.error}
               data-disabled={rest.disabled}
             >
               {label}

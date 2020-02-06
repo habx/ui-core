@@ -92,22 +92,22 @@ export const Input = styled.input`
 
   &[data-error='true'] {
     &:not(:checked) + ${FakeInput} {
-      border-color: ${palette.orange[400]};
+      border-color: ${theme.color('warning')};
     }
 
     & + ${FakeInput}:active, &:checked + ${FakeInput}:focus {
-      border-color: ${palette.orange[400]};
+      border-color: ${theme.color('warning')};
     }
 
     &:checked + ${FakeInput} {
       & ${InnerCircle} {
-        background-color: ${palette.orange[400]};
+        background-color: ${theme.color('warning')};
       }
     }
 
     &:not([data-background='true']) {
       &:checked + ${FakeInput} {
-        border-color: ${palette.orange[400]};
+        border-color: ${theme.color('warning')};
 
         &:hover {
           border-color: ${palette.orange[500]};
