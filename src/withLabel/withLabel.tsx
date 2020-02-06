@@ -8,9 +8,7 @@ import { TextTypes } from '../Text/Text.interface'
 const LabelContainer = styled(Text)`
   user-select: none;
 
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+  margin: auto 0;
 
   &[data-disabled='true'] {
     color: ${palette.darkBlue[400]};
