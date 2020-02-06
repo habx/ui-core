@@ -1,7 +1,10 @@
 import * as React from 'react'
+import styled from 'styled-components'
 
 import { isFunction } from '../_internal/data'
+import { linkStyle } from '../Link/Link.style'
 import DesignSystemTheme from '../theme/theme.interface'
+import { titleStyles } from '../Title/Title.style'
 import useTheme from '../useTheme'
 
 import {
@@ -34,6 +37,62 @@ const withMarkdown = <
 >({ inline = false }: WithMarkdownConfig = {}) => <Props extends object>(
   WrappedComponent: React.ComponentType<Props>
 ) => {
+  const StyledComponent = styled(WrappedComponent)`
+    & p {
+      &:not(:first-child) {
+        margin-top: 12px;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 12px;
+      }
+    }
+
+    & h2 {
+      ${titleStyles.article};
+    }
+
+    & h3 {
+      ${titleStyles.section};
+
+      &:not(:first-child) {
+        margin-top: 48px;
+      }
+    }
+
+    & h4 {
+      ${titleStyles.regular};
+
+      &:not(:first-child) {
+        margin-top: 24px;
+      }
+    }
+
+    & strong {
+      font-weight: 600;
+    }
+
+    & a {
+      ${linkStyle};
+    }
+
+    & ul {
+      list-style-type: none;
+      padding-inline-start: 0;
+    }
+
+    & li {
+      text-transform: capitalize;
+      display: flex;
+      align-items: baseline;
+
+      &::before {
+        content: '·';
+        margin-right: 0.5em;
+      }
+    }
+  ` as React.ForwardRefExoticComponent<Props>
+
   const Component = React.forwardRef<
     RefElement,
     Props & WithMarkdownReceivedProps & ExtraProps
@@ -50,7 +109,7 @@ const withMarkdown = <
     const isInline = isFunction(inline) ? inline(props) : !!inline
 
     return (
-      <WrappedComponent
+      <StyledComponent
         ref={ref}
         {...(rest as Props)}
         data-markdown
