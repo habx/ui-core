@@ -26,17 +26,12 @@ const TextContainer = styled.div`
 `
 
 const types: { [key: string]: TextTypes } = {
+  'Regular Text': 'regular',
   'Very Large Text': 'veryLarge',
   'Large Text': 'large',
   'Emphasis text': 'emphasis',
-  'Regular Text': 'regular',
   'Caption Text': 'caption',
   'Caption Small Text': 'captionSmall',
-}
-
-const GRID_PROPS = {
-  children:
-    "Les volumes et la forme des pièces sont représentés à titre indicatif. Ils ne constituent pas le plan definitif de votre futur appartement mais bien une suggestion d'agencement. C'est notre architecte qui finalisera ce plan pour vous.",
 }
 
 const GRID_LINES = [
@@ -46,7 +41,24 @@ const GRID_LINES = [
   })),
 ]
 
-const GRID_ITEMS = [{}]
+const BASIC_CHILDREN =
+  "Les volumes et la forme des pièces sont représentés à titre indicatif. Ils ne constituent pas le plan definitif de votre futur appartement mais bien une suggestion d'agencement. C'est notre architecte qui finalisera ce plan pour vous."
+
+const GRID_ITEMS = [
+  {
+    label: 'Withou markdown',
+    props: {
+      children: BASIC_CHILDREN,
+    },
+  },
+  {
+    label: 'With markdown',
+    props: {
+      children: `**Bold text**\n*Italic text*\n[Link](https://wwww.habx.com)\n- element 1\n- element 2\n- element 3\n- ${BASIC_CHILDREN}`,
+      markdown: true,
+    },
+  },
+]
 
 const WrappedText: React.FunctionComponent<TextProps> = props => (
   <TextContainer>
@@ -55,9 +67,9 @@ const WrappedText: React.FunctionComponent<TextProps> = props => (
 )
 
 const Grid = withGrid<TextProps>({
-  props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
+  itemHorizontalSpace: 36,
 })(WrappedText)
 
 storiesOf('Typography|Text', module)
