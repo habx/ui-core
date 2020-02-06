@@ -1,4 +1,4 @@
-import { withKnobs, boolean } from '@storybook/addon-knobs'
+import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import { config } from 'storybook-addon-designs'
@@ -75,6 +75,19 @@ storiesOf('Input|Checkbox', module)
         value={boolean('Checked', false) ? 1 : 0}
         error={boolean('Error', false)}
         disabled={boolean('Disabled', false)}
+        label="Label"
+        labelType={select(
+          'LabelType',
+          [
+            'veryLarge',
+            'large',
+            'emphasis',
+            'regular',
+            'caption',
+            'captionSmall',
+          ],
+          'regular'
+        )}
       />
     </CheckboxContainer>
   ))
