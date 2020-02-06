@@ -84,13 +84,13 @@ export const Input = styled.input`
 
   &[data-error='true'] {
     & + ${FakeInput} {
-      border-color: ${palette.orange[400]};
+      border-color: ${theme.color('warning')};
     }
 
     &:not([data-background='true']) {
       &:checked + ${FakeInput} {
-        border-color: ${palette.orange[400]};
-        background-color: ${palette.orange[400]};
+        border-color: ${theme.color('warning')};
+        background-color: ${theme.color('warning')};
       }
 
       & + ${FakeInput} ${CheckIcon} {
@@ -100,7 +100,7 @@ export const Input = styled.input`
 
     &[data-background='true'] {
       &:checked + ${FakeInput} ${CheckIcon} {
-        color: ${palette.orange[400]};
+        color: ${theme.color('warning')};
       }
     }
   }
