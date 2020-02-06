@@ -1,10 +1,23 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+import palette from '../palette'
 import Text from '../Text'
+import { TextTypes } from '../Text/Text.interface'
 
 const LabelContainer = styled(Text)`
   user-select: none;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &[data-error='true'] {
+    color: ${palette.orange[400]};
+  }
+  &[data-disabled='true'] {
+    color: ${palette.darkBlue[400]};
+  }
 `
 
 const FieldWithLabelContainer = styled.div`
@@ -30,6 +43,9 @@ const FieldWithLabelContainer = styled.div`
 
 type LabelReceivedProps = {
   label?: string
+  labelType?: TextTypes
+  error?: boolean
+  disabled?: boolean
 }
 
 type Options = {
@@ -45,7 +61,7 @@ const withLabel = <RefElement extends HTMLElement>({
 ) => {
   const Field = React.forwardRef<RefElement, Props & LabelReceivedProps>(
     (props, ref) => {
-      const { label, ...rest } = props as LabelReceivedProps
+      const { label, labelType, ...rest } = props as LabelReceivedProps
 
       if (label) {
         return (
@@ -54,7 +70,14 @@ const withLabel = <RefElement extends HTMLElement>({
             data-orientation={orientation}
             data-padding={padding}
           >
-            <LabelContainer opacity={1}>{label}</LabelContainer>
+            <LabelContainer
+              type={labelType}
+              opacity={1}
+              data-error={rest.error}
+              data-disabled={rest.disabled}
+            >
+              {label}
+            </LabelContainer>
             <WrappedComponent {...(rest as Props)} ref={ref} />
           </FieldWithLabelContainer>
         )
