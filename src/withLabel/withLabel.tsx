@@ -72,6 +72,7 @@ const withLabel = <RefElement extends HTMLElement>({
               opacity={1}
               warning={rest.error}
               data-disabled={rest.disabled}
+              markdown
             >
               {label}
             </LabelContainer>
