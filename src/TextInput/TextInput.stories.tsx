@@ -30,6 +30,12 @@ const GRID_LINES = [
     title: 'Light',
     props: { light: true },
   },
+  {
+    title: 'With label',
+    props: {
+      label: 'Mail address',
+    },
+  },
 ]
 
 const GRID_ITEMS = [
@@ -84,6 +90,7 @@ export const darkBackground = () => <Grid background="dark" />
 export const dynamic = () => (
   <TextInputContainer>
     <TextInput
+      label={text('Label', '')}
       value={text('Value', '')}
       placeholder="votre@mail.com"
       error={boolean('Error', false)}

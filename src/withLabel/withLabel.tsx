@@ -5,6 +5,8 @@ import palette from '../palette'
 import Text from '../Text'
 import { TextTypes } from '../Text/Text.interface'
 
+import WithLabel from './withLabel.interface'
+
 const LabelContainer = styled(Text)`
   user-select: none;
 
@@ -54,34 +56,32 @@ const withLabel = <RefElement extends HTMLElement>({
 }: Options = {}) => <Props extends object>(
   WrappedComponent: React.ComponentType<Props>
 ) => {
-  const Field = React.forwardRef<RefElement, Props & LabelReceivedProps>(
-    (props, ref) => {
-      const { label, labelType, ...rest } = props as LabelReceivedProps
+  const Field = React.forwardRef<RefElement, WithLabel<Props>>((props, ref) => {
+    const { label, labelType, ...rest } = props as LabelReceivedProps
 
-      if (label) {
-        return (
-          <FieldWithLabelContainer
-            className="label-line"
-            data-orientation={orientation}
-            data-padding={padding}
+    if (label) {
+      return (
+        <FieldWithLabelContainer
+          className="label-line"
+          data-orientation={orientation}
+          data-padding={padding}
+        >
+          <LabelContainer
+            type={labelType}
+            opacity={1}
+            warning={rest.error}
+            data-disabled={rest.disabled}
+            markdown
           >
-            <LabelContainer
-              type={labelType}
-              opacity={1}
-              warning={rest.error}
-              data-disabled={rest.disabled}
-              markdown
-            >
-              {label}
-            </LabelContainer>
-            <WrappedComponent {...(rest as Props)} ref={ref} />
-          </FieldWithLabelContainer>
-        )
-      }
-
-      return <WrappedComponent {...(rest as Props)} ref={ref} />
+            {label}
+          </LabelContainer>
+          <WrappedComponent {...(rest as Props)} ref={ref} />
+        </FieldWithLabelContainer>
+      )
     }
-  )
+
+    return <WrappedComponent {...(rest as Props)} ref={ref} />
+  })
 
   return Field
 }

@@ -9,12 +9,9 @@ export const ActionBarContainer = styled.div`
   align-items: center;
   justify-content: flex-end;
   position: relative;
-  padding: 0 36px;
   height: 72px;
 
   @media (${breakpoints.below.phone}) {
-    padding: 0 20px;
-
     &[data-count='1'] {
       height: 60px;
       padding: 0;

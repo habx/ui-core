@@ -2,8 +2,9 @@ import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
 import useHasColoredBackground from '../_internal/useHasColoredBackground'
+import withLabel from '../withLabel'
 
-import TextInputProps from './TextInput.interface'
+import { TextInputInnerProps } from './TextInput.interface'
 import {
   IconButton,
   Input,
@@ -12,7 +13,7 @@ import {
   RightElementContainer,
 } from './TextInput.style'
 
-const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
   (props, ref) => {
     const {
       small = false,
@@ -65,4 +66,6 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   }
 )
 
-export default TextInput
+export default withLabel<HTMLInputElement>({ orientation: 'vertical' })<
+  TextInputInnerProps
+>(TextInput)

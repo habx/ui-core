@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { ThemeOverridesProps } from '../_internal/types'
+
 import { ItemComponentProps } from './Item/Item.interface'
 
 export interface AddButtonComponentProps {
@@ -8,7 +10,8 @@ export interface AddButtonComponentProps {
 }
 
 export default interface ArrayInputProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+  extends React.HTMLAttributes<HTMLDivElement>,
+    ThemeOverridesProps {
   items?: any[]
   addButtonLabel?: string
   addButtonComponent?: React.ComponentType<AddButtonComponentProps>

@@ -33,24 +33,26 @@ export const TagContainer = styled.button`
 
   &:not([data-active='true']) {
     &:not(:disabled) {
-      &:hover,
-      &:focus,
-      &:active {
-        background-color: ${palette.darkBlue[200]};
-      }
+      &[data-interactive='true'] {
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: ${palette.darkBlue[200]};
+        }
 
-      &:hover {
-        border-color: ${palette.darkBlue[200]};
-      }
+        &:hover {
+          border-color: ${palette.darkBlue[200]};
+        }
 
-      &:focus,
-      &:active {
-        border-color: ${palette.blue[300]};
-      }
+        &:focus,
+        &:active {
+          border-color: ${palette.blue[300]};
+        }
 
-      &:focus {
-        border-width: 2px;
-        padding: 0 calc(var(--tag-horizontal-padding) - 1px);
+        &:focus {
+          border-width: 2px;
+          padding: 0 calc(var(--tag-horizontal-padding) - 1px);
+        }
       }
 
       &[data-background='true'] {
@@ -58,8 +60,10 @@ export const TagContainer = styled.button`
         background-color: #fff;
         border-color: #fff;
 
-        &:hover:not(:focus):not(:active) {
-          background-color: rgba(255, 255, 255, 0.7);
+        &[data-interactive='true'] {
+          &:hover:not(:focus):not(:active) {
+            background-color: rgba(255, 255, 255, 0.7);
+          }
         }
       }
     }

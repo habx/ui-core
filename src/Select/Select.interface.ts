@@ -1,8 +1,9 @@
 import * as React from 'react'
 
 import { formValue } from '../_internal/types'
+import WithLabel from '../withLabel/withLabel.interface'
 
-export default interface SelectProps
+export interface SelectInnerProps
   extends Omit<
     React.InputHTMLAttributes<HTMLDivElement>,
     'onChange' | 'value'
@@ -28,6 +29,8 @@ export default interface SelectProps
   onChange?: (value: formValue | formValue[] | null) => void
   value?: formValue | formValue[]
 }
+
+export default interface SelectProps extends WithLabel<SelectInnerProps> {}
 
 export interface SelectState {
   isOpened: boolean

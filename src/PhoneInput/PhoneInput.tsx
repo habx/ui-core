@@ -3,8 +3,9 @@ import * as React from 'react'
 import { useSSRLayoutEffect } from '../_internal/ssr'
 import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import Icon from '../Icon'
+import withLabel from '../withLabel'
 
-import PhoneInputProps from './PhoneInput.interface'
+import { PhoneInputInnerProps } from './PhoneInput.interface'
 import {
   PhoneInputContainer,
   PhoneIndicator,
@@ -29,7 +30,7 @@ const COUNTRIES: COUNTRY[] = [
 
 const PHONE_REGEXP = /\+([0-9]{2})(.*)/
 
-const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
+const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputInnerProps>(
   (props, ref) => {
     const {
       error = false,
@@ -122,4 +123,6 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
   }
 )
 
-export default PhoneInput
+export default withLabel<HTMLInputElement>({ orientation: 'vertical' })<
+  PhoneInputInnerProps
+>(PhoneInput)
