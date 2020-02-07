@@ -3,7 +3,7 @@ import * as React from 'react'
 import getFlattenedChildren from '../_internal/getFlattenedChildren'
 
 import ActionBarProps from './ActionBar.interface'
-import { ActionBarContainer } from './ActionBar.style'
+import { ActionBarContainer, ActionBarContent } from './ActionBar.style'
 
 const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
   (props, ref) => {
@@ -12,12 +12,10 @@ const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
     const children = getFlattenedChildren(rawChildren)
 
     return (
-      <ActionBarContainer
-        {...rest}
-        ref={ref}
-        data-count={React.Children.count(children)}
-      >
-        {children}
+      <ActionBarContainer {...rest} ref={ref}>
+        <ActionBarContent data-count={React.Children.count(children)}>
+          {children}
+        </ActionBarContent>
       </ActionBarContainer>
     )
   }

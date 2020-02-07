@@ -2,6 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
+import ActionBar from '../ActionBar'
 import Button from '../Button'
 import PhoneInput from '../PhoneInput'
 import Text from '../Text'
@@ -28,7 +29,9 @@ const ContactForm: React.FunctionComponent<{}> = () => (
     <ModalForm>
       <TextInput placeholder="votre mail" />
       <PhoneInput placeholder="votre numéro" />
-      <Button>{"Valider l'horaire"}</Button>
+      <ActionBar>
+        <Button>{"Valider l'horaire"}</Button>
+      </ActionBar>
     </ModalForm>
   </React.Fragment>
 )
@@ -38,6 +41,21 @@ const ScrollableContent: React.FunctionComponent<{}> = () => (
     {Array.from({ length: 20 }, (_, index) => (
       <Line>Element n°{index + 1}</Line>
     ))}
+    <ActionBar>
+      <Button>Validate</Button>
+    </ActionBar>
+  </React.Fragment>
+)
+
+const ScrollableContentWithTwoButtons: React.FunctionComponent<{}> = () => (
+  <React.Fragment>
+    {Array.from({ length: 20 }, (_, index) => (
+      <Line>Item {index + 1}</Line>
+    ))}
+    <ActionBar>
+      <Button outline>Cancel</Button>
+      <Button>Validate</Button>
+    </ActionBar>
   </React.Fragment>
 )
 
@@ -67,10 +85,17 @@ const GRID_ITEMS = [
   },
   {
     props: {
-      title: "Liste d'éléments",
+      title: 'Item list',
       children: <ScrollableContent />,
     },
     label: 'Scrollable',
+  },
+  {
+    props: {
+      title: 'Item list',
+      children: <ScrollableContentWithTwoButtons />,
+    },
+    label: 'Scrollable (2 buttons)',
   },
 ]
 

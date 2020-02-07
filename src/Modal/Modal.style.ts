@@ -1,9 +1,15 @@
 import styled, { keyframes } from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
+import {
+  ActionBarContainer,
+  ActionBarContent,
+} from '../ActionBar/ActionBar.style'
 import animations from '../animations'
 import Background from '../Background'
 import breakpoints from '../breakpoints'
+import IconButton from '../IconButton'
+import theme from '../theme'
 import Title from '../Title'
 
 export const ANIMATION_DURATION = 300
@@ -114,32 +120,22 @@ export const HeaderBarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   flex: 0 0 auto;
-  padding-left: var(--modal-horizontal-padding);
-  padding-right: var(--modal-horizontal-padding);
-
-  &[data-has-title='true'] {
-    padding-top: var(--modal-vertical-padding);
-    padding-bottom: 12px;
-  }
+  padding: var(--modal-vertical-padding) var(--modal-horizontal-padding) 12px
+    var(--modal-horizontal-padding);
 `
 
-export const CloseIconContainer = styled.div`
-  position: absolute;
+export const CloseIcon = styled(IconButton)`
   top: 12px;
   right: 12px;
 
-  @media (${breakpoints.below.phone}) {
-    &:not([data-has-title='true']) {
-      position: fixed;
-    }
+  @media (${breakpoints.above.phone}) {
+    position: absolute;
+    color: ${theme.textColor({ opacity: 0.72 })};
   }
 
   @media (${breakpoints.below.phone}) {
-    &[data-has-title='true'] {
-      position: static;
-      font-size: 24px;
-      cursor: pointer;
-    }
+    position: static;
+    cursor: pointer;
   }
 `
 
@@ -168,9 +164,32 @@ export const ModalScrollableContent = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
 
-  padding: var(--modal-vertical-padding) var(--modal-horizontal-padding);
+  padding: 12px var(--modal-horizontal-padding) var(--modal-vertical-padding)
+    var(--modal-horizontal-padding);
 
-  &[data-has-title='true'] {
-    padding-top: 12px;
+  @media (${breakpoints.below.phone}) {
+    padding-bottom: 72px;
+  }
+
+  & ${ActionBarContainer} {
+    @media (${breakpoints.above.phone}) {
+      margin: 0 calc(0px - var(--modal-horizontal-padding));
+      position: sticky;
+      bottom: 0;
+
+      & ${ActionBarContent} {
+        margin-bottom: calc(0px - var(--modal-vertical-padding));
+        padding-top: 24px;
+        padding-bottom: 24px;
+        height: auto;
+      }
+    }
+
+    @media (${breakpoints.below.phone}) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
   }
 `

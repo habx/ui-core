@@ -2,21 +2,28 @@ import styled from 'styled-components'
 
 import breakpoints from '../breakpoints'
 import { ButtonContainer } from '../Button/Button.style'
+import theme from '../theme'
 
-export const ActionBarContainer = styled.div`
+export const ActionBarContainer = styled.div``
+
+export const ActionBarContent = styled.div`
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   position: relative;
+  padding: 0 36px;
   height: 72px;
+  background-color: ${theme.color('background')};
 
   @media (${breakpoints.below.phone}) {
+    padding: 0 20px;
+
     &[data-count='1'] {
       height: 60px;
       padding: 0;
 
-      > ${ButtonContainer} {
+      & ${ButtonContainer} {
         height: 100%;
         width: 100%;
       }
