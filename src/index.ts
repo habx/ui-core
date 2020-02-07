@@ -67,6 +67,7 @@ export { default as Tooltip, TooltipProps } from './Tooltip'
 /*
   Layouts
  */
+export { default as ActionBar, ActionBarProps } from './ActionBar'
 export { default as Card, CardProps } from './Card'
 export { default as ExpansionPanel, ExpansionPanelProps } from './ExpansionPanel'
 export { default as ExpansionPanelItem, ExpansionPanelItemProps } from './ExpansionPanelItem'
@@ -104,6 +105,6 @@ export { default as useTheme } from './useTheme'
   Utils
  */
 export { default as useResponsiveType } from './useResponsiveType'
-export { default as withLabel } from './withLabel'
+export { default as withLabel, WithLabel } from './withLabel'
 export { default as withMarkdown } from './withMarkdown'
 export { default as withTriggerElement } from './withTriggerElement'

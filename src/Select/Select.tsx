@@ -8,6 +8,7 @@ import { formOption } from '../_internal/types'
 import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import useMergedRef from '../_internal/useMergedRef'
 import Icon from '../Icon'
+import withLabel from '../withLabel'
 
 import Options from './Options'
 import {
@@ -19,7 +20,8 @@ import {
   useVisibleOptions,
   FORMAT_VALUE_FULL,
 } from './Select.hooks'
-import SelectProps, {
+import {
+  SelectInnerProps,
   SelectState,
   SelectAction,
   ActionType,
@@ -35,7 +37,7 @@ import {
   Overlay,
 } from './Select.style'
 
-const Select = React.forwardRef<HTMLDivElement, SelectProps>(
+const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
   (baseProps, ref) => {
     const props = { ...baseProps }
 
@@ -426,4 +428,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
   }
 )
 
-export default Select
+export default withLabel<HTMLDivElement>({ orientation: 'vertical' })<
+  SelectInnerProps
+>(Select)
