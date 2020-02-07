@@ -1,7 +1,5 @@
 import { withKnobs, boolean } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -82,19 +80,29 @@ const Grid = withGrid<CardProps>({
   items: GRID_ITEMS,
 })(Card)
 
-storiesOf('Layouts|Card', module)
-  .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />, {
-    design: config({
+export default {
+  title: 'Layouts/Card',
+  decorators: [withKnobs],
+}
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
+
+export const dynamic = () => (
+  <Card animated={boolean('Animated', false)} flat={boolean('Flat', false)}>
+    <CardChildren />
+  </Card>
+)
+
+gallery.story = {
+  parameters: {
+    design: {
       type: 'figma',
       url:
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=4%3A0',
-    }),
-  })
-  .add('light background', () => <Grid background="light" />)
-  .add('dark background', () => <Grid background="dark" />)
-  .add('dynamic', () => (
-    <Card animated={boolean('Animated', false)} flat={boolean('Flat', false)}>
-      <CardChildren />
-    </Card>
-  ))
+    },
+  },
+}

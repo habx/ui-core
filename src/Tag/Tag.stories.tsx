@@ -1,7 +1,5 @@
 import { withKnobs, boolean, text } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 
 import withGrid from '../_internal/StorybookGrid'
 import Icon from '../Icon'
@@ -57,27 +55,37 @@ const Grid = withGrid<TagProps>({
   items: GRID_ITEMS,
 })(Tag)
 
-storiesOf('Actions|Tag', module)
-  .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />, {
-    design: config({
+export default {
+  title: 'Actions/Tag',
+  decorators: [withKnobs],
+}
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
+
+export const dynamic = () => (
+  <Tag
+    children={text('Value', 'Agencement 1')}
+    active={boolean('Active', false)}
+    disabled={boolean('Disabled', false)}
+    elementLeft={
+      boolean('Icon left', false) ? <Icon icon="close" /> : undefined
+    }
+    elementRight={
+      boolean('Icon right', false) ? <Icon icon="close" /> : undefined
+    }
+  />
+)
+
+gallery.story = {
+  parameters: {
+    design: {
       type: 'figma',
       url:
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1475%3A0',
-    }),
-  })
-  .add('light background', () => <Grid background="light" />)
-  .add('dark background', () => <Grid background="dark" />)
-  .add('dynamic', () => (
-    <Tag
-      children={text('Value', 'Agencement 1')}
-      active={boolean('Active', false)}
-      disabled={boolean('Disabled', false)}
-      elementLeft={
-        boolean('Icon left', false) ? <Icon icon="close" /> : undefined
-      }
-      elementRight={
-        boolean('Icon right', false) ? <Icon icon="close" /> : undefined
-      }
-    />
-  ))
+    },
+  },
+}

@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -29,28 +28,31 @@ const navDecorator = (storyFn: Function) => (
   </Container>
 )
 
-storiesOf('Navigation|NavBar', module)
-  .addDecorator(navDecorator)
-  .add('basic', () => (
-    <NavBar title="Home">
-      <NavBarItem
-        icon={<Icon icon="house-building-outline" />}
-        label="Programmes"
-        active
-      />
-      <NavBarItem icon={<Icon icon="person-outline" />} label="Contacts" />
-      <NavBarItem
-        icon={<Icon icon="calendar-event-outline" />}
-        label="Événements"
-        description="Super event !"
-      />
-      <NavBarItem
-        icon={<Icon icon="share" />}
-        label="Partager le super long texte"
-        disabled
-      />
-      <NavBarMenuItem icon={<Icon icon="settings" />} label="Mon compte" bottom>
-        <MenuLine>Menu</MenuLine>
-      </NavBarMenuItem>
-    </NavBar>
-  ))
+export default {
+  title: 'Navigation/NavBar',
+  decorators: [navDecorator],
+}
+
+export const basic = () => (
+  <NavBar title="Home">
+    <NavBarItem
+      icon={<Icon icon="house-building-outline" />}
+      label="Programmes"
+      active
+    />
+    <NavBarItem icon={<Icon icon="person-outline" />} label="Contacts" />
+    <NavBarItem
+      icon={<Icon icon="calendar-event-outline" />}
+      label="Événements"
+      description="Super event !"
+    />
+    <NavBarItem
+      icon={<Icon icon="share" />}
+      label="Partager le super long texte"
+      disabled
+    />
+    <NavBarMenuItem icon={<Icon icon="settings" />} label="Mon compte" bottom>
+      <MenuLine>Menu</MenuLine>
+    </NavBarMenuItem>
+  </NavBar>
+)

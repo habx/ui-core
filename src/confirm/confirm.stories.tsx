@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -38,4 +37,8 @@ const Grid = withGrid<ButtonProps>({
   itemHorizontalSpace: 24,
 })(Button)
 
-storiesOf('Modals|prompt', module).add('grid', () => <Grid />)
+export default {
+  title: 'Modals/prompt',
+}
+
+export const gallery = () => <Grid />

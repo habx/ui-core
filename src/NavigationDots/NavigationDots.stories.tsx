@@ -1,12 +1,10 @@
 import { action } from '@storybook/addon-actions'
 import { withKnobs, number, boolean } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 
 import withGrid from '../_internal/StorybookGrid'
 
-import NavigationDots from './index'
+import NavigationDots from './NavigationDots'
 import NavigationDotsProps from './NavigationDots.interface'
 
 const GRID_PROPS = {
@@ -61,21 +59,31 @@ const Grid = withGrid<NavigationDotsProps>({
   itemHorizontalSpace: 24,
 })(NavigationDots)
 
-storiesOf('Navigation|NavigationDots', module)
-  .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />, {
-    design: config({
+export default {
+  title: 'Navigation/NavigationDots',
+  decorators: [withKnobs],
+}
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
+
+export const dynamic = () => (
+  <NavigationDots
+    size={number('Size', 3)}
+    activeDot={number('Active dot', 0)}
+    disabled={boolean('Disabled', false)}
+  />
+)
+
+gallery.story = {
+  parameters: {
+    design: {
       type: 'figma',
       url:
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A2116',
-    }),
-  })
-  .add('light background', () => <Grid background="light" />)
-  .add('dark background', () => <Grid background="dark" />)
-  .add('dynamic', () => (
-    <NavigationDots
-      size={number('Size', 3)}
-      activeDot={number('Active dot', 0)}
-      disabled={boolean('Disabled', false)}
-    />
-  ))
+    },
+  },
+}

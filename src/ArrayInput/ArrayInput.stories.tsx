@@ -1,5 +1,4 @@
 import { withKnobs, boolean } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -160,11 +159,17 @@ const Grid = withGrid<ArrayInputProps>({
   itemVerticalSpace: 48,
 })(CountryArrayInput)
 
-storiesOf('Input|ArrayInput', module)
-  .addDecorator(withKnobs)
-  .add('galery', () => <Grid />)
-  .add('light background', () => <Grid background="light" />)
-  .add('dark background', () => <Grid background="dark" />)
-  .add('dynamic', () => (
-    <CountryArrayInput disabled={boolean('Disabled', false)} />
-  ))
+export default {
+  title: 'Input/ArrayInput',
+  decorators: [withKnobs],
+}
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
+
+export const dynamic = () => (
+  <CountryArrayInput disabled={boolean('Disabled', false)} />
+)

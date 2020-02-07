@@ -1,7 +1,5 @@
 import { withKnobs, boolean, select } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -88,25 +86,35 @@ const Grid = withGrid<SelectProps>({
   itemWrapper: TextInputContainer,
 })(Select)
 
-storiesOf('Input|Select', module)
-  .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />, {
-    design: config({
+export default {
+  title: 'Input/Select',
+  decorators: [withKnobs],
+}
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
+
+export const dynamic = () => (
+  <TextInputContainer>
+    <Select
+      options={OPTIONS}
+      value={select('Value', ['fr', 'dl', 'en'], 'fr')}
+      disabled={boolean('Disabled', false)}
+      light={boolean('Light', false)}
+      small={boolean('Small', false)}
+    />
+  </TextInputContainer>
+)
+
+gallery.story = {
+  parameters: {
+    design: {
       type: 'figma',
       url:
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1846',
-    }),
-  })
-  .add('light background', () => <Grid background="light" />)
-  .add('dark background', () => <Grid background="dark" />)
-  .add('dynamic', () => (
-    <TextInputContainer>
-      <Select
-        options={OPTIONS}
-        value={select('Value', ['fr', 'dl', 'en'], 'fr')}
-        disabled={boolean('Disabled', false)}
-        light={boolean('Light', false)}
-        small={boolean('Small', false)}
-      />
-    </TextInputContainer>
-  ))
+    },
+  },
+}

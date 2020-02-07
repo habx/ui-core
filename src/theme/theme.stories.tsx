@@ -1,7 +1,4 @@
-import { withKnobs } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import Title from '../Title'
@@ -79,40 +76,43 @@ const ThemePatchPalette = () => {
   )
 }
 
-storiesOf('Utility|theme', module)
-  .addDecorator(withKnobs)
-  .add('colors', () => <ThemePatchPalette />, {
-    design: config({
+export default {
+  title: 'Utility/theme',
+}
+
+export const colors = () => <ThemePatchPalette />
+
+colors.story = {
+  parameters: {
+    design: {
       type: 'figma',
       url:
         'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A3',
-    }),
-  })
-  .add(
-    'shadows',
-    () => (
-      <Container>
-        <Line>
-          <ColorLabel type="section">Shadows</ColorLabel>
-          {([
-            'lower',
-            'low',
-            'regular',
-            'high',
-            'higher',
-          ] as (keyof Shadows)[]).map(shadowDepth => (
-            <Color key={shadowDepth}>
-              <Circle color="#FFFFFF" depth={shadowDepth} />
-            </Color>
-          ))}
-        </Line>
-      </Container>
-    ),
-    {
-      design: config({
-        type: 'figma',
-        url:
-          'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=10%3A214',
-      }),
-    }
-  )
+    },
+  },
+}
+
+export const shadows = () => (
+  <Container>
+    <Line>
+      <ColorLabel type="section">Shadows</ColorLabel>
+      {(['lower', 'low', 'regular', 'high', 'higher'] as (keyof Shadows)[]).map(
+        shadowDepth => (
+          <Color key={shadowDepth}>
+            <Circle color="#FFFFFF" depth={shadowDepth} />
+          </Color>
+        )
+      )}
+    </Line>
+  </Container>
+)
+
+shadows.story = {
+  parameters: {
+    design: {
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=10%3A214',
+    },
+  },
+}

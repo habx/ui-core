@@ -5,9 +5,7 @@ import {
   text,
   number,
 } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -61,35 +59,45 @@ const Grid = withGrid<TitleProps>({
   items: GRID_ITEMS,
 })(WrappedTitle)
 
-storiesOf('Typography|Title', module)
-  .addDecorator(withKnobs)
-  .add('galery', () => <Grid />, {
-    design: config({
+export default {
+  title: 'Typography/Title',
+  decorators: [withKnobs],
+}
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
+
+export const dynamic = () => (
+  <TitleContainer>
+    <Title
+      type={select('Type', types, 'headerBig')}
+      children={text(
+        'Title content',
+        'Devenez propriétaire d’un appartement neuf en plein centre d’Antony'
+      )}
+      primary={boolean('Color override : Primary', false)}
+      secondary={boolean('Color override : Secondary', false)}
+      warning={boolean('Color override : Warning', false)}
+      markdown={boolean('Markdown support', false)}
+      opacity={number('Opacity', 1, {
+        range: true,
+        min: 0,
+        max: 1,
+        step: 0.01,
+      })}
+    />
+  </TitleContainer>
+)
+
+gallery.story = {
+  parameters: {
+    design: {
       type: 'figma',
       url:
         'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A2',
-    }),
-  })
-  .add('light background', () => <Grid background="light" />)
-  .add('dark background', () => <Grid background="dark" />)
-  .add('dynamic', () => (
-    <TitleContainer>
-      <Title
-        type={select('Type', types, 'headerBig')}
-        children={text(
-          'Title content',
-          'Devenez propriétaire d’un appartement neuf en plein centre d’Antony'
-        )}
-        primary={boolean('Color override : Primary', false)}
-        secondary={boolean('Color override : Secondary', false)}
-        warning={boolean('Color override : Warning', false)}
-        markdown={boolean('Markdown support', false)}
-        opacity={number('Opacity', 1, {
-          range: true,
-          min: 0,
-          max: 1,
-          step: 0.01,
-        })}
-      />
-    </TitleContainer>
-  ))
+    },
+  },
+}
