@@ -82,7 +82,7 @@ const Grid = withGrid<MenuProps>({
 })(Menu)
 
 export default {
-  title: 'Actions/Button',
+  title: 'Actions/Menu',
   decorators: [withKnobs],
 }
 
