@@ -4,7 +4,6 @@ import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
-import Icon from '../Icon'
 import withTriggerElement from '../withTriggerElement'
 
 import { ModalInnerProps } from './Modal.interface'
@@ -15,7 +14,7 @@ import {
   MobileTitle,
   ModalContent,
   ModalScrollableContent,
-  CloseIconContainer,
+  CloseIcon,
   HeaderBarContainer,
   ANIMATION_DURATION,
 } from './Modal.style'
@@ -59,9 +58,11 @@ const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
                 <MobileTitle type="regular">{title}</MobileTitle>
               </React.Fragment>
             )}
-            <CloseIconContainer data-has-title={!!title} onClick={modal.close}>
-              <Icon icon="close" />
-            </CloseIconContainer>
+            <CloseIcon
+              data-has-title={!!title}
+              onClick={modal.close}
+              icon="close"
+            />
           </HeaderBarContainer>
           <ModalContent>
             <ModalScrollableContent data-has-title={!!title}>
