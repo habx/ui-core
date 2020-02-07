@@ -1,7 +1,5 @@
 import { withKnobs, boolean, select } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -58,36 +56,46 @@ const Grid = withGrid<CheckboxProps>({
   itemWrapper: CheckboxContainer,
 })(Checkbox)
 
-storiesOf('Input|Checkbox', module)
-  .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />, {
-    design: config({
+export default {
+  title: 'Input/Checkbox',
+  decorators: [withKnobs],
+}
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
+
+export const dynamic = () => (
+  <CheckboxContainer>
+    <Checkbox
+      value={boolean('Checked', false) ? 1 : 0}
+      error={boolean('Error', false)}
+      disabled={boolean('Disabled', false)}
+      label="Label"
+      labelType={select(
+        'LabelType',
+        [
+          'veryLarge',
+          'large',
+          'emphasis',
+          'regular',
+          'caption',
+          'captionSmall',
+        ],
+        'regular'
+      )}
+    />
+  </CheckboxContainer>
+)
+
+gallery.story = {
+  parameters: {
+    design: {
       type: 'figma',
       url:
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=62%3A0',
-    }),
-  })
-  .add('light background', () => <Grid background="light" />)
-  .add('dark background', () => <Grid background="dark" />)
-  .add('dynamic', () => (
-    <CheckboxContainer>
-      <Checkbox
-        value={boolean('Checked', false) ? 1 : 0}
-        error={boolean('Error', false)}
-        disabled={boolean('Disabled', false)}
-        label="Label"
-        labelType={select(
-          'LabelType',
-          [
-            'veryLarge',
-            'large',
-            'emphasis',
-            'regular',
-            'caption',
-            'captionSmall',
-          ],
-          'regular'
-        )}
-      />
-    </CheckboxContainer>
-  ))
+    },
+  },
+}

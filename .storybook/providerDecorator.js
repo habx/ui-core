@@ -3,7 +3,6 @@ import { createGlobalStyle } from 'styled-components'
 import styledNormalize from 'styled-normalize'
 
 import Provider from '../src/Provider'
-import ThemeProvider from '../src/ThemeProvider'
 
 const FONT_ROOT = 'https://cdn.habx.fr/assets/fonts'
 
@@ -57,7 +56,7 @@ const GlobalStyle = createGlobalStyle`
 
 `
 
-export default (storyFn: Function) => (
+export default (storyFn) => (
   <React.Fragment>
       <Provider>
         <GlobalStyle />

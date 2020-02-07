@@ -1,7 +1,5 @@
 import { withKnobs } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 
 import withGrid from '../_internal/StorybookGrid'
 import Button from '../Button'
@@ -67,12 +65,19 @@ const Grid = withGrid<TooltipProps>({
   itemVerticalSpace: 48,
 })(Tooltip)
 
-storiesOf('Navigation|Tooltip', module)
-  .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />, {
-    design: config({
+export default {
+  title: 'Navigation/Tooltip',
+  decorators: [withKnobs],
+}
+
+export const gallery = () => <Grid />
+
+gallery.story = {
+  parameters: {
+    design: {
       type: 'figma',
       url:
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A2116',
-    }),
-  })
+    },
+  },
+}

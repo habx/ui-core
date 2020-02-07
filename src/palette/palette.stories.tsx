@@ -1,6 +1,4 @@
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import theme from '../theme'
@@ -39,29 +37,33 @@ const Circle = styled.div`
   box-shadow: ${theme.shadow()};
 `
 
-storiesOf('Utility|palette', module).add(
-  'galery',
-  () => (
-    <Container>
-      {Object.entries(palette).map(([colorName, colorGradient]) => (
-        <Line>
-          <ColorLabel type="section">{colorName}</ColorLabel>
-          {Object.values(colorGradient)
-            .reverse()
-            .map((color, index) => (
-              <Color key={index}>
-                <Circle color={color as string} />
-              </Color>
-            ))}
-        </Line>
-      ))}
-    </Container>
-  ),
-  {
-    design: config({
+export default {
+  title: 'Utility/palette',
+}
+
+export const gallery = () => (
+  <Container>
+    {Object.entries(palette).map(([colorName, colorGradient]) => (
+      <Line>
+        <ColorLabel type="section">{colorName}</ColorLabel>
+        {Object.values(colorGradient)
+          .reverse()
+          .map((color, index) => (
+            <Color key={index}>
+              <Circle color={color as string} />
+            </Color>
+          ))}
+      </Line>
+    ))}
+  </Container>
+)
+
+gallery.story = {
+  parameters: {
+    design: {
       type: 'figma',
       url:
         'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A3',
-    }),
-  }
-)
+    },
+  },
+}

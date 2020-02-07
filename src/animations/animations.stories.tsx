@@ -1,7 +1,5 @@
 import { withKnobs, select } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -128,6 +126,11 @@ const AnimationGrid = withGrid<AnimationCardProps>({
   itemHorizontalSpace: 36,
 })(AnimationCard)
 
+export default {
+  title: 'Utility/animations',
+  decorators: [withKnobs],
+}
+
 const animationNames = {
   Emerge: 'emerge',
   'Emerge Z-Slant (from top)': 'emergeSlantFromTop',
@@ -138,23 +141,26 @@ const animationNames = {
 
 const durations = ['xs', 's', 'm', 'l']
 
-storiesOf('Utility|animations', module)
-  .addDecorator(withKnobs)
-  .add('gallery', () => <AnimationGrid />, {
-    design: config({
+export const gallery = () => <AnimationGrid />
+
+export const dynamic = () => {
+  const animation = select('Animation', animationNames, 'emerge')
+
+  return (
+    <AnimationCard
+      animation={animation}
+      visible={animation.startsWith('dive')}
+      duration={select('Duration', durations, 'l')}
+    />
+  )
+}
+
+gallery.story = {
+  parameters: {
+    design: {
       type: 'figma',
       url:
         'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=849%3A0',
-    }),
-  })
-  .add('dynamic', () => {
-    const animation = select('Animation', animationNames, 'emerge')
-
-    return (
-      <AnimationCard
-        animation={animation}
-        visible={animation.startsWith('dive')}
-        duration={select('Duration', durations, 'l')}
-      />
-    )
-  })
+    },
+  },
+}

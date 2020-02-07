@@ -5,9 +5,7 @@ import {
   text,
   number,
 } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -72,35 +70,45 @@ const Grid = withGrid<TextProps>({
   itemHorizontalSpace: 36,
 })(WrappedText)
 
-storiesOf('Typography|Text', module)
-  .addDecorator(withKnobs)
-  .add('galery', () => <Grid />, {
-    design: config({
+export default {
+  title: 'Typography/Text',
+  decorators: [withKnobs],
+}
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
+
+export const dynamic = () => (
+  <TextContainer>
+    <Text
+      type={select('Type', types, 'regular')}
+      children={text(
+        'Text content',
+        'Devenez propriétaire d’un appartement neuf en plein centre d’Antony'
+      )}
+      primary={boolean('Color override : Primary', false)}
+      secondary={boolean('Color override : Secondary', false)}
+      warning={boolean('Color override : Warning', false)}
+      markdown={boolean('Markdown support', false)}
+      opacity={number('Opacity', 0.72, {
+        range: true,
+        min: 0,
+        max: 1,
+        step: 0.01,
+      })}
+    />
+  </TextContainer>
+)
+
+gallery.story = {
+  parameters: {
+    design: {
       type: 'figma',
       url:
         'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A2',
-    }),
-  })
-  .add('light background', () => <Grid background="light" />)
-  .add('dark background', () => <Grid background="dark" />)
-  .add('dynamic', () => (
-    <TextContainer>
-      <Text
-        type={select('Type', types, 'regular')}
-        children={text(
-          'Text content',
-          'Devenez propriétaire d’un appartement neuf en plein centre d’Antony'
-        )}
-        primary={boolean('Color override : Primary', false)}
-        secondary={boolean('Color override : Secondary', false)}
-        warning={boolean('Color override : Warning', false)}
-        markdown={boolean('Markdown support', false)}
-        opacity={number('Opacity', 0.72, {
-          range: true,
-          min: 0,
-          max: 1,
-          step: 0.01,
-        })}
-      />
-    </TextContainer>
-  ))
+    },
+  },
+}

@@ -1,4 +1,3 @@
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -45,4 +44,12 @@ const Grid = withGrid<SlideShowProps>({
   items: GRID_ITEMS,
 })(SlideShow)
 
-storiesOf('Miscellaneous|SlideShow', module).add('galery', () => <Grid />)
+export default {
+  title: 'Layouts/SlideShow',
+}
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

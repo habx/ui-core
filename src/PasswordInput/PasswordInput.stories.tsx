@@ -1,7 +1,5 @@
 import { withKnobs, boolean, text } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
-import { config } from 'storybook-addon-designs'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -62,25 +60,25 @@ const Grid = withGrid<PasswordInputProps>({
   itemWrapper: PasswordInputContainer,
 })(PasswordInput)
 
-storiesOf('Input|PasswordInput', module)
-  .addDecorator(withKnobs)
-  .add('gallery', () => <Grid />, {
-    design: config({
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1845',
-    }),
-  })
-  .add('light background', () => <Grid background="light" />)
-  .add('dark background', () => <Grid background="dark" />)
-  .add('dynamic', () => (
-    <PasswordInputContainer>
-      <PasswordInput
-        value={text('Value', '')}
-        placeholder="votre@mail.com"
-        error={boolean('Error', false)}
-        small={boolean('Small', false)}
-        disabled={boolean('Disabled', false)}
-      />
-    </PasswordInputContainer>
-  ))
+export default {
+  title: 'Input/PasswordInput',
+  decorators: [withKnobs],
+}
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
+
+export const dynamic = () => (
+  <PasswordInputContainer>
+    <PasswordInput
+      value={text('Value', '')}
+      placeholder="votre@mail.com"
+      error={boolean('Error', false)}
+      small={boolean('Small', false)}
+      disabled={boolean('Disabled', false)}
+    />
+  </PasswordInputContainer>
+)

@@ -1,5 +1,4 @@
 import { withKnobs, boolean } from '@storybook/addon-knobs'
-import { storiesOf } from '@storybook/react'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -74,16 +73,22 @@ const Grid = withGrid<ExpansionPanelProps>({
   items: GRID_ITEMS,
 })(WrappedExpansionPanel)
 
-storiesOf('Layouts|Expansion Panel', module)
-  .addDecorator(withKnobs)
-  .add('galery', () => <Grid />)
-  .add('light background', () => <Grid background="light" />)
-  .add('dark background', () => <Grid background="dark" />)
-  .add('dynamic', () => (
-    <ExpansionPanel
-      disabled={boolean('Disabled', false)}
-      multiOpen={boolean('Multi open', false)}
-    >
-      <ExpansionPanelItems />
-    </ExpansionPanel>
-  ))
+export default {
+  title: 'Layouts/ExpansionPanel',
+  decorators: [withKnobs],
+}
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
+
+export const dynamic = () => (
+  <ExpansionPanel
+    disabled={boolean('Disabled', false)}
+    multiOpen={boolean('Multi open', false)}
+  >
+    <ExpansionPanelItems />
+  </ExpansionPanel>
+)
