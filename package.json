@@ -16,8 +16,8 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook:build": "build-storybook -c .storybook -o .storybook-static",
     "storybook:deploy": "storybook-to-ghpages -s storybook:build --ci -t=GITHUB_TOKEN",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
+    "test": "jest --config ./jest.config.js",
+    "test:coverage": "jest --config ./jest.config.js --coverage",
     "type:coverage": "tscov",
     "image-snapshots": "jest ./tests/image-storyshots.runner.js --config ./jest.snapshots.config.js"
   },

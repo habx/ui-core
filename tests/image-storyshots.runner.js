@@ -39,7 +39,7 @@ let afterAll = () => {
 
 const beforeAll = async page => {
   await page.waitForNavigation({ waitUntil: 'networkidle0' })
-  await page.waitFor(500)
+  await page.waitFor(1000)
 }
 
 const test = imageSnapshot({

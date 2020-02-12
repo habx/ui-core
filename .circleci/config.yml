@@ -149,7 +149,6 @@ jobs:
       - run:
           command: |
             npm run test
-            npm run image-snapshots
           environment:
             NODE_ENV: test
 
