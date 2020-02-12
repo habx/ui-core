@@ -28,6 +28,15 @@ workflows:
               only: /^v.*/
             branches:
               ignore: gh-pages
+      - build-storybook:
+          context: default_env_vars
+          requires:
+            - lint
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: gh-pages
       - test:
           context: default_env_vars
           requires:
@@ -37,10 +46,20 @@ workflows:
               only: /^v.*/
             branches:
               ignore: gh-pages
+      - test-snapshots:
+          context: default_env_vars
+          requires:
+            - build-storybook
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: gh-pages
       - publish-on-tag:
           context: default_env_vars
           requires:
           - test
+          - test-snapshots
           filters:
             tags:
               only: /^v.*/
@@ -50,6 +69,7 @@ workflows:
           context: default_env_vars
           requires:
           - test
+          - test-snapshots
           filters:
             tags:
               only: /^v.*/
@@ -104,6 +124,22 @@ jobs:
           paths:
             - project
 
+  build-storybook:
+    docker:
+      - image: habx/node-base:9-alpine-npm6
+    steps:
+      - attach_workspace:
+          at: /root/
+      - run:
+          command: |
+            npm run storybook:build --ci
+          environment:
+            NODE_ENV: production
+      - persist_to_workspace:
+          root: /root
+          paths:
+            - project
+
   test:
     docker:
       - image: habx/node-base:9-alpine-npm6
@@ -113,6 +149,19 @@ jobs:
       - run:
           command: |
             npm run test
+            npm run image-snapshots
+          environment:
+            NODE_ENV: test
+
+  test-snapshots:
+    docker:
+      - image: jean9696/drone-puppeteer
+    steps:
+      - attach_workspace:
+          at: /root/
+      - run:
+          command: |
+            npm run image-snapshots
           environment:
             NODE_ENV: test
 

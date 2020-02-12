@@ -12,6 +12,7 @@
     "declarationMap": true,
     "strict": true,
     "target": "esnext",
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "module": "commonjs",
     "esModuleInterop": true,
