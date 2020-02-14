@@ -10,7 +10,7 @@ import Text from '../Text'
 import ExpansionPanel from './ExpansionPanel'
 import ExpansionPanelProps from './ExpansionPanel.interface'
 
-export const Container = styled.div`
+const Container = styled.div`
   width: 450px;
 
   @media (${breakpoints.below.phone}) {
@@ -24,7 +24,7 @@ const WrappedExpansionPanel: React.FunctionComponent<ExpansionPanelProps> = prop
   </Container>
 )
 
-export const ExpansionPanelItems = () => (
+const ExpansionPanelItems = () => (
   <React.Fragment>
     <ExpansionPanelItem title="Article 1">
       <Text>
