@@ -14,7 +14,9 @@ const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
     return (
       <ActionBarContainer {...rest} ref={ref}>
         <ActionBarContent data-count={React.Children.count(children)}>
-          {children}
+          {React.Children.map(children, (child, index) => (
+            <React.Fragment key={index}>{child}</React.Fragment>
+          ))}
         </ActionBarContent>
       </ActionBarContainer>
     )
