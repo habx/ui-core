@@ -1,137 +1,165 @@
+# --------------------------------------------------- #
+# https://github.com/habx/devops-template-circleci    #
+# ----------- DO NOT EDIT BELOW THIS LINE ----------- #
+# --------------------------------------------------- #
 version: 2.1
 
-workflows:
-  deploy-to-kubernetes:
-    jobs:
-      - fetch-node-modules:
-          context: default_env_vars
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: gh-pages
-      - lint:
-          context: default_env_vars
-          requires:
-          - fetch-node-modules
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: gh-pages
-      - build:
-          context: default_env_vars
-          requires:
-          - lint
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: gh-pages
-      - test:
-          context: default_env_vars
-          requires:
-          - build
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: gh-pages
-      - publish-on-tag:
-          context: default_env_vars
-          requires:
-          - test
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
-      - publish-storybook-on-tag:
-          context: default_env_vars
-          requires:
-          - test
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
-
-jobs:
-  fetch-node-modules:
+# --- Anchor alias ---- #
+alias:
+# - Docker configuration - #
+# https://circleci.com/docs/2.0/circleci-images/#nodejs
+  - &docker_node12_configuration
     docker:
-      - image: habx/node-base:9-alpine-npm6
+      - image: circleci/node:12.0.0
+        user: root
+  - &docker_buildpack_deps_configuration
+    docker:
+      - image: circleci/buildpack-deps:stretch
+        user: root
+  - &docker_buildpack_deps_python_configuration
+    docker:
+      - image: circleci/python
+        user: root
+# - Jobs filters - #
+  - &filters_ignore_tags
+    tags:
+      ignore: /.*/
+  - &filters_ignore_branches
+    branches:
+      ignore: /.*/
+  - &filters_allow_tags
+    tags:
+      only: /^v.*/
+  - &filters_allow_branch_dev
+    branches:
+      only:
+        - dev
+# - Step - #
+  - &preconfig
+    run:
+      name: Preconfigure environment ~/.npmrc
+      command: |
+        echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+# - Node modules - #
+  - &install_node_modules_with_cache
+    node/with-cache:
+        dir: node_modules
+        cache-version: dev{{ .Environment.CACHE_VERSION }}
+        steps:
+          - run:
+              name: Install node module
+              command: npm install
+  - &install_node_modules_with_cache_production
+    node/with-cache:
+      dir: node_modules
+      cache-version: prod{{ .Environment.CACHE_VERSION }}
+      steps:
+        - run:
+            name: Install node module production
+            command: npm install --production
+  - &fetch_node_modules_with_cache_production
+    node/with-cache:
+      dir: node_modules
+      cache-version: prod{{ .Environment.CACHE_VERSION }}
+      steps:
+        - run: echo
+jobs:
+  build:
+    <<: *docker_node12_configuration
     steps:
       - checkout
-      - restore_cache:
-          name: Restore node modules cache
-          key: node_modules-{{ checksum "package-lock.json" }}
-      - run:
-          command: |
-            npm install
-      - save_cache:
-          name: Save node modules cache
-          key: node_modules-{{ checksum "package-lock.json" }}
-          paths:
-            - node_modules
+      - *preconfig
+      - *install_node_modules_with_cache_production
+      - *install_node_modules_with_cache
+      - run: export NODE_ENV=production; npm run build
       - persist_to_workspace:
-          root: /root
+          root: ~/project
           paths:
-            - project
+            - dist
+
+  storybook-build:
+    <<: *docker_node12_configuration
+    steps:
+      - checkout
+      - *preconfig
+      - *install_node_modules_with_cache
+      - attach_workspace:
+          at: ~/project
+      - *preconfig
+      - *install_node_modules_with_cache
+      - run: npm run storybook:build
 
   lint:
-    docker:
-      - image: habx/node-base:9-alpine-npm6
+    <<: *docker_node12_configuration
     steps:
-      - attach_workspace:
-          at: /root/
-      - run:
-          command: |
-            npm run lint
+      - checkout
+      - *preconfig
+      - *install_node_modules_with_cache
+      - run: npm run lint
 
+  tests:
+    <<: *docker_node12_configuration
+    steps:
+      - checkout
+      - *preconfig
+      - *install_node_modules_with_cache
+      - run: npm run test
+
+  npm-publish:
+    <<: *docker_node12_configuration
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - *preconfig
+      - *install_node_modules_with_cache
+      - run: NPM_TOKEN=${NPM_TOKEN_RW} npm run publish
+
+  storybook-publish:
+    <<: *docker_node12_configuration
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - *preconfig
+      - *install_node_modules_with_cache
+      - run: npm run storybook:deploy
+
+orbs:
+  node: circleci/node@1.0.1
+# --- END --- #
+# --------------------------------------------------- #
+# -------------- DEFINE YOUR WORKFLOW --------------- #
+# --------------------------------------------------- #
+workflows:
   build:
-    docker:
-      - image: habx/node-base:9-alpine-npm6
-    steps:
-      - attach_workspace:
-          at: /root/
-      - run:
-          command: |
-            npm run build
-          environment:
-            NODE_ENV: production
-      - persist_to_workspace:
-          root: /root
-          paths:
-            - project
-
-  test:
-    docker:
-      - image: habx/node-base:9-alpine-npm6
-    steps:
-      - attach_workspace:
-          at: /root/
-      - run:
-          command: |
-            npm run test
-          environment:
-            NODE_ENV: test
-
-  publish-on-tag:
-    docker:
-      - image: habx/node-base:9-alpine-npm6
-    steps:
-      - attach_workspace:
-          at: /root/
-      - run:
-          command: |
-            NPM_TOKEN=${NPM_TOKEN_RW} npm run publish
-
-  publish-storybook-on-tag:
-    docker:
-      - image: habx/node-base:9-alpine-npm6
-    steps:
-      - attach_workspace:
-          at: /root/
-      - run:
-          command: |
-            npm run storybook:deploy
+    jobs:
+      - build:
+          context: default_env_vars
+          filters:
+            <<: *filters_allow_tags
+      - lint:
+          context: default_env_vars
+          filters:
+            <<: *filters_allow_tags
+      - tests:
+          context: default_env_vars
+          requires:
+            - build
+            - lint
+          filters:
+            <<: *filters_allow_tags
+      - npm-publish:
+          context: default_env_vars
+          requires:
+            - tests
+          filters:
+            <<: *filters_allow_tags
+            <<: *filters_ignore_branches
+      - storybook-publish:
+          context: default_env_vars
+          requires:
+            - tests
+          filters:
+            <<: *filters_allow_tags
+            <<: *filters_ignore_branches
