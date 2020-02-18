@@ -91,7 +91,7 @@ const withMarkdown = <
       }
 
       &::after {
-        content: '·';
+        content: '•';
         position: absolute;
         left: 0;
         top: 0;
