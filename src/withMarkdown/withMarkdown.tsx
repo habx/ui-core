@@ -82,13 +82,19 @@ const withMarkdown = <
     }
 
     & li {
-      text-transform: capitalize;
-      display: flex;
-      align-items: baseline;
+      position: relative;
+      display: block;
+      padding-left: 0.8em;
 
-      &::before {
-        content: '·';
-        margin-right: 0.5em;
+      &:first-letter {
+        text-transform: capitalize;
+      }
+
+      &::after {
+        content: '•';
+        position: absolute;
+        left: 0;
+        top: 0;
       }
     }
   ` as React.ForwardRefExoticComponent<Props>
