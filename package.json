@@ -81,7 +81,7 @@
     "@types/react-is": "^16.7.1",
     "@types/sinon": "^7.0.13",
     "@types/storybook__addon-info": "^5.2.1",
-    "@types/styled-components": "^4.1.19",
+    "@types/styled-components": "^5.0.0",
     "babel-loader": "^8.0.6",
     "bili": "^4.8.0",
     "fork-ts-checker-webpack-plugin": "^4.0.3",
