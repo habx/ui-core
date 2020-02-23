@@ -41,14 +41,11 @@ const ScrollableContent: React.FunctionComponent<{}> = () => (
     {Array.from({ length: 20 }, (_, index) => (
       <Line>Element n°{index + 1}</Line>
     ))}
-    <ActionBar>
-      <Button>Validate</Button>
-    </ActionBar>
   </React.Fragment>
 )
 
-const ScrollableContentWithTwoButtons: React.FunctionComponent<{}> = () => (
-  <React.Fragment>
+const ScrollableContentWithActionBar: React.FunctionComponent<{}> = () => (
+  <div>
     {Array.from({ length: 20 }, (_, index) => (
       <Line>Item {index + 1}</Line>
     ))}
@@ -56,7 +53,7 @@ const ScrollableContentWithTwoButtons: React.FunctionComponent<{}> = () => (
       <Button outline>Cancel</Button>
       <Button>Validate</Button>
     </ActionBar>
-  </React.Fragment>
+  </div>
 )
 
 const GRID_PROPS = {
@@ -74,14 +71,14 @@ const GRID_ITEMS = [
     props: {
       children: <ContactForm />,
     },
-    label: 'Short',
+    label: 'Short with action bar',
   },
   {
     props: {
       title: 'Me recontacter',
       children: <ContactForm />,
     },
-    label: 'Short with title',
+    label: 'Short with action bar and title',
   },
   {
     props: {
@@ -93,9 +90,9 @@ const GRID_ITEMS = [
   {
     props: {
       title: 'Item list',
-      children: <ScrollableContentWithTwoButtons />,
+      children: <ScrollableContentWithActionBar />,
     },
-    label: 'Scrollable (2 buttons)',
+    label: 'Scrollable with action bar',
   },
 ]
 

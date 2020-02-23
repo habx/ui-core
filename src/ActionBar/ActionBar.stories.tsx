@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import withGrid from '../_internal/StorybookGrid'
 import Button from '../Button'
 import Card from '../Card'
+import Modal from '../Modal'
 import palette from '../palette'
 
 import ActionBar from './ActionBar'
@@ -17,6 +18,10 @@ const CardChildrenContainer = styled.div`
   width: 448px;
   max-width: calc(100vw - 48px);
   background-color: ${palette.darkBlue[100]};
+
+  &[data-modal='true'] {
+    width: unset;
+  }
 `
 
 const WrappedActionBar: React.FunctionComponent<ActionBarProps> = props => (
@@ -24,6 +29,15 @@ const WrappedActionBar: React.FunctionComponent<ActionBarProps> = props => (
     <CardChildrenContainer />
     <ActionBar {...props} />
   </Card>
+)
+
+const WrappedActionBarInModal: React.FunctionComponent<ActionBarProps> = props => (
+  <Modal triggerElement={<Button>Open</Button>}>
+    <form>
+      <CardChildrenContainer data-modal />
+      <ActionBar {...props} />
+    </form>
+  </Modal>
 )
 
 const GRID_PROPS = {}
@@ -68,6 +82,12 @@ const Grid = withGrid<ActionBarProps>({
   items: GRID_ITEMS,
 })(WrappedActionBar)
 
+const GridInModal = withGrid<ActionBarProps>({
+  props: GRID_PROPS,
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+})(WrappedActionBarInModal)
+
 export default {
   title: 'Layouts/ActionBar',
   decorators: [withKnobs],
@@ -78,3 +98,5 @@ export const gallery = () => <Grid />
 export const lightBackground = () => <Grid background="light" />
 
 export const darkBackground = () => <Grid background="dark" />
+
+export const inModal = () => <GridInModal />

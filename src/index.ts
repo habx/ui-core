@@ -67,6 +67,7 @@ export { default as Tooltip, TooltipProps } from './Tooltip'
 /*
   Layouts
  */
+export { default as Layout, LayoutProps } from './Layout'
 export { default as ActionBar, ActionBarProps } from './ActionBar'
 export { default as Card, CardProps } from './Card'
 export { default as ExpansionPanel, ExpansionPanelProps } from './ExpansionPanel'
