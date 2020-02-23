@@ -60,17 +60,21 @@ const ConfirmModal: React.FunctionComponent<{}> = () => {
   return (
     <React.Fragment>
       {modals.map((modal: StateModal) => {
-        const { props } = modal
+        const { Component, ...resultProps } = modal.props({
+          onResolve: response => handleResolve(modal, response),
+        })
+
+        const children = Component ? <Component /> : resultProps.children
 
         const content = (
           <Modal
             open={modal.open}
             key={modal.id}
             onClose={() => handleResolve(modal, undefined)}
-            {...props({
-              onResolve: response => handleResolve(modal, response),
-            })}
-          />
+            {...resultProps}
+          >
+            {children}
+          </Modal>
         )
 
         if (isClientSide) {
