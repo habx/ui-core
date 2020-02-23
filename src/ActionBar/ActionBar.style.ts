@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import breakpoints from '../breakpoints'
 import { ButtonContainer } from '../Button/Button.style'
-import theme from '../theme'
 
 export const ActionBarContainer = styled.div``
 
@@ -14,7 +13,6 @@ export const ActionBarContent = styled.div`
   position: relative;
   padding: 0 36px;
   height: 72px;
-  background-color: ${theme.color('background')};
 
   @media (${breakpoints.below.phone}) {
     padding: 0 20px;

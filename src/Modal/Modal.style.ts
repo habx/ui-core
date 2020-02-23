@@ -178,7 +178,8 @@ export const ModalScrollableContent = styled.div`
       bottom: 0;
 
       & ${ActionBarContent} {
-        margin-bottom: calc(0px - var(--modal-vertical-padding));
+        transform: translateY(var(--modal-vertical-padding));
+        margin-top: calc(0px - var(--modal-vertical-padding));
         padding-top: 24px;
         padding-bottom: 24px;
         height: auto;

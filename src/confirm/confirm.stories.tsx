@@ -15,7 +15,7 @@ const GRID_LINES = [{ title: 'Prompt modals' }]
 
 const GRID_ITEMS = [
   {
-    label: 'Confirm',
+    label: 'With full config',
     props: {
       onClick: async () => {
         const response = await confirm({
@@ -23,6 +23,16 @@ const GRID_ITEMS = [
           confirmLabel: 'Yes',
           cancelLabel: 'No',
         })
+
+        action('Confirm Modal response')(response)
+      },
+    },
+  },
+  {
+    label: 'With simple message',
+    props: {
+      onClick: async () => {
+        const response = await confirm('Are you sure ?')
 
         action('Confirm Modal response')(response)
       },
