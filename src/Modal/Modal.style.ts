@@ -1,14 +1,10 @@
 import styled, { keyframes } from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
-import {
-  ActionBarContainer,
-  ActionBarContent,
-} from '../ActionBar/ActionBar.style'
 import animations from '../animations'
-import Background from '../Background'
 import breakpoints from '../breakpoints'
 import IconButton from '../IconButton'
+import Layout from '../Layout'
 import theme from '../theme'
 import Title from '../Title'
 
@@ -24,7 +20,7 @@ const FADE_IN = keyframes`
   }
 `
 
-export const ModalContainer = styled(Background)`
+export const ModalContainer = styled(Layout)`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -45,8 +41,10 @@ export const ModalContainer = styled(Background)`
     max-height: calc(100vh - 96px);
     border-radius: 2px;
 
-    --modal-horizontal-padding: 36px;
-    --modal-vertical-padding: 48px;
+    --layout-left-padding: 36px;
+    --layout-right-padding: 36px;
+    --layout-top-padding: 48px;
+    --layout-bottom-padding: 48px;
   }
 
   @media (${breakpoints.below.phone}) {
@@ -56,8 +54,8 @@ export const ModalContainer = styled(Background)`
     left: 0;
     right: 0;
 
-    --modal-horizontal-padding: 24px;
-    --modal-vertical-padding: 24px;
+    --layout-left-padding: 20px;
+    --layout-right-padding: 20px;
   }
 `
 
@@ -120,8 +118,8 @@ export const HeaderBarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   flex: 0 0 auto;
-  padding: var(--modal-vertical-padding) var(--modal-horizontal-padding) 12px
-    var(--modal-horizontal-padding);
+  padding: var(--layout-top-padding) var(--layout-right-padding) 12px
+    var(--layout-left-padding);
 `
 
 export const CloseIcon = styled(IconButton)`
@@ -164,33 +162,10 @@ export const ModalScrollableContent = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
 
-  padding: 12px var(--modal-horizontal-padding) var(--modal-vertical-padding)
-    var(--modal-horizontal-padding);
+  padding: 12px var(--layout-right-padding) var(--layout-bottom-padding)
+    var(--layout-left-padding);
 
   @media (${breakpoints.below.phone}) {
     padding-bottom: 72px;
-  }
-
-  & ${ActionBarContainer} {
-    @media (${breakpoints.above.phone}) {
-      margin: 0 calc(0px - var(--modal-horizontal-padding));
-      position: sticky;
-      bottom: 0;
-
-      & ${ActionBarContent} {
-        transform: translateY(var(--modal-vertical-padding));
-        margin-top: calc(0px - var(--modal-vertical-padding));
-        padding-top: 24px;
-        padding-bottom: 24px;
-        height: auto;
-      }
-    }
-
-    @media (${breakpoints.below.phone}) {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
   }
 `
