@@ -16,6 +16,7 @@ const FloatingButton = React.forwardRef<HTMLButtonElement, FloatingButtonProps>(
       small = false,
       fixed = false,
       position = 'bottom',
+      type = 'button',
       ...rest
     } = props
 
@@ -26,6 +27,7 @@ const FloatingButton = React.forwardRef<HTMLButtonElement, FloatingButtonProps>(
         data-small={small}
         data-fixed={fixed}
         data-position={position}
+        type={type}
       >
         {elementLeft && (
           <SideElementContainer

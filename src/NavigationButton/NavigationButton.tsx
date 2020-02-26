@@ -31,6 +31,7 @@ const NavigationButton = React.forwardRef<
     large = false,
     small = false,
     usage = 'navigation',
+    type = 'button',
     ...rest
   } = props
 
@@ -43,6 +44,7 @@ const NavigationButton = React.forwardRef<
       data-small={small}
       data-background={hasBackground}
       data-usage={usage}
+      type={type}
       {...rest}
     >
       <Icon icon={getIcon(usage, previous)} />

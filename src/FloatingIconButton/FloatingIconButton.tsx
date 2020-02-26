@@ -14,6 +14,7 @@ const FloatingIconButton = React.forwardRef<
     icon,
     fixed = false,
     position = 'bottom-right',
+    type = 'button',
     ...rest
   } = props
 
@@ -23,6 +24,7 @@ const FloatingIconButton = React.forwardRef<
       {...rest}
       data-fixed={fixed}
       data-position={position}
+      type={type}
     >
       <Icon icon={icon} colored={colored} />
     </FloatingButtonContainer>

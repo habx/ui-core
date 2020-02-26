@@ -7,7 +7,14 @@ import { IconButtonContainer } from './IconButton.style'
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   (props, ref) => {
-    const { icon, colored, small = false, large = false, ...rest } = props
+    const {
+      icon,
+      colored,
+      small = false,
+      large = false,
+      type = 'button',
+      ...rest
+    } = props
 
     return (
       <IconButtonContainer
@@ -15,6 +22,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         ref={ref}
         data-small={small}
         data-large={large}
+        type={type}
       >
         <Icon icon={icon} colored={colored} />
       </IconButtonContainer>
