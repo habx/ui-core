@@ -80,6 +80,14 @@ const GRID_LINES = [
       customValues: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6'],
     },
   },
+  {
+    title: 'With label',
+    props: {
+      label: 'Typology',
+      value: 2,
+      customValues: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6'],
+    },
+  },
 ]
 
 const GRID_ITEMS = [

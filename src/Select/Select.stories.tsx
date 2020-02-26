@@ -44,6 +44,12 @@ const GRID_LINES = [
       light: true,
     },
   },
+  {
+    title: 'With label',
+    props: {
+      label: 'Pick a country',
+    },
+  },
 ]
 
 const GRID_ITEMS = [

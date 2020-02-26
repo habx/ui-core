@@ -1,9 +1,11 @@
 import * as React from 'react'
 
-import TextAreaProps from './TextArea.interface'
+import withLabel from '../withLabel'
+
+import { TextAreaInnerProps } from './TextArea.interface'
 import { Input } from './TextArea.style'
 
-const TextInput = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
+const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaInnerProps>(
   (props, ref) => {
     const { small = false, error = false, ...rest } = props
 
@@ -11,4 +13,6 @@ const TextInput = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   }
 )
 
-export default TextInput
+export default withLabel<HTMLTextAreaElement>({ orientation: 'vertical' })<
+  TextAreaInnerProps
+>(TextArea)

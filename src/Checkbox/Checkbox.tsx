@@ -4,7 +4,7 @@ import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import useUniqID from '../_internal/useUniqId'
 import withLabel from '../withLabel'
 
-import CheckboxProps from './Checkbox.interface'
+import { CheckboxInnerProps } from './Checkbox.interface'
 import {
   Input,
   FakeInputContainer,
@@ -12,7 +12,7 @@ import {
   CheckIcon,
 } from './Checkbox.style'
 
-const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+const Checkbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
   (props, ref) => {
     const { error, value, checked, disabled, id, ...rest } = props
     const checkboxId = useUniqID(id)
@@ -39,5 +39,5 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 )
 
 export default withLabel<HTMLInputElement>({ orientation: 'horizontal' })<
-  CheckboxProps
+  CheckboxInnerProps
 >(Checkbox)

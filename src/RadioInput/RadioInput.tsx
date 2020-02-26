@@ -4,7 +4,7 @@ import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import useUniqID from '../_internal/useUniqId'
 import withLabel from '../withLabel'
 
-import RadioInputProps from './RadioInput.interface'
+import { RadioInputInnerProps } from './RadioInput.interface'
 import {
   Input,
   FakeInputContainer,
@@ -12,7 +12,7 @@ import {
   InnerCircle,
 } from './RadioInput.style'
 
-const RadioInput = React.forwardRef<HTMLInputElement, RadioInputProps>(
+const RadioInput = React.forwardRef<HTMLInputElement, RadioInputInnerProps>(
   (props, ref) => {
     const { error, value, checked, disabled, id, ...rest } = props
     const checkboxId = useUniqID(id)
@@ -39,5 +39,5 @@ const RadioInput = React.forwardRef<HTMLInputElement, RadioInputProps>(
 )
 
 export default withLabel<HTMLInputElement>({ orientation: 'horizontal' })<
-  RadioInputProps
+  RadioInputInnerProps
 >(RadioInput)
