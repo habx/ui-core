@@ -9,6 +9,7 @@ const Tab = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
   const {
     large = false,
     active = false,
+    type = 'button',
     elementLeft,
     elementRight,
     children,
@@ -23,6 +24,7 @@ const Tab = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
       data-large={large}
       data-active={active}
       data-background={hasBackground}
+      type={type}
       {...rest}
     >
       {elementLeft && (
