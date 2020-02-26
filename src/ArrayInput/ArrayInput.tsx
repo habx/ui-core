@@ -2,12 +2,13 @@ import * as React from 'react'
 
 import Button from '../Button'
 import ExpansionPanel from '../ExpansionPanel'
+import withLabel from '../withLabel'
 
-import ArrayInputProps from './ArrayInput.interface'
+import { ArrayInputInnerProps } from './ArrayInput.interface'
 import { ArrayInputAction } from './ArrayInput.style'
 import Item from './Item'
 
-const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputProps>(
+const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
   (props, ref) => {
     const {
       items = [],
@@ -88,4 +89,6 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputProps>(
   }
 )
 
-export default ArrayInput
+export default withLabel<HTMLDivElement>({ orientation: 'vertical' })<
+  ArrayInputInnerProps
+>(ArrayInput)

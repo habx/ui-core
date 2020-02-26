@@ -26,6 +26,12 @@ const GRID_LINES = [
     title: 'Small',
     props: { small: true },
   },
+  {
+    title: 'With label',
+    props: {
+      label: 'Write something here',
+    },
+  },
 ]
 
 const GRID_ITEMS = [

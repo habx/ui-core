@@ -140,6 +140,12 @@ const GRID_LINES = [
       ),
     },
   },
+  {
+    title: 'With label',
+    props: {
+      label: 'City list',
+    },
+  },
 ]
 
 const GRID_ITEMS = [

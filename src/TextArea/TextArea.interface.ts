@@ -1,11 +1,14 @@
 import * as React from 'react'
 
-import { Except, styledAs } from '../_internal/types'
+import { styledAs } from '../_internal/types'
+import WithLabel from '../withLabel/withLabel.interface'
 
-export default interface TextAreaProps
-  extends Except<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'> {
+export interface TextAreaInnerProps
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'> {
   value?: string
   error?: boolean
   small?: boolean
   as?: styledAs
 }
+
+export default interface TextAreaProps extends WithLabel<TextAreaInnerProps> {}

@@ -1,9 +1,12 @@
 import * as React from 'react'
 
 import { styledAs } from '../_internal/types'
+import WithLabel from '../withLabel/withLabel.interface'
 
-export default interface CheckboxProps
+export interface CheckboxInnerProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean
   as?: styledAs
 }
+
+export default interface CheckboxProps extends WithLabel<CheckboxInnerProps> {}

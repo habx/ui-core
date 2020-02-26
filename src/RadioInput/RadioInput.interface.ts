@@ -1,9 +1,13 @@
 import * as React from 'react'
 
 import { styledAs } from '../_internal/types'
+import { WithLabel } from '../withLabel'
 
-export default interface RadioInputProps
+export interface RadioInputInnerProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean
   as?: styledAs
 }
+
+export default interface RadioInputProps
+  extends WithLabel<RadioInputInnerProps> {}
