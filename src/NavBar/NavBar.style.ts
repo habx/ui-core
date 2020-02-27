@@ -21,6 +21,20 @@ export const NavBarToggleButton = styled.button`
   margin-right: auto;
 `
 
+export const GeometricalShapesContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: width ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
+  pointer-events: none;
+
+  &[data-expanded='true'] {
+    width: 250px;
+  }
+`
+
 export const TitleContainer = styled.div`
   width: 100%;
 `
