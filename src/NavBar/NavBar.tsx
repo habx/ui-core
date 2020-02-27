@@ -1,10 +1,10 @@
 import * as React from 'react'
 
+import Triangle from '../_internal/Triangle'
 import Icon from '../Icon'
 import palette from '../palette'
 import useTheme from '../useTheme'
 
-import GeometricalShapes from './GeometricalShapes'
 import NavBarContext from './NavBar.context'
 import NavBarProps, {
   ActionType,
@@ -20,6 +20,7 @@ import {
   NavBarPageLogo,
   NavBarToggleButton,
   TitleContainer,
+  GeometricalShapesContainer,
 } from './NavBar.style'
 
 const HOVER_AUTO_OPENING_DELAY = 750
@@ -119,6 +120,8 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
       }
     }, [state.isHovering])
 
+    state.isExpanded = true
+
     return (
       <NavBarContext.Provider value={context}>
         <NavBarAbsoluteContainer
@@ -139,7 +142,20 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
             color={color}
             backgroundColor={backgroundColor}
           >
-            <GeometricalShapes isExpanded={state.isExpanded} />
+            <GeometricalShapesContainer data-expanded={state.isExpanded}>
+              <Triangle
+                height={120}
+                width={120}
+                origin={{ bottom: 0, left: 0 }}
+                color="rgba(255, 255, 255, 0.2)"
+              />
+              <Triangle
+                height={220}
+                width={250}
+                origin={{ bottom: 0, right: 0 }}
+                color="rgba(255, 255, 255, 0.2)"
+              />
+            </GeometricalShapesContainer>{' '}
             <NavBarHeader>
               {state.isExpanded && (
                 <TitleContainer>
