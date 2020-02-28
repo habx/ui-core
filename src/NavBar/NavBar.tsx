@@ -120,8 +120,6 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
       }
     }, [state.isHovering])
 
-    state.isExpanded = true
-
     return (
       <NavBarContext.Provider value={context}>
         <NavBarAbsoluteContainer
