@@ -13,6 +13,7 @@ export const AnnouncementBannerContent = styled.div`
   transition: margin-top ${ANIMATION_DURATIONS.m}ms ease-in-out;
   overflow: hidden;
   position: relative;
+  box-shadow: inset 0px -2px 8px rgba(6, 26, 60, 0.1);
 
   @media (${breakpoints.below.smallTablet}) {
     padding: 18px 20px;
