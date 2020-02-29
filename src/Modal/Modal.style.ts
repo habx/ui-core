@@ -24,6 +24,7 @@ export const ModalContainer = styled(Layout)`
   position: relative;
   display: flex;
   flex-direction: column;
+  padding: 0;
 
   --modal-width: 448px;
 

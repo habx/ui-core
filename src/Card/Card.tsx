@@ -1,22 +1,26 @@
 import * as React from 'react'
 
-import useTheme from '../useTheme'
-
 import CardProps from './Card.interface'
 import { CardContainer } from './Card.style'
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
-  const { animated, flat, children, ...rest } = props
-
-  const theme = useTheme()
+  const {
+    animated,
+    flat,
+    children,
+    spacing,
+    backgroundColor = '#FFFFFF',
+    ...rest
+  } = props
 
   return (
     <CardContainer
       ref={ref}
       {...rest}
+      backgroundColor={backgroundColor}
       data-animated={animated}
       data-flat={flat}
-      backgroundColor={theme.backgroundColor}
+      data-spacing={spacing}
     >
       {children}
     </CardContainer>

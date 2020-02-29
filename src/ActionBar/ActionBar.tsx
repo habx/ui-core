@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import getFlattenedChildren from '../_internal/getFlattenedChildren'
 import { useParentLayout } from '../Layout/Layout.context'
+import useTheme from '../useTheme'
 
 import ActionBarProps from './ActionBar.interface'
 import { ActionBarContainer, ActionBarContent } from './ActionBar.style'
@@ -10,6 +11,7 @@ const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
   (props, ref) => {
     const { children: rawChildren, ...rest } = props
     const parentLayout = useParentLayout()
+    const theme = useTheme()
 
     const children = getFlattenedChildren(rawChildren)
 
@@ -20,7 +22,12 @@ const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
     }, [parentLayout])
 
     return (
-      <ActionBarContainer backgroundColor="#FFFFFF" {...rest} ref={ref}>
+      <ActionBarContainer
+        backgroundColor={theme.backgroundColor}
+        data-in-layout={parentLayout.isInLayout}
+        {...rest}
+        ref={ref}
+      >
         <ActionBarContent data-count={React.Children.count(children)}>
           {React.Children.map(children, (child, index) => (
             <React.Fragment key={index}>{child}</React.Fragment>

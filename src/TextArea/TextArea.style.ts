@@ -10,6 +10,7 @@ export const Input = styled.textarea`
   min-width: 0;
   height: 14rem;
   resize: vertical;
+  width: 100%;
 
   &[data-small='true'] {
     height: 8rem;

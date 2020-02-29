@@ -2,10 +2,13 @@ import * as React from 'react'
 
 import LayoutContext from './Layout.context'
 import LayoutProps from './Layout.interface'
-import { LayoutContainer } from './Layout.style'
+import {
+  LayoutTransparentContainer,
+  LayoutColoredContainer,
+} from './Layout.style'
 
 const Layout = React.forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
-  const { children, ...rest } = props
+  const { children, backgroundColor, ...rest } = props
   const [actionBars, setActionBars] = React.useState<number[]>([])
 
   const context = React.useMemo(
@@ -23,13 +26,24 @@ const Layout = React.forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
 
   return (
     <LayoutContext.Provider value={context}>
-      <LayoutContainer
-        ref={ref}
-        {...rest}
-        data-has-action-bar={actionBars.length > 0}
-      >
-        {children}
-      </LayoutContainer>
+      {backgroundColor ? (
+        <LayoutColoredContainer
+          ref={ref}
+          {...rest}
+          backgroundColor={backgroundColor}
+          data-has-action-bar={actionBars.length > 0}
+        >
+          {children}
+        </LayoutColoredContainer>
+      ) : (
+        <LayoutTransparentContainer
+          ref={ref}
+          {...rest}
+          data-has-action-bar={actionBars.length > 0}
+        >
+          {children}
+        </LayoutTransparentContainer>
+      )}
     </LayoutContext.Provider>
   )
 })

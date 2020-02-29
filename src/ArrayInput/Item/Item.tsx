@@ -10,6 +10,7 @@ import {
 } from '../ArrayInput.style'
 
 import ItemProps from './Item.interface'
+import { ItemContent } from './Item.style'
 
 const Item: React.FunctionComponent<ItemProps> = ({
   item,
@@ -80,7 +81,7 @@ const Item: React.FunctionComponent<ItemProps> = ({
       data-testid="array-input-item"
       {...rest}
     >
-      {isFunction(renderItem) && renderItem(state)}
+      <ItemContent>{isFunction(renderItem) && renderItem(state)}</ItemContent>
     </ExpansionPanelItem>
   )
 }
