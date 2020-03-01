@@ -55,6 +55,8 @@ export const ModalContainer = styled(Layout)`
     left: 0;
     right: 0;
 
+    --layout-top-padding: 24px;
+    --layout-bottom-padding: 24px;
     --layout-left-padding: 20px;
     --layout-right-padding: 20px;
   }

@@ -1,4 +1,3 @@
-import get from 'lodash.get'
 import * as React from 'react'
 
 import { has, isNil, isString, some } from '../_internal/data'
@@ -16,8 +15,8 @@ export const useOptions = ({ rawOptions }: { rawOptions: formValue[] }) =>
     }
 
     return rawOptions.map(option => ({
-      value: get(option, 'value', option),
-      label: get(option, 'label', option),
+      value: (option as formOption)?.value ?? option,
+      label: (option as formOption)?.label ?? option,
     }))
   }, [rawOptions])
 
