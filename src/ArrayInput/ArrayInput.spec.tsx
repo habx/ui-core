@@ -1,4 +1,4 @@
-import { render, within, fireEvent } from '@testing-library/react'
+import { render, within, fireEvent, act } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
@@ -222,12 +222,36 @@ describe('ArrayInput component', () => {
       expect(spyOnAppend.notCalled).toBe(true)
     })
 
-    it('should open new items when added to list', async () => {
+    it('should not open new item when added to list without clicking on button', async () => {
       const spyRenderItem = sinon.spy(({ value, index }) => (
         <div data-testid={`item-title-${index}`}>{value.title}</div>
       ))
 
       const { rerender } = render(<ArrayInput items={[DEFAULT_ITEMS[0]]} />)
+
+      rerender(<ArrayInput items={DEFAULT_ITEMS} renderItem={spyRenderItem} />)
+
+      act(() => {
+        jest.advanceTimersByTime(100)
+      })
+
+      expect(spyRenderItem.lastCall.args[0]).toEqual({
+        editing: false,
+        index: 1,
+        value: DEFAULT_ITEMS[1],
+      })
+    })
+
+    it('should open new item when added to list with click on button', async () => {
+      const spyRenderItem = sinon.spy(({ value, index }) => (
+        <div data-testid={`item-title-${index}`}>{value.title}</div>
+      ))
+
+      const { rerender, getByTestId } = render(
+        <ArrayInput items={[DEFAULT_ITEMS[0]]} />
+      )
+
+      fireEvent.click(getByTestId('array-input-add'))
 
       rerender(<ArrayInput items={DEFAULT_ITEMS} renderItem={spyRenderItem} />)
 
