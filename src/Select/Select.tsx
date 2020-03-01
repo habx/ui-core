@@ -1,4 +1,3 @@
-import get from 'lodash.get'
 import * as React from 'react'
 import { createPortal } from 'react-dom'
 
@@ -149,7 +148,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
       wrapperRect: getDOMRect(),
       focusedItem:
         rawValueFormat === 'simple'
-          ? get(rawValue, 'value') || rawValue
+          ? (rawValue as formOption)?.value ?? rawValue
           : rawValue,
     }
 
@@ -168,7 +167,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
 
     const getCleanValue = React.useCallback(
       newValue =>
-        valueFormat === FORMAT_VALUE_FULL ? newValue : get(newValue, 'value'),
+        valueFormat === FORMAT_VALUE_FULL ? newValue : newValue?.value,
       [valueFormat]
     )
 
@@ -257,8 +256,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           const focusedIndex = visibleOptions.findIndex(
             el =>
               el === state.focusedItem ||
-              get(state, 'focusedItem.value') === get(el, 'value') ||
-              get(el, 'value') === state.focusedItem
+              state.focusedItem?.value === el?.value ||
+              el?.value === state.focusedItem
           )
 
           if (key === 'ArrowDown' && focusedIndex < options.length) {

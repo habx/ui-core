@@ -113,7 +113,7 @@ jobs:
           at: ~/project
       - *preconfig
       - *install_node_modules_with_cache
-      - run: NPM_TOKEN=${NPM_TOKEN_RW} npm run publish
+      - run: NPM_TOKEN=${NPM_TOKEN_RW} npm publish
 
   storybook-publish:
     <<: *docker_node12_configuration

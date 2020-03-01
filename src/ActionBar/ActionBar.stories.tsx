@@ -15,7 +15,7 @@ const CardChildrenContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 400px;
-  width: 448px;
+  width: 360px;
   max-width: calc(100vw - 48px);
   background-color: ${palette.darkBlue[100]};
 
@@ -25,7 +25,7 @@ const CardChildrenContainer = styled.div`
 `
 
 const WrappedActionBar: React.FunctionComponent<ActionBarProps> = props => (
-  <Card>
+  <Card spacing="regular">
     <CardChildrenContainer />
     <ActionBar {...props} />
   </Card>
