@@ -17,6 +17,11 @@
     "test:coverage": "jest --coverage",
     "type:coverage": "tscov"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/habx/ui-core.git"
