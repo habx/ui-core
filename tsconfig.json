@@ -6,7 +6,7 @@
     "target": "ES5",
     "module": "ES2015",
     "moduleResolution": "Node",
-    "lib": ["ES2015", "DOM"],
+    "lib": ["ESNext", "DOM"],
     "typeRoots": ["./node_modules/@types", "./typings"],
     "strict": true,
     "removeComments": true,
