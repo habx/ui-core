@@ -28,16 +28,22 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
     } = props
 
     const [openedItem, setOpenedItem] = React.useState(-1)
-    const itemsRef: React.MutableRefObject<any[]> = React.useRef(items)
+    const appendRef = React.useRef(false)
 
     React.useEffect(() => {
-      const amount = items.length
-      if (amount > itemsRef.current.length) {
-        setOpenedItem(amount - 1)
+      if (appendRef.current && items.length > 0) {
+        setOpenedItem(items.length - 1)
+        appendRef.current = false
       }
-
-      itemsRef.current = items
     }, [items])
+
+    const handleAppend = React.useCallback(
+      (value?: any) => {
+        appendRef.current = true
+        return onAppend(value)
+      },
+      [onAppend]
+    )
 
     const renderItem =
       rawRenderItem ||
@@ -72,13 +78,13 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
         ))}
         <ArrayInputAction>
           {AddButtonComponent ? (
-            <AddButtonComponent onAppend={onAppend} disabled={disabled} />
+            <AddButtonComponent onAppend={handleAppend} disabled={disabled} />
           ) : (
             <Button
               data-testid="array-input-add"
               disabled={disabled}
               small
-              onClick={() => onAppend()}
+              onClick={() => handleAppend()}
             >
               {addButtonLabel}
             </Button>

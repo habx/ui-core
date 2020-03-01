@@ -21,7 +21,7 @@ export const HeaderBar = styled.div`
   justify-content: space-between;
   align-items: center;
   min-height: 32px;
-  padding: 6px 0;
+  padding: 6px var(--layout-right-padding) 6px var(--layout-left-padding);
   cursor: pointer;
   user-select: none;
   color: ${theme.color('secondary')};
@@ -30,6 +30,7 @@ export const HeaderBar = styled.div`
 export const ExpansionPanelItemContent = styled.div<{ height: number }>`
   transition: max-height ${ANIMATION_DURATIONS.l}ms ${ANIMATION_TIMING_FUNCTION};
   overflow: hidden;
+  padding: 0 var(--layout-right-padding) 0 var(--layout-left-padding);
 
   &[data-state='opening'],
   &[data-state='closing'] {

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import {
   ActionBarContainer,
@@ -7,7 +7,10 @@ import {
 import Background from '../Background'
 import breakpoints from '../breakpoints'
 
-export const LayoutContainer = styled(Background)`
+const style = css`
+  padding: var(--layout-top-padding) var(--layout-right-padding)
+    var(--layout-bottom-padding) var(--layout-left-padding);
+
   &[data-has-action-bar='true'] {
     --layout-bottom-padding: 0 !important;
 
@@ -33,4 +36,12 @@ export const LayoutContainer = styled(Background)`
       }
     }
   }
+`
+
+export const LayoutColoredContainer = styled(Background)`
+  ${style}
+`
+
+export const LayoutTransparentContainer = styled.div`
+  ${style}
 `

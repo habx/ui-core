@@ -1,10 +1,9 @@
-import * as React from 'react'
-
-import { styledAs } from '../_internal/types'
+import BackgroundProps from '../Background/Background.interface'
 
 export default interface CardProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+  extends Omit<BackgroundProps, 'backgroundColor'> {
   animated?: boolean
   flat?: boolean
-  as?: styledAs
+  backgroundColor?: string
+  spacing?: 'none' | 'narrow' | 'regular'
 }

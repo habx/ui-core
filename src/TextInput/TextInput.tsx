@@ -24,6 +24,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
       elementRight,
       elementLeft,
       canReset,
+      value,
       ...rest
     } = props
 
@@ -37,6 +38,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
           data-light={light}
           data-padding-left={!!elementLeft}
           data-background={hasBackground}
+          value={value ?? ''}
           {...rest}
           ref={ref}
         />

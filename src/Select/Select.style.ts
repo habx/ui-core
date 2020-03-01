@@ -70,8 +70,16 @@ export const SelectContainer = styled.div`
 
   &:not([data-light='true']) {
     color: ${theme.textColor({ useRootTheme: true })};
-    background-color: ${palette.darkBlue[200]};
-    border: solid 1.5px ${palette.darkBlue[200]};
+
+    &:not([data-background='true']) {
+      background-color: ${palette.darkBlue[200]};
+      border: solid 1.5px ${palette.darkBlue[200]};
+    }
+
+    &[data-background='true'] {
+      background-color: #fff;
+      border: solid 1.5px #fff;
+    }
   }
 
   &[data-light='true'] {
