@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "outDir": "./dist",
+    "outDir": "./dist/esm",
+    "declarationDir": "./dist/typings",
     "baseUrl": "typings",
     "target": "ES5",
     "module": "ES2015",

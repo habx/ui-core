@@ -3,11 +3,14 @@
   "version": "2.17.3",
   "description": "HABX Design System",
   "sideEffects": false,
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/typings/index.d.ts",
   "scripts": {
     "clean": "rimraf ./dist",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "bili",
     "build:watch": "npm run clean && tsc --watch",
     "lint": "eslint \"src/**\"",
     "storybook": "start-storybook -p 9001 -c .storybook",
@@ -18,9 +21,7 @@
     "type:coverage": "tscov"
   },
   "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -80,6 +81,7 @@
     "@types/sinon": "^7.0.13",
     "@types/styled-components": "^5.0.0",
     "babel-loader": "^8.0.6",
+    "bili": "^4.8.1",
     "fork-ts-checker-webpack-plugin": "^4.0.3",
     "husky": "^4.0.7",
     "jest": "^25.1.0",
@@ -88,6 +90,7 @@
     "react-docgen-typescript-loader": "^3.6.0",
     "react-dom": "^16.13.0",
     "rimraf": "^3.0.0",
+    "rollup-plugin-typescript2": "^0.26.0",
     "sinon": "^9.0.0",
     "storybook-addon-designs": "^5.2.0",
     "styled-components": "^5.0.1",
