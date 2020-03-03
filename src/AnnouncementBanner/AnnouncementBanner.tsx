@@ -1,17 +1,18 @@
 import * as React from 'react'
 
-import Triangle from '../_internal/Triangle'
 import useMergedRef from '../_internal/useMergedRef'
 import { ANIMATION_DURATIONS } from '../animations/animations'
 import IconButton from '../IconButton'
 import palette from '../palette'
 import Text from '../Text'
+import Triangle from '../Triangle'
 
 import AnnouncementBannerProps from './AnnouncementBanner.interface'
 import {
   AnnouncementBannerCenteredContent,
   AnnouncementBannerShapeContainer,
-  AnnouncementBannerContent,
+  AnnouncementBannerContainer,
+  AnnouncementBannerShadowBar,
   DesktopButton,
   MobileButton,
   DesktopCloseIconContainer,
@@ -104,7 +105,7 @@ const AnnouncementBanner = React.forwardRef<
   }
 
   return (
-    <AnnouncementBannerContent
+    <AnnouncementBannerContainer
       ref={containerRef}
       {...rest}
       style={{
@@ -162,7 +163,8 @@ const AnnouncementBanner = React.forwardRef<
       <MobileCloseIconButton>
         <IconButton icon="close" onClick={onClose} large />
       </MobileCloseIconButton>
-    </AnnouncementBannerContent>
+      <AnnouncementBannerShadowBar />
+    </AnnouncementBannerContainer>
   )
 })
 
