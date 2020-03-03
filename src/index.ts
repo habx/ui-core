@@ -41,6 +41,8 @@ export { default as NavBarItem,  NavBarItemProps } from './NavBarItem'
 export { default as NavBarMenuItem,  NavBarMenuItemProps } from './NavBarMenuItem'
 export { default as Tab, TabProps } from './Tab'
 export { default as NavigationDots, NavigationDotsProps } from './NavigationDots'
+export { default as Breadcrumb, BreadcrumbProps } from './Breadcrumb'
+
 
 /*
   Inputs
