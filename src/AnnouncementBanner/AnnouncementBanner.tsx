@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import Triangle from '../_internal/Triangle'
 import useMergedRef from '../_internal/useMergedRef'
 import { ANIMATION_DURATIONS } from '../animations/animations'
 import IconButton from '../IconButton'
 import palette from '../palette'
 import Text from '../Text'
+import Triangle from '../Triangle'
 
 import AnnouncementBannerProps from './AnnouncementBanner.interface'
 import {

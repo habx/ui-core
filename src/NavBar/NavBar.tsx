@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import Triangle from '../_internal/Triangle'
 import Icon from '../Icon'
 import palette from '../palette'
+import Triangle from '../Triangle'
 import useTheme from '../useTheme'
 
 import NavBarContext from './NavBar.context'

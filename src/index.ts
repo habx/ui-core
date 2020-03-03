@@ -40,6 +40,7 @@ export { default as NavBar,  NavBarProps } from './NavBar'
 export { default as NavBarItem,  NavBarItemProps } from './NavBarItem'
 export { default as NavBarMenuItem,  NavBarMenuItemProps } from './NavBarMenuItem'
 export { default as Tab, TabProps } from './Tab'
+export { default as NavigationDots, NavigationDotsProps } from './NavigationDots'
 
 /*
   Inputs
@@ -60,8 +61,8 @@ export { default as ArrayInput, ArrayInputProps } from './ArrayInput'
  */
 export { default as Icon, IconProps } from './Icon'
 export { default as Loader, LoaderProps } from './Loader'
-export { default as NavigationDots, NavigationDotsProps } from './NavigationDots'
 export { default as Tooltip, TooltipProps } from './Tooltip'
+export { default as Triangle, TriangleProps } from './Triangle'
 
 
 /*
