@@ -5,7 +5,7 @@ import Background from '../Background'
 import breakpoints from '../breakpoints'
 import Button from '../Button'
 
-export const AnnouncementBannerContent = styled.div`
+export const AnnouncementBannerContainer = styled.div`
   padding: 13px 24px;
   display: flex;
   align-items: center;
@@ -13,12 +13,21 @@ export const AnnouncementBannerContent = styled.div`
   transition: margin-top ${ANIMATION_DURATIONS.m}ms ease-in-out;
   overflow: hidden;
   position: relative;
-  box-shadow: inset 0px -2px 8px rgba(6, 26, 60, 0.1);
 
   @media (${breakpoints.below.smallTablet}) {
     padding: 18px 20px;
     align-items: flex-start;
   }
+`
+
+export const AnnouncementBannerShadowBar = styled.div`
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-shadow: inset 0px -2px 8px rgba(6, 26, 60, 0.1);
 `
 
 export const AnnouncementBannerShapeContainer = styled.div`

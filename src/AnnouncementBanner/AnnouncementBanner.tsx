@@ -11,7 +11,8 @@ import AnnouncementBannerProps from './AnnouncementBanner.interface'
 import {
   AnnouncementBannerCenteredContent,
   AnnouncementBannerShapeContainer,
-  AnnouncementBannerContent,
+  AnnouncementBannerContainer,
+  AnnouncementBannerShadowBar,
   DesktopButton,
   MobileButton,
   DesktopCloseIconContainer,
@@ -104,7 +105,7 @@ const AnnouncementBanner = React.forwardRef<
   }
 
   return (
-    <AnnouncementBannerContent
+    <AnnouncementBannerContainer
       ref={containerRef}
       {...rest}
       style={{
@@ -162,7 +163,8 @@ const AnnouncementBanner = React.forwardRef<
       <MobileCloseIconButton>
         <IconButton icon="close" onClick={onClose} large />
       </MobileCloseIconButton>
-    </AnnouncementBannerContent>
+      <AnnouncementBannerShadowBar />
+    </AnnouncementBannerContainer>
   )
 })
 
