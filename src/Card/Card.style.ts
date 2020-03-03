@@ -6,7 +6,6 @@ import theme from '../theme'
 
 export const CardContainer = styled(Layout)`
   border-radius: 4px;
-  overflow: hidden;
   position: relative;
   transition: all 150ms ease-in-out;
 

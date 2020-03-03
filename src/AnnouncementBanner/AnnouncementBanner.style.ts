@@ -28,6 +28,7 @@ export const AnnouncementBannerShadowBar = styled.div`
   left: 0;
   right: 0;
   box-shadow: inset 0px -2px 8px rgba(6, 26, 60, 0.1);
+  pointer-events: none;
 `
 
 export const AnnouncementBannerShapeContainer = styled.div`
