@@ -51,13 +51,3 @@ const Grid = withGrid<BreadcrumbProps>({
 })(Breadcrumb)
 
 export const galery = () => <Grid />
-
-galery.story = {
-  parameters: {
-    design: {
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1250',
-    },
-  },
-}
