@@ -94,6 +94,12 @@ export const TagContainer = styled.button`
     --tag-height: 40px;
     font-size: 16px;
   }
+
+  &[data-small='true'] {
+    --tag-horizontal-padding: 8px;
+    --tag-height: 24px;
+    font-size: 12px;
+  }
 `
 
 export const SideElementContainer = styled.div`
