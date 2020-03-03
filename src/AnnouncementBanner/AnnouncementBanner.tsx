@@ -145,7 +145,9 @@ const AnnouncementBanner = React.forwardRef<
         />
       </AnnouncementBannerShapeContainer>
       <AnnouncementBannerCenteredContent>
-        <Text opacity={1}>{message}</Text>
+        <Text opacity={1} markdown>
+          {message}
+        </Text>
         &nbsp; &nbsp; &nbsp;
         <DesktopButton onClick={onValidate} small>
           {validationLabel}
