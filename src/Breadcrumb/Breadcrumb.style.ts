@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-import { spacingType } from './Breadcrumb.interface'
+import { Spacing } from './Breadcrumb.interface'
 
 const DEFAULT_MAX_WIDTH = 150
 
-const getSpacing = (spacing?: spacingType) => {
+const getSpacing = (spacing?: Spacing) => {
   switch (spacing) {
     case 'large':
       return 18
@@ -18,7 +18,7 @@ const getSpacing = (spacing?: spacingType) => {
 }
 export const BreadcrumbContainer = styled.div<{
   itemMaxWidth?: number
-  spacing?: spacingType
+  spacing?: Spacing
 }>`
   display: flex;
   flex: 1 1 auto;
