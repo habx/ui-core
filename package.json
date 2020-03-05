@@ -65,7 +65,7 @@
     "@storybook/addon-centered": "^5.3.12",
     "@storybook/addon-knobs": "^5.3.12",
     "@storybook/addon-viewport": "^5.3.12",
-    "@storybook/preset-typescript": "^1.2.0",
+    "@storybook/preset-typescript": "^2.0.0",
     "@storybook/react": "^5.3.12",
     "@storybook/storybook-deployer": "^2.8.1",
     "@storybook/theming": "^5.3.13",
