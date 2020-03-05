@@ -76,6 +76,8 @@ export const MobileCloseIconButton = styled.div`
 `
 
 export const DesktopButton = styled(Button)`
+  margin-left: 18px;
+
   @media (${breakpoints.below.smallTablet}) {
     display: none;
   }
