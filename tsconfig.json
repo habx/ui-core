@@ -16,7 +16,8 @@
     "declarationMap": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true
   },
   "include": ["./src/**/*"],
   "exclude": ["./src/**/*.stories.tsx"]
