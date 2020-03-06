@@ -87,7 +87,6 @@
     "jest": "^25.1.0",
     "lint-staged": "^10.0.0",
     "react": "^16.13.0",
-    "react-docgen-typescript-loader": "^3.6.0",
     "react-dom": "^16.13.0",
     "rimraf": "^3.0.0",
     "rollup-plugin-typescript2": "^0.26.0",
