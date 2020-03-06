@@ -14,7 +14,7 @@ import {
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
   (props, ref) => {
-    const { error, value, checked, disabled, id, ...rest } = props
+    const { error, value, checked, disabled, id, children, ...rest } = props
     const checkboxId = useUniqID(id)
     const hasBackground = useHasColoredBackground()
 
@@ -29,10 +29,16 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
           disabled={disabled}
           type="checkbox"
           id={checkboxId}
+          data-testid="checkboxInput"
         />
-        <FakeInput tabIndex={disabled ? undefined : 0} htmlFor={checkboxId}>
+        <FakeInput
+          data-testid="checkboxLabel"
+          tabIndex={disabled ? undefined : 0}
+          htmlFor={checkboxId}
+        >
           <CheckIcon icon="check" />
         </FakeInput>
+        {children}
       </FakeInputContainer>
     )
   }
