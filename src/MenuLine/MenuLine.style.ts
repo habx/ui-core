@@ -29,8 +29,7 @@ export const IconContainer = styled.div<{
   font-size: 0.9em;
   display: flex;
   margin-top: 1px;
-  color: ${({ warning }) =>
-    theme.color(warning ? 'warning' : 'primary', { dynamic: true })};
+  color: ${theme.color('primary', { dynamic: true })};
 
   &[data-position='left'] {
     margin-right: 8px;
