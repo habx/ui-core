@@ -6,4 +6,5 @@ export default interface MenuLineProps
   elementRight?: React.ReactNode
   secondary?: boolean
   active?: boolean
+  warning?: boolean
 }
