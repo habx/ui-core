@@ -12,6 +12,7 @@ export const ToggleContainer = styled.div`
   cursor: pointer;
   margin: calc(var(--toggle-selected-circle-radius) * 2)
     var(--toggle-selected-circle-radius);
+  border-radius: calc(var(--toggle-selected-circle-radius) / 4);
 
   --toggle-not-selected-circle-radius: 6px;
   --toggle-selected-circle-radius: 8px;
