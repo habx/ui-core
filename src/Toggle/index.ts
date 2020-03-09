@@ -1,5 +1,5 @@
-import Checkbox from './Toggle'
+import Toggle from './Toggle'
 
 export { default as ToggleProps } from './Toggle.interface'
 
-export default Checkbox
+export default Toggle
