@@ -33,7 +33,11 @@ const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
           {children}
         </Text>
         {elementRight && (
-          <IconContainer secondary={active} data-position="right">
+          <IconContainer
+            secondary={active}
+            data-position="right"
+            warning={warning}
+          >
             {elementRight}
           </IconContainer>
         )}
