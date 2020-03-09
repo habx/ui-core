@@ -3,7 +3,9 @@ import styled, { css } from 'styled-components'
 import palette from '../palette'
 import theme from '../theme'
 
-export const MenuLineContainer = styled.li<{ depth: number }>`
+export const MenuLineContainer = styled.li<{
+  depth: number
+}>`
   ${({ depth }) =>
     css`
       padding: ${depth > 0 ? 6 : 8}px ${(depth + 1) * 24}px;
@@ -20,7 +22,10 @@ export const MenuLineContainer = styled.li<{ depth: number }>`
   }
 `
 
-export const IconContainer = styled.div<{ secondary?: boolean }>`
+export const IconContainer = styled.div<{
+  secondary?: boolean
+  warning?: boolean
+}>`
   font-size: 0.9em;
   display: flex;
   margin-top: 1px;
