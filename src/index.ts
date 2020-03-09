@@ -56,6 +56,7 @@ export { default as Slider, SliderProps } from './Slider'
 export { default as TextArea, TextAreaProps } from './TextArea'
 export { default as TextInput, TextInputProps } from './TextInput'
 export { default as ArrayInput, ArrayInputProps } from './ArrayInput'
+export { default as Toggle, ToggleProps } from './Toggle'
 
 
 /*
