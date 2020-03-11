@@ -1,13 +1,10 @@
 import * as React from 'react'
 
-interface LayoutContextValue {
-  isInLayout: boolean
-  registerActionBar: () => void
-}
+import { LayoutContextValue } from './Layout.interface'
 
 const LayoutContext = React.createContext<LayoutContextValue>({
   isInLayout: false,
-  registerActionBar: () => {},
+  registerChild: () => {},
 })
 
 export default LayoutContext

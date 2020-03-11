@@ -6,6 +6,7 @@ import {
 } from '../ActionBar/ActionBar.style'
 import Background from '../Background'
 import breakpoints from '../breakpoints'
+import { HeaderBarContainer } from '../HeaderBar/HeaderBar.style'
 
 const style = css`
   padding: var(--layout-top-padding) var(--layout-right-padding)
@@ -33,6 +34,17 @@ const style = css`
         bottom: 0;
         left: 0;
         right: 0;
+      }
+    }
+  }
+
+  &[data-has-header-bar='true'] {
+    --layout-top-padding: 0 !important;
+
+    & ${HeaderBarContainer} {
+      @media (${breakpoints.above.phone}) {
+        margin: 0 calc(0px - var(--layout-right-padding)) 24px
+          calc(0px - var(--layout-left-padding));
       }
     }
   }

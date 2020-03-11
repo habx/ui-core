@@ -1,7 +1,8 @@
 import * as React from 'react'
 
 import getFlattenedChildren from '../_internal/getFlattenedChildren'
-import { useParentLayout } from '../Layout/Layout.context'
+import { useParentLayout } from '../Layout'
+import { LayoutChild } from '../Layout/Layout.interface'
 import useTheme from '../useTheme'
 
 import ActionBarProps from './ActionBar.interface'
@@ -17,7 +18,7 @@ const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
 
     React.useLayoutEffect(() => {
       if (parentLayout.isInLayout) {
-        return parentLayout.registerActionBar()
+        return parentLayout.registerChild(LayoutChild.ActionBar)
       }
     }, [parentLayout])
 
