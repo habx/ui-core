@@ -73,6 +73,7 @@ export { default as Triangle, TriangleProps } from './Triangle'
  */
 export { default as Layout, LayoutProps } from './Layout'
 export { default as ActionBar, ActionBarProps } from './ActionBar'
+export { default as HeaderBar, HeaderBarProps } from './HeaderBar'
 export { default as Card, CardProps } from './Card'
 export { default as ExpansionPanel, ExpansionPanelProps } from './ExpansionPanel'
 export { default as ExpansionPanelItem, ExpansionPanelItemProps } from './ExpansionPanelItem'

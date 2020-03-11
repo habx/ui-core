@@ -1,7 +1,10 @@
 import * as React from 'react'
 
 import LayoutContext from './Layout.context'
-import LayoutProps from './Layout.interface'
+import LayoutProps, {
+  LayoutChild,
+  LayoutContextValue,
+} from './Layout.interface'
 import {
   LayoutTransparentContainer,
   LayoutColoredContainer,
@@ -9,20 +12,34 @@ import {
 
 const Layout = React.forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
   const { children, backgroundColor, ...rest } = props
-  const [actionBars, setActionBars] = React.useState<number[]>([])
+  const [registeredChildren, setRegisteredChildren] = React.useState<
+    Partial<Record<LayoutChild, number[]>>
+  >({})
 
-  const context = React.useMemo(
+  const context = React.useMemo<LayoutContextValue>(
     () => ({
       isInLayout: true,
-      registerActionBar: () => {
+      registerChild: type => {
         const id = Math.random()
-        setActionBars(prev => [...prev, id])
+        setRegisteredChildren(prev => ({
+          ...prev,
+          [type]: [...(prev[type] ?? []), id],
+        }))
 
-        return () => setActionBars(prev => prev.filter(el => el !== id))
+        return () =>
+          setRegisteredChildren(prev => ({
+            ...prev,
+            [type]: (prev[type] ?? []).filter(el => el !== id),
+          }))
       },
     }),
     []
   )
+
+  const hasActionBar =
+    (registeredChildren[LayoutChild.ActionBar]?.length ?? 0) > 0
+  const hasHeaderBar =
+    (registeredChildren[LayoutChild.HeaderBar]?.length ?? 0) > 0
 
   return (
     <LayoutContext.Provider value={context}>
@@ -31,7 +48,8 @@ const Layout = React.forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
           ref={ref}
           {...rest}
           backgroundColor={backgroundColor}
-          data-has-action-bar={actionBars.length > 0}
+          data-has-action-bar={hasActionBar}
+          data-has-header-bar={hasHeaderBar}
         >
           {children}
         </LayoutColoredContainer>
@@ -39,7 +57,8 @@ const Layout = React.forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
         <LayoutTransparentContainer
           ref={ref}
           {...rest}
-          data-has-action-bar={actionBars.length > 0}
+          data-has-action-bar={hasActionBar}
+          data-has-header-bar={hasHeaderBar}
         >
           {children}
         </LayoutTransparentContainer>
