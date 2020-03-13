@@ -14,7 +14,7 @@ import {
 
 const RadioInput = React.forwardRef<HTMLInputElement, RadioInputInnerProps>(
   (props, ref) => {
-    const { error, disabled, id, ...rest } = props
+    const { error, value, checked, disabled, id, ...rest } = props
     const checkboxId = useUniqID(id)
     const hasBackground = useHasColoredBackground()
 
@@ -25,6 +25,7 @@ const RadioInput = React.forwardRef<HTMLInputElement, RadioInputInnerProps>(
           {...rest}
           data-error={error}
           data-background={hasBackground}
+          checked={!!value || !!checked}
           disabled={disabled}
           type="radio"
           id={checkboxId}
