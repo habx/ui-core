@@ -8,6 +8,10 @@ export const CardContainer = styled(Layout)`
   border-radius: 4px;
   position: relative;
   transition: all 150ms ease-in-out;
+  --layout-left-padding: 0;
+  --layout-right-padding: 0;
+  --layout-top-padding: 0;
+  --layout-bottom-padding: 0;
 
   &:not([data-flat='true']) {
     box-shadow: ${theme.shadow('low')};
@@ -36,6 +40,16 @@ export const CardContainer = styled(Layout)`
     }
   }
 
+  &[data-spacing='regular-horizontal-only'] {
+    --layout-left-padding: 36px;
+    --layout-right-padding: 36px;
+
+    @media (${breakpoints.below.smallTablet}) {
+      --layout-left-padding: 18px;
+      --layout-right-padding: 18px;
+    }
+  }
+
   &[data-spacing='narrow'] {
     --layout-left-padding: 18px;
     --layout-right-padding: 18px;
@@ -43,10 +57,8 @@ export const CardContainer = styled(Layout)`
     --layout-bottom-padding: 12px;
   }
 
-  &[data-spacing='none'] {
-    --layout-left-padding: 0;
-    --layout-right-padding: 0;
-    --layout-top-padding: 0;
-    --layout-bottom-padding: 0;
+  &[data-spacing='narrow-horizontal-only'] {
+    --layout-left-padding: 18px;
+    --layout-right-padding: 18px;
   }
 `

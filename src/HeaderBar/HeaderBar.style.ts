@@ -7,13 +7,17 @@ import theme from '../theme'
 
 export const HeaderBarContainer = styled(Background)`
   height: 72px;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
   border-bottom: solid 1px ${palette.darkBlue[300]};
-  flex: 0 0 72px;
   z-index: 12;
+
+  &[data-small='true'] {
+    height: 48px;
+  }
 
   &[data-is-in-layout='true'] {
     padding: 0 var(--layout-right-padding) 0 var(--layout-left-padding);

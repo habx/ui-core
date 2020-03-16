@@ -8,7 +8,14 @@ import { HeaderBarContainer } from './HeaderBar.style'
 
 const HeaderBar = React.forwardRef<HTMLElement, HeaderBarProps>(
   (props, ref) => {
-    const { children, progress, style, ...rest } = props
+    const {
+      children,
+      progress,
+      style,
+      small,
+      backgroundColor = '#FFFFFF',
+      ...rest
+    } = props
 
     const parentLayout = useParentLayout()
 
@@ -20,10 +27,11 @@ const HeaderBar = React.forwardRef<HTMLElement, HeaderBarProps>(
 
     return (
       <HeaderBarContainer
+        backgroundColor={backgroundColor}
         ref={ref}
-        as="nav"
         data-has-progress={!isNil(progress)}
         data-is-in-layout={parentLayout.isInLayout}
+        data-small={small}
         style={
           {
             ...(style ?? {}),

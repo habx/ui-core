@@ -4,6 +4,7 @@ import {
   ANIMATION_DURATIONS,
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
+import Layout from '../Layout'
 import palette from '../palette'
 import theme from '../theme'
 
@@ -27,10 +28,12 @@ export const HeaderBar = styled.div`
   color: ${theme.color('secondary')};
 `
 
-export const ExpansionPanelItemContent = styled.div<{ height: number }>`
+export const ExpansionPanelItemContent = styled(Layout)<{ height: number }>`
   transition: max-height ${ANIMATION_DURATIONS.l}ms ${ANIMATION_TIMING_FUNCTION};
   overflow: hidden;
-  padding: 0 var(--layout-right-padding) 0 var(--layout-left-padding);
+
+  --layout-top-padding: 0;
+  --layout-bottom-padding: 0;
 
   &[data-state='opening'],
   &[data-state='closing'] {

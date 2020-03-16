@@ -5,5 +5,10 @@ export default interface CardProps
   animated?: boolean
   flat?: boolean
   backgroundColor?: string
-  spacing?: 'none' | 'narrow' | 'regular'
+  spacing?:
+    | 'none'
+    | 'narrow'
+    | 'regular'
+    | 'regular-horizontal-only'
+    | 'narrow-horizontal-only'
 }
