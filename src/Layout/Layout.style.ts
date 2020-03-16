@@ -42,10 +42,10 @@ const style = css`
     --layout-top-padding: 0 !important;
 
     & ${HeaderBarContainer} {
-      @media (${breakpoints.above.phone}) {
-        margin: 0 calc(0px - var(--layout-right-padding)) 24px
-          calc(0px - var(--layout-left-padding));
-      }
+      position: sticky;
+      top: 0;
+      margin: 0 calc(0px - var(--layout-right-padding)) 24px
+        calc(0px - var(--layout-left-padding));
     }
   }
 `

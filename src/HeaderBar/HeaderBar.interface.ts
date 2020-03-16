@@ -1,6 +1,8 @@
-import * as React from 'react'
+import { BackgroundProps } from '../Background'
 
 export default interface HeaderBarProps
-  extends React.HTMLAttributes<HTMLElement> {
+  extends Omit<BackgroundProps, 'backgroundColor'> {
   progress?: number
+  small?: boolean
+  backgroundColor?: string
 }
