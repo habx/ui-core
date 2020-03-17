@@ -44,6 +44,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
   }
 )
 
-export default withLabel<HTMLInputElement>({ orientation: 'horizontal' })<
-  CheckboxInnerProps
->(Checkbox)
+export default withLabel<HTMLInputElement>({
+  orientation: 'horizontal-reverse',
+})<CheckboxInnerProps>(Checkbox)

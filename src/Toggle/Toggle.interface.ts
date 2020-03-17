@@ -7,7 +7,6 @@ export interface ToggleInnerProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   error?: boolean
   disabled?: boolean
-  large?: boolean
   value?: boolean
   onChange?: (newValue: boolean) => void
   as?: styledAs

@@ -37,6 +37,6 @@ const RadioInput = React.forwardRef<HTMLInputElement, RadioInputInnerProps>(
   }
 )
 
-export default withLabel<HTMLInputElement>({ orientation: 'horizontal' })<
-  RadioInputInnerProps
->(RadioInput)
+export default withLabel<HTMLInputElement>({
+  orientation: 'horizontal-reverse',
+})<RadioInputInnerProps>(RadioInput)
