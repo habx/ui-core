@@ -29,6 +29,15 @@ const FieldWithLabelContainer = styled.div`
   }
 
   &[data-orientation='horizontal'] {
+    flex-direction: row;
+    justify-content: space-between;
+
+    & > ${LabelContainer} {
+      padding-right: 8px;
+    }
+  }
+
+  &[data-orientation='horizontal-reverse'] {
     flex-direction: row-reverse;
     justify-content: flex-end;
 
@@ -47,7 +56,7 @@ type LabelReceivedProps = {
 
 type Options = {
   padding?: 'small' | 'regular' | 'large'
-  orientation?: 'vertical' | 'horizontal'
+  orientation?: 'vertical' | 'horizontal' | 'horizontal-reverse'
 }
 
 const withLabel = <RefElement extends HTMLElement>({

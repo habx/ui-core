@@ -15,7 +15,7 @@ const ToggleContainer = styled.div`
 
 const GRID_PROPS = {
   onChange: () => {},
-  label: 'Label',
+  label: 'My Toggle label',
 }
 
 const GRID_LINES = [
@@ -25,19 +25,6 @@ const GRID_LINES = [
   {
     title: 'Selected',
     props: {
-      value: true,
-    },
-  },
-  {
-    title: 'Large',
-    props: {
-      large: true,
-    },
-  },
-  {
-    title: 'Large + selected',
-    props: {
-      large: true,
       value: true,
     },
   },
@@ -66,6 +53,7 @@ const Grid = withGrid<ToggleProps>({
   lines: GRID_LINES,
   items: GRID_ITEMS,
   itemWrapper: ToggleContainer,
+  itemHorizontalSpace: 72,
 })(Toggle)
 
 export default {
@@ -85,8 +73,7 @@ export const dynamic = () => (
       value={boolean('Checked', false)}
       error={boolean('Error', false)}
       disabled={boolean('Disabled', false)}
-      large={boolean('Large', false)}
-      label="Label"
+      label="My Toggle label"
       labelType={select(
         'LabelType',
         [

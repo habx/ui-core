@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import withLabel from '../withLabel'
 
 import { ToggleInnerProps } from './Toggle.interface'
@@ -7,7 +8,9 @@ import { ToggleContainer } from './Toggle.style'
 
 const Toggle = React.forwardRef<HTMLInputElement, ToggleInnerProps>(
   (props, ref) => {
-    const { error, value, disabled, large, onChange, onClick, ...rest } = props
+    const { error, value, disabled, onChange, onClick, ...rest } = props
+
+    const hasBackground = useHasColoredBackground()
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
       if (onClick) {
@@ -25,9 +28,10 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleInnerProps>(
         data-selected={!!value}
         data-disabled={disabled}
         data-error={error}
-        data-large={large}
+        data-has-background={hasBackground}
         {...rest}
         onClick={handleClick}
+        tabIndex={0}
       />
     )
   }
