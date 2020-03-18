@@ -3,13 +3,13 @@ import { createPortal } from 'react-dom'
 
 import { useIsMounted, useTimeout } from '../_internal/hooks'
 import { isClientSide } from '../_internal/ssr'
-import Modal from '../Modal'
-import { ANIMATION_DURATION } from '../Modal/Modal.style'
+import LightBox from '../LightBox/LightBox'
+import { ANIMATION_DURATION } from '../LightBox/LightBox.style'
 
-import { subscribe } from './prompt'
-import { StateModal } from './PromptModals.interface'
+import { subscribe } from './promptFullScreen'
+import { StateModal } from './PromptLightBoxs.interface'
 
-const PromptModals: React.FunctionComponent<{}> = () => {
+const PromptLightBoxs: React.FunctionComponent<{}> = () => {
   const isMounted = useIsMounted()
   const registerTimeout = useTimeout()
 
@@ -67,14 +67,14 @@ const PromptModals: React.FunctionComponent<{}> = () => {
         const children = Component ? <Component /> : resultProps.children
 
         const content = (
-          <Modal
+          <LightBox
             open={modal.open}
             key={modal.id}
             onClose={() => handleResolve(modal, undefined)}
             {...resultProps}
           >
             {children}
-          </Modal>
+          </LightBox>
         )
 
         if (isClientSide) {
@@ -87,4 +87,4 @@ const PromptModals: React.FunctionComponent<{}> = () => {
   )
 }
 
-export default PromptModals
+export default PromptLightBoxs
