@@ -3,13 +3,14 @@ import { createPortal } from 'react-dom'
 
 import { useIsMounted, useTimeout } from '../_internal/hooks'
 import { isClientSide } from '../_internal/ssr'
+import LightBox from '../LightBox'
 import Modal from '../Modal'
 import { ANIMATION_DURATION } from '../Modal/Modal.style'
 
 import { subscribe } from './prompt'
 import { StateModal } from './PromptModals.interface'
 
-const ConfirmModal: React.FunctionComponent<{}> = () => {
+const PromptModals: React.FunctionComponent<{}> = () => {
   const isMounted = useIsMounted()
   const registerTimeout = useTimeout()
 
@@ -60,18 +61,27 @@ const ConfirmModal: React.FunctionComponent<{}> = () => {
   return (
     <React.Fragment>
       {modals.map((modal: StateModal) => {
-        const { Component, ...resultProps } = modal.props({
+        const { Component, fullscreen, ...resultProps } = modal.props({
           onResolve: response => handleResolve(modal, response),
         })
 
         const children = Component ? <Component /> : resultProps.children
 
-        const content = (
+        const content = fullscreen ? (
+          <LightBox
+            open={modal.open}
+            key={modal.id}
+            {...resultProps}
+            onClose={() => handleResolve(modal, undefined)}
+          >
+            {children}
+          </LightBox>
+        ) : (
           <Modal
             open={modal.open}
             key={modal.id}
-            onClose={() => handleResolve(modal, undefined)}
             {...resultProps}
+            onClose={() => handleResolve(modal, undefined)}
           >
             {children}
           </Modal>
@@ -87,4 +97,4 @@ const ConfirmModal: React.FunctionComponent<{}> = () => {
   )
 }
 
-export default ConfirmModal
+export default PromptModals
