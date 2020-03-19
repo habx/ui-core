@@ -74,7 +74,6 @@ const PromptModals: React.FunctionComponent<{}> = () => {
             onClose={() => handleResolve(modal, undefined)}
             {...resultProps}
           >
-            {' '}
             {children}
           </LightBox>
         ) : (
