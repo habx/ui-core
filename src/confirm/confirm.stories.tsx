@@ -48,7 +48,7 @@ const Grid = withGrid<ButtonProps>({
 })(Button)
 
 export default {
-  title: 'Modals/promptFullScreen',
+  title: 'Modals/prompt',
 }
 
 export const gallery = () => <Grid />
