@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 
 import { useIsMounted, useTimeout } from '../_internal/hooks'
 import { isClientSide } from '../_internal/ssr'
+import LightBox from '../LightBox'
 import Modal from '../Modal'
 import { ANIMATION_DURATION } from '../Modal/Modal.style'
 
@@ -60,13 +61,23 @@ const PromptModals: React.FunctionComponent<{}> = () => {
   return (
     <React.Fragment>
       {modals.map((modal: StateModal) => {
-        const { Component, ...resultProps } = modal.props({
+        const { Component, fullscreen, ...resultProps } = modal.props({
           onResolve: response => handleResolve(modal, response),
         })
 
         const children = Component ? <Component /> : resultProps.children
 
-        const content = (
+        const content = fullscreen ? (
+          <LightBox
+            open={modal.open}
+            key={modal.id}
+            onClose={() => handleResolve(modal, undefined)}
+            {...resultProps}
+          >
+            {' '}
+            {children}
+          </LightBox>
+        ) : (
           <Modal
             open={modal.open}
             key={modal.id}

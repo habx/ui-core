@@ -86,7 +86,6 @@ export { default as SlideShow, SlideShowProps } from './SlideShow'
 export { default as LightBox, LightBoxProps } from './LightBox'
 export { default as Modal, ModalProps } from './Modal'
 export { default as prompt } from './prompt'
-export { default as promptFullScreen } from './promptFullScreen'
 export { default as confirm } from './confirm'
 
 
