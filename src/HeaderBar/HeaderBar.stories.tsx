@@ -20,28 +20,32 @@ const CardChildrenContainer = styled.div`
   background-color: ${palette.darkBlue[100]};
 `
 
-const ActionBarFlatContainer = styled.div`
-  width: 500px;
+const HeaderBarWrapper = styled.div`
+  width: 450px;
   height: 500px;
   border: 1px solid ${palette.darkBlue[200]};
 `
 
-const WrappedActionBar: React.FunctionComponent<HeaderBarProps> = props => (
-  <ActionBarFlatContainer>
-    <HeaderBar {...props} />
-  </ActionBarFlatContainer>
-)
-
-const WrappedActionBarInCard: React.FunctionComponent<HeaderBarProps> = props => (
+const HeaderBarCardWrapper: React.FunctionComponent<{}> = ({ children }) => (
   <Card spacing="regular">
-    <HeaderBar {...props} />
+    {children}
     <CardChildrenContainer />
   </Card>
 )
 
 const GRID_PROPS = {}
 
-const GRID_LINES = [{}]
+const GRID_LINES = [
+  {
+    title: 'Regular',
+  },
+  {
+    title: 'Small',
+    props: {
+      small: true,
+    },
+  },
+]
 
 const GRID_ITEMS = [
   {
@@ -61,19 +65,28 @@ const GRID_ITEMS = [
       ),
     },
   },
+  {
+    label: 'Progress',
+    props: {
+      children: <Title type="regular">Title of the page</Title>,
+      progress: 0.4,
+    },
+  },
 ]
 
 const Grid = withGrid<HeaderBarProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
-})(WrappedActionBar)
+  itemWrapper: HeaderBarWrapper,
+})(HeaderBar)
 
 const GridInCard = withGrid<HeaderBarProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
-})(WrappedActionBarInCard)
+  itemWrapper: HeaderBarCardWrapper,
+})(HeaderBar)
 
 export default {
   title: 'Layouts/HeaderBar',

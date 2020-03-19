@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 import breakpoints from '../breakpoints'
+import Card from '../Card'
 import ExpansionPanelItem from '../ExpansionPanelItem'
 import Text from '../Text'
 
@@ -18,11 +19,15 @@ const Container = styled.div`
   }
 `
 
-const WrappedExpansionPanel: React.FunctionComponent<ExpansionPanelProps> = props => (
-  <Container>
-    <ExpansionPanel {...props} />
-  </Container>
-)
+const CardContainer = styled(Card).attrs(() => ({
+  spacing: 'narrow-horizontal-only',
+}))`
+  width: 450px;
+
+  @media (${breakpoints.below.phone}) {
+    width: 100vw;
+  }
+`
 
 const ExpansionPanelItems = () => (
   <React.Fragment>
@@ -71,7 +76,15 @@ const Grid = withGrid<ExpansionPanelProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
-})(WrappedExpansionPanel)
+  itemWrapper: Container,
+})(ExpansionPanel)
+
+const GridInCard = withGrid<ExpansionPanelProps>({
+  props: GRID_PROPS,
+  lines: GRID_LINES,
+  items: GRID_ITEMS,
+  itemWrapper: CardContainer,
+})(ExpansionPanel)
 
 export default {
   title: 'Layouts/ExpansionPanel',
@@ -83,6 +96,8 @@ export const gallery = () => <Grid />
 export const lightBackground = () => <Grid background="light" />
 
 export const darkBackground = () => <Grid background="dark" />
+
+export const inCard = () => <GridInCard />
 
 export const dynamic = () => (
   <ExpansionPanel
