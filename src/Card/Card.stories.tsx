@@ -1,4 +1,4 @@
-import { withKnobs, boolean } from '@storybook/addon-knobs'
+import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -9,7 +9,7 @@ import Text from '../Text'
 import Title from '../Title'
 
 import Card from './Card'
-import CardProps from './Card.interface'
+import CardProps, { CardSpacing } from './Card.interface'
 
 const CardChildrenContainer = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ const CardChildrenContent = styled.div`
   }
 `
 
-export const CardChildren = () => (
+const CardChildren = () => (
   <CardChildrenContainer>
     <img
       alt="Illu"
@@ -54,7 +54,35 @@ const GRID_PROPS = {
   children: <CardChildren />,
 }
 
-const GRID_LINES = [{}]
+const GRID_LINES = [
+  {
+    title: 'Spacing none',
+  },
+  {
+    title: 'Spacing narrow',
+    props: {
+      spacing: 'narrow' as 'narrow',
+    },
+  },
+  {
+    title: 'Spacing regular',
+    props: {
+      spacing: 'regular' as 'regular',
+    },
+  },
+  {
+    title: 'Spacing narrow horizontal only',
+    props: {
+      spacing: 'narrow-horizontal-only' as 'narrow-horizontal-only',
+    },
+  },
+  {
+    title: 'Spacing narrow regular only',
+    props: {
+      spacing: 'regular-horizontal-only' as 'regular-horizontal-only',
+    },
+  },
+]
 
 const GRID_ITEMS = [
   {
@@ -91,8 +119,20 @@ export const lightBackground = () => <Grid background="light" />
 
 export const darkBackground = () => <Grid background="dark" />
 
+const spacings: { [key: string]: CardSpacing } = {
+  None: 'none',
+  Narrow: 'narrow',
+  'Narrow (horizontal ony)': 'narrow-horizontal-only',
+  Regular: 'regular',
+  'Regular (horizontal only)': 'regular-horizontal-only',
+}
+
 export const dynamic = () => (
-  <Card animated={boolean('Animated', false)} flat={boolean('Flat', false)}>
+  <Card
+    animated={boolean('Animated', false)}
+    flat={boolean('Flat', false)}
+    spacing={select('Spacing', spacings, 'none')}
+  >
     <CardChildren />
   </Card>
 )
