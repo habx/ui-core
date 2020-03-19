@@ -2,7 +2,10 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
-import { CardChildren } from '../Card/Card.stories'
+import Button from '../Button'
+import Icon from '../Icon'
+import Text from '../Text'
+import Title from '../Title'
 
 import BaseSlideShow from './SlideShow'
 import SlideShowProps from './SlideShow.interface'
@@ -14,6 +17,45 @@ const Container = styled.div`
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 48px);
 `
+
+const CardChildrenContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  max-width: calc(100vw - 48px);
+
+  & > img {
+    width: 100%;
+    height: auto;
+  }
+`
+
+const CardChildrenContent = styled.div`
+  padding: 12px 24px;
+
+  & > *:not(button) {
+    padding-bottom: 12px;
+  }
+`
+
+const CardChildren = () => (
+  <CardChildrenContainer>
+    <img
+      alt="Illu"
+      src="https://vivreparis.fr/wp-content/uploads/2019/03/paris-louvre-record-touristes.png"
+    />
+    <CardChildrenContent>
+      <Title type="regular">Paris</Title>
+      <Text markdown>
+        The **Louvre Museum** is the world's largest art museum and a historic
+        monument in Paris, France.
+      </Text>
+      <Button link elementRight={<Icon icon="arrow-east" />}>
+        Visit
+      </Button>
+    </CardChildrenContent>
+  </CardChildrenContainer>
+)
 
 const GRID_PROPS = {
   items: [{}, {}, {}, {}],
