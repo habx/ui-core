@@ -6,9 +6,10 @@ import { ModalProps } from '../Modal'
 export type PromptMessage = (
   injectedProps: PromptInjectedProps
 ) => // doesn't work: https://github.com/microsoft/TypeScript/issues/241
-(PromptInjectedProps extends { fullscreen: true }
-  ? LightBoxProps
-  : ModalProps) & {
+Omit<
+  PromptInjectedProps extends { fullscreen: true } ? LightBoxProps : ModalProps,
+  'onClose'
+> & {
   fullscreen?: boolean
   Component?: React.ComponentType<{}>
 }

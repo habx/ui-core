@@ -71,8 +71,8 @@ const PromptModals: React.FunctionComponent<{}> = () => {
           <LightBox
             open={modal.open}
             key={modal.id}
-            onClose={() => handleResolve(modal, undefined)}
             {...resultProps}
+            onClose={() => handleResolve(modal, undefined)}
           >
             {children}
           </LightBox>
@@ -80,8 +80,8 @@ const PromptModals: React.FunctionComponent<{}> = () => {
           <Modal
             open={modal.open}
             key={modal.id}
-            onClose={() => handleResolve(modal, undefined)}
             {...resultProps}
+            onClose={() => handleResolve(modal, undefined)}
           >
             {children}
           </Modal>
