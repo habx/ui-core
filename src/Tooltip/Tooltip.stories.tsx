@@ -4,7 +4,6 @@ import * as React from 'react'
 import withGrid from '../_internal/StorybookGrid'
 import Button from '../Button'
 import Icon from '../Icon'
-import Title from '../Title'
 
 import Tooltip from './Tooltip'
 import TooltipProps from './Tooltip.interface'
@@ -27,13 +26,6 @@ const GRID_LINES = [
     title: 'Icon as trigger',
     props: {
       children: <Icon icon="calendar-outline" />,
-    },
-  },
-  {
-    title: 'Follow cursor',
-    props: {
-      children: <Title type="section">Hover this title</Title>,
-      followCursor: true,
     },
   },
 ]
