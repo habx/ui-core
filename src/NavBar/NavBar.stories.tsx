@@ -34,7 +34,7 @@ export default {
 }
 
 export const basic = () => (
-  <NavBar title="Home">
+  <NavBar title="Projects" subtitle="v3.7.0">
     <NavBarItem
       icon={<Icon icon="house-building-outline" />}
       label="Programmes"
