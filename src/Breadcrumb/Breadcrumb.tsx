@@ -14,7 +14,7 @@ const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
     return (
       <BreadcrumbContainer ref={ref} {...rest}>
         {items.map((item, index) => (
-          <React.Fragment>
+          <React.Fragment key={index}>
             {item}
             {index < items.length - 1 && <Icon icon="chevron-east" />}
           </React.Fragment>
