@@ -15,7 +15,6 @@ export const TooltipContainer = styled(Background)`
   opacity: 0;
   pointer-events: none;
   box-shadow: ${theme.shadow('low')};
-  white-space: nowrap;
   position: fixed;
   z-index: ${zIndex.modals};
 

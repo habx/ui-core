@@ -3,7 +3,7 @@ import * as React from 'react'
 
 import withGrid from '../_internal/StorybookGrid'
 import Button from '../Button'
-import Icon from '../Icon'
+import IconButton from '../IconButton'
 
 import Tooltip from './Tooltip'
 import TooltipProps from './Tooltip.interface'
@@ -14,18 +14,15 @@ const GRID_PROPS = {
 
 const GRID_LINES = [
   {
-    title: 'Regular',
-  },
-  {
     title: 'Button as trigger',
     props: {
-      children: <Button>Hover me</Button>,
+      children: <Button small>Hover me</Button>,
     },
   },
   {
-    title: 'Icon as trigger',
+    title: 'IconButton as trigger',
     props: {
-      children: <Icon icon="calendar-outline" />,
+      children: <IconButton icon="calendar-outline" />,
     },
   },
 ]
@@ -55,10 +52,11 @@ const Grid = withGrid<TooltipProps>({
   items: GRID_ITEMS,
   itemHorizontalSpace: 24,
   itemVerticalSpace: 48,
+  itemWrapper: (props) => <span style={{ alignSelf: 'center' }} {...props} />,
 })(Tooltip)
 
 export default {
-  title: 'Navigation/Tooltip',
+  title: 'Alerts/Tooltip',
   decorators: [withKnobs],
 }
 

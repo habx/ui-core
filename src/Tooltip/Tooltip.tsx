@@ -31,7 +31,7 @@ const HORIZONTAL_SCREEN_MARGIN = 4
 const VERTICAL_SCREEN_MARGIN = 4
 
 const useTooltip = (
-  disabled: boolean,
+  props: TooltipProps,
   ref: React.Ref<HTMLDivElement>
 ): UseTooltipResult => {
   const tooltipRef = useMergedRef<HTMLDivElement>(ref)
@@ -87,20 +87,24 @@ const useTooltip = (
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
 
   const handleMouseEnter = React.useCallback(() => {
-    if (!disabled) {
+    if (!props.disabled) {
       dispatch({ type: ActionTypes.SetIsVisible, value: true })
     }
-  }, [disabled])
+  }, [props.disabled])
   const handleMouseLeave = React.useCallback(
     () => dispatch({ type: ActionTypes.SetIsVisible, value: false }),
     []
   )
 
   useSSRLayoutEffect(() => {
-    if (disabled) {
+    if (props.disabled) {
       dispatch({ type: ActionTypes.SetIsVisible, value: false })
     }
-  }, [disabled])
+  }, [props.disabled])
+
+  useSSRLayoutEffect(() => {
+    dispatch({ type: ActionTypes.UpdatePosition })
+  }, [props.description, props.title, props.small])
 
   return [
     state,
@@ -113,16 +117,9 @@ const useTooltip = (
 }
 
 const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
-  const {
-    title,
-    description,
-    children,
-    small = false,
-    disabled = false,
-    ...rest
-  } = props
+  const { title, description, children, small = false, ...rest } = props
 
-  const [state, actions, refs] = useTooltip(disabled, ref)
+  const [state, actions, refs] = useTooltip(props, ref)
 
   const modal = useModal<HTMLDivElement>({
     open: state.isVisible,
