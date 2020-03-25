@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import Icon from '../Icon'
 import palette from '../palette'
+import Text from '../Text'
 import Triangle from '../Triangle'
 import useTheme from '../useTheme'
 
@@ -17,7 +18,6 @@ import {
   NavBarFakeContainer,
   NavBarHeader,
   NavBarItemsContainer,
-  NavBarPageLogo,
   NavBarToggleButton,
   TitleContainer,
   GeometricalShapesContainer,
@@ -82,6 +82,7 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
     const {
       children,
       title,
+      subtitle,
       color = palette.darkBlue[900],
       backgroundColor = palette.yellow[600],
       ...rest
@@ -158,11 +159,15 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
               {state.isExpanded && (
                 <TitleContainer>
                   {typeof title === 'string' ? (
-                    <NavBarPageLogo color={color} type="caption">
-                      {title}
-                    </NavBarPageLogo>
+                    <Text opacity={1}>{title}</Text>
                   ) : (
                     title
+                  )}
+                  {subtitle && (
+                    <React.Fragment>
+                      &nbsp;&nbsp;
+                      <Text type="caption">{subtitle}</Text>
+                    </React.Fragment>
                   )}
                 </TitleContainer>
               )}
