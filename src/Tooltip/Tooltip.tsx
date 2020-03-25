@@ -1,149 +1,164 @@
 import useModal from '@delangle/use-modal'
 import * as React from 'react'
+import { createPortal } from 'react-dom'
 
-import { getDOMRect, useSSRLayoutEffect } from '../_internal/ssr'
-import useMousePosition from '../_internal/useMousePosition'
+import { clamp } from '../_internal/data'
+import { isClientSide, useSSRLayoutEffect } from '../_internal/ssr'
+import useMergedRef from '../_internal/useMergedRef'
 import palette from '../palette'
 import Text from '../Text'
 
 import TooltipProps, {
-  TooltipWithTriggerElementProps,
+  TooltipState,
+  ActionTypes,
+  TooltipActions,
+  Position,
+  UseTooltipResult,
 } from './Tooltip.interface'
 import {
   ANIMATION_DURATION,
   TooltipContainer,
   TooltipTriggerContainer,
-  TooltipTriggerContent,
-  TooltipTriggerCursorWrapper,
 } from './Tooltip.style'
 
-const TooltipWithTriggerElement: React.FunctionComponent<TooltipWithTriggerElementProps> = ({
-  tooltip,
-  hasDescription,
-  followCursor = false,
-  triggerElement: rawTrigger,
-}) => {
-  const [isHovered, setHovered] = React.useState<boolean>(false)
-  const mousePosition = useMousePosition({ skip: !followCursor || !isHovered })
+const INITIAL_STATE: TooltipState = {
+  position: { top: 0, left: 0 },
+  isVisible: false,
+}
+
+const VERTICAL_TRIGGER_MARGIN = 12
+const HORIZONTAL_SCREEN_MARGIN = 4
+const VERTICAL_SCREEN_MARGIN = 4
+
+const useTooltip = (
+  props: TooltipProps,
+  ref: React.Ref<HTMLDivElement>
+): UseTooltipResult => {
+  const tooltipRef = useMergedRef<HTMLDivElement>(ref)
+  const triggerRef = React.useRef<HTMLDivElement>(null)
+
+  const getPosition = (): Position => {
+    const tooltipDimensions = tooltipRef.current?.getBoundingClientRect()
+    const triggerDimensions = triggerRef.current?.getBoundingClientRect()
+
+    if (!tooltipDimensions || !triggerDimensions) {
+      return { top: 0, left: 0 }
+    }
+
+    const left = clamp(
+      triggerDimensions.left +
+        (triggerDimensions.width - tooltipDimensions.width) / 2,
+      HORIZONTAL_SCREEN_MARGIN,
+      window.innerWidth - tooltipDimensions.width - HORIZONTAL_SCREEN_MARGIN
+    )
+
+    let top =
+      triggerDimensions.top - tooltipDimensions.height - VERTICAL_TRIGGER_MARGIN
+
+    if (top < VERTICAL_SCREEN_MARGIN) {
+      top = triggerDimensions.bottom + VERTICAL_TRIGGER_MARGIN
+    }
+
+    return { top, left }
+  }
+
+  const reducer: React.Reducer<TooltipState, TooltipActions> = (
+    state,
+    action
+  ) => {
+    switch (action.type) {
+      case ActionTypes.SetIsVisible: {
+        return {
+          ...state,
+          isVisible: action.value,
+          ...(action.value ? { position: getPosition() } : {}),
+        }
+      }
+
+      case ActionTypes.UpdatePosition: {
+        return {
+          ...state,
+          position: getPosition(),
+        }
+      }
+    }
+  }
+
+  const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
+
+  const handleMouseEnter = React.useCallback(() => {
+    if (!props.disabled) {
+      dispatch({ type: ActionTypes.SetIsVisible, value: true })
+    }
+  }, [props.disabled])
+  const handleMouseLeave = React.useCallback(
+    () => dispatch({ type: ActionTypes.SetIsVisible, value: false }),
+    []
+  )
+
+  useSSRLayoutEffect(() => {
+    if (props.disabled) {
+      dispatch({ type: ActionTypes.SetIsVisible, value: false })
+    }
+  }, [props.disabled])
+
+  useSSRLayoutEffect(() => {
+    dispatch({ type: ActionTypes.UpdatePosition })
+  }, [props.description, props.title, props.small])
+
+  return [
+    state,
+    {
+      onMouseEnter: handleMouseEnter,
+      onMouseLeave: handleMouseLeave,
+    },
+    { trigger: triggerRef, tooltip: tooltipRef },
+  ]
+}
+
+const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
+  const { title, description, children, small = false, ...rest } = props
+
+  const [state, actions, refs] = useTooltip(props, ref)
 
   const modal = useModal<HTMLDivElement>({
-    open: isHovered,
+    open: state.isVisible,
     onClose: () => {},
     persistent: true,
     animated: true,
     animationDuration: ANIMATION_DURATION,
   })
 
-  const handleMouseEnter = React.useCallback(() => setHovered(true), [])
-  const handleMouseLeave = React.useCallback(() => setHovered(false), [])
-
-  const trigger = React.cloneElement(rawTrigger, {
-    onMouseEnter: handleMouseEnter,
-    onMouseLeave: handleMouseLeave,
-  })
-
-  const contentRef = React.useRef<HTMLDivElement>(null)
-  const tooltipRef = React.useRef<HTMLDivElement>(null)
-  const tooltipHalfWidth = tooltipRef.current
-    ? tooltipRef.current.clientWidth / 2
-    : 0
-  const tooltipPosition = contentRef.current
-    ? (contentRef.current.getBoundingClientRect() as DOMRect)
-    : getDOMRect()
-  const [contentStyle, setContentStyle] = React.useState({})
-
-  useSSRLayoutEffect(() => {
-    const style = {} as any
-    if (tooltipPosition.x && tooltipPosition.x < 0) {
-      style.left = 0
-      style.right = 'auto'
-    }
-    if (tooltipPosition.x + tooltipHalfWidth * 2 + 100 > window.innerWidth) {
-      style.left = 'auto'
-      style.right = 0
-    }
-    setContentStyle(style)
-  }, [tooltipHalfWidth]) // eslint-disable-line
-
   return (
-    <TooltipTriggerContainer data-state={modal.state}>
-      {trigger}
-      <TooltipTriggerContent
-        ref={contentRef}
-        style={contentStyle}
-        data-has-description={hasDescription}
-        data-follow-cursor={followCursor}
+    <React.Fragment>
+      <TooltipTriggerContainer
+        className="test"
+        onMouseEnter={actions.onMouseEnter}
+        onMouseLeave={actions.onMouseLeave}
+        ref={refs.trigger}
       >
-        {followCursor ? (
-          <TooltipTriggerCursorWrapper
-            ref={tooltipRef}
-            style={{
-              position: 'fixed' as 'fixed',
-              transform: `translate(${
-                tooltipHalfWidth && tooltipHalfWidth - mousePosition.x > 0
-                  ? '50%'
-                  : `${mousePosition.x}px`
-              }, ${mousePosition.y -
-                (hasDescription ? 24 : 12)}px) translateX(-50%)`,
-              top: 0,
-              left: 0,
-              pointerEvents: 'none' as 'none',
-            }}
+        {children}
+      </TooltipTriggerContainer>
+      {isClientSide &&
+        createPortal(
+          <TooltipContainer
+            ref={refs.tooltip}
+            backgroundColor={palette.darkBlue[700]}
+            data-has-description={!!description}
+            data-state={modal.state}
+            style={state.position}
+            {...rest}
           >
-            {tooltip}
-          </TooltipTriggerCursorWrapper>
-        ) : (
-          <div ref={tooltipRef}>{tooltip}</div>
+            <Text opacity={1} type={small ? 'caption' : 'regular'}>
+              {title}
+            </Text>
+            {description && (
+              <Text type={small ? 'caption' : 'regular'}>{description}</Text>
+            )}
+          </TooltipContainer>,
+          document.body
         )}
-      </TooltipTriggerContent>
-    </TooltipTriggerContainer>
-  )
-}
-
-const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
-  const {
-    title,
-    description,
-    small,
-    children,
-    followCursor,
-    disabled,
-    ...rest
-  } = props
-
-  const hasDescription = !!description
-
-  const tooltip = (
-    <TooltipContainer
-      ref={ref}
-      backgroundColor={palette.darkBlue[700]}
-      data-has-description={hasDescription}
-      {...rest}
-    >
-      <Text opacity={1} type={small ? 'caption' : 'regular'}>
-        {title}
-      </Text>
-      {description && (
-        <Text type={small ? 'caption' : 'regular'}>{description}</Text>
-      )}
-    </TooltipContainer>
-  )
-
-  if (!React.isValidElement(children)) {
-    return tooltip
-  }
-
-  if (disabled) {
-    return children
-  }
-
-  return (
-    <TooltipWithTriggerElement
-      tooltip={tooltip}
-      triggerElement={children}
-      hasDescription={hasDescription}
-      followCursor={followCursor}
-    />
+    </React.Fragment>
   )
 })
 

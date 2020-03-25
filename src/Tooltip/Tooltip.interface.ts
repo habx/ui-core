@@ -5,13 +5,34 @@ export default interface TooltipProps
   title: string
   description?: string
   small?: boolean
-  followCursor?: boolean
   disabled?: boolean
+  children: React.ReactElement<any>
 }
 
-export interface TooltipWithTriggerElementProps {
-  hasDescription: boolean
-  triggerElement: React.ReactComponentElement<any>
-  tooltip: React.ReactNode
-  followCursor?: boolean
+export type Position = {
+  top: number
+  left: number
 }
+
+export interface TooltipState {
+  isVisible: boolean
+  position: Position
+}
+
+export enum ActionTypes {
+  SetIsVisible = 0,
+  UpdatePosition = 1,
+}
+
+export type TooltipActions =
+  | { type: ActionTypes.SetIsVisible; value: boolean }
+  | { type: ActionTypes.UpdatePosition }
+
+export type UseTooltipResult = [
+  TooltipState,
+  { onMouseEnter: () => void; onMouseLeave: () => void },
+  {
+    trigger: React.RefObject<HTMLDivElement>
+    tooltip: React.RefObject<HTMLDivElement>
+  }
+]

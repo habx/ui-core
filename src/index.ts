@@ -64,7 +64,6 @@ export { default as Toggle, ToggleProps } from './Toggle'
  */
 export { default as Icon, IconProps } from './Icon'
 export { default as Loader, LoaderProps } from './Loader'
-export { default as Tooltip, TooltipProps } from './Tooltip'
 export { default as Triangle, TriangleProps } from './Triangle'
 
 
@@ -90,9 +89,10 @@ export { default as confirm } from './confirm'
 
 
 /*
-  Notifications
+  Alerts
  */
 export { default as AnnouncementBanner, AnnouncementBannerProps } from './AnnouncementBanner'
+export { default as Tooltip, TooltipProps } from './Tooltip'
 export { default as Notification, NotificationProps } from './Notification'
 export { default as notify } from './notify'
 
