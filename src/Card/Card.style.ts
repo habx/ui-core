@@ -7,7 +7,9 @@ import theme from '../theme'
 export const CardContainer = styled(Layout)`
   border-radius: 4px;
   position: relative;
-  transition: box-shadow 150ms ease-in-out;
+  transition-property: box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: ease-in-out;
   --layout-left-padding: 0;
   --layout-right-padding: 0;
   --layout-top-padding: 0;
