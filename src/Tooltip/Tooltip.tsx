@@ -136,9 +136,10 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
     animationDuration: ANIMATION_DURATION,
   })
 
-  const content = React.isValidElement(children)
-    ? React.cloneElement(children, { onClick })
-    : children
+  const content =
+    React.isValidElement(children) && onClick
+      ? React.cloneElement(children, { onClick })
+      : children
 
   return (
     <React.Fragment>
