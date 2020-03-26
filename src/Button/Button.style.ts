@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+import {
+  ANIMATION_DURATIONS,
+  ANIMATION_TIMING_FUNCTION,
+} from '../animations/animations'
 import palette from '../palette'
 import theme from '../theme'
 
@@ -41,11 +45,12 @@ export const ButtonContainer = styled.button`
   font-size: 16px;
   line-height: 20px;
   font-family: ${theme.font()};
+  border: none;
 
-  transition-property: border, padding, background-color;
-  transition-duration: 50ms;
-  transition-timing-function: ease-in-out;
-
+  transition-property: box-shadow, background-color;
+  transition-duration: ${ANIMATION_DURATIONS.m}ms;
+  transition-timing-function: ${ANIMATION_TIMING_FUNCTION};
+  
   &[data-small='true'] {
     padding: 0 16px;
     line-height: 18px;
@@ -70,45 +75,30 @@ export const ButtonContainer = styled.button`
   }
 
   &[data-outline='true'] {
+    --button-border-width: 2px;
+    --button-border-color: ${theme.color('secondary', { dynamic: true })};
+
     background-color: transparent;
-    border: 2px solid ${theme.color('secondary', { dynamic: true })};
+    box-shadow: inset 0 0 0 var(--button-border-width) var(--button-border-color);
     color: ${theme.color('secondary', { dynamic: true })};
 
     & svg {
       fill: ${theme.color('secondary', { dynamic: true })};
     }
+    }
 
     &:hover {
-      padding: 0 22px;
-      border-width: 4px;
-
-      &[data-large='true'] {
-        padding: 0 68px;
-      }
-
-      &[data-small='true'] {
-        padding: 0 14px;
-      }
+      --button-border-width: 4px;
     }
 
     &:focus,
     &:active {
-      padding: 0 20px;
-      border-width: 6px;
-
-      &[data-large='true'] {
-        padding: 0 66px;
-      }
-
-      &[data-small='true'] {
-        padding: 0 12px;
-      }
+      --button-border-width: 6px;
     }
   }
 
   &[data-link='true'] {
     background-color: transparent;
-    border: none;
     padding: 0;
     color: ${theme.color('primary', { dynamic: true })};
     height: 20px;
@@ -144,7 +134,6 @@ export const ButtonContainer = styled.button`
   }
 
   &[data-outline='false'][data-link='false'] {
-    border: 4px solid transparent;
     background-color: ${theme.color('primary', { dynamic: true })};
     color: ${theme.color('primary', {
       variation: 'contrastText',
@@ -167,7 +156,7 @@ export const ButtonContainer = styled.button`
 
     &:focus,
     &:active {
-      border-color: ${theme.color('primary', {
+      --button-border-color: ${theme.color('primary', {
         dynamic: true,
         variation: 'focus',
       })};
@@ -191,7 +180,8 @@ export const ButtonContainer = styled.button`
         opacity: 0.45,
         useRootTheme: true,
       })};
-      border-color: ${theme.color('secondary', {
+      
+      --button-border-color: ${theme.color('secondary', {
         variation: 'focus',
         opacity: 0.45,
         useRootTheme: true,
