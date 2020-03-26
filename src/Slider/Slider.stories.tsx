@@ -15,7 +15,9 @@ const SliderWithState: React.FunctionComponent<Props> = ({
 }) => {
   const [value, setValue] = React.useState(initialValue)
 
-  return <Slider {...props} onChange={value => setValue(value)} value={value} />
+  return (
+    <Slider {...props} onChange={(value) => setValue(value)} value={value} />
+  )
 }
 
 const TextInputContainer = styled.div`

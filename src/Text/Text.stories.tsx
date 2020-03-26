@@ -58,7 +58,7 @@ const GRID_ITEMS = [
   },
 ]
 
-const WrappedText: React.FunctionComponent<TextProps> = props => (
+const WrappedText: React.FunctionComponent<TextProps> = (props) => (
   <TextContainer>
     <Text {...props} />
   </TextContainer>

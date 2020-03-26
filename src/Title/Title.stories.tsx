@@ -31,7 +31,7 @@ const types: { [key: string]: TitleTypes } = {
   'Regular Title': 'regular',
 }
 
-const WrappedTitle: React.FunctionComponent<TitleProps> = props => (
+const WrappedTitle: React.FunctionComponent<TitleProps> = (props) => (
   <TitleContainer>
     <Title {...props} />
   </TitleContainer>

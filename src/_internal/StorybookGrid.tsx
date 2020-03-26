@@ -111,7 +111,7 @@ const withGrid = <Props extends object>(config: StorybookGridConfig<Props>) => (
               <LineContainer>
                 <Title type="section">{line.title}</Title>
                 <LineContent>
-                  {items.map(item => {
+                  {items.map((item) => {
                     const fullProps = {
                       ...props,
                       ...line.props,

@@ -87,7 +87,7 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputInnerProps>(
       const result = PHONE_REGEXP.exec(rawValue)
       if (result) {
         const indicator = parseInt(result[1], 10)
-        const country = COUNTRIES.find(el => el.indicator === indicator)
+        const country = COUNTRIES.find((el) => el.indicator === indicator)
 
         if (country) {
           setCountry(country.code)

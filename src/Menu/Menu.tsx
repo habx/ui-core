@@ -28,12 +28,12 @@ const useOnlyOneMenuOpened = (menu: MenuInstance) => {
     instances.push(instance)
 
     return () => {
-      instances = instances.filter(i => i !== instance)
+      instances = instances.filter((i) => i !== instance)
     }
   }, [instance])
 
   React.useEffect(() => {
-    instances.forEach(instanceToClose => {
+    instances.forEach((instanceToClose) => {
       if (
         menu.open &&
         instanceToClose !== instance &&

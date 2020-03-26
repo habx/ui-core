@@ -117,7 +117,10 @@ function coloredText(state: StateCore, silent?: boolean) {
     state.posMax = colorEnd
 
     token = state.push('colored_text_open', 'span', 1)
-    token.attrs = [['style', `color: ${color};`], ['data-ace-color', 1]]
+    token.attrs = [
+      ['style', `color: ${color};`],
+      ['data-ace-color', 1],
+    ]
 
     token = state.push('text', '', 0)
     token.content = text

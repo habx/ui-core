@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import zIndex from '../../_internal/zIndex'
 import Background from '../../Background'
+import Text from '../../Text'
 import theme from '../../theme'
 import Option from '../Option'
 
@@ -65,8 +66,8 @@ export const OptionsContent = styled.ul<{
 
 export const OptionsModalContent = styled.div``
 
-export const EmptyOptions = styled.div`
-  padding: 8px 18px;
+export const EmptyOptions = styled(Text)`
+  padding: 6px 12px;
 `
 
 export const Description = styled.li`

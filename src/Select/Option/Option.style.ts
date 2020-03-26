@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import fontScale from '../../fontScale/fontScale'
 import palette from '../../palette'
 import theme from '../../theme'
 
@@ -30,16 +31,11 @@ export const OptionContainer = styled.li`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 42px;
   font-family: ${theme.font()};
-  padding: 0 12px;
-  font-size: ${theme.font('text')};
+  height: 48px;
+  padding: 0 18px;
+  font-size: ${fontScale.moon.size}px;
   color: ${theme.color('secondary', { opacity: 0.72 })};
-
-  i {
-    vertical-align: middle;
-    margin-right: 4px;
-  }
 
   &:hover,
   &:focus {
@@ -59,6 +55,17 @@ export const OptionContainer = styled.li`
       background-color: transparent;
       cursor: auto;
     }
+  }
+
+  &[data-small='true'] {
+    height: 36px;
+    padding: 0 12px;
+  }
+
+  &[data-tiny='true'] {
+    height: 24px;
+    padding: 0 6px;
+    font-size: ${fontScale.asteroid.size}px;
   }
 
   &:hover {

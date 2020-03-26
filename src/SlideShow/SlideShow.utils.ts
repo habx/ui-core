@@ -42,7 +42,7 @@ export const getClosestSlidePosition = ({
       { length: 3 },
       (_, i) => slideIndex + (currentIteration + i - 1) * slideAmount
     ),
-    el => Math.abs(el - currentSlide)
+    (el) => Math.abs(el - currentSlide)
   )
 }
 

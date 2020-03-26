@@ -53,7 +53,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
             {canReset && props.value && `${props.value}`.length > 0 && (
               <IconButton
                 icon="close"
-                onClick={e =>
+                onClick={(e) =>
                   isFunction(props.onChange) &&
                   props.onChange({
                     target: { ...e.target, value: '' },

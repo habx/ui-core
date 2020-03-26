@@ -8,7 +8,7 @@ const useMousePosition = ({ skip }: { skip?: boolean } = {}) => {
 
   React.useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setPosition(prev => {
+      setPosition((prev) => {
         if (prev.x !== e.clientX || prev.y !== e.clientY) {
           return { x: e.clientX, y: e.clientY }
         }

@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
+import fontScale from '../fontScale/fontScale'
 import Icon from '../Icon'
 import palette from '../palette'
 import theme from '../theme'
 
 export const Placeholder = styled.div`
   flex: 1 1 100%;
-  align-self: stretch;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -32,41 +32,34 @@ export const LabelIcons = styled.div`
   }
 `
 
-export const SelectContent = styled.div`
-  position: relative;
-  display: flex;
-  align-items: baseline;
-  box-sizing: border-box;
-  cursor: pointer;
-
-  z-index: 0;
-  padding: 11px 16px;
-  height: 45px;
-  line-height: 24px;
-
-  font-size: ${theme.font('text')};
-  user-select: none;
-
-  &[data-open='true'] {
-    transition: z-index ease-in 0s;
-    z-index: 10;
-  }
-
-  &[data-small='true'] {
-    padding: 5.5px 12px;
-    height: 35px;
-  }
-`
-
 export const SelectContainer = styled.div`
   position: relative;
   width: 100%;
   flex: 0 0 auto;
-  display: block;
   font-family: ${theme.font()};
-  font-size: 16px;
+  font-size: ${fontScale.moon.size}px;
   outline: none;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
   border-radius: 4px;
+  height: var(--select-height);
+  padding: 0 16px;
+
+  --select-height: 48px;
+
+  &[data-small='true'] {
+    --select-height: 36px;
+    padding: 0 12px;
+  }
+
+  &[data-tiny='true'] {
+    --select-height: 24px;
+    padding: 0 6px;
+    font-size: ${fontScale.asteroid.size}px;
+  }
 
   &:not([data-light='true']) {
     color: ${theme.textColor({ useRootTheme: true })};
@@ -83,12 +76,8 @@ export const SelectContainer = styled.div`
   }
 
   &[data-light='true'] {
-    font-size: 18px;
-
-    & ${SelectContent} {
-      padding-left: 12px;
-      padding-right: 12px;
-    }
+    font-size: ${fontScale.mars.size}px;
+    padding: 0 12px;
 
     & ${Placeholder}:not([data-empty='true']) {
       color: ${theme.color('primary')};
@@ -139,6 +128,11 @@ export const SelectContainer = styled.div`
     &:not([data-light='true']) {
       background-color: #fff;
     }
+  }
+
+  &[data-open='true'] {
+    transition: z-index ease-in 0s;
+    z-index: 10;
   }
 `
 

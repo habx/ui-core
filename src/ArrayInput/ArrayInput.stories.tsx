@@ -48,7 +48,7 @@ const CountryArrayInputElement = ({
       <InputContainer>
         <TextInput
           value={value.name}
-          onChange={e =>
+          onChange={(e) =>
             onChange({ ...value, name: e.target.value as string }, index)
           }
         />
@@ -56,7 +56,7 @@ const CountryArrayInputElement = ({
       <InputContainer>
         <TextInput
           value={value.country}
-          onChange={e =>
+          onChange={(e) =>
             onChange({ ...value, country: e.target.value as string }, index)
           }
         />
@@ -65,19 +65,23 @@ const CountryArrayInputElement = ({
   )
 }
 
-const CountryArrayInput: React.FunctionComponent<any> = props => {
+const CountryArrayInput: React.FunctionComponent<any> = (props) => {
   const [items, setItems] = React.useState(FIELDS)
 
   const handleChange = (value: field, index: number) =>
-    setItems(prev => [...prev.slice(0, index), value, ...prev.slice(index + 1)])
+    setItems((prev) => [
+      ...prev.slice(0, index),
+      value,
+      ...prev.slice(index + 1),
+    ])
 
-  const handleAppend = () => setItems(prev => [...prev, DEFAULT_FIELD])
+  const handleAppend = () => setItems((prev) => [...prev, DEFAULT_FIELD])
 
   const handleDelete = (index: number) =>
-    setItems(prev => [...prev.slice(0, index), ...prev.slice(index + 1)])
+    setItems((prev) => [...prev.slice(0, index), ...prev.slice(index + 1)])
 
   const handleReorder = (oldPosition: number, newPosition: number) => {
-    setItems(prev => {
+    setItems((prev) => {
       const items = [...prev]
 
       items.splice(

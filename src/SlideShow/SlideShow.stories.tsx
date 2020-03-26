@@ -74,7 +74,7 @@ const GRID_LINES = [
 
 const GRID_ITEMS = [{}]
 
-const SlideShow: React.FunctionComponent<SlideShowProps> = props => (
+const SlideShow: React.FunctionComponent<SlideShowProps> = (props) => (
   <Container>
     <BaseSlideShow {...props} />
   </Container>

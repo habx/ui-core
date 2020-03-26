@@ -6,7 +6,7 @@ import withMarkdown from './withMarkdown'
 
 describe('withMarkdown high order component', () => {
   it('should not parse markdown if props.markdown != true', () => {
-    const SpyComponent = sinon.spy(props => props.children)
+    const SpyComponent = sinon.spy((props) => props.children)
     const WrappedComponent = withMarkdown()(SpyComponent)
 
     render(<WrappedComponent>**Content**</WrappedComponent>)
@@ -18,7 +18,7 @@ describe('withMarkdown high order component', () => {
   })
 
   it('should parse markdown in a paragraph if props.markdown = true and config.inline not defined', () => {
-    const SpyComponent = sinon.spy(_props => null)
+    const SpyComponent = sinon.spy((_props) => null)
     const WrappedComponent = withMarkdown()(SpyComponent)
 
     render(<WrappedComponent markdown>**Content**</WrappedComponent>)
@@ -34,7 +34,7 @@ describe('withMarkdown high order component', () => {
   })
 
   it('should parse markdown in a paragraph if props.markdown = true and config.inline returns false', () => {
-    const SpyComponent = sinon.spy(_props => null)
+    const SpyComponent = sinon.spy((_props) => null)
     const WrappedComponent = withMarkdown({ inline: () => false })(SpyComponent)
 
     render(<WrappedComponent markdown>**Content**</WrappedComponent>)
@@ -50,7 +50,7 @@ describe('withMarkdown high order component', () => {
   })
 
   it('should parse markdown without a paragraph if props.markdown = true and config.inline returns true', () => {
-    const SpyComponent = sinon.spy(_props => null)
+    const SpyComponent = sinon.spy((_props) => null)
     const WrappedComponent = withMarkdown({ inline: () => true })(SpyComponent)
 
     render(<WrappedComponent markdown>**Content**</WrappedComponent>)

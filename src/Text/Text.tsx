@@ -89,7 +89,7 @@ export const textStyles = {
   captionSmall: captionSmallTextStyle,
 }
 
-const components = mapValues(textStyles, style => ({
+const components = mapValues(textStyles, (style) => ({
   span: styled.span`
     ${style}
   `,
@@ -113,6 +113,6 @@ const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => {
 })
 
 export default withMarkdown<HTMLDivElement, { inline?: boolean }>({
-  inline: props =>
+  inline: (props) =>
     props.inline || ['caption', 'captionSmall'].includes(props.type),
 })<TextProps>(Text)

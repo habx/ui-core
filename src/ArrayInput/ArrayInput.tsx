@@ -47,11 +47,11 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
 
     const renderItem =
       rawRenderItem ||
-      (ItemComponent && (props => <ItemComponent {...props} />)) ||
+      (ItemComponent && ((props) => <ItemComponent {...props} />)) ||
       (() => <div />)
     const renderItemTitle =
       rawRenderItemTitle ||
-      (ItemTitleComponent && (props => <ItemTitleComponent {...props} />)) ||
+      (ItemTitleComponent && ((props) => <ItemTitleComponent {...props} />)) ||
       (() => <div />)
 
     return (
@@ -73,7 +73,9 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
             canBeReordered={canBeReordered}
             onDelete={onDelete}
             onReorder={onReorder}
-            onClick={() => setOpenedItem(prev => (prev === index ? -1 : index))}
+            onClick={() =>
+              setOpenedItem((prev) => (prev === index ? -1 : index))
+            }
           />
         ))}
         <ArrayInputAction>

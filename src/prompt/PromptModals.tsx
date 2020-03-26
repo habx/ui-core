@@ -19,8 +19,8 @@ const PromptModals: React.FunctionComponent<{}> = () => {
   const handleResolve = React.useCallback(
     (modal: StateModal, response: unknown) => {
       if (isMounted.current) {
-        setModals(prev =>
-          prev.map<StateModal>(el =>
+        setModals((prev) =>
+          prev.map<StateModal>((el) =>
             el.id === modal.id ? { ...el, open: false } : el
           )
         )
@@ -28,7 +28,7 @@ const PromptModals: React.FunctionComponent<{}> = () => {
         registerTimeout(
           setTimeout(() => {
             if (isMounted.current) {
-              setModals(prev => prev.filter(el => el.id !== modal.id))
+              setModals((prev) => prev.filter((el) => el.id !== modal.id))
             }
           }, ANIMATION_DURATION)
         )
@@ -43,7 +43,7 @@ const PromptModals: React.FunctionComponent<{}> = () => {
     () =>
       subscribe(
         (props, options) =>
-          new Promise(resolve => {
+          new Promise((resolve) => {
             const modal: StateModal = {
               props,
               options,
@@ -52,7 +52,7 @@ const PromptModals: React.FunctionComponent<{}> = () => {
               id: Math.random(),
             }
 
-            setModals(prev => [...prev, modal])
+            setModals((prev) => [...prev, modal])
           })
       ),
     []
@@ -62,7 +62,7 @@ const PromptModals: React.FunctionComponent<{}> = () => {
     <React.Fragment>
       {modals.map((modal: StateModal) => {
         const { Component, fullscreen, ...resultProps } = modal.props({
-          onResolve: response => handleResolve(modal, response),
+          onResolve: (response) => handleResolve(modal, response),
         })
 
         const children = Component ? <Component /> : resultProps.children

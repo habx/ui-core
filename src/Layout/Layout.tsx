@@ -19,17 +19,17 @@ const Layout = React.forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
   const context = React.useMemo<LayoutContextValue>(
     () => ({
       isInLayout: true,
-      registerChild: type => {
+      registerChild: (type) => {
         const id = Math.random()
-        setRegisteredChildren(prev => ({
+        setRegisteredChildren((prev) => ({
           ...prev,
           [type]: [...(prev[type] ?? []), id],
         }))
 
         return () =>
-          setRegisteredChildren(prev => ({
+          setRegisteredChildren((prev) => ({
             ...prev,
-            [type]: (prev[type] ?? []).filter(el => el !== id),
+            [type]: (prev[type] ?? []).filter((el) => el !== id),
           }))
       },
     }),

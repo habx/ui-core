@@ -19,7 +19,7 @@ const PasswordInput = React.forwardRef<
       domRef.current.focus()
     }
 
-    setContentHidden(wasHidden => !wasHidden)
+    setContentHidden((wasHidden) => !wasHidden)
   }, [domRef])
 
   return (

@@ -56,7 +56,7 @@ const NavigationDots = React.forwardRef<HTMLDivElement, NavigationDotsProps>(
 
     return (
       <NavigationDotsContainer ref={ref} {...rest} width={width}>
-        {visibleDots.map(dot => (
+        {visibleDots.map((dot) => (
           <Dot
             data-testid="navigation-dot"
             key={dot.index}

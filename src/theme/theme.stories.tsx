@@ -54,7 +54,7 @@ const ThemePatchPalette = () => {
     <Container>
       <Line>
         <ColorLabel type="section" />
-        {Object.keys(Object.values(colors)[0]).map(colorName => (
+        {Object.keys(Object.values(colors)[0]).map((colorName) => (
           <Color key={colorName}>
             <Title type="section">{colorName}</Title>
           </Color>
@@ -97,7 +97,7 @@ export const shadows = () => (
     <Line>
       <ColorLabel type="section">Shadows</ColorLabel>
       {(['lower', 'low', 'regular', 'high', 'higher'] as (keyof Shadows)[]).map(
-        shadowDepth => (
+        (shadowDepth) => (
           <Color key={shadowDepth}>
             <Circle color="#FFFFFF" depth={shadowDepth} />
           </Color>
