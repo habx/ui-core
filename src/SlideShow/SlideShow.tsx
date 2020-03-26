@@ -47,7 +47,11 @@ const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
     const isMobile = ['mobile', 'smallTablet'].includes(responsiveType)
 
     const style = React.useMemo(() => {
-      const { swipePosition, currentSlide, isSwiping } = slideShow
+      const {
+        swipePosition,
+        currentSlide: currentSlideFromSlideShow,
+        isSwiping,
+      } = slideShow
 
       if (typeof window !== 'object') {
         if (isMobile) {
@@ -64,7 +68,7 @@ const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
         return {}
       }
 
-      const baseTranslate = `translateX(${-currentSlide * 100}%)`
+      const baseTranslate = `translateX(${-currentSlideFromSlideShow * 100}%)`
       const swipeTranslate = `translateX(${swipePosition.x}px)`
 
       const animationDuration = isSwiping

@@ -126,8 +126,9 @@ const Slider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
       const dotValue = getDotValue()
 
       const matchingIndicator = indicators.find(
-        ({ range }) =>
-          Math.min(...range) <= dotValue && Math.max(...range) >= dotValue
+        ({ range: indicatorRange }) =>
+          Math.min(...indicatorRange) <= dotValue &&
+          Math.max(...indicatorRange) >= dotValue
       )
 
       const position = getPositionFromValue(dotValue)
@@ -183,25 +184,25 @@ const Slider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
           e.pageX - barRef.current.getBoundingClientRect().left
         const newPosition = (eventPosition / barRef.current.offsetWidth) * 100
 
-        const value = getValueFromPosition(newPosition)
+        const positionValue = getValueFromPosition(newPosition)
 
         if (range) {
           if (!hasValue) {
-            setValue([min, value])
+            setValue([min, positionValue])
           } else {
             const typedValue = localValue as [number, number]
             const isUpdatingFirstElement =
-              Math.abs(value - (typedValue[0] || 0)) <
-              Math.abs(value - (typedValue[1] || 0))
+              Math.abs(positionValue - (typedValue[0] || 0)) <
+              Math.abs(positionValue - (typedValue[1] || 0))
 
             setValue(
               isUpdatingFirstElement
-                ? [value, typedValue[1]]
-                : [typedValue[0], value]
+                ? [positionValue, typedValue[1]]
+                : [typedValue[0], positionValue]
             )
           }
         } else {
-          setValue(value)
+          setValue(positionValue)
         }
       }
     }
@@ -237,11 +238,11 @@ const Slider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
           return null
         }
 
-        const value = localValue as [number, number]
+        const rangeValue = localValue as [number, number]
 
         return getComponent({
-          from: Math.min(...value),
-          to: Math.max(...value),
+          from: Math.min(...rangeValue),
+          to: Math.max(...rangeValue),
         })
       }
 
@@ -285,17 +286,17 @@ const Slider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
     )
 
     const tooltips = React.useMemo<Tooltip[]>(() => {
-      const buildTooltip = (value: number): Tooltip => {
-        const label = customValues ? customValues[value] : value
+      const buildTooltip = (tooltipValue: number): Tooltip => {
+        const label = customValues ? customValues[tooltipValue] : tooltipValue
         const raw = `${isNil(label) ? '' : label}${tooltipSuffix}`
 
         const content = isFunction(tooltipFormatter)
-          ? tooltipFormatter(value, raw)
+          ? tooltipFormatter(tooltipValue, raw)
           : raw
 
         return {
           content,
-          position: getPositionFromValue(value),
+          position: getPositionFromValue(tooltipValue),
         }
       }
 
@@ -337,10 +338,10 @@ const Slider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
           {valueBar}
           {valueIndicator}
           {dots &&
-            possibleValues.map((value, index) => (
+            possibleValues.map((possibleValue, index) => (
               <SliderBackgroundDot
                 key={index}
-                style={{ left: `${getPositionFromValue(value)}%` }}
+                style={{ left: `${getPositionFromValue(possibleValue)}%` }}
               />
             ))}
         </SliderContent>

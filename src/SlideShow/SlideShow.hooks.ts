@@ -205,10 +205,10 @@ export const useSlideShow = ({
   React.useEffect(() => {
     if (registerActions) {
       registerActions({
-        goToSlide: (currentSlide) => {
+        goToSlide: (newSlide) => {
           dispatch({
             type: ActionType.GoToSlide,
-            value: currentSlide,
+            value: newSlide,
             isRelative: false,
             source: SlideChangeSource.parentCall,
           })
