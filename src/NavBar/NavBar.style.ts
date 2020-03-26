@@ -4,7 +4,6 @@ import {
   ANIMATION_DURATIONS,
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
-import Text from '../Text'
 import theme from '../theme'
 
 const EXPANDED_SIZE = 250
@@ -37,6 +36,8 @@ export const GeometricalShapesContainer = styled.div`
 
 export const TitleContainer = styled.div`
   width: 100%;
+  display: flex;
+  align-items: baseline;
 `
 
 export const NavBarAbsoluteContainer = styled.div`
@@ -112,16 +113,4 @@ export const NavBarHeader = styled.div`
     height: ${DEFAULT_SIZE}px;
     width: ${DEFAULT_SIZE}px;
   }
-`
-
-export const NavBarPageLogo = styled(Text)`
-  height: ${DEFAULT_SIZE}px;
-  width: ${DEFAULT_SIZE}px;
-  border-radius: 50%;
-  background-color: ${theme.color('secondary', { opacity: 0.4 })};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  overflow: hidden;
 `

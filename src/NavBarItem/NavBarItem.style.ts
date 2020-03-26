@@ -22,6 +22,7 @@ export const NavBarItemContainer = styled.li`
   transition: background-color 150ms ease-in-out;
   cursor: pointer;
   white-space: nowrap;
+  user-select: none;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.5);
