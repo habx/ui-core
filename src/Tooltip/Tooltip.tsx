@@ -143,7 +143,6 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
   return (
     <React.Fragment>
       <TooltipTriggerContainer
-        className="test"
         onMouseEnter={actions.onMouseEnter}
         onMouseLeave={actions.onMouseLeave}
         ref={refs.trigger}
