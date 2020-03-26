@@ -128,7 +128,7 @@ export const useSlideShow = ({
   const isControlled = !isNil(currentSlide)
 
   const throttledKeyboardGoTo = React.useCallback(
-    throttle<(delta: 1 | -1) => void>(delta => {
+    throttle<(delta: 1 | -1) => void>((delta) => {
       if (!isControlled) {
         return dispatch({
           type: ActionType.GoToSlide,
@@ -205,7 +205,7 @@ export const useSlideShow = ({
   React.useEffect(() => {
     if (registerActions) {
       registerActions({
-        goToSlide: currentSlide => {
+        goToSlide: (currentSlide) => {
           dispatch({
             type: ActionType.GoToSlide,
             value: currentSlide,

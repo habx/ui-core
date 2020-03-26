@@ -68,7 +68,7 @@ const AnimationCard: React.FunctionComponent<AnimationCardProps> = ({
         animation={animation as keyof Animations}
         {...(duration ? { duration: duration as Durations } : {})}
       />
-      <Button small onClick={() => setAnimated(prev => !prev)}>
+      <Button small onClick={() => setAnimated((prev) => !prev)}>
         {isAnimated ? 'Stop' : 'Start'}
       </Button>
     </AnimationCardContainer>

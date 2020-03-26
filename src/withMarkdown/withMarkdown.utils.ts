@@ -22,11 +22,11 @@ md.use(markdownItSupPlugin).use(coloredText)
 
 const defaultRender =
   md.renderer.rules.link_open ||
-  function(tokens, idx, options, env, self) {
+  function (tokens, idx, options, env, self) {
     return self.renderToken(tokens, idx, options)
   }
 
-md.renderer.rules.link_open = function(tokens, idx, options, env, self) {
+md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
   const hrefAttrIndex = tokens[idx].attrIndex('href')
   const href = hrefAttrIndex < 0 ? '' : tokens[idx].attrs[hrefAttrIndex][1]
 

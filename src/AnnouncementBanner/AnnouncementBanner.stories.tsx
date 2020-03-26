@@ -25,7 +25,7 @@ const CardChildrenContainer = styled.div`
 const WrappedAnnouncementBanner: React.FunctionComponent<Omit<
   AnnouncementBannerProps,
   'open' | 'onClose' | 'onValidate'
->> = props => {
+>> = (props) => {
   const [isOpened, setOpened] = React.useState(true)
 
   return (

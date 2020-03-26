@@ -10,6 +10,7 @@ import Icon from '../Icon'
 import withLabel from '../withLabel'
 
 import Options from './Options'
+import SelectContext from './Select.context'
 import {
   useOptions,
   usePlaceholder,
@@ -27,7 +28,6 @@ import {
 } from './Select.interface'
 import {
   SelectContainer,
-  SelectContent,
   SearchInput,
   LabelIcons,
   CustomIconContainer,
@@ -44,16 +44,15 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
       multi = false,
       light = false,
       small = false,
+      tiny = false,
       description,
-      placeholderClassName,
       elementLeft,
       elementRight,
       annotation,
       canReset = true,
       disabled,
       filterable = false,
-      compact = false,
-      canSelectAll,
+      canSelectAll = false,
       selectAllLabel,
       optionDisabled = () => false,
       value: rawValue,
@@ -123,7 +122,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
 
           if (
             CLIENT_RECT_KEYS.every(
-              key => wrapperRect[key] === state.wrapperRect[key]
+              (key) => wrapperRect[key] === state.wrapperRect[key]
             )
           ) {
             return state
@@ -166,13 +165,13 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
     })
 
     const getCleanValue = React.useCallback(
-      newValue =>
+      (newValue) =>
         valueFormat === FORMAT_VALUE_FULL ? newValue : newValue?.value,
       [valueFormat]
     )
 
     const handleSearch = React.useCallback(
-      e => {
+      (e) => {
         dispatch({ type: ActionType.UpdateQuery, value: e.target.value })
       },
       [dispatch]
@@ -183,7 +182,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
     }, [dispatch])
 
     const handleSelectOne = React.useCallback(
-      option => {
+      (option) => {
         const cleanOption = getCleanValue(option)
         onChange(cleanOption)
         dispatch({ type: ActionType.AddFocusItem, value: cleanOption })
@@ -192,7 +191,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
     )
 
     const handleSelectMulti = React.useCallback(
-      option => {
+      (option) => {
         const isSelected = (value as formOption[]).some((el: formOption) =>
           has(el, 'value') ? el.value === option.value : el === option.value
         )
@@ -215,7 +214,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
     )
 
     const handleSelect = React.useCallback(
-      option => {
+      (option) => {
         dispatch({ type: ActionType.RemoveFocusItem })
 
         if (multi) {
@@ -240,7 +239,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
     )
 
     const handleReset = React.useCallback(
-      e => {
+      (e) => {
         e.stopPropagation()
         dispatch({ type: ActionType.HoverReset, value: false })
         onChange(multi ? [] : null)
@@ -254,7 +253,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
 
         if (state.isOpened) {
           const focusedIndex = visibleOptions.findIndex(
-            el =>
+            (el) =>
               el === state.focusedItem ||
               state.focusedItem?.value === el?.value ||
               el?.value === state.focusedItem
@@ -317,7 +316,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
     }
 
     const isOptionSelected = React.useCallback(
-      option => {
+      (option) => {
         if (multi) {
           return (value as formOption[]).some(
             (el: formOption) => el.value === option.value
@@ -338,21 +337,24 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
       return options.length === (value as formOption[]).length
     }, [multi, options.length, value])
 
+    const context = React.useMemo(
+      () => ({ small, tiny, multi, canSelectAll }),
+      [small, tiny, multi, canSelectAll]
+    )
+
     return (
-      <SelectContainer
-        ref={wrapperRef}
-        data-disabled={disabled}
-        data-open={state.isOpened}
-        data-background={hasBackground}
-        data-light={light}
-        {...rest}
-      >
-        <SelectContent
-          data-testid="select-content"
+      <SelectContext.Provider value={context}>
+        <SelectContainer
+          ref={wrapperRef}
+          data-disabled={disabled}
           data-open={state.isOpened}
+          data-background={hasBackground}
+          data-light={light}
           data-small={small}
-          className={placeholderClassName}
+          data-tiny={tiny}
+          data-testid="select-container"
           onClick={handleToggle}
+          {...rest}
         >
           {elementLeft && (
             <CustomIconContainer>{elementLeft}</CustomIconContainer>
@@ -392,12 +394,12 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
                 />
               ))}
           </LabelIcons>
-        </SelectContent>
+        </SelectContainer>
         {state.isOpened &&
           isClientSide &&
           createPortal(
             <Overlay
-              onClick={e => {
+              onClick={(e) => {
                 e.stopPropagation()
                 handleToggle()
               }}
@@ -408,7 +410,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           optionDisabled={optionDisabled}
           options={visibleOptions}
           open={state.isOpened}
-          multi={multi}
           allSelected={areAllOptionsSelected}
           onSelect={handleSelect}
           onSelectAll={handleSelectAll}
@@ -416,13 +417,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           focusedItem={state.focusedItem}
           annotation={annotation}
           description={description}
-          compact={compact}
-          canSelectAll={!!canSelectAll}
           selectAllLabel={selectAllLabel}
           onClose={handleToggle}
           wrapperRect={state.wrapperRect}
         />
-      </SelectContainer>
+      </SelectContext.Provider>
     )
   }
 )

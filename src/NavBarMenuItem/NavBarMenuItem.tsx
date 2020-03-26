@@ -32,7 +32,7 @@ const NavBarMenuItem = React.forwardRef<HTMLUListElement, NavBarMenuItemProps>(
           triggerElement={<NavBarItem {...props} />}
           position="right-top"
         >
-          {modal => <Content modal={modal}>{children}</Content>}
+          {(modal) => <Content modal={modal}>{children}</Content>}
         </Menu>
       </NavBarMenuItemContainer>
     )

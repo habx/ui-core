@@ -9,7 +9,7 @@ jest.useFakeTimers()
 describe('withTriggerElement high order component', () => {
   it('should pass open and onClose untouched if not triggerElement is given', () => {
     const spyOnClose = sinon.spy(() => {})
-    const SpyComponent = sinon.spy(props => <div>{props.children}</div>)
+    const SpyComponent = sinon.spy((props) => <div>{props.children}</div>)
     const WrappedComponent = withTriggerElement()(SpyComponent)
 
     render(<WrappedComponent onClose={spyOnClose} open={true} />)
@@ -21,8 +21,8 @@ describe('withTriggerElement high order component', () => {
   })
 
   it('should render the triggerElement', () => {
-    const SpyComponent = sinon.spy(props => <div>{props.children}</div>)
-    const SpyButton = sinon.spy(props => <button {...props} />)
+    const SpyComponent = sinon.spy((props) => <div>{props.children}</div>)
+    const SpyButton = sinon.spy((props) => <button {...props} />)
     const WrappedComponent = withTriggerElement()(SpyComponent)
 
     const { getAllByTestId } = render(
@@ -39,8 +39,8 @@ describe('withTriggerElement high order component', () => {
   })
 
   it('before click on the triggerElement, should pass open = false to the main component', () => {
-    const SpyComponent = sinon.spy(props => <div>{props.children}</div>)
-    const SpyButton = sinon.spy(props => <button {...props} />)
+    const SpyComponent = sinon.spy((props) => <div>{props.children}</div>)
+    const SpyButton = sinon.spy((props) => <button {...props} />)
     const WrappedComponent = withTriggerElement()(SpyComponent)
 
     render(
@@ -57,8 +57,8 @@ describe('withTriggerElement high order component', () => {
   })
 
   it('when click on the triggerElement, should pass open = true to the main component', () => {
-    const SpyComponent = sinon.spy(props => <div>{props.children}</div>)
-    const SpyButton = sinon.spy(props => <button {...props} />)
+    const SpyComponent = sinon.spy((props) => <div>{props.children}</div>)
+    const SpyButton = sinon.spy((props) => <button {...props} />)
     const WrappedComponent = withTriggerElement()(SpyComponent)
 
     const { getByTestId } = render(
@@ -78,7 +78,7 @@ describe('withTriggerElement high order component', () => {
 
   it("should call props.onClose when the main component call it's onClose property", () => {
     const spyOnClose = sinon.spy()
-    const SpyComponent = sinon.spy(props => {
+    const SpyComponent = sinon.spy((props) => {
       React.useEffect(() => {
         props.onClose(null)
       })
@@ -86,7 +86,7 @@ describe('withTriggerElement high order component', () => {
       return <div>{props.children}</div>
     })
 
-    const SpyButton = sinon.spy(props => <button {...props} />)
+    const SpyButton = sinon.spy((props) => <button {...props} />)
     const WrappedComponent = withTriggerElement()(SpyComponent)
 
     render(

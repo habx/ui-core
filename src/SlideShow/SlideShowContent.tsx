@@ -38,7 +38,7 @@ const SlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
 
     const mostLeftSlide = minBy<Slide>(
       slidesWithPosition,
-      slide => slide.position
+      (slide) => slide.position
     )
     const additionalRightSlide =
       slideAmount < 5
@@ -51,7 +51,7 @@ const SlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
 
     const mostRightSlide = maxBy<Slide>(
       slidesWithPosition,
-      slide => slide.position
+      (slide) => slide.position
     )
     const additionalLeftSlide: Slide | null =
       slideAmount < 4
@@ -66,11 +66,11 @@ const SlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
       additionalLeftSlide,
       additionalRightSlide,
       ...slidesWithPosition,
-    ].filter(el => !isNil(el)) as Slide[]
+    ].filter((el) => !isNil(el)) as Slide[]
 
     return circular
       ? rawSlides
-      : rawSlides.filter(el => el.position >= 0 && el.position < slideAmount)
+      : rawSlides.filter((el) => el.position >= 0 && el.position < slideAmount)
   }, [items, slideAmount, circular, active])
 
   return (
@@ -78,7 +78,7 @@ const SlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
       <Slide data-first>
         {renderItem(items[referenceSlideIndex], referenceSlideIndex)}
       </Slide>
-      {slides.map(slide => {
+      {slides.map((slide) => {
         return (
           <Slide
             key={slide.position}

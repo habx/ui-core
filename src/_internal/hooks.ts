@@ -9,7 +9,7 @@ export const useTimeout = () => {
   React.useEffect(() => {
     return () => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
-      timeouts.current.forEach(timeout => {
+      timeouts.current.forEach((timeout) => {
         clearTimeout(timeout)
       })
     }

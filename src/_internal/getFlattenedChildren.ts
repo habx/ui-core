@@ -9,7 +9,7 @@ const getFlattenedChildren = (children: React.ReactNode) => {
 
     const result: React.ReactNode[] = []
 
-    React.Children.forEach(current, child => {
+    React.Children.forEach(current, (child) => {
       if (isFragment(child)) {
         result.push(...flatten(child.props.children))
       } else {
@@ -20,7 +20,7 @@ const getFlattenedChildren = (children: React.ReactNode) => {
     return result
   }
 
-  return flatten(children).filter(child => !!child)
+  return flatten(children).filter((child) => !!child)
 }
 
 export default getFlattenedChildren

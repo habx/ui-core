@@ -25,8 +25,8 @@ const NotificationList: React.FunctionComponent<{}> = () => {
   const handleClose = React.useCallback(
     (notification: StateNotification) => {
       if (isMounted.current) {
-        setNotifications(prev =>
-          prev.map(el =>
+        setNotifications((prev) =>
+          prev.map((el) =>
             el.id === notification.id ? { ...el, open: false } : el
           )
         )
@@ -34,8 +34,8 @@ const NotificationList: React.FunctionComponent<{}> = () => {
         registerTimeout(
           setTimeout(() => {
             if (isMounted.current) {
-              setNotifications(prev =>
-                prev.filter(el => el.id !== notification.id)
+              setNotifications((prev) =>
+                prev.filter((el) => el.id !== notification.id)
               )
             }
           }, SLIDE_DURATION + SHRINK_DURATION)
@@ -55,7 +55,7 @@ const NotificationList: React.FunctionComponent<{}> = () => {
           id: Math.random(),
         }
 
-        setNotifications(prev => [...prev, notification])
+        setNotifications((prev) => [...prev, notification])
 
         if (options.duration !== 0) {
           registerTimeout(
@@ -70,8 +70,8 @@ const NotificationList: React.FunctionComponent<{}> = () => {
   )
 
   return (
-    <NotificationListContainer onClick={e => e.stopPropagation()}>
-      {notifications.map(notification => {
+    <NotificationListContainer onClick={(e) => e.stopPropagation()}>
+      {notifications.map((notification) => {
         const props: NotificationEventProps = isString(notification.message)
           ? { title: notification.message as string }
           : (notification.message as NotificationEventProps)
