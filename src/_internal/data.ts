@@ -5,14 +5,14 @@ export const omit = <Object extends object>(
   Object.entries(obj)
     .filter(([key]) => !keys.includes(key))
     .reduce(
-      (obj, [key, val]) => Object.assign(obj, { [key]: val }),
+      (objCtx, [key, val]) => Object.assign(objCtx, { [key]: val }),
       {}
     ) as Object
 
 export const pick = (obj: object, keys: string[]): object =>
   Object.entries(obj)
     .filter(([key]) => keys.includes(key))
-    .reduce((obj, [key, val]) => Object.assign(obj, { [key]: val }), {})
+    .reduce((objCtx, [key, val]) => Object.assign(objCtx, { [key]: val }), {})
 
 export const mapValues = (
   obj: object,

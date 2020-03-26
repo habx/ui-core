@@ -16,7 +16,11 @@ const SliderWithState: React.FunctionComponent<Props> = ({
   const [value, setValue] = React.useState(initialValue)
 
   return (
-    <Slider {...props} onChange={(value) => setValue(value)} value={value} />
+    <Slider
+      {...props}
+      onChange={(newValue) => setValue(newValue)}
+      value={value}
+    />
   )
 }
 

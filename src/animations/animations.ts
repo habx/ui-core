@@ -1,4 +1,4 @@
-import { css, keyframes } from 'styled-components'
+import { css, keyframes as styledKeyframes } from 'styled-components'
 
 import { Animations, Animation, AnimationConfig } from './animations.interface'
 
@@ -14,7 +14,7 @@ export const ANIMATION_TIMING_FUNCTION = 'cubic-bezier(.04,.8,.61,1)'
 const ANIMATIONS: Animations = {
   emerge: {
     duration: 'l',
-    keyframes: keyframes`
+    keyframes: styledKeyframes`
         from {
           transform: scale(0.95);
           opacity: 0
@@ -28,7 +28,7 @@ const ANIMATIONS: Animations = {
   },
   emergeSlantFromTop: {
     duration: 'm',
-    keyframes: keyframes`
+    keyframes: styledKeyframes`
         from {
           transform: perspective(600px) rotateX(30deg) translateY(40px) scale(0.95);
           opacity: 0;
@@ -42,7 +42,7 @@ const ANIMATIONS: Animations = {
   },
   emergeSlantFromBottom: {
     duration: 'm',
-    keyframes: keyframes`
+    keyframes: styledKeyframes`
         from {
           transform: perspective(600px) rotateX(-30deg) translateY(400px) scale(0.95);
           opacity: 0;
@@ -56,7 +56,7 @@ const ANIMATIONS: Animations = {
   },
   dive: {
     duration: 's',
-    keyframes: keyframes`
+    keyframes: styledKeyframes`
         from {
           transform: scale(1);
           opacity: 1;
@@ -70,7 +70,7 @@ const ANIMATIONS: Animations = {
   },
   diveSlant: {
     duration: 's',
-    keyframes: keyframes`
+    keyframes: styledKeyframes`
         from {
           transform: perspective(600px) rotateX(0) scale(1);
           opacity: 1

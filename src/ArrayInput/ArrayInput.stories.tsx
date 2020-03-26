@@ -82,16 +82,19 @@ const CountryArrayInput: React.FunctionComponent<any> = (props) => {
 
   const handleReorder = (oldPosition: number, newPosition: number) => {
     setItems((prev) => {
-      const items = [...prev]
+      const reorderedItems = [...prev]
 
-      items.splice(
+      reorderedItems.splice(
         newPosition > oldPosition ? newPosition + 1 : newPosition,
         0,
-        items[oldPosition]
+        reorderedItems[oldPosition]
       )
-      items.splice(newPosition > oldPosition ? oldPosition : oldPosition + 1, 1)
+      reorderedItems.splice(
+        newPosition > oldPosition ? oldPosition : oldPosition + 1,
+        1
+      )
 
-      return items
+      return reorderedItems
     })
   }
 

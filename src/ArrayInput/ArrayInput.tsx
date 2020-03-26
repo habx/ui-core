@@ -47,11 +47,12 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
 
     const renderItem =
       rawRenderItem ||
-      (ItemComponent && ((props) => <ItemComponent {...props} />)) ||
+      (ItemComponent && ((itemProps) => <ItemComponent {...itemProps} />)) ||
       (() => <div />)
     const renderItemTitle =
       rawRenderItemTitle ||
-      (ItemTitleComponent && ((props) => <ItemTitleComponent {...props} />)) ||
+      (ItemTitleComponent &&
+        ((itemProps) => <ItemTitleComponent {...itemProps} />)) ||
       (() => <div />)
 
     return (
