@@ -11,7 +11,7 @@ import '@testing-library/jest-dom/extend-expect'
 const renderOpenedSelect = (element: React.ReactElement<SelectProps>) => {
   const result = render(element)
 
-  fireEvent.click(result.getByTestId('select-content'))
+  fireEvent.click(result.getByTestId('select-container'))
 
   return result
 }
@@ -54,7 +54,7 @@ describe('Select component', () => {
       const optionsContainer = getByTestId('options-container')
 
       expect(optionsContainer).toHaveAttribute('data-open', 'false')
-      fireEvent.click(getByTestId('select-content'))
+      fireEvent.click(getByTestId('select-container'))
       expect(optionsContainer).toHaveAttribute('data-open', 'true')
     })
 
@@ -63,7 +63,7 @@ describe('Select component', () => {
 
       const optionsContainer = getByTestId('options-container')
 
-      fireEvent.click(getByTestId('select-content'))
+      fireEvent.click(getByTestId('select-container'))
       expect(optionsContainer).toHaveAttribute('data-open', 'false')
     })
 
