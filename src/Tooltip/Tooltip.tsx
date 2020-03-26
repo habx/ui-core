@@ -117,7 +117,14 @@ const useTooltip = (
 }
 
 const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
-  const { title, description, children, small = false, ...rest } = props
+  const {
+    title,
+    description,
+    children,
+    small = false,
+    onClick,
+    ...rest
+  } = props
 
   const [state, actions, refs] = useTooltip(props, ref)
 
@@ -129,6 +136,10 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
     animationDuration: ANIMATION_DURATION,
   })
 
+  const content = React.isValidElement(children)
+    ? React.cloneElement(children, { onClick })
+    : children
+
   return (
     <React.Fragment>
       <TooltipTriggerContainer
@@ -137,7 +148,7 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
         onMouseLeave={actions.onMouseLeave}
         ref={refs.trigger}
       >
-        {children}
+        {content}
       </TooltipTriggerContainer>
       {isClientSide &&
         createPortal(
