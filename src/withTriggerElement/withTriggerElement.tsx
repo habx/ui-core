@@ -24,7 +24,7 @@ const withTriggerElement = <RefElement extends HTMLElement>(
     const [open, setOpen] = React.useState(false)
 
     const handleToggle = React.useCallback(
-      () => setOpen(wasOpen => !wasOpen),
+      () => setOpen((wasOpen) => !wasOpen),
       []
     )
 

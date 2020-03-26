@@ -8,7 +8,7 @@ const Container = () => {
   return (
     <Checkbox
       value={value.toString()}
-      onChange={e => setValue(e.target.checked)}
+      onChange={(e) => setValue(e.target.checked)}
     >
       Label
     </Checkbox>

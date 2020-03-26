@@ -3,29 +3,39 @@ import * as React from 'react'
 import { formValue } from '../_internal/types'
 import WithLabel from '../withLabel/withLabel.interface'
 
+export interface SelectContextValue {
+  multi: boolean
+  small: boolean
+  tiny: boolean
+  canSelectAll: boolean
+}
+
 export interface SelectInnerProps
   extends Omit<
     React.InputHTMLAttributes<HTMLDivElement>,
     'onChange' | 'value'
   > {
+  // Visual
   small?: boolean
+  tiny?: boolean
   light?: boolean
-  options: any[]
+
   description?: string
-  placeholderClassName?: string
+  annotation?: string
   elementRight?: React.ReactNode
   elementLeft?: React.ReactNode
-  valueFormat?: 'full' | 'simple'
+  selectAllLabel?: string
+  optionDisabled?: (option: any) => boolean
 
-  annotation?: string
+  // Behavior
+  canSelectAll?: boolean
   canReset?: boolean
   filterable?: boolean
-  compact?: boolean
-  multi?: boolean
-  canSelectAll?: boolean
-  selectAllLabel?: string
 
-  optionDisabled?: (option: any) => boolean
+  // Data
+  options: any[]
+  valueFormat?: 'full' | 'simple'
+  multi?: boolean
   onChange?: (value: formValue | formValue[] | null) => void
   value?: formValue | formValue[]
 }

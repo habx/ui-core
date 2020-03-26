@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import Icon from '../../Icon'
+import SelectContext from '../Select.context'
 
 import OptionProps from './Option.interface'
 import {
@@ -10,7 +11,6 @@ import {
 } from './Option.style'
 
 const Option: React.FunctionComponent<OptionProps> = ({
-  multi,
   label,
   selected,
   focused,
@@ -18,6 +18,7 @@ const Option: React.FunctionComponent<OptionProps> = ({
   ...props
 }) => {
   const ref = React.useRef<HTMLLIElement>(null)
+  const { multi, small, tiny } = React.useContext(SelectContext)
 
   React.useEffect(() => {
     if (focused && ref.current) {
@@ -30,6 +31,8 @@ const Option: React.FunctionComponent<OptionProps> = ({
       data-testid="option-container"
       data-selected={selected}
       data-disabled={disabled}
+      data-small={small}
+      data-tiny={tiny}
       ref={ref}
       tabIndex={0}
       {...props}
@@ -49,4 +52,4 @@ const Option: React.FunctionComponent<OptionProps> = ({
   )
 }
 
-export default Option
+export default React.memo(Option)

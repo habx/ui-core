@@ -63,13 +63,13 @@ const ExpansionPanelItem = React.forwardRef<
     (e?: React.MouseEvent) => {
       if (!isControlled) {
         if (multiOpen) {
-          setOpenedItems(prev =>
+          setOpenedItems((prev) =>
             prev.includes(itemRef.current)
-              ? prev.filter(i => i !== itemRef.current)
+              ? prev.filter((i) => i !== itemRef.current)
               : [...prev, itemRef.current]
           )
         } else {
-          setOpenedItems(prev =>
+          setOpenedItems((prev) =>
             prev.includes(itemRef.current) ? [] : [itemRef.current]
           )
         }

@@ -5,6 +5,7 @@ import { useIsSmallScreen } from '../../_internal/hooks'
 import { isClientSide } from '../../_internal/ssr'
 import Modal from '../../Modal'
 import Option from '../Option'
+import SelectContext from '../Select.context'
 
 import OptionsProps from './Options.interface'
 import {
@@ -21,21 +22,20 @@ import {
 const Options: React.FunctionComponent<OptionsProps> = ({
   options,
   open,
-  compact,
   description,
   annotation,
-  multi,
   focusedItem,
   isOptionSelected,
   allSelected,
   onSelect,
   onSelectAll,
-  canSelectAll,
   selectAllLabel,
   onClose,
   optionDisabled,
   wrapperRect,
 }) => {
+  const { multi, canSelectAll } = React.useContext(SelectContext)
+
   const isSmallScreen = useIsSmallScreen()
   const position = React.useMemo(() => {
     return isClientSide &&
@@ -53,6 +53,7 @@ const Options: React.FunctionComponent<OptionsProps> = ({
         : undefined,
     [open, position] // eslint-disable-line
   )
+
   const content = (
     <OptionsContent noMaxHeight={isSmallScreen} maxHeight={maxHeight}>
       {description && (
@@ -68,12 +69,10 @@ const Options: React.FunctionComponent<OptionsProps> = ({
               selected={allSelected}
               focused={false}
               onClick={() => onSelectAll(!allSelected)}
-              multi={multi}
-              compact={compact}
               label={selectAllLabel || 'Select all'}
             />
           )}
-          {options.map(option => {
+          {options.map((option) => {
             const disabled = optionDisabled(option)
             return (
               <Option
@@ -81,8 +80,6 @@ const Options: React.FunctionComponent<OptionsProps> = ({
                 selected={isOptionSelected(option)}
                 onClick={() => (!disabled ? onSelect(option) : null)}
                 focused={option === focusedItem}
-                multi={multi}
-                compact={compact}
                 disabled={disabled}
                 {...option}
               />
@@ -110,8 +107,8 @@ const Options: React.FunctionComponent<OptionsProps> = ({
       data-position={position}
       wrapperRect={wrapperRect}
       maxHeight={maxHeight}
-      backgroundColor={'#FFFFFF'}
-      onClick={e => e.stopPropagation()}
+      backgroundColor="#FFFFFF"
+      onClick={(e) => e.stopPropagation()}
     >
       {content}
     </OptionsContainer>

@@ -70,7 +70,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
 
     const indicators = React.useMemo<Indicator[]>(
       () =>
-        rawIndicators.map(indicator => {
+        rawIndicators.map((indicator) => {
           const indicatorMinInRange = Math.min(...indicator.range)
           const indicatorMaxInRange = Math.max(...indicator.range)
           const indicatorMin =
@@ -143,7 +143,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
 
         const newValue = getValueFromPosition(newPosition)
 
-        setLocalValue(prev => {
+        setLocalValue((prev) => {
           if (!range) {
             return newValue
           }
@@ -261,7 +261,7 @@ const Slider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
 
     const valueIndicator = React.useMemo(
       () =>
-        indicators.map(indicator => {
+        indicators.map((indicator) => {
           const getPosition = ([from, to]: [number, number], opacity = 1) => ({
             left: `${from}%`,
             right: `${100 - to}%`,

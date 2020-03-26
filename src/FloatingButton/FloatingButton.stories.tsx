@@ -14,7 +14,9 @@ const Container = styled(Card)`
   height: 200px;
 `
 
-const FloatingButton: React.FunctionComponent<FloatingButtonProps> = props => (
+const FloatingButton: React.FunctionComponent<FloatingButtonProps> = (
+  props
+) => (
   <Container>
     <BaseFloatingButton {...props} />
   </Container>

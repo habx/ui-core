@@ -14,7 +14,7 @@ const SliderBar: React.FunctionComponent<SliderBarProps> = ({
     { raw: Indicator; ranges: [number, number][] }[]
   >(
     () =>
-      indicators.map(indicator => {
+      indicators.map((indicator) => {
         const insideRanges: [number, number][] = []
 
         if (indicator.range[0] < to && indicator.range[1] > from) {

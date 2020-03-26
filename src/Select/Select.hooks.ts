@@ -14,7 +14,7 @@ export const useOptions = ({ rawOptions }: { rawOptions: formValue[] }) =>
       return []
     }
 
-    return rawOptions.map(option => ({
+    return rawOptions.map((option) => ({
       value: (option as formOption)?.value ?? option,
       label: (option as formOption)?.label ?? option,
     }))
@@ -39,7 +39,7 @@ export const useValue = ({
         return value
       }
 
-      const matchingOption = options.find(el => el.value === value)
+      const matchingOption = options.find((el) => el.value === value)
 
       return {
         value,
@@ -94,7 +94,7 @@ export const useVisibleOptions = ({
   options: formOption[]
 }) =>
   React.useMemo((): formOption[] => {
-    return options.filter(option => {
+    return options.filter((option) => {
       const matchValue = searchInString(`${option.value}`, query)
       const matchLabel =
         isString(option.label) && searchInString(option.label, query)
@@ -117,12 +117,12 @@ export const useSelectedOptions = ({
     }
 
     if (multi) {
-      return options.filter(el =>
-        some(value as formOption[], el2 => el2.value === el.value)
+      return options.filter((el) =>
+        some(value as formOption[], (el2) => el2.value === el.value)
       )
     }
 
-    return options.find(el => el.value === (value as formOption).value)
+    return options.find((el) => el.value === (value as formOption).value)
   }, [multi, options, value])
 
 export const usePlaceholder = ({
@@ -138,7 +138,7 @@ export const usePlaceholder = ({
     if (multi) {
       const options = selectedOptions as formOption[]
       if (selectedOptions && options.length > 0) {
-        return options.map(option => option.label).join(', ')
+        return options.map((option) => option.label).join(', ')
       }
 
       return rawPlaceholder
