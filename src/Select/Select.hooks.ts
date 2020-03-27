@@ -4,12 +4,14 @@ import { has, isNil, isString, some } from '../_internal/data'
 import { searchInString } from '../_internal/strings'
 import { formOption, formValue } from '../_internal/types'
 
+import { Option } from './Options/Options.interface'
+
 export const FORMAT_VALUE_FULL = 'full'
 
 export const FORMAT_VALUE_SIMPLE = 'simple'
 
 export const useOptions = ({ rawOptions }: { rawOptions: formValue[] }) =>
-  React.useMemo(() => {
+  React.useMemo<Option[]>(() => {
     if (!rawOptions) {
       return []
     }
@@ -17,6 +19,7 @@ export const useOptions = ({ rawOptions }: { rawOptions: formValue[] }) =>
     return rawOptions.map((option) => ({
       value: (option as formOption)?.value ?? option,
       label: (option as formOption)?.label ?? option,
+      disabled: (option as formOption)?.disabled ?? false,
     }))
   }, [rawOptions])
 
@@ -91,23 +94,25 @@ export const useVisibleOptions = ({
   options,
 }: {
   query: string
-  options: formOption[]
+  options: Option[]
 }) =>
-  React.useMemo((): formOption[] => {
-    return options.filter((option) => {
-      const matchValue = searchInString(`${option.value}`, query)
-      const matchLabel =
-        isString(option.label) && searchInString(option.label, query)
-      return matchValue || matchLabel
-    })
-  }, [options, query])
+  React.useMemo<Option[]>(
+    () =>
+      options.filter((option) => {
+        const matchValue = searchInString(`${option.value}`, query)
+        const matchLabel =
+          isString(option.label) && searchInString(option.label, query)
+        return matchValue || matchLabel
+      }),
+    [options, query]
+  )
 
 export const useSelectedOptions = ({
   options,
   value,
   multi,
 }: {
-  options: formOption[]
+  options: Option[]
   value: formValue | formValue[]
   multi: boolean
 }) =>

@@ -31,7 +31,6 @@ const Options: React.FunctionComponent<OptionsProps> = ({
   onSelectAll,
   selectAllLabel,
   onClose,
-  optionDisabled,
   wrapperRect,
 }) => {
   const { multi, canSelectAll } = React.useContext(SelectContext)
@@ -72,19 +71,16 @@ const Options: React.FunctionComponent<OptionsProps> = ({
               label={selectAllLabel || 'Select all'}
             />
           )}
-          {options.map((option) => {
-            const disabled = optionDisabled(option)
-            return (
-              <Option
-                key={option.value}
-                selected={isOptionSelected(option)}
-                onClick={() => (!disabled ? onSelect(option) : null)}
-                focused={option === focusedItem}
-                disabled={disabled}
-                {...option}
-              />
-            )
-          })}
+          {options.map((option) => (
+            <Option
+              key={option.value}
+              selected={isOptionSelected(option)}
+              onClick={() => onSelect(option)}
+              focused={option === focusedItem}
+              disabled={option.disabled}
+              {...option}
+            />
+          ))}
         </React.Fragment>
       ) : (
         <EmptyOptions>Aucune option</EmptyOptions>

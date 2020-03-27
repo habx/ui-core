@@ -54,7 +54,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
       filterable = false,
       canSelectAll = false,
       selectAllLabel,
-      optionDisabled = () => false,
       value: rawValue,
       options: rawOptions,
       valueFormat: rawValueFormat,
@@ -407,7 +406,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
             document.body
           )}
         <Options
-          optionDisabled={optionDisabled}
           options={visibleOptions}
           open={state.isOpened}
           allSelected={areAllOptionsSelected}
