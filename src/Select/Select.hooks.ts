@@ -19,7 +19,7 @@ export const useOptions = ({ rawOptions }: { rawOptions: formValue[] }) =>
     return rawOptions.map((option) => ({
       value: (option as formOption)?.value ?? option,
       label: (option as formOption)?.label ?? option,
-      disabled: (option as formOption)?.disabled ?? false,
+      ...((option as formOption)?.disabled ? { disabled: true } : {}),
     }))
   }, [rawOptions])
 

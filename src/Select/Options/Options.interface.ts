@@ -1,7 +1,7 @@
 export type Option = {
   label: string
   value: any
-  disabled: boolean
+  disabled?: boolean
 }
 
 export default interface OptionsProps {
