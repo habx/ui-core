@@ -19,7 +19,7 @@ export const HeaderBarContainer = styled(Background)`
     position: sticky !important;
   }
   &[data-sticky='false'] {
-    position: initial !important;
+    position: relative !important;
   }
   &[data-small='true'] {
     height: 48px;
