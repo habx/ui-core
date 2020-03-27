@@ -15,6 +15,12 @@ export const HeaderBarContainer = styled(Background)`
   border-bottom: solid 1px ${palette.darkBlue[300]};
   z-index: 12;
 
+  &[data-sticky='true'] {
+    position: sticky !important;
+  }
+  &[data-sticky='false'] {
+    position: relative !important;
+  }
   &[data-small='true'] {
     height: 48px;
   }

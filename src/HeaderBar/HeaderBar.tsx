@@ -13,6 +13,7 @@ const HeaderBar = React.forwardRef<HTMLElement, HeaderBarProps>(
       progress,
       style,
       small,
+      sticky,
       backgroundColor = '#FFFFFF',
       ...rest
     } = props
@@ -30,6 +31,7 @@ const HeaderBar = React.forwardRef<HTMLElement, HeaderBarProps>(
         backgroundColor={backgroundColor}
         ref={ref}
         data-has-progress={!isNil(progress)}
+        data-sticky={sticky}
         data-is-in-layout={parentLayout.isInLayout}
         data-small={small}
         style={
