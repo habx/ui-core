@@ -50,11 +50,7 @@ export const OptionContainer = styled.li`
   &[data-disabled='true'] {
     opacity: 0.5;
     user-focus: none;
-    &:hover,
-    &:focus {
-      background-color: transparent;
-      cursor: auto;
-    }
+    pointer-events: none;
   }
 
   &[data-small='true'] {

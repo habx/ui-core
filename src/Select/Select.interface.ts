@@ -25,7 +25,6 @@ export interface SelectInnerProps
   elementRight?: React.ReactNode
   elementLeft?: React.ReactNode
   selectAllLabel?: string
-  optionDisabled?: (option: any) => boolean
 
   // Behavior
   canSelectAll?: boolean
