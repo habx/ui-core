@@ -2,8 +2,8 @@ import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 
 import withGrid from '../_internal/StorybookGrid'
+import BreadcrumbItem from '../BreadcrumbItem'
 import Icon from '../Icon'
-import Text from '../Text'
 
 import Breadcrumb from './Breadcrumb'
 import BreadcrumbProps from './Breadcrumb.interface'
@@ -13,33 +13,48 @@ export default {
   decorators: [withKnobs],
 }
 
-const GRID_PROPS = {
-  children: (
-    <React.Fragment>
-      <Icon icon="house-building-outline" />
-      <Text>Lyon moselle - la fabrique</Text>
-      <Text>Configuration</Text>
-    </React.Fragment>
-  ),
-}
+const GRID_PROPS = {}
 
 const GRID_LINES = [
   {
     title: 'Default',
+    props: {
+      children: (
+        <React.Fragment>
+          <BreadcrumbItem>
+            <Icon icon="house-building-outline" />
+          </BreadcrumbItem>
+          <BreadcrumbItem>Lyon moselle - la fabrique</BreadcrumbItem>
+          <BreadcrumbItem>Configuration</BreadcrumbItem>
+        </React.Fragment>
+      ),
+    },
+  },
+  {
+    title: 'More than 5 nodes',
+    props: {
+      children: (
+        <React.Fragment>
+          {new Array(10).fill(0).map((_, index) => (
+            <BreadcrumbItem>Branch {index + 1}</BreadcrumbItem>
+          ))}
+        </React.Fragment>
+      ),
+    },
   },
 ]
 
 const GRID_ITEMS = [
   {
+    label: 'Small',
+    props: { size: 'small' as 'small' },
+  },
+  {
     label: 'Regular',
   },
   {
-    label: 'Small',
-    props: { spacing: 'narrow' as 'narrow' },
-  },
-  {
     label: 'Large',
-    props: { spacing: 'large' as 'large', itemMaxWidth: 400 },
+    props: { size: 'large' as 'large' },
   },
 ]
 
