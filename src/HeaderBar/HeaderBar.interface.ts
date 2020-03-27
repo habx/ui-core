@@ -5,4 +5,5 @@ export default interface HeaderBarProps
   progress?: number
   small?: boolean
   backgroundColor?: string
+  sticky?: boolean
 }
