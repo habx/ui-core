@@ -9,28 +9,39 @@ export const FloatingButtonContainer = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
   cursor: pointer;
   outline: none;
   user-select: none;
-  vertical-align: middle;
-  text-align: left;
   text-decoration: none;
-  box-shadow: ${theme.shadow('lower')};
+  border: none;
 
-  height: 48px;
-  width: 48px;
-  border-radius: 24px;
-  font-size: 24px;
+  --floating-icon-button-outer-shadow: ${theme.shadow('lower')};
+  --floating-icon-button-radius: 24px;
+  --floating-icon-button-border-width: 0;
+
+  box-shadow: var(--floating-icon-button-outer-shadow),
+    inset 0 0 0 var(--floating-icon-button-border-width)
+      ${theme.color('primary', {
+        dynamic: true,
+        variation: 'focus',
+      })};
+
+  z-index: ${zIndex.floatingButtons};
+
+  height: calc(var(--floating-icon-button-radius) * 2);
+  width: calc(var(--floating-icon-button-radius) * 2);
+  border-radius: var(--floating-icon-button-radius);
+  font-size: var(--floating-icon-button-radius);
 
   position: absolute;
   bottom: 24px;
-  z-index: ${zIndex.floatingButtons};
 
   @media (${breakpoints.below.phone}) {
     bottom: 12px;
   }
 
-  transition-property: border, padding, background-color;
+  transition-property: box-shadow, padding, background-color;
   transition-duration: 50ms;
   transition-timing-function: ease-in-out;
 
@@ -54,7 +65,6 @@ export const FloatingButtonContainer = styled.button`
     }
   }
 
-  border: 1px solid transparent;
   background-color: ${theme.color('primary', { dynamic: true })};
   color: ${theme.color('primary', {
     dynamic: true,
@@ -66,19 +76,18 @@ export const FloatingButtonContainer = styled.button`
       dynamic: true,
       variation: 'hover',
     })};
-    box-shadow: ${theme.shadow('lower', { hover: true })};
+    --floating-icon-button-outer-shadow: ${theme.shadow('lower', {
+      hover: true,
+    })};
   }
 
   &:focus,
   &:active {
-    border-color: ${theme.color('primary', {
-      dynamic: true,
-      variation: 'focus',
-    })};
+    --floating-icon-button-border-width: 1px;
   }
 
   &:active {
-    box-shadow: ${theme.shadow('lower')};
+    --floating-icon-button-outer-shadow: ${theme.shadow('lower')};
   }
 
   &:disabled {
