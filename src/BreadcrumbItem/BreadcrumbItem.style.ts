@@ -25,6 +25,8 @@ export const BreadcrumbItemContainer = styled.li`
   padding: 6px 12px;
   border-radius: 2px;
 
+  transition: background ease-in-out 150ms;
+
   &[data-size='small'] {
     padding: 4px 12px;
 
