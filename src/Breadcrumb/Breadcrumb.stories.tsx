@@ -47,14 +47,14 @@ const GRID_LINES = [
 const GRID_ITEMS = [
   {
     label: 'Small',
-    props: { size: 'small' as 'small' },
+    props: { small: true },
   },
   {
     label: 'Regular',
   },
   {
     label: 'Large',
-    props: { size: 'large' as 'large' },
+    props: { large: true },
   },
 ]
 

@@ -11,7 +11,18 @@ import { BreadcrumbContainer, BreadcrumbIcon } from './Breadcrumb.style'
 
 const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
   (props, ref) => {
-    const { children, size = 'regular', ...rest } = props
+    const { children, large, small, ...rest } = props
+
+    const size = React.useMemo(() => {
+      if (large) {
+        return 'large'
+      }
+      if (small) {
+        return 'small'
+      }
+      return 'regular'
+    }, [small, large])
+
     const items = getFlattenedChildren(children)
     return (
       <BreadcrumbContext.Provider value={{ size }}>
