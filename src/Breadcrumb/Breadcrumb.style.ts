@@ -6,6 +6,8 @@ export const BreadcrumbContainer = styled.ul`
   display: flex;
   flex: 1 1 auto;
   align-items: center;
+
+  padding: 0;
 `
 
 export const BreadcrumbIcon = styled(Icon)`
