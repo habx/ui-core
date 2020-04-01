@@ -78,7 +78,7 @@
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "@types/react-is": "^16.7.1",
-    "@types/sinon": "^7.0.13",
+    "@types/sinon": "^9.0.0",
     "@types/styled-components": "^5.0.0",
     "babel-loader": "^8.0.6",
     "bili": "^4.8.1",
