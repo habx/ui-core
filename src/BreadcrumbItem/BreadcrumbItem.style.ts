@@ -35,9 +35,6 @@ export const BreadcrumbItemContainer = styled.li`
     overflow: visible;
     color: ${palette.darkBlue[900]};
   }
-  &:first-child {
-    margin-left: -12px;
-  }
 
   &[data-interactive='true']:not(:last-child) {
     &:hover {

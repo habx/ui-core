@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { BreadcrumbItemContainer } from '../BreadcrumbItem/BreadcrumbItem.style'
 import Icon from '../Icon'
 
 export const BreadcrumbContainer = styled.ul`
@@ -8,6 +9,12 @@ export const BreadcrumbContainer = styled.ul`
   align-items: center;
 
   padding: 0;
+
+  > ${BreadcrumbItemContainer} {
+    &:first-child {
+      margin-left: -12px;
+    }
+  }
 `
 
 export const BreadcrumbIcon = styled(Icon)`
