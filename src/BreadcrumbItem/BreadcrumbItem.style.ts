@@ -46,7 +46,7 @@ export const BreadcrumbItemContainer = styled.li`
     color: ${palette.darkBlue[900]};
   }
   &:first-child {
-    padding-left: 0;
+    margin-left: -12px;
   }
 
   &[data-interactive='true']:not(:last-child) {
