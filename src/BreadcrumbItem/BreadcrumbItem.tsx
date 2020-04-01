@@ -12,22 +12,23 @@ const BreadcrumbItem = React.forwardRef<HTMLDivElement, BreadcrumbItemProps>(
     const { children, as, interactive = true, ...rest } = props
     const { size } = React.useContext(BreadcrumbContext)
     const tooltipTitle = isString(children) ? children : ''
+
     return (
-      <BreadcrumbItemContainer
-        as={as}
-        ref={ref}
-        {...rest}
-        data-size={size}
-        data-interactive={interactive}
+      <Tooltip
+        title={tooltipTitle}
+        disabled={!isString(children) || !interactive}
+        small
       >
-        <Tooltip
-          title={tooltipTitle}
-          disabled={!isString(children) || !interactive}
-          small
+        <BreadcrumbItemContainer
+          as={as}
+          ref={ref}
+          {...rest}
+          data-size={size}
+          data-interactive={interactive}
         >
-          <React.Fragment>{children}</React.Fragment>
-        </Tooltip>
-      </BreadcrumbItemContainer>
+          {children}
+        </BreadcrumbItemContainer>
+      </Tooltip>
     )
   }
 )

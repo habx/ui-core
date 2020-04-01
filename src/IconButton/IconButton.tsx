@@ -12,6 +12,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       colored,
       small = false,
       large = false,
+      tiny = false,
       type = 'button',
       ...rest
     } = props
@@ -22,6 +23,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         ref={ref}
         data-small={small}
         data-large={large}
+        data-tiny={tiny}
         type={type}
       >
         <Icon icon={icon} colored={colored} />

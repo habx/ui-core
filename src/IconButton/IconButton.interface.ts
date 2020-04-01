@@ -11,4 +11,5 @@ export default interface IconButtonProps
   disabled?: boolean
   small?: boolean
   large?: boolean
+  tiny?: boolean
 }

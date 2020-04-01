@@ -36,6 +36,15 @@ export const IconButtonContainer = styled.button`
     --icon-button-border-width: 4px;
   }
 
+  &[data-tiny='true'] {
+    --icon-button-font-size: ${fontScale.mars.size}px;
+    --icon-button-size: ${fontScale.mars.lineHeight}px;
+
+    &:focus {
+      --icon-button-border-width: 2px;
+    }
+  }
+
   &[data-small='true'] {
     --icon-button-font-size: ${fontScale.earth.size}px;
     --icon-button-size: ${fontScale.earth.lineHeight}px;
