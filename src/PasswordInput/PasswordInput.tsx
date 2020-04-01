@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import useMergedRef from '../_internal/useMergedRef'
+import Icon from '../Icon'
 import TextInput from '../TextInput'
 import withLabel from '../withLabel'
 
@@ -29,12 +30,9 @@ const PasswordInput = React.forwardRef<
         {...props}
         type={isContentHidden ? 'password' : 'text'}
       />
-      <HideButton
-        icon="eye"
-        primary={!isContentHidden}
-        opacity={isContentHidden ? 0.5 : 1}
-        onClick={handleToggleHidden}
-      />
+      <HideButton data-hidden={isContentHidden} onClick={handleToggleHidden}>
+        <Icon icon="eye" />
+      </HideButton>
     </HiddenInputContainer>
   )
 })

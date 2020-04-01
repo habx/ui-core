@@ -34,5 +34,3 @@ export const TooltipContainer = styled(Background)`
     animation: ${animations('dive')};
   }
 `
-
-export const TooltipTriggerContainer = styled.div``

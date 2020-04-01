@@ -159,10 +159,10 @@ const AnnouncementBanner = React.forwardRef<
         backgroundColor={palette.darkBlue[900]}
         simulated
       >
-        <IconButton icon="close" onClick={onClose} large />
+        <IconButton icon="close" onClick={onClose} />
       </DesktopCloseIconContainer>
       <MobileCloseIconButton>
-        <IconButton icon="close" onClick={onClose} large />
+        <IconButton icon="close" onClick={onClose} />
       </MobileCloseIconButton>
       <AnnouncementBannerShadowBar />
     </AnnouncementBannerContainer>

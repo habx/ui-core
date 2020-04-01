@@ -69,7 +69,7 @@ const Item: React.FunctionComponent<ItemProps> = ({
             data-testid="array-input-item-delete"
           />
         )}
-        <IconButton icon={open ? 'chevron-north' : 'chevron-south'} />
+        <IconButton icon={open ? 'chevron-north' : 'chevron-south'} small />
       </ItemActions>
     </ItemHeaderContainer>
   )

@@ -15,11 +15,7 @@ import TooltipProps, {
   Position,
   UseTooltipResult,
 } from './Tooltip.interface'
-import {
-  ANIMATION_DURATION,
-  TooltipContainer,
-  TooltipTriggerContainer,
-} from './Tooltip.style'
+import { ANIMATION_DURATION, TooltipContainer } from './Tooltip.style'
 
 const INITIAL_STATE: TooltipState = {
   position: { top: 0, left: 0 },
@@ -27,6 +23,7 @@ const INITIAL_STATE: TooltipState = {
 }
 
 const VERTICAL_TRIGGER_MARGIN = 12
+const VERTICAL_SMALL_TRIGGER_MARGIN = 8
 const HORIZONTAL_SCREEN_MARGIN = 4
 const VERTICAL_SCREEN_MARGIN = 4
 
@@ -53,7 +50,9 @@ const useTooltip = (
     )
 
     let top =
-      triggerDimensions.top - tooltipDimensions.height - VERTICAL_TRIGGER_MARGIN
+      triggerDimensions.top -
+      tooltipDimensions.height -
+      (props.small ? VERTICAL_SMALL_TRIGGER_MARGIN : VERTICAL_TRIGGER_MARGIN)
 
     if (top < VERTICAL_SCREEN_MARGIN) {
       top = triggerDimensions.bottom + VERTICAL_TRIGGER_MARGIN
@@ -136,20 +135,18 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
     animationDuration: ANIMATION_DURATION,
   })
 
-  const content =
-    React.isValidElement(children) && onClick
-      ? React.cloneElement(children, { onClick })
-      : children
+  const content = React.isValidElement(children)
+    ? React.cloneElement(children, {
+        ref: refs.trigger,
+        onMouseEnter: actions.onMouseEnter,
+        onMouseLeave: actions.onMouseLeave,
+        ...(onClick ? { onClick } : {}),
+      })
+    : children
 
   return (
     <React.Fragment>
-      <TooltipTriggerContainer
-        onMouseEnter={actions.onMouseEnter}
-        onMouseLeave={actions.onMouseLeave}
-        ref={refs.trigger}
-      >
-        {content}
-      </TooltipTriggerContainer>
+      {content}
       {isClientSide &&
         createPortal(
           <TooltipContainer

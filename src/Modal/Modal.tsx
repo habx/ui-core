@@ -62,6 +62,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
               data-has-title={!!title}
               onClick={modal.close}
               icon="close"
+              small
             />
           </HeaderBarContainer>
           <ModalContent>
