@@ -58,18 +58,18 @@ const Item: React.FunctionComponent<ItemProps> = ({
             data-testid="array-input-item-mode-up"
             icon="arrow-north"
             onClick={handleMoveUp}
-            small
+            tiny
           />
         )}
         {!disabled && (
           <IconButton
             icon="trash"
             onClick={handleDelete}
-            small
+            tiny
             data-testid="array-input-item-delete"
           />
         )}
-        <IconButton icon={open ? 'chevron-north' : 'chevron-south'} />
+        <IconButton icon={open ? 'chevron-north' : 'chevron-south'} small />
       </ItemActions>
     </ItemHeaderContainer>
   )

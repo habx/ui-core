@@ -29,18 +29,8 @@ const GRID_ITEMS = [
     label: 'Default',
   },
   {
-    label: 'Primary',
-    props: { primary: true },
-  },
-  {
     label: 'Disabled',
     props: { disabled: true },
-  },
-  {
-    label: 'Warning',
-    props: {
-      warning: true,
-    },
   },
 ]
 
@@ -67,9 +57,6 @@ export const dynamic = () => (
     icon="list"
     small={boolean('Small', false)}
     large={boolean('Large', false)}
-    primary={boolean('Color override : Primary', false)}
-    secondary={boolean('Color override : Secondary', false)}
-    warning={boolean('Color override : Warning', false)}
   />
 )
 

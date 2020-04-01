@@ -1,5 +1,10 @@
 import styled from 'styled-components'
 
+import {
+  ANIMATION_DURATIONS,
+  ANIMATION_TIMING_FUNCTION,
+} from '../animations/animations'
+import fontScale from '../fontScale/fontScale'
 import palette from '../palette'
 import theme from '../theme'
 
@@ -13,20 +18,49 @@ export const IconButtonContainer = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${theme.color('secondary', { dynamic: true })};
+  color: ${theme.textColor({ dynamic: true, opacity: 0.72 })};
+  transition: all ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
 
-  font-size: var(--icon-button-size);
+  border-radius: 2px;
+  font-size: var(--icon-button-font-size);
   width: var(--icon-button-size);
   height: var(--icon-button-size);
+  box-shadow: inset 0 0 0 var(--icon-button-border-width)
+    ${theme.textColor({ opacity: 0.2 })};
 
-  --icon-button-size: 24px;
+  --icon-button-font-size: ${fontScale.jupiter.size}px;
+  --icon-button-size: ${fontScale.jupiter.lineHeight}px;
+  --icon-button-border-width: 0;
+
+  &:focus {
+    --icon-button-border-width: 4px;
+  }
+
+  &[data-tiny='true'] {
+    --icon-button-font-size: ${fontScale.mars.size}px;
+    --icon-button-size: ${fontScale.mars.lineHeight}px;
+
+    &:focus {
+      --icon-button-border-width: 2px;
+    }
+  }
 
   &[data-small='true'] {
-    --icon-button-size: 16px;
+    --icon-button-font-size: ${fontScale.earth.size}px;
+    --icon-button-size: ${fontScale.earth.lineHeight}px;
+
+    &:focus {
+      --icon-button-border-width: 2px;
+    }
   }
 
   &[data-large='true'] {
-    --icon-button-size: 32px;
+    --icon-button-font-size: ${fontScale.sun.size}px;
+    --icon-button-size: ${fontScale.sun.lineHeight}px;
+
+    &:focus {
+      --icon-button-border-width: 6px;
+    }
   }
 
   &:disabled {
@@ -35,11 +69,14 @@ export const IconButtonContainer = styled.button`
   }
 
   &:hover {
-    color: ${theme.color('secondary', { dynamic: true, variation: 'hover' })};
+    background-color: ${theme.textColor({ opacity: 0.05 })};
   }
 
-  &:focus,
   &:active {
-    color: ${theme.color('secondary', { dynamic: true, variation: 'focus' })};
+    color: ${theme.textColor({ dynamic: true })};
+  }
+
+  &:focus {
+    background-color: unset;
   }
 `
