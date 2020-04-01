@@ -109,6 +109,10 @@ export const TabContainer = styled.button`
       color: ${theme.textColor({ opacity: 0.72, useRootTheme: true })};
     }
   }
+
+  &:disabled {
+    pointer-events: none;
+  }
 `
 
 export const SideElementContainer = styled.div`
