@@ -13,10 +13,23 @@ const ExpansionPanel = React.forwardRef<HTMLDivElement, ExpansionPanelProps>(
       disabled = false,
       multiOpen = false,
       light = false,
+      small = false,
+      large = false,
+      expandIconPosition = 'left',
       ...rest
     } = props
 
     const [openedItems, setOpenedItems] = React.useState<number[]>([])
+
+    const size = React.useMemo(() => {
+      if (large) {
+        return 'large'
+      }
+      if (small) {
+        return 'small'
+      }
+      return 'regular'
+    }, [large, small])
 
     const contextValue = React.useMemo<ExpansionPanelContextType>(
       () => ({
@@ -25,8 +38,10 @@ const ExpansionPanel = React.forwardRef<HTMLDivElement, ExpansionPanelProps>(
         multiOpen,
         light,
         isInsideAnExpansionPanel: true,
+        size,
+        expandIconPosition,
       }),
-      [light, multiOpen, openedItems]
+      [size, expandIconPosition, light, multiOpen, openedItems]
     )
 
     return (

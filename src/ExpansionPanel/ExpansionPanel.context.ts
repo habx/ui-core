@@ -8,6 +8,8 @@ const DEFAULT_CONTEXT = {
   light: false,
   openedItems: [],
   setOpenedItems: () => [],
+  size: 'regular',
+  expandIconPosition: 'left',
 }
 
 export const ExpansionPanelContext = React.createContext<
