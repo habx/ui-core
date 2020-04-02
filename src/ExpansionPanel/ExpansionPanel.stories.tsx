@@ -1,4 +1,4 @@
-import { withKnobs, boolean } from '@storybook/addon-knobs'
+import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -37,7 +37,7 @@ const ExpansionPanelItems = () => (
         delectus distinctio eligendi eum exercitationem facilis.
       </Text>
     </ExpansionPanelItem>
-    <ExpansionPanelItem title="Article 2">
+    <ExpansionPanelItem title="Article 2" description="description">
       <Text>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
         delectus distinctio eligendi eum exercitationem facilis.
@@ -56,11 +56,20 @@ const GRID_PROPS = {
   children: <ExpansionPanelItems />,
 }
 
-const GRID_LINES = [{}, { title: 'Light', props: { light: true } }]
+const GRID_LINES = [
+  {},
+  { title: 'small', props: { small: true } },
+  { title: 'large', props: { large: true } },
+  { title: 'Light', props: { light: true } },
+]
 
 const GRID_ITEMS = [
   {
     label: 'Default',
+  },
+  {
+    label: 'Right',
+    props: { expandIconPosition: 'right' as 'right' },
   },
   {
     label: 'Multi open',
@@ -103,6 +112,13 @@ export const dynamic = () => (
   <ExpansionPanel
     disabled={boolean('Disabled', false)}
     multiOpen={boolean('Multi open', false)}
+    large={boolean('Large', false)}
+    small={boolean('Small', false)}
+    expandIconPosition={select(
+      'Expand icon position',
+      ['right', 'left'],
+      'left'
+    )}
   >
     <ExpansionPanelItems />
   </ExpansionPanel>

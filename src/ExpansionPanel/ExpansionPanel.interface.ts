@@ -5,6 +5,9 @@ export default interface ExpansionPanel
   multiOpen?: boolean
   disabled?: boolean
   light?: boolean
+  large?: boolean
+  small?: boolean
+  expandIconPosition?: 'left' | 'right'
 }
 
 export type ExpansionPanelContextType = {
@@ -13,4 +16,6 @@ export type ExpansionPanelContextType = {
   setOpenedItems: (newOpenedItem: (prev: number[]) => number[]) => void
   multiOpen: boolean
   light: boolean
+  size: 'large' | 'regular' | 'small'
+  expandIconPosition: 'left' | 'right'
 }

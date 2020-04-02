@@ -1,12 +1,11 @@
 import useModal from '@delangle/use-modal'
 import * as React from 'react'
 
-import { isFunction, isNil } from '../_internal/data'
+import { isFunction, isNil, isString } from '../_internal/data'
 import { assert } from '../_internal/validityCheck'
 import { ANIMATION_DURATIONS } from '../animations/animations'
 import { ExpansionPanelContext } from '../ExpansionPanel/ExpansionPanel.context'
 import Icon from '../Icon'
-import Text from '../Text'
 
 import ExpansionPanelItemProps from './ExpansionPanelItem.interface'
 import {
@@ -14,13 +13,24 @@ import {
   HeaderBar,
   ExpansionPanelItemContent,
   CoreContent,
+  HeaderBarElement,
+  HeaderBarTitle,
+  HeaderBarDescription,
 } from './ExpansionPanelItem.style'
 
 const ExpansionPanelItem = React.forwardRef<
   HTMLDivElement,
   ExpansionPanelItemProps
 >((props, ref) => {
-  const { children, title, open: rawOpen, header, onToggle, ...rest } = props
+  const {
+    children,
+    title,
+    open: rawOpen,
+    header,
+    onToggle,
+    description,
+    ...rest
+  } = props
 
   const isControlled = !isNil(rawOpen)
 
@@ -30,6 +40,8 @@ const ExpansionPanelItem = React.forwardRef<
     multiOpen,
     light,
     isInsideAnExpansionPanel,
+    expandIconPosition,
+    size,
   } = React.useContext(ExpansionPanelContext)
 
   assert(
@@ -82,23 +94,58 @@ const ExpansionPanelItem = React.forwardRef<
     [isControlled, onToggle, multiOpen, setOpenedItems]
   )
 
+  const headerTitle = isString(title) ? (
+    <HeaderBarTitle>{title}</HeaderBarTitle>
+  ) : (
+    title
+  )
+
+  const expandIcon = (
+    <React.Fragment>
+      {panel.state === 'closed' && <Icon icon="chevron-south" />}
+      {panel.state !== 'closed' && <Icon icon="chevron-north" />}
+    </React.Fragment>
+  )
+
+  const headerDescription = isString(description) ? (
+    <HeaderBarDescription>{description}</HeaderBarDescription>
+  ) : (
+    description
+  )
+
   return (
     <ExpansionPanelItemContainer
       data-testid="expansion-panel-item"
       data-light={light}
+      data-state={panel.state}
       {...rest}
       ref={ref}
     >
       <HeaderBar
+        data-size={size}
         data-testid="expansion-panel-item-title-bar"
         onClick={handleToggle}
       >
         {header && (isFunction(header) ? header(panel) : header)}
         {!header && (
           <React.Fragment>
-            {title && <Text opacity={1}>{title}</Text>}
-            {panel.state === 'closed' && <Icon icon="chevron-south" />}
-            {panel.state !== 'closed' && <Icon icon="chevron-north" />}
+            {expandIconPosition === 'left' ? (
+              <React.Fragment>
+                <HeaderBarElement>
+                  {expandIcon}
+                  {headerTitle}
+                </HeaderBarElement>
+                <HeaderBarElement>{headerDescription}</HeaderBarElement>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <HeaderBarElement>
+                  {headerTitle}
+                  {headerDescription}
+                </HeaderBarElement>
+                <HeaderBarElement>{expandIcon}</HeaderBarElement>
+              </React.Fragment>
+            )}
           </React.Fragment>
         )}
       </HeaderBar>
