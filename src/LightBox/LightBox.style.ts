@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
 import Background from '../Background'
-import theme from '../theme'
+import IconButton from '../IconButton'
 
 export const ANIMATION_DURATION = 300
 
@@ -40,17 +40,9 @@ export const LightBoxOverlay = styled(Background)`
   }
 `
 
-export const CloseIconContainer = styled.div`
+export const CloseIcon = styled(IconButton)`
   position: absolute;
   top: 12px;
   right: 24px;
-  font-size: 20px;
-  cursor: pointer;
   z-index: 2;
-  background-color: ${theme.color('background')};
-  border-radius: 50%;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `
