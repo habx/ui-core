@@ -30,7 +30,11 @@ const PasswordInput = React.forwardRef<
         {...props}
         type={isContentHidden ? 'password' : 'text'}
       />
-      <HideButton data-hidden={isContentHidden} onClick={handleToggleHidden}>
+      <HideButton
+        data-hidden={isContentHidden}
+        onClick={handleToggleHidden}
+        type="button"
+      >
         <Icon icon="eye" />
       </HideButton>
     </HiddenInputContainer>
