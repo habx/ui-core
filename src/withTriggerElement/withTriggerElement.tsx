@@ -59,10 +59,6 @@ const withTriggerElement = <RefElement extends HTMLElement>(
       })
     }, [triggerElement, open])
 
-    React.useEffect(() => {
-      // console.log(triggerRef)
-    })
-
     if (!fullTriggerElement) {
       return <WrappedComponent {...(rest as Props)} onClose={onClose} />
     }
