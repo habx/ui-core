@@ -109,7 +109,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
             ? triggerDimensions.left - menuWidth + triggerDimensions.width
             : triggerDimensions.left
 
-        setPositionStyle({ top, left })
+        setPositionStyle({ top, left, minWidth: triggerDimensions.width })
       } else {
         const top =
           triggerDimensions.top + menuHeight > window.innerHeight
