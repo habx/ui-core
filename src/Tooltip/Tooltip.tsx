@@ -1,6 +1,6 @@
 import useModal from '@delangle/use-modal'
 import * as React from 'react'
-import { createPortal } from 'react-dom'
+import * as ReactDOM from 'react-dom'
 
 import { clamp } from '../_internal/data'
 import { isClientSide, useSSRLayoutEffect } from '../_internal/ssr'
@@ -148,7 +148,7 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
     <React.Fragment>
       {content}
       {isClientSide &&
-        createPortal(
+        ReactDOM.createPortal(
           <TooltipContainer
             ref={refs.tooltip}
             backgroundColor={palette.darkBlue[700]}

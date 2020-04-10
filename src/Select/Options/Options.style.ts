@@ -70,16 +70,6 @@ export const EmptyOptions = styled(Text)`
   padding: 6px 12px;
 `
 
-export const Description = styled.li`
-  padding: 0 18px 8px 18px;
-  border-bottom: solid 1px ${theme.color('background')};
-`
-
-export const DescriptionAnnotation = styled.div`
-  font-size: ${theme.font('text')};
-  color: ${theme.color('background')};
-`
-
 export const SelectAllOption = styled(Option)`
   border-bottom: solid 1px ${theme.color('background')};
   font-weight: 600;

@@ -45,10 +45,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
       light = false,
       small = false,
       tiny = false,
-      description,
       elementLeft,
       elementRight,
-      annotation,
       canReset = true,
       disabled,
       filterable = false,
@@ -413,8 +411,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           onSelectAll={handleSelectAll}
           isOptionSelected={isOptionSelected}
           focusedItem={state.focusedItem}
-          annotation={annotation}
-          description={description}
           selectAllLabel={selectAllLabel}
           onClose={handleToggle}
           wrapperRect={state.wrapperRect}

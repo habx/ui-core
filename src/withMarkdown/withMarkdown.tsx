@@ -108,7 +108,9 @@ const withMarkdown = <
 
     if (!markdown) {
       return (
-        <WrappedComponent {...(rest as Props)}>{children}</WrappedComponent>
+        <WrappedComponent ref={ref} {...(rest as Props)}>
+          {children}
+        </WrappedComponent>
       )
     }
 

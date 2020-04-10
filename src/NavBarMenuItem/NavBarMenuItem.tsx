@@ -27,11 +27,7 @@ const NavBarMenuItem = React.forwardRef<HTMLUListElement, NavBarMenuItemProps>(
   ({ children, bottom, ...props }, ref) => {
     return (
       <NavBarMenuItemContainer data-bottom={bottom}>
-        <Menu
-          ref={ref}
-          triggerElement={<NavBarItem {...props} />}
-          position="right-top"
-        >
+        <Menu ref={ref} triggerElement={<NavBarItem {...props} />}>
           {(modal) => <Content modal={modal}>{children}</Content>}
         </Menu>
       </NavBarMenuItemContainer>

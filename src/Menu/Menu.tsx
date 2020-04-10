@@ -1,17 +1,19 @@
 import useModal, { Modal as ModalType } from '@delangle/use-modal'
 import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
+import { isClientSide } from '../_internal/ssr'
 import useWindowSize from '../_internal/useWindowSize'
 import breakpoints from '../breakpoints'
+import Modal from '../Modal'
 import withTriggerElement from '../withTriggerElement'
 
 import { MenuInstance, MenuInnerProps } from './Menu.interface'
 import {
-  MenuTriggerContainer,
   MenuContent,
   MenuContainer,
-  MenuFullScreenDesktop,
+  MenuFullScreenContainer,
   ANIMATION_DURATION,
 } from './Menu.style'
 
@@ -48,6 +50,8 @@ const useOnlyOneMenuOpened = (menu: MenuInstance) => {
   }, [menu.open])
 }
 
+const VERTICAL_TRIGGER_MARGIN = 12
+
 const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
   (props, ref) => {
     const {
@@ -55,13 +59,13 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
       open,
       onClose,
       fullScreenOnMobile = false,
-      position = 'bottom-left',
-      triggerElement,
+      triggerRef,
       ...rest
     } = props
-    const { width } = useWindowSize()
 
+    const size = useWindowSize()
     useOnlyOneMenuOpened({ open, onClose })
+    const [position, setPosition] = React.useState<React.CSSProperties>()
 
     const modal = useModal<HTMLUListElement>({
       ref,
@@ -72,34 +76,76 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
       animationDuration: ANIMATION_DURATION,
     })
 
-    return (
-      <MenuTriggerContainer>
-        {triggerElement}
-        <MenuContainer
-          data-full-screen-on-mobile={fullScreenOnMobile}
-          data-position={position}
-          data-state={modal.state}
-          ref={modal.ref}
-          {...rest}
-        >
-          <MenuContent>
-            {isFunction(children)
-              ? children(modal as ModalType<HTMLUListElement>)
-              : children}
-          </MenuContent>
-        </MenuContainer>
-        {fullScreenOnMobile && width < breakpoints.raw.phone && (
-          <MenuFullScreenDesktop open={open} onClose={onClose}>
-            {isFunction(children)
-              ? children(modal as ModalType<HTMLUListElement>)
-              : children}
-          </MenuFullScreenDesktop>
-        )}
-      </MenuTriggerContainer>
+    const content = isFunction(children)
+      ? children(modal as ModalType<HTMLUListElement>)
+      : children
+
+    const updatePosition = React.useCallback(() => {
+      if (!triggerRef?.current || !modal.ref?.current) {
+        return
+      }
+
+      const triggerDimensions = triggerRef.current.getBoundingClientRect()
+      const menuHeight = modal.ref.current.clientHeight
+      const menuWidth = modal.ref.current.clientWidth
+
+      let top = triggerDimensions.bottom + VERTICAL_TRIGGER_MARGIN
+
+      if (top + menuHeight > window.innerHeight) {
+        const topAboveTrigger =
+          triggerDimensions.top - VERTICAL_TRIGGER_MARGIN - menuHeight
+
+        if (topAboveTrigger > 0) {
+          top = topAboveTrigger
+        }
+      }
+
+      let left =
+        triggerDimensions.left + menuWidth > window.innerWidth
+          ? triggerDimensions.left - menuWidth + triggerDimensions.width
+          : triggerDimensions.left
+
+      setPosition({ top, left })
+    }, [triggerRef, modal.ref])
+
+    React.useEffect(() => {
+      if (open) {
+        updatePosition()
+      }
+    }, [open, updatePosition])
+
+    React.useEffect(() => {
+      updatePosition()
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [size])
+
+    if (!isClientSide) {
+      return null
+    }
+
+    if (fullScreenOnMobile && size.width < breakpoints.raw.phone) {
+      return (
+        <Modal open={open} onClose={onClose}>
+          <MenuFullScreenContainer>{content}</MenuFullScreenContainer>
+        </Modal>
+      )
+    }
+
+    return ReactDOM.createPortal(
+      <MenuContainer
+        style={position}
+        data-full-screen-on-mobile={fullScreenOnMobile}
+        data-state={modal.state}
+        ref={modal.ref}
+        {...rest}
+      >
+        <MenuContent>{content}</MenuContent>
+      </MenuContainer>,
+      document.body
     )
   }
 )
 
-export default withTriggerElement<HTMLUListElement>({
-  passTriggerElementAsProp: true,
-})<MenuInnerProps>(Menu)
+export default withTriggerElement<HTMLUListElement>({ fowardRef: true })<
+  MenuInnerProps
+>(Menu)

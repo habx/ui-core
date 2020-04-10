@@ -12,8 +12,6 @@ import {
   OptionsContainer,
   OptionsModalContent,
   OptionsContent,
-  Description,
-  DescriptionAnnotation,
   EmptyOptions,
   SelectAllOption,
   MAX_HEIGHT,
@@ -22,8 +20,6 @@ import {
 const Options: React.FunctionComponent<OptionsProps> = ({
   options,
   open,
-  description,
-  annotation,
   focusedItem,
   isOptionSelected,
   allSelected,
@@ -55,12 +51,6 @@ const Options: React.FunctionComponent<OptionsProps> = ({
 
   const content = (
     <OptionsContent noMaxHeight={isSmallScreen} maxHeight={maxHeight}>
-      {description && (
-        <Description>
-          <div>{description}</div>
-          <DescriptionAnnotation>{annotation}</DescriptionAnnotation>
-        </Description>
-      )}
       {options.length > 0 ? (
         <React.Fragment>
           {multi && canSelectAll && (
