@@ -31,7 +31,13 @@ const GRID_PROPS = {
   ),
 }
 
-const GRID_LINES = [{}]
+const GRID_LINES = [
+  { title: 'Position vertical' },
+  {
+    title: 'Position horizontal',
+    props: { position: 'horizontal' as 'horizontal' },
+  },
+]
 
 const GRID_ITEMS = [
   { label: 'Basic' },

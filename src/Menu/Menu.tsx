@@ -50,7 +50,7 @@ const useOnlyOneMenuOpened = (menu: MenuInstance) => {
   }, [menu.open])
 }
 
-const VERTICAL_TRIGGER_MARGIN = 12
+const TRIGGER_MARGIN = 12
 
 const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
   (props, ref) => {
@@ -58,14 +58,17 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
       children,
       open,
       onClose,
-      fullScreenOnMobile = false,
       triggerRef,
+      fullScreenOnMobile = false,
+      position = 'vertical',
       ...rest
     } = props
 
     const size = useWindowSize()
     useOnlyOneMenuOpened({ open, onClose })
-    const [position, setPosition] = React.useState<React.CSSProperties>()
+    const [positionStyle, setPositionStyle] = React.useState<
+      React.CSSProperties
+    >()
 
     const modal = useModal<HTMLUListElement>({
       ref,
@@ -89,24 +92,44 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
       const menuHeight = modal.ref.current.clientHeight
       const menuWidth = modal.ref.current.clientWidth
 
-      let top = triggerDimensions.bottom + VERTICAL_TRIGGER_MARGIN
+      if (position === 'vertical') {
+        let top = triggerDimensions.bottom + TRIGGER_MARGIN
 
-      if (top + menuHeight > window.innerHeight) {
-        const topAboveTrigger =
-          triggerDimensions.top - VERTICAL_TRIGGER_MARGIN - menuHeight
+        if (top + menuHeight > window.innerHeight) {
+          const topWithMenuAboveTrigger =
+            triggerDimensions.top - TRIGGER_MARGIN - menuHeight
 
-        if (topAboveTrigger > 0) {
-          top = topAboveTrigger
+          if (topWithMenuAboveTrigger > 0) {
+            top = topWithMenuAboveTrigger
+          }
         }
+
+        let left =
+          triggerDimensions.left + menuWidth > window.innerWidth
+            ? triggerDimensions.left - menuWidth + triggerDimensions.width
+            : triggerDimensions.left
+
+        setPositionStyle({ top, left })
+      } else {
+        const top =
+          triggerDimensions.top + menuHeight > window.innerHeight
+            ? triggerDimensions.top + triggerDimensions.height - menuHeight
+            : triggerDimensions.top
+
+        let left = triggerDimensions.right + TRIGGER_MARGIN
+
+        if (left + menuWidth > window.innerWidth) {
+          const leftWithMenuLeftOfTrigger =
+            triggerDimensions.left - menuWidth - TRIGGER_MARGIN
+
+          if (leftWithMenuLeftOfTrigger > 0) {
+            left = leftWithMenuLeftOfTrigger
+          }
+        }
+
+        setPositionStyle({ top, left })
       }
-
-      let left =
-        triggerDimensions.left + menuWidth > window.innerWidth
-          ? triggerDimensions.left - menuWidth + triggerDimensions.width
-          : triggerDimensions.left
-
-      setPosition({ top, left })
-    }, [triggerRef, modal.ref])
+    }, [position, triggerRef, modal.ref])
 
     React.useEffect(() => {
       if (open) {
@@ -133,7 +156,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
 
     return ReactDOM.createPortal(
       <MenuContainer
-        style={position}
+        style={positionStyle}
         data-full-screen-on-mobile={fullScreenOnMobile}
         data-state={modal.state}
         ref={modal.ref}

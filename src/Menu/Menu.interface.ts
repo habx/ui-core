@@ -12,6 +12,7 @@ export interface MenuInnerProps extends React.HTMLAttributes<HTMLUListElement> {
   open?: boolean
   onClose?: () => void
   fullScreenOnMobile?: boolean
+  position?: 'horizontal' | 'vertical'
   triggerRef?: React.RefObject<HTMLElement>
   children?:
     | React.ReactNode
