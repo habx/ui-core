@@ -20,8 +20,6 @@ export interface SelectInnerProps
   tiny?: boolean
   light?: boolean
 
-  description?: string
-  annotation?: string
   elementRight?: React.ReactNode
   elementLeft?: React.ReactNode
   selectAllLabel?: string

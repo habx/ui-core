@@ -28,9 +28,9 @@ const NavBarMenuItem = React.forwardRef<HTMLUListElement, NavBarMenuItemProps>(
     return (
       <NavBarMenuItemContainer data-bottom={bottom}>
         <Menu
+          position="horizontal"
           ref={ref}
           triggerElement={<NavBarItem {...props} />}
-          position="right-top"
         >
           {(modal) => <Content modal={modal}>{children}</Content>}
         </Menu>

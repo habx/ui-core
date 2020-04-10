@@ -7,8 +7,6 @@ export type Option = {
 export default interface OptionsProps {
   options: Option[]
   open: boolean
-  description?: string
-  annotation?: string
   focusedItem?: any
   isOptionSelected: (option: Option) => boolean
   onSelect: (option: Option) => void

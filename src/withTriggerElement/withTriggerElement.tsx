@@ -5,13 +5,16 @@ import { isFunction } from '../_internal/data'
 import {
   WithTriggerElement,
   TriggerReceivedProps,
+  TriggerInjectedProps,
   TriggerElementConfig,
 } from './withTriggerElement.interface'
 
 const withTriggerElement = <RefElement extends HTMLElement>(
   config: TriggerElementConfig = {}
-) => <Props extends {} = {}>(WrappedComponent: React.ComponentType<Props>) => {
-  const { passTriggerElementAsProp = false } = config
+) => <Props extends TriggerInjectedProps = TriggerInjectedProps>(
+  WrappedComponent: React.ComponentType<Props>
+) => {
+  const { fowardRef = false } = config
 
   const Wrapper = React.forwardRef<
     RefElement,
@@ -22,11 +25,7 @@ const withTriggerElement = <RefElement extends HTMLElement>(
     >
 
     const [open, setOpen] = React.useState(false)
-
-    const handleToggle = React.useCallback(
-      () => setOpen((wasOpen) => !wasOpen),
-      []
-    )
+    const triggerRef = React.useRef<HTMLElement>(null)
 
     const handleClose = React.useCallback(
       (e: React.SyntheticEvent<RefElement>) => {
@@ -39,23 +38,38 @@ const withTriggerElement = <RefElement extends HTMLElement>(
       [onClose]
     )
 
-    if (!triggerElement) {
+    const fullTriggerElement = React.useMemo(() => {
+      const handleToggle = () => setOpen((wasOpen) => !wasOpen)
+
+      if (!triggerElement) {
+        return null
+      }
+
+      if (isFunction(triggerElement)) {
+        return triggerElement({
+          open,
+          onClick: handleToggle,
+          ...(fowardRef ? { ref: triggerRef } : {}),
+        })
+      }
+
+      return React.cloneElement(triggerElement, {
+        onClick: handleToggle,
+        ref: triggerRef,
+      })
+    }, [triggerElement, open])
+
+    if (!fullTriggerElement) {
       return <WrappedComponent {...(rest as Props)} onClose={onClose} />
     }
 
-    const fullTriggerElement = isFunction(triggerElement)
-      ? triggerElement({ open, onClick: handleToggle })
-      : React.cloneElement(triggerElement, { onClick: handleToggle })
-
     return (
       <React.Fragment>
-        {!passTriggerElementAsProp && fullTriggerElement}
+        {fullTriggerElement}
         <WrappedComponent
+          triggerRef={triggerRef}
           ref={ref}
           {...(rest as Props)}
-          {...(passTriggerElementAsProp && {
-            triggerElement: fullTriggerElement,
-          })}
           open={open}
           onClose={handleClose}
         />
