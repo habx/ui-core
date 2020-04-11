@@ -18,7 +18,7 @@ export const MenuContent = styled.div`
 `
 
 export const MenuContainer = styled.ul`
-  z-index: ${zIndex.dropDowns + 1};
+  z-index: ${zIndex.dropDowns};
   opacity: 1;
   border-radius: 4px;
   list-style-type: none;
