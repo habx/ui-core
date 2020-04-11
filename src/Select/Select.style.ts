@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-import zIndex from '../_internal/zIndex'
 import fontScale from '../fontScale/fontScale'
-import Icon from '../Icon'
 import palette from '../palette'
 import theme from '../theme'
 
@@ -19,11 +17,12 @@ export const Placeholder = styled.div`
   }
 `
 
-export const LabelIcons = styled.div`
+export const IconsContainer = styled.div`
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   height: 100%;
+  position: relative;
   color: ${theme.textColor({ opacity: 0.6, useRootTheme: true })};
 
   span {
@@ -114,7 +113,7 @@ export const SelectContainer = styled.div`
   &[data-open='true'] {
     border-color: ${palette.darkBlue[300]};
 
-    & ${LabelIcons} {
+    & ${IconsContainer} {
       color: ${theme.textColor({ useRootTheme: true })};
     }
   }
@@ -168,19 +167,28 @@ export const CustomIconContainer = styled.div`
   align-self: stretch;
 `
 
-export const ResetIcon = styled(Icon)`
+export const ResetIconContainer = styled.div`
+  transition: opacity 150ms ease-in-out;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+
+  &:not([data-visible='true']) {
+    opacity: 0;
+    pointer-events: none;
+  }
+`
+
+export const IconRightContainer = styled.div`
   transition: opacity 150ms ease-in-out;
 
   &:not([data-visible='true']) {
     opacity: 0;
+    pointer-events: none;
   }
-`
-
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: ${zIndex.dropDowns};
 `

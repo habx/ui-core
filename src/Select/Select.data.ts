@@ -32,7 +32,7 @@ export const longData = [
 ]
 
 export const shortData = [
-  { value: 1, label: 'Option 1' },
-  { value: 2, label: 'Option 2' },
-  { value: 3, label: 'Option 3' },
+  { value: 1, label: 'SelectOption 1' },
+  { value: 2, label: 'SelectOption 2' },
+  { value: 3, label: 'SelectOption 3' },
 ]

@@ -53,17 +53,6 @@ export const OptionContainer = styled.li`
     pointer-events: none;
   }
 
-  &[data-small='true'] {
-    height: 36px;
-    padding: 0 12px;
-  }
-
-  &[data-tiny='true'] {
-    height: 24px;
-    padding: 0 6px;
-    font-size: ${fontScale.asteroid.size}px;
-  }
-
   &:hover {
     & > ${SideElementContainer} {
       & > *:not([data-hover='true']) {

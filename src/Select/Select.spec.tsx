@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, act } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
@@ -8,18 +8,26 @@ import SelectProps from './Select.interface'
 
 import '@testing-library/jest-dom/extend-expect'
 
+jest.useFakeTimers()
+
 const renderOpenedSelect = (element: React.ReactElement<SelectProps>) => {
   const result = render(element)
 
   fireEvent.click(result.getByTestId('select-container'))
+
+  act(() => {
+    jest.advanceTimersByTime(999)
+  })
 
   return result
 }
 
 describe('Select component', () => {
   describe('UI: not filterable', () => {
-    it('should not render an input', () => {
-      const { queryByTestId } = render(<Select options={longData} />)
+    it('should not render an input even if options opened', () => {
+      const { queryByTestId } = renderOpenedSelect(
+        <Select options={longData} />
+      )
 
       expect(queryByTestId('select-input')).toBeFalsy()
     })
@@ -39,7 +47,7 @@ describe('Select component', () => {
         <Select
           options={longData}
           placeholder="Placeholder test content"
-          value={longData[0]}
+          value={longData[0].value}
         />
       )
 
@@ -53,9 +61,9 @@ describe('Select component', () => {
 
       const optionsContainer = getByTestId('options-container')
 
-      expect(optionsContainer).toHaveAttribute('data-open', 'false')
+      expect(optionsContainer).toHaveAttribute('data-state', 'closed')
       fireEvent.click(getByTestId('select-container'))
-      expect(optionsContainer).toHaveAttribute('data-open', 'true')
+      expect(optionsContainer).toHaveAttribute('data-state', 'opening')
     })
 
     it('should close the dropdown when click on SelectContent and open = true', () => {
@@ -64,34 +72,16 @@ describe('Select component', () => {
       const optionsContainer = getByTestId('options-container')
 
       fireEvent.click(getByTestId('select-container'))
-      expect(optionsContainer).toHaveAttribute('data-open', 'false')
+      expect(optionsContainer).toHaveAttribute('data-state', 'closing')
     })
 
     it('should display all the options', () => {
-      const { queryAllByTestId } = render(<Select options={longData} />)
+      const { queryAllByTestId } = renderOpenedSelect(
+        <Select options={longData} />
+      )
 
       expect(queryAllByTestId('option-container')).toHaveLength(longData.length)
     })
-
-    // it('should render a visible reset icon if no canReset props given', () => {
-    //   const { queryByTestId } = render(
-    //     <Select options={longData} value={longData[0].value} />
-    //   )
-    //
-    //   const resetIcon = queryByTestId('select-reset-icon')
-    //
-    //   expect(resetIcon).toBeTruthy()
-    //   expect(resetIcon).toHaveAttribute('data-visible', 'true')
-    // })
-    //
-    // it('should render a hidden reset icon if no canReset props given and no value given', () => {
-    //   const { queryByTestId } = render(<Select options={longData} />)
-    //
-    //   const resetIcon = queryByTestId('select-reset-icon')
-    //
-    //   expect(resetIcon).toBeTruthy()
-    //   expect(resetIcon).toHaveAttribute('data-visible', 'false')
-    // })
 
     it('should render no reset icon if canReset = false', () => {
       const { queryByTestId } = render(
@@ -104,49 +94,41 @@ describe('Select component', () => {
     })
   })
 
-  // describe('UI: filterable', () => {
-  //   it('should render an input', () => {
-  //     const { queryByTestId } = render(<Select options={longData} filterable />)
-  //     expect(queryByTestId('select-input')).toBeTruthy()
-  //   })
-  //
-  //   it('should render placeholder inside input', () => {
-  //     const { queryByTestId } = render(
-  //       <Select
-  //         options={longData}
-  //         filterable
-  //         placeholder="Placeholder test content"
-  //       />
-  //     )
-  //
-  //     expect(queryByTestId('select-input')).toHaveAttribute(
-  //       'placeholder',
-  //       'Placeholder test content'
-  //     )
-  //   })
-  //
-  //   it('should display all the options if search is empty', () => {
-  //     const { queryAllByTestId } = renderOpenedSelect(
-  //       <Select options={longData} filterable />
-  //     )
-  //
-  //     expect(queryAllByTestId('option-container')).toHaveLength(longData.length)
-  //   })
-  //
-  //   it('should display filtered options if search is not empty', () => {
-  //     const { queryByTestId, queryAllByTestId } = renderOpenedSelect(
-  //       <Select options={longData} filterable />
-  //     )
-  //
-  //     fireEvent.change(queryByTestId('select-input') as Element, {
-  //       target: { value: 'ann' },
-  //     })
-  //     const options = queryAllByTestId('option-container')
-  //     expect(options).toHaveLength(2)
-  //     expect(options[0].textContent).toEqual('Annecy')
-  //     expect(options[1].textContent).toEqual('Villeurbanne')
-  //   })
-  // })
+  describe('UI: filterable', () => {
+    it('should not render an input if options closed', () => {
+      const { queryByTestId } = render(<Select options={longData} filterable />)
+      expect(queryByTestId('select-input')).toBeFalsy()
+    })
+
+    it('should render an input if options opened', () => {
+      const { queryByTestId } = renderOpenedSelect(
+        <Select options={longData} filterable />
+      )
+      expect(queryByTestId('select-input')).toBeTruthy()
+    })
+
+    it('should display all the options if search is empty', () => {
+      const { queryAllByTestId } = renderOpenedSelect(
+        <Select options={longData} filterable />
+      )
+
+      expect(queryAllByTestId('option-container')).toHaveLength(longData.length)
+    })
+
+    it('should display filtered options if search is not empty', () => {
+      const { queryByTestId, queryAllByTestId } = renderOpenedSelect(
+        <Select options={longData} filterable />
+      )
+
+      fireEvent.change(queryByTestId('select-input') as Element, {
+        target: { value: 'ann' },
+      })
+      const options = queryAllByTestId('option-container')
+      expect(options).toHaveLength(2)
+      expect(options[0].textContent).toEqual('Annecy')
+      expect(options[1].textContent).toEqual('Villeurbanne')
+    })
+  })
 
   describe('Interaction: not multi', () => {
     it('should close the dropdown when click on an option', () => {
@@ -156,63 +138,19 @@ describe('Select component', () => {
 
       fireEvent.click(getAllByTestId('option-container')[3])
       expect(getByTestId('options-container')).toHaveAttribute(
-        'data-open',
-        'false'
+        'data-state',
+        'closing'
       )
     })
 
-    it('should return option in simple format if no value given and no valueFormat given', () => {
-      const spyOnChange = sinon.spy()
-      const { getAllByTestId } = renderOpenedSelect(
-        <Select options={longData} filterable onChange={spyOnChange} />
-      )
-
-      fireEvent.click(getAllByTestId('option-container')[3])
-      expect(spyOnChange.calledOnce).toBe(true)
-      expect(spyOnChange.calledWith(longData[3].value))
-    })
-
-    it('should return option in full format if valueFormat = "full"', () => {
+    it('should return option when click on an unselected option', () => {
       const spyOnChange = sinon.spy()
       const { getAllByTestId } = renderOpenedSelect(
         <Select
           options={longData}
           filterable
           onChange={spyOnChange}
-          valueFormat="full"
-        />
-      )
-
-      fireEvent.click(getAllByTestId('option-container')[3])
-      expect(spyOnChange.calledOnce).toBe(true)
-      expect(spyOnChange.calledWith(longData[3])).toBe(true)
-    })
-
-    it('should return option in full format if value is in full format and no valueFormat given', () => {
-      const spyOnChange = sinon.spy()
-      const { getAllByTestId } = renderOpenedSelect(
-        <Select
-          options={longData}
-          filterable
-          onChange={spyOnChange}
-          value={longData[0]}
-        />
-      )
-
-      fireEvent.click(getAllByTestId('option-container')[3])
-      expect(spyOnChange.calledOnce).toBe(true)
-      expect(spyOnChange.calledWith(longData[3])).toBe(true)
-    })
-
-    it('should return option in simple format if value is in full format and valueFormat = "simple"', () => {
-      const spyOnChange = sinon.spy()
-      const { getAllByTestId } = renderOpenedSelect(
-        <Select
-          options={longData}
-          filterable
-          onChange={spyOnChange}
-          value={longData[0]}
-          valueFormat="simple"
+          value={longData[0].value}
         />
       )
 
@@ -230,40 +168,12 @@ describe('Select component', () => {
 
       fireEvent.click(getAllByTestId('option-container')[3])
       expect(getByTestId('options-container')).toHaveAttribute(
-        'data-open',
-        'true'
+        'data-state',
+        'opened'
       )
     })
 
-    it('should return an array with only this option in simple format if no value given an no valueFormat given', () => {
-      const spyOnChange = sinon.spy()
-      const { getAllByTestId } = renderOpenedSelect(
-        <Select options={longData} filterable multi onChange={spyOnChange} />
-      )
-
-      fireEvent.click(getAllByTestId('option-container')[3])
-      expect(spyOnChange.calledOnce).toBe(true)
-      expect(spyOnChange.calledWith([longData[3].value])).toBe(true)
-    })
-
-    it('should return an array with only this option in full format if no value given and valueFormat = "full"', () => {
-      const spyOnChange = sinon.spy()
-      const { getAllByTestId } = renderOpenedSelect(
-        <Select
-          options={longData}
-          filterable
-          multi
-          onChange={spyOnChange}
-          valueFormat="full"
-        />
-      )
-
-      fireEvent.click(getAllByTestId('option-container')[3])
-      expect(spyOnChange.calledOnce).toBe(true)
-      expect(spyOnChange.calledWith([longData[3]])).toBe(true)
-    })
-
-    it('should return an array with the current values and this option in simple format if current values are in simple format and no valueFormat given', () => {
+    it('should return an array with the current values and the new option value when click on an unselected option', () => {
       const spyOnChange = sinon.spy()
       const { getAllByTestId } = renderOpenedSelect(
         <Select
@@ -282,42 +192,7 @@ describe('Select component', () => {
       ).toBe(true)
     })
 
-    it('should return an array with the current values and this option in full format if current values are in full format and no valueFormat given', () => {
-      const spyOnChange = sinon.spy()
-      const { getAllByTestId } = renderOpenedSelect(
-        <Select
-          options={longData}
-          filterable
-          multi
-          onChange={spyOnChange}
-          value={[longData[2]]}
-        />
-      )
-
-      fireEvent.click(getAllByTestId('option-container')[3])
-      expect(spyOnChange.calledOnce).toBe(true)
-      expect(spyOnChange.calledWith([longData[2], longData[3]])).toBe(true)
-    })
-
-    it('should return an array with the current values and this option in full format if current values are in simple format and valueFormat = "full"', () => {
-      const spyOnChange = sinon.spy()
-      const { getAllByTestId } = renderOpenedSelect(
-        <Select
-          options={longData}
-          filterable
-          multi
-          onChange={spyOnChange}
-          value={[longData[2].value]}
-          valueFormat="full"
-        />
-      )
-
-      fireEvent.click(getAllByTestId('option-container')[3])
-      expect(spyOnChange.calledOnce).toBe(true)
-      expect(spyOnChange.calledWith([longData[2], longData[3]])).toBe(true)
-    })
-
-    it('should return an empty array if click on an option already selected in simple format', () => {
+    it('should return an empty array if click on an option already selected', () => {
       const spyOnChange = sinon.spy()
       const { getAllByTestId } = renderOpenedSelect(
         <Select
@@ -326,25 +201,6 @@ describe('Select component', () => {
           multi
           onChange={spyOnChange}
           value={[longData[3].value]}
-          valueFormat="full"
-        />
-      )
-
-      fireEvent.click(getAllByTestId('option-container')[3])
-      expect(spyOnChange.calledOnce).toBe(true)
-      expect(spyOnChange.calledWith([])).toBe(true)
-    })
-
-    it('should return an empty array if click on an option already selected in full format', () => {
-      const spyOnChange = sinon.spy()
-      const { getAllByTestId } = renderOpenedSelect(
-        <Select
-          options={longData}
-          filterable
-          multi
-          onChange={spyOnChange}
-          value={[longData[3]]}
-          valueFormat="full"
         />
       )
 

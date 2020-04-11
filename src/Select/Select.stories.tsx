@@ -1,4 +1,4 @@
-import { withKnobs, boolean, select } from '@storybook/addon-knobs'
+import { withKnobs, boolean, text } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -139,17 +139,39 @@ export const lightBackground = () => <Grid background="light" />
 
 export const darkBackground = () => <Grid background="dark" />
 
-export const dynamic = () => (
-  <SelectContainer>
-    <Select
-      options={OPTIONS}
-      value={select('Value', ['fr', 'dl', 'en'], 'fr')}
-      disabled={boolean('Disabled', false)}
-      light={boolean('Light', false)}
-      small={boolean('Small', false)}
-    />
-  </SelectContainer>
-)
+export const Dynamic = () => {
+  const multi = boolean('Multi', false)
+  const tiny = boolean('Tiny', false)
+  const [multiValue, setMultiValue] = React.useState([OPTIONS[1].value])
+  const [singleValue, setSingleValue] = React.useState(OPTIONS[1].value)
+
+  const Wrapper = tiny ? TinySelectContainer : SelectContainer
+
+  return (
+    <Wrapper>
+      <Select
+        options={OPTIONS}
+        disabled={boolean('Disabled', false)}
+        light={boolean('Light', false)}
+        small={boolean('Small', false)}
+        filterable={boolean('Filterable', false)}
+        canReset={boolean('Can Reset', true)}
+        canSelectAll={boolean('Can Select All', false)}
+        placeholder={text('Placeholder', '')}
+        tiny={tiny}
+        multi={multi}
+        value={multi ? multiValue : singleValue}
+        onChange={(newValue) => {
+          if (multi) {
+            setMultiValue(newValue)
+          } else {
+            setSingleValue(newValue)
+          }
+        }}
+      />
+    </Wrapper>
+  )
+}
 
 gallery.story = {
   parameters: {

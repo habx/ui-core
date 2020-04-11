@@ -21,10 +21,7 @@ let instances: React.MutableRefObject<MenuInstance>[] = []
 
 const useOnlyOneMenuOpened = (menu: MenuInstance) => {
   const instance = React.useRef<MenuInstance>(menu)
-
-  React.useEffect(() => {
-    instance.current = menu
-  }, [menu])
+  instance.current = menu
 
   React.useEffect(() => {
     instances.push(instance)
@@ -32,21 +29,16 @@ const useOnlyOneMenuOpened = (menu: MenuInstance) => {
     return () => {
       instances = instances.filter((i) => i !== instance)
     }
-  }, [instance])
+  }, [])
 
   React.useEffect(() => {
-    instances.forEach((instanceToClose) => {
-      if (
-        menu.open &&
-        instanceToClose !== instance &&
-        instanceToClose.current.open &&
-        instanceToClose.current.onClose
-      ) {
-        instanceToClose.current.onClose(
-          {} as React.SyntheticEvent<HTMLUListElement, Event>
-        )
-      }
-    })
+    if (menu.open) {
+      instances.forEach((instanceToClose) => {
+        if (instanceToClose !== instance && instanceToClose.current.open) {
+          instanceToClose.current.onClose()
+        }
+      })
+    }
   }, [menu.open])
 }
 
@@ -157,7 +149,6 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
     return ReactDOM.createPortal(
       <MenuContainer
         style={positionStyle}
-        data-full-screen-on-mobile={fullScreenOnMobile}
         data-state={modal.state}
         ref={modal.ref}
         {...rest}

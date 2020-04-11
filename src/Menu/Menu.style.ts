@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
+import zIndex from '../_internal/zIndex'
 import animations from '../animations'
-import breakpoints from '../breakpoints'
 import theme from '../theme'
 
 export const ANIMATION_DURATION = 150
@@ -18,7 +18,7 @@ export const MenuContent = styled.div`
 `
 
 export const MenuContainer = styled.ul`
-  z-index: 10;
+  z-index: ${zIndex.dropDowns + 1};
   opacity: 1;
   border-radius: 4px;
   list-style-type: none;
@@ -37,12 +37,6 @@ export const MenuContainer = styled.ul`
 
   &[data-state='closing'] {
     animation: ${animations('diveSlant')};
-  }
-
-  @media (${breakpoints.below.phone}) {
-    &[data-full-screen-on-mobile='true'] {
-      display: none;
-    }
   }
 `
 
