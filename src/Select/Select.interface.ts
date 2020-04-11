@@ -46,7 +46,7 @@ export default interface SelectProps extends WithLabel<SelectInnerProps> {}
 export interface SelectState {
   isOpened: boolean
   query: string
-  focusedItem: any
+  focusedOption: any
   showResetIcon: boolean
 }
 
@@ -54,15 +54,13 @@ export enum ActionType {
   UpdateQuery = 'UPDATE_QUERY',
   Open = 'OPEN',
   Close = 'CLOSE',
-  RemoveFocusItem = 'REMOVE_FOCUS_ITEM',
-  AddFocusItem = 'ADD_FOCUS_ITEM',
+  SetFocusedOption = 'SET_FOCUSED_OPTION',
   SetShowResetIcon = 'SET_SHOW_RESET_ICON',
 }
 
 export type SelectAction =
   | { type: ActionType.Open }
   | { type: ActionType.Close }
-  | { type: ActionType.RemoveFocusItem }
   | { type: ActionType.UpdateQuery; value: string }
-  | { type: ActionType.AddFocusItem; value: any }
+  | { type: ActionType.SetFocusedOption; value: any }
   | { type: ActionType.SetShowResetIcon; value: boolean }

@@ -30,9 +30,3 @@ export const longData = [
   { value: 'tours', label: 'Tours' },
   { value: 'villeurbanne', label: 'Villeurbanne' },
 ]
-
-export const shortData = [
-  { value: 1, label: 'SelectOption 1' },
-  { value: 2, label: 'SelectOption 2' },
-  { value: 3, label: 'SelectOption 3' },
-]

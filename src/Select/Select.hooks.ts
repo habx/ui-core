@@ -29,6 +29,7 @@ const reducer: React.Reducer<SelectState, SelectAction> = (state, action) => {
         ...state,
         query: '',
         isOpened: true,
+        focusedOption: undefined,
       }
     }
 
@@ -40,10 +41,6 @@ const reducer: React.Reducer<SelectState, SelectAction> = (state, action) => {
       return { ...state, isOpened: false }
     }
 
-    case ActionType.RemoveFocusItem: {
-      return { ...state, focusedItem: null }
-    }
-
     case ActionType.SetShowResetIcon: {
       if (state.showResetIcon === action.value) {
         return state
@@ -52,11 +49,8 @@ const reducer: React.Reducer<SelectState, SelectAction> = (state, action) => {
       return { ...state, showResetIcon: action.value }
     }
 
-    case ActionType.AddFocusItem: {
-      if (!action.value) {
-        return state
-      }
-      return { ...state, focusedItem: action.value }
+    case ActionType.SetFocusedOption: {
+      return { ...state, focusedOption: action.value }
     }
 
     default: {
@@ -69,7 +63,7 @@ const INITIAL_STATE: SelectState = {
   isOpened: false,
   query: '',
   showResetIcon: false,
-  focusedItem: null,
+  focusedOption: null,
 }
 
 export const useSelect = ({
@@ -157,7 +151,7 @@ export const useSelect = ({
   const handleSelectOne = React.useCallback(
     (option: SelectOption) => {
       onChange(option.value)
-      dispatch({ type: ActionType.AddFocusItem, value: option.value })
+      dispatch({ type: ActionType.SetFocusedOption, value: option.value })
     },
     [onChange]
   )
@@ -177,7 +171,7 @@ export const useSelect = ({
 
   const handleSelect = React.useCallback(
     (option) => {
-      dispatch({ type: ActionType.RemoveFocusItem })
+      dispatch({ type: ActionType.SetFocusedOption, value: undefined })
 
       if (multi) {
         handleSelectMulti(option)
@@ -226,34 +220,48 @@ export const useSelect = ({
 
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      const { key } = event
+      const { key, shiftKey } = event
 
       if (state.isOpened) {
-        const focusedIndex = visibleOptions.findIndex(
-          (el) =>
-            el === state.focusedItem ||
-            state.focusedItem?.value === el?.value ||
-            el?.value === state.focusedItem
-        )
-
-        if (key === 'ArrowDown' && focusedIndex < options.length) {
+        if (key === 'ArrowDown' || (key === 'Tab' && !shiftKey)) {
           event.preventDefault()
+
+          const focusedIndex = visibleOptions.findIndex(
+            (option) => option.value === state.focusedOption
+          )
+
           dispatch({
-            type: ActionType.AddFocusItem,
-            value: options[focusedIndex + 1],
+            type: ActionType.SetFocusedOption,
+            value:
+              options[
+                focusedIndex < visibleOptions.length - 1 ? focusedIndex + 1 : 0
+              ]?.value,
           })
         }
 
-        if (key === 'ArrowUp' && focusedIndex > 0) {
+        if (key === 'ArrowUp' || (key === 'Tab' && shiftKey)) {
           event.preventDefault()
+
+          const focusedIndex = visibleOptions.findIndex(
+            (option) => option.value === state.focusedOption
+          )
+
           dispatch({
-            type: ActionType.AddFocusItem,
-            value: options[focusedIndex - 1],
+            type: ActionType.SetFocusedOption,
+            value:
+              options[
+                focusedIndex > 0 ? focusedIndex - 1 : visibleOptions.length - 1
+              ]?.value,
           })
         }
 
-        if (key === 'Enter' && focusedIndex >= 0) {
-          handleSelect(state.focusedItem)
+        if (key === 'Enter') {
+          const focusedOption = visibleOptions.find(
+            (option) => option.value === state.focusedOption
+          )
+          if (focusedOption) {
+            handleSelect(focusedOption)
+          }
         }
       }
     }
@@ -266,8 +274,7 @@ export const useSelect = ({
   }, [
     handleSelect,
     options,
-    state,
-    state.focusedItem,
+    state.focusedOption,
     state.isOpened,
     visibleOptions,
   ])

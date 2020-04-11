@@ -6,12 +6,12 @@ import Option from '../Option'
 import SelectContext from '../Select.context'
 
 import OptionsProps from './Options.interface'
-import { SelectAllOption } from './Options.style'
+import { OptionsContent, SelectAllOption } from './Options.style'
 
 const Options: React.FunctionComponent<OptionsProps> = ({
   options,
   open,
-  focusedItem,
+  focusedOption,
   allSelected,
   onSelect,
   onSelectAll,
@@ -31,7 +31,7 @@ const Options: React.FunctionComponent<OptionsProps> = ({
     >
       {(modal) =>
         modal.state !== ModalState.closed && (
-          <React.Fragment>
+          <OptionsContent>
             {multi && canSelectAll && (
               <SelectAllOption
                 selected={allSelected}
@@ -45,12 +45,12 @@ const Options: React.FunctionComponent<OptionsProps> = ({
                 key={option.value}
                 selected={option.selected}
                 onClick={() => onSelect(option)}
-                focused={option === focusedItem}
+                focused={option.value === focusedOption}
                 disabled={option.disabled}
                 {...option}
               />
             ))}
-          </React.Fragment>
+          </OptionsContent>
         )
       }
     </Menu>

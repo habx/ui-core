@@ -26,11 +26,6 @@ export const mapValues = (
     {}
   )
 
-export const some = (
-  obj: object,
-  iteratee: (value: any, key: string, object: unknown) => unknown
-) => Object.entries(obj).some(([key, value]) => iteratee(value, key, obj))
-
 export const isFunction = (value: any): value is (...args: any[]) => any =>
   value &&
   ['[object Function]', '[object AsyncFunction]'].includes(
@@ -40,11 +35,6 @@ export const isFunction = (value: any): value is (...args: any[]) => any =>
 export const isString = (value?: any): value is string =>
   (value || value === '') &&
   Object.prototype.toString.call(value) === '[object String]'
-
-export const isBoolean = (value: any): value is boolean =>
-  value === true ||
-  value === false ||
-  Object.prototype.toString.call(value) === '[object Boolean]'
 
 export const isObject = (value: object): value is object =>
   typeof value === 'object'

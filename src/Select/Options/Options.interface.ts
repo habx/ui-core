@@ -5,7 +5,7 @@ import { EnrichedSelectOption } from '../Select.interface'
 export default interface OptionsProps {
   options: EnrichedSelectOption[]
   open: boolean
-  focusedItem?: any
+  focusedOption?: any
   onSelect: (option: EnrichedSelectOption) => void
   onSelectAll: (value: boolean) => void
   selectAllLabel?: string

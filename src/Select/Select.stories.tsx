@@ -6,6 +6,7 @@ import withGrid from '../_internal/StorybookGrid'
 import Icon from '../Icon'
 
 import Select from './Select'
+import { longData } from './Select.data'
 import SelectProps from './Select.interface'
 
 const SelectContainer = styled.div`
@@ -31,20 +32,10 @@ const WrappedSelect: React.FunctionComponent<SelectProps> = (props) =>
     </SelectContainer>
   )
 
-const OPTIONS = [
-  { label: 'France', value: 'fr' },
-  { label: 'Germany', value: 'dl' },
-  { label: 'England', value: 'en' },
-]
-
 const GRID_PROPS = {
   placeholder: 'Regions',
   onChange: () => {},
-  options: [
-    { label: 'France', value: 'fr' },
-    { label: 'Germany', value: 'dl' },
-    { label: 'England', value: 'en' },
-  ],
+  options: longData,
 }
 
 const GRID_LINES = [
@@ -85,7 +76,7 @@ const GRID_ITEMS = [
   {
     label: 'With value',
     props: {
-      value: 'fr',
+      value: longData[2].value,
     },
   },
   {
@@ -104,7 +95,7 @@ const GRID_ITEMS = [
     label: 'Multi',
     props: {
       multi: true,
-      value: ['fr', 'en'],
+      value: [longData[2].value, longData[4].value],
     },
   },
   {
@@ -116,7 +107,7 @@ const GRID_ITEMS = [
   {
     label: 'Right element',
     props: {
-      value: 'fr',
+      value: longData[2].value,
       elementRight: <Icon icon="house-building-outline" />,
     },
   },
@@ -142,15 +133,15 @@ export const darkBackground = () => <Grid background="dark" />
 export const Dynamic = () => {
   const multi = boolean('Multi', false)
   const tiny = boolean('Tiny', false)
-  const [multiValue, setMultiValue] = React.useState([OPTIONS[1].value])
-  const [singleValue, setSingleValue] = React.useState(OPTIONS[1].value)
+  const [multiValue, setMultiValue] = React.useState([longData[1].value])
+  const [singleValue, setSingleValue] = React.useState(longData[1].value)
 
   const Wrapper = tiny ? TinySelectContainer : SelectContainer
 
   return (
     <Wrapper>
       <Select
-        options={OPTIONS}
+        options={longData}
         disabled={boolean('Disabled', false)}
         light={boolean('Light', false)}
         small={boolean('Small', false)}
