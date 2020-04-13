@@ -1,10 +1,9 @@
 import styled, { keyframes } from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
+import { ANIMATION_DURATIONS } from '../animations/animations'
 import Background from '../Background'
 import IconButton from '../IconButton'
-
-export const ANIMATION_DURATION = 300
 
 export const FADE_IN = keyframes`
   from {
@@ -25,11 +24,11 @@ export const LightBoxOverlay = styled(Background)`
   z-index: ${zIndex.modals};
 
   &[data-state='opening'] {
-    animation: ${FADE_IN} ${ANIMATION_DURATION}ms linear 0ms;
+    animation: ${FADE_IN} ${ANIMATION_DURATIONS.l}ms linear 0ms;
   }
 
   &[data-state='closing'] {
-    animation: ${FADE_IN} ${ANIMATION_DURATION}ms linear 0ms reverse;
+    animation: ${FADE_IN} ${ANIMATION_DURATIONS.l}ms linear 0ms reverse;
     opacity: 0;
     pointer-events: none;
   }
