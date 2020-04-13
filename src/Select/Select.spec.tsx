@@ -3,7 +3,7 @@ import * as React from 'react'
 import sinon from 'sinon'
 
 import Select from './Select'
-import { longData } from './Select.data'
+import { OPTIONS } from './Select.data'
 import SelectProps from './Select.interface'
 
 import '@testing-library/jest-dom/extend-expect'
@@ -25,16 +25,14 @@ const renderOpenedSelect = (element: React.ReactElement<SelectProps>) => {
 describe('Select component', () => {
   describe('UI: not filterable', () => {
     it('should not render an input even if options opened', () => {
-      const { queryByTestId } = renderOpenedSelect(
-        <Select options={longData} />
-      )
+      const { queryByTestId } = renderOpenedSelect(<Select options={OPTIONS} />)
 
       expect(queryByTestId('select-input')).toBeFalsy()
     })
 
     it('should render placeholder inside Placeholder if no value given', () => {
       const { queryByTestId } = render(
-        <Select options={longData} placeholder="Placeholder test content" />
+        <Select options={OPTIONS} placeholder="Placeholder test content" />
       )
 
       expect((queryByTestId('select-placeholder') as Node).textContent).toEqual(
@@ -45,14 +43,14 @@ describe('Select component', () => {
     it('should render value inside Placeholder if value is given', () => {
       const { queryByTestId } = render(
         <Select
-          options={longData}
+          options={OPTIONS}
           placeholder="Placeholder test content"
-          value={longData[0].value}
+          value={OPTIONS[0].value}
         />
       )
 
       expect((queryByTestId('select-placeholder') as Node).textContent).toEqual(
-        longData[0].label
+        OPTIONS[0].label
       )
     })
 
@@ -77,15 +75,15 @@ describe('Select component', () => {
 
     it('should display all the options', () => {
       const { queryAllByTestId } = renderOpenedSelect(
-        <Select options={longData} />
+        <Select options={OPTIONS} />
       )
 
-      expect(queryAllByTestId('option-container')).toHaveLength(longData.length)
+      expect(queryAllByTestId('option-container')).toHaveLength(OPTIONS.length)
     })
 
     it('should render no reset icon if canReset = false', () => {
       const { queryByTestId } = render(
-        <Select options={longData} canReset={false} />
+        <Select options={OPTIONS} canReset={false} />
       )
 
       const resetIcon = queryByTestId('select-reset-icon')
@@ -96,28 +94,28 @@ describe('Select component', () => {
 
   describe('UI: filterable', () => {
     it('should not render an input if options closed', () => {
-      const { queryByTestId } = render(<Select options={longData} filterable />)
+      const { queryByTestId } = render(<Select options={OPTIONS} filterable />)
       expect(queryByTestId('select-input')).toBeFalsy()
     })
 
     it('should render an input if options opened', () => {
       const { queryByTestId } = renderOpenedSelect(
-        <Select options={longData} filterable />
+        <Select options={OPTIONS} filterable />
       )
       expect(queryByTestId('select-input')).toBeTruthy()
     })
 
     it('should display all the options if search is empty', () => {
       const { queryAllByTestId } = renderOpenedSelect(
-        <Select options={longData} filterable />
+        <Select options={OPTIONS} filterable />
       )
 
-      expect(queryAllByTestId('option-container')).toHaveLength(longData.length)
+      expect(queryAllByTestId('option-container')).toHaveLength(OPTIONS.length)
     })
 
     it('should display filtered options if search is not empty', () => {
       const { queryByTestId, queryAllByTestId } = renderOpenedSelect(
-        <Select options={longData} filterable />
+        <Select options={OPTIONS} filterable />
       )
 
       fireEvent.change(queryByTestId('select-input') as Element, {
@@ -133,7 +131,7 @@ describe('Select component', () => {
   describe('Interaction: not multi', () => {
     it('should close the dropdown when click on an option', () => {
       const { getAllByTestId, getByTestId } = renderOpenedSelect(
-        <Select options={longData} filterable />
+        <Select options={OPTIONS} filterable />
       )
 
       fireEvent.click(getAllByTestId('option-container')[3])
@@ -147,23 +145,23 @@ describe('Select component', () => {
       const spyOnChange = sinon.spy()
       const { getAllByTestId } = renderOpenedSelect(
         <Select
-          options={longData}
+          options={OPTIONS}
           filterable
           onChange={spyOnChange}
-          value={longData[0].value}
+          value={OPTIONS[0].value}
         />
       )
 
       fireEvent.click(getAllByTestId('option-container')[3])
       expect(spyOnChange.calledOnce).toBe(true)
-      expect(spyOnChange.calledWith(longData[3].value)).toBe(true)
+      expect(spyOnChange.calledWith(OPTIONS[3].value)).toBe(true)
     })
   })
 
   describe('Interaction: multi', () => {
     it('should not close the dropdown when click on an option', () => {
       const { getAllByTestId, getByTestId } = renderOpenedSelect(
-        <Select options={longData} filterable multi />
+        <Select options={OPTIONS} filterable multi />
       )
 
       fireEvent.click(getAllByTestId('option-container')[3])
@@ -177,30 +175,30 @@ describe('Select component', () => {
       const spyOnChange = sinon.spy()
       const { getAllByTestId } = renderOpenedSelect(
         <Select
-          options={longData}
+          options={OPTIONS}
           filterable
           multi
           onChange={spyOnChange}
-          value={[longData[2].value]}
+          value={[OPTIONS[2].value]}
         />
       )
 
       fireEvent.click(getAllByTestId('option-container')[3])
       expect(spyOnChange.calledOnce).toBe(true)
-      expect(
-        spyOnChange.calledWith([longData[2].value, longData[3].value])
-      ).toBe(true)
+      expect(spyOnChange.calledWith([OPTIONS[2].value, OPTIONS[3].value])).toBe(
+        true
+      )
     })
 
     it('should return an empty array if click on an option already selected', () => {
       const spyOnChange = sinon.spy()
       const { getAllByTestId } = renderOpenedSelect(
         <Select
-          options={longData}
+          options={OPTIONS}
           filterable
           multi
           onChange={spyOnChange}
-          value={[longData[3].value]}
+          value={[OPTIONS[3].value]}
         />
       )
 

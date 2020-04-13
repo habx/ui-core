@@ -26,7 +26,7 @@ const GRID_LINES = [
   {
     title: 'Checked',
     props: {
-      value: 1,
+      checked: true,
     },
   },
 ]

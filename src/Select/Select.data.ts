@@ -1,4 +1,8 @@
-export const longData = [
+import palette from '../palette'
+
+import { SelectOption } from './Select.interface'
+
+export const OPTIONS: SelectOption[] = [
   { value: 'aix-en-provence', label: 'Aix-en-Provence' },
   { value: 'amiens', label: 'Amiens' },
   { value: 'angers', label: 'Angers' },
@@ -29,4 +33,11 @@ export const longData = [
   { value: 'toulouse', label: 'Toulouse' },
   { value: 'tours', label: 'Tours' },
   { value: 'villeurbanne', label: 'Villeurbanne' },
+]
+
+export const COLORED_OPTIONS: SelectOption[] = [
+  { label: 'Opened', value: 'opened', color: palette.blue[600] },
+  { label: 'Resolved', value: 'resolved', color: palette.darkBlue[700] },
+  { label: 'Confirmed', value: 'confirmed', color: palette.green[600] },
+  { label: 'Cancelled', value: 'cancelled', color: palette.darkBlue[400] },
 ]

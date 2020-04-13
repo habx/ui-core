@@ -5,6 +5,7 @@ import * as ReactDOM from 'react-dom'
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
 import useWindowSize from '../_internal/useWindowSize'
+import { ANIMATION_DURATIONS } from '../animations/animations'
 import breakpoints from '../breakpoints'
 import Modal from '../Modal'
 import withTriggerElement from '../withTriggerElement'
@@ -14,7 +15,7 @@ import {
   MenuContent,
   MenuContainer,
   MenuFullScreenContainer,
-  ANIMATION_DURATION,
+  MenuOverlay,
 } from './Menu.style'
 
 let instances: React.MutableRefObject<MenuInstance>[] = []
@@ -52,6 +53,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
       onClose,
       triggerRef,
       fullScreenOnMobile = false,
+      scrollable = false,
       position = 'vertical',
       ...rest
     } = props
@@ -68,7 +70,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
       onClose,
       persistent: false,
       animated: true,
-      animationDuration: ANIMATION_DURATION,
+      animationDuration: ANIMATION_DURATIONS.m,
     })
 
     const content = isFunction(children)
@@ -132,7 +134,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
     React.useEffect(() => {
       updatePosition()
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [size])
+    }, [size, children])
 
     if (!isClientSide) {
       return null
@@ -147,14 +149,11 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
     }
 
     return ReactDOM.createPortal(
-      <MenuContainer
-        style={positionStyle}
-        data-state={modal.state}
-        ref={modal.ref}
-        {...rest}
-      >
-        <MenuContent>{content}</MenuContent>
-      </MenuContainer>,
+      <MenuOverlay data-state={modal.state}>
+        <MenuContainer style={positionStyle} ref={modal.ref} {...rest}>
+          <MenuContent data-scrollable={scrollable}>{content}</MenuContent>
+        </MenuContainer>
+      </MenuOverlay>,
       document.body
     )
   }

@@ -68,6 +68,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           data-tiny={tiny}
           data-testid="select-container"
           onClick={actions.onOpen}
+          color={state.color}
+          tabIndex={0}
           {...rest}
         >
           {elementLeft && (

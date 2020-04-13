@@ -6,7 +6,7 @@ import withGrid from '../_internal/StorybookGrid'
 import Icon from '../Icon'
 
 import Select from './Select'
-import { longData } from './Select.data'
+import { OPTIONS, COLORED_OPTIONS } from './Select.data'
 import SelectProps from './Select.interface'
 
 const SelectContainer = styled.div`
@@ -35,7 +35,7 @@ const WrappedSelect: React.FunctionComponent<SelectProps> = (props) =>
 const GRID_PROPS = {
   placeholder: 'Regions',
   onChange: () => {},
-  options: longData,
+  options: OPTIONS,
 }
 
 const GRID_LINES = [
@@ -76,7 +76,7 @@ const GRID_ITEMS = [
   {
     label: 'With value',
     props: {
-      value: longData[2].value,
+      value: OPTIONS[2].value,
     },
   },
   {
@@ -92,22 +92,31 @@ const GRID_ITEMS = [
     },
   },
   {
+    label: 'Colored',
+    props: {
+      options: COLORED_OPTIONS,
+      value: 'confirmed',
+    },
+  },
+  {
     label: 'Multi',
     props: {
       multi: true,
-      value: [longData[2].value, longData[4].value],
+      value: [OPTIONS[2].value, OPTIONS[4].value],
     },
   },
   {
     label: 'Can reset',
     props: {
       canReset: true,
+      multi: true,
+      value: [OPTIONS[2].value, OPTIONS[4].value],
     },
   },
   {
     label: 'Right element',
     props: {
-      value: longData[2].value,
+      value: OPTIONS[2].value,
       elementRight: <Icon icon="house-building-outline" />,
     },
   },
@@ -133,15 +142,15 @@ export const darkBackground = () => <Grid background="dark" />
 export const Dynamic = () => {
   const multi = boolean('Multi', false)
   const tiny = boolean('Tiny', false)
-  const [multiValue, setMultiValue] = React.useState([longData[1].value])
-  const [singleValue, setSingleValue] = React.useState(longData[1].value)
+  const [multiValue, setMultiValue] = React.useState([OPTIONS[1].value])
+  const [singleValue, setSingleValue] = React.useState(OPTIONS[1].value)
 
   const Wrapper = tiny ? TinySelectContainer : SelectContainer
 
   return (
     <Wrapper>
       <Select
-        options={longData}
+        options={OPTIONS}
         disabled={boolean('Disabled', false)}
         light={boolean('Light', false)}
         small={boolean('Small', false)}

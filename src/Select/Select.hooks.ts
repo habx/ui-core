@@ -124,6 +124,11 @@ export const useSelect = ({
     [selectedOptions]
   )
 
+  const color = React.useMemo(
+    () => selectedOptions.find((el) => el.color)?.color,
+    []
+  )
+
   const areAllOptionsSelected = React.useMemo(() => {
     if (multi) {
       const multiValue = value as any[]
@@ -290,7 +295,13 @@ export const useSelect = ({
     onMouseLeaveIcons: handleMouseLeaveIcons,
   }
 
-  const fullState = { ...state, label, visibleOptions, areAllOptionsSelected }
+  const fullState = {
+    ...state,
+    label,
+    visibleOptions,
+    areAllOptionsSelected,
+    color,
+  }
 
   return [fullState, actions] as const
 }

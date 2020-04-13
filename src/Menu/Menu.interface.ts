@@ -12,6 +12,7 @@ export interface MenuInnerProps
   extends React.HTMLAttributes<HTMLUListElement>,
     MenuInstance {
   fullScreenOnMobile?: boolean
+  scrollable?: boolean
   position?: 'horizontal' | 'vertical'
   triggerRef?: React.RefObject<HTMLElement>
   children?:

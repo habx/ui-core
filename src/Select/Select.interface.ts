@@ -11,6 +11,7 @@ export type SelectOption = {
   label: React.ReactNode
   value: any
   disabled?: boolean
+  color?: string
 }
 
 export type EnrichedSelectOption = SelectOption & { selected: boolean }

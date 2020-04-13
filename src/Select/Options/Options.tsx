@@ -6,7 +6,7 @@ import Option from '../Option'
 import SelectContext from '../Select.context'
 
 import OptionsProps from './Options.interface'
-import { OptionsContent, SelectAllOption } from './Options.style'
+import { SelectAllOption } from './Options.style'
 
 const Options: React.FunctionComponent<OptionsProps> = ({
   options,
@@ -28,10 +28,11 @@ const Options: React.FunctionComponent<OptionsProps> = ({
       onClose={onClose}
       triggerRef={containerRef}
       fullScreenOnMobile
+      scrollable
     >
       {(modal) =>
         modal.state !== ModalState.closed && (
-          <OptionsContent>
+          <React.Fragment>
             {multi && canSelectAll && (
               <SelectAllOption
                 selected={allSelected}
@@ -50,7 +51,7 @@ const Options: React.FunctionComponent<OptionsProps> = ({
                 {...option}
               />
             ))}
-          </OptionsContent>
+          </React.Fragment>
         )
       }
     </Menu>
