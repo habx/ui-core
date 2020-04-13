@@ -149,8 +149,13 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
     }
 
     return ReactDOM.createPortal(
-      <MenuOverlay data-state={modal.state}>
-        <MenuContainer style={positionStyle} ref={modal.ref} {...rest}>
+      <MenuOverlay data-state={modal.state} data-testid="menu-overlay">
+        <MenuContainer
+          style={positionStyle}
+          ref={modal.ref}
+          data-testid="menu-container"
+          {...rest}
+        >
           <MenuContent data-scrollable={scrollable}>{content}</MenuContent>
         </MenuContainer>
       </MenuOverlay>,
