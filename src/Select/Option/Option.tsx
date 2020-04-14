@@ -18,7 +18,7 @@ const Option: React.FunctionComponent<OptionProps> = ({
   ...props
 }) => {
   const ref = React.useRef<HTMLLIElement>(null)
-  const { multi, small, tiny } = React.useContext(SelectContext)
+  const { multi } = React.useContext(SelectContext)
 
   React.useEffect(() => {
     if (focused && ref.current) {
@@ -31,8 +31,6 @@ const Option: React.FunctionComponent<OptionProps> = ({
       data-testid="option-container"
       data-selected={selected}
       data-disabled={disabled}
-      data-small={small}
-      data-tiny={tiny}
       ref={ref}
       tabIndex={0}
       {...props}

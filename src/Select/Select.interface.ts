@@ -1,14 +1,20 @@
 import * as React from 'react'
 
-import { formValue } from '../_internal/types'
 import WithLabel from '../withLabel/withLabel.interface'
 
 export interface SelectContextValue {
   multi: boolean
-  small: boolean
-  tiny: boolean
   canSelectAll: boolean
 }
+
+export type SelectOption = {
+  label: React.ReactNode
+  value: any
+  disabled?: boolean
+  color?: string
+}
+
+export type EnrichedSelectOption = SelectOption & { selected: boolean }
 
 export interface SelectInnerProps
   extends Omit<
@@ -30,11 +36,10 @@ export interface SelectInnerProps
   filterable?: boolean
 
   // Data
-  options: any[]
-  valueFormat?: 'full' | 'simple'
+  options: SelectOption[]
   multi?: boolean
-  onChange?: (value: formValue | formValue[] | null) => void
-  value?: formValue | formValue[]
+  onChange?: (value: any | any[]) => void
+  value?: any | any[]
 }
 
 export default interface SelectProps extends WithLabel<SelectInnerProps> {}
@@ -42,24 +47,21 @@ export default interface SelectProps extends WithLabel<SelectInnerProps> {}
 export interface SelectState {
   isOpened: boolean
   query: string
-  focusedItem: any
-  wrapperRect: ClientRect
-  hoverReset: boolean
+  focusedOption: any
+  showResetIcon: boolean
 }
 
 export enum ActionType {
   UpdateQuery = 'UPDATE_QUERY',
-  ToggleVisibility = 'TOGGLE_VISIBILITY',
-  RemoveFocusItem = 'REMOVE_FOCUS_ITEM',
-  AddFocusItem = 'ADD_FOCUS_ITEM',
-  Resize = 'RESIZE',
-  HoverReset = 'HOVER_RESET',
+  Open = 'OPEN',
+  Close = 'CLOSE',
+  SetFocusedOption = 'SET_FOCUSED_OPTION',
+  SetShowResetIcon = 'SET_SHOW_RESET_ICON',
 }
 
 export type SelectAction =
-  | { type: ActionType.ToggleVisibility }
-  | { type: ActionType.RemoveFocusItem }
-  | { type: ActionType.Resize }
+  | { type: ActionType.Open }
+  | { type: ActionType.Close }
   | { type: ActionType.UpdateQuery; value: string }
-  | { type: ActionType.AddFocusItem; value: any }
-  | { type: ActionType.HoverReset; value: boolean }
+  | { type: ActionType.SetFocusedOption; value: any }
+  | { type: ActionType.SetShowResetIcon; value: boolean }

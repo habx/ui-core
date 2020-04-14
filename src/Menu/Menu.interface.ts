@@ -4,14 +4,15 @@ import * as React from 'react'
 import { WithTriggerElement } from '../withTriggerElement'
 
 export interface MenuInstance {
-  open?: boolean
-  onClose?: (e: React.SyntheticEvent<HTMLUListElement, Event>) => void
+  open: boolean
+  onClose: () => void
 }
 
-export interface MenuInnerProps extends React.HTMLAttributes<HTMLUListElement> {
-  open?: boolean
-  onClose?: () => void
+export interface MenuInnerProps
+  extends React.HTMLAttributes<HTMLUListElement>,
+    MenuInstance {
   fullScreenOnMobile?: boolean
+  scrollable?: boolean
   position?: 'horizontal' | 'vertical'
   triggerRef?: React.RefObject<HTMLElement>
   children?:

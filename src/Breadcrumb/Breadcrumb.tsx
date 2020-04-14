@@ -2,8 +2,8 @@ import * as React from 'react'
 
 import getFlattenedChildren from '../_internal/getFlattenedChildren'
 import BreadcrumbItem from '../BreadcrumbItem/BreadcrumbItem'
-import Menu from '../Menu/Menu'
-import MenuLine from '../MenuLine/MenuLine'
+import Menu from '../Menu'
+import MenuLine from '../MenuLine'
 
 import BreadcrumbContext from './Breadcrumb.context'
 import BreadcrumbProps from './Breadcrumb.interface'

@@ -1,8 +1,7 @@
-import styled from 'styled-components'
+import colorUtils from 'color'
+import styled, { css } from 'styled-components'
 
-import zIndex from '../_internal/zIndex'
 import fontScale from '../fontScale/fontScale'
-import Icon from '../Icon'
 import palette from '../palette'
 import theme from '../theme'
 
@@ -12,18 +11,14 @@ export const Placeholder = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   transition: color 150ms ease-in-out;
-  color: ${theme.textColor({ useRootTheme: true })};
-
-  &[data-empty='true'] {
-    color: ${theme.textColor({ opacity: 0.6, useRootTheme: true })};
-  }
 `
 
-export const LabelIcons = styled.div`
+export const IconsContainer = styled.div`
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   height: 100%;
+  position: relative;
   color: ${theme.textColor({ opacity: 0.6, useRootTheme: true })};
 
   span {
@@ -47,8 +42,13 @@ export const SelectContainer = styled.div`
   border-radius: 4px;
   height: var(--select-height);
   padding: 0 16px;
+  box-shadow: inset 0 0 0 var(--select-border-width) var(--select-border-color);
+  background-color: var(--select-background-color);
 
   --select-height: 48px;
+  --select-background-color: ${palette.darkBlue[200]};
+  --select-border-width: 0;
+  --select-border-color: ${palette.darkBlue[200]};
 
   &[data-small='true'] {
     --select-height: 36px;
@@ -62,25 +62,36 @@ export const SelectContainer = styled.div`
   }
 
   &:not([data-light='true']) {
-    color: ${theme.textColor({ useRootTheme: true })};
-
-    &:not([data-background='true']) {
-      background-color: ${palette.darkBlue[200]};
-      border: solid 1.5px ${palette.darkBlue[200]};
-    }
+    --select-border-width: 1.5px;
 
     &[data-background='true'] {
-      background-color: #fff;
-      border: solid 1.5px #fff;
+      --select-background-color: #fff;
+      --select-border-color: ${palette.darkBlue[200]};
+    }
+
+    ${({ color }) =>
+      color &&
+      css`
+        --select-background-color: ${colorUtils(color).fade(0.85).string()};
+        --select-border-color: ${colorUtils(color).fade(0.75).string()};
+      `};
+
+    & ${Placeholder} {
+      color: ${theme.textColor({ useRootTheme: true, propName: 'color' })};
+
+      &[data-empty='true'] {
+        color: ${theme.textColor({ opacity: 0.6, useRootTheme: true })};
+      }
     }
   }
 
   &[data-light='true'] {
+    --select-background-color: #fff;
     font-size: ${fontScale.mars.size}px;
     padding: 0 12px;
 
     & ${Placeholder}:not([data-empty='true']) {
-      color: ${theme.color('primary')};
+      color: ${theme.color('primary', { propName: 'color' })};
     }
   }
 
@@ -88,15 +99,12 @@ export const SelectContainer = styled.div`
 
   &:disabled,
   &[data-disabled='true'] {
-    border-color: ${palette.darkBlue[200]};
     color: ${palette.darkBlue[700]};
     pointer-events: none;
 
     &:not([data-light='true']) {
-      background-color: ${palette.darkBlue[200]};
-
       &[data-background='true'] {
-        background-color: ${theme.color('background', {
+        --select-background-color: ${theme.color('background', {
           opacity: 0.9,
           useRootTheme: true,
         })};
@@ -112,9 +120,9 @@ export const SelectContainer = styled.div`
   &:hover,
   &:focus,
   &[data-open='true'] {
-    border-color: ${palette.darkBlue[300]};
+    --select-border-color: ${palette.darkBlue[300]};
 
-    & ${LabelIcons} {
+    & ${IconsContainer} {
       color: ${theme.textColor({ useRootTheme: true })};
     }
   }
@@ -168,19 +176,28 @@ export const CustomIconContainer = styled.div`
   align-self: stretch;
 `
 
-export const ResetIcon = styled(Icon)`
+export const ResetIconContainer = styled.div`
+  transition: opacity 150ms ease-in-out;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+
+  &:not([data-visible='true']) {
+    opacity: 0;
+    pointer-events: none;
+  }
+`
+
+export const IconRightContainer = styled.div`
   transition: opacity 150ms ease-in-out;
 
   &:not([data-visible='true']) {
     opacity: 0;
+    pointer-events: none;
   }
-`
-
-export const Overlay = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: ${zIndex.dropDowns};
 `

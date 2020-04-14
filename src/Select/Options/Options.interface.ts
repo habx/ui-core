@@ -1,18 +1,15 @@
-export type Option = {
-  label: string
-  value: any
-  disabled?: boolean
-}
+import * as React from 'react'
+
+import { EnrichedSelectOption } from '../Select.interface'
 
 export default interface OptionsProps {
-  options: Option[]
+  options: EnrichedSelectOption[]
   open: boolean
-  focusedItem?: any
-  isOptionSelected: (option: Option) => boolean
-  onSelect: (option: Option) => void
+  focusedOption?: any
+  onSelect: (option: EnrichedSelectOption) => void
   onSelectAll: (value: boolean) => void
   selectAllLabel?: string
   allSelected: boolean
   onClose: () => void
-  wrapperRect: ClientRect
+  containerRef: React.RefObject<HTMLDivElement>
 }

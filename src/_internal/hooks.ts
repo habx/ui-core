@@ -49,9 +49,3 @@ export const useWindowWidth = () => {
 
   return width
 }
-
-export const useIsSmallScreen = (breakpoint: number = 600) => {
-  const width = useWindowWidth()
-
-  return width <= breakpoint
-}

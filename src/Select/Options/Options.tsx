@@ -1,110 +1,61 @@
+import { ModalState } from '@delangle/use-modal'
 import * as React from 'react'
-import { createPortal } from 'react-dom'
 
-import { useIsSmallScreen } from '../../_internal/hooks'
-import { isClientSide } from '../../_internal/ssr'
-import Modal from '../../Modal'
+import Menu from '../../Menu'
 import Option from '../Option'
 import SelectContext from '../Select.context'
 
 import OptionsProps from './Options.interface'
-import {
-  OptionsContainer,
-  OptionsModalContent,
-  OptionsContent,
-  EmptyOptions,
-  SelectAllOption,
-  MAX_HEIGHT,
-} from './Options.style'
+import { SelectAllOption } from './Options.style'
 
 const Options: React.FunctionComponent<OptionsProps> = ({
   options,
   open,
-  focusedItem,
-  isOptionSelected,
+  focusedOption,
   allSelected,
   onSelect,
   onSelectAll,
   selectAllLabel,
   onClose,
-  wrapperRect,
+  containerRef,
 }) => {
   const { multi, canSelectAll } = React.useContext(SelectContext)
 
-  const isSmallScreen = useIsSmallScreen()
-  const position = React.useMemo(() => {
-    return isClientSide &&
-      !isSmallScreen &&
-      wrapperRect.top + MAX_HEIGHT > window.innerHeight &&
-      wrapperRect.top - MAX_HEIGHT > 0
-      ? 'top'
-      : 'bottom'
-  }, [isSmallScreen, open]) // eslint-disable-line
-
-  const maxHeight = React.useMemo(
-    () =>
-      position === 'bottom' && open
-        ? window.innerHeight - wrapperRect.top - wrapperRect.height - 32
-        : undefined,
-    [open, position] // eslint-disable-line
-  )
-
-  const content = (
-    <OptionsContent noMaxHeight={isSmallScreen} maxHeight={maxHeight}>
-      {options.length > 0 ? (
-        <React.Fragment>
-          {multi && canSelectAll && (
-            <SelectAllOption
-              selected={allSelected}
-              focused={false}
-              onClick={() => onSelectAll(!allSelected)}
-              label={selectAllLabel || 'Select all'}
-            />
-          )}
-          {options.map((option) => (
-            <Option
-              key={option.value}
-              selected={isOptionSelected(option)}
-              onClick={() => onSelect(option)}
-              focused={option === focusedItem}
-              disabled={option.disabled}
-              {...option}
-            />
-          ))}
-        </React.Fragment>
-      ) : (
-        <EmptyOptions>Aucune option</EmptyOptions>
-      )}
-    </OptionsContent>
-  )
-
-  if (isSmallScreen) {
-    return (
-      <Modal open={open} onClose={onClose}>
-        <OptionsModalContent>{content}</OptionsModalContent>
-      </Modal>
-    )
-  }
-
-  const optionsContainer = (
-    <OptionsContainer
+  return (
+    <Menu
       data-testid="options-container"
-      data-open={open}
-      data-position={position}
-      wrapperRect={wrapperRect}
-      maxHeight={maxHeight}
-      backgroundColor="#FFFFFF"
-      onClick={(e) => e.stopPropagation()}
+      open={open}
+      onClose={onClose}
+      triggerRef={containerRef}
+      fullScreenOnMobile
+      scrollable
     >
-      {content}
-    </OptionsContainer>
+      {(modal) =>
+        modal.state !== ModalState.closed && (
+          <React.Fragment>
+            {multi && canSelectAll && (
+              <SelectAllOption
+                selected={allSelected}
+                focused={false}
+                onClick={() => onSelectAll(!allSelected)}
+                label={selectAllLabel || 'Select all'}
+              />
+            )}
+            {options.map((option) => (
+              <Option
+                key={option.value}
+                selected={option.selected}
+                onClick={() => onSelect(option)}
+                focused={option.value === focusedOption}
+                disabled={option.disabled}
+                {...option}
+              />
+            ))}
+          </React.Fragment>
+        )
+      }
+    </Menu>
   )
-
-  if (isClientSide) {
-    return createPortal(optionsContainer, document.body)
-  }
-
-  return optionsContainer
 }
 
 export default Options

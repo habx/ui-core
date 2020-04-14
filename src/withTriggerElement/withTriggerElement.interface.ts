@@ -17,8 +17,13 @@ export type TriggerState = {
   onClick?: () => void
 }
 
-export type WithTriggerElement<BaseProps, RefElement> = BaseProps &
-  TriggerReceivedProps<RefElement>
+export type WithTriggerElement<BaseProps, RefElement> = Omit<
+  BaseProps,
+  'open' | 'onClose'
+> &
+  TriggerReceivedProps<RefElement> & {
+    open?: boolean
+  }
 
 export interface TriggerElementConfig {
   fowardRef?: boolean

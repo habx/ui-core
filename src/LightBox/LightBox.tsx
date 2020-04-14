@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
-import { ANIMATION_DURATION } from '../Menu/Menu.style'
+import { ANIMATION_DURATIONS } from '../animations/animations'
 import withTriggerElement from '../withTriggerElement'
 
 import { LightBoxInnerProps } from './LightBox.interface'
@@ -26,7 +26,7 @@ const LightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
       onClose,
       persistent,
       animated,
-      animationDuration: ANIMATION_DURATION,
+      animationDuration: ANIMATION_DURATIONS.l,
     })
 
     const content = (

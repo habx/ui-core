@@ -27,7 +27,3 @@ export interface StyledTheme {
   uiCore: DesignSystemTheme
   uiCoreRoot: DesignSystemTheme
 }
-
-export type formOption = { value: any; label: string; disabled?: boolean }
-
-export type formValue = formOption | string | number | boolean
