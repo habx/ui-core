@@ -70,6 +70,9 @@ const GRID_ITEMS = [
       children: 'Supprimer',
     },
   },
+  {
+    props: { loading: true },
+  },
 ]
 
 const Grid = withGrid<ButtonProps>({
@@ -95,6 +98,7 @@ export const dynamic = () => (
     link={boolean('Link', false)}
     small={boolean('Small', false)}
     large={boolean('Large', false)}
+    loading={boolean('Loading', false)}
     primary={boolean('Color override : Primary', false)}
     secondary={boolean('Color override : Secondary', false)}
     warning={boolean('Color override : Warning', false)}

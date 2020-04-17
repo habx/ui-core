@@ -6,8 +6,10 @@ import ButtonProps from './Button.interface'
 import {
   ButtonContainer,
   ButtonContent,
+  ButtonLoadingContainer,
   SideElementContainer,
 } from './Button.style'
+import ButtonLoader from './ButtonLoader'
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -22,42 +24,61 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       fullWidth = false,
       dangerouslySetInnerHTML,
       type = 'button',
+      loading = false,
+      warning = false,
       ...rest
     } = props
+
+    const LoadingContainer: React.FunctionComponent = ({
+      children: loadingChildren,
+    }) =>
+      loading && !rest.disabled ? (
+        <ButtonLoadingContainer>
+          <ButtonLoader large={large} small={small} warning={warning}>
+            {loadingChildren}
+          </ButtonLoader>
+        </ButtonLoadingContainer>
+      ) : (
+        <React.Fragment>{loadingChildren}</React.Fragment>
+      )
 
     return (
       <ButtonContainer
         ref={ref}
+        data-loading={loading}
         data-outline={outline}
         data-link={link}
         data-large={large}
         data-small={small}
         data-full-width={fullWidth}
         type={type}
+        warning={warning}
         {...rest}
       >
-        {elementLeft && (
-          <SideElementContainer
-            data-position="left"
-            data-testid="icon-left-container"
+        <LoadingContainer>
+          {elementLeft && (
+            <SideElementContainer
+              data-position="left"
+              data-testid="icon-left-container"
+            >
+              {elementLeft}
+            </SideElementContainer>
+          )}
+          <ButtonContent
+            dangerouslySetInnerHTML={dangerouslySetInnerHTML}
+            data-testid="label-container"
           >
-            {elementLeft}
-          </SideElementContainer>
-        )}
-        <ButtonContent
-          dangerouslySetInnerHTML={dangerouslySetInnerHTML}
-          data-testid="label-container"
-        >
-          {children}
-        </ButtonContent>
-        {elementRight && (
-          <SideElementContainer
-            data-position="right"
-            data-testid="icon-right-container"
-          >
-            {elementRight}
-          </SideElementContainer>
-        )}
+            {children}
+          </ButtonContent>
+          {elementRight && (
+            <SideElementContainer
+              data-position="right"
+              data-testid="icon-right-container"
+            >
+              {elementRight}
+            </SideElementContainer>
+          )}
+        </LoadingContainer>
       </ButtonContainer>
     )
   }

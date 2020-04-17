@@ -38,6 +38,7 @@ export const ButtonContainer = styled.button`
   text-decoration: none;
   border-radius: 2px;
   font-weight: 500;
+  position: relative;
 
   padding: 0 24px;
   height: 48px;
@@ -161,6 +162,7 @@ export const ButtonContainer = styled.button`
         variation: 'focus',
       })};
     }
+ 
   }
 
   &[data-full-width='true'] {
@@ -196,4 +198,17 @@ export const ButtonContainer = styled.button`
       })};
     }
   }
+    
+   &[data-loading="true"][data-outline='false'][data-link='false'] {
+     background: ${theme.color('primary', {
+       dynamic: true,
+       variation: 'hover',
+     })};
+     cursor: initial;
+    pointer-events: none;
+   }
+`
+
+export const ButtonLoadingContainer = styled.div`
+  position: relative;
 `

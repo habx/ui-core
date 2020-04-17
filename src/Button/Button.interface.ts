@@ -8,5 +8,6 @@ export default interface ButtonProps extends Button {
   outline?: boolean
   link?: boolean
   fullWidth?: boolean
+  loading?: boolean
   as?: styledAs
 }
