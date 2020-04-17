@@ -34,13 +34,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }) =>
       loading && !rest.disabled ? (
         <ButtonLoadingContainer>
-          <ButtonLoader
-            large={large}
-            small={small}
-            outline={outline}
-            link={link}
-            warning={warning}
-          >
+          <ButtonLoader large={large} small={small} warning={warning}>
             {loadingChildren}
           </ButtonLoader>
         </ButtonLoadingContainer>

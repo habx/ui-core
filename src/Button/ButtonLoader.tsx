@@ -1,8 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import theme from '../theme'
-
 const ButtonLoaderAnimated = styled.div`
   display: flex;
   justify-content: center;
@@ -17,7 +15,8 @@ const ButtonLoaderAnimated = styled.div`
     position: absolute;
     width: var(--loader-dot-size);
     height: var(--loader-dot-size);
-    background: var(--loader-dot-color-1);
+    background: currentColor;
+    opacity: 1;
     border-radius: 50%;
     transform: translateY(calc(var(--loader-dot-size) * -0.5));
     animation: animated-dots 1s infinite ease-in-out;
@@ -41,15 +40,18 @@ const ButtonLoaderAnimated = styled.div`
   @keyframes animated-dots {
     0% {
       transform: translateY(calc(var(--loader-dot-size) * -0.5));
-      background: var(--loader-dot-color-2);
+      background: currentColor;
+      opacity: 0.25;
     }
     50% {
       transform: translateY(calc(var(--loader-dot-size)));
-      background: var(--loader-dot-color-1);
+      background: currentColor;
+      opacity: 1;
     }
     100% {
       transform: translateY(calc(var(--loader-dot-size) * -0.5));
-      background: var(--loader-dot-color-2);
+      background: currentColor;
+      opacity: 0.25;
     }
   }
 `
@@ -68,42 +70,16 @@ const ButtonLoaderContainer = styled.div`
   &[data-small='true'] {
     --loader-dot-size: 4px;
   }
-
-  --loader-dot-color-1: ${theme.color('background')};
-  --loader-dot-color-2: ${theme.color('background', { opacity: 0.25 })};
-
-  &[data-link='true'] {
-    --loader-dot-color-1: ${theme.color('primary', { dynamic: true })};
-    --loader-dot-color-2: ${theme.color('primary', {
-      opacity: 0.25,
-      dynamic: true,
-    })};
-  }
-  &[data-outline='true'] {
-    --loader-dot-color-1: ${theme.color('secondary', { dynamic: true })};
-    --loader-dot-color-2: ${theme.color('secondary', {
-      opacity: 0.25,
-      dynamic: true,
-    })};
-  }
 `
 
 const ButtonLoader: React.FunctionComponent<ButtonLoaderInterface> = ({
   children,
   large,
   small,
-  link,
-  outline,
   ...props
 }) => {
   return (
-    <ButtonLoaderContainer
-      data-large={large}
-      data-small={small}
-      data-link={link}
-      data-outline={outline}
-      {...props}
-    >
+    <ButtonLoaderContainer data-large={large} data-small={small} {...props}>
       <ButtonLoaderAnimated>
         <span />
         <span /> <span />
@@ -114,8 +90,6 @@ const ButtonLoader: React.FunctionComponent<ButtonLoaderInterface> = ({
 }
 
 interface ButtonLoaderInterface {
-  link: boolean
-  outline: boolean
   small: boolean
   large: boolean
   warning: boolean
