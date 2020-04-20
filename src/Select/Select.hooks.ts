@@ -87,11 +87,10 @@ export const useSelect = ({
   }, [multi, rawValue])
 
   const selectedOptions = React.useMemo<SelectOption[]>(() => {
-    if (multi) {
+    if (multi && Array.isArray(value)) {
       const multiValue = value as any[]
-
       return options.filter((option) =>
-        multiValue.some((val) => val === option.value)
+        multiValue?.some((val) => val === option.value)
       )
     }
 
@@ -126,11 +125,11 @@ export const useSelect = ({
 
   const color = React.useMemo(
     () => selectedOptions.find((el) => el.color)?.color,
-    []
+    [selectedOptions]
   )
 
   const areAllOptionsSelected = React.useMemo(() => {
-    if (multi) {
+    if (multi && Array.isArray(value)) {
       const multiValue = value as any[]
 
       return options.length === multiValue.length
@@ -163,7 +162,7 @@ export const useSelect = ({
 
   const handleSelectMulti = React.useCallback(
     (option) => {
-      const multiValue = value as any[]
+      const multiValue = (value ?? []) as any[]
 
       const newValue = multiValue.includes(option.value)
         ? multiValue.filter((el) => el !== option.value)
