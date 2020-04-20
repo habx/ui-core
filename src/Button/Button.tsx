@@ -29,18 +29,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ...rest
     } = props
 
-    const LoadingContainer: React.FunctionComponent = ({
-      children: loadingChildren,
-    }) =>
-      loading && !rest.disabled ? (
-        <ButtonLoadingContainer>
-          <ButtonLoader large={large} small={small} warning={warning}>
-            {loadingChildren}
-          </ButtonLoader>
-        </ButtonLoadingContainer>
-      ) : (
-        <React.Fragment>{loadingChildren}</React.Fragment>
-      )
+    const LoadingContainer = React.useMemo<React.FunctionComponent>(
+      () => ({ children: loadingChildren }) =>
+        loading && !rest.disabled ? (
+          <ButtonLoadingContainer>
+            <ButtonLoader large={large} small={small} warning={warning}>
+              {loadingChildren}
+            </ButtonLoader>
+          </ButtonLoadingContainer>
+        ) : (
+          <React.Fragment>{loadingChildren}</React.Fragment>
+        ),
+      [large, small, warning, loading, rest.disabled]
+    )
 
     return (
       <ButtonContainer
