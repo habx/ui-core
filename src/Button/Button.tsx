@@ -6,10 +6,9 @@ import ButtonProps from './Button.interface'
 import {
   ButtonContainer,
   ButtonContent,
-  ButtonLoadingContainer,
   SideElementContainer,
 } from './Button.style'
-import ButtonLoader from './ButtonLoader'
+import LoadingContainer from './LoadingContainer'
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
@@ -29,19 +28,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ...rest
     } = props
 
-    const LoadingContainer: React.FunctionComponent = ({
-      children: loadingChildren,
-    }) =>
-      loading && !rest.disabled ? (
-        <ButtonLoadingContainer>
-          <ButtonLoader large={large} small={small} warning={warning}>
-            {loadingChildren}
-          </ButtonLoader>
-        </ButtonLoadingContainer>
-      ) : (
-        <React.Fragment>{loadingChildren}</React.Fragment>
-      )
-
     return (
       <ButtonContainer
         ref={ref}
@@ -55,7 +41,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         warning={warning}
         {...rest}
       >
-        <LoadingContainer>
+        <LoadingContainer
+          loading={loading && !rest.disabled}
+          large={large}
+          small={small}
+          warning={warning}
+        >
           {elementLeft && (
             <SideElementContainer
               data-position="left"
