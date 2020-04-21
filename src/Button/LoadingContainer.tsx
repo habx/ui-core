@@ -1,6 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+import { ButtonLoadingContainer } from './Button.style'
+
 const ButtonLoaderAnimated = styled.div`
   display: flex;
   justify-content: center;
@@ -95,4 +97,21 @@ interface ButtonLoaderInterface {
   warning: boolean
 }
 
-export default ButtonLoader
+const LoadingContainer: React.FunctionComponent<LoadingContainerInterface> = ({
+  children,
+  loading,
+  ...props
+}) =>
+  loading ? (
+    <ButtonLoadingContainer>
+      <ButtonLoader {...props}>{children}</ButtonLoader>
+    </ButtonLoadingContainer>
+  ) : (
+    <React.Fragment>{children}</React.Fragment>
+  )
+
+interface LoadingContainerInterface extends ButtonLoaderInterface {
+  loading: boolean
+}
+
+export default LoadingContainer
