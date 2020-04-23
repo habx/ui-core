@@ -9,7 +9,7 @@ const Tag = React.forwardRef<HTMLButtonElement, TagProps>((props, ref) => {
   const {
     active = false,
     large = false,
-    small = true,
+    small = false,
     interactive = true,
     type = 'button',
     elementLeft,
