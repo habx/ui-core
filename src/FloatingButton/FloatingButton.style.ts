@@ -2,11 +2,12 @@ import styled from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
 import breakpoints from '../breakpoints'
+import fontScale from '../fontScale'
 import palette from '../palette'
 import theme from '../theme'
 
 export const SideElementContainer = styled.div`
-  font-size: 16px;
+  font-size: 24px;
   display: flex;
   margin-top: -1px;
 
@@ -37,11 +38,10 @@ export const FloatingButtonContainer = styled.button`
   box-shadow: ${theme.shadow('low')};
 
   padding: 0 24px;
-  height: 40px;
-  border-radius: 20px;
+  height: 48px;
+  border-radius: 24px;
   max-width: 100%;
-  font-size: 12px;
-  line-height: 16px;
+  font-size: ${fontScale.mars.size}px;
   font-family: ${theme.font()};
   text-transform: uppercase;
 
