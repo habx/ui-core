@@ -15,6 +15,7 @@ export const ToggleContainer = styled.div`
   margin: calc(var(--toggle-circle-radius) * 0.5) 0;
   border-radius: calc(var(--toggle-circle-radius) * 0.75);
   outline: none;
+  flex: 0 0 auto;
 
   &::before,
   &::after {
