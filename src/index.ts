@@ -26,6 +26,7 @@ export { default as MenuLine, MenuLineProps } from './MenuLine'
   Buttons / Tags
  */
 export { default as Button, ButtonProps } from './Button'
+export { default as CardButton, CardButtonProps } from './CardButton'
 export { default as FloatingButton, FloatingButtonProps } from './FloatingButton'
 export { default as FloatingIconButton, FloatingIconButtonProps } from './FloatingIconButton'
 export { default as IconButton, IconButtonProps } from './IconButton'
