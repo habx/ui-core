@@ -35,11 +35,6 @@ export const FloatingButtonContainer = styled.button`
   font-size: var(--floating-icon-button-radius);
 
   position: absolute;
-  bottom: 24px;
-
-  @media (${breakpoints.below.phone}) {
-    bottom: 12px;
-  }
 
   transition-property: box-shadow, padding, background-color;
   transition-duration: 50ms;
@@ -51,17 +46,37 @@ export const FloatingButtonContainer = styled.button`
 
   &[data-position='bottom-right'] {
     right: 36px;
+    bottom: 24px;
 
     @media (${breakpoints.below.phone}) {
-      right: 18px;
+      right: 20px;
     }
   }
 
   &[data-position='bottom-left'] {
     left: 36px;
+    bottom: 24px;
 
     @media (${breakpoints.below.phone}) {
-      left: 18px;
+      left: 20px;
+    }
+  }
+
+  &[data-position='top-right'] {
+    right: 36px;
+    top: 24px;
+
+    @media (${breakpoints.below.phone}) {
+      right: 20px;
+    }
+  }
+
+  &[data-position='top-left'] {
+    left: 36px;
+    top: 24px;
+
+    @media (${breakpoints.below.phone}) {
+      left: 20px;
     }
   }
 
