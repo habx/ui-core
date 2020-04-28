@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import MenuContext from '../Menu/Menu.context'
 import MenuSectionContext from '../MenuSection/MenuSection.context'
 import Text from '../Text'
 
@@ -14,12 +15,27 @@ const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
       elementLeft,
       warning,
       elementRight,
+      onClick,
       ...rest
     } = props
     const sectionContext = React.useContext(MenuSectionContext)
-
+    const menuContext = React.useContext(MenuContext)
+    const handleClick = React.useCallback(
+      (e: React.MouseEvent<HTMLLIElement>) => {
+        menuContext.close()
+        if (onClick) {
+          onClick(e)
+        }
+      },
+      [onClick, menuContext]
+    )
     return (
-      <MenuLineContainer ref={ref} {...rest} depth={sectionContext.depth}>
+      <MenuLineContainer
+        ref={ref}
+        {...rest}
+        depth={sectionContext.depth}
+        onClick={handleClick}
+      >
         {elementLeft && (
           <IconContainer
             secondary={active}

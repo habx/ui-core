@@ -10,6 +10,7 @@ import breakpoints from '../breakpoints'
 import Modal from '../Modal'
 import withTriggerElement from '../withTriggerElement'
 
+import MenuContext from './Menu.context'
 import { MenuInstance, MenuInnerProps } from './Menu.interface'
 import {
   MenuContent,
@@ -142,23 +143,27 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
 
     if (fullScreenOnMobile && size.width < breakpoints.raw.phone) {
       return (
-        <Modal open={open} onClose={onClose}>
-          <MenuFullScreenContainer>{content}</MenuFullScreenContainer>
-        </Modal>
+        <MenuContext.Provider value={modal}>
+          <Modal open={open} onClose={onClose}>
+            <MenuFullScreenContainer>{content}</MenuFullScreenContainer>
+          </Modal>
+        </MenuContext.Provider>
       )
     }
 
     return ReactDOM.createPortal(
-      <MenuOverlay data-state={modal.state} data-testid="menu-overlay">
-        <MenuContainer
-          style={positionStyle}
-          ref={modal.ref}
-          data-testid="menu-container"
-          {...rest}
-        >
-          <MenuContent data-scrollable={scrollable}>{content}</MenuContent>
-        </MenuContainer>
-      </MenuOverlay>,
+      <MenuContext.Provider value={modal}>
+        <MenuOverlay data-state={modal.state} data-testid="menu-overlay">
+          <MenuContainer
+            style={positionStyle}
+            ref={modal.ref}
+            data-testid="menu-container"
+            {...rest}
+          >
+            <MenuContent data-scrollable={scrollable}>{content}</MenuContent>
+          </MenuContainer>
+        </MenuOverlay>
+      </MenuContext.Provider>,
       document.body
     )
   }
