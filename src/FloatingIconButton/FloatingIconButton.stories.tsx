@@ -45,13 +45,23 @@ const GRID_LINES = [
 ]
 
 const GRID_ITEMS = [
-  {},
   {
+    label: 'Default',
+  },
+  {
+    label: 'Disabled',
     props: { disabled: true },
   },
   {
+    label: 'Warning',
     props: {
       warning: true,
+    },
+  },
+  {
+    label: 'Small',
+    props: {
+      small: true,
     },
   },
 ]

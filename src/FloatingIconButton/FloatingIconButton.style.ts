@@ -44,6 +44,10 @@ export const FloatingButtonContainer = styled.button`
     position: fixed;
   }
 
+  &[data-small='true'] {
+    --floating-icon-button-radius: 18px;
+  }
+
   &[data-position='bottom-right'] {
     right: 36px;
     bottom: 24px;

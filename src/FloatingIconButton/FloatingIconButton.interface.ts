@@ -6,5 +6,7 @@ export default interface FloatingIconButtonProps
     Pick<IconProps, 'icon' | 'colored'> {
   position?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right'
   fixed?: boolean
+  small?: boolean
+  secondary?: boolean
   as?: styledAs
 }
