@@ -27,22 +27,41 @@ const GRID_PROPS = {
 
 const GRID_LINES = [
   {
-    title: 'Regular',
+    title: 'Position bottom right (default)',
+    props: { position: 'bottom-right' as 'bottom-right' },
   },
   {
     title: 'Position bottom left',
     props: { position: 'bottom-left' as 'bottom-left' },
   },
+  {
+    title: 'Position top left',
+    props: { position: 'top-left' as 'top-left' },
+  },
+  {
+    title: 'Position top right',
+    props: { position: 'top-right' as 'top-right' },
+  },
 ]
 
 const GRID_ITEMS = [
-  {},
   {
+    label: 'Default',
+  },
+  {
+    label: 'Disabled',
     props: { disabled: true },
   },
   {
+    label: 'Warning',
     props: {
       warning: true,
+    },
+  },
+  {
+    label: 'Small',
+    props: {
+      small: true,
     },
   },
 ]
@@ -53,9 +72,13 @@ const Grid = withGrid<FloatingIconButtonProps>({
   items: GRID_ITEMS,
 })(FloatingIconButton)
 
-const positions: { [key: string]: 'bottom-left' | 'bottom-right' } = {
+const positions: {
+  [key: string]: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right'
+} = {
   'Bottom Left': 'bottom-left',
   'Bottom Right': 'bottom-right',
+  'Top Left': 'top-left',
+  'Top Right': 'top-right',
 }
 
 export default {
