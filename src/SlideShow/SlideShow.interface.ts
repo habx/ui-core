@@ -15,11 +15,10 @@ export enum SlideChangeSource {
 export default interface SlideShowProps {
   defaultDevice?: string
   registerActions?: (actions: SlideShowActions) => void
-  onSelectedSlideChange?: (
+  onCurrentSlideChange?: (
     currentSlide: number,
     { source }: { source: SlideChangeSource }
   ) => void
-  hideNavigation?: boolean
   circular?: boolean
   referenceSlideIndex?: number
   navigationComponent?: React.ComponentType<any>
