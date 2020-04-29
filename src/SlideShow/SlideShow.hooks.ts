@@ -30,14 +30,14 @@ const INITIAL_STATE: SlideShowState = {
 
 export const useSlideShow = ({
   items,
-  onSelectedSlideChange,
+  onCurrentSlideChange,
   registerActions,
   circular,
   currentSlide,
   ref,
 }: Pick<
   SlideShowProps,
-  'onSelectedSlideChange' | 'registerActions' | 'circular' | 'currentSlide'
+  'onCurrentSlideChange' | 'registerActions' | 'circular' | 'currentSlide'
 > & { items: any[]; ref: React.RefObject<HTMLDivElement> }) => {
   const slideAmount = items.length
 
@@ -50,10 +50,6 @@ export const useSlideShow = ({
         const getTarget = (): number => {
           if (action.isRelative) {
             return state.currentSlide + action.value
-          }
-
-          if (action.source === SlideChangeSource.parentCall) {
-            return action.value
           }
 
           return getClosestSlidePosition({
@@ -125,62 +121,46 @@ export const useSlideShow = ({
   }
 
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
-  const isControlled = !isNil(currentSlide)
 
   const throttledKeyboardGoTo = React.useCallback(
     throttle<(delta: 1 | -1) => void>((delta) => {
-      if (!isControlled) {
-        return dispatch({
-          type: ActionType.GoToSlide,
-          value: delta,
-          isRelative: true,
-          source: SlideChangeSource.keyboard,
-        })
-      }
+      return dispatch({
+        type: ActionType.GoToSlide,
+        value: delta,
+        isRelative: true,
+        source: SlideChangeSource.keyboard,
+      })
     }, DESKTOP_ANIMATION_DURATION),
-    [isControlled]
+    []
   )
 
-  const handleNextClick = () => {
-    if (!isControlled) {
-      return dispatch({
-        type: ActionType.GoToSlide,
-        value: 1,
-        isRelative: true,
-        source: SlideChangeSource.navigationButton,
-      })
-    }
-  }
+  const handleNextClick = () =>
+    dispatch({
+      type: ActionType.GoToSlide,
+      value: 1,
+      isRelative: true,
+      source: SlideChangeSource.navigationButton,
+    })
 
-  const handlePreviousClick = () => {
-    if (!isControlled) {
-      return dispatch({
-        type: ActionType.GoToSlide,
-        value: -1,
-        isRelative: true,
-        source: SlideChangeSource.navigationButton,
-      })
-    }
-  }
+  const handlePreviousClick = () =>
+    dispatch({
+      type: ActionType.GoToSlide,
+      value: -1,
+      isRelative: true,
+      source: SlideChangeSource.navigationButton,
+    })
 
-  const handleSwipeEnd = () => {
-    if (!isControlled) {
-      return dispatch({ type: ActionType.SwipeEnd })
-    }
-  }
+  const handleSwipeEnd = () => dispatch({ type: ActionType.SwipeEnd })
 
   const handleSwipeMove = (
     swipePosition: { x: number; y: number },
     event: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>
-  ) => {
-    if (!isControlled) {
-      return dispatch({
-        type: ActionType.SwipeMove,
-        value: swipePosition,
-        event,
-      })
-    }
-  }
+  ) =>
+    dispatch({
+      type: ActionType.SwipeMove,
+      value: swipePosition,
+      event,
+    })
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -193,14 +173,12 @@ export const useSlideShow = ({
       }
     }
 
-    if (!isControlled) {
-      window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keydown', handleKeyDown)
 
-      return () => {
-        window.removeEventListener('keydown', handleKeyDown)
-      }
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
     }
-  }, [isControlled, ref, throttledKeyboardGoTo])
+  }, [ref, throttledKeyboardGoTo])
 
   React.useEffect(() => {
     if (registerActions) {
@@ -218,27 +196,27 @@ export const useSlideShow = ({
   }, [registerActions])
 
   useSSRLayoutEffect(() => {
-    if (onSelectedSlideChange && state.lastSlideChangeSource !== 'parentCall') {
+    if (onCurrentSlideChange && state.lastSlideChangeSource !== 'parentCall') {
       const slide = getRelativePosition({
         currentSlide: state.currentSlide,
         slideAmount,
       })
 
-      onSelectedSlideChange(slide, {
+      onCurrentSlideChange(slide, {
         source: state.lastSlideChangeSource,
       })
     }
-  }, [state.currentSlide, onSelectedSlideChange])
+  }, [state.currentSlide, onCurrentSlideChange])
 
   useSSRLayoutEffect(() => {
-    if (isControlled) {
+    if (!isNil(currentSlide)) {
       dispatch({
         type: ActionType.GoToSlide,
         source: SlideChangeSource.parentCall,
         value: currentSlide as number,
       })
     }
-  }, [isControlled, currentSlide])
+  }, [currentSlide]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return {
     ...state,

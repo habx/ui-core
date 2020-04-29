@@ -24,7 +24,7 @@ const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
       defaultDevice,
       hideNavigationDots = false,
       navigationComponent,
-      onSelectedSlideChange,
+      onCurrentSlideChange,
       registerActions,
       circular = true,
       currentSlide,
@@ -37,7 +37,7 @@ const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
 
     const slideShow = useSlideShow({
       items,
-      onSelectedSlideChange,
+      onCurrentSlideChange,
       registerActions,
       circular,
       currentSlide,
