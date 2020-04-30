@@ -12,4 +12,5 @@ export default interface IconButtonProps
   small?: boolean
   large?: boolean
   tiny?: boolean
+  background?: 'grey' | 'white'
 }

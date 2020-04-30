@@ -32,8 +32,17 @@ export const IconButtonContainer = styled.button`
   --icon-button-size: ${fontScale.jupiter.lineHeight}px;
   --icon-button-border-width: 0;
 
+  &:hover {
+    background-color: ${theme.textColor({ opacity: 0.05 })};
+  }
+
   &:focus {
-    --icon-button-border-width: 4px;
+    --icon-button-border-width: 6px;
+    background-color: unset;
+  }
+
+  &:hover:not(:focus)[data-has-bounding-background='true'] {
+    --icon-button-border-width: 3px;
   }
 
   &[data-tiny='true'] {
@@ -43,6 +52,10 @@ export const IconButtonContainer = styled.button`
     &:focus {
       --icon-button-border-width: 2px;
     }
+
+    &:hover:not(:focus)[data-has-bounding-background='true'] {
+      --icon-button-border-width: 1.5px;
+    }
   }
 
   &[data-small='true'] {
@@ -50,6 +63,10 @@ export const IconButtonContainer = styled.button`
     --icon-button-size: ${fontScale.earth.lineHeight}px;
 
     &:focus {
+      --icon-button-border-width: 4px;
+    }
+
+    &:hover:not(:focus)[data-has-bounding-background='true'] {
       --icon-button-border-width: 2px;
     }
   }
@@ -59,7 +76,11 @@ export const IconButtonContainer = styled.button`
     --icon-button-size: ${fontScale.sun.lineHeight}px;
 
     &:focus {
-      --icon-button-border-width: 6px;
+      --icon-button-border-width: 8px;
+    }
+
+    &:hover:not(:focus)[data-has-bounding-background='true'] {
+      --icon-button-border-width: 4px;
     }
   }
 
@@ -68,15 +89,7 @@ export const IconButtonContainer = styled.button`
     color: ${palette.darkBlue[400]};
   }
 
-  &:hover {
-    background-color: ${theme.textColor({ opacity: 0.05 })};
-  }
-
   &:active {
     color: ${theme.textColor({ dynamic: true })};
-  }
-
-  &:focus {
-    background-color: unset;
   }
 `
