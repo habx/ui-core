@@ -1,75 +1,25 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import theme from '../theme'
 
-const outline = 4
-export const OutlinedLoaderMask = styled.div<{
-  size: 'large' | 'medium' | 'small'
-}>`
-  position: absolute;
-  top: 0;
-  left: 0;
-  clip-path: polygon(50% 5%, 100% 40%, 100% 100%, 0 100%, 0% 40%);
-  background: ${theme.color('background')};
-  backface-visibility: hidden;
-  ${({ size }) => {
-    switch (size) {
-      case 'large':
-        const bigOutline = outline + 1
-
-        return css`
-          margin: ${bigOutline + 1}px ${bigOutline}px;
-          height: ${36 - 2 * bigOutline - 1}px;
-          width: ${36 - 2 * bigOutline}px;
-        `
-      case 'medium':
-        return css`
-          margin: ${outline + 1}px ${outline}px;
-          height: ${24 - 2 * outline - 1}px;
-          width: ${24 - 2 * outline}px;
-        `
-      case 'small':
-      default:
-        const smallOutline = outline - 1
-        return css`
-          margin: ${smallOutline + 1}px ${smallOutline}px;
-          height: ${18 - 2 * smallOutline - 1}px;
-          width: ${18 - 2 * smallOutline}px;
-        `
-    }
-  }}
-  &[data-colored='false'] {
-    background: #949dab;
-  }
-`
-
 export const LoaderContainer = styled.div<{
-  size: 'large' | 'medium' | 'small'
+  loaderClipPathContainerId: string
 }>`
-  clip-path: polygon(50% 5%, 100% 40%, 100% 100%, 0 100%, 0% 40%);
+  //https://stackoverflow.com/questions/39477755/how-to-make-clip-path-work-on-microsoft-edge
+  clip-path: url(${({ loaderClipPathContainerId }) =>
+    `#${loaderClipPathContainerId}`});
   background: #061a3c;
   position: relative;
   backface-visibility: hidden;
-  ${({ size }) => {
-    switch (size) {
-      case 'large':
-        return css`
-          height: 36px;
-          width: 36px;
-        `
-      case 'medium':
-        return css`
-          height: 24px;
-          width: 24px;
-        `
-      case 'small':
-      default:
-        return css`
-          height: 18px;
-          width: 18px;
-        `
-    }
-  }}
+  --loader-size: 24px;
+  &[data-size='large'] {
+    --loader-size: 36px;
+  }
+  &[data-size='small'] {
+    --loader-size: 18px;
+  }
+  height: var(--loader-size);
+  width: var(--loader-size);
   &[data-colored='false'] {
     background: #949dab;
   }
@@ -117,4 +67,17 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`
+
+export const MaskSvg = styled.svg`
+  --loader-stroke: calc(var(--loader-size) / 6);
+  height: calc(var(--loader-size) - var(--loader-stroke) * 2);
+  width: calc(var(--loader-size) - var(--loader-stroke) * 2);
+  fill: ${theme.color('background')};
+  position: absolute;
+  top: var(--loader-stroke);
+  left: var(--loader-stroke);
+  use {
+    transform: scale(0.7);
+  }
 `
