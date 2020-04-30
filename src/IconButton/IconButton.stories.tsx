@@ -19,6 +19,10 @@ const GRID_LINES = [
     props: { small: true },
   },
   {
+    title: 'Tiny',
+    props: { tiny: true },
+  },
+  {
     title: 'Large',
     props: { large: true },
   },
@@ -27,6 +31,14 @@ const GRID_LINES = [
 const GRID_ITEMS = [
   {
     label: 'Default',
+  },
+  {
+    label: 'Grey bounding background',
+    props: { background: 'grey' as 'grey' },
+  },
+  {
+    label: 'White bounding background',
+    props: { background: 'white' as 'white' },
   },
   {
     label: 'Disabled',
