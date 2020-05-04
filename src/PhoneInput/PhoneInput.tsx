@@ -5,28 +5,10 @@ import useHasColoredBackground from '../_internal/useHasColoredBackground'
 import Icon from '../Icon'
 import withLabel from '../withLabel'
 
+import countries, { Country } from './countries'
 import { PhoneInputInnerProps } from './PhoneInput.interface'
-import {
-  PhoneInputContainer,
-  PhoneIndicator,
-  MainInput,
-  CountryOptions,
-  FlagContainer,
-} from './PhoneInput.style'
-
-type COUNTRY = {
-  code: string
-  indicator: number
-  flag: React.FunctionComponent<{}>
-}
-
-const COUNTRIES: COUNTRY[] = [
-  {
-    code: 'fr',
-    indicator: 33,
-    flag: () => <Icon colored icon="flag-france" />,
-  },
-]
+import { PhoneInputContainer, MainInput } from './PhoneInput.style'
+import SelectFlag from './SelectFlag'
 
 const PHONE_REGEXP = /\+([0-9]{2})(.*)/
 
@@ -41,13 +23,14 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputInnerProps>(
       ...rest
     } = props
 
-    const [country, setCountry] = React.useState<string>('fr')
+    const [country, setCountry] = React.useState<Country>({
+      name: 'France',
+      iso2Code: 'fr',
+      dialCode: '33',
+      areaCodes: [],
+      flag: () => <Icon colored icon="flag-france" />,
+    })
     const hasBackground = useHasColoredBackground()
-
-    const { indicator, flag: Flag } = React.useMemo<COUNTRY>(
-      () => COUNTRIES.find(({ code }) => code === country) as COUNTRY,
-      [country]
-    )
 
     const value = React.useMemo(() => {
       const result = PHONE_REGEXP.exec(rawValue)
@@ -74,25 +57,25 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputInnerProps>(
             ? cleanValue.substring(1)
             : cleanValue
 
-        e.target.value = `+${indicator}${phoneNumber}`
+        e.target.value = `+${country.dialCode}${phoneNumber}`
 
         if (onChange) {
           onChange(e)
         }
       },
-      [indicator, onChange]
+      [country.dialCode, onChange]
     )
 
     useSSRLayoutEffect(() => {
       const result = PHONE_REGEXP.exec(rawValue)
       if (result) {
-        const indicatorValue = parseInt(result[1], 10)
-        const countryValue = COUNTRIES.find(
-          (el) => el.indicator === indicatorValue
+        const indicatorValue = result[1]
+        const countryValue = countries.find(
+          (el) => el.dialCode === indicatorValue
         )
 
         if (countryValue) {
-          setCountry(countryValue.code)
+          setCountry(countryValue)
         }
       }
     }, [])
@@ -105,12 +88,7 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputInnerProps>(
         data-small={small}
         data-background={hasBackground}
       >
-        <CountryOptions>
-          <FlagContainer>
-            <Flag />
-          </FlagContainer>
-          <PhoneIndicator>{`+${indicator}`}</PhoneIndicator>
-        </CountryOptions>
+        <SelectFlag value={country} onChange={setCountry} />
         <MainInput
           ref={ref}
           {...rest}

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import palette from '../palette'
+import Text from '../Text'
 import TextInput from '../TextInput'
 import theme from '../theme'
 
@@ -22,6 +23,7 @@ export const CountryOptions = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  cursor: pointer;
 
   transition: all 150ms ease-in-out;
 `
@@ -97,13 +99,38 @@ export const FlagContainer = styled.div`
   display: flex;
   overflow: hidden;
   height: 15px;
+  font-size: 12px;
+  text-transform: uppercase;
 
-  & > svg {
-    height: 100%;
+  & > span {
+    &:first-child {
+      margin-right: 4px;
+    }
+    &:last-child {
+      font-size: 9px;
+      align-self: center;
+    }
   }
 `
 
 export const PhoneIndicator = styled.div`
   font-size: 16px;
   padding-top: 1px;
+`
+
+export const HiddenInput = styled.input`
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  outline: none;
+  background: none;
+`
+
+export const MenuLineTitle = styled(Text)`
+  display: flex;
+`
+
+export const MenuLineSubtitle = styled(Text)`
+  color: ${palette.darkBlue[500]};
+  margin-left: 12px;
 `
