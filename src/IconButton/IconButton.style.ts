@@ -9,16 +9,14 @@ import palette from '../palette'
 import theme from '../theme'
 
 export const IconButtonContainer = styled.button`
-  background: none;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 0;
+  position: relative;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: ${theme.textColor({ dynamic: true, opacity: 0.72 })};
+  background-color: ${theme.color('background')};
   transition: all ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
 
   border-radius: 2px;
@@ -31,14 +29,15 @@ export const IconButtonContainer = styled.button`
   --icon-button-font-size: ${fontScale.jupiter.size}px;
   --icon-button-size: ${fontScale.jupiter.lineHeight}px;
   --icon-button-border-width: 0;
+  --icon-button-background: var(--icon-button-base-background);
 
   &:hover {
-    background-color: ${theme.textColor({ opacity: 0.05 })};
+    --icon-button-background: ${theme.textColor({ opacity: 0.05 })};
   }
 
   &:focus {
     --icon-button-border-width: 6px;
-    background-color: unset;
+    --icon-button-background: unset;
   }
 
   &:hover:not(:focus)[data-has-bounding-background='true'] {
@@ -92,4 +91,13 @@ export const IconButtonContainer = styled.button`
   &:active {
     color: ${theme.textColor({ dynamic: true })};
   }
+`
+
+export const IconButtonContent = styled.div`
+  background: var(--icon-button-background);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
