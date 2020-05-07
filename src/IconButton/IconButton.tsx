@@ -3,15 +3,10 @@ import * as React from 'react'
 import Icon from '../Icon'
 import palette from '../palette'
 import ThemeProvider from '../ThemeProvider'
+import useTheme from '../useTheme'
 
 import IconButtonProps from './IconButton.interface'
-import { IconButtonContainer } from './IconButton.style'
-
-const BACKGROUNDS = {
-  grey: palette.darkBlue[200],
-  white: '#FFFFFF',
-  none: null,
-}
+import { IconButtonContainer, IconButtonContent } from './IconButton.style'
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   (props, ref) => {
@@ -21,12 +16,23 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       small = false,
       large = false,
       tiny = false,
-      background = 'none',
+      background = 'inherit',
       type = 'button',
       ...rest
     } = props
 
-    const backgroundColor = BACKGROUNDS[background]
+    const theme = useTheme()
+
+    const backgroundColor = React.useMemo(() => {
+      switch (background) {
+        case 'inherit':
+          return theme.backgroundColor
+        case 'white':
+          return '#FFFFFF'
+        case 'grey':
+          return palette.darkBlue[200]
+      }
+    }, [background, theme.backgroundColor])
 
     const content = (
       <IconButtonContainer
@@ -35,11 +41,17 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         data-small={small}
         data-large={large}
         data-tiny={tiny}
-        data-has-bounding-background={!!backgroundColor}
+        data-has-bounding-background={backgroundColor !== theme.backgroundColor}
         type={type}
-        style={backgroundColor ? { backgroundColor } : undefined}
+        style={
+          {
+            '--icon-button-base-background': backgroundColor,
+          } as React.CSSProperties
+        }
       >
-        <Icon icon={icon} colored={colored} />
+        <IconButtonContent>
+          <Icon icon={icon} colored={colored} />
+        </IconButtonContent>
       </IconButtonContainer>
     )
 
