@@ -81,7 +81,7 @@ export const dynamic = () => (
   <PhoneInputContainer>
     <PhoneInput
       value={text('Value', '')}
-      placeholder="votre@mail.com"
+      placeholder="votre numéro"
       error={boolean('Error', false)}
       small={boolean('Small', false)}
       disabled={boolean('Disabled', false)}

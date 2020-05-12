@@ -10,8 +10,6 @@ import { PhoneInputInnerProps } from './PhoneInput.interface'
 import { PhoneInputContainer, MainInput } from './PhoneInput.style'
 import SelectFlag from './SelectFlag'
 
-const PHONE_REGEXP = /\+([0-9]{2})(.*)/
-
 const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputInnerProps>(
   (props, ref) => {
     const {
@@ -30,6 +28,11 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputInnerProps>(
       areaCodes: [],
       flag: () => <Icon colored icon="flag-france" />,
     })
+
+    const PHONE_REGEXP = new RegExp(
+      `\\+([0-9]{${country.dialCode.length}})(.*)`
+    )
+
     const hasBackground = useHasColoredBackground()
 
     const value = React.useMemo(() => {
@@ -38,14 +41,18 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputInnerProps>(
       if (result) {
         const phoneNumber = result[2]
         const cleanPhoneNumber =
-          phoneNumber !== '' && !phoneNumber.startsWith('0')
+          phoneNumber !== '' &&
+          !phoneNumber.startsWith('0') &&
+          country.dialCode === '33' // avoid regression for french numbers
             ? `0${phoneNumber}`
             : phoneNumber
-        return cleanPhoneNumber.replace(/(.{2})/g, ' $1').trim()
+        return cleanPhoneNumber
+          .replace(new RegExp(`(.{${country.dialCode.length}})`), ' $1')
+          .trim()
       }
 
       return rawValue
-    }, [rawValue])
+    }, [rawValue, country.dialCode.length])
 
     const handleChange = React.useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,7 +60,9 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputInnerProps>(
 
         const cleanValue: string = newValue.replace(/[^0-9]/g, '')
         const phoneNumber =
-          cleanValue.startsWith('0') && cleanValue !== '0'
+          cleanValue.startsWith('0') &&
+          cleanValue !== '0' &&
+          country.dialCode === '33' // avoid regression for french numbers
             ? cleanValue.substring(1)
             : cleanValue
 
