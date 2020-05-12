@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
+import { ActionBarContent } from '../ActionBar/ActionBar.style'
 import animations from '../animations'
 import breakpoints from '../breakpoints'
 import IconButton from '../IconButton'
@@ -170,5 +171,9 @@ export const ModalScrollableContent = styled.div`
 
   @media (${breakpoints.below.phone}) {
     padding-bottom: 72px;
+
+    & ${ActionBarContent}:not([data-count='0']):not([data-count='1']) {
+      box-shadow: ${theme.shadow('low')};
+    }
   }
 `
