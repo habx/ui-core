@@ -46,6 +46,7 @@ export const PhoneInputContainer = styled.div`
   &:hover,
   &:focus-within {
     border-color: ${palette.darkBlue[300]};
+    background: none;
   }
 
   &[data-background='true'] {
@@ -85,18 +86,12 @@ export const PhoneInputContainer = styled.div`
     min-height: 36px;
     max-height: 36px;
   }
-
-  &:focus-within {
-    & ${CountryOptions} {
-      background-color: #fff;
-    }
-  }
 `
 
 export const FlagContainer = styled.div`
   border-radius: 2px;
-  border: 1px ${palette.darkBlue[200]} solid;
   display: flex;
+  align-items: center;
   overflow: hidden;
   height: 15px;
   font-size: 12px;

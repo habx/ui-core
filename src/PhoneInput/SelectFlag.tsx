@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import Background from '../Background'
 import Icon from '../Icon'
 import Menu from '../Menu/Menu'
 import MenuLine from '../MenuLine'
@@ -67,14 +68,20 @@ const SelectFlag: React.FunctionComponent<SelectFlagInterface> = ({
         <PhoneIndicator>{`+${value.dialCode}`}</PhoneIndicator>
       </CountryOptions>
       <HiddenInput
+        tabIndex={-1} // do not allow to focus via tab
         ref={inputRef}
         onChange={(e) => setFilter(e.target.value)}
         value={filter}
       />
-      <Menu open={open} onClose={() => setOpen(false)} scrollable>
+      <Menu
+        open={open}
+        onClose={() => setOpen(false)}
+        scrollable
+        fullScreenOnMobile
+      >
         {(modal) =>
           modal.state !== 'closed' && (
-            <React.Fragment>
+            <Background backgroundColor="#fff">
               {filteredCountries.map((country) => (
                 <MenuLine
                   key={country.name}
@@ -87,7 +94,7 @@ const SelectFlag: React.FunctionComponent<SelectFlagInterface> = ({
                   </MenuLineTitle>
                 </MenuLine>
               ))}
-            </React.Fragment>
+            </Background>
           )
         }
       </Menu>
