@@ -43,5 +43,5 @@ export const CloseIcon = styled(IconButton)`
   position: absolute;
   top: 12px;
   right: 24px;
-  z-index: 2;
+  z-index: 13;
 `
