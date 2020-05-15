@@ -1,10 +1,13 @@
 import * as React from 'react'
 
+import { isClientSide } from '../_internal/ssr'
+
 import LoaderProps from './Loader.interface'
 import {
   Container,
   LoaderContainer,
   LoaderContent,
+  LoaderImg,
   MaskSvg,
 } from './Loader.style'
 
@@ -22,6 +25,18 @@ const Loader = React.forwardRef<HTMLDivElement, LoaderProps>((props, ref) => {
         return { d: 'M0 8.68571L12 0L24 8.71429V24H0V8.68571Z' }
     }
   }, [size])
+
+  if (isClientSide && window.navigator?.userAgent?.includes('Edg')) {
+    return (
+      <Container>
+        <LoaderImg
+          data-size={size}
+          src="//res.cloudinary.com/habx/image/upload/illustrations/gif/loader.gif"
+          alt="loader"
+        />
+      </Container>
+    )
+  }
   return (
     <Container>
       <LoaderContainer
