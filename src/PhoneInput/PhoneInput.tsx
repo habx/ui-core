@@ -52,7 +52,7 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputInnerProps>(
       }
 
       return rawValue
-    }, [rawValue, country.dialCode.length])
+    }, [rawValue, country.dialCode, PHONE_REGEXP])
 
     const handleChange = React.useCallback(
       (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +66,8 @@ const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputInnerProps>(
             ? cleanValue.substring(1)
             : cleanValue
 
-        e.target.value = `+${country.dialCode}${phoneNumber}`
+        e.target.value =
+          phoneNumber.length === 0 ? '' : `+${country.dialCode}${phoneNumber}`
 
         if (onChange) {
           onChange(e)
