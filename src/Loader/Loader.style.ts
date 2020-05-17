@@ -81,3 +81,14 @@ export const MaskSvg = styled.svg`
     transform: scale(0.7);
   }
 `
+
+export const LoaderImg = styled.img`
+  --loader-size: 24px;
+  &[data-size='large'] {
+    --loader-size: 36px;
+  }
+  &[data-size='small'] {
+    --loader-size: 18px;
+  }
+  height: var(--loader-size);
+`
