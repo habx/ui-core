@@ -44,10 +44,8 @@ const Options: React.FunctionComponent<OptionsProps> = ({
             {options.map((option) => (
               <Option
                 key={option.value}
-                selected={option.selected}
                 onClick={() => onSelect(option)}
                 focused={option.value === focusedOption}
-                disabled={option.disabled}
                 {...option}
               />
             ))}
