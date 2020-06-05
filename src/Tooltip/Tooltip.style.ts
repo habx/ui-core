@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
 import animations from '../animations'
-import { ANIMATION_DURATIONS } from '../animations/animations'
+import { ANIMATION_DURATIONS } from '../animations'
 import Background from '../Background'
 import theme from '../theme'
 

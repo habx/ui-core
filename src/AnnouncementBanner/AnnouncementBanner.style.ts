@@ -1,24 +1,8 @@
 import styled from 'styled-components'
 
-import { ANIMATION_DURATIONS } from '../animations/animations'
 import Background from '../Background'
 import breakpoints from '../breakpoints'
 import Button from '../Button'
-
-export const AnnouncementBannerContainer = styled.div`
-  padding: 13px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: margin-top ${ANIMATION_DURATIONS.m}ms ease-in-out;
-  overflow: hidden;
-  position: relative;
-
-  @media (${breakpoints.below.smallTablet}) {
-    padding: 18px 20px;
-    align-items: flex-start;
-  }
-`
 
 export const AnnouncementBannerShadowBar = styled.div`
   position: absolute;
@@ -49,9 +33,11 @@ export const AnnouncementBannerCenteredContent = styled.div`
   align-items: center;
   flex: 1 1 100%;
   z-index: 1;
+  padding: 19px 24px;
 
   @media (${breakpoints.below.smallTablet}) {
     display: block;
+    padding: 18px 20px;
 
     & > * {
       display: inline;
@@ -64,12 +50,16 @@ export const AnnouncementBannerCenteredContent = styled.div`
 `
 
 export const DesktopCloseIconContainer = styled(Background)`
+  margin-right: 24px;
+
   @media (${breakpoints.below.tablet}) {
     display: none;
   }
 `
 
 export const MobileCloseIconButton = styled.div`
+  margin: 18px 20px;
+
   @media (${breakpoints.above.tablet}) {
     display: none;
   }

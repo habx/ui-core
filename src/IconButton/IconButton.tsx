@@ -16,7 +16,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       small = false,
       large = false,
       tiny = false,
-      background = 'inherit',
+      background = 'none',
       type = 'button',
       ...rest
     } = props
@@ -31,6 +31,8 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           return '#FFFFFF'
         case 'grey':
           return palette.darkBlue[200]
+        case 'none':
+          return undefined
       }
     }, [background, theme.backgroundColor])
 
@@ -41,11 +43,13 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         data-small={small}
         data-large={large}
         data-tiny={tiny}
-        data-has-bounding-background={backgroundColor !== theme.backgroundColor}
+        data-has-bounding-background={
+          backgroundColor && backgroundColor !== theme.backgroundColor
+        }
         type={type}
         style={
           {
-            '--icon-button-base-background': backgroundColor,
+            '--icon-button-base-background': backgroundColor ?? 'unset',
           } as React.CSSProperties
         }
       >

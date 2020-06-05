@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-import useMergedRef from '../_internal/useMergedRef'
-import { ANIMATION_DURATIONS } from '../animations/animations'
+import Banner from '../_internal/Banner'
 import IconButton from '../IconButton'
 import palette from '../palette'
 import Text from '../Text'
@@ -11,7 +10,6 @@ import AnnouncementBannerProps from './AnnouncementBanner.interface'
 import {
   AnnouncementBannerCenteredContent,
   AnnouncementBannerShapeContainer,
-  AnnouncementBannerContainer,
   AnnouncementBannerShadowBar,
   DesktopButton,
   MobileButton,
@@ -19,99 +17,14 @@ import {
   MobileCloseIconButton,
 } from './AnnouncementBanner.style'
 
-interface AnnouncementBannerState {
-  step: 'opened' | 'closed' | 'closing'
-  marginTop: number
-}
-
-enum ActionTypes {
-  SetStepOpened = 0,
-  SetStepClosing = 1,
-  SetStepClosed = 2,
-}
-
-type AnnouncementBannerActions =
-  | { type: ActionTypes.SetStepOpened }
-  | { type: ActionTypes.SetStepClosing }
-  | { type: ActionTypes.SetStepClosed }
-
 const AnnouncementBanner = React.forwardRef<
   HTMLDivElement,
   AnnouncementBannerProps
 >((props, ref) => {
-  const { onValidate, onClose, open, message, validationLabel, ...rest } = props
-
-  const containerRef = useMergedRef<HTMLDivElement>(ref)
-
-  const reducer: React.Reducer<
-    AnnouncementBannerState,
-    AnnouncementBannerActions
-  > = (state, action) => {
-    switch (action.type) {
-      case ActionTypes.SetStepOpened: {
-        return {
-          ...state,
-          step: 'opened',
-        }
-      }
-
-      case ActionTypes.SetStepClosing: {
-        return {
-          ...state,
-          step: 'closing',
-          marginTop: -(containerRef.current?.offsetHeight ?? 0),
-        }
-      }
-
-      case ActionTypes.SetStepClosed: {
-        return {
-          ...state,
-          step: 'closed',
-          marginTop: 0,
-        }
-      }
-
-      default: {
-        return state
-      }
-    }
-  }
-
-  const INITIAL_STATE: AnnouncementBannerState = {
-    step: open ? 'opened' : 'closed',
-    marginTop: 0,
-  }
-
-  const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
-
-  React.useEffect(() => {
-    if (open === true) {
-      dispatch({ type: ActionTypes.SetStepOpened })
-    } else if (open === false) {
-      dispatch({ type: ActionTypes.SetStepClosing })
-
-      const timeout = setTimeout(() => {
-        dispatch({ type: ActionTypes.SetStepClosed })
-      }, [ANIMATION_DURATIONS.m])
-
-      return () => {
-        clearTimeout(timeout)
-      }
-    }
-  }, [open])
-
-  if (state.step === 'closed') {
-    return null
-  }
+  const { onValidate, onClose, message, validationLabel, ...rest } = props
 
   return (
-    <AnnouncementBannerContainer
-      ref={containerRef}
-      {...rest}
-      style={{
-        marginTop: state.marginTop,
-      }}
-    >
+    <Banner ref={ref} {...rest}>
       <AnnouncementBannerShapeContainer>
         <Triangle
           origin={{ top: 0, left: 0 }}
@@ -165,7 +78,7 @@ const AnnouncementBanner = React.forwardRef<
         <IconButton icon="close" onClick={onClose} />
       </MobileCloseIconButton>
       <AnnouncementBannerShadowBar />
-    </AnnouncementBannerContainer>
+    </Banner>
   )
 })
 

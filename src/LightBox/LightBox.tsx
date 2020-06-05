@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
-import { ANIMATION_DURATIONS } from '../animations/animations'
+import { ANIMATION_DURATIONS } from '../animations'
 import withTriggerElement from '../withTriggerElement'
 
 import { LightBoxInnerProps } from './LightBox.interface'

@@ -16,8 +16,15 @@ export const IconButtonContainer = styled.button`
   position: relative;
 
   color: ${theme.textColor({ dynamic: true, opacity: 0.72 })};
-  background-color: ${theme.color('background')};
   transition: all ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
+
+  &[data-has-bounding-background='true'] {
+    background-color: ${theme.color('background')};
+  }
+
+  &:not([data-has-bounding-background='true']) {
+    background-color: unset;
+  }
 
   border-radius: 2px;
   font-size: var(--icon-button-font-size);

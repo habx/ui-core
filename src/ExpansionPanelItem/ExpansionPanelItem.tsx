@@ -3,7 +3,7 @@ import * as React from 'react'
 
 import { isFunction, isNil, isString } from '../_internal/data'
 import { assert } from '../_internal/validityCheck'
-import { ANIMATION_DURATIONS } from '../animations/animations'
+import { ANIMATION_DURATIONS } from '../animations'
 import { ExpansionPanelContext } from '../ExpansionPanel/ExpansionPanel.context'
 import Icon from '../Icon'
 
