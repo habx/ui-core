@@ -16,6 +16,7 @@ const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
       warning,
       elementRight,
       onClick,
+      disabled,
       ...rest
     } = props
     const sectionContext = React.useContext(MenuSectionContext)
@@ -35,6 +36,7 @@ const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
         {...rest}
         depth={sectionContext.depth}
         onClick={handleClick}
+        data-disabled={disabled}
       >
         {elementLeft && (
           <IconContainer

@@ -20,6 +20,11 @@ export const MenuLineContainer = styled.li<{
   &:hover {
     background-color: ${palette.darkBlue[200]};
   }
+
+  &[data-disabled='true'] {
+    pointer-events: none;
+    filter: grayscale();
+  }
 `
 
 export const IconContainer = styled.div<{
