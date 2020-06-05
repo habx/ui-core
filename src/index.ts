@@ -106,7 +106,7 @@ export { default as notify } from './notify'
 export { default as animations } from './animations'
 export { default as Background, BackgroundProps } from './Background'
 export { default as breakpoints } from './breakpoints'
-export { default as palette } from './palette'
+export { default as palette, Palette, Gradient } from './palette'
 export { default as theme, DesignSystemTheme } from './theme'
 export { default as useTheme } from './useTheme'
 
