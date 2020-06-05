@@ -1,10 +1,8 @@
-import * as React from 'react'
+import { BannerProps } from '../_internal/Banner'
 
-export default interface AnnouncementBannerProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export default interface AnnouncementBannerProps extends BannerProps {
   validationLabel: string
   message: string
   onValidate: () => void
   onClose: () => void
-  open: boolean
 }

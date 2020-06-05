@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
-import { ANIMATION_DURATIONS } from '../animations/animations'
+import { ANIMATION_DURATIONS } from '../animations'
 import Background from '../Background'
 import IconButton from '../IconButton'
 
