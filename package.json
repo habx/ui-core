@@ -81,7 +81,7 @@
     "@types/sinon": "^9.0.0",
     "@types/styled-components": "^5.0.0",
     "babel-loader": "^8.0.6",
-    "bili": "^4.8.1",
+    "bili": "^5.0.2",
     "fork-ts-checker-webpack-plugin": "^5.0.0",
     "husky": "^4.0.7",
     "jest": "^25.1.0",
