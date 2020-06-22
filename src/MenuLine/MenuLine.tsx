@@ -14,6 +14,7 @@ const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
       active,
       elementLeft,
       warning,
+      secondary,
       elementRight,
       onClick,
       disabled,
@@ -40,21 +41,21 @@ const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
       >
         {elementLeft && (
           <IconContainer
-            secondary={active}
-            data-position="left"
+            primary={!active && !secondary}
             warning={warning}
+            data-position="left"
           >
             {elementLeft}
           </IconContainer>
         )}
-        <Text primary={!active} opacity={1} warning={warning}>
+        <Text primary={!active && !secondary} warning={warning} opacity={1}>
           {children}
         </Text>
         {elementRight && (
           <IconContainer
-            secondary={active}
-            data-position="right"
+            primary={!active && !secondary}
             warning={warning}
+            data-position="right"
           >
             {elementRight}
           </IconContainer>
