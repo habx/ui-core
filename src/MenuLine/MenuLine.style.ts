@@ -28,13 +28,13 @@ export const MenuLineContainer = styled.li<{
 `
 
 export const IconContainer = styled.div<{
-  secondary?: boolean
+  primary?: boolean
   warning?: boolean
 }>`
   font-size: 0.9em;
   display: flex;
   margin-top: 1px;
-  color: ${theme.color('primary', { dynamic: true })};
+  color: ${theme.color('secondary', { dynamic: true })};
 
   &[data-position='left'] {
     margin-right: 8px;
