@@ -7,7 +7,27 @@
 
 Design System used on all the applications developed by HABX
 
-Available on [npm](https://www.npmjs.com/package/@habx/ui-core)
+## Instalation
+```shell 
+npm i @habx/ui-core
+ ```
+ 
+#### Add Providers
+
+###### App.ts
+```typescript jsx
+import { Provider as DesignSystemProvider, ThemeProvider } from '@habx/ui-core'
+
+const App: React.FunctionComponent = ({ children }) => {
+  return (
+    <ThemeProvider theme={theme}>
+        <DesignSystemProvider>
+            {children}
+        </DesignSystemProvider>
+    </ThemeProvider>
+
+  )
+}
+```
 
 Test all our component in our [Storybook](https://habx.github.io/ui-core/)
-
