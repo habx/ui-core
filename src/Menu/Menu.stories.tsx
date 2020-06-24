@@ -14,17 +14,11 @@ const GRID_PROPS = {
   triggerElement: <Button outline>Open</Button>,
   children: (
     <React.Fragment>
-      <MenuLine elementLeft={<Icon icon="arrow-west" />}>
-        Page d'accueil
-      </MenuLine>
-      <MenuLine elementLeft={<Icon icon="person" />}>Mon profil</MenuLine>
-      <MenuSection
-        title="Mes projets"
-        titleIconLeft={<Icon icon="house-heart-outline" />}
-      >
-        <MenuLine>Paris Venelles</MenuLine>
-        <MenuLine>Résidence Aurore</MenuLine>
-        <MenuLine>Le Perchoir</MenuLine>
+      <MenuLine elementLeft={<Icon icon="arrow-west" />}>Back</MenuLine>
+      <MenuSection>
+        <MenuLine>Feature 1</MenuLine>
+        <MenuLine active>Feature 2 (active)</MenuLine>
+        <MenuLine disabled>Feature 3 (disabled)</MenuLine>
       </MenuSection>
       <MenuLine elementLeft={<Icon icon="close" />}>Me déconnecter</MenuLine>
     </React.Fragment>
