@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import MenuContext from '../Menu/Menu.context'
-import MenuSectionContext from '../MenuSection/MenuSection.context'
 import Text from '../Text'
 
 import MenuLineProps from './MenuLine.interface'
@@ -14,13 +13,12 @@ const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
       active,
       elementLeft,
       warning,
-      secondary,
+      primary,
       elementRight,
       onClick,
       disabled,
       ...rest
     } = props
-    const sectionContext = React.useContext(MenuSectionContext)
     const menuContext = React.useContext(MenuContext)
     const handleClick = React.useCallback(
       (e: React.MouseEvent<HTMLLIElement>) => {
@@ -35,25 +33,25 @@ const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
       <MenuLineContainer
         ref={ref}
         {...rest}
-        depth={sectionContext.depth}
         onClick={handleClick}
         data-disabled={disabled}
+        data-active={active}
       >
         {elementLeft && (
           <IconContainer
-            primary={!active && !secondary}
+            primary={primary}
             warning={warning}
             data-position="left"
           >
             {elementLeft}
           </IconContainer>
         )}
-        <Text primary={!active && !secondary} warning={warning} opacity={1}>
+        <Text primary={primary} warning={warning} opacity={active}>
           {children}
         </Text>
         {elementRight && (
           <IconContainer
-            primary={!active && !secondary}
+            primary={primary}
             warning={warning}
             data-position="right"
           >

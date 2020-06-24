@@ -11,7 +11,7 @@ export const MenuTriggerContainer = styled.span`
 
 export const MenuContent = styled.div`
   background-color: ${theme.color('background', { useRootTheme: true })};
-  padding: 12px 0;
+  padding: 8px 0;
   box-shadow: ${theme.shadow()};
 
   &[data-scrollable='true'] {

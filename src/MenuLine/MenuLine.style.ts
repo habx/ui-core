@@ -1,29 +1,31 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import palette from '../palette'
 import theme from '../theme'
 
-export const MenuLineContainer = styled.li<{
-  depth: number
-}>`
-  ${({ depth }) =>
-    css`
-      padding: ${depth > 0 ? 6 : 8}px ${(depth + 1) * 24}px;
-    `};
+export const MenuLineContainer = styled.li`
+  padding: 6px 24px;
 
   display: flex;
   align-items: center;
-  cursor: pointer;
   transition: all 150ms ease-in-out;
   white-space: nowrap;
 
-  &:hover {
-    background-color: ${palette.darkBlue[200]};
+  &:not([data-active='true']) {
+    cursor: pointer;
+
+    &:hover {
+      background-color: ${palette.darkBlue[200]};
+    }
+  }
+
+  &[data-active='true'] {
+    opacity: 0.72;
   }
 
   &[data-disabled='true'] {
     pointer-events: none;
-    filter: grayscale();
+    opacity: 0.4;
   }
 `
 
