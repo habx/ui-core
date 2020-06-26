@@ -127,10 +127,6 @@ export const Input = styled.input`
   min-width: 0;
   width: 100%;
 
-  &[data-padding-left='true'] {
-    padding-left: 48px;
-  }
-
   &:focus + ${LeftElementContainer} {
     color: ${theme.color('primary')};
   }
@@ -139,6 +135,10 @@ export const Input = styled.input`
     padding: 0 12px;
     min-height: 36px;
     max-height: 36px;
+  }
+
+  &[data-padding-left='true'] {
+    padding-left: 48px;
   }
 
   ${inputStyle};
