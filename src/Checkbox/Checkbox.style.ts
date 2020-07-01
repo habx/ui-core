@@ -11,13 +11,19 @@ export const FakeInputContainer = styled.span`
 
 export const FakeInput = styled.label`
   --checkbox-diameter: 21px;
+  border-radius: 4px;
+
+  &[data-small='true'] {
+    --checkbox-diameter: 16px;
+    border-radius: 2px;
+  }
+
   user-select: none;
   cursor: pointer;
   outline: none;
   width: var(--checkbox-diameter);
   min-width: var(--checkbox-diameter);
   height: var(--checkbox-diameter);
-  border-radius: 4px;
   background: #fff;
   border: solid 1.5px ${palette.darkBlue[400]};
   transition: all 150ms ease-in-out;

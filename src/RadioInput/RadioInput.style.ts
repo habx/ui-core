@@ -30,8 +30,8 @@ export const FakeInput = styled.label`
 `
 
 export const InnerCircle = styled.div`
-  height: 14px;
-  width: 14px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
   transition: all 150ms ease-in-out;
 `

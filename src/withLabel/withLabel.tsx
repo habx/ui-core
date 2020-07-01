@@ -31,6 +31,7 @@ const FieldWithLabelContainer = styled.div`
   &[data-orientation='horizontal'] {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
     & > ${LabelContainer} {
       padding-right: 8px;
@@ -40,6 +41,7 @@ const FieldWithLabelContainer = styled.div`
   &[data-orientation='horizontal-reverse'] {
     flex-direction: row-reverse;
     justify-content: flex-end;
+    align-items: center;
 
     & > ${LabelContainer} {
       padding-left: 8px;
