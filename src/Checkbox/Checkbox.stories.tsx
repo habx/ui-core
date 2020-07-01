@@ -47,6 +47,12 @@ const GRID_ITEMS = [
       disabled: true,
     },
   },
+  {
+    label: 'Small',
+    props: {
+      small: true,
+    },
+  },
 ]
 
 const Grid = withGrid<CheckboxProps>({
