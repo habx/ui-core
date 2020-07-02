@@ -33,7 +33,7 @@ const WrappedSelect: React.FunctionComponent<SelectProps> = (props) =>
   )
 
 const GRID_PROPS = {
-  placeholder: 'Regions',
+  placeholder: 'French cities',
   onChange: () => {},
   options: OPTIONS,
 }
