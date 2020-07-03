@@ -87,16 +87,15 @@ const useTooltip = (
   }
 
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
-  const stateRef = React.useRef(state)
-  stateRef.current = state
+  const visibilityStateRef = React.useRef(state.visibilityState)
+  visibilityStateRef.current = state.visibilityState
 
   const handleMouseEnter = React.useCallback(() => {
     if (!props.disabled) {
       dispatch({
         type: ActionTypes.SetVisibilityState,
         value:
-          stateRef.current.visibilityState ===
-          TooltipVisibilityState.NotInstantiated
+          visibilityStateRef.current === TooltipVisibilityState.NotInstantiated
             ? TooltipVisibilityState.HiddenWaitingToBeVisible
             : TooltipVisibilityState.Visible,
       })
