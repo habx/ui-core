@@ -14,18 +14,25 @@ export type Position = {
   left: number
 }
 
+export enum TooltipVisibilityState {
+  NotInstantiated,
+  HiddenWaitingToBeVisible,
+  HiddenHasBeenVisible,
+  Visible,
+}
+
 export interface TooltipState {
-  isVisible: boolean
+  visibilityState: TooltipVisibilityState
   position: Position
 }
 
 export enum ActionTypes {
-  SetIsVisible = 0,
+  SetVisibilityState = 0,
   UpdatePosition = 1,
 }
 
 export type TooltipActions =
-  | { type: ActionTypes.SetIsVisible; value: boolean }
+  | { type: ActionTypes.SetVisibilityState; value: TooltipVisibilityState }
   | { type: ActionTypes.UpdatePosition }
 
 export type UseTooltipResult = [
