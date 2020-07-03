@@ -12,6 +12,7 @@ export type SelectOption = {
   value: any
   disabled?: boolean
   color?: string
+  keywords?: string[]
 }
 
 export type EnrichedSelectOption = SelectOption & { selected: boolean }

@@ -101,10 +101,15 @@ export const useSelect = ({
     () =>
       options
         .filter((option) => {
-          const matchValue = searchInString(`${option.value}`, state.query)
-          const matchLabel =
-            isString(option.label) && searchInString(option.label, state.query)
-          return matchValue || matchLabel
+          const keywords = [
+            `${option.value}`,
+            ...(isString(option.label) ? [option.label] : []),
+            ...(option.keywords ?? []),
+          ]
+
+          return keywords.some((keyword) =>
+            searchInString(keyword, state.query)
+          )
         })
         .map((option) => ({
           ...option,
