@@ -3,7 +3,7 @@ import * as React from 'react'
 import { ThemeOverridesProps } from '../_internal/types'
 import WithLabel from '../withLabel/withLabel.interface'
 
-import { ItemComponentProps } from './Item/Item.interface'
+import { ArrayInputItemComponentProps } from './Item/Item.interface'
 
 export interface AddButtonComponentProps {
   onAppend: (value?: any) => void
@@ -21,10 +21,10 @@ export interface ArrayInputInnerProps
   onDelete?: (position: number) => void
   onReorder?: (oldPosition: number, newPosition: number) => void
   onAppend?: (value?: any) => void
-  itemComponent?: React.ComponentType<ItemComponentProps>
-  itemTitleComponent?: React.ComponentType<ItemComponentProps>
-  renderItem?: (itemProps: ItemComponentProps) => JSX.Element
-  renderItemTitle?: (itemProps: ItemComponentProps) => JSX.Element
+  itemComponent?: React.ComponentType<ArrayInputItemComponentProps>
+  itemTitleComponent?: React.ComponentType<ArrayInputItemComponentProps>
+  renderItem?: (itemProps: ArrayInputItemComponentProps) => JSX.Element
+  renderItemTitle?: (itemProps: ArrayInputItemComponentProps) => JSX.Element
 }
 
 export default interface ArrayInputProps
