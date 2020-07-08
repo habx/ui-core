@@ -9,17 +9,18 @@ import palette from '../palette'
 import Text from '../Text'
 
 import TooltipProps, {
-  TooltipState,
   ActionTypes,
-  TooltipActions,
   Position,
+  TooltipActions,
+  TooltipState,
+  TooltipVisibilityState,
   UseTooltipResult,
 } from './Tooltip.interface'
 import { ANIMATION_DURATION, TooltipContainer } from './Tooltip.style'
 
 const INITIAL_STATE: TooltipState = {
   position: { top: 0, left: 0 },
-  isVisible: false,
+  visibilityState: TooltipVisibilityState.NotInstantiated,
 }
 
 const VERTICAL_TRIGGER_MARGIN = 12
@@ -66,11 +67,13 @@ const useTooltip = (
     action
   ) => {
     switch (action.type) {
-      case ActionTypes.SetIsVisible: {
+      case ActionTypes.SetVisibilityState: {
         return {
           ...state,
-          isVisible: action.value,
-          ...(action.value ? { position: getPosition() } : {}),
+          visibilityState: action.value,
+          ...(action.value === TooltipVisibilityState.Visible
+            ? { position: getPosition() }
+            : {}),
         }
       }
 
@@ -84,26 +87,53 @@ const useTooltip = (
   }
 
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
+  const visibilityStateRef = React.useRef(state.visibilityState)
+  visibilityStateRef.current = state.visibilityState
 
   const handleMouseEnter = React.useCallback(() => {
     if (!props.disabled) {
-      dispatch({ type: ActionTypes.SetIsVisible, value: true })
+      dispatch({
+        type: ActionTypes.SetVisibilityState,
+        value:
+          visibilityStateRef.current === TooltipVisibilityState.NotInstantiated
+            ? TooltipVisibilityState.HiddenWaitingToBeVisible
+            : TooltipVisibilityState.Visible,
+      })
     }
   }, [props.disabled])
+
   const handleMouseLeave = React.useCallback(
-    () => dispatch({ type: ActionTypes.SetIsVisible, value: false }),
+    () =>
+      dispatch({
+        type: ActionTypes.SetVisibilityState,
+        value: TooltipVisibilityState.HiddenHasBeenVisible,
+      }),
     []
   )
 
   useSSRLayoutEffect(() => {
     if (props.disabled) {
-      dispatch({ type: ActionTypes.SetIsVisible, value: false })
+      dispatch({
+        type: ActionTypes.SetVisibilityState,
+        value: TooltipVisibilityState.NotInstantiated,
+      })
     }
   }, [props.disabled])
 
   useSSRLayoutEffect(() => {
     dispatch({ type: ActionTypes.UpdatePosition })
   }, [props.description, props.title, props.small])
+
+  React.useEffect(() => {
+    if (
+      state.visibilityState === TooltipVisibilityState.HiddenWaitingToBeVisible
+    ) {
+      dispatch({
+        type: ActionTypes.SetVisibilityState,
+        value: TooltipVisibilityState.Visible,
+      })
+    }
+  }, [state.visibilityState])
 
   return [
     state,
@@ -128,7 +158,7 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
   const [state, actions, refs] = useTooltip(props, ref)
 
   const modal = useModal<HTMLDivElement>({
-    open: state.isVisible,
+    open: state.visibilityState === TooltipVisibilityState.Visible,
     onClose: () => {},
     persistent: true,
     animated: true,
@@ -148,6 +178,7 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
     <React.Fragment>
       {content}
       {isClientSide &&
+        state.visibilityState !== TooltipVisibilityState.NotInstantiated &&
         ReactDOM.createPortal(
           <TooltipContainer
             ref={refs.tooltip}
