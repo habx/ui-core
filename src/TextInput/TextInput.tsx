@@ -2,6 +2,9 @@ import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
 import useHasColoredBackground from '../_internal/useHasColoredBackground'
+import useMergedRef from '../_internal/useMergedRef'
+import Menu from '../Menu/Menu'
+import MenuLine from '../MenuLine'
 import withLabel from '../withLabel'
 
 import { TextInputInnerProps } from './TextInput.interface'
@@ -12,6 +15,7 @@ import {
   LeftElementContainer,
   RightElementContainer,
 } from './TextInput.style'
+import useAutocomplete from './useAutocomplete'
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
   (props, ref) => {
@@ -25,10 +29,19 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
       elementLeft,
       canReset,
       value,
+      autocompleteOptions,
       ...rest
     } = props
 
     const hasBackground = useHasColoredBackground()
+
+    const mergedRef = useMergedRef<HTMLInputElement>(ref)
+
+    const autocomplete = useAutocomplete({
+      options: autocompleteOptions,
+      value,
+      ref: mergedRef,
+    })
 
     return (
       <InputContainer className={className} style={style} data-error={error}>
@@ -40,8 +53,26 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
           data-background={hasBackground}
           value={value ?? ''}
           {...rest}
-          ref={ref}
+          ref={mergedRef}
         />
+        {autocomplete.open && (
+          <Menu
+            ref={autocomplete.menuRef}
+            triggerRef={mergedRef}
+            onClose={() => {}}
+            open={autocomplete.open}
+            withOverlay={false}
+          >
+            {autocomplete.visibleOptions.map((option) => (
+              <MenuLine
+                key={`menuLine-${option}`}
+                onClick={autocomplete.onOptionClick(option)}
+              >
+                {option}
+              </MenuLine>
+            ))}
+          </Menu>
+        )}
         {elementLeft && (
           <LeftElementContainer data-light={light}>
             {elementLeft}

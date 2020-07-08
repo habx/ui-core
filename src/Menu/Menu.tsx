@@ -56,6 +56,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
       fullScreenOnMobile = false,
       scrollable = false,
       position = 'vertical',
+      withOverlay = true,
       ...rest
     } = props
 
@@ -153,16 +154,16 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
 
     return ReactDOM.createPortal(
       <MenuContext.Provider value={modal}>
-        <MenuOverlay data-state={modal.state} data-testid="menu-overlay">
-          <MenuContainer
-            style={positionStyle}
-            ref={modal.ref}
-            data-testid="menu-container"
-            {...rest}
-          >
-            <MenuContent data-scrollable={scrollable}>{content}</MenuContent>
-          </MenuContainer>
-        </MenuOverlay>
+        {withOverlay && modal.state === 'opened' && <MenuOverlay />}
+        <MenuContainer
+          data-state={modal.state}
+          style={positionStyle}
+          ref={modal.ref}
+          data-testid="menu-container"
+          {...rest}
+        >
+          <MenuContent data-scrollable={scrollable}>{content}</MenuContent>
+        </MenuContainer>
       </MenuContext.Provider>,
       document.body
     )

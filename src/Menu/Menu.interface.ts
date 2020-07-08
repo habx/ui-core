@@ -15,6 +15,7 @@ export interface MenuInnerProps
   scrollable?: boolean
   position?: 'horizontal' | 'vertical'
   triggerRef?: React.RefObject<HTMLElement>
+  withOverlay?: boolean
   children?:
     | React.ReactNode
     | ((modal: Modal<HTMLUListElement>) => React.ReactNode)

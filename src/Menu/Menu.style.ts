@@ -21,15 +21,6 @@ export const MenuContent = styled.div`
   }
 `
 
-export const MenuContainer = styled.ul`
-  opacity: 1;
-  border-radius: 4px;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: fixed;
-`
-
 export const MenuOverlay = styled.div`
   position: fixed;
   top: 0;
@@ -37,28 +28,30 @@ export const MenuOverlay = styled.div`
   left: 0;
   right: 0;
   z-index: ${zIndex.dropDowns};
-  display: flex;
-  align-items: center;
-  justify-content: center;
+`
+
+export const MenuContainer = styled.ul`
+  opacity: 1;
+  border-radius: 4px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+
+  z-index: ${zIndex.dropDowns};
 
   &:not([data-state='opened']) {
     pointer-events: none;
 
-    & ${MenuContainer} {
-      opacity: 0;
-    }
+    opacity: 0;
   }
 
   &[data-state='opening'] {
-    & ${MenuContainer} {
-      animation: ${animations('emergeSlantFromBottom')};
-    }
+    animation: ${animations('emergeSlantFromBottom')};
   }
 
   &[data-state='closing'] {
-    & ${MenuContainer} {
-      animation: ${animations('diveSlant')};
-    }
+    animation: ${animations('diveSlant')};
   }
 `
 
