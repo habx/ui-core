@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export interface ItemComponentProps {
+export interface ArrayInputItemComponentProps {
   value: any
   index: number
   editing: boolean
@@ -13,8 +13,8 @@ export default interface ItemProps
   item: any
   disabled?: boolean
   canBeReordered?: boolean
-  renderItem: (itemProps: ItemComponentProps) => JSX.Element
-  renderItemTitle: (itemProps: ItemComponentProps) => JSX.Element
+  renderItem: (itemProps: ArrayInputItemComponentProps) => JSX.Element
+  renderItemTitle: (itemProps: ArrayInputItemComponentProps) => JSX.Element
   onReorder?: (oldPosition: number, newPosition: number) => void
   onDelete: (position: number) => void
 }
