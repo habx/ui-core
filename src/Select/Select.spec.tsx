@@ -57,7 +57,7 @@ describe('Select component', () => {
     it('should open the dropdown when click on SelectContent and open = false', () => {
       const { getByTestId } = render(<Select options={[]} />)
 
-      const optionsContainer = getByTestId('menu-overlay')
+      const optionsContainer = getByTestId('options-container')
 
       expect(optionsContainer).toHaveAttribute('data-state', 'closed')
       fireEvent.click(getByTestId('select-container'))
@@ -67,7 +67,7 @@ describe('Select component', () => {
     it('should close the dropdown when click on SelectContent and open = true', () => {
       const { getByTestId } = renderOpenedSelect(<Select options={[]} />)
 
-      const optionsContainer = getByTestId('menu-overlay')
+      const optionsContainer = getByTestId('options-container')
 
       fireEvent.click(getByTestId('select-container'))
       expect(optionsContainer).toHaveAttribute('data-state', 'closing')
@@ -135,7 +135,7 @@ describe('Select component', () => {
       )
 
       fireEvent.click(getAllByTestId('option-container')[3])
-      expect(getByTestId('menu-overlay')).toHaveAttribute(
+      expect(getByTestId('options-container')).toHaveAttribute(
         'data-state',
         'closing'
       )
@@ -165,7 +165,7 @@ describe('Select component', () => {
       )
 
       fireEvent.click(getAllByTestId('option-container')[3])
-      expect(getByTestId('menu-overlay')).toHaveAttribute(
+      expect(getByTestId('options-container')).toHaveAttribute(
         'data-state',
         'opened'
       )

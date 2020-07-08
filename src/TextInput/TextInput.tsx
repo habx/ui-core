@@ -63,8 +63,9 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
             open={autocomplete.open}
             withOverlay={false}
           >
-            {autocomplete.visibleOptions.map((option) => (
+            {autocomplete.visibleOptions.map((option, index) => (
               <MenuLine
+                active={index === autocomplete.activeOptionIndex}
                 key={`menuLine-${option}`}
                 onClick={autocomplete.onOptionClick(option)}
               >
