@@ -87,6 +87,21 @@ export const lightBackground = () => <Grid background="light" />
 
 export const darkBackground = () => <Grid background="dark" />
 
+const AutoCompleteTextInput = () => {
+  const [value, setValue] = React.useState('')
+  return (
+    <TextInputContainer>
+      <TextInput
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="Villes"
+        autocompleteOptions={['Paris', 'Bordeaux', 'Nantes', 'Lyon']}
+      />
+    </TextInputContainer>
+  )
+}
+export const autocomplete = () => <AutoCompleteTextInput />
+
 export const dynamic = () => (
   <TextInputContainer>
     <TextInput
