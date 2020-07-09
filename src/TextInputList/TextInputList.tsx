@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
-import useMergedRef from '../_internal/useMergedRef'
 import IconButton from '../IconButton'
 import Text from '../Text'
 import TextInput from '../TextInput/TextInput'
@@ -79,13 +78,11 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
       []
     )
 
-    const mergedRef = useMergedRef(ref)
-
     return (
       <TextInputListContainer>
         <TextInput
           {...rest}
-          ref={mergedRef}
+          ref={ref}
           value={localValue}
           onChange={handleChange}
           autocompleteOptions={filteredAutocompleteOptions}
