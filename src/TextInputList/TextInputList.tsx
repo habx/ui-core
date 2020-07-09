@@ -12,106 +12,105 @@ import {
   TagListContainer,
 } from './TextInputList.style'
 
-const TextInputList: React.FunctionComponent<TextInputListProps> = ({
-  value = [],
-  onChange,
-  autocompleteOptions,
-  ...props
-}) => {
-  const [localValue, setLocalValue] = React.useState<string | number>('')
+const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
+  (props, ref) => {
+    const { value = [], onChange, autocompleteOptions, ...rest } = props
+    const [localValue, setLocalValue] = React.useState<string | number>('')
 
-  const handleValidateCurrent = () => {
-    if (localValue !== '') {
-      onChange([...value, localValue])
-      setLocalValue('')
+    const handleValidateCurrent = () => {
+      if (localValue !== '') {
+        onChange([...value, localValue])
+        setLocalValue('')
+      }
     }
-  }
 
-  const handleRemoveItem = (index: number) =>
-    onChange([...value.slice(0, index), ...value.slice(index + 1)])
+    const handleRemoveItem = (index: number) =>
+      onChange([...value.slice(0, index), ...value.slice(index + 1)])
 
-  const wrapEvent = (name: string, eventHandler: Function) => (
-    ...args: any[]
-  ) => {
-    eventHandler(...args)
+    const wrapEvent = (name: string, eventHandler: Function) => (
+      ...args: any[]
+    ) => {
+      eventHandler(...args)
 
-    const propName = name as keyof typeof props
-    if (isFunction(props[propName] as Function)) {
-      props[propName](...args)
+      const propName = name as keyof typeof props
+      if (isFunction(props[propName] as Function)) {
+        props[propName](...args)
+      }
     }
-  }
 
-  const handleBlur = wrapEvent('onBlur', () => handleValidateCurrent())
+    const handleBlur = wrapEvent('onBlur', () => handleValidateCurrent())
 
-  const handleKeyDown = wrapEvent('onKeyDown', (event: KeyboardEvent) => {
-    // eslint-disable-next-line default-case
-    switch (event.keyCode) {
-      case 188: // Enter
-      case 13: // Comma
-        handleValidateCurrent()
-
-        break
-      case 8: // Backspace
-      case 46:
-        if (localValue === '' && value?.length > 0) {
-          setLocalValue(value[value.length - 1])
-          const newValue = [...value]
-          newValue.pop()
-          onChange(newValue)
-
-          event.preventDefault()
-          event.stopPropagation()
+    const handleKeyDown = wrapEvent('onKeyDown', (event: KeyboardEvent) => {
+      // eslint-disable-next-line default-case
+      switch (event.keyCode) {
+        case 188: // Enter
+        case 13: // Comma
+          handleValidateCurrent()
 
           break
-        }
-    }
-  })
+        case 8: // Backspace
+        case 46:
+          if (localValue === '' && value?.length > 0) {
+            setLocalValue(value[value.length - 1])
+            const newValue = [...value]
+            newValue.pop()
+            onChange(newValue)
 
-  const filteredAutocompleteOptions = React.useMemo(() => {
-    if (!autocompleteOptions?.length) {
-      return autocompleteOptions
-    }
-    return autocompleteOptions.filter((option) => !value.includes(option))
-  }, [autocompleteOptions, value])
+            event.preventDefault()
+            event.stopPropagation()
 
-  const handleOptionSelect = React.useCallback(
-    (option: string) => onChange([option, ...value]),
-    [onChange, value]
-  )
+            break
+          }
+      }
+    })
 
-  const handleChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => setLocalValue(e.target.value),
-    []
-  )
+    const filteredAutocompleteOptions = React.useMemo(() => {
+      if (!autocompleteOptions?.length) {
+        return autocompleteOptions
+      }
+      return autocompleteOptions.filter((option) => !value.includes(option))
+    }, [autocompleteOptions, value])
 
-  return (
-    <TextInputListContainer>
-      {value?.length > 0 && (
-        <TagListContainer>
-          {value.map((el, index) => (
-            <TextInputItem key={index}>
-              <Text>{el}</Text>
-              <IconButton
-                tiny
-                icon="close"
-                onClick={() => handleRemoveItem(index)}
-              />
-            </TextInputItem>
-          ))}
-        </TagListContainer>
-      )}
-      <Input
-        {...props}
-        value={localValue}
-        onChange={handleChange}
-        autocompleteOptions={filteredAutocompleteOptions}
-        onOptionSelect={handleOptionSelect}
-        onBlur={handleBlur}
-        onKeyDown={handleKeyDown}
-        title="Entrée ou virgule pour ajouter à la liste"
-      />
-    </TextInputListContainer>
-  )
-}
+    const handleOptionSelect = React.useCallback(
+      (option: string) => onChange([option, ...value]),
+      [onChange, value]
+    )
+
+    const handleChange = React.useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => setLocalValue(e.target.value),
+      []
+    )
+
+    return (
+      <TextInputListContainer>
+        {value?.length > 0 && (
+          <TagListContainer>
+            {value.map((el, index) => (
+              <TextInputItem key={index}>
+                <Text>{el}</Text>
+                <IconButton
+                  tiny
+                  icon="close"
+                  onClick={() => handleRemoveItem(index)}
+                />
+              </TextInputItem>
+            ))}
+          </TagListContainer>
+        )}
+        <Input
+          {...rest}
+          ref={ref}
+          value={localValue}
+          onChange={handleChange}
+          autocompleteOptions={filteredAutocompleteOptions}
+          onOptionSelect={handleOptionSelect}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          title="Entrée ou virgule pour ajouter à la liste"
+        />
+      </TextInputListContainer>
+    )
+  }
+)
 
 export default TextInputList
