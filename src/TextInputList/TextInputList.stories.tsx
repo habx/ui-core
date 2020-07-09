@@ -14,7 +14,7 @@ const TextInputListContainer = styled.div`
 `
 
 const GRID_PROPS = {
-  placeholder: 'votre@mail.com',
+  placeholder: 'Sartrouville',
   onChange: () => {},
 }
 

@@ -19,7 +19,7 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
 
     const handleValidateCurrent = () => {
       if (localValue !== '') {
-        onChange([...value, localValue])
+        onChange([localValue, ...value])
         setLocalValue('')
       }
     }
@@ -27,14 +27,13 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
     const handleRemoveItem = (index: number) =>
       onChange([...value.slice(0, index), ...value.slice(index + 1)])
 
-    const wrapEvent = (name: string, eventHandler: Function) => (
+    const wrapEvent = (name: keyof typeof props, eventHandler: Function) => (
       ...args: any[]
     ) => {
       eventHandler(...args)
 
-      const propName = name as keyof typeof props
-      if (isFunction(props[propName] as Function)) {
-        props[propName](...args)
+      if (isFunction(props[name] as Function)) {
+        props[name](...args)
       }
     }
 
@@ -51,9 +50,9 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
         case 8: // Backspace
         case 46:
           if (localValue === '' && value?.length > 0) {
-            setLocalValue(value[value.length - 1])
+            setLocalValue(value[0])
             const newValue = [...value]
-            newValue.pop()
+            newValue.shift()
             onChange(newValue)
 
             event.preventDefault()
@@ -92,7 +91,6 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
           onOptionSelect={handleOptionSelect}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          title="Entrée ou virgule pour ajouter à la liste"
         />
         {value?.length > 0 && (
           <TagListContainer>
