@@ -8,7 +8,7 @@ const MenuSection = React.forwardRef<HTMLDivElement, MenuSectionProps>(
     const { children, ...rest } = props
 
     return (
-      <MenuSectionContainer ref={ref} {...rest}>
+      <MenuSectionContainer ref={ref} {...rest} data-section>
         {children}
       </MenuSectionContainer>
     )

@@ -20,6 +20,10 @@ const GRID_PROPS = {
         <MenuLine active>Feature 2 (active)</MenuLine>
         <MenuLine disabled>Feature 3 (disabled)</MenuLine>
       </MenuSection>
+      <MenuSection>
+        <MenuLine>Feature 4</MenuLine>
+        <MenuLine>Feature 5</MenuLine>
+      </MenuSection>
       <MenuLine elementLeft={<Icon icon="close" />}>Me déconnecter</MenuLine>
     </React.Fragment>
   ),

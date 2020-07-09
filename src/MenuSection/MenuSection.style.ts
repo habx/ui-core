@@ -10,14 +10,25 @@ export const MenuSectionContainer = styled.div`
   &:before {
     content: '';
     height: 1px;
+    margin: 4px 0;
     background: ${palette.darkBlue[300]};
   }
 
-  &:before {
-    margin-bottom: 3px;
+  & + &[data-section='true'] {
+    &:before {
+      display: none;
+    }
   }
 
-  &:after {
-    margin-top: 3px;
+  &:first-child {
+    &:before {
+      display: none;
+    }
+  }
+
+  &:last-child {
+    &:after {
+      display: none;
+    }
   }
 `
