@@ -30,6 +30,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
       canReset,
       value,
       autocompleteOptions,
+      onAutoCompleteOptionClick,
       ...rest
     } = props
 
@@ -38,6 +39,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
     const mergedRef = useMergedRef<HTMLInputElement>(ref)
 
     const autocomplete = useAutocomplete({
+      onAutoCompleteOptionClick,
       options: autocompleteOptions,
       value,
       ref: mergedRef,

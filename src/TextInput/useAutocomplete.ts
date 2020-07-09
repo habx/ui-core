@@ -37,6 +37,7 @@ type UseAutocompleteOptions = {
   options?: string[]
   ref: React.RefObject<HTMLInputElement>
   value: string | number | readonly string[] | string[] | undefined
+  onAutoCompleteOptionClick?: (option: string) => void
 }
 
 const MAX_AUTOCOMPLETE_OPTIONS = 3
@@ -44,6 +45,7 @@ const useAutocomplete = ({
   options,
   ref,
   value = '',
+  onAutoCompleteOptionClick,
 }: UseAutocompleteOptions) => {
   const [state, dispatch] = React.useReducer(reducer, {
     open: false,
@@ -70,21 +72,25 @@ const useAutocomplete = ({
     (fakeValue: string) => (e?: React.MouseEvent<HTMLLIElement>) => {
       e?.preventDefault()
       e?.stopPropagation()
-      const input = ref.current as HTMLInputElement & { _valueTracker: any }
-      if (input) {
-        const lastValue = input.value
-        input.value = fakeValue
-        const event = new Event('input', { bubbles: true })
-        // https://github.com/facebook/react/issues/11488#issuecomment-626192358
-        const tracker = input._valueTracker
-        if (tracker) {
-          tracker.setValue(lastValue)
+      if (onAutoCompleteOptionClick) {
+        onAutoCompleteOptionClick(fakeValue)
+      } else {
+        const input = ref.current as HTMLInputElement & { _valueTracker: any }
+        if (input) {
+          const lastValue = input.value
+          input.value = fakeValue
+          const event = new Event('input', { bubbles: true })
+          // https://github.com/facebook/react/issues/11488#issuecomment-626192358
+          const tracker = input._valueTracker
+          if (tracker) {
+            tracker.setValue(lastValue)
+          }
+          input.dispatchEvent(event)
+          dispatch({ type: AutocompleteActionTypes.setOpen, value: !e })
         }
-        input.dispatchEvent(event)
-        dispatch({ type: AutocompleteActionTypes.setOpen, value: !e })
       }
     },
-    [ref]
+    [onAutoCompleteOptionClick, ref]
   )
 
   React.useEffect(() => {
@@ -122,7 +128,6 @@ const useAutocomplete = ({
                 : visibleOptions.length - 1,
           })
         }
-
         if (key === 'Enter' && !isNil(state.activeOptionIndex)) {
           handleFakeOnChange(visibleOptions[state.activeOptionIndex])()
           dispatch({ type: AutocompleteActionTypes.resetActiveOption })

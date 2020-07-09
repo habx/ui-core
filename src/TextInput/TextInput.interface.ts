@@ -13,6 +13,7 @@ export interface TextInputInnerProps
   elementLeft?: React.ReactNode
   canReset?: boolean
   autocompleteOptions?: string[]
+  onAutoCompleteOptionClick?: (option: string) => void
 }
 
 export default interface TextInputProps
