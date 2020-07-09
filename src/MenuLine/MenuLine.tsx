@@ -46,7 +46,7 @@ const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
             {elementLeft}
           </IconContainer>
         )}
-        <Text primary={primary} warning={warning}>
+        <Text primary={primary} warning={warning} opacity={1}>
           {children}
         </Text>
         {elementRight && (

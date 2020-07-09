@@ -60,7 +60,7 @@ const useAutocomplete = ({
         ?.filter(
           (option) => searchInString(option, `${value}`) && option !== value
         )
-        .filter((_, i) => i < MAX_AUTOCOMPLETE_OPTIONS) ?? [],
+        .slice(0, MAX_AUTOCOMPLETE_OPTIONS) ?? [],
     [options, value]
   )
 
