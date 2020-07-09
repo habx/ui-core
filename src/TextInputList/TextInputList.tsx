@@ -74,6 +74,16 @@ const TextInputList: React.FunctionComponent<TextInputListProps> = ({
     return autocompleteOptions.filter((option) => !value.includes(option))
   }, [autocompleteOptions, value])
 
+  const handleAutocompleteOptionClick = React.useCallback(
+    (option: string) => onChange([option, ...value]),
+    [onChange, value]
+  )
+
+  const handleChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => setLocalValue(e.target.value),
+    []
+  )
+
   return (
     <TextInputListContainer>
       {value?.length > 0 && (
@@ -93,13 +103,9 @@ const TextInputList: React.FunctionComponent<TextInputListProps> = ({
       <Input
         {...props}
         value={localValue}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setLocalValue(e.target.value)
-        }
+        onChange={handleChange}
         autocompleteOptions={filteredAutocompleteOptions}
-        onAutoCompleteOptionClick={(option: string) =>
-          onChange([option, ...value])
-        }
+        onAutoCompleteOptionClick={handleAutocompleteOptionClick}
         onBlur={handleBlur}
         onKeyDown={handleKeyDown}
         title="Entrée ou virgule pour ajouter à la liste"
