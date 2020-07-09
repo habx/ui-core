@@ -57,6 +57,7 @@ export { default as Select, SelectProps } from './Select'
 export { default as Slider, SliderProps } from './Slider'
 export { default as TextArea, TextAreaProps } from './TextArea'
 export { default as TextInput, TextInputProps } from './TextInput'
+export { default as TextInputList, TextInputListProps } from './TextInputList'
 export { default as ArrayInput, ArrayInputProps, ArrayInputItemComponentProps } from './ArrayInput'
 export { default as Toggle, ToggleProps } from './Toggle'
 
