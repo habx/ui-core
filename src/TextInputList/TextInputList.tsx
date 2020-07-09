@@ -3,12 +3,12 @@ import * as React from 'react'
 import { isFunction } from '../_internal/data'
 import IconButton from '../IconButton'
 import Text from '../Text'
+import TextInput from '../TextInput/TextInput'
 
 import TextInputListProps from './TextInputList.interface'
 import {
   TextInputListContainer,
   TextInputItem,
-  Input,
   TagListContainer,
 } from './TextInputList.style'
 
@@ -83,6 +83,17 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
 
     return (
       <TextInputListContainer>
+        <TextInput
+          {...rest}
+          ref={ref}
+          value={localValue}
+          onChange={handleChange}
+          autocompleteOptions={filteredAutocompleteOptions}
+          onOptionSelect={handleOptionSelect}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          title="Entrée ou virgule pour ajouter à la liste"
+        />
         {value?.length > 0 && (
           <TagListContainer>
             {value.map((el, index) => (
@@ -97,17 +108,6 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
             ))}
           </TagListContainer>
         )}
-        <Input
-          {...rest}
-          ref={ref}
-          value={localValue}
-          onChange={handleChange}
-          autocompleteOptions={filteredAutocompleteOptions}
-          onOptionSelect={handleOptionSelect}
-          onBlur={handleBlur}
-          onKeyDown={handleKeyDown}
-          title="Entrée ou virgule pour ajouter à la liste"
-        />
       </TextInputListContainer>
     )
   }
