@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
+import useMergedRef from '../_internal/useMergedRef'
 import IconButton from '../IconButton'
 import Text from '../Text'
 import TextInput from '../TextInput/TextInput'
@@ -36,8 +37,6 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
         props[name](...args)
       }
     }
-
-    const handleBlur = wrapEvent('onBlur', () => handleValidateCurrent())
 
     const handleKeyDown = wrapEvent('onKeyDown', (event: KeyboardEvent) => {
       // eslint-disable-next-line default-case
@@ -80,17 +79,23 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
       []
     )
 
+    const mergedRef = useMergedRef(ref)
+
     return (
       <TextInputListContainer>
         <TextInput
           {...rest}
-          ref={ref}
+          ref={mergedRef}
           value={localValue}
           onChange={handleChange}
           autocompleteOptions={filteredAutocompleteOptions}
           onOptionSelect={handleOptionSelect}
-          onBlur={handleBlur}
           onKeyDown={handleKeyDown}
+          elementRight={
+            `${localValue}`?.length > 0 && (
+              <IconButton tiny icon="add" onClick={handleValidateCurrent} />
+            )
+          }
         />
         {value?.length > 0 && (
           <TagListContainer>

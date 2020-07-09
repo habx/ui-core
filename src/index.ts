@@ -3,6 +3,7 @@
 /*
   Providers
  */
+
 export { default as Provider, ProviderProps } from './Provider'
 export { default as ThemeProvider, ThemeProviderProps, DesignSystemThemePatch } from './ThemeProvider'
 
@@ -21,7 +22,7 @@ export { default as Link, LinkProps, linkStyle } from './Link'
 export { default as Menu, MenuProps } from './Menu'
 export { default as MenuSection, MenuSectionProps } from './MenuSection'
 export { default as MenuLine, MenuLineProps } from './MenuLine'
-
+export { default as ConfirmMenu, ConfirmMenuProps } from './ConfirmMenu'
 /*
   Buttons / Tags
  */
