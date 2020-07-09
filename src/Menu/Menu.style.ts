@@ -13,6 +13,7 @@ export const MenuContent = styled.div`
   background-color: ${theme.color('background', { useRootTheme: true })};
   padding: 8px 0;
   box-shadow: ${theme.shadow()};
+  border-radius: 4px;
 
   &[data-scrollable='true'] {
     max-height: 324px;
@@ -32,7 +33,6 @@ export const MenuOverlay = styled.div`
 
 export const MenuContainer = styled.ul`
   opacity: 1;
-  border-radius: 4px;
   list-style-type: none;
   padding: 0;
   margin: 0;
