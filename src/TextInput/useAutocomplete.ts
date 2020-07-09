@@ -37,7 +37,7 @@ type UseAutocompleteOptions = {
   options?: string[]
   ref: React.RefObject<HTMLInputElement>
   value: string | number | readonly string[] | string[] | undefined
-  onAutoCompleteOptionClick?: (option: string) => void
+  onOptionSelect?: (option: string) => void
 }
 
 const MAX_AUTOCOMPLETE_OPTIONS = 3
@@ -45,7 +45,7 @@ const useAutocomplete = ({
   options,
   ref,
   value = '',
-  onAutoCompleteOptionClick,
+  onOptionSelect,
 }: UseAutocompleteOptions) => {
   const [state, dispatch] = React.useReducer(reducer, {
     open: false,
@@ -72,8 +72,8 @@ const useAutocomplete = ({
     (fakeValue: string) => (e?: React.MouseEvent<HTMLLIElement>) => {
       e?.preventDefault()
       e?.stopPropagation()
-      if (onAutoCompleteOptionClick) {
-        onAutoCompleteOptionClick(fakeValue)
+      if (onOptionSelect) {
+        onOptionSelect(fakeValue)
       } else {
         const input = ref.current as HTMLInputElement & { _valueTracker: any }
         if (input) {
@@ -90,7 +90,7 @@ const useAutocomplete = ({
         }
       }
     },
-    [onAutoCompleteOptionClick, ref]
+    [onOptionSelect, ref]
   )
 
   React.useEffect(() => {
