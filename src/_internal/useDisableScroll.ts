@@ -3,6 +3,8 @@
 // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
 import React from 'react'
 
+import { isClientSide } from './ssr'
+
 const SCROLL_KEYS = { 37: 1, 38: 1, 39: 1, 40: 1 }
 
 const preventDefault = (e: Event) => e.preventDefault()
@@ -29,7 +31,9 @@ try {
 
 const wheelOpt = supportsPassive ? { passive: false } : false
 const wheelEvent =
-  'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel'
+  isClientSide && 'onwheel' in document.createElement('div')
+    ? 'wheel'
+    : 'mousewheel'
 
 const disableScroll = () => {
   window.addEventListener('DOMMouseScroll', preventDefault, false)
