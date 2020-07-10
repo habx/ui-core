@@ -15,3 +15,10 @@ export const TagListContainer = styled.div`
   align-items: baseline;
   flex-wrap: wrap;
 `
+
+export const ElementRightContainer = styled.div`
+  display: flex;
+  * > {
+    margin-left: 12px;
+  }
+`

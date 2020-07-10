@@ -10,11 +10,18 @@ import {
   TextInputListContainer,
   TextInputItem,
   TagListContainer,
+  ElementRightContainer,
 } from './TextInputList.style'
 
 const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
   (props, ref) => {
-    const { value = [], onChange, autocompleteOptions, ...rest } = props
+    const {
+      value = [],
+      onChange,
+      autocompleteOptions,
+      elementRight,
+      ...rest
+    } = props
     const [localValue, setLocalValue] = React.useState<string | number>('')
 
     const handleValidateCurrent = () => {
@@ -89,9 +96,12 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
           onOptionSelect={handleOptionSelect}
           onKeyDown={handleKeyDown}
           elementRight={
-            `${localValue}`?.length > 0 && (
-              <IconButton tiny icon="add" onClick={handleValidateCurrent} />
-            )
+            <ElementRightContainer>
+              {elementRight}
+              {`${localValue}`?.length > 0 && (
+                <IconButton tiny icon="add" onClick={handleValidateCurrent} />
+              )}
+            </ElementRightContainer>
           }
         />
         {value?.length > 0 && (

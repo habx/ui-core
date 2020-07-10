@@ -88,7 +88,7 @@ const AutoCompleteTextInput = () => {
       <TextInputList
         value={value}
         onChange={setValue}
-        placeholder="Villes"
+        placeholder="Cities"
         autocompleteOptions={['Paris', 'Bordeaux', 'Nantes', 'Lyon']}
       />
     </TextInputListContainer>
