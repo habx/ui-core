@@ -94,7 +94,7 @@ const AutoCompleteTextInput = () => {
       <TextInput
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="Villes"
+        placeholder="Cities"
         autocompleteOptions={['Paris', 'Bordeaux', 'Nantes', 'Lyon']}
       />
     </TextInputContainer>

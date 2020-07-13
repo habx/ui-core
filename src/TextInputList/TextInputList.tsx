@@ -10,11 +10,18 @@ import {
   TextInputListContainer,
   TextInputItem,
   TagListContainer,
+  ElementRightContainer,
 } from './TextInputList.style'
 
 const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
   (props, ref) => {
-    const { value = [], onChange, autocompleteOptions, ...rest } = props
+    const {
+      value = [],
+      onChange,
+      autocompleteOptions,
+      elementRight,
+      ...rest
+    } = props
     const [localValue, setLocalValue] = React.useState<string | number>('')
 
     const handleValidateCurrent = () => {
@@ -36,8 +43,6 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
         props[name](...args)
       }
     }
-
-    const handleBlur = wrapEvent('onBlur', () => handleValidateCurrent())
 
     const handleKeyDown = wrapEvent('onKeyDown', (event: KeyboardEvent) => {
       // eslint-disable-next-line default-case
@@ -89,8 +94,15 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
           onChange={handleChange}
           autocompleteOptions={filteredAutocompleteOptions}
           onOptionSelect={handleOptionSelect}
-          onBlur={handleBlur}
           onKeyDown={handleKeyDown}
+          elementRight={
+            <ElementRightContainer>
+              {elementRight}
+              {`${localValue}`?.length > 0 && (
+                <IconButton tiny icon="add" onClick={handleValidateCurrent} />
+              )}
+            </ElementRightContainer>
+          }
         />
         {value?.length > 0 && (
           <TagListContainer>
