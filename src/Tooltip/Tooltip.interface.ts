@@ -6,7 +6,8 @@ export default interface TooltipProps
   description?: string
   small?: boolean
   disabled?: boolean
-  children: React.ReactElement<any>
+  children?: React.ReactElement<any>
+  triggerRef?: React.RefObject<HTMLElement>
 }
 
 export type Position = {
@@ -39,7 +40,7 @@ export type UseTooltipResult = [
   TooltipState,
   { onMouseEnter: () => void; onMouseLeave: () => void },
   {
-    trigger: React.RefObject<HTMLDivElement>
+    trigger: React.RefObject<HTMLElement>
     tooltip: React.RefObject<HTMLDivElement>
   }
 ]

@@ -30,10 +30,13 @@ const VERTICAL_SCREEN_MARGIN = 4
 
 const useTooltip = (
   props: TooltipProps,
-  ref: React.Ref<HTMLDivElement>
+  ref: React.Ref<HTMLDivElement>,
+  customTriggerRef?: React.RefObject<HTMLElement>
 ): UseTooltipResult => {
   const tooltipRef = useMergedRef<HTMLDivElement>(ref)
-  const triggerRef = React.useRef<HTMLDivElement>(null)
+  const localTriggerRef = React.useRef<HTMLElement>(null)
+
+  const triggerRef = customTriggerRef ?? localTriggerRef
 
   const getPosition = (): Position => {
     const tooltipDimensions = tooltipRef.current?.getBoundingClientRect()
@@ -152,10 +155,11 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
     children,
     small = false,
     onClick,
+    triggerRef,
     ...rest
   } = props
 
-  const [state, actions, refs] = useTooltip(props, ref)
+  const [state, actions, refs] = useTooltip(props, ref, triggerRef)
 
   const modal = useModal<HTMLDivElement>({
     open: state.visibilityState === TooltipVisibilityState.Visible,
@@ -173,6 +177,21 @@ const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
         ...(onClick ? { onClick } : {}),
       })
     : children
+
+  React.useEffect(() => {
+    if (triggerRef) {
+      const node = triggerRef.current
+      if (node) {
+        node.addEventListener('mouseover', actions.onMouseEnter)
+        node.addEventListener('mouseout', actions.onMouseLeave)
+
+        return () => {
+          node.removeEventListener('mouseover', actions.onMouseEnter)
+          node.removeEventListener('mouseout', actions.onMouseLeave)
+        }
+      }
+    }
+  }, [actions.onMouseEnter, actions.onMouseLeave, triggerRef])
 
   return (
     <React.Fragment>

@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import DefaultMenu from '../Menu/Menu'
 
 export const Menu = styled(DefaultMenu)`
-  margin-top: 48px;
+  margin-top: 54px;
+  margin-left: -92px;
 `
 
 export const ConfirmMenuContent = styled.div`
