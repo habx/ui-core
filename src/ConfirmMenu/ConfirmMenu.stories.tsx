@@ -10,13 +10,8 @@ export default {
   decorators: [withKnobs],
 }
 
-const InputWithConfirm = () => {
-  const ref = React.useRef<HTMLInputElement>(null)
-  return (
-    <ConfirmMenu triggerRef={ref}>
-      <TextInput ref={ref} />
-    </ConfirmMenu>
-  )
-}
-
-export const Basic = () => <InputWithConfirm />
+export const Basic = () => (
+  <ConfirmMenu>
+    <TextInput />
+  </ConfirmMenu>
+)
