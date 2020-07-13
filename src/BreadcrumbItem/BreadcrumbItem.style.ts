@@ -14,7 +14,7 @@ export const BreadcrumbItemContainer = styled.li`
   white-space: nowrap;
   font-size: 16px;
   font-family: ${theme.font()};
-  color: ${palette.darkBlue[700]};
+  font-weight: normal;
 
   padding: 6px 12px;
   border-radius: 2px;
@@ -34,6 +34,9 @@ export const BreadcrumbItemContainer = styled.li`
     max-width: initial;
     overflow: visible;
     color: ${palette.darkBlue[900]};
+  }
+  &:not(:last-child) {
+    color: ${palette.darkBlue[700]};
   }
 
   &[data-interactive='true']:not(:last-child) {
