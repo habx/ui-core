@@ -41,8 +41,10 @@ type UseAutocompleteOptions = {
 }
 
 const MAX_AUTOCOMPLETE_OPTIONS = 3
+const DEFAULT_OPTIONS: string[] = []
+
 const useAutocomplete = ({
-  options,
+  options = DEFAULT_OPTIONS,
   ref,
   value = '',
   onOptionSelect,
@@ -95,7 +97,11 @@ const useAutocomplete = ({
 
   React.useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      if (ref.current?.contains(e.target as Node) && !state.open) {
+      if (
+        options?.length > 0 &&
+        ref.current?.contains(e.target as Node) &&
+        !state.open
+      ) {
         dispatch({ type: AutocompleteActionTypes.setOpen, value: true })
       }
       if (!ref.current?.contains(e.target as Node) && state.open) {
@@ -142,7 +148,7 @@ const useAutocomplete = ({
       window.removeEventListener('keydown', handleKeyDown)
       window.removeEventListener('click', handleClick)
     }
-  }, [handleFakeOnChange, ref, state, visibleOptions])
+  }, [handleFakeOnChange, options, ref, state, visibleOptions])
 
   useDisableScroll(state.open)
 
