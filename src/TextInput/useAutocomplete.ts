@@ -41,7 +41,7 @@ type UseAutocompleteOptions = {
 }
 
 const MAX_AUTOCOMPLETE_OPTIONS = 3
-const DEFAULT_OPTIONS = []
+const DEFAULT_OPTIONS: string[] = []
 
 const useAutocomplete = ({
   options = DEFAULT_OPTIONS,
