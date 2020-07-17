@@ -29,6 +29,7 @@ const ExpansionPanelItem = React.forwardRef<
     header,
     onToggle,
     description,
+    disabled,
     ...rest
   } = props
 
@@ -116,6 +117,7 @@ const ExpansionPanelItem = React.forwardRef<
   return (
     <ExpansionPanelItemContainer
       data-testid="expansion-panel-item"
+      data-disabled={disabled}
       data-light={light}
       data-state={panel.state}
       {...rest}

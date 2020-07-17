@@ -10,4 +10,5 @@ export default interface ExpansionPanelItem
   onToggle?: (e?: React.MouseEvent) => void
   children?: React.ReactNode | ((state: Modal) => JSX.Element)
   header?: React.ReactNode | ((state: Modal) => JSX.Element)
+  disabled?: boolean
 }
