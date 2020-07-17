@@ -2,9 +2,6 @@ import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
 import useHasColoredBackground from '../_internal/useHasColoredBackground'
-import useMergedRef from '../_internal/useMergedRef'
-import Menu from '../Menu/Menu'
-import MenuLine from '../MenuLine'
 import withLabel from '../withLabel'
 
 import { TextInputInnerProps } from './TextInput.interface'
@@ -15,7 +12,6 @@ import {
   LeftElementContainer,
   RightElementContainer,
 } from './TextInput.style'
-import useAutocomplete from './useAutocomplete'
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
   (props, ref) => {
@@ -29,21 +25,10 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
       elementLeft,
       canReset,
       value,
-      autocompleteOptions,
-      onOptionSelect,
       ...rest
     } = props
 
     const hasBackground = useHasColoredBackground()
-
-    const mergedRef = useMergedRef<HTMLInputElement>(ref)
-
-    const autocomplete = useAutocomplete({
-      onOptionSelect,
-      options: autocompleteOptions,
-      value,
-      ref: mergedRef,
-    })
 
     return (
       <InputContainer className={className} style={style} data-error={error}>
@@ -55,27 +40,8 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
           data-background={hasBackground}
           value={value ?? ''}
           {...rest}
-          ref={mergedRef}
+          ref={ref}
         />
-        {autocomplete.open && (
-          <Menu
-            ref={autocomplete.menuRef}
-            triggerRef={mergedRef}
-            onClose={() => {}}
-            open={autocomplete.open}
-            withOverlay={false}
-          >
-            {autocomplete.visibleOptions.map((option, index) => (
-              <MenuLine
-                active={index === autocomplete.activeOptionIndex}
-                key={`menuLine-${option}`}
-                onClick={autocomplete.onOptionClick(option)}
-              >
-                {option}
-              </MenuLine>
-            ))}
-          </Menu>
-        )}
         {elementLeft && (
           <LeftElementContainer data-light={light}>
             {elementLeft}

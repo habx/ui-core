@@ -8,7 +8,7 @@ import {
   AutocompleteActions,
   AutocompleteActionTypes,
   AutocompleteState,
-} from './TextInput.interface'
+} from './AutocompleteInput.interface'
 
 const reducer: React.Reducer<AutocompleteState, AutocompleteActions> = (
   state,

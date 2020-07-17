@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
+import AutocompleteInput from '../AutocompleteInput'
 import IconButton from '../IconButton'
 import Text from '../Text'
-import TextInput from '../TextInput/TextInput'
 
 import TextInputListProps from './TextInputList.interface'
 import {
@@ -87,7 +87,7 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
 
     return (
       <TextInputListContainer>
-        <TextInput
+        <AutocompleteInput
           {...rest}
           ref={ref}
           value={localValue}
