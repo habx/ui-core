@@ -15,13 +15,7 @@ import {
 
 const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
   (props, ref) => {
-    const {
-      value = [],
-      onChange,
-      autocompleteOptions,
-      elementRight,
-      ...rest
-    } = props
+    const { value = [], onChange, options, elementRight, ...rest } = props
     const [localValue, setLocalValue] = React.useState<string | number>('')
 
     const handleValidateCurrent = () => {
@@ -69,11 +63,11 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
     })
 
     const filteredAutocompleteOptions = React.useMemo(() => {
-      if (!autocompleteOptions?.length) {
-        return autocompleteOptions
+      if (!options?.length) {
+        return options
       }
-      return autocompleteOptions.filter((option) => !value.includes(option))
-    }, [autocompleteOptions, value])
+      return options.filter((option) => !value.includes(option))
+    }, [options, value])
 
     const handleOptionSelect = React.useCallback(
       (option: string) => onChange([option, ...value]),
@@ -92,7 +86,7 @@ const TextInputList = React.forwardRef<HTMLInputElement, TextInputListProps>(
           ref={ref}
           value={localValue}
           onChange={handleChange}
-          autocompleteOptions={filteredAutocompleteOptions}
+          options={filteredAutocompleteOptions}
           onOptionSelect={handleOptionSelect}
           onKeyDown={handleKeyDown}
           elementRight={

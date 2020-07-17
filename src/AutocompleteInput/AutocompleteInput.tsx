@@ -12,12 +12,12 @@ const AutocompleteInput = React.forwardRef<
   HTMLInputElement,
   AutocompleteInputInnerProps
 >((props, ref) => {
-  const { value, autocompleteOptions, onOptionSelect, ...inputProps } = props
+  const { value, options, onOptionSelect, ...inputProps } = props
   const mergedRef = useMergedRef<HTMLInputElement>(ref)
 
   const autocomplete = useAutocomplete({
     onOptionSelect,
-    options: autocompleteOptions,
+    options: options,
     value,
     ref: mergedRef,
   })

@@ -1,7 +1,7 @@
 import TextInputProps from '../TextInput/TextInput.interface'
 
 export interface AutocompleteInputInnerProps extends TextInputProps {
-  autocompleteOptions?: string[]
+  options?: string[]
   onOptionSelect?: (option: string) => void
 }
 
