@@ -101,6 +101,7 @@ export { default as confirm } from './confirm'
 export { default as AnnouncementBanner, AnnouncementBannerProps } from './AnnouncementBanner'
 export { default as AlertBanner, AlertBannerProps } from './AlertBanner'
 export { default as Tooltip, TooltipProps } from './Tooltip'
+export { default as Badge, BadgeProps } from './Badge'
 export { default as Notification, NotificationProps } from './Notification'
 export { default as notify } from './notify'
 

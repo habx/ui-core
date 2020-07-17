@@ -171,7 +171,7 @@ export const SearchInput = styled.input.attrs(() => ({
   }
 `
 
-export const CustomIconContainer = styled.div`
+export const ElementLeftContainer = styled.div`
   margin-right: 8px;
   align-self: stretch;
 `
@@ -193,7 +193,7 @@ export const ResetIconContainer = styled.div`
   }
 `
 
-export const IconRightContainer = styled.div`
+export const ElementRightContainer = styled.div`
   transition: opacity 150ms ease-in-out;
 
   &:not([data-visible='true']) {
