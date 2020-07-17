@@ -25,6 +25,10 @@ export const ExpansionPanelItemContainer = styled.div`
       border-color: ${palette.darkBlue[700]};
     }
   }
+  &[data-disabled='true'] {
+    pointer-events: none;
+    opacity: 0.7;
+  }
 `
 
 export const HeaderBar = styled.div`
