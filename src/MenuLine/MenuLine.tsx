@@ -4,7 +4,7 @@ import MenuContext from '../Menu/Menu.context'
 import Text from '../Text'
 
 import MenuLineProps from './MenuLine.interface'
-import { MenuLineContainer, IconContainer } from './MenuLine.style'
+import { MenuLineContainer, SideElementContainer } from './MenuLine.style'
 
 const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
   (props, ref) => {
@@ -38,25 +38,25 @@ const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
         data-active={active}
       >
         {elementLeft && (
-          <IconContainer
+          <SideElementContainer
             primary={primary}
             warning={warning}
             data-position="left"
           >
             {elementLeft}
-          </IconContainer>
+          </SideElementContainer>
         )}
         <Text primary={primary} warning={warning} opacity={1}>
           {children}
         </Text>
         {elementRight && (
-          <IconContainer
+          <SideElementContainer
             primary={primary}
             warning={warning}
             data-position="right"
           >
             {elementRight}
-          </IconContainer>
+          </SideElementContainer>
         )}
       </MenuLineContainer>
     )

@@ -10,9 +10,9 @@ import SelectContext from './Select.context'
 import { useSelect } from './Select.hooks'
 import { SelectContextValue, SelectInnerProps } from './Select.interface'
 import {
-  CustomIconContainer,
+  ElementLeftContainer,
   IconsContainer,
-  IconRightContainer,
+  ElementRightContainer,
   Placeholder,
   ResetIconContainer,
   SearchInput,
@@ -73,7 +73,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           {...rest}
         >
           {elementLeft && (
-            <CustomIconContainer>{elementLeft}</CustomIconContainer>
+            <ElementLeftContainer>{elementLeft}</ElementLeftContainer>
           )}
           {filterable && state.isOpened ? (
             <SearchInput
@@ -103,13 +103,13 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
                 />
               </ResetIconContainer>
             )}
-            <IconRightContainer data-visible={!state.showResetIcon}>
+            <ElementRightContainer data-visible={!state.showResetIcon}>
               {elementRight ?? (
                 <Icon
                   icon={state.isOpened ? 'chevron-north' : 'chevron-south'}
                 />
               )}
-            </IconRightContainer>
+            </ElementRightContainer>
           </IconsContainer>
         </SelectContainer>
         <Options

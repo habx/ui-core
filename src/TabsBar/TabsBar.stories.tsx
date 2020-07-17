@@ -1,8 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+import Badge from '../Badge'
 import HeaderBar from '../HeaderBar'
 import TabsBarItem from '../TabsBarItem'
+import Tooltip from '../Tooltip'
 
 import TabsBar from './TabsBar'
 
@@ -35,6 +37,14 @@ export default {
 export const basic = () => (
   <TabsBar>
     <TabsBarItem active>Awesome page n°1</TabsBarItem>
-    <TabsBarItem>Awesome page n°2</TabsBarItem>
+    <TabsBarItem
+      elementRight={
+        <Tooltip title="You have 10 items to review on this tab" small>
+          <Badge content={10} max={9} warning />
+        </Tooltip>
+      }
+    >
+      Awesome page n°2
+    </TabsBarItem>
   </TabsBar>
 )

@@ -29,7 +29,7 @@ export const MenuLineContainer = styled.li`
   }
 `
 
-export const IconContainer = styled.div<{
+export const SideElementContainer = styled.div<{
   primary?: boolean
   warning?: boolean
 }>`
