@@ -1,10 +1,10 @@
 import { Modal } from '@delangle/use-modal'
 import * as React from 'react'
 
+import { LayoutProps } from '../Layout'
 import { WithTriggerElement } from '../withTriggerElement'
 
-export interface LightBoxInnerProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface LightBoxInnerProps extends LayoutProps {
   open?: boolean
   onClose?: () => void
   persistent?: boolean
