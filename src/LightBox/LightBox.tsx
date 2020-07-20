@@ -8,7 +8,7 @@ import { ANIMATION_DURATIONS } from '../animations'
 import withTriggerElement from '../withTriggerElement'
 
 import { LightBoxInnerProps } from './LightBox.interface'
-import { LightBoxOverlay, CloseIcon } from './LightBox.style'
+import { LightBoxContainer, CloseIcon } from './LightBox.style'
 
 const LightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
   (props, ref) => {
@@ -30,7 +30,7 @@ const LightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
     })
 
     const content = (
-      <LightBoxOverlay
+      <LightBoxContainer
         ref={ref}
         backgroundColor="#FFFFFF"
         data-state={modal.state}
@@ -40,7 +40,7 @@ const LightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
         {isFunction(children)
           ? children(modal as Modal<HTMLDivElement>)
           : children}
-      </LightBoxOverlay>
+      </LightBoxContainer>
     )
 
     return isClientSide
