@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
+import useMergedRef from '../_internal/useMergedRef'
 
 import {
   WithTriggerElement,
@@ -20,12 +21,15 @@ const withTriggerElement = <RefElement extends HTMLElement>(
     RefElement,
     WithTriggerElement<Props, RefElement>
   >((props, ref) => {
-    const { triggerElement, onClose, ...rest } = props as TriggerReceivedProps<
-      RefElement
-    >
+    const {
+      triggerElement,
+      triggerRef: rawTriggerRef,
+      onClose,
+      ...rest
+    } = props as TriggerReceivedProps<RefElement>
 
     const [open, setOpen] = React.useState(false)
-    const triggerRef = React.useRef<HTMLElement>(null)
+    const triggerRef = useMergedRef<HTMLElement>(rawTriggerRef)
 
     const handleClose = React.useCallback(
       (e: React.SyntheticEvent<RefElement>) => {
@@ -60,7 +64,14 @@ const withTriggerElement = <RefElement extends HTMLElement>(
     }, [triggerElement, open])
 
     if (!fullTriggerElement) {
-      return <WrappedComponent {...(rest as Props)} onClose={onClose} />
+      return (
+        <WrappedComponent
+          {...(rest as Props)}
+          onClose={onClose}
+          ref={ref}
+          triggerRef={rawTriggerRef}
+        />
+      )
     }
 
     return (
