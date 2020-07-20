@@ -8,13 +8,15 @@ import { ArrayInputInnerProps } from './ArrayInput.interface'
 import { ArrayInputAction } from './ArrayInput.style'
 import Item from './Item'
 
+const DEFAULT_HANDLER = () => {}
+
 const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
   (props, ref) => {
     const {
       items = [],
-      onAppend = () => {},
+      onAppend = DEFAULT_HANDLER,
       onDelete = () => {},
-      onOpen = () => {},
+      onOpen = DEFAULT_HANDLER,
       onReorder,
       opened = -1,
       disabled,
