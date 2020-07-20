@@ -107,7 +107,7 @@ const CountryArrayInput: React.FunctionComponent<any> = (props) => {
           onAppend={handleAppend}
           onDelete={handleDelete}
           onReorder={handleReorder}
-          onOpen={action('open')}
+          onToggle={action('toggle')}
           itemComponent={CountryArrayInputElement}
           itemTitleComponent={ItemTitle}
           {...props}

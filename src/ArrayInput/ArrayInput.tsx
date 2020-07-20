@@ -16,9 +16,9 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
       items = [],
       onAppend = DEFAULT_HANDLER,
       onDelete = () => {},
-      onOpen = DEFAULT_HANDLER,
       onReorder,
-      opened = -1,
+      onToggle = DEFAULT_HANDLER,
+      openedItemIndex = -1,
       disabled,
       addButtonLabel = 'Ajouter un élément',
       addButtonComponent: AddButtonComponent,
@@ -31,7 +31,7 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
       ...rest
     } = props
 
-    const [openedItem, setOpenedItem] = React.useState(opened)
+    const [openedIndex, setOpenedItem] = React.useState(openedItemIndex)
     const appendRef = React.useRef(false)
 
     const handleAppend = React.useCallback(
@@ -42,22 +42,22 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
       [onAppend]
     )
 
-    const handleOpen = React.useCallback(
+    const handleToggle = React.useCallback(
       (index: number) => {
-        onOpen(index)
+        onToggle(index)
         setOpenedItem((prev) => (prev === index ? -1 : index))
       },
-      [onOpen]
+      [onToggle]
     )
 
-    React.useEffect(() => setOpenedItem(opened), [opened])
+    React.useEffect(() => setOpenedItem(openedItemIndex), [openedItemIndex])
 
     React.useEffect(() => {
       if (appendRef.current && items.length > 0) {
-        handleOpen(items.length - 1)
+        handleToggle(items.length - 1)
         appendRef.current = false
       }
-    }, [items, handleOpen])
+    }, [items, handleToggle])
 
     const renderItem =
       rawRenderItem ||
@@ -84,12 +84,12 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
             renderItemTitle={renderItemTitle}
             item={item}
             index={index}
-            open={openedItem === index}
+            open={openedIndex === index}
             disabled={disabled}
             canBeReordered={canBeReordered}
             onDelete={onDelete}
             onReorder={onReorder}
-            onClick={() => handleOpen(index)}
+            onClick={() => handleToggle(index)}
           />
         ))}
         <ArrayInputAction>

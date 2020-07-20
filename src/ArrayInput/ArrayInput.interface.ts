@@ -21,8 +21,8 @@ export interface ArrayInputInnerProps
   onDelete?: (position: number) => void
   onReorder?: (oldPosition: number, newPosition: number) => void
   onAppend?: (value?: any) => void
-  onOpen?(index: number): void
-  opened?: number
+  onToggle?(index: number): void
+  openedItemIndex?: number
   itemComponent?: React.ComponentType<ArrayInputItemComponentProps>
   itemTitleComponent?: React.ComponentType<ArrayInputItemComponentProps>
   renderItem?: (itemProps: ArrayInputItemComponentProps) => JSX.Element
