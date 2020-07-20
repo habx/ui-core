@@ -14,7 +14,9 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
       items = [],
       onAppend = () => {},
       onDelete = () => {},
+      onOpen = () => {},
       onReorder,
+      opened = -1,
       disabled,
       addButtonLabel = 'Ajouter un élément',
       addButtonComponent: AddButtonComponent,
@@ -27,15 +29,8 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
       ...rest
     } = props
 
-    const [openedItem, setOpenedItem] = React.useState(-1)
+    const [openedItem, setOpenedItem] = React.useState(opened)
     const appendRef = React.useRef(false)
-
-    React.useEffect(() => {
-      if (appendRef.current && items.length > 0) {
-        setOpenedItem(items.length - 1)
-        appendRef.current = false
-      }
-    }, [items])
 
     const handleAppend = React.useCallback(
       (value?: any) => {
@@ -45,10 +40,28 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
       [onAppend]
     )
 
+    const handleOpen = React.useCallback(
+      (index: number) => {
+        onOpen(index)
+        setOpenedItem((prev) => (prev === index ? -1 : index))
+      },
+      [onOpen]
+    )
+
+    React.useEffect(() => setOpenedItem(opened), [opened])
+
+    React.useEffect(() => {
+      if (appendRef.current && items.length > 0) {
+        handleOpen(items.length - 1)
+        appendRef.current = false
+      }
+    }, [items, handleOpen])
+
     const renderItem =
       rawRenderItem ||
       (ItemComponent && ((itemProps) => <ItemComponent {...itemProps} />)) ||
       (() => <div />)
+
     const renderItemTitle =
       rawRenderItemTitle ||
       (ItemTitleComponent &&
@@ -74,9 +87,7 @@ const ArrayInput = React.forwardRef<HTMLDivElement, ArrayInputInnerProps>(
             canBeReordered={canBeReordered}
             onDelete={onDelete}
             onReorder={onReorder}
-            onClick={() =>
-              setOpenedItem((prev) => (prev === index ? -1 : index))
-            }
+            onClick={() => handleOpen(index)}
           />
         ))}
         <ArrayInputAction>
