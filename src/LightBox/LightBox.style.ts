@@ -25,6 +25,11 @@ export const LightBoxContainer = styled(Layout)`
   display: flex;
   flex-direction: column;
 
+  --layout-left-padding: 0;
+  --layout-right-padding: 0;
+  --layout-top-padding: 0;
+  --layout-bottom-padding: 0;
+
   &[data-state='opening'] {
     animation: ${FADE_IN} ${ANIMATION_DURATIONS.l}ms linear 0ms;
   }
