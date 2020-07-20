@@ -4,6 +4,7 @@ type TriggerElement = ((state: TriggerState) => JSX.Element) | JSX.Element
 
 export interface TriggerReceivedProps<RefElement> {
   triggerElement?: TriggerElement
+  triggerRef?: React.RefObject<HTMLElement>
   onClose?: (e: React.SyntheticEvent<RefElement>) => void
 }
 
