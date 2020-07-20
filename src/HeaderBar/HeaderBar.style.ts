@@ -6,7 +6,7 @@ import palette from '../palette'
 import theme from '../theme'
 
 export const HeaderBarContainer = styled(Background)`
-  height: 72px;
+  height: 60px;
   flex: 0 0 auto;
   display: flex;
   align-items: center;
@@ -21,8 +21,13 @@ export const HeaderBarContainer = styled(Background)`
   &[data-sticky='false'] {
     position: relative !important;
   }
+
   &[data-small='true'] {
     height: 48px;
+  }
+
+  &[data-large='true'] {
+    height: 72px;
   }
 
   &[data-is-in-layout='true'] {

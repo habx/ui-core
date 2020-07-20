@@ -2,8 +2,8 @@ import styled, { keyframes } from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
 import { ANIMATION_DURATIONS } from '../animations'
-import Background from '../Background'
 import IconButton from '../IconButton'
+import Layout from '../Layout'
 
 export const FADE_IN = keyframes`
   from {
@@ -15,13 +15,15 @@ export const FADE_IN = keyframes`
   }
 `
 
-export const LightBoxOverlay = styled(Background)`
+export const LightBoxContainer = styled(Layout)`
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   z-index: ${zIndex.modals};
+  display: flex;
+  flex-direction: column;
 
   &[data-state='opening'] {
     animation: ${FADE_IN} ${ANIMATION_DURATIONS.l}ms linear 0ms;

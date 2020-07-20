@@ -5,6 +5,7 @@ type TriggerElement = ((state: TriggerState) => JSX.Element) | JSX.Element
 export interface TriggerReceivedProps<RefElement> {
   triggerElement?: TriggerElement
   onClose?: (e: React.SyntheticEvent<RefElement>) => void
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void
 }
 
 export interface TriggerInjectedProps {
@@ -14,7 +15,7 @@ export interface TriggerInjectedProps {
 
 export type TriggerState = {
   open: boolean
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void
 }
 
 export type WithTriggerElement<BaseProps, RefElement> = Omit<
