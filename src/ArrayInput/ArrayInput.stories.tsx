@@ -1,4 +1,5 @@
-import { withKnobs, boolean } from '@storybook/addon-knobs'
+import { action } from '@storybook/addon-actions'
+import { boolean, withKnobs, number } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -106,6 +107,7 @@ const CountryArrayInput: React.FunctionComponent<any> = (props) => {
           onAppend={handleAppend}
           onDelete={handleDelete}
           onReorder={handleReorder}
+          onToggle={action('toggle')}
           itemComponent={CountryArrayInputElement}
           itemTitleComponent={ItemTitle}
           {...props}
@@ -184,5 +186,8 @@ export const lightBackground = () => <Grid background="light" />
 export const darkBackground = () => <Grid background="dark" />
 
 export const dynamic = () => (
-  <CountryArrayInput disabled={boolean('Disabled', false)} />
+  <CountryArrayInput
+    disabled={boolean('Disabled', false)}
+    opened={number('Currently opened item', -1)}
+  />
 )
