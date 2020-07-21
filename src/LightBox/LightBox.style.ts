@@ -2,8 +2,8 @@ import styled, { keyframes } from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
 import { ANIMATION_DURATIONS } from '../animations'
-import IconButton from '../IconButton'
 import Layout from '../Layout'
+import theme from '../theme'
 
 export const FADE_IN = keyframes`
   from {
@@ -46,9 +46,23 @@ export const LightBoxContainer = styled(Layout)`
   }
 `
 
-export const CloseIcon = styled(IconButton)`
+export const CloseIconButton = styled.button`
   position: absolute;
-  top: 12px;
+  top: 18px;
   right: 24px;
   z-index: 13;
+  background-color: #fff;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 24px;
+  color: ${theme.color('secondary', { opacity: 0.72 })};
+
+  &:hover {
+    color: ${theme.color('secondary')};
+  }
+
+  &:focus {
+    outline: none;
+  }
 `
