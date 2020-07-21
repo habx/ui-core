@@ -5,10 +5,11 @@ import * as ReactDOM from 'react-dom'
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
 import { ANIMATION_DURATIONS } from '../animations'
+import Icon from '../Icon'
 import withTriggerElement from '../withTriggerElement'
 
 import { LightBoxInnerProps } from './LightBox.interface'
-import { LightBoxContainer, CloseIcon } from './LightBox.style'
+import { LightBoxContainer, CloseIconButton } from './LightBox.style'
 
 const LightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
   (props, ref) => {
@@ -36,7 +37,9 @@ const LightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
         data-state={modal.state}
         {...rest}
       >
-        <CloseIcon icon="close" onClick={modal.close} small />
+        <CloseIconButton onClick={modal.close}>
+          <Icon icon="close" />
+        </CloseIconButton>
         {isFunction(children)
           ? children(modal as Modal<HTMLDivElement>)
           : children}

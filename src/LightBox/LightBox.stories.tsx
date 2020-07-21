@@ -3,14 +3,13 @@ import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 import Button from '../Button'
+import HeaderBar from '../HeaderBar'
 import palette from '../palette'
 
 import LightBox from './LightBox'
 import LightBoxProps from './LightBox.interface'
 
-const FakeImage = styled.div`
-  height: 100%;
-  width: 100%;
+const Content = styled.div`
   background-color: ${palette.darkBlue[200]};
 `
 
@@ -23,7 +22,12 @@ const GRID_LINES = [{ title: 'Basic' }]
 const GRID_ITEMS = [
   {
     props: {
-      children: <FakeImage />,
+      children: (
+        <React.Fragment>
+          <HeaderBar></HeaderBar>
+          <Content />
+        </React.Fragment>
+      ),
     },
   },
 ]
