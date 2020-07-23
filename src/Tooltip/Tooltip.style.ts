@@ -16,7 +16,7 @@ export const TooltipContainer = styled(Background)`
   pointer-events: none;
   box-shadow: ${theme.shadow('low')};
   position: fixed;
-  z-index: ${zIndex.modals};
+  z-index: ${zIndex.tooltips};
 
   &[data-has-description='true'] {
     padding: 12px 24px;

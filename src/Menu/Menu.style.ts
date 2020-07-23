@@ -28,7 +28,7 @@ export const MenuOverlay = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: ${zIndex.dropDowns};
+  z-index: ${zIndex.menus};
 `
 
 export const MenuContainer = styled.ul`
@@ -38,7 +38,7 @@ export const MenuContainer = styled.ul`
   margin: 0;
   position: fixed;
 
-  z-index: ${zIndex.dropDowns};
+  z-index: ${zIndex.menus};
 
   &:not([data-state='opened']) {
     pointer-events: none;
