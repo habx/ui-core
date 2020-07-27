@@ -70,7 +70,6 @@ export { default as Toggle, ToggleProps } from './Toggle'
   Miscellaneous
  */
 export { default as Icon, IconProps } from './Icon'
-export { default as Loader, LoaderProps } from './Loader'
 export { default as Triangle, TriangleProps } from './Triangle'
 
 
@@ -83,7 +82,9 @@ export { default as HeaderBar, HeaderBarProps } from './HeaderBar'
 export { default as Card, CardProps } from './Card'
 export { default as ExpansionPanel, ExpansionPanelProps } from './ExpansionPanel'
 export { default as ExpansionPanelItem, ExpansionPanelItemProps } from './ExpansionPanelItem'
+export { default as Loader, LoaderProps } from './Loader'
 export { default as SlideShow, SlideShowProps } from './SlideShow'
+export { default as Stepper, StepperProps, StepperStep } from './Stepper'
 
 
 /*
