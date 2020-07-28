@@ -29,10 +29,10 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>((props, ref) => {
       {steps.map((step, stepIndex) => (
         <Step
           key={stepIndex}
-          data-disabled={step.disabled ?? false}
+          data-disabled={step.disabled === true}
           data-current={stepIndex === currentStepIndex}
           data-to-do={step.toDo}
-          onClick={() => onStepClick(step)}
+          onClick={() => onStepClick(step, stepIndex)}
         >
           {stepIndex > 0 && <StepSeparator />}
           <StepContent>

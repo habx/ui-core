@@ -6,5 +6,5 @@ export default interface StepperProps
   extends React.HTMLAttributes<HTMLDivElement> {
   currentStepIndex: number
   steps: StepperStep[]
-  onStepClick: (step: StepperStep) => void
+  onStepClick: (step: StepperStep, stepIndex: number) => void
 }
