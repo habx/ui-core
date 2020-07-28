@@ -13,7 +13,7 @@ import {
 } from './Stepper.style'
 
 const Stepper = React.forwardRef<HTMLDivElement, StepperProps>((props, ref) => {
-  const { steps: rawSteps, currentStepIndex, ...rest } = props
+  const { steps: rawSteps, currentStepIndex, onStepClick, ...rest } = props
 
   const steps = React.useMemo(
     () =>
@@ -27,28 +27,28 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>((props, ref) => {
   return (
     <StepperContainer ref={ref} {...rest}>
       {steps.map((step, stepIndex) => (
-        <React.Fragment key={stepIndex}>
-          <Step
-            data-disabled={step.disabled ?? false}
-            data-current={stepIndex === currentStepIndex}
-            data-to-do={step.toDo}
-          >
-            {stepIndex > 0 && <StepSeparator />}
-            <StepContent>
-              <StepIconContainer>
-                <Icon icon="check" />
-              </StepIconContainer>
-              <StepLabel
-                type="caption"
-                opacity={1}
-                data-first={stepIndex === 0}
-                data-last={stepIndex === steps.length - 1}
-              >
-                {step.label}
-              </StepLabel>
-            </StepContent>
-          </Step>
-        </React.Fragment>
+        <Step
+          key={stepIndex}
+          data-disabled={step.disabled ?? false}
+          data-current={stepIndex === currentStepIndex}
+          data-to-do={step.toDo}
+          onClick={() => onStepClick(step)}
+        >
+          {stepIndex > 0 && <StepSeparator />}
+          <StepContent>
+            <StepIconContainer>
+              <Icon icon="check" />
+            </StepIconContainer>
+            <StepLabel
+              type="caption"
+              opacity={1}
+              data-first={stepIndex === 0}
+              data-last={stepIndex === steps.length - 1}
+            >
+              {step.label}
+            </StepLabel>
+          </StepContent>
+        </Step>
       ))}
     </StepperContainer>
   )
