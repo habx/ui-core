@@ -1,10 +1,10 @@
 import MarkdownIt from 'markdown-it'
-import StateCore from 'markdown-it/lib/rules_core/state_core'
+import StateInline from 'markdown-it/lib/rules_inline/state_inline'
 
 // same as UNESCAPE_MD_RE plus a space
 const UNESCAPE_RE = /\\([ \\!"#$%&'()*+,./:;<=>?@[\]^_`{|}~-])/g
 
-function logo(state: StateCore, silent?: boolean) {
+function logo(state: StateInline, silent?: boolean) {
   let found
   let token
   const max = state.posMax
@@ -50,7 +50,7 @@ function logo(state: StateCore, silent?: boolean) {
 
   // Earlier we checked !silent, but this implementation does not need it
   token = state.push('logo_open', 'span', 1)
-  token.attrs = [['data-habx-font', 1]]
+  token.attrs = [['data-habx-font', '1']]
   token.markup = '~'
 
   token = state.push('text', '', 0)
