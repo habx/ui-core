@@ -28,13 +28,14 @@ const defaultRender =
 
 md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
   const hrefAttrIndex = tokens[idx].attrIndex('href')
-  const href = hrefAttrIndex < 0 ? '' : tokens[idx].attrs[hrefAttrIndex][1]
+  const href = hrefAttrIndex < 0 ? '' : tokens[idx].attrs?.[hrefAttrIndex][1]
 
-  if (!href.startsWith('#')) {
+  if (href && !href.startsWith('#')) {
     const targetAttrIndex = tokens[idx].attrIndex('target')
     if (targetAttrIndex < 0) {
       tokens[idx].attrPush(['target', '_blank'])
     } else {
+      // @ts-ignore
       tokens[idx].attrs[targetAttrIndex][1] = '_blank'
     }
   }

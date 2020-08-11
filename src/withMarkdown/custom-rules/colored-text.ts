@@ -1,5 +1,5 @@
 import MarkdownIt from 'markdown-it'
-import StateCore from 'markdown-it/lib/rules_core/state_core'
+import StateInline from 'markdown-it/lib/rules_inline/state_inline'
 
 const CHAR_COLOR_CODE_START = 0x5b // [
 const CHAR_COLOR_CODE_END = 0x5d // ]
@@ -9,7 +9,7 @@ const CHAR_TEXT_END = 0x7d // }
 function parseAttribute(
   startChar: number,
   endChar: number,
-  state: StateCore,
+  state: StateInline,
   start: number
 ) {
   let level
@@ -67,7 +67,7 @@ const parseColoredText = parseAttribute.bind(
   CHAR_TEXT_END
 )
 
-function coloredText(state: StateCore, silent?: boolean) {
+function coloredText(state: StateInline, silent?: boolean) {
   let colorStart
   let colorEnd
   let textStart
@@ -119,7 +119,7 @@ function coloredText(state: StateCore, silent?: boolean) {
     token = state.push('colored_text_open', 'span', 1)
     token.attrs = [
       ['style', `color: ${color};`],
-      ['data-ace-color', 1],
+      ['data-ace-color', '1'],
     ]
 
     token = state.push('text', '', 0)
