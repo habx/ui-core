@@ -61,7 +61,7 @@
   "devDependencies": {
     "@habx/eslint-config-client": "^3.0.1",
     "@liftr/tscov": "^1.4.1",
-    "@storybook/addon-actions": "^5.3.12",
+    "@storybook/addon-actions": "^6.0.0",
     "@storybook/addon-centered": "^5.3.12",
     "@storybook/addon-knobs": "^6.0.0",
     "@storybook/addon-viewport": "^6.0.0",
