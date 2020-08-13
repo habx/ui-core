@@ -15,3 +15,9 @@ export const Basic = () => (
     <TextInput />
   </ConfirmMenu>
 )
+
+export const WithLabels = () => (
+  <ConfirmMenu textual>
+    <TextInput />
+  </ConfirmMenu>
+)
