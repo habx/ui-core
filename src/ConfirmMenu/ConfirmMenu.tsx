@@ -55,7 +55,7 @@ const ConfirmMenu = React.forwardRef<HTMLUListElement, ConfirmMenuProps>(
           data-testid="confirm-menu"
           withOverlay={false}
           onClose={() => {}}
-          open={true || open}
+          open={open}
           ref={ref}
           triggerRef={triggerRef}
           position="horizontal"
