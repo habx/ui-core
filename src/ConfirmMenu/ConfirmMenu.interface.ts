@@ -11,6 +11,7 @@ interface ConfirmMenuProps
   onClose?: (e: React.MouseEvent<HTMLButtonElement>) => void
   children?: React.ReactElement<any>
   triggerRef?: React.RefObject<HTMLElement>
+  textual?: boolean
 }
 
 export default ConfirmMenuProps
