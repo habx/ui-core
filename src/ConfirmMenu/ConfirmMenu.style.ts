@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import DefaultMenu from '../Menu/Menu'
 
-export const ConfirmMenuContent = styled.div<{ textual: boolean }>`
+export const ConfirmMenuContent = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 8px;
