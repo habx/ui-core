@@ -177,6 +177,7 @@ const Grid = withGrid<ArrayInputProps>({
 export default {
   title: 'Input/ArrayInput',
   decorators: [withKnobs],
+  component: ArrayInput,
 }
 
 export const gallery = () => <Grid />

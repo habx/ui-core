@@ -93,7 +93,19 @@ const GridInModal = withGrid<ActionBarProps>({
 export default {
   title: 'Layouts/ActionBar',
   decorators: [withKnobs],
+  component: ActionBar,
 }
+
+export const Default = ({ ...props }) => (
+  <Card spacing="regular">
+    <CardChildrenContainer />
+    <ActionBar {...props}>
+      <Button link>Reset</Button>
+      <Button link>Cancel</Button>
+      <Button>Save</Button>
+    </ActionBar>
+  </Card>
+)
 
 export const gallery = () => <Grid />
 

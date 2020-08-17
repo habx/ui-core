@@ -4,5 +4,8 @@ import { styledAs } from '../_internal/types'
 
 export default interface ActionBarProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @ignore
+   */
   as?: styledAs
 }

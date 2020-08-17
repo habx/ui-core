@@ -10,7 +10,7 @@ import {
 } from './Button.style'
 import LoadingContainer from './LoadingContainer'
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {
       children,

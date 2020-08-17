@@ -1,6 +1,6 @@
-import { withKnobs, boolean } from '@storybook/addon-knobs'
 import * as React from 'react'
 
+import StorybookCenterItemContainer from '../_internal/StorybookCenterItem.style'
 import withGrid from '../_internal/StorybookGrid'
 import Icon from '../Icon'
 
@@ -83,35 +83,20 @@ const Grid = withGrid<ButtonProps>({
 
 export default {
   title: 'Actions/Button',
-  decorators: [withKnobs],
+  component: Button,
 }
+
+export const Default = ({ ...props }) => (
+  <StorybookCenterItemContainer>
+    <Button {...props}>Voir tous nos projets</Button>
+  </StorybookCenterItemContainer>
+)
 
 export const gallery = () => <Grid />
 
 export const lightBackground = () => <Grid background="light" />
 
 export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <Button
-    outline={boolean('Outline', false)}
-    link={boolean('Link', false)}
-    small={boolean('Small', false)}
-    large={boolean('Large', false)}
-    loading={boolean('Loading', false)}
-    primary={boolean('Color override : Primary', false)}
-    secondary={boolean('Color override : Secondary', false)}
-    warning={boolean('Color override : Warning', false)}
-    elementLeft={
-      boolean('Icon left', false) ? <Icon icon="arrow-right" /> : undefined
-    }
-    elementRight={
-      boolean('Icon right', false) ? <Icon icon="arrow-right" /> : undefined
-    }
-  >
-    Voir tous nos projets
-  </Button>
-)
 
 gallery.story = {
   parameters: {

@@ -1,10 +1,9 @@
 import { addDecorator, addParameters } from '@storybook/react'
-import centered from '@storybook/addon-centered'
 import { create } from '@storybook/theming'
 
 import providerDecorator from './providerDecorator'
+import React from 'react'
 
-addDecorator(centered)
 addDecorator(providerDecorator)
 
 addParameters({
