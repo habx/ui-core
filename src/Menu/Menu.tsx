@@ -57,6 +57,7 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
       scrollable = false,
       position = 'vertical',
       withOverlay = true,
+      setPosition,
       ...rest
     } = props
 
@@ -88,42 +89,48 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
       const menuHeight = modal.ref.current.clientHeight
       const menuWidth = modal.ref.current.clientWidth
 
-      if (position === 'vertical') {
-        let top = triggerDimensions.bottom + TRIGGER_MARGIN
-
-        if (top + menuHeight > window.innerHeight) {
-          const topWithMenuAboveTrigger =
-            triggerDimensions.top - TRIGGER_MARGIN - menuHeight
-
-          if (topWithMenuAboveTrigger > 0) {
-            top = topWithMenuAboveTrigger
-          }
-        }
-
-        let left =
-          triggerDimensions.left + menuWidth > window.innerWidth
-            ? triggerDimensions.left - menuWidth + triggerDimensions.width
-            : triggerDimensions.left
-
-        setPositionStyle({ top, left, minWidth: triggerDimensions.width })
+      if (isFunction(setPosition)) {
+        setPositionStyle(
+          setPosition({ triggerDimensions, menuHeight, menuWidth })
+        )
       } else {
-        const top =
-          triggerDimensions.top + menuHeight > window.innerHeight
-            ? triggerDimensions.top + triggerDimensions.height - menuHeight
-            : triggerDimensions.top
+        if (position === 'vertical') {
+          let top = triggerDimensions.bottom + TRIGGER_MARGIN
 
-        let left = triggerDimensions.right + TRIGGER_MARGIN
+          if (top + menuHeight > window.innerHeight) {
+            const topWithMenuAboveTrigger =
+              triggerDimensions.top - TRIGGER_MARGIN - menuHeight
 
-        if (left + menuWidth > window.innerWidth) {
-          const leftWithMenuLeftOfTrigger =
-            triggerDimensions.left - menuWidth - TRIGGER_MARGIN
-
-          if (leftWithMenuLeftOfTrigger > 0) {
-            left = leftWithMenuLeftOfTrigger
+            if (topWithMenuAboveTrigger > 0) {
+              top = topWithMenuAboveTrigger
+            }
           }
-        }
 
-        setPositionStyle({ top, left })
+          let left =
+            triggerDimensions.left + menuWidth > window.innerWidth
+              ? triggerDimensions.left - menuWidth + triggerDimensions.width
+              : triggerDimensions.left
+
+          setPositionStyle({ top, left, minWidth: triggerDimensions.width })
+        } else {
+          const top =
+            triggerDimensions.top + menuHeight > window.innerHeight
+              ? triggerDimensions.top + triggerDimensions.height - menuHeight
+              : triggerDimensions.top
+
+          let left = triggerDimensions.right + TRIGGER_MARGIN
+
+          if (left + menuWidth > window.innerWidth) {
+            const leftWithMenuLeftOfTrigger =
+              triggerDimensions.left - menuWidth - TRIGGER_MARGIN
+
+            if (leftWithMenuLeftOfTrigger > 0) {
+              left = leftWithMenuLeftOfTrigger
+            }
+          }
+
+          setPositionStyle({ top, left })
+        }
       }
     }, [position, triggerRef, modal.ref])
 

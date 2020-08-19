@@ -16,6 +16,11 @@ export interface MenuInnerProps
   position?: 'horizontal' | 'vertical'
   triggerRef?: React.RefObject<HTMLElement>
   withOverlay?: boolean
+  setPosition?: (dimensions: {
+    triggerDimensions: DOMRect
+    menuHeight: number
+    menuWidth: number
+  }) => { top?: number; left?: number; right?: number; bottom?: number }
   children?:
     | React.ReactNode
     | ((modal: Modal<HTMLUListElement>) => React.ReactNode)
