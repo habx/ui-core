@@ -10,8 +10,6 @@ export const ConfirmMenuContent = styled.div`
 `
 
 export const Menu = styled(DefaultMenu)`
-  margin-top: 54px;
-  margin-left: -81px;
   > div {
     padding: 6px 0;
   }
