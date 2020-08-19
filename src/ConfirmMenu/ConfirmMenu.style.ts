@@ -14,8 +14,6 @@ export const Menu = styled(DefaultMenu)`
     padding: 6px 0;
   }
   &[data-textual='true'] {
-    margin-top: 58px;
-    margin-left: -204px;
     > div {
       padding: 12px 0;
     }
