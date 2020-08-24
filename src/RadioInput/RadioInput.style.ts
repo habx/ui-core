@@ -3,13 +3,14 @@ import styled from 'styled-components'
 import palette from '../palette'
 import theme from '../theme'
 
-export const FakeInputContainer = styled.span`
-  display: inline-block;
-  position: relative;
+export const InnerCircle = styled.div`
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  transition: all 150ms ease-in-out;
 `
 
 export const FakeInput = styled.label`
-  --radio-input-diameter: 24px;
   user-select: none;
   cursor: pointer;
   outline: none;
@@ -18,22 +19,15 @@ export const FakeInput = styled.label`
   height: var(--radio-input-diameter);
   border-radius: 50%;
   background: #fff;
-  border: solid 1.5px transparent;
+  border: solid var(--radio-input-border-width) transparent;
   transition: all 150ms ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
 
   &:hover {
-    border-width: 3px;
+    border-width: var(--radio-input-border-width-hover);
   }
-`
-
-export const InnerCircle = styled.div`
-  height: 12px;
-  width: 12px;
-  border-radius: 50%;
-  transition: all 150ms ease-in-out;
 `
 
 export const Input = styled.input`
@@ -41,12 +35,12 @@ export const Input = styled.input`
   display: none;
 
   &:not(:checked) + ${FakeInput}:focus {
-    border-width: 4px;
+    border-width: var(--radio-input-border-width-focus);
     border-color: ${theme.color('primary')};
   }
 
   & + ${FakeInput}:active, &:checked + ${FakeInput}:focus {
-    border-width: 3px;
+    border-width: var(--radio-input-border-width-checked-focus);
     border-color: ${theme.color('primary')};
   }
 
@@ -145,4 +139,28 @@ export const Input = styled.input`
   &:not([data-background='true']):disabled:checked + ${FakeInput} {
     border-color: ${palette.darkBlue[400]};
   }
+`
+
+export const FakeInputContainer = styled.span`
+  display: inline-block;
+  position: relative;
+
+  --radio-input-diameter: 24px;
+  --radio-input-border-width: 1.5px;
+  --radio-input-border-width-hover: 3px;
+  --radio-input-border-width-focus: 4px;
+  --radio-input-border-width-checked-focus: 3px;
+
+  &[data-small='true'] {
+    --radio-input-diameter: 12px;
+    --radio-input-border-width: 2px;
+    --radio-input-border-width-hover: 4px;
+    --radio-input-border-width-checked-focus: var(--radio-input-border-width);
+    --radio-input-border-width-focus: var(--radio-input-border-width);
+    
+      ${Input}:checked + ${FakeInput} {
+    border-width: 0;
+  }
+  }
+ 
 `
