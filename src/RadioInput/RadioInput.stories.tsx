@@ -47,6 +47,12 @@ const GRID_ITEMS = [
       disabled: true,
     },
   },
+  {
+    label: 'Small',
+    props: {
+      small: true,
+    },
+  },
 ]
 
 const Grid = withGrid<RadioInputProps>({
@@ -70,9 +76,10 @@ export const darkBackground = () => <Grid background="dark" />
 export const dynamic = () => (
   <RadioInputContainer>
     <RadioInput
-      value={boolean('Checked', false) ? 1 : 0}
+      checked={boolean('Checked', false)}
       error={boolean('Error', false)}
       disabled={boolean('Disabled', false)}
+      small={boolean('Small', false)}
       label="Label"
       labelType={select(
         'LabelType',

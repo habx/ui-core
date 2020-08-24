@@ -7,6 +7,7 @@ export interface RadioInputInnerProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: boolean
   as?: styledAs
+  small?: boolean
 }
 
 export default interface RadioInputProps

@@ -15,6 +15,7 @@ const ConfirmMenu = React.forwardRef<HTMLUListElement, ConfirmMenuProps>(
       onConfirm = () => {},
       triggerRef: customTriggerRef,
       textual,
+      position = 'right',
       ...rest
     } = props
 
@@ -26,9 +27,18 @@ const ConfirmMenu = React.forwardRef<HTMLUListElement, ConfirmMenuProps>(
         })
       : children
 
+    const confirmMenuContentRef = React.useRef<HTMLDivElement>(null)
+
     const [open, setOpen] = React.useState(false)
     const handleFocus = () => setOpen(true)
-    const handleBlur = () => setOpen(false)
+    const handleBlur = (e: FocusEvent) => {
+      if (
+        !e.relatedTarget ||
+        !confirmMenuContentRef.current?.contains(e.relatedTarget as Node)
+      ) {
+        setOpen(false)
+      }
+    }
 
     React.useEffect(() => {
       if (triggerRef) {
@@ -47,6 +57,15 @@ const ConfirmMenu = React.forwardRef<HTMLUListElement, ConfirmMenuProps>(
 
     const context = React.useContext(ProviderContext)
 
+    const handleConfirm = (e: React.MouseEvent<HTMLButtonElement>) => {
+      setOpen(false)
+      onConfirm(e)
+    }
+
+    const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
+      setOpen(false)
+      onClose(e)
+    }
     return (
       <React.Fragment>
         {content}
@@ -58,16 +77,25 @@ const ConfirmMenu = React.forwardRef<HTMLUListElement, ConfirmMenuProps>(
           open={open}
           ref={ref}
           triggerRef={triggerRef}
-          position="horizontal"
+          setPosition={(dimension) => ({
+            top: dimension.triggerDimensions.bottom + 8,
+            left:
+              position === 'right'
+                ? dimension.triggerDimensions.right - dimension.menuWidth
+                : dimension.triggerDimensions.left,
+          })}
           {...rest}
         >
-          <ConfirmMenuContent data-testid="confirm-menu-content">
+          <ConfirmMenuContent
+            data-testid="confirm-menu-content"
+            ref={confirmMenuContentRef}
+          >
             {textual ? (
               <React.Fragment>
-                <Button secondary link onClick={onClose}>
+                <Button secondary link onClick={handleClose}>
                   {context.cancelLabel}
                 </Button>
-                <Button link onClick={onConfirm}>
+                <Button link onClick={handleConfirm}>
                   {context.confirmLabel}
                 </Button>
               </React.Fragment>
@@ -76,13 +104,13 @@ const ConfirmMenu = React.forwardRef<HTMLUListElement, ConfirmMenuProps>(
                 <IconButton
                   icon="close"
                   tiny
-                  onClick={onClose}
+                  onClick={handleClose}
                   data-testid="confirm-menu-close"
                 />
                 <IconButton
                   icon="check"
                   tiny
-                  onClick={onConfirm}
+                  onClick={handleConfirm}
                   data-testid="confirm-menu-confirm"
                 />
               </React.Fragment>

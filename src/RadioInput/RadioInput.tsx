@@ -14,12 +14,12 @@ import {
 
 const RadioInput = React.forwardRef<HTMLInputElement, RadioInputInnerProps>(
   (props, ref) => {
-    const { error, disabled, id, ...rest } = props
+    const { error, disabled, id, small, ...rest } = props
     const checkboxId = useUniqID(id)
     const hasBackground = useHasColoredBackground()
 
     return (
-      <FakeInputContainer>
+      <FakeInputContainer data-small={small}>
         <Input
           ref={ref}
           {...rest}
