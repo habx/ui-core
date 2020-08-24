@@ -1,4 +1,4 @@
-import TextArea from './TextArea'
+import { TextArea } from './TextArea'
 
 export { default as TextAreaProps } from './TextArea.interface'
 

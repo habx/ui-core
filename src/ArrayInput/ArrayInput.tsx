@@ -10,7 +10,7 @@ import Item from './Item'
 
 const DEFAULT_HANDLER = () => {}
 
-export const ArrayInput = React.forwardRef<
+export const InnerArrayInput = React.forwardRef<
   HTMLDivElement,
   ArrayInputInnerProps
 >((props, ref) => {
@@ -112,6 +112,6 @@ export const ArrayInput = React.forwardRef<
   )
 })
 
-export default withLabel<HTMLDivElement>({ orientation: 'vertical' })<
-  ArrayInputInnerProps
->(ArrayInput)
+export const ArrayInput = withLabel<HTMLDivElement>({
+  orientation: 'vertical',
+})<ArrayInputInnerProps>(InnerArrayInput)

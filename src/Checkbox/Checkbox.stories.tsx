@@ -1,11 +1,9 @@
-import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 
-import Checkbox from './Checkbox'
-import CheckboxProps from './Checkbox.interface'
+import Checkbox, { CheckboxProps } from './index'
 
 const CheckboxContainer = styled.div`
   display: flex;
@@ -64,39 +62,12 @@ const Grid = withGrid<CheckboxProps>({
 
 export default {
   title: 'Input/Checkbox',
-  decorators: [withKnobs],
+  component: Checkbox,
 }
 
-export const gallery = () => <Grid />
+export const basic = (props: CheckboxProps) => <Checkbox {...props} />
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <CheckboxContainer>
-    <Checkbox
-      value={boolean('Checked', false) ? 1 : 0}
-      error={boolean('Error', false)}
-      disabled={boolean('Disabled', false)}
-      label="Label"
-      labelType={select(
-        'LabelType',
-        [
-          'veryLarge',
-          'large',
-          'emphasis',
-          'regular',
-          'caption',
-          'captionSmall',
-        ],
-        'regular'
-      )}
-    />
-  </CheckboxContainer>
-)
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -105,3 +76,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

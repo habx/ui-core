@@ -1,11 +1,9 @@
-import { withKnobs, boolean, text } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 
-import TextArea from './index'
-import TextAreaProps from './TextArea.interface'
+import TextArea, { TextAreaProps } from './index'
 
 const TextAreaContainer = styled.div`
   display: flex;
@@ -68,28 +66,12 @@ const Grid = withGrid<TextAreaProps>({
 
 export default {
   title: 'Input/TextArea',
-  decorators: [withKnobs],
+  component: TextArea,
 }
 
-export const gallery = () => <Grid />
+export const basic = (props: TextAreaProps) => <TextArea {...props} />
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <TextAreaContainer>
-    <TextArea
-      value={text('Value', '')}
-      placeholder="votre@mail.com"
-      error={boolean('Error', false)}
-      small={boolean('Small', false)}
-      disabled={boolean('Disabled', false)}
-    />
-  </TextAreaContainer>
-)
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -98,3 +80,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

@@ -1,4 +1,4 @@
-import Select from './Select'
+import { Select } from './Select'
 
 export { default as SelectProps } from './Select.interface'
 

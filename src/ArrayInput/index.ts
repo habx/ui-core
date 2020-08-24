@@ -1,4 +1,4 @@
-import ArrayInput from './ArrayInput'
+import { ArrayInput } from './ArrayInput'
 
 export { default as ArrayInputProps } from './ArrayInput.interface'
 export { ArrayInputItemComponentProps } from './Item/Item.interface'

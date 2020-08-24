@@ -5,7 +5,7 @@ import withLabel from '../withLabel'
 import { TextAreaInnerProps } from './TextArea.interface'
 import { Input } from './TextArea.style'
 
-const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaInnerProps>(
+const InnerTextArea = React.forwardRef<HTMLTextAreaElement, TextAreaInnerProps>(
   (props, ref) => {
     const { small = false, error = false, ...rest } = props
 
@@ -13,6 +13,6 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaInnerProps>(
   }
 )
 
-export default withLabel<HTMLTextAreaElement>({ orientation: 'vertical' })<
-  TextAreaInnerProps
->(TextArea)
+export const TextArea = withLabel<HTMLTextAreaElement>({
+  orientation: 'vertical',
+})<TextAreaInnerProps>(InnerTextArea)
