@@ -46,7 +46,7 @@ const useOnlyOneMenuOpened = (menu: MenuInstance) => {
 
 const TRIGGER_MARGIN = 12
 
-const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
+const InnerMenu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
   (props, ref) => {
     const {
       children,
@@ -177,6 +177,6 @@ const Menu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
   }
 )
 
-export default withTriggerElement<HTMLUListElement>({ fowardRef: true })<
+export const Menu = withTriggerElement<HTMLUListElement>({ fowardRef: true })<
   MenuInnerProps
->(Menu)
+>(InnerMenu)

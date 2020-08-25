@@ -25,7 +25,7 @@ import SliderDot from './SliderDot'
 
 const EMPTY_RANGE: [Element, Element] = [null, null]
 
-const Slider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
+const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
   (props, ref) => {
     const {
       disabled = false,
@@ -370,6 +370,6 @@ const Slider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
   }
 )
 
-export default withLabel<HTMLDivElement>({ orientation: 'vertical' })<
+export const Slider = withLabel<HTMLDivElement>({ orientation: 'vertical' })<
   SliderInnerProps
->(Slider)
+>(InnerSlider)

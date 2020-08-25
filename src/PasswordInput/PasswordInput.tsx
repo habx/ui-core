@@ -8,7 +8,7 @@ import withLabel from '../withLabel'
 import { PasswordInputInnerProps } from './PasswordInput.interface'
 import { HiddenInputContainer, HideButton } from './PasswordInput.style'
 
-const PasswordInput = React.forwardRef<
+const InnerPasswordInput = React.forwardRef<
   HTMLInputElement,
   PasswordInputInnerProps
 >((props, ref) => {
@@ -41,6 +41,6 @@ const PasswordInput = React.forwardRef<
   )
 })
 
-export default withLabel<HTMLInputElement>({ orientation: 'vertical' })<
-  PasswordInputInnerProps
->(PasswordInput)
+export const PasswordInput = withLabel<HTMLInputElement>({
+  orientation: 'vertical',
+})<PasswordInputInnerProps>(InnerPasswordInput)

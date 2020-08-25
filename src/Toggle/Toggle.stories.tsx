@@ -1,11 +1,9 @@
-import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 
-import Toggle from './Toggle'
-import ToggleProps from './Toggle.interface'
+import Toggle, { ToggleProps } from './index'
 
 const ToggleContainer = styled.div`
   display: flex;
@@ -58,39 +56,12 @@ const Grid = withGrid<ToggleProps>({
 
 export default {
   title: 'Input/Toggle',
-  decorators: [withKnobs],
+  component: Toggle,
 }
 
-export const gallery = () => <Grid />
+export const basic = (props: ToggleProps) => <Toggle {...props} />
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <ToggleContainer>
-    <Toggle
-      value={boolean('Checked', false)}
-      error={boolean('Error', false)}
-      disabled={boolean('Disabled', false)}
-      label="My Toggle label"
-      labelType={select(
-        'LabelType',
-        [
-          'veryLarge',
-          'large',
-          'emphasis',
-          'regular',
-          'caption',
-          'captionSmall',
-        ],
-        'regular'
-      )}
-    />
-  </ToggleContainer>
-)
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -99,3 +70,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

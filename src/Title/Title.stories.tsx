@@ -1,18 +1,13 @@
-import {
-  withKnobs,
-  select,
-  boolean,
-  text,
-  number,
-} from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 import breakpoints from '../breakpoints'
 
-import Title from './Title'
-import TitleProps, { TitleTypes } from './Title.interface'
+import Title, { TitleProps, TitleTypes } from './index'
+
+const TITLE_CONTENT =
+  'Devenez propriétaire d’un appartement neuf en plein centre d’Antony'
 
 const TitleContainer = styled.div`
   width: 750px;
@@ -38,8 +33,7 @@ const WrappedTitle: React.FunctionComponent<TitleProps> = (props) => (
 )
 
 const GRID_PROPS = {
-  children:
-    'Devenez propriétaire d’un appartement neuf en plein centre d’Antony',
+  children: TITLE_CONTENT,
 }
 
 const GRID_LINES = [
@@ -61,38 +55,14 @@ const Grid = withGrid<TitleProps>({
 
 export default {
   title: 'Typography/Title',
-  decorators: [withKnobs],
+  component: Title,
 }
 
-export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <TitleContainer>
-    <Title
-      type={select('Type', types, 'headerBig')}
-      children={text(
-        'Title content',
-        'Devenez propriétaire d’un appartement neuf en plein centre d’Antony'
-      )}
-      primary={boolean('Color override : Primary', false)}
-      secondary={boolean('Color override : Secondary', false)}
-      warning={boolean('Color override : Warning', false)}
-      markdown={boolean('Markdown support', false)}
-      opacity={number('Opacity', 1, {
-        range: true,
-        min: 0,
-        max: 1,
-        step: 0.01,
-      })}
-    />
-  </TitleContainer>
+export const basic = (props: TitleProps) => (
+  <Title {...props}>{TITLE_CONTENT}</Title>
 )
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -101,3 +71,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

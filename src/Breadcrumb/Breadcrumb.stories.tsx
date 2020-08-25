@@ -1,4 +1,3 @@
-import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -7,11 +6,6 @@ import Icon from '../Icon'
 
 import Breadcrumb from './Breadcrumb'
 import BreadcrumbProps from './Breadcrumb.interface'
-
-export default {
-  title: 'Navigation/Breadcrumb',
-  decorators: [withKnobs],
-}
 
 const GRID_PROPS = {}
 
@@ -65,4 +59,12 @@ const Grid = withGrid<BreadcrumbProps>({
   itemHorizontalSpace: 36,
 })(Breadcrumb)
 
-export const galery = () => <Grid />
+export default {
+  title: 'Navigation/Breadcrumb',
+  component: Breadcrumb,
+  subcomponents: { BreadcrumbItem },
+}
+
+export const basic = (props: BreadcrumbProps) => <Breadcrumb {...props} />
+
+export const gallery = () => <Grid />

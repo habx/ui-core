@@ -10,7 +10,7 @@ import withTriggerElement from '../withTriggerElement'
 import { LightBoxInnerProps } from './LightBox.interface'
 import { LightBoxContainer, CloseIcon } from './LightBox.style'
 
-const LightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
+const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
   (props, ref) => {
     const {
       open,
@@ -49,6 +49,6 @@ const LightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
   }
 )
 
-export default withTriggerElement<HTMLDivElement>()<LightBoxInnerProps>(
-  LightBox
-)
+export const LightBox = withTriggerElement<HTMLDivElement>()<
+  LightBoxInnerProps
+>(InnerLightBox)

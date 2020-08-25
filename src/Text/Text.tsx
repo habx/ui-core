@@ -101,7 +101,7 @@ const components = mapValues(textStyles, (style) => ({
   { span: React.ComponentType<any>; div: React.ComponentType<any> }
 >
 
-const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => {
+const InnerText = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => {
   const { type = 'regular', inline, ...rest } = props
 
   const TitleComponent = React.useMemo(
@@ -112,7 +112,7 @@ const Text = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => {
   return <TitleComponent ref={ref} {...rest} />
 })
 
-export default withMarkdown<HTMLDivElement, { inline?: boolean }>({
+export const Text = withMarkdown<HTMLDivElement, { inline?: boolean }>({
   inline: (props) =>
     props.inline || ['caption', 'captionSmall'].includes(props.type),
-})<TextProps>(Text)
+})<TextProps>(InnerText)

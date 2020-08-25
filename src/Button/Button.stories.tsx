@@ -4,8 +4,7 @@ import StorybookCenterItemContainer from '../_internal/StorybookCenterItem.style
 import withGrid from '../_internal/StorybookGrid'
 import Icon from '../Icon'
 
-import Button from './Button'
-import ButtonProps from './Button.interface'
+import Button, { ButtonProps } from './index'
 
 const GRID_PROPS = {
   children: 'Voir tous nos projets',
@@ -86,19 +85,13 @@ export default {
   component: Button,
 }
 
-export const Default = ({ ...props }) => (
+export const basic = ({ ...props }) => (
   <StorybookCenterItemContainer>
     <Button {...props}>Voir tous nos projets</Button>
   </StorybookCenterItemContainer>
 )
 
-export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -107,3 +100,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

@@ -1,4 +1,4 @@
-import Toggle from './Toggle'
+import { Toggle } from './Toggle'
 
 export { default as ToggleProps } from './Toggle.interface'
 

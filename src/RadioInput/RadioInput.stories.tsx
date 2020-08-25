@@ -1,11 +1,9 @@
-import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 
-import RadioInput from './RadioInput'
-import RadioInputProps from './RadioInput.interface'
+import RadioInput, { RadioInputProps } from './index'
 
 const RadioInputContainer = styled.div`
   display: flex;
@@ -64,40 +62,12 @@ const Grid = withGrid<RadioInputProps>({
 
 export default {
   title: 'Input/RadioInput',
-  decorators: [withKnobs],
+  component: RadioInput,
 }
 
-export const gallery = () => <Grid />
+export const basic = (props: RadioInputProps) => <RadioInput {...props} />
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <RadioInputContainer>
-    <RadioInput
-      checked={boolean('Checked', false)}
-      error={boolean('Error', false)}
-      disabled={boolean('Disabled', false)}
-      small={boolean('Small', false)}
-      label="Label"
-      labelType={select(
-        'LabelType',
-        [
-          'veryLarge',
-          'large',
-          'emphasis',
-          'regular',
-          'caption',
-          'captionSmall',
-        ],
-        'regular'
-      )}
-    />
-  </RadioInputContainer>
-)
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -106,3 +76,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

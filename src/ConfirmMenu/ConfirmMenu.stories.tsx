@@ -1,22 +1,21 @@
-import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 
-import TextInput from '../TextInput/TextInput'
+import TextInput from '../TextInput'
 
-import ConfirmMenu from './ConfirmMenu'
+import ConfirmMenu from './index'
 
 export default {
   title: 'Actions/ConfirmMenu',
-  decorators: [withKnobs],
+  component: ConfirmMenu,
 }
 
-export const Basic = () => (
+export const basic = () => (
   <ConfirmMenu>
     <TextInput />
   </ConfirmMenu>
 )
 
-export const WithLabels = () => (
+export const withLabels = () => (
   <ConfirmMenu textual>
     <TextInput />
   </ConfirmMenu>

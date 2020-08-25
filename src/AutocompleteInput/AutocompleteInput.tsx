@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import useMergedRef from '../_internal/useMergedRef'
-import Menu from '../Menu/Menu'
+import Menu from '../Menu'
 import MenuLine from '../MenuLine'
-import TextInput from '../TextInput/TextInput'
+import TextInput from '../TextInput'
 
 import AutocompleteInputInnerProps from './AutocompleteInput.interface'
 import useAutocomplete from './useAutocomplete'

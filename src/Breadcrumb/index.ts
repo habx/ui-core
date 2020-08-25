@@ -1,5 +1,5 @@
-import Button from './Breadcrumb'
+import Breadcrumb from './Breadcrumb'
 
 export { default as BreadcrumbProps } from './Breadcrumb.interface'
 
-export default Button
+export default Breadcrumb

@@ -1,4 +1,3 @@
-import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -54,11 +53,6 @@ const Grid = withGrid<TooltipProps>({
   itemVerticalSpace: 48,
   itemWrapper: (props) => <span style={{ alignSelf: 'center' }} {...props} />,
 })(Tooltip)
-
-export default {
-  title: 'Alerts/Tooltip',
-  decorators: [withKnobs],
-}
 
 export const gallery = () => <Grid />
 

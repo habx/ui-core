@@ -1,4 +1,4 @@
-import LightBox from './LightBox'
+import { LightBox } from './LightBox'
 
 export { default as LightBoxProps } from './LightBox.interface'
 

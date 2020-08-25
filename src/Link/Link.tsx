@@ -10,14 +10,16 @@ const NEW_TAB_PROPS = {
   rel: 'noopener noreferrer',
 }
 
-const Link = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
-  const { newTab, ...rest } = props
+const InnerLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
+  (props, ref) => {
+    const { newTab, ...rest } = props
 
-  const additionalProps = newTab ? NEW_TAB_PROPS : {}
+    const additionalProps = newTab ? NEW_TAB_PROPS : {}
 
-  return <LinkContainer ref={ref} {...additionalProps} {...rest} />
-})
-
-export default withMarkdown<HTMLAnchorElement>({ inline: true })<LinkProps>(
-  Link
+    return <LinkContainer ref={ref} {...additionalProps} {...rest} />
+  }
 )
+
+export const Link = withMarkdown<HTMLAnchorElement>({ inline: true })<
+  LinkProps
+>(InnerLink)

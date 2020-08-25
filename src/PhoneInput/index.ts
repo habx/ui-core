@@ -1,4 +1,4 @@
-import PhoneInput from './PhoneInput'
+import { PhoneInput } from './PhoneInput'
 
 export { default as PhoneInputProps } from './PhoneInput.interface'
 

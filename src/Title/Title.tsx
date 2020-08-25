@@ -23,14 +23,16 @@ const components = {
   regular: RegularTitleComponent,
 }
 
-const Title = React.forwardRef<HTMLHeadingElement, TitleProps>((props, ref) => {
-  const { type, ...rest } = props
+const InnerTitle = React.forwardRef<HTMLHeadingElement, TitleProps>(
+  (props, ref) => {
+    const { type, ...rest } = props
 
-  const TitleComponent = components[type] || HeaderMaxiTitleComponent
+    const TitleComponent = components[type] || HeaderMaxiTitleComponent
 
-  return <TitleComponent ref={ref} {...rest} />
-})
-
-export default withMarkdown<HTMLHeadingElement>({ inline: true })<TitleProps>(
-  Title
+    return <TitleComponent ref={ref} {...rest} />
+  }
 )
+
+export const Title = withMarkdown<HTMLHeadingElement>({ inline: true })<
+  TitleProps
+>(InnerTitle)

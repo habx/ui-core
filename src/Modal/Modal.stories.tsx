@@ -8,8 +8,7 @@ import PhoneInput from '../PhoneInput'
 import Text from '../Text'
 import TextInput from '../TextInput'
 
-import Modal from './Modal'
-import ModalProps from './Modal.interface'
+import Modal, { ModalProps } from './index'
 
 const ModalForm = styled.div`
   display: flex;
@@ -105,11 +104,14 @@ const Grid = withGrid<ModalProps>({
 
 export default {
   title: 'Modals/Modal',
+  component: Modal,
 }
 
-export const gallery = () => <Grid />
+export const basic = (props: ModalProps) => (
+  <Modal triggerElement={<Button outline>Open</Button>} {...props} />
+)
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -118,3 +120,5 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />

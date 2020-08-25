@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import Icon from '../Icon'
-import Menu from '../Menu/Menu'
+import Menu from '../Menu'
 import MenuLine from '../MenuLine'
 
 import countries, { Country } from './countries'

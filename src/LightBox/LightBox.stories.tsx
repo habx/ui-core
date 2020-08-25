@@ -5,8 +5,7 @@ import withGrid from '../_internal/StorybookGrid'
 import Button from '../Button'
 import palette from '../palette'
 
-import LightBox from './LightBox'
-import LightBoxProps from './LightBox.interface'
+import LightBox, { LightBoxProps } from './index'
 
 const FakeImage = styled.div`
   height: 100%;
@@ -36,11 +35,14 @@ const Grid = withGrid<LightBoxProps>({
 
 export default {
   title: 'Modals/LightBox',
+  component: LightBox,
 }
 
-export const gallery = () => <Grid />
+export const basic = (props: LightBoxProps) => (
+  <LightBox triggerElement={<Button outline>Open</Button>} {...props} />
+)
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -49,3 +51,5 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />

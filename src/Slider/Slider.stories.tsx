@@ -1,11 +1,9 @@
-import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 
-import Slider from './Slider'
-import SliderProps from './Slider.interface'
+import Slider, { SliderProps } from './index'
 
 type Props = Omit<SliderProps, 'onChange'>
 
@@ -124,16 +122,12 @@ const Grid = withGrid<Props>({
 
 export default {
   title: 'Input/Slider',
-  decorators: [withKnobs],
+  component: Slider,
 }
 
-export const gallery = () => <Grid />
+export const basic = (props: SliderProps) => <Slider {...props} />
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -142,3 +136,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
