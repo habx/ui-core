@@ -10,7 +10,7 @@ import {
 } from './Button.style'
 import LoadingContainer from './LoadingContainer'
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {
     const {
       children,
@@ -75,6 +75,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 )
 
-export default withMarkdown<HTMLButtonElement>({ inline: true })<ButtonProps>(
-  Button
-)
+export const Button = withMarkdown<HTMLButtonElement>({ inline: true })<
+  ButtonProps
+>(InnerButton)

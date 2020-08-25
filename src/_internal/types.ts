@@ -12,7 +12,7 @@ export type styledAs = keyof JSX.IntrinsicElements | React.ComponentType<any>
 export interface ThemeOverridesProps {
   /**
    * primary style activation
-   * @default true
+   * @default false
    */
   primary?: boolean
   /**

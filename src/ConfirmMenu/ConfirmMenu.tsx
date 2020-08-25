@@ -7,7 +7,7 @@ import { ProviderContext } from '../Provider'
 import ConfirmMenuProps from './ConfirmMenu.interface'
 import { ConfirmMenuContent, Menu } from './ConfirmMenu.style'
 
-const ConfirmMenu = React.forwardRef<HTMLUListElement, ConfirmMenuProps>(
+export const ConfirmMenu = React.forwardRef<HTMLUListElement, ConfirmMenuProps>(
   (props, ref) => {
     const {
       children,
@@ -121,5 +121,3 @@ const ConfirmMenu = React.forwardRef<HTMLUListElement, ConfirmMenuProps>(
     )
   }
 )
-
-export default ConfirmMenu

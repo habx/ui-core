@@ -1,11 +1,9 @@
-import { withKnobs, boolean, text } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 
-import PhoneInput from './index'
-import PhoneInputProps from './PhoneInput.interface'
+import PhoneInput, { PhoneInputProps } from './index'
 
 const PhoneInputContainer = styled.div`
   display: flex;
@@ -68,28 +66,12 @@ const Grid = withGrid<PhoneInputProps>({
 
 export default {
   title: 'Input/PhoneInput',
-  decorators: [withKnobs],
+  component: PhoneInput,
 }
 
-export const gallery = () => <Grid />
+export const basic = (props: PhoneInputProps) => <PhoneInput {...props} />
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <PhoneInputContainer>
-    <PhoneInput
-      value={text('Value', '')}
-      placeholder="votre numéro"
-      error={boolean('Error', false)}
-      small={boolean('Small', false)}
-      disabled={boolean('Disabled', false)}
-    />
-  </PhoneInputContainer>
-)
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -98,3 +80,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

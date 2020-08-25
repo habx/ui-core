@@ -1,4 +1,4 @@
-import Menu from './Menu'
+import { Menu } from './Menu'
 
 export { default as MenuProps } from './Menu.interface'
 

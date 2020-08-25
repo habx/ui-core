@@ -1,11 +1,9 @@
-import { withKnobs, boolean, text } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 
-import PasswordInput from './index'
-import PasswordInputProps from './PasswordInput.interface'
+import PasswordInput, { PasswordInputProps } from './index'
 
 const PasswordInputContainer = styled.div`
   display: flex;
@@ -68,23 +66,13 @@ const Grid = withGrid<PasswordInputProps>({
 
 export default {
   title: 'Input/PasswordInput',
-  decorators: [withKnobs],
+  component: PasswordInput,
 }
+
+export const basic = (props: PasswordInputProps) => <PasswordInput {...props} />
 
 export const gallery = () => <Grid />
 
 export const lightBackground = () => <Grid background="light" />
 
 export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <PasswordInputContainer>
-    <PasswordInput
-      value={text('Value', '')}
-      placeholder="votre@mail.com"
-      error={boolean('Error', false)}
-      small={boolean('Small', false)}
-      disabled={boolean('Disabled', false)}
-    />
-  </PasswordInputContainer>
-)

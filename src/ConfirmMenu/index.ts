@@ -1,4 +1,4 @@
-import ConfirmMenu from './ConfirmMenu'
+import { ConfirmMenu } from './ConfirmMenu'
 
 export { default as ConfirmMenuProps } from './ConfirmMenu.interface'
 

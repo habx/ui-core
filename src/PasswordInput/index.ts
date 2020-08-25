@@ -1,4 +1,4 @@
-import PasswordInput from './PasswordInput'
+import { PasswordInput } from './PasswordInput'
 
 export { default as PasswordInputProps } from './PasswordInput.interface'
 

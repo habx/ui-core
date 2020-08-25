@@ -1,10 +1,8 @@
-import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 
 import withGrid from '../_internal/StorybookGrid'
 
-import Badge from './Badge'
-import BadgeProps from './Badge.interface'
+import Badge, { BadgeProps } from './index'
 
 const GRID_PROPS = {}
 
@@ -47,7 +45,9 @@ const Grid = withGrid<BadgeProps>({
 
 export default {
   title: 'Alerts/Badge',
-  decorators: [withKnobs],
+  component: Badge,
 }
+
+export const basic = (props: BadgeProps) => <Badge {...props} />
 
 export const gallery = () => <Grid />

@@ -1,4 +1,4 @@
-import Slider from './Slider'
+import { Slider } from './Slider'
 
 export { default as SliderProps } from './Slider.interface'
 

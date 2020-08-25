@@ -19,7 +19,7 @@ import {
   ANIMATION_DURATION,
 } from './Modal.style'
 
-const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
+const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
   (props, ref) => {
     const {
       open,
@@ -84,4 +84,6 @@ const Modal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
   }
 )
 
-export default withTriggerElement<HTMLDivElement>()<ModalInnerProps>(Modal)
+export const Modal = withTriggerElement<HTMLDivElement>()<ModalInnerProps>(
+  InnerModal
+)

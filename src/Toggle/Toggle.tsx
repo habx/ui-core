@@ -6,7 +6,7 @@ import withLabel from '../withLabel'
 import { ToggleInnerProps } from './Toggle.interface'
 import { ToggleContainer } from './Toggle.style'
 
-const Toggle = React.forwardRef<HTMLInputElement, ToggleInnerProps>(
+const InnerToggle = React.forwardRef<HTMLInputElement, ToggleInnerProps>(
   (props, ref) => {
     const { error, value, disabled, onChange, onClick, ...rest } = props
 
@@ -37,6 +37,6 @@ const Toggle = React.forwardRef<HTMLInputElement, ToggleInnerProps>(
   }
 )
 
-export default withLabel<HTMLDivElement>({ orientation: 'horizontal' })<
+export const Toggle = withLabel<HTMLDivElement>({ orientation: 'horizontal' })<
   ToggleInnerProps
->(Toggle)
+>(InnerToggle)

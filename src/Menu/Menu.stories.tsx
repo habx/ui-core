@@ -1,4 +1,3 @@
-import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 
 import withGrid from '../_internal/StorybookGrid'
@@ -7,8 +6,7 @@ import Icon from '../Icon'
 import MenuLine from '../MenuLine'
 import MenuSection from '../MenuSection'
 
-import Menu from './Menu'
-import MenuProps from './Menu.interface'
+import Menu, { MenuProps } from './index'
 
 const GRID_PROPS = {
   triggerElement: <Button outline>Open</Button>,
@@ -50,12 +48,15 @@ const Grid = withGrid<MenuProps>({
 
 export default {
   title: 'Actions/Menu',
-  decorators: [withKnobs],
+  component: Menu,
+  subcomponents: { MenuLine, MenuSection },
 }
 
-export const gallery = () => <Grid />
+export const basic = (props: MenuProps) => (
+  <Menu triggerElement={<Button outline>Click me</Button>} {...props} />
+)
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -64,3 +65,5 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />

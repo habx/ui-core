@@ -13,7 +13,7 @@ import {
   CloseContainer,
 } from './Notification.style'
 
-const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
+export const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
   (props, ref) => {
     const {
       onClose,
@@ -47,5 +47,3 @@ const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
     )
   }
 )
-
-export default Notification

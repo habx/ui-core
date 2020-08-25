@@ -1,19 +1,10 @@
-import {
-  withKnobs,
-  select,
-  boolean,
-  text,
-  number,
-} from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 import breakpoints from '../breakpoints'
 
-import Text from './Text'
-import { TextTypes } from './Text.interface'
-import TextProps from './Text.interface'
+import Text, { TextProps, TextTypes } from './index'
 
 const TextContainer = styled.div`
   width: 750px;
@@ -72,38 +63,14 @@ const Grid = withGrid<TextProps>({
 
 export default {
   title: 'Typography/Text',
-  decorators: [withKnobs],
+  component: Text,
 }
 
-export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <TextContainer>
-    <Text
-      type={select('Type', types, 'regular')}
-      children={text(
-        'Text content',
-        'Devenez propriétaire d’un appartement neuf en plein centre d’Antony'
-      )}
-      primary={boolean('Color override : Primary', false)}
-      secondary={boolean('Color override : Secondary', false)}
-      warning={boolean('Color override : Warning', false)}
-      markdown={boolean('Markdown support', false)}
-      opacity={number('Opacity', 0.72, {
-        range: true,
-        min: 0,
-        max: 1,
-        step: 0.01,
-      })}
-    />
-  </TextContainer>
+export const basic = (props: TextProps) => (
+  <Text {...props}>{BASIC_CHILDREN}</Text>
 )
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -112,3 +79,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
