@@ -52,7 +52,7 @@ export const FakeInput = styled.div`
   bottom: 0;
   left: 0;
   background-color: #fff;
-  border: 1.5px solid ${palette.darkBlue[400]};
+  border: 2px solid ${palette.darkBlue[400]};
   border-radius: var(--border-radius);
   transition: all 150ms ease-in-out;
 
