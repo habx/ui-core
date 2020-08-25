@@ -1,4 +1,3 @@
-import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -60,8 +59,12 @@ const Grid = withGrid<AlertBannerProps>({
 
 export default {
   title: 'Alerts/AlertBanner',
-  decorators: [withKnobs],
+  component: AlertBanner,
 }
+
+export const Default = ({ ...props }) => (
+  <AlertBanner open message="alert banner message" {...props} />
+)
 
 export const gallery = () => <Grid />
 

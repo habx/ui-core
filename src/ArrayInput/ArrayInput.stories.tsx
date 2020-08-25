@@ -1,5 +1,4 @@
 import { action } from '@storybook/addon-actions'
-import { boolean, withKnobs, number } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -10,8 +9,7 @@ import Text from '../Text'
 import TextInput from '../TextInput'
 import Title from '../Title'
 
-import ArrayInput from './ArrayInput'
-import ArrayInputProps from './ArrayInput.interface'
+import ArrayInput, { ArrayInputProps } from './index'
 
 type field = { name: string; country: string }
 const FIELDS = [
@@ -176,18 +174,15 @@ const Grid = withGrid<ArrayInputProps>({
 
 export default {
   title: 'Input/ArrayInput',
-  decorators: [withKnobs],
+  component: ArrayInput,
 }
+
+export const basic = (props: ArrayInputProps) => (
+  <CountryArrayInput {...props} />
+)
 
 export const gallery = () => <Grid />
 
 export const lightBackground = () => <Grid background="light" />
 
 export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <CountryArrayInput
-    disabled={boolean('Disabled', false)}
-    opened={number('Currently opened item', -1)}
-  />
-)

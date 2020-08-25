@@ -7,6 +7,9 @@ export interface TextInputInnerProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   small?: boolean
   error?: boolean
+  /**
+   * Validation button label
+   */
   light?: boolean
   as?: styledAs
   elementRight?: React.ReactNode

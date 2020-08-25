@@ -13,7 +13,7 @@ import {
   RightElementContainer,
 } from './TextInput.style'
 
-const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
+const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
   (props, ref) => {
     const {
       small = false,
@@ -68,6 +68,6 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
   }
 )
 
-export default withLabel<HTMLInputElement>({ orientation: 'vertical' })<
-  TextInputInnerProps
->(TextInput)
+export const TextInput = withLabel<HTMLInputElement>({
+  orientation: 'vertical',
+})<TextInputInnerProps>(InnerTextInput)

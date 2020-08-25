@@ -19,7 +19,7 @@ import {
   SelectContainer,
 } from './Select.style'
 
-const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
+const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
   (props, ref) => {
     const {
       multi = false,
@@ -128,6 +128,6 @@ const Select = React.forwardRef<HTMLDivElement, SelectInnerProps>(
   }
 )
 
-export default withLabel<HTMLDivElement>({ orientation: 'vertical' })<
+export const Select = withLabel<HTMLDivElement>({ orientation: 'vertical' })<
   SelectInnerProps
->(Select)
+>(InnerSelect)

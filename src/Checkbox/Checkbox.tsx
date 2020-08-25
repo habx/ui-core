@@ -12,7 +12,7 @@ import {
   CheckIcon,
 } from './Checkbox.style'
 
-const Checkbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
+const InnerCheckbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
   (props, ref) => {
     const {
       error,
@@ -54,6 +54,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
   }
 )
 
-export default withLabel<HTMLInputElement>({
+export const Checkbox = withLabel<HTMLInputElement>({
   orientation: 'horizontal-reverse',
-})<CheckboxInnerProps>(Checkbox)
+})<CheckboxInnerProps>(InnerCheckbox)

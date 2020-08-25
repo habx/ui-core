@@ -1,11 +1,9 @@
-import { withKnobs, boolean, text } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_internal/StorybookGrid'
 
-import TextInput from './index'
-import TextInputProps from './TextInput.interface'
+import TextInput, { TextInputProps } from './index'
 
 const TextInputContainer = styled.div`
   display: flex;
@@ -76,9 +74,16 @@ const Grid = withGrid<TextInputProps>({
   itemWrapper: TextInputContainer,
 })(TextInput)
 
-export default {
-  title: 'Input/TextInput',
-  decorators: [withKnobs],
+export const basic = (props: TextInputProps) => <TextInput {...props} />
+
+basic.story = {
+  parameters: {
+    design: {
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1845',
+    },
+  },
 }
 
 export const gallery = () => <Grid />
@@ -87,25 +92,7 @@ export const lightBackground = () => <Grid background="light" />
 
 export const darkBackground = () => <Grid background="dark" />
 
-export const dynamic = () => (
-  <TextInputContainer>
-    <TextInput
-      label={text('Label', '')}
-      value={text('Value', '')}
-      placeholder="votre@mail.com"
-      error={boolean('Error', false)}
-      small={boolean('Small', false)}
-      disabled={boolean('Disabled', false)}
-    />
-  </TextInputContainer>
-)
-
-gallery.story = {
-  parameters: {
-    design: {
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1845',
-    },
-  },
+export default {
+  title: 'Input/TextInput',
+  component: TextInput,
 }
