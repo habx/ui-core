@@ -13,7 +13,7 @@ export default interface BackgroundProps
    */
   opacity?: number
   /**
-   * if true, it won't use theme background theme
+   * if true, it won't use theme background. It allows to "fake" the background property for children.
    * @default false
    */
   simulated?: boolean
