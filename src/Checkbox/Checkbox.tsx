@@ -13,43 +13,30 @@ import {
 } from './Checkbox.style'
 
 const InnerCheckbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
-  (props, ref) => {
-    const {
-      error,
-      value,
-      checked,
-      disabled,
-      small = false,
-      id,
-      children,
-      ...rest
-    } = props
+  ({ checked, children, error, id, small, value, ...props }, ref) => {
     const checkboxId = useUniqID(id)
     const hasBackground = useHasColoredBackground()
 
     return (
-      <FakeInputContainer>
-        <Input
-          ref={ref}
-          {...rest}
-          data-error={error}
+      <>
+        <FakeInputContainer
           data-background={hasBackground}
-          checked={!!value || !!checked}
-          disabled={disabled}
-          type="checkbox"
-          id={checkboxId}
-          data-testid="checkboxInput"
-        />
-        <FakeInput
+          data-error={error}
           data-small={small}
-          data-testid="checkboxLabel"
-          tabIndex={disabled ? undefined : 0}
-          htmlFor={checkboxId}
         >
+          <Input
+            ref={ref}
+            {...props}
+            checked={checked ?? Boolean(value)}
+            data-testid="checkboxInput"
+            id={checkboxId}
+            type="checkbox"
+          />
+          <FakeInput />
           <CheckIcon icon="check" />
-        </FakeInput>
+        </FakeInputContainer>
         {children}
-      </FakeInputContainer>
+      </>
     )
   }
 )

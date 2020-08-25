@@ -3,23 +3,33 @@ import * as React from 'react'
 
 import Checkbox from './index'
 
-const Container = () => {
-  const [value, setValue] = React.useState<boolean>(false)
+const Component = ({ initialState = false }) => {
+  const [value, setValue] = React.useState(initialState)
+
   return (
     <Checkbox
-      value={value.toString()}
-      onChange={(e) => setValue(e.target.checked)}
+      checked={value}
+      onChange={(event: any) => setValue(event.target.checked)}
     >
       Label
     </Checkbox>
   )
 }
-describe('Checkbox component', () => {
-  it('should change to true when clicked', () => {
-    const checkbox = render(<Container />)
-    fireEvent.click(checkbox.getByTestId('checkboxLabel') as Element)
-    expect(
-      (checkbox.getByTestId('checkboxInput') as HTMLInputElement).checked
-    ).toBe(true)
+
+const setup = (initialState?: boolean) => {
+  const component = render(<Component initialState={initialState} />)
+  const checkbox = component.getByTestId('checkboxInput') as HTMLInputElement
+
+  return { checkbox, component }
+}
+
+describe('Checkbox', () => {
+  it('should update its state when clicked', () => {
+    const { checkbox } = setup()
+
+    fireEvent.click(checkbox)
+    expect(checkbox.checked).toBe(true)
+    fireEvent.click(checkbox)
+    expect(checkbox.checked).toBe(false)
   })
 })
