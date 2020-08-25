@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import getFlattenedChildren from '../_internal/getFlattenedChildren'
-import BreadcrumbItem from '../BreadcrumbItem/BreadcrumbItem'
+import BreadcrumbItem from '../BreadcrumbItem'
 import Menu from '../Menu'
 import MenuLine from '../MenuLine'
 
