@@ -2,7 +2,7 @@ import { render, fireEvent, act } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
-import Select from './Select'
+import Select from './index'
 import { OPTIONS } from './Select.data'
 import SelectProps from './Select.interface'
 

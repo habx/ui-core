@@ -4,7 +4,7 @@ import sinon from 'sinon'
 
 import Icon from '../Icon'
 
-import FloatingButton from './FloatingButton'
+import FloatingButton from './index'
 
 describe('FloatingButton component', () => {
   it('should display the right label', () => {

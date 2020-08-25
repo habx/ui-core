@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/react'
 import * as React from 'react'
 
-import Slider from './Slider'
+import Slider from './index'
 
 import '@testing-library/jest-dom/extend-expect'
 
