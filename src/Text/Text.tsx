@@ -89,7 +89,7 @@ export const textStyles = {
   captionSmall: captionSmallTextStyle,
 }
 
-const RawTextComponents = mapValues(
+export const RawTextComponents = mapValues(
   textStyles,
   (style) =>
     styled.div`

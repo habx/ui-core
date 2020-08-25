@@ -7,4 +7,8 @@ type WithLabel<InnerProps extends {} = {}> = InnerProps & {
   disabled?: boolean
 }
 
+export type WithSemanticLabel<Props extends {} = {}> = WithLabel<Props> & {
+  id?: string
+}
+
 export default WithLabel

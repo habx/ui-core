@@ -1,8 +1,7 @@
 import * as React from 'react'
 
 import useHasColoredBackground from '../_internal/useHasColoredBackground'
-import useUniqID from '../_internal/useUniqId'
-import withLabel from '../withLabel'
+import { withSemanticLabel } from '../withLabel'
 
 import { CheckboxInnerProps } from './Checkbox.interface'
 import {
@@ -13,8 +12,7 @@ import {
 } from './Checkbox.style'
 
 const InnerCheckbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
-  ({ checked, children, error, id, small, value, ...props }, ref) => {
-    const checkboxId = useUniqID(id)
+  ({ checked, children, error, small, value, ...props }, ref) => {
     const hasBackground = useHasColoredBackground()
 
     return (
@@ -29,7 +27,6 @@ const InnerCheckbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
             {...props}
             checked={checked ?? Boolean(value)}
             data-testid="checkboxInput"
-            id={checkboxId}
             type="checkbox"
           />
           <FakeInput />
@@ -41,6 +38,7 @@ const InnerCheckbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
   }
 )
 
-export const Checkbox = withLabel<HTMLInputElement>({
+export const Checkbox = withSemanticLabel<HTMLInputElement>({
   orientation: 'horizontal-reverse',
+  testid: 'checkboxLabel',
 })<CheckboxInnerProps>(InnerCheckbox)
