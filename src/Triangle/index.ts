@@ -1,4 +1,4 @@
-import Triangle from './Triangle'
+import { Triangle } from './Triangle'
 
 export { default as TriangleProps } from './Triangle.interface'
 

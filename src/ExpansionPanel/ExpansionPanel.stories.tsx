@@ -7,8 +7,7 @@ import Card from '../Card'
 import ExpansionPanelItem from '../ExpansionPanelItem'
 import Text from '../Text'
 
-import ExpansionPanel from './ExpansionPanel'
-import ExpansionPanelProps from './ExpansionPanel.interface'
+import ExpansionPanel, { ExpansionPanelProps } from './index'
 
 const Container = styled.div`
   width: 450px;

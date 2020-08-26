@@ -24,7 +24,7 @@ const cleanPosition = (position: Position | undefined): string => {
   return `${position}px`
 }
 
-const Triangle = React.forwardRef<HTMLDivElement, TriangleProps>(
+export const Triangle = React.forwardRef<HTMLDivElement, TriangleProps>(
   (props, ref) => {
     const { origin, width, height, color, ...rest } = props
 
@@ -64,5 +64,3 @@ const Triangle = React.forwardRef<HTMLDivElement, TriangleProps>(
     )
   }
 )
-
-export default Triangle

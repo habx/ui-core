@@ -6,10 +6,15 @@ import HeaderBar from '../HeaderBar'
 import TabsBarItem from '../TabsBarItem'
 import Tooltip from '../Tooltip'
 
-import TabsBar from './TabsBar'
+import TabsBar from './index'
+
+const Wrapper = styled.div`
+  min-height: 500px;
+  max-height: 100vh;
+`
 
 const Container = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
@@ -22,16 +27,21 @@ const Content = styled.div`
   flex: 1 1 100%;
 `
 
-const navDecorator = (storyFn: Function) => (
-  <Container>
-    <HeaderBar small>{storyFn()}</HeaderBar>
-    <Content />
-  </Container>
+const tabsBarDecorator = (storyFn: Function) => (
+  <React.Fragment>
+    <Wrapper />
+    <Container>
+      <HeaderBar small>{storyFn()}</HeaderBar>
+      <Content />
+    </Container>
+  </React.Fragment>
 )
 
 export default {
   title: 'Navigation/TabsBar',
-  decorators: [navDecorator],
+  component: TabsBar,
+  subcomponents: { TabsBarItem },
+  decorators: [tabsBarDecorator],
 }
 
 export const basic = () => (

@@ -1,11 +1,11 @@
 import * as React from 'react'
 
+import CenteredComponent from '../_storybook/CenteredComponent'
 import withGrid from '../_storybook/withGrid'
 import Button from '../Button'
 import IconButton from '../IconButton'
 
-import Tooltip from './Tooltip'
-import TooltipProps from './Tooltip.interface'
+import Tooltip, { TooltipProps } from './index'
 
 const GRID_PROPS = {
   title: 'Lien copié !',
@@ -54,9 +54,28 @@ const Grid = withGrid<TooltipProps>({
   itemWrapper: (props) => <span style={{ alignSelf: 'center' }} {...props} />,
 })(Tooltip)
 
-export const gallery = () => <Grid />
+export default {
+  title: 'Alerts/Tooltip',
+  component: Tooltip,
+  argTypes: {
+    title: {
+      defaultValue: 'This is the title',
+    },
+    description: {
+      defaultValue: 'This is the description',
+    },
+  },
+}
 
-gallery.story = {
+export const basic = (props: TooltipProps) => (
+  <CenteredComponent>
+    <Tooltip {...props}>
+      <Button small>Hover me</Button>
+    </Tooltip>
+  </CenteredComponent>
+)
+
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -65,3 +84,5 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />

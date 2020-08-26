@@ -1,11 +1,10 @@
-import { withKnobs, boolean, text } from '@storybook/addon-knobs'
 import * as React from 'react'
 
+import CenteredComponent from '../_storybook/CenteredComponent'
 import withGrid from '../_storybook/withGrid'
 import Icon from '../Icon'
 
-import Tab from './Tab'
-import TabProps from './Tab.interface'
+import Tab, { TabProps } from './index'
 
 const GRID_PROPS = {
   children: 'Agencement 1',
@@ -51,29 +50,21 @@ const Grid = withGrid<TabProps>({
 
 export default {
   title: 'Navigation/Tab',
-  decorators: [withKnobs],
+  component: Tab,
+  argTypes: {
+    children: {
+      defaultValue: 'Agencement 1',
+    },
+  },
 }
 
-export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <Tab
-    children={text('Value', 'Agencement 1')}
-    large={boolean('Large', false)}
-    active={boolean('Active', false)}
-    disabled={boolean('Disabled', false)}
-    elementLeft={boolean('Icon left', false) ? <Icon icon="list" /> : undefined}
-    elementRight={
-      boolean('Icon right', false) ? <Icon icon="list" /> : undefined
-    }
-  />
+export const basic = (props: TabProps) => (
+  <CenteredComponent>
+    <Tab {...props} />
+  </CenteredComponent>
 )
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -82,3 +73,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

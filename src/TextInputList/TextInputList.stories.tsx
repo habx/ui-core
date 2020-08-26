@@ -1,11 +1,10 @@
-import { withKnobs, boolean, array, text } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
+import CenteredComponent from '../_storybook/CenteredComponent'
 import withGrid from '../_storybook/withGrid'
 
-import TextInputList from './index'
-import TextInputListProps from './TextInputList.interface'
+import TextInputList, { TextInputListProps } from './index'
 
 const TextInputListContainer = styled.div`
   display: flex;
@@ -72,44 +71,33 @@ const Grid = withGrid<TextInputListProps>({
 
 export default {
   title: 'Input/TextInputList',
-  decorators: [withKnobs],
+  component: TextInputList,
 }
 
-export const gallery = () => <Grid />
+const AutoCompleteTextInput: React.FunctionComponent<Omit<
+  TextInputListProps,
+  'value' | 'onChange' | 'options'
+>> = () => {
+  const [value, setValue] = React.useState<(string | number)[]>([])
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-const AutoCompleteTextInput = () => {
-  const [value, setValue] = React.useState([])
   return (
-    <TextInputListContainer>
-      <TextInputList
-        value={value}
-        onChange={setValue}
-        placeholder="Cities"
-        options={['Paris', 'Bordeaux', 'Nantes', 'Lyon']}
-      />
-    </TextInputListContainer>
+    <TextInputList
+      value={value}
+      onChange={setValue}
+      options={['Paris', 'Bordeaux', 'Nantes', 'Lyon']}
+    />
   )
 }
-export const autocomplete = () => <AutoCompleteTextInput />
 
-export const dynamic = () => (
-  <TextInputListContainer>
-    <TextInputList
-      label={text('Label', '')}
-      value={array('Value', [])}
-      placeholder="votre@mail.com"
-      error={boolean('Error', false)}
-      small={boolean('Small', false)}
-      disabled={boolean('Disabled', false)}
-    />
-  </TextInputListContainer>
+export const basic = (props: TextInputListProps) => (
+  <CenteredComponent>
+    <TextInputListContainer>
+      <TextInputList {...props} />
+    </TextInputListContainer>
+  </CenteredComponent>
 )
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -118,3 +106,19 @@ gallery.story = {
     },
   },
 }
+
+export const autocomplete = (
+  props: Omit<TextInputListProps, 'value' | 'onChange' | 'options'>
+) => (
+  <CenteredComponent>
+    <TextInputListContainer>
+      <AutoCompleteTextInput {...props} />
+    </TextInputListContainer>
+  </CenteredComponent>
+)
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
