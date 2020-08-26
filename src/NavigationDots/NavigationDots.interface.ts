@@ -4,7 +4,12 @@ export default interface NavigationDotsProps
   extends React.HTMLAttributes<HTMLDivElement> {
   size: number
   activeDot?: number
+
+  /**
+   * @default false
+   */
   disabled?: boolean
+
   onClickDot?: (activeDot: number) => void
 }
 

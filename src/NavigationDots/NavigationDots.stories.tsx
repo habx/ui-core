@@ -1,11 +1,9 @@
 import { action } from '@storybook/addon-actions'
-import { withKnobs, number, boolean } from '@storybook/addon-knobs'
 import * as React from 'react'
 
 import withGrid from '../_storybook/withGrid'
 
-import NavigationDots from './NavigationDots'
-import NavigationDotsProps from './NavigationDots.interface'
+import NavigationDots, { NavigationDotsProps } from './index'
 
 const GRID_PROPS = {
   onClickDot: action('Click dot'),
@@ -61,24 +59,19 @@ const Grid = withGrid<NavigationDotsProps>({
 
 export default {
   title: 'Navigation/NavigationDots',
-  decorators: [withKnobs],
+  component: NavigationDots,
+  argTypes: {
+    size: {
+      defaultValue: 3,
+    },
+  },
 }
 
-export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <NavigationDots
-    size={number('Size', 3)}
-    activeDot={number('Active dot', 0)}
-    disabled={boolean('Disabled', false)}
-  />
+export const basic = (props: NavigationDotsProps) => (
+  <NavigationDots {...props} />
 )
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -87,3 +80,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

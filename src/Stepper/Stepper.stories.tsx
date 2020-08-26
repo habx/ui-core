@@ -1,12 +1,10 @@
-import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_storybook/withGrid'
 import breakpoints from '../breakpoints'
 
-import Stepper from './Stepper'
-import StepperProps from './Stepper.interface'
+import Stepper, { StepperProps } from './index'
 
 const Container = styled.div`
   width: 450px;
@@ -70,8 +68,17 @@ const Grid = withGrid<StepperProps>({
 
 export default {
   title: 'Layouts/Stepper',
-  decorators: [withKnobs],
+  component: Stepper,
+  argTypes: {
+    currentStepIndex: {
+      defaultValue: 1,
+    },
+  },
 }
+
+export const basic = (props: StepperProps) => (
+  <Stepper {...props} steps={GRID_ITEMS[0].props.steps} />
+)
 
 export const gallery = () => <Grid />
 

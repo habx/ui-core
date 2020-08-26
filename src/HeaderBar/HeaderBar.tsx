@@ -6,7 +6,7 @@ import { useParentLayout, LayoutChild } from '../Layout'
 import HeaderBarProps from './HeaderBar.interface'
 import { HeaderBarContainer } from './HeaderBar.style'
 
-const HeaderBar = React.forwardRef<HTMLElement, HeaderBarProps>(
+export const HeaderBar = React.forwardRef<HTMLElement, HeaderBarProps>(
   (props, ref) => {
     const {
       children,
@@ -49,5 +49,3 @@ const HeaderBar = React.forwardRef<HTMLElement, HeaderBarProps>(
     )
   }
 )
-
-export default HeaderBar

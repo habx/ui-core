@@ -66,6 +66,14 @@ const Grid = withGrid<NotificationProps>({
 export default {
   title: 'Alerts/Notification',
   component: Notification,
+  argTypes: {
+    title: {
+      defaultValue: 'Blueprint sent',
+    },
+    description: {
+      defaultValue: 'Successfully sent to the given address',
+    },
+  },
 }
 
 export const basic = (props: NotificationProps) => <Notification {...props} />

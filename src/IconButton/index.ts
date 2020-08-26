@@ -1,4 +1,4 @@
-import IconButton from './IconButton'
+import { IconButton } from './IconButton'
 
 export { default as IconButtonProps } from './IconButton.interface'
 

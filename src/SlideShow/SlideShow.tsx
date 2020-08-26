@@ -16,7 +16,7 @@ import {
 import SlideShowContent from './SlideShowContent'
 import SlideShowNavigation from './SlideShowNavigation'
 
-const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
+export const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
   (props, ref) => {
     const {
       items = [],
@@ -121,5 +121,3 @@ const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
     )
   }
 )
-
-export default SlideShow

@@ -8,7 +8,7 @@ import useTheme from '../useTheme'
 import IconButtonProps from './IconButton.interface'
 import { IconButtonContainer, IconButtonContent } from './IconButton.style'
 
-const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
+export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   (props, ref) => {
     const {
       icon,
@@ -66,5 +66,3 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     )
   }
 )
-
-export default IconButton

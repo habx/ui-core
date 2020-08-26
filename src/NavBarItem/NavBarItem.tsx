@@ -13,7 +13,7 @@ import {
   TitleContainer,
 } from './NavBarItem.style'
 
-const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
+export const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
   (props, ref) => {
     const {
       icon,
@@ -55,5 +55,3 @@ const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
     )
   }
 )
-
-export default NavBarItem

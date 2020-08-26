@@ -10,61 +10,61 @@ import {
   LayoutColoredContainer,
 } from './Layout.style'
 
-const Layout = React.forwardRef<HTMLDivElement, LayoutProps>((props, ref) => {
-  const { children, backgroundColor, ...rest } = props
-  const [registeredChildren, setRegisteredChildren] = React.useState<
-    Partial<Record<LayoutChild, number[]>>
-  >({})
+export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
+  (props, ref) => {
+    const { children, backgroundColor, ...rest } = props
+    const [registeredChildren, setRegisteredChildren] = React.useState<
+      Partial<Record<LayoutChild, number[]>>
+    >({})
 
-  const context = React.useMemo<LayoutContextValue>(
-    () => ({
-      isInLayout: true,
-      registerChild: (type) => {
-        const id = Math.random()
-        setRegisteredChildren((prev) => ({
-          ...prev,
-          [type]: [...(prev[type] ?? []), id],
-        }))
-
-        return () =>
+    const context = React.useMemo<LayoutContextValue>(
+      () => ({
+        isInLayout: true,
+        registerChild: (type) => {
+          const id = Math.random()
           setRegisteredChildren((prev) => ({
             ...prev,
-            [type]: (prev[type] ?? []).filter((el) => el !== id),
+            [type]: [...(prev[type] ?? []), id],
           }))
-      },
-    }),
-    []
-  )
 
-  const hasActionBar =
-    (registeredChildren[LayoutChild.ActionBar]?.length ?? 0) > 0
-  const hasHeaderBar =
-    (registeredChildren[LayoutChild.HeaderBar]?.length ?? 0) > 0
+          return () =>
+            setRegisteredChildren((prev) => ({
+              ...prev,
+              [type]: (prev[type] ?? []).filter((el) => el !== id),
+            }))
+        },
+      }),
+      []
+    )
 
-  return (
-    <LayoutContext.Provider value={context}>
-      {backgroundColor ? (
-        <LayoutColoredContainer
-          ref={ref}
-          {...rest}
-          backgroundColor={backgroundColor}
-          data-has-action-bar={hasActionBar}
-          data-has-header-bar={hasHeaderBar}
-        >
-          {children}
-        </LayoutColoredContainer>
-      ) : (
-        <LayoutTransparentContainer
-          ref={ref}
-          {...rest}
-          data-has-action-bar={hasActionBar}
-          data-has-header-bar={hasHeaderBar}
-        >
-          {children}
-        </LayoutTransparentContainer>
-      )}
-    </LayoutContext.Provider>
-  )
-})
+    const hasActionBar =
+      (registeredChildren[LayoutChild.ActionBar]?.length ?? 0) > 0
+    const hasHeaderBar =
+      (registeredChildren[LayoutChild.HeaderBar]?.length ?? 0) > 0
 
-export default Layout
+    return (
+      <LayoutContext.Provider value={context}>
+        {backgroundColor ? (
+          <LayoutColoredContainer
+            ref={ref}
+            {...rest}
+            backgroundColor={backgroundColor}
+            data-has-action-bar={hasActionBar}
+            data-has-header-bar={hasHeaderBar}
+          >
+            {children}
+          </LayoutColoredContainer>
+        ) : (
+          <LayoutTransparentContainer
+            ref={ref}
+            {...rest}
+            data-has-action-bar={hasActionBar}
+            data-has-header-bar={hasHeaderBar}
+          >
+            {children}
+          </LayoutTransparentContainer>
+        )}
+      </LayoutContext.Provider>
+    )
+  }
+)

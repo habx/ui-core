@@ -1,11 +1,9 @@
-import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
 import withGrid from '../_storybook/withGrid'
 
-import Loader from './index'
-import LoaderProps from './Loader.interface'
+import Loader, { LoaderProps } from './index'
 
 const LoaderContainer = styled.div`
   display: flex;
@@ -53,30 +51,16 @@ const Grid = withGrid<LoaderProps>({
 
 export default {
   title: 'Layouts/Loader',
-  decorators: [withKnobs],
+  component: Loader,
 }
 
-export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
+export const basic = (props: LoaderProps) => (
   <LoaderContainer>
-    <Loader
-      size={select<'large' | 'medium' | 'small'>(
-        'Size',
-        ['large', 'medium', 'small'],
-        'medium'
-      )}
-      outline={boolean('Outlined', false)}
-      colored={boolean('Color', true)}
-    />
+    <Loader {...props} />
   </LoaderContainer>
 )
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -85,3 +69,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

@@ -1,4 +1,4 @@
-import SlideShow from './SlideShow'
+import { SlideShow } from './SlideShow'
 
 export { default as SlideShowProps } from './SlideShow.interface'
 

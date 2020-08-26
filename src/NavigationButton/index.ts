@@ -1,4 +1,4 @@
-import NavigationButton from './NavigationButton'
+import { NavigationButton } from './NavigationButton'
 
 export { default as NavigationButtonProps } from './NavigationButton.interface'
 

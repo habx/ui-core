@@ -1,4 +1,4 @@
-import NavigationDots from './NavigationDots'
+import { NavigationDots } from './NavigationDots'
 
 export { default as NavigationDotsProps } from './NavigationDots.interface'
 

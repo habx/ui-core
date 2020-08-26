@@ -1,10 +1,8 @@
-import { withKnobs, boolean } from '@storybook/addon-knobs'
 import * as React from 'react'
 
 import withGrid from '../_storybook/withGrid'
 
-import NavigationButton from './NavigationButton'
-import NavigationButtonProps from './NavigationButton.interface'
+import NavigationButton, { NavigationButtonProps } from './index'
 
 const GRID_LINES = [
   {
@@ -58,24 +56,14 @@ const Grid = withGrid<NavigationButtonProps>({
 
 export default {
   title: 'Navigation/NavigationButton',
-  decorators: [withKnobs],
+  component: NavigationButton,
 }
 
-export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <NavigationButton
-    disabled={boolean('Disabled', false)}
-    secondary={boolean('Color override : Secondary', false)}
-    previous={boolean('Icon: previous', false)}
-  />
+export const basic = (props: NavigationButtonProps) => (
+  <NavigationButton {...props} />
 )
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -84,3 +72,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
