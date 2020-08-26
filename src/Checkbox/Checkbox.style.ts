@@ -12,6 +12,7 @@ export const FakeInputContainer = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
   width: var(--size);
   height: var(--size);
   color: #fff;
