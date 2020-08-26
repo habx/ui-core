@@ -17,5 +17,9 @@ export type ExpansionPanelContextType = {
   multiOpen: boolean
   light: boolean
   size: 'large' | 'regular' | 'small'
+
+  /**
+   * @default left
+   */
   expandIconPosition: 'left' | 'right'
 }

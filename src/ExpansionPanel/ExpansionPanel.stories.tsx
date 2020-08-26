@@ -1,8 +1,7 @@
-import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_internal/StorybookGrid'
+import withGrid from '../_storybook/withGrid'
 import breakpoints from '../breakpoints'
 import Card from '../Card'
 import ExpansionPanelItem from '../ExpansionPanelItem'
@@ -97,8 +96,15 @@ const GridInCard = withGrid<ExpansionPanelProps>({
 
 export default {
   title: 'Layouts/ExpansionPanel',
-  decorators: [withKnobs],
+  component: ExpansionPanel,
+  subcomponents: { ExpansionPanelItem },
 }
+
+export const basic = (props: ExpansionPanelProps) => (
+  <ExpansionPanel {...props}>
+    <ExpansionPanelItems />
+  </ExpansionPanel>
+)
 
 export const gallery = () => <Grid />
 
@@ -107,19 +113,3 @@ export const lightBackground = () => <Grid background="light" />
 export const darkBackground = () => <Grid background="dark" />
 
 export const inCard = () => <GridInCard />
-
-export const dynamic = () => (
-  <ExpansionPanel
-    disabled={boolean('Disabled', false)}
-    multiOpen={boolean('Multi open', false)}
-    large={boolean('Large', false)}
-    small={boolean('Small', false)}
-    expandIconPosition={select(
-      'Expand icon position',
-      ['right', 'left'],
-      'left'
-    )}
-  >
-    <ExpansionPanelItems />
-  </ExpansionPanel>
-)

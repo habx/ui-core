@@ -2,21 +2,15 @@ import * as React from 'react'
 
 import TextInput from '../TextInput'
 
-import ConfirmMenu from './index'
+import ConfirmMenu, { ConfirmMenuProps } from './index'
 
 export default {
   title: 'Actions/ConfirmMenu',
   component: ConfirmMenu,
 }
 
-export const basic = () => (
-  <ConfirmMenu>
-    <TextInput />
-  </ConfirmMenu>
-)
-
-export const withLabels = () => (
-  <ConfirmMenu textual>
-    <TextInput />
+export const basic = (props: ConfirmMenuProps) => (
+  <ConfirmMenu {...props}>
+    <TextInput placeholder="This is a regular TextInput" />
   </ConfirmMenu>
 )

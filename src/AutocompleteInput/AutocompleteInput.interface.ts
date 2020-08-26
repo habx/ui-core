@@ -1,11 +1,9 @@
 import TextInputProps from '../TextInput/TextInput.interface'
 
-export interface AutocompleteInputInnerProps extends TextInputProps {
+export default interface AutocompleteInputProps extends TextInputProps {
   options?: string[]
   onOptionSelect?: (option: string) => void
 }
-
-export default AutocompleteInputInnerProps
 
 export type AutocompleteState = {
   open: boolean

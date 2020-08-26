@@ -1,15 +1,14 @@
-import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_internal/StorybookGrid'
+import CenteredComponent from '../_storybook/CenteredComponent'
+import withGrid from '../_storybook/withGrid'
 import Button from '../Button'
 import Card from '../Card'
 import Modal from '../Modal'
 import palette from '../palette'
 
-import ActionBar from './ActionBar'
-import ActionBarProps from './ActionBar.interface'
+import ActionBar, { ActionBarProps } from './index'
 
 const CardChildrenContainer = styled.div`
   display: flex;
@@ -92,19 +91,20 @@ const GridInModal = withGrid<ActionBarProps>({
 
 export default {
   title: 'Layouts/ActionBar',
-  decorators: [withKnobs],
   component: ActionBar,
 }
 
-export const Default = ({ ...props }) => (
-  <Card spacing="regular">
-    <CardChildrenContainer />
-    <ActionBar {...props}>
-      <Button link>Reset</Button>
-      <Button link>Cancel</Button>
-      <Button>Save</Button>
-    </ActionBar>
-  </Card>
+export const basic = ({ ...props }) => (
+  <CenteredComponent>
+    <Card spacing="regular">
+      <CardChildrenContainer />
+      <ActionBar {...props}>
+        <Button link>Reset</Button>
+        <Button link>Cancel</Button>
+        <Button>Save</Button>
+      </ActionBar>
+    </Card>
+  </CenteredComponent>
 )
 
 export const gallery = () => <Grid />

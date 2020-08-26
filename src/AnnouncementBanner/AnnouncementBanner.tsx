@@ -17,7 +17,7 @@ import {
   MobileCloseIconButton,
 } from './AnnouncementBanner.style'
 
-const AnnouncementBanner = React.forwardRef<
+export const AnnouncementBanner = React.forwardRef<
   HTMLDivElement,
   AnnouncementBannerProps
 >((props, ref) => {
@@ -81,5 +81,3 @@ const AnnouncementBanner = React.forwardRef<
     </Banner>
   )
 })
-
-export default AnnouncementBanner

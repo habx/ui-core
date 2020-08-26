@@ -1,13 +1,13 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_internal/StorybookGrid'
+import withGrid from '../_storybook/withGrid'
 import Card from '../Card'
 import palette from '../palette'
 import Text from '../Text'
 
-import AnnouncementBanner from './AnnouncementBanner'
-import AnnouncementBannerProps from './AnnouncementBanner.interface'
+import AnnouncementBanner, { AnnouncementBannerProps } from './index'
+
 const CardContainer = styled(Card)`
   height: 400px;
 `
@@ -64,22 +64,24 @@ const Grid = withGrid<AnnouncementBannerProps>({
 export default {
   title: 'Alerts/AnnouncementBanner',
   component: AnnouncementBanner,
+  argTypes: {
+    open: {
+      defaultValue: true,
+    },
+    message: {
+      defaultValue: 'This is an announcement message',
+    },
+    validationLabel: {
+      defaultValue: 'accept',
+    },
+  },
 }
 
-export const Default = ({ ...props }) => (
-  <AnnouncementBanner
-    open
-    message="AnnouncementBanner message"
-    validationLabel="accept"
-    onClose={() => {}}
-    onValidate={() => {}}
-    {...props}
-  />
-)
+export const basic = (
+  props: Omit<AnnouncementBannerProps, 'onClose' | 'onValidate'>
+) => <AnnouncementBanner onClose={() => {}} onValidate={() => {}} {...props} />
 
-export const gallery = () => <Grid />
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -88,3 +90,5 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />

@@ -1,11 +1,10 @@
 import * as React from 'react'
 
-import withGrid from '../_internal/StorybookGrid'
+import withGrid from '../_storybook/withGrid'
 import BreadcrumbItem from '../BreadcrumbItem'
 import Icon from '../Icon'
 
-import Breadcrumb from './Breadcrumb'
-import BreadcrumbProps from './Breadcrumb.interface'
+import Breadcrumb, { BreadcrumbProps } from './index'
 
 const GRID_PROPS = {}
 
@@ -65,6 +64,8 @@ export default {
   subcomponents: { BreadcrumbItem },
 }
 
-export const basic = (props: BreadcrumbProps) => <Breadcrumb {...props} />
+export const basic = (props: BreadcrumbProps) => (
+  <Breadcrumb {...props}>{GRID_LINES[0].props.children}</Breadcrumb>
+)
 
 export const gallery = () => <Grid />

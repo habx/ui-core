@@ -8,7 +8,7 @@ import useTheme from '../useTheme'
 import ActionBarProps from './ActionBar.interface'
 import { ActionBarContainer, ActionBarContent } from './ActionBar.style'
 
-const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
+export const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
   (props, ref) => {
     const { children: rawChildren, ...rest } = props
     const parentLayout = useParentLayout()
@@ -38,5 +38,3 @@ const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
     )
   }
 )
-
-export default ActionBar

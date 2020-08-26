@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import withGrid from '../_internal/StorybookGrid'
+import withGrid from '../_storybook/withGrid'
 import Button from '../Button'
 import Icon from '../Icon'
 import MenuLine from '../MenuLine'

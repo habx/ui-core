@@ -9,7 +9,7 @@ import BreadcrumbContext from './Breadcrumb.context'
 import BreadcrumbProps from './Breadcrumb.interface'
 import { BreadcrumbContainer, BreadcrumbIcon } from './Breadcrumb.style'
 
-const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
+export const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
   (props, ref) => {
     const { children, large, small, ...rest } = props
 
@@ -73,5 +73,3 @@ const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
     )
   }
 )
-
-export default Breadcrumb

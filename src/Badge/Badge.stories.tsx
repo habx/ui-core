@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import withGrid from '../_internal/StorybookGrid'
+import withGrid from '../_storybook/withGrid'
 
 import Badge, { BadgeProps } from './index'
 
@@ -46,6 +46,14 @@ const Grid = withGrid<BadgeProps>({
 export default {
   title: 'Alerts/Badge',
   component: Badge,
+  argTypes: {
+    content: {
+      defaultValue: 10,
+    },
+    max: {
+      defaultValue: 9,
+    },
+  },
 }
 
 export const basic = (props: BadgeProps) => <Badge {...props} />

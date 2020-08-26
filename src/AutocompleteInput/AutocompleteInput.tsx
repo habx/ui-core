@@ -5,12 +5,12 @@ import Menu from '../Menu'
 import MenuLine from '../MenuLine'
 import TextInput from '../TextInput'
 
-import AutocompleteInputInnerProps from './AutocompleteInput.interface'
+import AutocompleteInputProps from './AutocompleteInput.interface'
 import useAutocomplete from './useAutocomplete'
 
-const AutocompleteInput = React.forwardRef<
+export const AutocompleteInput = React.forwardRef<
   HTMLInputElement,
-  AutocompleteInputInnerProps
+  AutocompleteInputProps
 >((props, ref) => {
   const { value, options, onOptionSelect, ...inputProps } = props
   const mergedRef = useMergedRef<HTMLInputElement>(ref)
@@ -47,5 +47,3 @@ const AutocompleteInput = React.forwardRef<
     </React.Fragment>
   )
 })
-
-export default AutocompleteInput

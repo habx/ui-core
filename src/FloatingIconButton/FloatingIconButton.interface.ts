@@ -8,5 +8,9 @@ export default interface FloatingIconButtonProps
   fixed?: boolean
   small?: boolean
   secondary?: boolean
+
+  /**
+   * @ignore
+   */
   as?: styledAs
 }

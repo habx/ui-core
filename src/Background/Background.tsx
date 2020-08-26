@@ -5,7 +5,7 @@ import ThemeProvider from '../ThemeProvider'
 import BackgroundProps from './Background.interface'
 import { BackgroundContainer } from './Background.style'
 
-const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
+export const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
   (props, ref) => {
     const { backgroundColor, opacity = 1, simulated, ...rest } = props
 
@@ -22,5 +22,3 @@ const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
     )
   }
 )
-
-export default Background
