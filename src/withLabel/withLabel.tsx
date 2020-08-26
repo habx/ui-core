@@ -1,13 +1,30 @@
 import * as React from 'react'
-import styled from 'styled-components'
+import styled, { css, StyledComponent } from 'styled-components'
 
+import { mapValues } from '../_internal/data'
+import useUniqID from '../_internal/useUniqId'
 import palette from '../palette'
-import Text from '../Text'
-import { TextTypes } from '../Text/Text.interface'
+import Text, { RawTextComponents, TextProps, TextTypes } from '../Text'
 
-import WithLabel from './withLabel.interface'
+import WithLabel, { WithSemanticLabel } from './withLabel.interface'
 
-const LabelContainer = styled(Text)`
+interface LabelReceivedProps {
+  label?: string
+  labelType?: TextTypes
+  error?: boolean
+  disabled?: boolean
+}
+
+interface Options {
+  padding?: 'small' | 'regular' | 'large'
+  orientation?: 'vertical' | 'horizontal' | 'horizontal-reverse'
+}
+
+interface SemanticOptions extends Options {
+  testid: string
+}
+
+const labelStyle = css`
   user-select: none;
 
   margin: auto 0;
@@ -15,6 +32,22 @@ const LabelContainer = styled(Text)`
   &[data-disabled='true'] {
     color: ${palette.darkBlue[400]};
   }
+
+  [data-orientation='vertical'] > & {
+    padding-bottom: 8px;
+  }
+
+  [data-orientation='horizontal'] > & {
+    padding-right: 8px;
+  }
+
+  [data-orientation='horizontal-reverse'] > & {
+    padding-left: 8px;
+  }
+`
+
+const LabelContainer = styled(Text)`
+  ${labelStyle}
 `
 
 const FieldWithLabelContainer = styled.div`
@@ -22,44 +55,28 @@ const FieldWithLabelContainer = styled.div`
 
   &[data-orientation='vertical'] {
     flex-direction: column;
-
-    & > ${LabelContainer} {
-      padding-bottom: 8px;
-    }
   }
 
   &[data-orientation='horizontal'] {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
-    & > ${LabelContainer} {
-      padding-right: 8px;
-    }
   }
 
   &[data-orientation='horizontal-reverse'] {
     flex-direction: row-reverse;
     justify-content: flex-end;
     align-items: center;
-
-    & > ${LabelContainer} {
-      padding-left: 8px;
-    }
   }
 `
 
-type LabelReceivedProps = {
-  label?: string
-  labelType?: TextTypes
-  error?: boolean
-  disabled?: boolean
-}
-
-type Options = {
-  padding?: 'small' | 'regular' | 'large'
-  orientation?: 'vertical' | 'horizontal' | 'horizontal-reverse'
-}
+const RawLabelComponents = mapValues(
+  RawTextComponents,
+  (RawText) =>
+    styled(RawText).attrs(() => ({ as: 'label' }))`
+      ${labelStyle}
+    `
+) as Record<TextTypes, StyledComponent<'label', any, TextProps>>
 
 const withLabel = <RefElement extends HTMLElement>({
   padding = 'small',
@@ -96,5 +113,37 @@ const withLabel = <RefElement extends HTMLElement>({
 
   return Field
 }
+
+export const withSemanticLabel = <RefElement extends HTMLElement>({
+  orientation = 'vertical',
+  padding = 'small',
+  testid,
+}: SemanticOptions) => <Props extends object>(
+  WrappedComponent: React.ComponentType<Props>
+) =>
+  React.forwardRef<RefElement, WithSemanticLabel<Props>>(
+    ({ label, labelType = 'regular', id, ...props }, ref) => {
+      const fieldId = useUniqID(id)
+      const Label = RawLabelComponents[labelType]
+
+      return (
+        <FieldWithLabelContainer
+          data-orientation={orientation}
+          data-padding={padding}
+        >
+          <Label
+            data-disabled={props.disabled}
+            data-testid={testid}
+            htmlFor={fieldId}
+            opacity={1}
+            warning={props.error}
+          >
+            {label}
+          </Label>
+          <WrappedComponent {...(props as Props)} ref={ref} id={fieldId} />
+        </FieldWithLabelContainer>
+      )
+    }
+  )
 
 export default withLabel

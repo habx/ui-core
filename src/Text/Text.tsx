@@ -1,5 +1,5 @@
 import * as React from 'react'
-import styled, { css } from 'styled-components'
+import styled, { css, StyledComponent } from 'styled-components'
 
 import { mapValues } from '../_internal/data'
 import breakpoints from '../breakpoints'
@@ -89,28 +89,27 @@ export const textStyles = {
   captionSmall: captionSmallTextStyle,
 }
 
-const components = mapValues(textStyles, (style) => ({
-  span: styled.span`
-    ${style}
-  `,
-  div: styled.div`
-    ${style}
-  `,
-})) as Record<
-  TextTypes,
-  { span: React.ComponentType<any>; div: React.ComponentType<any> }
->
+export const RawTextComponents = mapValues(
+  textStyles,
+  (style) =>
+    styled.div`
+      ${style}
+    `
+) as Record<TextTypes, StyledComponent<'div', any, TextProps>>
 
-const InnerText = React.forwardRef<HTMLDivElement, TextProps>((props, ref) => {
-  const { type = 'regular', inline, ...rest } = props
+const InnerText = React.forwardRef<HTMLElement, TextProps>(
+  ({ inline, type = 'regular', ...props }, ref) => {
+    const Component = RawTextComponents[type]
 
-  const TitleComponent = React.useMemo(
-    () => components[type][inline ? 'span' : 'div'],
-    [inline, type]
-  )
-
-  return <TitleComponent ref={ref} {...rest} />
-})
+    return (
+      <Component
+        ref={ref}
+        as={inline === true ? 'span' : undefined}
+        {...props}
+      />
+    )
+  }
+)
 
 export const Text = withMarkdown<HTMLDivElement, { inline?: boolean }>({
   inline: (props) =>
