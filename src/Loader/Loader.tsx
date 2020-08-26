@@ -14,11 +14,12 @@ import {
 
 export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(
   (props, ref) => {
-    const id = useUniqID()
+    const containerId = useUniqID()
+    const pathId = useUniqID()
 
     const { colored = true, size = 'medium', outline = false, ...rest } = props
-    const loaderClipPathContainerId = `loader-container-clip-path-${id}`
-    const loaderPathId = `loader-path-${Math.random()}`
+    const loaderClipPathContainerId = `loader-container-clip-path-${containerId}`
+    const loaderPathId = `loader-path-${pathId}`
     const pathProps = React.useMemo(() => {
       switch (size) {
         case 'large':
