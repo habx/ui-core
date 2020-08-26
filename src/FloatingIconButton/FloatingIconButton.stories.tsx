@@ -1,23 +1,21 @@
-import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_internal/StorybookGrid'
+import withGrid from '../_storybook/withGrid'
 import Card from '../Card'
 
-import BaseFloatingIconButton from './FloatingIconButton'
-import FloatingIconButtonProps from './FloatingIconButton.interface'
+import FloatingIconButton, { FloatingIconButtonProps } from './index'
 
 const Container = styled(Card)`
   width: 300px;
   height: 200px;
 `
 
-const FloatingIconButton: React.FunctionComponent<FloatingIconButtonProps> = (
+const WrappedFloatingIconButton: React.FunctionComponent<FloatingIconButtonProps> = (
   props
 ) => (
   <Container>
-    <BaseFloatingIconButton {...props} />
+    <FloatingIconButton {...props} />
   </Container>
 )
 
@@ -70,41 +68,23 @@ const Grid = withGrid<FloatingIconButtonProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
-})(FloatingIconButton)
-
-const positions: {
-  [key: string]: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right'
-} = {
-  'Bottom Left': 'bottom-left',
-  'Bottom Right': 'bottom-right',
-  'Top Left': 'top-left',
-  'Top Right': 'top-right',
-}
+})(WrappedFloatingIconButton)
 
 export default {
   title: 'Actions/FloatingIconButton',
-  decorators: [withKnobs],
+  component: FloatingIconButton,
+  argTypes: {
+    icon: {
+      defaultValue: 'list',
+    },
+  },
 }
 
-export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <FloatingIconButton
-    icon="list"
-    secondary={boolean('Color override : Secondary', false)}
-    warning={boolean('Color override : Warning', false)}
-    disabled={boolean('Disabled', false)}
-    position={select('Position', positions, 'bottom-right')}
-  >
-    Liste
-  </FloatingIconButton>
+export const basic = (props: FloatingIconButtonProps) => (
+  <WrappedFloatingIconButton {...props} />
 )
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -113,3 +93,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

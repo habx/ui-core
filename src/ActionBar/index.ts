@@ -1,4 +1,4 @@
-import ActionBar from './ActionBar'
+import { ActionBar } from './ActionBar'
 
 export { default as ActionBarProps } from './ActionBar.interface'
 

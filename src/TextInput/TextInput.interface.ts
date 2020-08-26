@@ -5,16 +5,18 @@ import { WithLabel } from '../withLabel'
 
 export interface TextInputInnerProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * @ignore
+   */
+  as?: styledAs
+
   small?: boolean
   error?: boolean
-  /**
-   * Validation button label
-   */
   light?: boolean
-  as?: styledAs
   elementRight?: React.ReactNode
   elementLeft?: React.ReactNode
   canReset?: boolean
+  placeholder?: string
 }
 
 export default interface TextInputProps

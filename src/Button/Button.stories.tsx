@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import StorybookCenterItemContainer from '../_internal/StorybookCenterItem.style'
-import withGrid from '../_internal/StorybookGrid'
+import CenteredComponent from '../_storybook/CenteredComponent'
+import withGrid from '../_storybook/withGrid'
 import Icon from '../Icon'
 
 import Button, { ButtonProps } from './index'
@@ -86,9 +86,9 @@ export default {
 }
 
 export const basic = ({ ...props }) => (
-  <StorybookCenterItemContainer>
+  <CenteredComponent>
     <Button {...props}>Voir tous nos projets</Button>
-  </StorybookCenterItemContainer>
+  </CenteredComponent>
 )
 
 basic.story = {

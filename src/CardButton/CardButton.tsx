@@ -8,18 +8,18 @@ import {
   CardButtonTitle,
 } from './CardButton.style'
 
-const CardButton = React.forwardRef<HTMLDivElement, CardProps>((props, ref) => {
-  const { title, illustration, description, markdown, ...rest } = props
+export const CardButton = React.forwardRef<HTMLDivElement, CardProps>(
+  (props, ref) => {
+    const { title, illustration, description, markdown, ...rest } = props
 
-  return (
-    <CardButtonContainer ref={ref} animated {...rest}>
-      <CardButtonIllustration src={illustration} alt={title} />
-      <CardButtonTitle markdown={markdown}>{title}</CardButtonTitle>
-      <CardButtonDescription markdown={markdown}>
-        {description}
-      </CardButtonDescription>
-    </CardButtonContainer>
-  )
-})
-
-export default CardButton
+    return (
+      <CardButtonContainer ref={ref} animated {...rest}>
+        <CardButtonIllustration src={illustration} alt={title} />
+        <CardButtonTitle markdown={markdown}>{title}</CardButtonTitle>
+        <CardButtonDescription markdown={markdown}>
+          {description}
+        </CardButtonDescription>
+      </CardButtonContainer>
+    )
+  }
+)

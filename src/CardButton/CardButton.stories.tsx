@@ -1,54 +1,27 @@
-import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 
-import withGrid from '../_internal/StorybookGrid'
-
-import CardButton from './CardButton'
-import CardProps from './CardButton.interface'
-
-const GRID_LINES = [
-  {
-    title: 'Default',
-  },
-]
-
-const GRID_ITEMS = [
-  {
-    label: 'Default',
-  },
-]
-
-const Grid = withGrid<CardProps>({
-  props: {
-    title: 'Rocket launcher',
-    description: 'Accédez au résumé de vos choix, recevez le par mail',
-    illustration:
-      '//res.cloudinary.com/habx/image/upload/illustrations/habxmojies/rocket.svg',
-  },
-  lines: GRID_LINES,
-  items: GRID_ITEMS,
-})(CardButton)
+import CardButton, { CardButtonProps } from './index'
 
 export default {
   title: 'Actions/CardButton',
-  decorators: [withKnobs],
+  component: CardButton,
+  argTypes: {
+    title: {
+      defaultValue: 'Rocket launcher',
+    },
+    description: {
+      defaultValue: 'Accédez au résumé de vos choix, recevez le par mail',
+    },
+    illustration: {
+      defaultValue:
+        '//res.cloudinary.com/habx/image/upload/illustrations/habxmojies/rocket.svg',
+    },
+  },
 }
 
-export const gallery = () => <Grid />
+export const basic = (props: CardButtonProps) => <CardButton {...props} />
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <CardButton
-    title="Rocket launcher"
-    description="Accédez au résumé de vos choix, recevez le par mail"
-    illustration="//res.cloudinary.com/habx/image/upload/illustrations/habxmojies/rocket.svg"
-  />
-)
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',

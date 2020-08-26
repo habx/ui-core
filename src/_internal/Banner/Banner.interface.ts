@@ -3,10 +3,10 @@ import { BackgroundProps } from '../../Background'
 export default interface BannerProps
   extends Omit<BackgroundProps, 'backgroundColor'> {
   /**
-   * is baner visible
-   * @default false
+   * is banner visible
    */
   open: boolean
+
   /**
    * background color hex overwrite
    */

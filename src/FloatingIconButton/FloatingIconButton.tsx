@@ -5,7 +5,7 @@ import Icon from '../Icon'
 import FloatingButtonProps from './FloatingIconButton.interface'
 import { FloatingButtonContainer } from './FloatingIconButton.style'
 
-const FloatingIconButton = React.forwardRef<
+export const FloatingIconButton = React.forwardRef<
   HTMLButtonElement,
   FloatingButtonProps
 >((props, ref) => {
@@ -32,5 +32,3 @@ const FloatingIconButton = React.forwardRef<
     </FloatingButtonContainer>
   )
 })
-
-export default FloatingIconButton

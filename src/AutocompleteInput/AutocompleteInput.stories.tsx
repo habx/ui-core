@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import AutocompleteInput from '../AutocompleteInput'
+import AutocompleteInput, { AutocompleteInputProps } from './index'
 
 const AutocompleteInputContainer = styled.div`
   display: flex;
@@ -9,15 +9,16 @@ const AutocompleteInputContainer = styled.div`
   width: 300px;
 `
 
-const AutocompleteTextInput = () => {
+const AutocompleteTextInput = (props: AutocompleteInputProps) => {
   const [value, setValue] = React.useState('')
+
   return (
     <AutocompleteInputContainer>
       <AutocompleteInput
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        placeholder="Cities"
         options={['Paris', 'Bordeaux', 'Nantes', 'Lyon']}
+        {...props}
       />
     </AutocompleteInputContainer>
   )
@@ -25,6 +26,14 @@ const AutocompleteTextInput = () => {
 
 export default {
   title: 'Input/AutocompleteInput',
+  component: AutocompleteInput,
+  argTypes: {
+    placeholder: {
+      defaultValue: 'Cities',
+    },
+  },
 }
 
-export const Basic = () => <AutocompleteTextInput />
+export const basic = (props: AutocompleteInputProps) => (
+  <AutocompleteTextInput {...props} />
+)

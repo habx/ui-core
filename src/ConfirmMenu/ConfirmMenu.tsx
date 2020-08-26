@@ -14,7 +14,7 @@ export const ConfirmMenu = React.forwardRef<HTMLUListElement, ConfirmMenuProps>(
       onClose = () => {},
       onConfirm = () => {},
       triggerRef: customTriggerRef,
-      textual,
+      textual = false,
       position = 'right',
       ...rest
     } = props

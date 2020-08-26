@@ -2,7 +2,7 @@ import { withKnobs, boolean, array, text } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_internal/StorybookGrid'
+import withGrid from '../_storybook/withGrid'
 
 import TextInputList from './index'
 import TextInputListProps from './TextInputList.interface'

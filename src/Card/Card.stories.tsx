@@ -1,15 +1,14 @@
-import { withKnobs, boolean, select } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_internal/StorybookGrid'
+import CenteredComponent from '../_storybook/CenteredComponent'
+import withGrid from '../_storybook/withGrid'
 import Button from '../Button'
 import Icon from '../Icon'
 import Text from '../Text'
 import Title from '../Title'
 
-import Card from './Card'
-import CardProps, { CardSpacing } from './Card.interface'
+import Card, { CardProps } from './index'
 
 const CardChildrenContainer = styled.div`
   display: flex;
@@ -110,34 +109,16 @@ const Grid = withGrid<CardProps>({
 
 export default {
   title: 'Layouts/Card',
-  decorators: [withKnobs],
+  component: Card,
 }
 
-export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-const spacings: { [key: string]: CardSpacing } = {
-  None: 'none',
-  Narrow: 'narrow',
-  'Narrow (horizontal ony)': 'narrow-horizontal-only',
-  Regular: 'regular',
-  'Regular (horizontal only)': 'regular-horizontal-only',
-}
-
-export const dynamic = () => (
-  <Card
-    animated={boolean('Animated', false)}
-    flat={boolean('Flat', false)}
-    spacing={select('Spacing', spacings, 'none')}
-  >
-    <CardChildren />
-  </Card>
+export const basic = (props: CardProps) => (
+  <CenteredComponent>
+    <Card {...props}>{GRID_PROPS.children}</Card>
+  </CenteredComponent>
 )
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -146,3 +127,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

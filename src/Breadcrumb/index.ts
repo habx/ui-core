@@ -1,4 +1,4 @@
-import Breadcrumb from './Breadcrumb'
+import { Breadcrumb } from './Breadcrumb'
 
 export { default as BreadcrumbProps } from './Breadcrumb.interface'
 

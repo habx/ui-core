@@ -1,7 +1,7 @@
 import { withKnobs, boolean } from '@storybook/addon-knobs'
 import * as React from 'react'
 
-import withGrid from '../_internal/StorybookGrid'
+import withGrid from '../_storybook/withGrid'
 
 import IconButton from './IconButton'
 import IconButtonProps from './IconButton.interface'

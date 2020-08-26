@@ -1,13 +1,13 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_internal/StorybookGrid'
+import withGrid from '../_storybook/withGrid'
 import Card from '../Card'
 import palette from '../palette'
 import Text from '../Text'
 
-import AlertBanner from './AlertBanner'
-import AlertBannerProps from './AlertBanner.interface'
+import AlertBanner, { AlertBannerProps } from './index'
+
 const CardContainer = styled(Card)`
   height: 400px;
 `
@@ -60,15 +60,16 @@ const Grid = withGrid<AlertBannerProps>({
 export default {
   title: 'Alerts/AlertBanner',
   component: AlertBanner,
+  argTypes: {
+    open: {
+      defaultValue: true,
+    },
+  },
 }
 
-export const Default = ({ ...props }) => (
-  <AlertBanner open message="alert banner message" {...props} />
-)
+export const basic = (props: AlertBannerProps) => <AlertBanner {...props} />
 
-export const gallery = () => <Grid />
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -77,3 +78,5 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />

@@ -1,4 +1,4 @@
-import AutocompleteInput from './AutocompleteInput'
+import { AutocompleteInput } from './AutocompleteInput'
 
 export { default as AutocompleteInputProps } from './AutocompleteInput.interface'
 

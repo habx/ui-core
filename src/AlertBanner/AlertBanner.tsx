@@ -7,7 +7,7 @@ import Text from '../Text'
 import AlertBannerProps from './AlertBanner.interface'
 import { AlertBannerContent } from './AlertBanner.style'
 
-const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>(
+export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>(
   (props, ref) => {
     const { warning, message, ...rest } = props
 
@@ -24,5 +24,3 @@ const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>(
     )
   }
 )
-
-export default AlertBanner

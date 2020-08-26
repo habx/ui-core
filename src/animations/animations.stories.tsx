@@ -2,7 +2,7 @@ import { withKnobs, select } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_internal/StorybookGrid'
+import withGrid from '../_storybook/withGrid'
 import Button from '../Button'
 import palette from '../palette'
 import theme from '../theme'

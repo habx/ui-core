@@ -8,15 +8,18 @@ export default interface BackgroundProps
    * background of the element
    */
   backgroundColor: string
+
   /**
-   * opacity of the element
+   * opacity of the background
    */
   opacity?: number
+
   /**
-   * if true, it won't use theme background. It allows to "fake" the background property for children.
+   * if true, it won't apply the theme background to the DOM element. It allows to "fake" the background property for children.
    * @default false
    */
   simulated?: boolean
+
   /**
    * @ignore
    */
