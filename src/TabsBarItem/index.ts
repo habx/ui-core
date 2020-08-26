@@ -1,4 +1,4 @@
-import TabsBarItem from './TabsBarItem'
+import { TabsBarItem } from './TabsBarItem'
 
 export { default as TabsBarItemProps } from './TabsBarItem.interface'
 

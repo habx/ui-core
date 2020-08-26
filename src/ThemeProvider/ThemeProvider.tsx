@@ -14,7 +14,7 @@ import ThemeProviderProps, {
   DesignSystemThemePatch,
 } from './ThemeProvider.interface'
 
-const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
+export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
   backgroundColor,
   children,
@@ -90,5 +90,3 @@ const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
     </BaseThemeProvider>
   )
 }
-
-export default ThemeProvider

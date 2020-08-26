@@ -1,11 +1,10 @@
-import { withKnobs, boolean, text } from '@storybook/addon-knobs'
 import * as React from 'react'
 
+import CenteredComponent from '../_storybook/CenteredComponent'
 import withGrid from '../_storybook/withGrid'
 import Icon from '../Icon'
 
-import Tag from './Tag'
-import TagProps from './Tag.interface'
+import Tag, { TagProps } from './index'
 
 const GRID_PROPS = {
   children: 'Agencement 1',
@@ -63,30 +62,21 @@ const Grid = withGrid<TagProps>({
 
 export default {
   title: 'Actions/Tag',
-  decorators: [withKnobs],
+  component: Tag,
+  argTypes: {
+    children: {
+      defaultValue: 'Agencement 1',
+    },
+  },
 }
 
-export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <Tag
-    children={text('Value', 'Agencement 1')}
-    active={boolean('Active', false)}
-    disabled={boolean('Disabled', false)}
-    elementLeft={
-      boolean('Icon left', false) ? <Icon icon="close" /> : undefined
-    }
-    elementRight={
-      boolean('Icon right', false) ? <Icon icon="close" /> : undefined
-    }
-  />
+export const basic = (props: TagProps) => (
+  <CenteredComponent>
+    <Tag {...props} />
+  </CenteredComponent>
 )
 
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -95,3 +85,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

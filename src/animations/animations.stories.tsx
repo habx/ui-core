@@ -1,4 +1,3 @@
-import { withKnobs, select } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -128,34 +127,41 @@ const AnimationGrid = withGrid<AnimationCardProps>({
 
 export default {
   title: 'Utility/animations',
-  decorators: [withKnobs],
+  argTypes: {
+    duration: {
+      defaultValue: 'l',
+      type: 'select',
+      options: ['xs', 's', 'm', 'l'],
+    },
+    animation: {
+      defaultValue: 'emerge',
+      type: 'select',
+      options: {
+        Emerge: 'emerge',
+        'Emerge Z-Slant (from top)': 'emergeSlantFromTop',
+        'Emerge Z-Slant (from bottom)': 'emergeSlantFromBottom',
+        Dive: 'dive',
+        'Dive Z-Slant': 'diveSlant',
+      },
+    },
+  },
 }
 
-const animationNames = {
-  Emerge: 'emerge',
-  'Emerge Z-Slant (from top)': 'emergeSlantFromTop',
-  'Emerge Z-Slant (from bottom)': 'emergeSlantFromBottom',
-  Dive: 'dive',
-  'Dive Z-Slant': 'diveSlant',
-}
+export const basic = ({
+  duration,
+  animation,
+}: {
+  duration: Durations
+  animation: string
+}) => (
+  <AnimationCard
+    animation={animation}
+    visible={animation.startsWith('dive')}
+    duration={duration}
+  />
+)
 
-const durations = ['xs', 's', 'm', 'l']
-
-export const gallery = () => <AnimationGrid />
-
-export const dynamic = () => {
-  const animation = select('Animation', animationNames, 'emerge')
-
-  return (
-    <AnimationCard
-      animation={animation}
-      visible={animation.startsWith('dive')}
-      duration={select('Duration', durations, 'l')}
-    />
-  )
-}
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -164,3 +170,5 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <AnimationGrid />

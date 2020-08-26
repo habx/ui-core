@@ -3,7 +3,7 @@ import * as React from 'react'
 import TabsBarItemProps from './TabsBarItem.interface'
 import { TabsBarItemContainer, SideElementContainer } from './TabsBarItem.style'
 
-const TabsBarItem = React.forwardRef<HTMLLIElement, TabsBarItemProps>(
+export const TabsBarItem = React.forwardRef<HTMLLIElement, TabsBarItemProps>(
   (props, ref) => {
     const {
       children,
@@ -43,5 +43,3 @@ const TabsBarItem = React.forwardRef<HTMLLIElement, TabsBarItemProps>(
     )
   }
 )
-
-export default TabsBarItem

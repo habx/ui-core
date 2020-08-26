@@ -1,5 +1,5 @@
-import Tag from './Tab'
+import { Tab } from './Tab'
 
 export { default as TabProps } from './Tab.interface'
 
-export default Tag
+export default Tab

@@ -148,76 +148,76 @@ const useTooltip = (
   ]
 }
 
-const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>((props, ref) => {
-  const {
-    title,
-    description,
-    children,
-    small = false,
-    onClick,
-    triggerRef,
-    ...rest
-  } = props
+export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
+  (props, ref) => {
+    const {
+      title,
+      description,
+      children,
+      small = false,
+      onClick,
+      triggerRef,
+      ...rest
+    } = props
 
-  const [state, actions, refs] = useTooltip(props, ref, triggerRef)
+    const [state, actions, refs] = useTooltip(props, ref, triggerRef)
 
-  const modal = useModal<HTMLDivElement>({
-    open: state.visibilityState === TooltipVisibilityState.Visible,
-    onClose: () => {},
-    persistent: true,
-    animated: true,
-    animationDuration: ANIMATION_DURATION,
-  })
+    const modal = useModal<HTMLDivElement>({
+      open: state.visibilityState === TooltipVisibilityState.Visible,
+      onClose: () => {},
+      persistent: true,
+      animated: true,
+      animationDuration: ANIMATION_DURATION,
+    })
 
-  const content = React.isValidElement(children)
-    ? React.cloneElement(children, {
-        ref: refs.trigger,
-        onMouseEnter: actions.onMouseEnter,
-        onMouseLeave: actions.onMouseLeave,
-        ...(onClick ? { onClick } : {}),
-      })
-    : children
+    const content = React.isValidElement(children)
+      ? React.cloneElement(children, {
+          ref: refs.trigger,
+          onMouseEnter: actions.onMouseEnter,
+          onMouseLeave: actions.onMouseLeave,
+          ...(onClick ? { onClick } : {}),
+        })
+      : children
 
-  React.useEffect(() => {
-    if (triggerRef) {
-      const node = triggerRef.current
-      if (node) {
-        node.addEventListener('mouseover', actions.onMouseEnter)
-        node.addEventListener('mouseout', actions.onMouseLeave)
+    React.useEffect(() => {
+      if (triggerRef) {
+        const node = triggerRef.current
+        if (node) {
+          node.addEventListener('mouseover', actions.onMouseEnter)
+          node.addEventListener('mouseout', actions.onMouseLeave)
 
-        return () => {
-          node.removeEventListener('mouseover', actions.onMouseEnter)
-          node.removeEventListener('mouseout', actions.onMouseLeave)
+          return () => {
+            node.removeEventListener('mouseover', actions.onMouseEnter)
+            node.removeEventListener('mouseout', actions.onMouseLeave)
+          }
         }
       }
-    }
-  }, [actions.onMouseEnter, actions.onMouseLeave, triggerRef])
+    }, [actions.onMouseEnter, actions.onMouseLeave, triggerRef])
 
-  return (
-    <React.Fragment>
-      {content}
-      {isClientSide &&
-        state.visibilityState !== TooltipVisibilityState.NotInstantiated &&
-        ReactDOM.createPortal(
-          <TooltipContainer
-            ref={refs.tooltip}
-            backgroundColor={palette.darkBlue[700]}
-            data-has-description={!!description}
-            data-state={modal.state}
-            style={state.position}
-            {...rest}
-          >
-            <Text opacity={1} type={small ? 'caption' : 'regular'}>
-              {title}
-            </Text>
-            {description && (
-              <Text type={small ? 'caption' : 'regular'}>{description}</Text>
-            )}
-          </TooltipContainer>,
-          document.body
-        )}
-    </React.Fragment>
-  )
-})
-
-export default Tooltip
+    return (
+      <React.Fragment>
+        {content}
+        {isClientSide &&
+          state.visibilityState !== TooltipVisibilityState.NotInstantiated &&
+          ReactDOM.createPortal(
+            <TooltipContainer
+              ref={refs.tooltip}
+              backgroundColor={palette.darkBlue[700]}
+              data-has-description={!!description}
+              data-state={modal.state}
+              style={state.position}
+              {...rest}
+            >
+              <Text opacity={1} type={small ? 'caption' : 'regular'}>
+                {title}
+              </Text>
+              {description && (
+                <Text type={small ? 'caption' : 'regular'}>{description}</Text>
+              )}
+            </TooltipContainer>,
+            document.body
+          )}
+      </React.Fragment>
+    )
+  }
+)

@@ -1,4 +1,4 @@
-import Tag from './Tag'
+import { Tag } from './Tag'
 
 export { default as TagProps } from './Tag.interface'
 
