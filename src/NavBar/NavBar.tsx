@@ -69,7 +69,7 @@ const INITIAL_STATE: NavBarState = {
   isPersistent: false,
 }
 
-const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
+export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
   (baseProps, ref) => {
     const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
     const theme = useTheme()
@@ -205,5 +205,3 @@ const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
     )
   }
 )
-
-export default NavBar

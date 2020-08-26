@@ -23,18 +23,17 @@ const Content: React.FunctionComponent<{ modal: Modal<HTMLUListElement> }> = ({
   return <React.Fragment>{children}</React.Fragment>
 }
 
-const NavBarMenuItem = React.forwardRef<HTMLUListElement, NavBarMenuItemProps>(
-  ({ children, bottom, ...props }, ref) => (
-    <NavBarMenuItemContainer data-bottom={bottom}>
-      <Menu
-        position="horizontal"
-        ref={ref}
-        triggerElement={<NavBarItem {...props} />}
-      >
-        {(modal) => <Content modal={modal}>{children}</Content>}
-      </Menu>
-    </NavBarMenuItemContainer>
-  )
-)
-
-export default NavBarMenuItem
+export const NavBarMenuItem = React.forwardRef<
+  HTMLUListElement,
+  NavBarMenuItemProps
+>(({ children, bottom, ...props }, ref) => (
+  <NavBarMenuItemContainer data-bottom={bottom}>
+    <Menu
+      position="horizontal"
+      ref={ref}
+      triggerElement={<NavBarItem {...props} />}
+    >
+      {(modal) => <Content modal={modal}>{children}</Content>}
+    </Menu>
+  </NavBarMenuItemContainer>
+))

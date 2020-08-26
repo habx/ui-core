@@ -1,10 +1,8 @@
-import { withKnobs, boolean } from '@storybook/addon-knobs'
 import * as React from 'react'
 
 import withGrid from '../_storybook/withGrid'
 
-import IconButton from './IconButton'
-import IconButtonProps from './IconButton.interface'
+import IconButton, { IconButtonProps } from './index'
 
 const GRID_PROPS = {
   icon: 'zoom-in',
@@ -55,24 +53,17 @@ const Grid = withGrid<IconButtonProps>({
 
 export default {
   title: 'Actions/IconButton',
-  decorators: [withKnobs],
+  component: IconButton,
+  argTypes: {
+    icon: {
+      defaultValue: 'list',
+    },
+  },
 }
 
-export const gallery = () => <Grid />
+export const basic = (props: IconButtonProps) => <IconButton {...props} />
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
-export const dynamic = () => (
-  <IconButton
-    icon="list"
-    small={boolean('Small', false)}
-    large={boolean('Large', false)}
-  />
-)
-
-gallery.story = {
+basic.story = {
   parameters: {
     design: {
       type: 'figma',
@@ -81,3 +72,9 @@ gallery.story = {
     },
   },
 }
+
+export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

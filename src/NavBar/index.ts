@@ -1,4 +1,4 @@
-import NavBar from './NavBar'
+import { NavBar } from './NavBar'
 
 export { default as NavBarProps } from './NavBar.interface'
 

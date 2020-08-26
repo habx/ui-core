@@ -6,10 +6,15 @@ import MenuLine from '../MenuLine'
 import NavBarItem from '../NavBarItem'
 import NavBarMenuItem from '../NavBarMenuItem'
 
-import NavBar from './NavBar'
+import NavBar, { NavBarProps } from './index'
+
+const Wrapper = styled.div`
+  min-height: 500px;
+  max-height: 100vh;
+`
 
 const Container = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
@@ -22,19 +27,32 @@ const Content = styled.div`
 `
 
 const navDecorator = (storyFn: Function) => (
-  <Container>
-    {storyFn()}
-    <Content />
-  </Container>
+  <React.Fragment>
+    <Wrapper />
+    <Container>
+      {storyFn()}
+      <Content />
+    </Container>
+  </React.Fragment>
 )
 
 export default {
   title: 'Navigation/NavBar',
   decorators: [navDecorator],
+  component: NavBar,
+  subcomponents: { NavBarItem, NavBarMenuItem },
+  argTypes: {
+    title: {
+      defaultValue: 'Title',
+    },
+    subtitle: {
+      defaultValue: '3.7.0',
+    },
+  },
 }
 
-export const basic = () => (
-  <NavBar title="Projects" subtitle="v3.7.0">
+export const basic = (props: NavBarProps) => (
+  <NavBar {...props}>
     <NavBarItem
       icon={<Icon icon="house-building-outline" />}
       label="Programmes"

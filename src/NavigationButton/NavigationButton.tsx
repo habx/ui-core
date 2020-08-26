@@ -22,7 +22,7 @@ const getIcon = (usage: 'navigation' | 'toggle', previous?: boolean) => {
   }
 }
 
-const NavigationButton = React.forwardRef<
+export const NavigationButton = React.forwardRef<
   HTMLButtonElement,
   NavigationButtonProps
 >((props, ref) => {
@@ -51,5 +51,3 @@ const NavigationButton = React.forwardRef<
     </NavigationButtonContainer>
   )
 })
-
-export default NavigationButton

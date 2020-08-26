@@ -6,7 +6,7 @@ import Text from '../Text'
 import MenuLineProps from './MenuLine.interface'
 import { MenuLineContainer, SideElementContainer } from './MenuLine.style'
 
-const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
+export const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
   (props, ref) => {
     const {
       children,
@@ -62,5 +62,3 @@ const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
     )
   }
 )
-
-export default MenuLine

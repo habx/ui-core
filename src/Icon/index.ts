@@ -1,4 +1,4 @@
-import Icon from './Icon'
+import { Icon } from './Icon'
 
 export { default as IconProps } from './Icon.interface'
 

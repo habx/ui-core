@@ -1,15 +1,14 @@
-import { withKnobs } from '@storybook/addon-knobs'
 import * as React from 'react'
 import styled from 'styled-components'
 
+import CenteredComponent from '../_storybook/CenteredComponent'
 import withGrid from '../_storybook/withGrid'
 import Button from '../Button'
 import Card from '../Card'
 import palette from '../palette'
 import Title from '../Title'
 
-import HeaderBar from './HeaderBar'
-import HeaderBarProps from './HeaderBar.interface'
+import HeaderBar, { HeaderBarProps } from './index'
 
 const CardChildrenContainer = styled.div`
   display: flex;
@@ -90,8 +89,16 @@ const GridInCard = withGrid<HeaderBarProps>({
 
 export default {
   title: 'Layouts/HeaderBar',
-  decorators: [withKnobs],
+  component: HeaderBar,
 }
+
+export const basic = (props: HeaderBarProps) => (
+  <CenteredComponent>
+    <HeaderBarCardWrapper>
+      <HeaderBar {...props}>{GRID_ITEMS[1].props.children}</HeaderBar>
+    </HeaderBarCardWrapper>
+  </CenteredComponent>
+)
 
 export const gallery = () => <Grid />
 

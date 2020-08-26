@@ -1,14 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+import CenteredComponent from '../_storybook/CenteredComponent'
 import withGrid from '../_storybook/withGrid'
 import Button from '../Button'
 import Icon from '../Icon'
 import Text from '../Text'
 import Title from '../Title'
 
-import BaseSlideShow from './SlideShow'
-import SlideShowProps from './SlideShow.interface'
+import SlideShow, { SlideShowProps } from './index'
 
 const Container = styled.div`
   position: relative;
@@ -74,9 +74,9 @@ const GRID_LINES = [
 
 const GRID_ITEMS = [{}]
 
-const SlideShow: React.FunctionComponent<SlideShowProps> = (props) => (
+const WrappedSlideShow: React.FunctionComponent<SlideShowProps> = (props) => (
   <Container>
-    <BaseSlideShow {...props} />
+    <SlideShow {...props} />
   </Container>
 )
 
@@ -84,11 +84,18 @@ const Grid = withGrid<SlideShowProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
-})(SlideShow)
+})(WrappedSlideShow)
 
 export default {
   title: 'Layouts/SlideShow',
+  component: SlideShow,
 }
+
+export const basic = (props: SlideShowProps) => (
+  <CenteredComponent>
+    <WrappedSlideShow {...props} {...GRID_PROPS} />
+  </CenteredComponent>
+)
 
 export const gallery = () => <Grid />
 

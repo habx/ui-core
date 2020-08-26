@@ -6,7 +6,7 @@ import PromptModals from '../prompt/PromptModals'
 import CssVariables from './CssVariables'
 import ThunderProviderProps from './Provider.interface'
 
-const Provider: React.FunctionComponent<ThunderProviderProps> = ({
+export const Provider: React.FunctionComponent<ThunderProviderProps> = ({
   children,
 }) => (
   <React.Fragment>
@@ -16,5 +16,3 @@ const Provider: React.FunctionComponent<ThunderProviderProps> = ({
     <CssVariables />
   </React.Fragment>
 )
-
-export default Provider

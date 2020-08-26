@@ -1,4 +1,4 @@
-import NavBarMenuItem from './NavBarMenuItem'
+import { NavBarMenuItem } from './NavBarMenuItem'
 
 export { default as NavBarMenuItemProps } from './NavBarMenuItem.interface'
 
