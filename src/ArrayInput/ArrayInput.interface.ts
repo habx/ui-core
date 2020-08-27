@@ -25,8 +25,8 @@ export interface ArrayInputInnerProps
   openedItemIndex?: number
   itemComponent?: React.ComponentType<ArrayInputItemComponentProps>
   itemTitleComponent?: React.ComponentType<ArrayInputItemComponentProps>
-  renderItem?: (itemProps: ArrayInputItemComponentProps) => JSX.Element
-  renderItemTitle?: (itemProps: ArrayInputItemComponentProps) => JSX.Element
+  renderItem?: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
+  renderItemTitle?: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
 }
 
 export default interface ArrayInputProps

@@ -13,8 +13,8 @@ export default interface ItemProps
   item: any
   disabled?: boolean
   canBeReordered?: boolean
-  renderItem: (itemProps: ArrayInputItemComponentProps) => JSX.Element
-  renderItemTitle: (itemProps: ArrayInputItemComponentProps) => JSX.Element
+  renderItem: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
+  renderItemTitle: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
   onReorder?: (oldPosition: number, newPosition: number) => void
   onDelete: (position: number) => void
 }
