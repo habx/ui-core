@@ -5,6 +5,7 @@ import { mapValues } from '../_internal/data'
 import useUniqID from '../_internal/useUniqId'
 import palette from '../palette'
 import Text, { RawTextComponents, TextProps, TextTypes } from '../Text'
+import withMarkdown from '../withMarkdown'
 
 import WithLabel, { WithSemanticLabel } from './withLabel.interface'
 
@@ -138,12 +139,14 @@ export const withSemanticLabel = <RefElement extends HTMLElement>({
             opacity={1}
             warning={props.error}
           >
-            {label}
+            <Markdown markdown>{label}</Markdown>
           </Label>
           <WrappedComponent {...(props as Props)} ref={ref} id={fieldId} />
         </FieldWithLabelContainer>
       )
     }
   )
+
+const Markdown = withMarkdown({ inline: true })((props) => <span {...props} />)
 
 export default withLabel
