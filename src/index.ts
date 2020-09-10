@@ -23,6 +23,8 @@ export { default as Menu, MenuProps } from './Menu'
 export { default as MenuSection, MenuSectionProps } from './MenuSection'
 export { default as MenuLine, MenuLineProps } from './MenuLine'
 export { default as ConfirmMenu, ConfirmMenuProps } from './ConfirmMenu'
+
+
 /*
   Buttons / Tags
  */
@@ -44,6 +46,7 @@ export { default as NavBarMenuItem,  NavBarMenuItemProps } from './NavBarMenuIte
 export { default as Tab, TabProps } from './Tab'
 export { default as TabsBar, TabsBarProps } from './TabsBar'
 export { default as TabsBarItem, TabsBarItemProps } from './TabsBarItem'
+export { default as TabsBarMenuItem, TabsBarMenuItemProps } from './TabsBarMenuItem'
 export { default as NavigationDots, NavigationDotsProps } from './NavigationDots'
 export { default as Breadcrumb, BreadcrumbProps } from './Breadcrumb'
 export { default as BreadcrumbItem, BreadcrumbItemProps } from './BreadcrumbItem'

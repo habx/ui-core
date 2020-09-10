@@ -3,7 +3,9 @@ import styled from 'styled-components'
 
 import Badge from '../Badge'
 import HeaderBar from '../HeaderBar'
+import MenuLine from '../MenuLine'
 import TabsBarItem from '../TabsBarItem'
+import TabsBarMenuItem from '../TabsBarMenuItem'
 import Tooltip from '../Tooltip'
 
 import TabsBar from './index'
@@ -56,5 +58,9 @@ export const basic = () => (
     >
       Awesome page n°2
     </TabsBarItem>
+    <TabsBarMenuItem label="Awesome menu">
+      <MenuLine>Sub page n°1</MenuLine>
+      <MenuLine>Sub page n°2</MenuLine>
+    </TabsBarMenuItem>
   </TabsBar>
 )
