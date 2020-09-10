@@ -1,6 +1,10 @@
 import * as React from 'react'
 
-export type StepperStep = { label: string; disabled?: boolean }
+export type StepperStep<Value = any> = {
+  label: string
+  disabled?: boolean
+  value: Value
+}
 
 export default interface StepperProps
   extends React.HTMLAttributes<HTMLDivElement> {
