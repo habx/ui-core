@@ -72,13 +72,17 @@ export const Step = styled.div`
       }
     }
 
+    &[data-current='true'] {
+      --stepper-step-text-color: ${theme.color('primary')};
+    }
+
     &[data-to-do='true'] {
       --stepper-step-text-color: ${palette.darkBlue[500]};
       --stepper-step-circle-color: ${palette.darkBlue[500]};
-    }
 
-    &:hover {
-      --stepper-step-border-width: 4px;
+      &:hover {
+        --stepper-step-border-width: 4px;
+      }
     }
   }
 
