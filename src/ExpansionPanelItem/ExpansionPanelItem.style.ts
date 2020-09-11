@@ -14,15 +14,17 @@ export const ExpansionPanelItemContainer = styled.div`
 
   transition: all ease-in-out 150ms;
 
-  &:not([data-light='true']) {
-    border-bottom: 1px solid ${palette.darkBlue[300]};
+  @media screen {
+    &:not([data-light='true']) {
+      border-bottom: 1px solid ${palette.darkBlue[300]};
 
-    &:hover {
-      border-color: ${palette.darkBlue[700]};
-    }
-    &[data-state='opened'],
-    &[data-state='opening'] {
-      border-color: ${palette.darkBlue[700]};
+      &:hover {
+        border-color: ${palette.darkBlue[700]};
+      }
+      &[data-state='opened'],
+      &[data-state='opening'] {
+        border-color: ${palette.darkBlue[700]};
+      }
     }
   }
   &[data-disabled='true'] {
@@ -62,11 +64,13 @@ export const HeaderBarElement = styled.div`
 
   font-size: var(--expansionPanelItemFontSize);
 
-  &:first-child > *:not(:last-child) {
-    margin-right: 12px;
-  }
-  &:last-child > *:not(:first-child) {
-    margin-left: 12px;
+  @media screen {
+    &:first-child > *:not(:last-child) {
+      margin-right: 12px;
+    }
+    &:last-child > *:not(:first-child) {
+      margin-left: 12px;
+    }
   }
 `
 
@@ -86,16 +90,20 @@ export const ExpansionPanelItemContent = styled(Layout)<{ height: number }>`
   --layout-top-padding: 0;
   --layout-bottom-padding: 0;
 
-  &[data-state='opening'],
-  &[data-state='closing'] {
-    max-height: ${({ height }) => height}px;
-  }
+  @media screen {
+    &[data-state='opening'],
+    &[data-state='closing'] {
+      max-height: ${({ height }) => height}px;
+    }
 
-  &[data-state='closed'] {
-    max-height: 0;
+    &[data-state='closed'] {
+      max-height: 0;
+    }
   }
 `
 
 export const CoreContent = styled.div`
-  padding-bottom: 48px;
+  @media screen {
+    padding-bottom: 48px;
+  }
 `
