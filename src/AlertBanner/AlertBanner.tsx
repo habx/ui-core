@@ -1,15 +1,15 @@
 import * as React from 'react'
 
 import Banner from '../_internal/Banner'
+import IconButton from '../IconButton'
 import palette from '../palette'
-import Text from '../Text'
 
 import AlertBannerProps from './AlertBanner.interface'
-import { AlertBannerContent } from './AlertBanner.style'
+import { AlertBannerContent, AlertBannerText } from './AlertBanner.style'
 
 export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>(
   (props, ref) => {
-    const { warning, message, ...rest } = props
+    const { warning, message, onClose, ...rest } = props
 
     const backgroundColor = warning
       ? palette.orange[400]
@@ -18,7 +18,8 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>(
     return (
       <Banner ref={ref} backgroundColor={backgroundColor} {...rest}>
         <AlertBannerContent>
-          <Text opacity={1}>{message}</Text>
+          <AlertBannerText opacity={1}>{message}</AlertBannerText>
+          {onClose && <IconButton icon="close" tiny onClick={onClose} />}
         </AlertBannerContent>
       </Banner>
     )

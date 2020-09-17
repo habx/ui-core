@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import breakpoints from '../breakpoints'
+import Text from '../Text'
 
 export const AlertBannerContent = styled.div`
   display: flex;
@@ -11,7 +12,11 @@ export const AlertBannerContent = styled.div`
   padding: 12px 24px;
 
   @media (${breakpoints.below.smallTablet}) {
-    display: block;
     padding: 12px 20px;
   }
+`
+
+export const AlertBannerText = styled(Text)`
+  width: 100%;
+  text-align: center;
 `

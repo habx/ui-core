@@ -13,4 +13,9 @@ export default interface AlertBannerProps
    * @default false
    */
   warning?: boolean
+
+  /**
+   * make close button appears which call the callback on click
+   */
+  onClose?: () => void
 }

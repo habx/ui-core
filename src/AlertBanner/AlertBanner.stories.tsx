@@ -46,6 +46,13 @@ const GRID_LINES = [
         'Le lien pour réinitaliser le mot de passe est expiré. Veuillez faire une nouvelle demande',
     },
   },
+  {
+    props: {
+      onClose: () => {},
+      message:
+        'Le lien pour réinitaliser le mot de passe est expiré. Veuillez faire une nouvelle demande',
+    },
+  },
 ]
 
 const GRID_ITEMS = [{}]
