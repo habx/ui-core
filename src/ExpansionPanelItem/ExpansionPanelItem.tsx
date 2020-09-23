@@ -28,6 +28,7 @@ const ExpansionPanelItem = React.forwardRef<
     open: rawOpen,
     header,
     onToggle,
+    defaultOpen,
     description,
     disabled,
     ...rest
@@ -94,6 +95,12 @@ const ExpansionPanelItem = React.forwardRef<
     },
     [isControlled, onToggle, multiOpen, setOpenedItems]
   )
+
+  React.useEffect(() => {
+    if (defaultOpen) {
+      handleToggle()
+    }
+  }, [defaultOpen, handleToggle])
 
   const headerTitle = isString(title) ? (
     <HeaderBarTitle>{title}</HeaderBarTitle>
