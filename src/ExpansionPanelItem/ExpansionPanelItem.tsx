@@ -96,6 +96,7 @@ const ExpansionPanelItem = React.forwardRef<
     [isControlled, onToggle, multiOpen, setOpenedItems]
   )
 
+  // TODO: split ExpansionPanelItem [APP-14372]
   React.useEffect(() => {
     if (defaultOpen) {
       handleToggle()
