@@ -55,7 +55,7 @@
     "markdown-it": "^11.0.0",
     "markdown-it-sup": "^1.0.0",
     "merge": "^1.2.1",
-    "react-easy-swipe": "0.0.18",
+    "react-easy-swipe": "0.0.21",
     "react-is": "^16.12.0"
   },
   "devDependencies": {
