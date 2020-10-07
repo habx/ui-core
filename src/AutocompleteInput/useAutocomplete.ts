@@ -139,6 +139,7 @@ const useAutocomplete = ({
           })
         }
         if (key === 'Enter' && !isNil(state.activeOptionIndex)) {
+          event.preventDefault()
           handleFakeOnChange(visibleOptions[state.activeOptionIndex])()
           dispatch({ type: AutocompleteActionTypes.resetActiveOption })
         }
