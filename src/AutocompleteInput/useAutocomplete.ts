@@ -35,6 +35,7 @@ const reducer: React.Reducer<AutocompleteState, AutocompleteActions> = (
 
 type UseAutocompleteOptions = {
   options?: string[]
+  loading?: boolean
   ref: React.RefObject<HTMLInputElement>
   value: string | number | readonly string[] | string[] | undefined
   onOptionSelect?: (option: string) => void
@@ -48,6 +49,7 @@ const useAutocomplete = ({
   ref,
   value = '',
   onOptionSelect,
+  loading,
 }: UseAutocompleteOptions) => {
   const [state, dispatch] = React.useReducer(reducer, {
     open: false,
@@ -58,12 +60,14 @@ const useAutocomplete = ({
 
   const visibleOptions = React.useMemo(
     () =>
-      options
-        ?.filter(
-          (option) => searchInString(option, `${value}`) && option !== value
-        )
-        .slice(0, MAX_AUTOCOMPLETE_OPTIONS) ?? [],
-    [options, value]
+      loading
+        ? []
+        : options
+            ?.filter(
+              (option) => searchInString(option, `${value}`) && option !== value
+            )
+            .slice(0, MAX_AUTOCOMPLETE_OPTIONS) ?? [],
+    [options, value, loading]
   )
 
   React.useEffect(() => {
@@ -156,7 +160,7 @@ const useAutocomplete = ({
     menuRef,
     visibleOptions,
     onOptionClick: handleFakeOnChange,
-    open: state.open && visibleOptions.length > 0,
+    open: (state.open && visibleOptions.length > 0) || loading,
     activeOptionIndex: state.activeOptionIndex,
   }
 }
