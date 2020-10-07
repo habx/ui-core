@@ -1,41 +1,31 @@
-# --------------------------------------------------- #
-# https://github.com/habx/devops-template-circleci    #
-# ----------- DO NOT EDIT BELOW THIS LINE ----------- #
-# --------------------------------------------------- #
 version: 2.1
 
 # --- Anchor alias ---- #
-alias:
 # - Docker configuration - #
+alias:
 # https://circleci.com/docs/2.0/circleci-images/#nodejs
-  - &docker_node12_configuration
+  - &docker_node14_configuration
     docker:
-      - image: circleci/node:12.0.0
-        user: root
-  - &docker_buildpack_deps_configuration
-    docker:
-      - image: circleci/buildpack-deps:stretch
-        user: root
-  - &docker_buildpack_deps_python_configuration
-    docker:
-      - image: circleci/python
+      - image: circleci/node:14.0.0
         user: root
 # - Jobs filters - #
-  - &filters_ignore_tags
-    tags:
-      ignore: /.*/
-  - &filters_ignore_branches
-    branches:
-      ignore: /.*/
   - &filters_allow_tags
     tags:
       only: /^v.*/
-  - &filters_allow_branch_dev
+  - &filters_ignore_branches
     branches:
-      only:
-        - dev
+      ignore: /.*/
+  - &filters_ignore_tags
+    tags:
+      ignore: /.*/
 # - Step - #
-  - &preconfig
+  - &preconfig-github-pkg
+    run:
+      name: Preconfigure environment ~/.npmrc
+      command: |
+        echo "@${GITHUB_PKG_NPM_ORG}:registry=https://npm.pkg.github.com/" > ~/.npmrc
+        echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> ~/.npmrc
+  - &preconfig-npmjs
     run:
       name: Preconfigure environment ~/.npmrc
       command: |
@@ -65,10 +55,9 @@ alias:
         - run: echo
 jobs:
   build:
-    <<: *docker_node12_configuration
+    <<: *docker_node14_configuration
     steps:
       - checkout
-      - *preconfig
       - *install_node_modules_with_cache_production
       - *install_node_modules_with_cache
       - run: export NODE_ENV=production; npm run build
@@ -78,51 +67,56 @@ jobs:
             - dist
 
   storybook-build:
-    <<: *docker_node12_configuration
+    <<: *docker_node14_configuration
     steps:
       - checkout
-      - *preconfig
       - *install_node_modules_with_cache
       - attach_workspace:
           at: ~/project
-      - *preconfig
       - *install_node_modules_with_cache
       - run: npm run storybook:build
 
   lint:
-    <<: *docker_node12_configuration
+    <<: *docker_node14_configuration
     steps:
       - checkout
-      - *preconfig
       - *install_node_modules_with_cache
       - run: npm run lint
 
   tests:
-    <<: *docker_node12_configuration
-    resource_class: large
+    <<: *docker_node14_configuration
     steps:
       - checkout
-      - *preconfig
       - *install_node_modules_with_cache
       - run: npm run test
 
-  npm-publish:
-    <<: *docker_node12_configuration
+  github-pkg-publish:
+    <<: *docker_node14_configuration
     steps:
       - checkout
       - attach_workspace:
           at: ~/project
-      - *preconfig
+      - *preconfig-github-pkg
       - *install_node_modules_with_cache
-      - run: NPM_TOKEN=${NPM_TOKEN_RW} npm publish
+      - run: npm publish
+
+  npmjs-publish:
+    <<: *docker_node14_configuration
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - *preconfig-npmjs
+      - *install_node_modules_with_cache
+      - run: jq -M 'del(.publishConfig)' package.json > _package.json; mv _package.json package.json
+      - run: npm publish
 
   storybook-publish:
-    <<: *docker_node12_configuration
+    <<: *docker_node14_configuration
     steps:
       - checkout
       - attach_workspace:
           at: ~/project
-      - *preconfig
       - *install_node_modules_with_cache
       - run: npm run storybook:deploy
 
@@ -136,29 +130,35 @@ workflows:
   build:
     jobs:
       - build:
-          context: default_env_vars
           filters:
             <<: *filters_allow_tags
       - lint:
-          context: default_env_vars
           filters:
             <<: *filters_allow_tags
       - tests:
-          context: default_env_vars
           requires:
             - build
             - lint
           filters:
             <<: *filters_allow_tags
-      - npm-publish:
-          context: default_env_vars
+      - npmjs-publish:
+          context: ts-lib-client-public
           requires:
-            - tests
+            - lint
+            - build
+          filters:
+            <<: *filters_allow_tags
+            <<: *filters_ignore_branches
+      - github-pkg-publish:
+          context: ts-lib-client-public
+          requires:
+            - lint
+            - build
           filters:
             <<: *filters_allow_tags
             <<: *filters_ignore_branches
       - storybook-publish:
-          context: default_env_vars
+          context: ts-lib-client-public
           requires:
             - tests
           filters:
