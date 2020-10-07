@@ -161,7 +161,7 @@ const useAutocomplete = ({
     menuRef,
     visibleOptions,
     onOptionClick: handleFakeOnChange,
-    open: (state.open && visibleOptions.length > 0) || loading,
+    open: state.open && (visibleOptions.length > 0 || loading),
     activeOptionIndex: state.activeOptionIndex,
   }
 }
