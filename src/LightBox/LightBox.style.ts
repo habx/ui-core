@@ -2,6 +2,7 @@ import styled, { keyframes } from 'styled-components'
 
 import zIndex from '../_internal/zIndex'
 import { ANIMATION_DURATIONS } from '../animations'
+import breakpoints from '../breakpoints'
 import IconButton from '../IconButton'
 import Layout from '../Layout'
 
@@ -29,6 +30,40 @@ export const LightBoxContainer = styled(Layout)`
   --layout-right-padding: 0;
   --layout-top-padding: 0;
   --layout-bottom-padding: 0;
+
+  &[data-spacing='regular'] {
+    --layout-left-padding: 36px;
+    --layout-right-padding: 36px;
+    --layout-top-padding: 24px;
+    --layout-bottom-padding: 24px;
+
+    @media (${breakpoints.below.smallTablet}) {
+      --layout-left-padding: 18px;
+      --layout-right-padding: 18px;
+    }
+  }
+
+  &[data-spacing='regular-horizontal-only'] {
+    --layout-left-padding: 36px;
+    --layout-right-padding: 36px;
+
+    @media (${breakpoints.below.smallTablet}) {
+      --layout-left-padding: 18px;
+      --layout-right-padding: 18px;
+    }
+  }
+
+  &[data-spacing='narrow'] {
+    --layout-left-padding: 18px;
+    --layout-right-padding: 18px;
+    --layout-top-padding: 12px;
+    --layout-bottom-padding: 12px;
+  }
+
+  &[data-spacing='narrow-horizontal-only'] {
+    --layout-left-padding: 18px;
+    --layout-right-padding: 18px;
+  }
 
   &[data-state='opening'] {
     animation: ${FADE_IN} ${ANIMATION_DURATIONS.l}ms linear 0ms;

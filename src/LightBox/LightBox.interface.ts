@@ -4,11 +4,19 @@ import * as React from 'react'
 import { LayoutProps } from '../Layout'
 import { WithTriggerElement } from '../withTriggerElement'
 
+export type LightBoxSpacing =
+  | 'none'
+  | 'narrow'
+  | 'regular'
+  | 'regular-horizontal-only'
+  | 'narrow-horizontal-only'
+
 export interface LightBoxInnerProps extends LayoutProps {
   open?: boolean
   onClose?: () => void
   persistent?: boolean
   animated?: boolean
+  spacing?: LightBoxSpacing
   children?:
     | React.ReactNode
     | ((modal: Modal<HTMLDivElement>) => React.ReactNode)

@@ -17,6 +17,7 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
       onClose,
       children,
       persistent,
+      spacing,
       animated = true,
       ...rest
     } = props
@@ -34,6 +35,7 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
         ref={ref}
         backgroundColor="#FFFFFF"
         data-state={modal.state}
+        data-spacing={spacing}
         {...rest}
       >
         <CloseIcon icon="close" onClick={modal.close} small />
