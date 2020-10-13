@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
+import buildUseOnlyOpenedInstanceHook from '../_internal/useOnlyOpenedInstance'
 import useWindowSize from '../_internal/useWindowSize'
 import { ANIMATION_DURATIONS } from '../animations'
 import breakpoints from '../breakpoints'
@@ -19,30 +20,7 @@ import {
   MenuOverlay,
 } from './Menu.style'
 
-let instances: React.MutableRefObject<MenuInstance>[] = []
-
-const useOnlyOneMenuOpened = (menu: MenuInstance) => {
-  const instance = React.useRef<MenuInstance>(menu)
-  instance.current = menu
-
-  React.useEffect(() => {
-    instances.push(instance)
-
-    return () => {
-      instances = instances.filter((i) => i !== instance)
-    }
-  }, [])
-
-  React.useEffect(() => {
-    if (menu.open) {
-      instances.forEach((instanceToClose) => {
-        if (instanceToClose !== instance && instanceToClose.current.open) {
-          instanceToClose.current.onClose()
-        }
-      })
-    }
-  }, [menu.open])
-}
+const useOnlyOneMenuOpened = buildUseOnlyOpenedInstanceHook<MenuInstance>()
 
 const TRIGGER_MARGIN = 12
 
