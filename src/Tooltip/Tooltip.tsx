@@ -39,7 +39,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       ? React.cloneElement(children, {
           ref: refs.trigger,
           onMouseEnter: actions.onMouseEnter,
-          // onMouseLeave: actions.onMouseLeave,
+          onMouseLeave: actions.onMouseLeave,
           ...(onClick ? { onClick } : {}),
         })
       : children
