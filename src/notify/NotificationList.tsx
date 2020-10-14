@@ -1,7 +1,9 @@
 import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
 import { isString } from '../_internal/data'
 import { useIsMounted, useTimeout } from '../_internal/hooks'
+import { isClientSide } from '../_internal/ssr'
 import { NotificationEventProps } from '../Notification/Notification.interface'
 
 import { StateNotification } from './NotificationList.interface'
@@ -69,7 +71,7 @@ const NotificationList: React.FunctionComponent<{}> = () => {
     [registerTimeout, handleClose]
   )
 
-  return (
+  const content = (
     <NotificationListContainer onClick={(e) => e.stopPropagation()}>
       {notifications.map((notification) => {
         const props: NotificationEventProps = isString(notification.message)
@@ -91,6 +93,8 @@ const NotificationList: React.FunctionComponent<{}> = () => {
       })}
     </NotificationListContainer>
   )
+
+  return isClientSide ? ReactDOM.createPortal(content, document.body) : content
 }
 
 export default NotificationList
