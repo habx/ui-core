@@ -24,18 +24,15 @@ export const LoadingBarStyled = styled.div`
   }
 `
 
-const LoadingBar: React.FunctionComponent<LoadingBarProps> = ({
-  loaded,
-  total,
-  style,
-  ...props
-}) => {
-  const loadingBarStyle = ({
-    '--loading-bar-progress': `${(loaded / total) * 100}%`,
-    ...style,
-  } as unknown) as React.CSSProperties
-  return <LoadingBarStyled style={loadingBarStyle} {...props} />
-}
+const LoadingBar = React.forwardRef<HTMLDivElement, LoadingBarProps>(
+  ({ loaded, total, style, ...props }, ref) => {
+    const loadingBarStyle = ({
+      '--loading-bar-progress': `${(loaded / total) * 100}%`,
+      ...style,
+    } as unknown) as React.CSSProperties
+    return <LoadingBarStyled ref={ref} style={loadingBarStyle} {...props} />
+  }
+)
 
 export interface LoadingBarProps
   extends React.ButtonHTMLAttributes<HTMLDivElement> {
