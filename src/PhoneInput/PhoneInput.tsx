@@ -92,7 +92,6 @@ const InnerPhoneInput = React.forwardRef<
 
   return (
     <PhoneInputContainer
-      ref={ref}
       data-error={error}
       data-disabled={disabled}
       data-small={small}
