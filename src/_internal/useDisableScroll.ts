@@ -27,7 +27,9 @@ try {
       get: () => (supportsPassive = true),
     })
   )
-} catch (e) {}
+} catch {
+  //
+}
 
 const wheelOpt = supportsPassive ? { passive: false } : false
 const wheelEvent =
