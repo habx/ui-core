@@ -8,6 +8,7 @@ export default interface TooltipProps
   disabled?: boolean
   children?: React.ReactElement<any>
   triggerRef?: React.RefObject<HTMLElement>
+  backgroundStyle?: 'dark' | 'light'
 }
 
 export type Position = {

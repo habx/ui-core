@@ -24,6 +24,13 @@ const GRID_LINES = [
       children: <IconButton icon="calendar-outline" />,
     },
   },
+  {
+    title: 'Light',
+    props: {
+      backgroundStyle: 'light',
+      children: <IconButton icon="calendar-outline" />,
+    },
+  },
 ]
 
 const GRID_ITEMS = [
