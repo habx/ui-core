@@ -45,7 +45,6 @@ const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
           loading={loading && !rest.disabled}
           large={large}
           small={small}
-          warning={warning}
         >
           {elementLeft && (
             <SideElementContainer
