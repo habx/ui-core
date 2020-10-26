@@ -25,7 +25,7 @@ const ButtonLoader: React.FunctionComponent<DotsLoaderProps> = ({
   )
 }
 
-const LoadingContainer: React.FunctionComponent<LoadingContainerInterface> = ({
+const LoadingContainer: React.FunctionComponent<LoadingContaineProps> = ({
   children,
   loading,
   ...props
@@ -38,7 +38,7 @@ const LoadingContainer: React.FunctionComponent<LoadingContainerInterface> = ({
     <React.Fragment>{children}</React.Fragment>
   )
 
-interface LoadingContainerInterface extends DotsLoaderProps {
+interface LoadingContaineProps extends DotsLoaderProps {
   loading: boolean
 }
 
