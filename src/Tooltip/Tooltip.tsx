@@ -102,7 +102,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
             <TooltipContainer
               ref={refs.tooltip}
               backgroundColor={
-                backgroundStyle === 'light' ? '#fff' : palette.darkBlue[700]
+                backgroundStyle === 'light' ? '#FFFFFF' : palette.darkBlue[700]
               }
               data-has-description={!!description}
               data-state={modal.state}
