@@ -18,6 +18,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       children,
       small = false,
       onClick,
+      backgroundStyle = 'dark',
       triggerRef,
       ...rest
     } = props
@@ -100,7 +101,9 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           ReactDOM.createPortal(
             <TooltipContainer
               ref={refs.tooltip}
-              backgroundColor={palette.darkBlue[700]}
+              backgroundColor={
+                backgroundStyle === 'light' ? '#fff' : palette.darkBlue[700]
+              }
               data-has-description={!!description}
               data-state={modal.state}
               style={state.position}
