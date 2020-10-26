@@ -1,4 +1,4 @@
 export interface DotsLoaderProps {
-  small: boolean
-  large: boolean
+  small?: boolean
+  large?: boolean
 }
