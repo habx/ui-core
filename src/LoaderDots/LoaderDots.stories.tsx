@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import withGrid from '../_storybook/withGrid'
 import Text from '../Text'
 
-import { DotsLoaderProps, LoaderDots } from './index'
+import { LoaderDotsProps, LoaderDots } from './index'
 
 const LoaderContainer = styled(Text)`
   display: flex;
@@ -35,7 +35,7 @@ const GRID_ITEMS = [
   },
 ]
 
-const Grid = withGrid<DotsLoaderProps>({
+const Grid = withGrid<LoaderDotsProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
@@ -48,7 +48,7 @@ export default {
   component: LoaderDots,
 }
 
-export const basic = (props: DotsLoaderProps) => (
+export const basic = (props: LoaderDotsProps) => (
   <LoaderContainer>
     <LoaderDots {...props} />
   </LoaderContainer>

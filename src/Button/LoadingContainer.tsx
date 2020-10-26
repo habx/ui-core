@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import { LoaderDots, DotsLoaderProps } from '../LoaderDots'
+import { LoaderDots, LoaderDotsProps } from '../LoaderDots'
 
 import { ButtonLoadingContainer } from './Button.style'
 
@@ -11,7 +11,7 @@ const ChildrenContainer = styled.div`
 
 const ButtonLoaderContainer = styled.div``
 
-const ButtonLoader: React.FunctionComponent<DotsLoaderProps> = ({
+const ButtonLoader: React.FunctionComponent<LoaderDotsProps> = ({
   children,
   large,
   small,
@@ -38,7 +38,7 @@ const LoadingContainer: React.FunctionComponent<LoadingContaineProps> = ({
     <React.Fragment>{children}</React.Fragment>
   )
 
-interface LoadingContaineProps extends DotsLoaderProps {
+interface LoadingContaineProps extends LoaderDotsProps {
   loading: boolean
 }
 

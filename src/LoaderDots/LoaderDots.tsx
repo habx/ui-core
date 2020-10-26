@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import { DotsLoaderProps } from './LoaderDots.interface'
+import { LoaderDotsProps } from './LoaderDots.interface'
 import { LoaderDotsContainer } from './LoaderDots.style'
 
-export const LoaderDots: React.FunctionComponent<DotsLoaderProps> = ({
+export const LoaderDots: React.FunctionComponent<LoaderDotsProps> = ({
   small,
   large,
   ...props
