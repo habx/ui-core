@@ -18,7 +18,6 @@ export const LoaderDotsContainer = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
-  min-width: 100px;
   margin: auto;
 
   span {
