@@ -86,6 +86,7 @@ export { default as Card, CardProps } from './Card'
 export { default as ExpansionPanel, ExpansionPanelProps } from './ExpansionPanel'
 export { default as ExpansionPanelItem, ExpansionPanelItemProps } from './ExpansionPanelItem'
 export { default as Loader, LoaderProps } from './Loader'
+export { LoaderDots, LoaderDotsProps } from './LoaderDots'
 export { default as LoadingBar, LoadingBarProps } from './LoadingBar'
 
 export { default as SlideShow, SlideShowProps } from './SlideShow'
