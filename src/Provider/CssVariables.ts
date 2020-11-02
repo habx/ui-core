@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-export default createGlobalStyle`
+export const CssVariables = createGlobalStyle`
   html {
     --layout-right-padding: 24px;
     --layout-left-padding: 24px;

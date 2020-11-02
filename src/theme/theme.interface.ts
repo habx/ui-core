@@ -32,7 +32,7 @@ export interface Shadows {
   higher: Shadow[]
 }
 
-export default interface DesignSystemTheme {
+export interface DesignSystemTheme {
   colors: ColorFamilies
   textColor: string
   backgroundColor: string

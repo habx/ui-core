@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import CenteredComponent from '../_storybook/CenteredComponent'
-import withGrid from '../_storybook/withGrid'
+import { CenteredComponent } from '../_storybook/CenteredComponent'
+import { withGrid } from '../_storybook/withGrid'
 
-import TextInputList, { TextInputListProps } from './index'
+import { TextInputList, TextInputListProps } from './index'
 
 const TextInputListContainer = styled.div`
   display: flex;

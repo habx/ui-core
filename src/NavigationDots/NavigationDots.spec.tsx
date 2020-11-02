@@ -2,7 +2,7 @@ import { render, fireEvent } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
-import NavigationDots from './index'
+import { NavigationDots } from './index'
 
 import '@testing-library/jest-dom/extend-expect'
 

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import Card from '../Card'
-import palette from '../palette'
-import Text from '../Text'
+import { Card } from '../Card'
+import { palette } from '../palette'
+import { Text } from '../Text'
 
 export const CardButtonContainer = styled(Card)`
   padding: 24px;

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import fontScale from '../../fontScale/fontScale'
-import palette from '../../palette'
-import theme from '../../theme'
+import { fontScale } from '../../fontScale'
+import { palette } from '../../palette'
+import { theme } from '../../theme'
 
 export const OptionContent = styled.div``
 

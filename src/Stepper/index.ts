@@ -1,5 +1,3 @@
-import { Stepper } from './Stepper'
+export { Stepper } from './Stepper'
 
-export { default as StepperProps, StepperStep } from './Stepper.interface'
-
-export default Stepper
+export { StepperProps, StepperStep } from './Stepper.interface'

@@ -4,9 +4,9 @@ import {
   ANIMATION_DURATIONS,
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
-import fontScale from '../fontScale/fontScale'
-import palette from '../palette'
-import theme from '../theme'
+import { fontScale } from '../fontScale'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const IconButtonContainer = styled.button`
   border: none;

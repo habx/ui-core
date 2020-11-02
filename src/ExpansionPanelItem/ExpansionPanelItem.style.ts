@@ -4,9 +4,9 @@ import {
   ANIMATION_DURATIONS,
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
-import Layout from '../Layout'
-import palette from '../palette'
-import theme from '../theme'
+import { Layout } from '../Layout'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const ExpansionPanelItemContainer = styled.div`
   display: flex;

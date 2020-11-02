@@ -2,7 +2,7 @@ import { render, fireEvent, act } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
-import withTriggerElement from './index'
+import { withTriggerElement } from './index'
 
 jest.useFakeTimers()
 

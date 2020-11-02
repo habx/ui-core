@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import theme from '../theme'
-import Title from '../Title'
+import { theme } from '../theme'
+import { Title } from '../Title'
 
-import palette from './palette'
+import { palette } from './palette'
 
 const Container = styled.div`
   display: flex;

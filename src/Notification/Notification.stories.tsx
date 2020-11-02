@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import withGrid from '../_storybook/withGrid'
-import Button from '../Button'
-import Icon from '../Icon'
-import notify from '../notify'
+import { withGrid } from '../_storybook/withGrid'
+import { Button } from '../Button'
+import { Icon } from '../Icon'
+import { notify } from '../notify'
 
-import Notification, { NotificationProps } from './index'
+import { Notification, NotificationProps } from './index'
 
 const illustration = <Icon icon="paperClip" />
 

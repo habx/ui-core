@@ -1,5 +1,3 @@
-import { PasswordInput } from './PasswordInput'
+export { PasswordInput } from './PasswordInput'
 
-export { default as PasswordInputProps } from './PasswordInput.interface'
-
-export default PasswordInput
+export { PasswordInputProps } from './PasswordInput.interface'

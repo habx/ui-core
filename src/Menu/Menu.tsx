@@ -4,14 +4,14 @@ import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
-import buildUseOnlyOpenedInstanceHook from '../_internal/useOnlyOpenedInstance'
-import useWindowSize from '../_internal/useWindowSize'
+import { buildUseOnlyOpenedInstanceHook } from '../_internal/useOnlyOpenedInstance'
+import { useWindowSize } from '../_internal/useWindowSize'
 import { ANIMATION_DURATIONS } from '../animations'
-import breakpoints from '../breakpoints'
-import Modal from '../Modal'
-import withTriggerElement from '../withTriggerElement'
+import { breakpoints } from '../breakpoints'
+import { Modal } from '../Modal'
+import { withTriggerElement } from '../withTriggerElement'
 
-import MenuContext from './Menu.context'
+import { MenuContext } from './Menu.context'
 import { MenuInstance, MenuInnerProps } from './Menu.interface'
 import {
   MenuContent,
@@ -110,7 +110,7 @@ const InnerMenu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
           setPositionStyle({ top, left })
         }
       }
-    }, [position, triggerRef, modal.ref])
+    }, [triggerRef, modal.ref, setPosition, position])
 
     React.useEffect(() => {
       if (open) {

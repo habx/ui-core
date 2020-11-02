@@ -3,9 +3,9 @@ import * as React from 'react'
 import sinon from 'sinon'
 
 import * as validityCheck from '../_internal/validityCheck'
-import ExpansionPanelItem from '../ExpansionPanelItem'
+import { ExpansionPanelItem } from '../ExpansionPanelItem'
 
-import ExpansionPanel from './index'
+import { ExpansionPanel } from './index'
 import '@testing-library/jest-dom/extend-expect'
 
 jest.useFakeTimers()

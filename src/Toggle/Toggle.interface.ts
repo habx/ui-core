@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { styledAs } from '../_internal/types'
-import WithLabel from '../withLabel/withLabel.interface'
+import { WithLabel } from '../withLabel'
 
 export interface ToggleInnerProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
@@ -12,4 +12,4 @@ export interface ToggleInnerProps
   as?: styledAs
 }
 
-export default interface ToggleProps extends WithLabel<ToggleInnerProps> {}
+export interface ToggleProps extends WithLabel<ToggleInnerProps> {}

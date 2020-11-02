@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import ThemeProvider from '../ThemeProvider'
+import { ThemeProvider } from '../ThemeProvider'
 
-import BackgroundProps from './Background.interface'
+import { BackgroundProps } from './Background.interface'
 import { BackgroundContainer } from './Background.style'
 
 export const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(

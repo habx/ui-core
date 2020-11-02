@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import MenuContext from '../Menu/Menu.context'
-import Text from '../Text'
+import { MenuContext } from '../Menu'
+import { Text } from '../Text'
 
-import MenuLineProps from './MenuLine.interface'
+import { MenuLineProps } from './MenuLine.interface'
 import { MenuLineContainer, SideElementContainer } from './MenuLine.style'
 
 export const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(

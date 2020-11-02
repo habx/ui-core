@@ -1,5 +1,3 @@
-import palette from './palette'
+export { palette } from './palette'
 
-export { Gradient, default as Palette } from './palette.interface'
-
-export default palette
+export { Gradient, Palette } from './palette.interface'

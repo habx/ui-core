@@ -1,2 +1,2 @@
-export { default as logo } from './logo'
-export { default as coloredText } from './colored-text'
+export { logoRule } from './logo'
+export { coloredTextRule } from './colored-text'

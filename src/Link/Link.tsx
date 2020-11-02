@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import withMarkdown from '../withMarkdown'
+import { withMarkdown } from '../withMarkdown'
 
-import LinkProps from './Link.interface'
+import { LinkProps } from './Link.interface'
 import { LinkContainer } from './Link.style'
 
 const NEW_TAB_PROPS = {

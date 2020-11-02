@@ -2,14 +2,14 @@ import { action } from '@storybook/addon-actions'
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
-import Button from '../Button'
-import Icon from '../Icon'
-import Text from '../Text'
-import TextInput from '../TextInput'
-import Title from '../Title'
+import { withGrid } from '../_storybook/withGrid'
+import { Button } from '../Button'
+import { Icon } from '../Icon'
+import { Text } from '../Text'
+import { TextInput } from '../TextInput'
+import { Title } from '../Title'
 
-import ArrayInput, { ArrayInputProps } from './index'
+import { ArrayInput, ArrayInputProps } from './index'
 
 type field = { name: string; country: string }
 const FIELDS = [

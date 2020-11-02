@@ -2,7 +2,7 @@ import { isFunction } from '../_internal/data'
 
 import { subscriptionCallback } from './Provider.interface'
 
-export default <Message = string, Options = {}>() => {
+export const buildEventHandler = <Message = string, Options = {}>() => {
   let subscription: subscriptionCallback<Message, Options> | null
 
   const subscribe = (callback: subscriptionCallback<Message, Options>) => {

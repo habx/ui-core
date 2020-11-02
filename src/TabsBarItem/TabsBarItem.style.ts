@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import palette from '../palette'
-import theme from '../theme'
+import { palette } from '../palette'
+import { theme } from '../theme'
 export const TabsBarItemContainer = styled.li`
   --tabs-bar-item-color: ${theme.color('secondary', { opacity: 0.72 })};
   --tabs-bar-item-active-color: ${theme.color('primary')};

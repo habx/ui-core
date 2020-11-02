@@ -1,6 +1,6 @@
 import { BackgroundProps } from '../Background'
 
-export default interface HeaderBarProps
+export interface HeaderBarProps
   extends Omit<BackgroundProps, 'backgroundColor'> {
   progress?: number
   small?: boolean

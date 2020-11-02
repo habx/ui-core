@@ -1,14 +1,14 @@
 import { ModalState } from '@delangle/use-modal'
 import * as React from 'react'
 
-import Menu from '../../Menu'
-import Option from '../Option'
-import SelectContext from '../Select.context'
+import { Menu } from '../../Menu'
+import { Option } from '../Option'
+import { SelectContext } from '../Select.context'
 
-import OptionsProps from './Options.interface'
+import { OptionsProps } from './Options.interface'
 import { SelectAllOption } from './Options.style'
 
-const Options: React.FunctionComponent<OptionsProps> = ({
+export const Options: React.FunctionComponent<OptionsProps> = ({
   options,
   open,
   focusedOption,
@@ -55,5 +55,3 @@ const Options: React.FunctionComponent<OptionsProps> = ({
     </Menu>
   )
 }
-
-export default Options

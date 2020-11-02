@@ -10,7 +10,7 @@ export interface Gradient {
   900: string
 }
 
-export default interface Palette {
+export interface Palette {
   darkBlue: Gradient
   blue: Gradient
   lightBlue: Gradient

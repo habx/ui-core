@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import MenuProps from '../Menu/Menu.interface'
+import { MenuProps } from '../Menu'
 
-interface ConfirmMenuProps
+export interface ConfirmMenuProps
   extends Omit<
     MenuProps,
     | 'onClose'
@@ -23,5 +23,3 @@ interface ConfirmMenuProps
   triggerRef?: React.RefObject<HTMLElement>
   position?: 'right' | 'left'
 }
-
-export default ConfirmMenuProps

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import FloatingButtonProps from './FloatingButton.interface'
+import { FloatingButtonProps } from './FloatingButton.interface'
 import {
   FloatingButtonContainer,
   FloatingButtonContent,

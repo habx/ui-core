@@ -1,8 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import palette from '../palette'
-import theme from '../theme'
+import { palette } from '../palette'
+import { theme } from '../theme'
+
+import { LoadingBarProps } from './LoadingBar.interface'
 
 export const LoadingBarStyled = styled.div`
   min-width: 300px;
@@ -24,7 +26,7 @@ export const LoadingBarStyled = styled.div`
   }
 `
 
-const LoadingBar = React.forwardRef<HTMLDivElement, LoadingBarProps>(
+export const LoadingBar = React.forwardRef<HTMLDivElement, LoadingBarProps>(
   ({ loaded, total, style, ...props }, ref) => {
     const loadingBarStyle = ({
       '--loading-bar-progress': `${(loaded / total) * 100}%`,
@@ -33,11 +35,3 @@ const LoadingBar = React.forwardRef<HTMLDivElement, LoadingBarProps>(
     return <LoadingBarStyled ref={ref} style={loadingBarStyle} {...props} />
   }
 )
-
-export interface LoadingBarProps
-  extends React.ButtonHTMLAttributes<HTMLDivElement> {
-  loaded: number
-  total: number
-}
-
-export default LoadingBar

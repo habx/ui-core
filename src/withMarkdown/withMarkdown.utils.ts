@@ -2,9 +2,9 @@ import MarkdownIt from 'markdown-it'
 import markdownItSupPlugin from 'markdown-it-sup'
 
 import { isNil } from '../_internal/data'
-import DesignSystemTheme from '../theme/theme.interface'
+import { DesignSystemTheme } from '../theme'
 
-import { logo, coloredText } from './custom-rules'
+import { logoRule, coloredTextRule } from './custom-rules'
 
 const md = new MarkdownIt({
   html: false,
@@ -17,8 +17,8 @@ const md = new MarkdownIt({
   highlight: () => '',
 })
 
-md.use(markdownItSupPlugin).use(logo)
-md.use(markdownItSupPlugin).use(coloredText)
+md.use(markdownItSupPlugin).use(logoRule)
+md.use(markdownItSupPlugin).use(coloredTextRule)
 
 const defaultRender =
   md.renderer.rules.link_open ||

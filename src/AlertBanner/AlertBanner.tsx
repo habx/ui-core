@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import Banner from '../_internal/Banner'
-import IconButton from '../IconButton'
-import palette from '../palette'
+import { Banner } from '../_internal/Banner'
+import { IconButton } from '../IconButton'
+import { palette } from '../palette'
 
-import AlertBannerProps from './AlertBanner.interface'
+import { AlertBannerProps } from './AlertBanner.interface'
 import { AlertBannerContent, AlertBannerText } from './AlertBanner.style'
 
 export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>(

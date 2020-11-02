@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 
-import StepperProps from './Stepper.interface'
+import { StepperProps } from './Stepper.interface'
 import {
   Step,
   StepperContainer,

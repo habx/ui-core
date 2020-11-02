@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import palette from '../palette/palette'
-import theme from '../theme/theme'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const BreadcrumbItemContainer = styled.li`
   list-style-type: none;

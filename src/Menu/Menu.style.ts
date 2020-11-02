@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import zIndex from '../_internal/zIndex'
-import animations from '../animations'
-import theme from '../theme'
+import { zIndex } from '../_internal/zIndex'
+import { animations } from '../animations'
+import { theme } from '../theme'
 
 export const MenuTriggerContainer = styled.span`
   position: relative;

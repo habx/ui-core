@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const useUniqID = (defaultId?: string): string => {
+export const useUniqID = (defaultId?: string): string => {
   const idRef = React.useRef<string | null>(null)
 
   if (idRef.current === null) {
@@ -13,5 +13,3 @@ const useUniqID = (defaultId?: string): string => {
 
   return idRef.current
 }
-
-export default useUniqID

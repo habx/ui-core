@@ -1,7 +1,8 @@
 import * as React from 'react'
 
 import { ExpansionPanelContext } from './ExpansionPanel.context'
-import ExpansionPanelProps, {
+import {
+  ExpansionPanelProps,
   ExpansionPanelContextType,
 } from './ExpansionPanel.interface'
 import { ExpansionPanelContainer } from './ExpansionPanel.style'

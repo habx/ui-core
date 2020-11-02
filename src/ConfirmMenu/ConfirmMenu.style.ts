@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import DefaultMenu from '../Menu'
+import { Menu as DefaultMenu } from '../Menu'
 
 export const ConfirmMenuContent = styled.div`
   display: grid;

@@ -1,14 +1,14 @@
 import * as React from 'react'
 
-import withMarkdown from '../withMarkdown'
+import { withMarkdown } from '../withMarkdown'
 
-import ButtonProps from './Button.interface'
+import { ButtonProps } from './Button.interface'
 import {
   ButtonContainer,
   ButtonContent,
   SideElementContainer,
 } from './Button.style'
-import LoadingContainer from './LoadingContainer'
+import { LoadingContainer } from './LoadingContainer'
 
 const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props, ref) => {

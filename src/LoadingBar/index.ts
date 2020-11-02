@@ -1,4 +1,3 @@
-import LoadingBar from './LoadingBar'
-export { LoadingBarProps } from './LoadingBar'
+export { LoadingBar } from './LoadingBar'
 
-export default LoadingBar
+export { LoadingBarProps } from './LoadingBar.interface'

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import SliderDotProps from './SliderDot.interface'
+import { SliderDotProps } from './SliderDot.interface'
 import { SliderDotContainer, SliderDotContent } from './SliderDot.style'
 
 type Listeners = {
@@ -85,7 +85,7 @@ const useMouseMove = ({
   return { onMouseDown: handleMouseDown, onTouchStart: handleTouchStart }
 }
 
-const SliderDot: React.FunctionComponent<SliderDotProps> = ({
+export const SliderDot: React.FunctionComponent<SliderDotProps> = ({
   position,
   onMove,
   onRest,
@@ -105,5 +105,3 @@ const SliderDot: React.FunctionComponent<SliderDotProps> = ({
     </SliderDotContainer>
   )
 }
-
-export default SliderDot

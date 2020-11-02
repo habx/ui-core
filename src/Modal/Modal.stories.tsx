@@ -1,14 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
-import ActionBar from '../ActionBar'
-import Button from '../Button'
-import PhoneInput from '../PhoneInput'
-import Text from '../Text'
-import TextInput from '../TextInput'
+import { withGrid } from '../_storybook/withGrid'
+import { ActionBar } from '../ActionBar'
+import { Button } from '../Button'
+import { PhoneInput } from '../PhoneInput'
+import { Text } from '../Text'
+import { TextInput } from '../TextInput'
 
-import Modal, { ModalProps } from './index'
+import { Modal, ModalProps } from './index'
 
 const ModalForm = styled.div`
   display: flex;

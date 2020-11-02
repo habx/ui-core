@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export default interface NavigationDotsProps
+export interface NavigationDotsProps
   extends React.HTMLAttributes<HTMLDivElement> {
   size: number
   activeDot?: number

@@ -1,12 +1,12 @@
 import * as React from 'react'
 
-import Banner from '../_internal/Banner'
-import IconButton from '../IconButton'
-import palette from '../palette'
-import Text from '../Text'
-import Triangle from '../Triangle'
+import { Banner } from '../_internal/Banner'
+import { IconButton } from '../IconButton'
+import { palette } from '../palette'
+import { Text } from '../Text'
+import { Triangle } from '../Triangle'
 
-import AnnouncementBannerProps from './AnnouncementBanner.interface'
+import { AnnouncementBannerProps } from './AnnouncementBanner.interface'
 import {
   AnnouncementBannerCenteredContent,
   AnnouncementBannerShapeContainer,

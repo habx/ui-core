@@ -1,5 +1,3 @@
-import { TabsBar } from './TabsBar'
+export { TabsBar } from './TabsBar'
 
-export { default as TabsBarProps } from './TabsBar.interface'
-
-export default TabsBar
+export { TabsBarProps } from './TabsBar.interface'

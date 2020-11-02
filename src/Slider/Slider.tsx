@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import { clamp, isFunction, isNil } from '../_internal/data'
-import palette from '../palette'
-import withLabel from '../withLabel'
+import { palette } from '../palette'
+import { withLabel } from '../withLabel'
 
 import {
   SliderInnerProps,
@@ -20,8 +20,8 @@ import {
   SliderBackgroundDot,
   SliderIndicator,
 } from './Slider.style'
-import SliderBar from './SliderBar'
-import SliderDot from './SliderDot'
+import { SliderBar } from './SliderBar'
+import { SliderDot } from './SliderDot'
 
 const EMPTY_RANGE: [Element, Element] = [null, null]
 

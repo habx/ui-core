@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-export default interface TooltipProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string
   description?: string
   small?: boolean

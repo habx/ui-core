@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import TextInput from '../TextInput'
+import { TextInput } from '../TextInput'
 
-import ConfirmMenu, { ConfirmMenuProps } from './index'
+import { ConfirmMenu, ConfirmMenuProps } from './index'
 
 export default {
   title: 'Actions/ConfirmMenu',

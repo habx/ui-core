@@ -1,11 +1,10 @@
 import { action } from '@storybook/addon-actions'
 import * as React from 'react'
 
-import withGrid from '../_storybook/withGrid'
-import Button from '../Button'
-import ButtonProps from '../Button/Button.interface'
+import { withGrid } from '../_storybook/withGrid'
+import { Button, ButtonProps } from '../Button'
 
-import confirm from './confirm'
+import { confirm } from './confirm'
 
 const GRID_PROPS = {
   children: 'Click me!',

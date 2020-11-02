@@ -1,11 +1,11 @@
 import { Modal, ModalState } from '@delangle/use-modal'
 import * as React from 'react'
 
-import Menu from '../Menu'
-import NavBarContext from '../NavBar/NavBar.context'
-import NavBarItem from '../NavBarItem'
+import { Menu } from '../Menu'
+import { NavBarContext } from '../NavBar/NavBar.context'
+import { NavBarItem } from '../NavBarItem'
 
-import NavBarMenuItemProps from './NavBarMenuItem.interface'
+import { NavBarMenuItemProps } from './NavBarMenuItem.interface'
 import { NavBarMenuItemContainer } from './NavBarMenuItem.style'
 
 const Content: React.FunctionComponent<{ modal: Modal<HTMLUListElement> }> = ({

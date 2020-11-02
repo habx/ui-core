@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
-import Text from '../Text'
+import { withGrid } from '../_storybook/withGrid'
+import { Text } from '../Text'
 
 import { LoaderDotsProps, LoaderDots } from './index'
 

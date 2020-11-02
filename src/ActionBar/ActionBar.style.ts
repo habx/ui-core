@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import Background from '../Background'
-import breakpoints from '../breakpoints'
+import { Background } from '../Background'
+import { breakpoints } from '../breakpoints'
 import { ButtonContainer } from '../Button/Button.style'
 
 export const ActionBarContainer = styled(Background)``

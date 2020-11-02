@@ -2,8 +2,7 @@ import * as React from 'react'
 
 import { styledAs } from '../_internal/types'
 
-export default interface BackgroundProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface BackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * background of the element
    */

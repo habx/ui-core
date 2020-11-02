@@ -2,7 +2,7 @@ import { render } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
-import withMarkdown from './index'
+import { withMarkdown } from './index'
 
 describe('withMarkdown high order component', () => {
   it('should not parse markdown if props.markdown != true', () => {

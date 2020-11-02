@@ -11,5 +11,4 @@ export interface PhoneInputInnerProps
   as?: styledAs
 }
 
-export default interface PhoneInputProps
-  extends WithLabel<PhoneInputInnerProps> {}
+export interface PhoneInputProps extends WithLabel<PhoneInputInnerProps> {}

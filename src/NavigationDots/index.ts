@@ -1,5 +1,3 @@
-import { NavigationDots } from './NavigationDots'
+export { NavigationDots } from './NavigationDots'
 
-export { default as NavigationDotsProps } from './NavigationDots.interface'
-
-export default NavigationDots
+export { NavigationDotsProps } from './NavigationDots.interface'

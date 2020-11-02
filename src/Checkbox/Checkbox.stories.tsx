@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
+import { withGrid } from '../_storybook/withGrid'
 
-import Checkbox, { CheckboxProps } from './index'
+import { Checkbox, CheckboxProps } from './index'
 
 const CheckboxContainer = styled.div`
   display: flex;

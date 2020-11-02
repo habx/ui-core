@@ -1,5 +1,3 @@
-import { SlideShow } from './SlideShow'
+export { SlideShow } from './SlideShow'
 
-export { default as SlideShowProps } from './SlideShow.interface'
-
-export default SlideShow
+export { SlideShowProps } from './SlideShow.interface'

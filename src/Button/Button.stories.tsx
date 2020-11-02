@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import CenteredComponent from '../_storybook/CenteredComponent'
-import withGrid from '../_storybook/withGrid'
-import Icon from '../Icon'
+import { CenteredComponent } from '../_storybook/CenteredComponent'
+import { withGrid } from '../_storybook/withGrid'
+import { Icon } from '../Icon'
 
-import Button, { ButtonProps } from './index'
+import { Button, ButtonProps } from './index'
 
 const GRID_PROPS = {
   children: 'Voir tous nos projets',

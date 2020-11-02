@@ -2,10 +2,10 @@ import * as React from 'react'
 
 import { Indicator } from '../Slider.interface'
 
-import SliderBarProps from './SliderBar.interface'
+import { SliderBarProps } from './SliderBar.interface'
 import { SliderBarContainer } from './SliderBar.style'
 
-const SliderBar: React.FunctionComponent<SliderBarProps> = ({
+export const SliderBar: React.FunctionComponent<SliderBarProps> = ({
   from,
   to,
   indicators,
@@ -56,5 +56,3 @@ const SliderBar: React.FunctionComponent<SliderBarProps> = ({
     </React.Fragment>
   )
 }
-
-export default SliderBar

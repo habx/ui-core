@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import { isString } from '../_internal/data'
-import ActionBar from '../ActionBar'
-import Button from '../Button'
-import prompt from '../prompt'
+import { ActionBar } from '../ActionBar'
+import { Button } from '../Button'
+import { prompt } from '../prompt'
 import { ProviderContext } from '../Provider'
 
 import { ConfirmFormContainer } from './confirm.style'
@@ -14,7 +14,7 @@ type ConfirmConfig = {
   cancelLabel?: string
 }
 
-const confirm = (config: ConfirmConfig | string) => {
+export const confirm = (config: ConfirmConfig | string) => {
   const innerConfig: ConfirmConfig = isString(config)
     ? { message: config }
     : config
@@ -40,5 +40,3 @@ const confirm = (config: ConfirmConfig | string) => {
     onClose: () => onResolve(false),
   }))
 }
-
-export default confirm

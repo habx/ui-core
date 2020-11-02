@@ -3,9 +3,9 @@ import * as React from 'react'
 import sinon from 'sinon'
 
 import * as validityCheck from '../_internal/validityCheck'
-import NavBarItem from '../NavBarItem'
+import { NavBarItem } from '../NavBarItem'
 
-import NavBar from './index'
+import { NavBar } from './index'
 import '@testing-library/jest-dom/extend-expect'
 
 jest.useFakeTimers()

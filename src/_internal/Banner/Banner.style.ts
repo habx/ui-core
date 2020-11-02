@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 import { ANIMATION_DURATIONS } from '../../animations'
-import Background from '../../Background'
-import breakpoints from '../../breakpoints'
+import { Background } from '../../Background'
+import { breakpoints } from '../../breakpoints'
 
 export const BannerContainer = styled(Background)`
   display: flex;

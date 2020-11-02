@@ -4,8 +4,8 @@ import {
   ActionBarContainer,
   ActionBarContent,
 } from '../ActionBar/ActionBar.style'
-import Background from '../Background'
-import breakpoints from '../breakpoints'
+import { Background } from '../Background'
+import { breakpoints } from '../breakpoints'
 import { HeaderBarContainer } from '../HeaderBar/HeaderBar.style'
 
 const style = css`

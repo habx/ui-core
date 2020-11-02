@@ -3,7 +3,8 @@ import * as React from 'react'
 import { isNil, throttle } from '../_internal/data'
 import { useSSRLayoutEffect } from '../_internal/ssr'
 
-import SlideShowProps, {
+import {
+  SlideShowProps,
   ActionType,
   SlideChangeSource,
   SlideShowAction,

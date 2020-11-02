@@ -1,3 +1,1 @@
-import notify from './notify'
-
-export default notify
+export { notify } from './notify'

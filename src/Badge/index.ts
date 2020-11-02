@@ -1,5 +1,3 @@
-import { Badge } from './Badge'
+export { Badge } from './Badge'
 
-export { default as BadgeProps } from './Badge.interface'
-
-export default Badge
+export { BadgeProps } from './Badge.interface'

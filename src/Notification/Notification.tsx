@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import Icon from '../Icon'
-import Text from '../Text'
-import Title from '../Title'
+import { Icon } from '../Icon'
+import { Text } from '../Text'
+import { Title } from '../Title'
 
-import NotificationProps from './Notification.interface'
+import { NotificationProps } from './Notification.interface'
 import {
   NotificationContainer,
   NotificationContent,

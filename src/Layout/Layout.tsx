@@ -1,7 +1,8 @@
 import * as React from 'react'
 
-import LayoutContext from './Layout.context'
-import LayoutProps, {
+import { LayoutContext } from './Layout.context'
+import {
+  LayoutProps,
   LayoutChild,
   LayoutContextValue,
 } from './Layout.interface'

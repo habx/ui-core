@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import IconProps from './Icon.interface'
+import { IconProps } from './Icon.interface'
 import { IconContainer } from './Icon.style'
 
 export const Icon = React.forwardRef<HTMLSpanElement, IconProps>(

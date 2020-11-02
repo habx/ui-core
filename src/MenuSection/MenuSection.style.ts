@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import palette from '../palette'
+import { palette } from '../palette'
 
 export const MenuSectionContainer = styled.div`
   display: flex;

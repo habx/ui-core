@@ -1,11 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
-import Button from '../Button'
-import palette from '../palette'
+import { withGrid } from '../_storybook/withGrid'
+import { Button } from '../Button'
+import { palette } from '../palette'
 
-import LightBox, { LightBoxProps } from './index'
+import { LightBox, LightBoxProps } from './index'
 
 const FakeImage = styled.div`
   height: 100%;

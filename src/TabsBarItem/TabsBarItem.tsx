@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import TabsBarItemProps from './TabsBarItem.interface'
+import { TabsBarItemProps } from './TabsBarItem.interface'
 import { TabsBarItemContainer, SideElementContainer } from './TabsBarItem.style'
 
 export const TabsBarItem = React.forwardRef<HTMLLIElement, TabsBarItemProps>(

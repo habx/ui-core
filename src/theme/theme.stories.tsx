@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import Title from '../Title'
-import useTheme from '../useTheme'
+import { Title } from '../Title'
+import { useTheme } from '../useTheme'
 
-import theme from './theme'
+import { theme } from './theme'
 import { Shadows } from './theme.interface'
 
 const Container = styled.div`

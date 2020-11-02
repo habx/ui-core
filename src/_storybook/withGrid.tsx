@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import Background from '../Background'
-import palette from '../palette'
-import Text from '../Text'
-import Title from '../Title'
+import { Background } from '../Background'
+import { palette } from '../palette'
+import { Text } from '../Text'
+import { Title } from '../Title'
 
 const StorybookGridContainer = styled(Background)`
   width: 100vw;
@@ -68,9 +68,9 @@ interface StorybookGridConfig<Props> {
   showBackgroundVariations?: boolean
 }
 
-const withGrid = <Props extends object>(config: StorybookGridConfig<Props>) => (
-  WrappedComponent: React.ComponentType<Props>
-) => {
+export const withGrid = <Props extends object>(
+  config: StorybookGridConfig<Props>
+) => (WrappedComponent: React.ComponentType<Props>) => {
   const {
     props = {},
     lines,
@@ -143,5 +143,3 @@ const withGrid = <Props extends object>(config: StorybookGridConfig<Props>) => (
 
   return Component
 }
-
-export default withGrid

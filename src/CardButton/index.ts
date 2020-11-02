@@ -1,5 +1,3 @@
-import { CardButton } from './CardButton'
+export { CardButton } from './CardButton'
 
-export { default as CardButtonProps } from './CardButton.interface'
-
-export default CardButton
+export { CardButtonProps } from './CardButton.interface'

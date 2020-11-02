@@ -1,6 +1,6 @@
 import { BannerProps } from '../_internal/Banner'
 
-export default interface AnnouncementBannerProps extends BannerProps {
+export interface AnnouncementBannerProps extends BannerProps {
   /**
    * Validation button label
    */

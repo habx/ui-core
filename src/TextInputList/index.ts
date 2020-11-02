@@ -1,5 +1,3 @@
-import { TextInputList } from './TextInputList'
+export { TextInputList } from './TextInputList'
 
-export { default as TextInputListProps } from './TextInputList.interface'
-
-export default TextInputList
+export { TextInputListProps } from './TextInputList.interface'

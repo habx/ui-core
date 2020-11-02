@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import getFlattenedChildren from '../_internal/getFlattenedChildren'
+import { getFlattenedChildren } from '../_internal/getFlattenedChildren'
 import { useParentLayout } from '../Layout'
-import { LayoutChild } from '../Layout/Layout.interface'
-import useTheme from '../useTheme'
+import { LayoutChild } from '../Layout'
+import { useTheme } from '../useTheme'
 
-import ActionBarProps from './ActionBar.interface'
+import { ActionBarProps } from './ActionBar.interface'
 import { ActionBarContainer, ActionBarContent } from './ActionBar.style'
 
 export const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(

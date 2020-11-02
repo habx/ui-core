@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import Button from '../Button'
-import IconButton from '../IconButton'
+import { Button } from '../Button'
+import { IconButton } from '../IconButton'
 import { ProviderContext } from '../Provider'
 
-import ConfirmMenuProps from './ConfirmMenu.interface'
+import { ConfirmMenuProps } from './ConfirmMenu.interface'
 import { ConfirmMenuContent, Menu } from './ConfirmMenu.style'
 
 export const ConfirmMenu = React.forwardRef<HTMLUListElement, ConfirmMenuProps>(

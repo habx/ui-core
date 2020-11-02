@@ -1,4 +1,4 @@
-import palette from '../palette'
+import { palette } from '../palette'
 
 import { SelectOption } from './Select.interface'
 

@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import CenteredComponent from '../_storybook/CenteredComponent'
-import withGrid from '../_storybook/withGrid'
-import Icon from '../Icon'
+import { CenteredComponent } from '../_storybook/CenteredComponent'
+import { withGrid } from '../_storybook/withGrid'
+import { Icon } from '../Icon'
 
-import Tag, { TagProps } from './index'
+import { Tag, TagProps } from './index'
 
 const GRID_PROPS = {
   children: 'Agencement 1',

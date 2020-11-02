@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import Menu from '../Menu'
-import TabsBarItem from '../TabsBarItem'
+import { Menu } from '../Menu'
+import { TabsBarItem } from '../TabsBarItem'
 
-import TabsBarMenuItemProps from './TabsBarMenuItem.interface'
+import { TabsBarMenuItemProps } from './TabsBarMenuItem.interface'
 
 export const TabsBarMenuItem = React.forwardRef<
   HTMLUListElement,

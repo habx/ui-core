@@ -1,6 +1,4 @@
-import withLabel from './withLabel'
+export { withLabel } from './withLabel'
 
-export { default as WithLabel } from './withLabel.interface'
+export { WithLabel } from './withLabel.interface'
 export { withSemanticLabel } from './withLabel'
-
-export default withLabel

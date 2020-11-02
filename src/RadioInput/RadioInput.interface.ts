@@ -10,5 +10,4 @@ export interface RadioInputInnerProps
   small?: boolean
 }
 
-export default interface RadioInputProps
-  extends WithLabel<RadioInputInnerProps> {}
+export interface RadioInputProps extends WithLabel<RadioInputInnerProps> {}

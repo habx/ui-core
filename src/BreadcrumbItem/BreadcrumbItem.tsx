@@ -1,10 +1,10 @@
 import * as React from 'react'
 
 import { isString } from '../_internal/data'
-import BreadcrumbContext from '../Breadcrumb/Breadcrumb.context'
-import Tooltip from '../Tooltip'
+import { BreadcrumbContext } from '../Breadcrumb'
+import { Tooltip } from '../Tooltip'
 
-import BreadcrumbItemProps from './BreadcrumbItem.interface'
+import { BreadcrumbItemProps } from './BreadcrumbItem.interface'
 import { BreadcrumbItemContainer } from './BreadcrumbItem.style'
 
 export const BreadcrumbItem = React.forwardRef<

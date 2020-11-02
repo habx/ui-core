@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import theme from '../theme'
+import { theme } from '../theme'
 
 export const linkStyle = css<{}>`
   color: ${theme.color('primary', { dynamic: true })};

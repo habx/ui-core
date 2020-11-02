@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import useHasColoredBackground from '../_internal/useHasColoredBackground'
+import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
 
-import TagProps from './Tag.interface'
+import { TagProps } from './Tag.interface'
 import { TagContainer, SideElementContainer } from './Tag.style'
 
 export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(

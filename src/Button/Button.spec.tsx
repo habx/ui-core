@@ -2,9 +2,9 @@ import { render, within, fireEvent } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 
-import Button from './index'
+import { Button } from './Button'
 
 describe('Button component', () => {
   it('should display the right label', () => {

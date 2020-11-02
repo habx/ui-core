@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
+import { withGrid } from '../_storybook/withGrid'
 
-import LoadingBar, { LoadingBarProps } from './index'
+import { LoadingBar, LoadingBarProps } from './index'
 
 const LoaderContainer = styled.div`
   display: flex;

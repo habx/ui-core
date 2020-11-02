@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import zIndex from '../_internal/zIndex'
-import breakpoints from '../breakpoints'
-import palette from '../palette'
-import theme from '../theme'
+import { zIndex } from '../_internal/zIndex'
+import { breakpoints } from '../breakpoints'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const FloatingButtonContainer = styled.button`
   display: flex;

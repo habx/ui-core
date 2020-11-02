@@ -1,7 +1,7 @@
 import Swipe from 'react-easy-swipe'
 import styled, { css } from 'styled-components'
 
-import breakpoints from '../breakpoints'
+import { breakpoints } from '../breakpoints'
 
 export const DESKTOP_ANIMATION_DURATION = 500
 

@@ -1,16 +1,16 @@
 import * as React from 'react'
 
-import Icon from '../../Icon'
-import SelectContext from '../Select.context'
+import { Icon } from '../../Icon'
+import { SelectContext } from '../Select.context'
 
-import OptionProps from './Option.interface'
+import { OptionProps } from './Option.interface'
 import {
   OptionContainer,
   OptionContent,
   SideElementContainer,
 } from './Option.style'
 
-const Option: React.FunctionComponent<OptionProps> = ({
+const InnerOption: React.FunctionComponent<OptionProps> = ({
   label,
   selected,
   focused,
@@ -50,4 +50,4 @@ const Option: React.FunctionComponent<OptionProps> = ({
   )
 }
 
-export default React.memo(Option)
+export const Option = React.memo(InnerOption)

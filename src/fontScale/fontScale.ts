@@ -1,6 +1,6 @@
 import { FontScale } from './fontScale.interface'
 
-const fontScale: FontScale = {
+export const fontScale: FontScale = {
   milkyWay: {
     size: 96,
     lineHeight: 96,
@@ -42,5 +42,3 @@ const fontScale: FontScale = {
     lineHeight: 12,
   },
 }
-
-export default fontScale

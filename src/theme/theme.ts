@@ -4,7 +4,8 @@ import { isNil } from '../_internal/data'
 
 import { BASE_THEME } from './theme.data'
 import { Shadow } from './theme.interface'
-import DesignSystemTheme, {
+import {
+  DesignSystemTheme,
   ColorFamilies,
   ColorVariations,
   Fonts,
@@ -195,12 +196,10 @@ const colorGetter = <Props extends GetterProps>(
   }
 }
 
-const theme = {
+export const theme = {
   color: colorGetter,
   textColor: textColorGetter,
   font: fontGetter,
   shadow: shadowGetter,
   raw: BASE_THEME,
 }
-
-export default theme

@@ -2,12 +2,12 @@ import * as React from 'react'
 import styled, { css, StyledComponent } from 'styled-components'
 
 import { mapValues } from '../_internal/data'
-import useUniqID from '../_internal/useUniqId'
-import palette from '../palette'
-import Text, { RawTextComponents, TextProps, TextTypes } from '../Text'
-import withMarkdown from '../withMarkdown'
+import { useUniqID } from '../_internal/useUniqId'
+import { palette } from '../palette'
+import { Text, RawTextComponents, TextProps, TextTypes } from '../Text'
+import { withMarkdown } from '../withMarkdown'
 
-import WithLabel, { WithSemanticLabel } from './withLabel.interface'
+import { WithLabel, WithSemanticLabel } from './withLabel.interface'
 
 interface LabelReceivedProps {
   label?: string
@@ -79,7 +79,7 @@ const RawLabelComponents = mapValues(
     `
 ) as Record<TextTypes, StyledComponent<'label', any, TextProps>>
 
-const withLabel = <RefElement extends HTMLElement>({
+export const withLabel = <RefElement extends HTMLElement>({
   padding = 'small',
   orientation = 'vertical',
 }: Options = {}) => <Props extends object>(
@@ -148,5 +148,3 @@ export const withSemanticLabel = <RefElement extends HTMLElement>({
   )
 
 const Markdown = withMarkdown({ inline: true })((props) => <span {...props} />)
-
-export default withLabel

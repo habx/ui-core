@@ -1,5 +1,3 @@
-import ExpansionPanelItem from './ExpansionPanelItem'
+export { ExpansionPanelItem } from './ExpansionPanelItem'
 
-export { default as ExpansionPanelItemProps } from './ExpansionPanelItem.interface'
-
-export default ExpansionPanelItem
+export { ExpansionPanelItemProps } from './ExpansionPanelItem.interface'

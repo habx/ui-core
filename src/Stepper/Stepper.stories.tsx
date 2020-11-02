@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
-import breakpoints from '../breakpoints'
+import { withGrid } from '../_storybook/withGrid'
+import { breakpoints } from '../breakpoints'
 
-import Stepper, { StepperProps } from './index'
+import { Stepper, StepperProps } from './index'
 
 const Container = styled.div`
   width: 450px;

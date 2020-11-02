@@ -1,5 +1,3 @@
-import { Loader } from './Loader'
+export { Loader } from './Loader'
 
-export { default as LoaderProps } from './Loader.interface'
-
-export default Loader
+export { LoaderProps } from './Loader.interface'

@@ -8,9 +8,10 @@ import {
 import { isColorDark } from '../_internal/color'
 import { StyledTheme } from '../_internal/types'
 import { BASE_THEME, PATCH_WHITE } from '../theme'
-import DesignSystemTheme from '../theme/theme.interface'
+import { DesignSystemTheme } from '../theme/theme.interface'
 
-import ThemeProviderProps, {
+import {
+  ThemeProviderProps,
   DesignSystemThemePatch,
 } from './ThemeProvider.interface'
 

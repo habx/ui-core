@@ -1,12 +1,12 @@
 import * as React from 'react'
 
-import getFlattenedChildren from '../_internal/getFlattenedChildren'
-import BreadcrumbItem from '../BreadcrumbItem'
-import Menu from '../Menu'
-import MenuLine from '../MenuLine'
+import { getFlattenedChildren } from '../_internal/getFlattenedChildren'
+import { BreadcrumbItem } from '../BreadcrumbItem'
+import { Menu } from '../Menu'
+import { MenuLine } from '../MenuLine'
 
-import BreadcrumbContext from './Breadcrumb.context'
-import BreadcrumbProps from './Breadcrumb.interface'
+import { BreadcrumbContext } from './Breadcrumb.context'
+import { BreadcrumbProps } from './Breadcrumb.interface'
 import { BreadcrumbContainer, BreadcrumbIcon } from './Breadcrumb.style'
 
 export const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(

@@ -1,12 +1,12 @@
 import * as React from 'react'
 
-import withGrid from '../_storybook/withGrid'
-import Button from '../Button'
-import Icon from '../Icon'
-import MenuLine from '../MenuLine'
-import MenuSection from '../MenuSection'
+import { withGrid } from '../_storybook/withGrid'
+import { Button } from '../Button'
+import { Icon } from '../Icon'
+import { MenuLine } from '../MenuLine'
+import { MenuSection } from '../MenuSection'
 
-import Menu, { MenuProps } from './index'
+import { Menu, MenuProps } from './index'
 
 const GRID_PROPS = {
   triggerElement: <Button outline>Open</Button>,

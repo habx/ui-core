@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import Icon from '../Icon'
-import Menu from '../Menu'
-import MenuLine from '../MenuLine'
+import { Icon } from '../Icon'
+import { Menu } from '../Menu'
+import { MenuLine } from '../MenuLine'
 
-import countries, { Country } from './countries'
+import { countries, Country } from './countries'
 import {
   CountryOptions,
   FlagContainer,
@@ -14,7 +14,7 @@ import {
   PhoneIndicator,
 } from './PhoneInput.style'
 
-const SelectFlag: React.FunctionComponent<SelectFlagInterface> = ({
+export const SelectFlag: React.FunctionComponent<SelectFlagProps> = ({
   value,
   onChange,
 }) => {
@@ -95,9 +95,7 @@ const SelectFlag: React.FunctionComponent<SelectFlagInterface> = ({
   )
 }
 
-interface SelectFlagInterface {
+interface SelectFlagProps {
   value: Country
   onChange: (value: Country) => void
 }
-
-export default SelectFlag

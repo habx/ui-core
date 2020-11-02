@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import palette from '../palette'
-import theme from '../theme'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const InnerCircle = styled.div`
   height: 12px;
@@ -157,10 +157,9 @@ export const FakeInputContainer = styled.span`
     --radio-input-border-width-hover: 4px;
     --radio-input-border-width-checked-focus: var(--radio-input-border-width);
     --radio-input-border-width-focus: var(--radio-input-border-width);
-    
-      ${Input}:checked + ${FakeInput} {
-    border-width: 0;
+
+    ${Input}:checked + ${FakeInput} {
+      border-width: 0;
+    }
   }
-  }
- 
 `

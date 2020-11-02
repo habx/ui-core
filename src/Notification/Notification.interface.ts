@@ -9,7 +9,7 @@ export interface NotificationEventProps {
   warning?: boolean
 }
 
-export default interface NotificationProps
+export interface NotificationProps
   extends NotificationEventProps,
     Except<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   onClose?: () => void

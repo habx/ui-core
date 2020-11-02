@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import AutocompleteInput, { AutocompleteInputProps } from './index'
+import { AutocompleteInput, AutocompleteInputProps } from './index'
 
 const AutocompleteInputContainer = styled.div`
   display: flex;

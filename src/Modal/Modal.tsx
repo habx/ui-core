@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
-import withTriggerElement from '../withTriggerElement'
+import { withTriggerElement } from '../withTriggerElement'
 
 import { ModalInnerProps } from './Modal.interface'
 import {

@@ -1,6 +1,6 @@
-import Palette from './palette.interface'
+import { Palette } from './palette.interface'
 
-const palette: Palette = {
+export const palette: Palette = {
   darkBlue: {
     900: '#061A3C',
     800: '#354661',
@@ -68,5 +68,3 @@ const palette: Palette = {
     100: 'NONE',
   },
 }
-
-export default palette

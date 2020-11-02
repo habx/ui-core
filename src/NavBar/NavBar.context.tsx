@@ -7,9 +7,9 @@ const DEFAULT_CONTEXT = {
   isExpanded: false,
   isPersistent: false,
   setPersistent: () => {},
-  color: '#fff',
+  color: '#FFFFFF',
 }
 
-const NavBarContext = React.createContext<NavBarContextProps>(DEFAULT_CONTEXT)
-
-export default NavBarContext
+export const NavBarContext = React.createContext<NavBarContextProps>(
+  DEFAULT_CONTEXT
+)

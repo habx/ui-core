@@ -2,10 +2,11 @@ import * as React from 'react'
 
 import { clamp } from '../_internal/data'
 import { useSSRLayoutEffect } from '../_internal/ssr'
-import useMergedRef from '../_internal/useMergedRef'
-import buildUseOnlyOpenedInstanceHook from '../_internal/useOnlyOpenedInstance'
+import { useMergedRef } from '../_internal/useMergedRef'
+import { buildUseOnlyOpenedInstanceHook } from '../_internal/useOnlyOpenedInstance'
 
-import TooltipProps, {
+import {
+  TooltipProps,
   ActionTypes,
   Position,
   TooltipActions,

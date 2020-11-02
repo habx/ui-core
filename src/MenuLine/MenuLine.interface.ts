@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { styledAs, ThemeOverridesProps } from '../_internal/types'
 
-export default interface MenuLineProps
+export interface MenuLineProps
   extends React.LiHTMLAttributes<HTMLLIElement>,
     ThemeOverridesProps {
   as?: styledAs

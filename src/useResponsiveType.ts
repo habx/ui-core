@@ -1,8 +1,8 @@
 import { useWindowWidth } from './_internal/hooks'
 import { isClientSide } from './_internal/ssr'
-import breakpoints from './breakpoints'
+import { breakpoints } from './breakpoints'
 
-const useResponsiveType = (defaultValue = 'phone') => {
+export const useResponsiveType = (defaultValue = 'phone') => {
   const width = useWindowWidth()
 
   if (!isClientSide) {
@@ -15,5 +15,3 @@ const useResponsiveType = (defaultValue = 'phone') => {
 
   return matchingBreakpoint ? (matchingBreakpoint[0] as string) : 'desktop'
 }
-
-export default useResponsiveType

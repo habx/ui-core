@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import Background from '../Background'
-import breakpoints from '../breakpoints'
-import palette from '../palette'
-import theme from '../theme'
+import { Background } from '../Background'
+import { breakpoints } from '../breakpoints'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const HeaderBarContainer = styled(Background)`
   height: 60px;

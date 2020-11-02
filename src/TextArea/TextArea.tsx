@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import withLabel from '../withLabel'
+import { withLabel } from '../withLabel'
 
 import { TextAreaInnerProps } from './TextArea.interface'
 import { Input } from './TextArea.style'

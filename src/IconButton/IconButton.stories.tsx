@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import withGrid from '../_storybook/withGrid'
+import { withGrid } from '../_storybook/withGrid'
 
-import IconButton, { IconButtonProps } from './index'
+import { IconButton, IconButtonProps } from './index'
 
 const GRID_PROPS = {
   icon: 'zoom-in',

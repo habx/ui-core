@@ -3,9 +3,9 @@ import styled from 'styled-components'
 
 import { isFunction } from '../_internal/data'
 import { linkStyle } from '../Link/Link.style'
-import DesignSystemTheme from '../theme/theme.interface'
+import { DesignSystemTheme } from '../theme/theme.interface'
 import { titleStyles } from '../Title/Title.style'
-import useTheme from '../useTheme'
+import { useTheme } from '../useTheme'
 
 import {
   WithMarkdownConfig,
@@ -31,7 +31,7 @@ const parse = ({
   return mdParse(children || '', env)
 }
 
-const withMarkdown = <
+export const withMarkdown = <
   RefElement extends HTMLElement,
   ExtraProps extends {} = {}
 >({ inline = false }: WithMarkdownConfig = {}) => <Props extends object>(
@@ -134,5 +134,3 @@ const withMarkdown = <
 
   return Component
 }
-
-export default withMarkdown

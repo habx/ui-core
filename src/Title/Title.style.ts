@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
 
-import breakpoints from '../breakpoints'
-import fontScale, { FontScale } from '../fontScale'
-import theme from '../theme'
+import { breakpoints } from '../breakpoints'
+import { fontScale, FontScale } from '../fontScale'
+import { theme } from '../theme'
 
 const size = (name: keyof FontScale) => css`
   font-size: ${fontScale[name].size}px;

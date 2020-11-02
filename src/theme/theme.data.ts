@@ -1,6 +1,6 @@
-import palette from '../palette'
+import { palette } from '../palette'
 
-import DesignSystemTheme, { ColorVariations } from './theme.interface'
+import { DesignSystemTheme, ColorVariations } from './theme.interface'
 
 const WHITE = '#FFFFFF'
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import theme from '../theme'
+import { theme } from '../theme'
 
 export const HiddenInputContainer = styled.div`
   position: relative;

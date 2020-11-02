@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import AutocompleteInputProps from '../AutocompleteInput/AutocompleteInput.interface'
+import { AutocompleteInputProps } from '../AutocompleteInput'
 
 type valueType = (string | number)[]
 
-export default interface TextInputListProps
+export interface TextInputListProps
   extends Pick<
     AutocompleteInputProps,
     Exclude<keyof AutocompleteInputProps, 'value' | 'onChange'>

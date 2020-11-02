@@ -1,5 +1,3 @@
-import { Icon } from './Icon'
+export { Icon } from './Icon'
 
-export { default as IconProps } from './Icon.interface'
-
-export default Icon
+export { IconProps } from './Icon.interface'

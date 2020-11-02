@@ -1,8 +1,8 @@
 import styled, { keyframes } from 'styled-components'
 
-import zIndex from '../_internal/zIndex'
-import breakpoints from '../breakpoints'
-import BaseNotification from '../Notification'
+import { zIndex } from '../_internal/zIndex'
+import { breakpoints } from '../breakpoints'
+import { Notification as BaseNotification } from '../Notification'
 
 export const SLIDE_DURATION = 300
 export const SHRINK_DURATION = 200

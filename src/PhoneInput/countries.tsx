@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 
 export type Country = {
   flag?: React.FunctionComponent<{}>
@@ -11,7 +11,7 @@ export type Country = {
   order?: number
 }
 
-export default [
+export const countries = [
   { name: 'Afghanistan (‫افغانستان‬‎)', iso2Code: 'af', dialCode: '93' },
   { name: 'Albania (Shqipëri)', iso2Code: 'al', dialCode: '355' },
   { name: 'Algeria (‫الجزائر‬‎)', iso2Code: 'dz', dialCode: '213' },

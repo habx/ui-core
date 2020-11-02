@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import Icon from '../Icon'
-import palette from '../palette'
-import ThemeProvider from '../ThemeProvider'
-import useTheme from '../useTheme'
+import { Icon } from '../Icon'
+import { palette } from '../palette'
+import { ThemeProvider } from '../ThemeProvider'
+import { useTheme } from '../useTheme'
 
-import IconButtonProps from './IconButton.interface'
+import { IconButtonProps } from './IconButton.interface'
 import { IconButtonContainer, IconButtonContent } from './IconButton.style'
 
 export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(

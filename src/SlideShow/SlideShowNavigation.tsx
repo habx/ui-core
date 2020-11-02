@@ -1,14 +1,14 @@
 import * as React from 'react'
 
-import NavigationButton from '../NavigationButton'
-import NavigationDots from '../NavigationDots'
+import { NavigationButton } from '../NavigationButton'
+import { NavigationDots } from '../NavigationDots'
 
 import {
   NavigationButtonContainer,
   NavigationDotsContainer,
 } from './SlideShow.style'
 
-const SlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps> = ({
+const InnerSlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps> = ({
   next,
   previous,
   size,
@@ -51,4 +51,4 @@ interface SlideShowNavigationProps {
   navigationComponent?: React.ComponentType<any>
 }
 
-export default React.memo(SlideShowNavigation)
+export const SlideShowNavigation = React.memo(InnerSlideShowNavigation)

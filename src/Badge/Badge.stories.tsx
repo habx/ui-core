@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import withGrid from '../_storybook/withGrid'
+import { withGrid } from '../_storybook/withGrid'
 
-import Badge, { BadgeProps } from './index'
+import { Badge, BadgeProps } from './index'
 
 const GRID_PROPS = {}
 

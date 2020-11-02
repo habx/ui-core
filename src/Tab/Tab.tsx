@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import useHasColoredBackground from '../_internal/useHasColoredBackground'
+import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
 
-import TagProps from './Tab.interface'
+import { TabProps } from './Tab.interface'
 import { TabContainer, SideElementContainer } from './Tab.style'
 
-export const Tab = React.forwardRef<HTMLButtonElement, TagProps>(
+export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
   (props, ref) => {
     const {
       large = false,

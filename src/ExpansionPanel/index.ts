@@ -1,5 +1,3 @@
-import { ExpansionPanel } from './ExpansionPanel'
+export { ExpansionPanel } from './ExpansionPanel'
 
-export { default as ExpansionPanelProps } from './ExpansionPanel.interface'
-
-export default ExpansionPanel
+export { ExpansionPanelProps } from './ExpansionPanel.interface'

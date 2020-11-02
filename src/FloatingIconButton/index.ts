@@ -1,5 +1,3 @@
-import { FloatingIconButton } from './FloatingIconButton'
+export { FloatingIconButton } from './FloatingIconButton'
 
-export { default as FloatingIconButtonProps } from './FloatingIconButton.interface'
-
-export default FloatingIconButton
+export { FloatingIconButtonProps } from './FloatingIconButton.interface'

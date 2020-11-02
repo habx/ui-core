@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import TabsBarProps from './TabsBar.interface'
+import { TabsBarProps } from './TabsBar.interface'
 import { TabsBarContainer } from './TabsBar.style'
 
 export const TabsBar = React.forwardRef<HTMLUListElement, TabsBarProps>(

@@ -1,12 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
-import Card from '../Card'
-import palette from '../palette'
-import Text from '../Text'
+import { withGrid } from '../_storybook/withGrid'
+import { Card } from '../Card'
+import { palette } from '../palette'
+import { Text } from '../Text'
 
-import AnnouncementBanner, { AnnouncementBannerProps } from './index'
+import { AnnouncementBanner, AnnouncementBannerProps } from './index'
 
 const CardContainer = styled(Card)`
   height: 400px;

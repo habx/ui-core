@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
+import { withGrid } from '../_storybook/withGrid'
 
-import TextInput, { TextInputProps } from './index'
+import { TextInput, TextInputProps } from './index'
 
 const TextInputContainer = styled.div`
   display: flex;

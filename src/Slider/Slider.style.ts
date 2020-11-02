@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import palette from '../palette'
-import Text from '../Text'
-import theme from '../theme'
+import { palette } from '../palette'
+import { Text } from '../Text'
+import { theme } from '../theme'
 
 import { SliderBarContainer } from './SliderBar/SliderBar.style'
 

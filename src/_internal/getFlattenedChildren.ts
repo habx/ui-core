@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { isFragment } from 'react-is'
 
-const getFlattenedChildren = (children: React.ReactNode) => {
+export const getFlattenedChildren = (children: React.ReactNode) => {
   const flatten = (current: React.ReactNode) => {
     if (!current) {
       return []
@@ -22,5 +22,3 @@ const getFlattenedChildren = (children: React.ReactNode) => {
 
   return flatten(children).filter((child) => !!child)
 }
-
-export default getFlattenedChildren

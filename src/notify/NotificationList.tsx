@@ -16,7 +16,7 @@ import {
 } from './NotificationList.style'
 import { subscribe } from './notify'
 
-const NotificationList: React.FunctionComponent<{}> = () => {
+export const NotificationList: React.FunctionComponent<{}> = () => {
   const isMounted = useIsMounted()
   const registerTimeout = useTimeout()
 
@@ -96,5 +96,3 @@ const NotificationList: React.FunctionComponent<{}> = () => {
 
   return isClientSide ? ReactDOM.createPortal(content, document.body) : content
 }
-
-export default NotificationList

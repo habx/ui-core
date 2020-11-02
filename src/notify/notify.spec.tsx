@@ -1,9 +1,9 @@
 import { render, within, act } from '@testing-library/react'
 import * as React from 'react'
 
-import Provider from '../Provider'
+import { Provider } from '../Provider'
 
-import notify from './index'
+import { notify } from './index'
 import { SHRINK_DURATION, SLIDE_DURATION } from './NotificationList.style'
 
 jest.useFakeTimers()

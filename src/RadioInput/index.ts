@@ -1,5 +1,3 @@
-import { RadioInput } from './RadioInput'
+export { RadioInput } from './RadioInput'
 
-export { default as RadioInputProps } from './RadioInput.interface'
-
-export default RadioInput
+export { RadioInputProps } from './RadioInput.interface'

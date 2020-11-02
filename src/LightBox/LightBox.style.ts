@@ -1,10 +1,10 @@
 import styled, { keyframes } from 'styled-components'
 
-import zIndex from '../_internal/zIndex'
+import { zIndex } from '../_internal/zIndex'
 import { ANIMATION_DURATIONS } from '../animations'
-import breakpoints from '../breakpoints'
-import IconButton from '../IconButton'
-import Layout from '../Layout'
+import { breakpoints } from '../breakpoints'
+import { IconButton } from '../IconButton'
+import { Layout } from '../Layout'
 
 export const FADE_IN = keyframes`
   from {

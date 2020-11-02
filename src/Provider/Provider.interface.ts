@@ -1,4 +1,4 @@
-export default interface ThunderProviderProps {}
+export interface ProviderProps {}
 
 export type subscriptionCallback<Message, Options> = (
   message: Message,

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import WithLabel from '../withLabel/withLabel.interface'
+import { WithLabel } from '../withLabel'
 
 export type Tooltip = { content: React.ReactNode; position: number }
 
@@ -35,4 +35,4 @@ export interface SliderInnerProps
   shouldTooltipFollowDot?: boolean
 }
 
-export default interface SliderProps extends WithLabel<SliderInnerProps> {}
+export interface SliderProps extends WithLabel<SliderInnerProps> {}

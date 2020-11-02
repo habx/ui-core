@@ -1,13 +1,13 @@
 import styled, { keyframes } from 'styled-components'
 
-import zIndex from '../_internal/zIndex'
+import { zIndex } from '../_internal/zIndex'
 import { ActionBarContent } from '../ActionBar/ActionBar.style'
-import animations from '../animations'
-import breakpoints from '../breakpoints'
-import IconButton from '../IconButton'
-import Layout from '../Layout'
-import theme from '../theme'
-import Title from '../Title'
+import { animations } from '../animations'
+import { breakpoints } from '../breakpoints'
+import { IconButton } from '../IconButton'
+import { Layout } from '../Layout'
+import { theme } from '../theme'
+import { Title } from '../Title'
 
 export const ANIMATION_DURATION = 300
 

@@ -1,14 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import Badge from '../Badge'
-import HeaderBar from '../HeaderBar'
-import MenuLine from '../MenuLine'
-import TabsBarItem from '../TabsBarItem'
-import TabsBarMenuItem from '../TabsBarMenuItem'
-import Tooltip from '../Tooltip'
+import { Badge } from '../Badge'
+import { HeaderBar } from '../HeaderBar'
+import { MenuLine } from '../MenuLine'
+import { TabsBarItem } from '../TabsBarItem'
+import { TabsBarMenuItem } from '../TabsBarMenuItem'
+import { Tooltip } from '../Tooltip'
 
-import TabsBar from './index'
+import { TabsBar } from './index'
 
 const Wrapper = styled.div`
   min-height: 500px;

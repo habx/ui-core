@@ -1,12 +1,12 @@
 import * as React from 'react'
 
-import useHasColoredBackground from '../_internal/useHasColoredBackground'
-import useMergedRef from '../_internal/useMergedRef'
-import Icon from '../Icon'
-import withLabel from '../withLabel'
+import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
+import { useMergedRef } from '../_internal/useMergedRef'
+import { Icon } from '../Icon'
+import { withLabel } from '../withLabel'
 
-import Options from './Options'
-import SelectContext from './Select.context'
+import { Options } from './Options'
+import { SelectContext } from './Select.context'
 import { useSelect } from './Select.hooks'
 import { SelectContextValue, SelectInnerProps } from './Select.interface'
 import {

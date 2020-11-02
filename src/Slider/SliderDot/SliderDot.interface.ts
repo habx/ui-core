@@ -1,4 +1,4 @@
-export default interface SliderDotProps {
+export interface SliderDotProps {
   position: number
   onMove: (deltaPixel: number) => void
   onRest: () => void

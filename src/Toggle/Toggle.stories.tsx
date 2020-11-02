@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
+import { withGrid } from '../_storybook/withGrid'
 
-import Toggle, { ToggleProps } from './index'
+import { Toggle, ToggleProps } from './index'
 
 const ToggleContainer = styled.div`
   display: flex;
