@@ -1,10 +1,10 @@
 import { fireEvent, render } from '@testing-library/react'
 import * as React from 'react'
+import sinon from 'sinon'
 
-import ConfirmMenu, { ConfirmMenuProps } from './index'
+import { ConfirmMenu, ConfirmMenuProps } from './index'
 
 import '@testing-library/jest-dom/extend-expect'
-import sinon from 'sinon'
 
 const InputWithConfirm = (props: ConfirmMenuProps) => {
   return (

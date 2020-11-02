@@ -1,7 +1,7 @@
 import { Modal } from '@delangle/use-modal'
 import * as React from 'react'
 
-export default interface ExpansionPanelItem
+export interface ExpansionPanelItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   title?: string | React.ReactNode
   description?: string | React.ReactNode

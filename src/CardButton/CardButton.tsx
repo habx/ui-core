@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import CardProps from './CardButton.interface'
+import { CardButtonProps } from './CardButton.interface'
 import {
   CardButtonContainer,
   CardButtonDescription,
@@ -8,7 +8,7 @@ import {
   CardButtonTitle,
 } from './CardButton.style'
 
-export const CardButton = React.forwardRef<HTMLDivElement, CardProps>(
+export const CardButton = React.forwardRef<HTMLDivElement, CardButtonProps>(
   (props, ref) => {
     const { title, illustration, description, markdown, ...rest } = props
 

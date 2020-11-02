@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { styledAs } from '../_internal/types'
-import WithLabel from '../withLabel/withLabel.interface'
+import { WithLabel } from '../withLabel'
 
 export interface TextAreaInnerProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'value'> {
@@ -11,4 +11,4 @@ export interface TextAreaInnerProps
   as?: styledAs
 }
 
-export default interface TextAreaProps extends WithLabel<TextAreaInnerProps> {}
+export interface TextAreaProps extends WithLabel<TextAreaInnerProps> {}

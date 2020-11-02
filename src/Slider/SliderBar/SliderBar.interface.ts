@@ -1,6 +1,6 @@
 import { Indicator } from '../Slider.interface'
 
-export default interface SliderBarProps {
+export interface SliderBarProps {
   from: number
   to: number
   indicators: Indicator[]

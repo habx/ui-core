@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
 
-import breakpoints from '../breakpoints'
-import palette from '../palette'
-import theme from '../theme'
+import { breakpoints } from '../breakpoints'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 const SIZES = {
   s: { diameter: 24, fontSizes: { navigation: 12, toggle: 16 } },

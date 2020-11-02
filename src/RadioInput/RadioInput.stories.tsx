@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
+import { withGrid } from '../_storybook/withGrid'
 
-import RadioInput, { RadioInputProps } from './index'
+import { RadioInput, RadioInputProps } from './index'
 
 const RadioInputContainer = styled.div`
   display: flex;

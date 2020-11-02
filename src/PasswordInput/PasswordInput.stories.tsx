@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
+import { withGrid } from '../_storybook/withGrid'
 
-import PasswordInput, { PasswordInputProps } from './index'
+import { PasswordInput, PasswordInputProps } from './index'
 
 const PasswordInputContainer = styled.div`
   display: flex;

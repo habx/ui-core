@@ -6,7 +6,7 @@ const DEFAULT_SIZE: SIZE = { width: 0, height: 0 }
 
 const getSize = () => ({ width: window.innerWidth, height: window.innerHeight })
 
-const useWindowSize = (): SIZE => {
+export const useWindowSize = (): SIZE => {
   const hasWindow = typeof window === 'object'
   const [size, setSize] = React.useState<SIZE>(
     hasWindow ? getSize() : DEFAULT_SIZE
@@ -26,5 +26,3 @@ const useWindowSize = (): SIZE => {
 
   return size
 }
-
-export default useWindowSize

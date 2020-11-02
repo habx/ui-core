@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { ThemeOverridesProps } from '../_internal/types'
-import WithLabel from '../withLabel/withLabel.interface'
+import { WithLabel } from '../withLabel'
 
 import { ArrayInputItemComponentProps } from './Item/Item.interface'
 
@@ -29,5 +29,4 @@ export interface ArrayInputInnerProps
   renderItemTitle?: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
 }
 
-export default interface ArrayInputProps
-  extends WithLabel<ArrayInputInnerProps> {}
+export interface ArrayInputProps extends WithLabel<ArrayInputInnerProps> {}

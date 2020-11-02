@@ -1,9 +1,9 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
+import { withGrid } from '../_storybook/withGrid'
 
-import Slider, { SliderProps } from './index'
+import { Slider, SliderProps } from './index'
 
 type Props = Omit<SliderProps, 'onChange'>
 

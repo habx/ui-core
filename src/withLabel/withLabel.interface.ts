@@ -1,6 +1,6 @@
-import { TextTypes } from '../Text/Text.interface'
+import { TextTypes } from '../Text'
 
-type WithLabel<InnerProps extends {} = {}> = InnerProps & {
+export type WithLabel<InnerProps extends {} = {}> = InnerProps & {
   label?: string
   labelType?: TextTypes
   error?: boolean
@@ -10,5 +10,3 @@ type WithLabel<InnerProps extends {} = {}> = InnerProps & {
 export type WithSemanticLabel<Props extends {} = {}> = WithLabel<Props> & {
   id?: string
 }
-
-export default WithLabel

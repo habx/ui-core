@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { styledAs } from '../_internal/types'
-import WithLabel from '../withLabel/withLabel.interface'
+import { WithLabel } from '../withLabel'
 
 export interface PasswordInputInnerProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
@@ -11,5 +11,5 @@ export interface PasswordInputInnerProps
   as?: styledAs
 }
 
-export default interface PasswordInputProps
+export interface PasswordInputProps
   extends WithLabel<PasswordInputInnerProps> {}

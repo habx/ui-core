@@ -15,7 +15,7 @@ type breakpoints = {
   raw: { [key in sizes]: number }
 }
 
-const breakpoints: breakpoints = {
+export const breakpoints: breakpoints = {
   above: mapValues(
     SIZES,
     (value: number): string => `min-width: ${(value + 1) / 16}em`
@@ -26,5 +26,3 @@ const breakpoints: breakpoints = {
   ) as { [key in sizes]: string },
   raw: SIZES,
 }
-
-export default breakpoints

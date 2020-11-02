@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import CardButton, { CardButtonProps } from './index'
+import { CardButton, CardButtonProps } from './index'
 
 export default {
   title: 'Actions/CardButton',

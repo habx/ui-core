@@ -1,13 +1,13 @@
 import * as React from 'react'
 
-import useMergedRef from '../_internal/useMergedRef'
-import Loader from '../Loader'
-import Menu from '../Menu'
-import MenuLine from '../MenuLine'
-import TextInput from '../TextInput'
+import { useMergedRef } from '../_internal/useMergedRef'
+import { Loader } from '../Loader'
+import { Menu } from '../Menu'
+import { MenuLine } from '../MenuLine'
+import { TextInput } from '../TextInput'
 
-import AutocompleteInputProps from './AutocompleteInput.interface'
-import useAutocomplete from './useAutocomplete'
+import { AutocompleteInputProps } from './AutocompleteInput.interface'
+import { useAutocomplete } from './useAutocomplete'
 
 export const AutocompleteInput = React.forwardRef<
   HTMLInputElement,

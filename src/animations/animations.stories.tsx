@@ -1,12 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
-import Button from '../Button'
-import palette from '../palette'
-import theme from '../theme'
+import { withGrid } from '../_storybook/withGrid'
+import { Button } from '../Button'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
-import animations from './animations'
+import { animations } from './animations'
 import { Animations, Durations } from './animations.interface'
 
 const AnimationCardContainer = styled.div`

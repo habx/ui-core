@@ -1,5 +1,5 @@
-import { Breadcrumb } from './Breadcrumb'
+export { Breadcrumb } from './Breadcrumb'
 
-export { default as BreadcrumbProps } from './Breadcrumb.interface'
+export { BreadcrumbContext } from './Breadcrumb.context'
 
-export default Breadcrumb
+export { BreadcrumbProps } from './Breadcrumb.interface'

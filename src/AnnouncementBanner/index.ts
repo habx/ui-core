@@ -1,5 +1,3 @@
-import { AnnouncementBanner } from './AnnouncementBanner'
+export { AnnouncementBanner } from './AnnouncementBanner'
 
-export { default as AnnouncementBannerProps } from './AnnouncementBanner.interface'
-
-export default AnnouncementBanner
+export { AnnouncementBannerProps } from './AnnouncementBanner.interface'

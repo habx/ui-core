@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import CardProps from './Card.interface'
+import { CardProps } from './Card.interface'
 import { CardContainer } from './Card.style'
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import DesignSystemTheme from '../theme/theme.interface'
+import { DesignSystemTheme } from '../theme/theme.interface'
 
 export type Except<BaseType, ExcludedElements> = Pick<
   BaseType,

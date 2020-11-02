@@ -16,5 +16,5 @@ export interface ModalInnerProps extends React.HTMLAttributes<HTMLDivElement> {
     | ((modal: Modal<HTMLDivElement>) => React.ReactNode)
 }
 
-export default interface ModalProps
+export interface ModalProps
   extends WithTriggerElement<ModalInnerProps, HTMLDivElement> {}

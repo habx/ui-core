@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import CenteredComponent from '../_storybook/CenteredComponent'
-import withGrid from '../_storybook/withGrid'
-import Button from '../Button'
-import IconButton from '../IconButton'
+import { CenteredComponent } from '../_storybook/CenteredComponent'
+import { withGrid } from '../_storybook/withGrid'
+import { Button } from '../Button'
+import { IconButton } from '../IconButton'
 
-import Tooltip, { TooltipProps } from './index'
+import { Tooltip, TooltipProps } from './index'
 
 const GRID_PROPS = {
   title: 'Lien copié !',

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import Background from '../Background'
-import breakpoints from '../breakpoints'
-import Button from '../Button'
+import { Background } from '../Background'
+import { breakpoints } from '../breakpoints'
+import { Button } from '../Button'
 
 export const AnnouncementBannerShadowBar = styled.div`
   position: absolute;

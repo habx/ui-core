@@ -6,8 +6,7 @@ export type StepperStep<Value = any> = {
   value: Value
 }
 
-export default interface StepperProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
   currentStepIndex: number
   steps: StepperStep[]
   onStepClick: (step: StepperStep, stepIndex: number) => void

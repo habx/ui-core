@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { isNil, isString } from '../_internal/data'
 
-import TriangleProps, { Position } from './Triangle.interface'
+import { TriangleProps, Position } from './Triangle.interface'
 
 const TriangleContainer = styled.div`
   width: 0;

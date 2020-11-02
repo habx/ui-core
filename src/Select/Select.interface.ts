@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import WithLabel from '../withLabel/withLabel.interface'
+import { WithLabel } from '../withLabel'
 
 export interface SelectContextValue {
   multi: boolean
@@ -43,7 +43,7 @@ export interface SelectInnerProps
   value?: any | any[]
 }
 
-export default interface SelectProps extends WithLabel<SelectInnerProps> {}
+export interface SelectProps extends WithLabel<SelectInnerProps> {}
 
 export interface SelectState {
   isOpened: boolean

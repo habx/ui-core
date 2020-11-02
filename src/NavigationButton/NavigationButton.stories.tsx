@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import withGrid from '../_storybook/withGrid'
+import { withGrid } from '../_storybook/withGrid'
 
-import NavigationButton, { NavigationButtonProps } from './index'
+import { NavigationButton, NavigationButtonProps } from './index'
 
 const GRID_LINES = [
   {

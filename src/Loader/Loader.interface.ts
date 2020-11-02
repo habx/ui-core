@@ -1,7 +1,6 @@
 import * as React from 'react'
 
-export default interface LoaderProps
-  extends React.HTMLAttributes<HTMLSpanElement> {
+export interface LoaderProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * @default true
    */

@@ -1,9 +1,7 @@
-import useTheme from '../useTheme'
+import { useTheme } from '../useTheme'
 
-const useHasColoredBackground = () => {
+export const useHasColoredBackground = () => {
   const theme = useTheme()
 
   return theme.backgroundColor !== '#FFFFFF'
 }
-
-export default useHasColoredBackground

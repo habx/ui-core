@@ -1,4 +1,4 @@
-import BackgroundProps from '../Background/Background.interface'
+import { BackgroundProps } from '../Background'
 
 export type CardSpacing =
   | 'none'
@@ -7,8 +7,7 @@ export type CardSpacing =
   | 'regular-horizontal-only'
   | 'narrow-horizontal-only'
 
-export default interface CardProps
-  extends Omit<BackgroundProps, 'backgroundColor'> {
+export interface CardProps extends Omit<BackgroundProps, 'backgroundColor'> {
   animated?: boolean
   flat?: boolean
   backgroundColor?: string

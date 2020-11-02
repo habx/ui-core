@@ -1,11 +1,11 @@
 import * as React from 'react'
 
 import { isNil } from '../_internal/data'
-import useMergedRef from '../_internal/useMergedRef'
-import useResponsiveType from '../useResponsiveType'
+import { useMergedRef } from '../_internal/useMergedRef'
+import { useResponsiveType } from '../useResponsiveType'
 
 import { useSlideShow } from './SlideShow.hooks'
-import SlideShowProps from './SlideShow.interface'
+import { SlideShowProps } from './SlideShow.interface'
 import {
   DESKTOP_ANIMATION_DURATION,
   MOBILE_ANIMATION_DURATION,
@@ -13,8 +13,8 @@ import {
   SlideShowSlidingContainer,
   SlideShowSlidingContent,
 } from './SlideShow.style'
-import SlideShowContent from './SlideShowContent'
-import SlideShowNavigation from './SlideShowNavigation'
+import { SlideShowContent } from './SlideShowContent'
+import { SlideShowNavigation } from './SlideShowNavigation'
 
 export const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
   (props, ref) => {

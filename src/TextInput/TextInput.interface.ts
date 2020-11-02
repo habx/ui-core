@@ -19,5 +19,4 @@ export interface TextInputInnerProps
   placeholder?: string
 }
 
-export default interface TextInputProps
-  extends WithLabel<TextInputInnerProps> {}
+export interface TextInputProps extends WithLabel<TextInputInnerProps> {}

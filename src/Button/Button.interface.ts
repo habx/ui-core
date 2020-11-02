@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Button, styledAs } from '../_internal/types'
 
-export default interface ButtonProps extends Button {
+export interface ButtonProps extends Button {
   /**
    * Left element of the Button like `<Icon icon="send" />`
    */

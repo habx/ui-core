@@ -1,7 +1,6 @@
 import { BannerProps } from '../_internal/Banner'
 
-export default interface AlertBannerProps
-  extends Omit<BannerProps, 'backgroundColor'> {
+export interface AlertBannerProps extends Omit<BannerProps, 'backgroundColor'> {
   /**
    * message contained in the banner
    * @default "This is an alert banner"

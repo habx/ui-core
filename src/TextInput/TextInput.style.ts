@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components'
 
-import breakpoints from '../breakpoints'
-import Icon from '../Icon'
-import palette from '../palette'
-import theme from '../theme'
+import { breakpoints } from '../breakpoints'
+import { Icon } from '../Icon'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const inputStyle = css`
   font-family: ${theme.font()};

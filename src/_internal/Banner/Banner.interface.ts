@@ -1,7 +1,6 @@
 import { BackgroundProps } from '../../Background'
 
-export default interface BannerProps
-  extends Omit<BackgroundProps, 'backgroundColor'> {
+export interface BannerProps extends Omit<BackgroundProps, 'backgroundColor'> {
   /**
    * is banner visible
    */

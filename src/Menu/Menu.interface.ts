@@ -26,5 +26,5 @@ export interface MenuInnerProps
     | ((modal: Modal<HTMLUListElement>) => React.ReactNode)
 }
 
-export default interface MenuProps
+export interface MenuProps
   extends WithTriggerElement<MenuInnerProps, HTMLUListElement> {}

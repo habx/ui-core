@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import palette from '../palette'
-import Text from '../Text'
-import TextInput from '../TextInput'
-import theme from '../theme'
+import { palette } from '../palette'
+import { Text } from '../Text'
+import { TextInput } from '../TextInput'
+import { theme } from '../theme'
 
 export const MainInput = styled(TextInput)`
   flex: 1 1 100%;

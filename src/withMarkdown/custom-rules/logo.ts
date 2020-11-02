@@ -64,5 +64,5 @@ function logo(state: StateInline, silent?: boolean) {
   return true
 }
 
-export default (md: MarkdownIt) =>
+export const logoRule = (md: MarkdownIt) =>
   md.inline.ruler.after('emphasis', 'sub', logo)

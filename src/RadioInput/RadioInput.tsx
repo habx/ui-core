@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import useHasColoredBackground from '../_internal/useHasColoredBackground'
-import useUniqID from '../_internal/useUniqId'
-import withLabel from '../withLabel'
+import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
+import { useUniqID } from '../_internal/useUniqId'
+import { withLabel } from '../withLabel'
 
 import { RadioInputInnerProps } from './RadioInput.interface'
 import {

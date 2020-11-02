@@ -1,13 +1,13 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
-import breakpoints from '../breakpoints'
-import Card from '../Card'
-import ExpansionPanelItem from '../ExpansionPanelItem'
-import Text from '../Text'
+import { withGrid } from '../_storybook/withGrid'
+import { breakpoints } from '../breakpoints'
+import { Card } from '../Card'
+import { ExpansionPanelItem } from '../ExpansionPanelItem'
+import { Text } from '../Text'
 
-import ExpansionPanel, { ExpansionPanelProps } from './index'
+import { ExpansionPanel, ExpansionPanelProps } from './index'
 
 const Container = styled.div`
   width: 450px;

@@ -1,13 +1,14 @@
 import * as React from 'react'
 
-import Icon from '../Icon'
-import palette from '../palette'
-import Text from '../Text'
-import Triangle from '../Triangle'
-import useTheme from '../useTheme'
+import { Icon } from '../Icon'
+import { palette } from '../palette'
+import { Text } from '../Text'
+import { Triangle } from '../Triangle'
+import { useTheme } from '../useTheme'
 
-import NavBarContext from './NavBar.context'
-import NavBarProps, {
+import { NavBarContext } from './NavBar.context'
+import {
+  NavBarProps,
   ActionType,
   NavBarAction,
   NavBarState,

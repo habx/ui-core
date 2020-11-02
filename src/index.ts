@@ -4,130 +4,130 @@
   Providers
  */
 
-export { default as Provider, ProviderProps } from './Provider'
-export { default as ThemeProvider, ThemeProviderProps, DesignSystemThemePatch } from './ThemeProvider'
+export { Provider, ProviderProps } from './Provider'
+export { ThemeProvider, ThemeProviderProps, DesignSystemThemePatch } from './ThemeProvider'
 
 
 /*
   Typography
  */
-export { default as Text, TextProps, textStyles } from './Text'
-export { default as Title, TitleProps, titleStyles } from './Title'
-export { default as Link, LinkProps, linkStyle } from './Link'
+export { Text, TextProps, textStyles } from './Text'
+export { Title, TitleProps, titleStyles } from './Title'
+export { Link, LinkProps, linkStyle } from './Link'
 
 
 /*
   Menu
  */
-export { default as Menu, MenuProps } from './Menu'
-export { default as MenuSection, MenuSectionProps } from './MenuSection'
-export { default as MenuLine, MenuLineProps } from './MenuLine'
-export { default as ConfirmMenu, ConfirmMenuProps } from './ConfirmMenu'
+export { Menu, MenuProps } from './Menu'
+export { MenuSection, MenuSectionProps } from './MenuSection'
+export { MenuLine, MenuLineProps } from './MenuLine'
+export { ConfirmMenu, ConfirmMenuProps } from './ConfirmMenu'
 
 
 /*
   Buttons / Tags
  */
-export { default as Button, ButtonProps } from './Button'
-export { default as CardButton, CardButtonProps } from './CardButton'
-export { default as FloatingButton, FloatingButtonProps } from './FloatingButton'
-export { default as FloatingIconButton, FloatingIconButtonProps } from './FloatingIconButton'
-export { default as IconButton, IconButtonProps } from './IconButton'
-export { default as NavigationButton, NavigationButtonProps } from './NavigationButton'
-export { default as Tag, TagProps } from './Tag'
+export { Button, ButtonProps } from './Button'
+export { CardButton, CardButtonProps } from './CardButton'
+export { FloatingButton, FloatingButtonProps } from './FloatingButton'
+export { FloatingIconButton, FloatingIconButtonProps } from './FloatingIconButton'
+export { IconButton, IconButtonProps } from './IconButton'
+export { NavigationButton, NavigationButtonProps } from './NavigationButton'
+export { Tag, TagProps } from './Tag'
 
 
 /*
   Navigation
  */
-export { default as NavBar,  NavBarProps } from './NavBar'
-export { default as NavBarItem,  NavBarItemProps } from './NavBarItem'
-export { default as NavBarMenuItem,  NavBarMenuItemProps } from './NavBarMenuItem'
-export { default as Tab, TabProps } from './Tab'
-export { default as TabsBar, TabsBarProps } from './TabsBar'
-export { default as TabsBarItem, TabsBarItemProps } from './TabsBarItem'
-export { default as TabsBarMenuItem, TabsBarMenuItemProps } from './TabsBarMenuItem'
-export { default as NavigationDots, NavigationDotsProps } from './NavigationDots'
-export { default as Breadcrumb, BreadcrumbProps } from './Breadcrumb'
-export { default as BreadcrumbItem, BreadcrumbItemProps } from './BreadcrumbItem'
+export { NavBar,  NavBarProps } from './NavBar'
+export { NavBarItem,  NavBarItemProps } from './NavBarItem'
+export { NavBarMenuItem,  NavBarMenuItemProps } from './NavBarMenuItem'
+export { Tab, TabProps } from './Tab'
+export { TabsBar, TabsBarProps } from './TabsBar'
+export { TabsBarItem, TabsBarItemProps } from './TabsBarItem'
+export { TabsBarMenuItem, TabsBarMenuItemProps } from './TabsBarMenuItem'
+export { NavigationDots, NavigationDotsProps } from './NavigationDots'
+export { Breadcrumb, BreadcrumbProps } from './Breadcrumb'
+export { BreadcrumbItem, BreadcrumbItemProps } from './BreadcrumbItem'
 
 
 /*
   Inputs
  */
-export { default as Checkbox, CheckboxProps } from './Checkbox'
-export { default as RadioInput, RadioInputProps } from './RadioInput'
-export { default as PasswordInput, PasswordInputProps } from './PasswordInput'
-export { default as PhoneInput, PhoneInputProps } from './PhoneInput'
-export { default as Select, SelectProps } from './Select'
-export { default as Slider, SliderProps } from './Slider'
-export { default as TextArea, TextAreaProps } from './TextArea'
-export { default as TextInput, TextInputProps } from './TextInput'
-export { default as AutocompleteInput, AutocompleteInputProps } from './AutocompleteInput'
-export { default as TextInputList, TextInputListProps } from './TextInputList'
-export { default as ArrayInput, ArrayInputProps, ArrayInputItemComponentProps } from './ArrayInput'
-export { default as Toggle, ToggleProps } from './Toggle'
+export { Checkbox, CheckboxProps } from './Checkbox'
+export { RadioInput, RadioInputProps } from './RadioInput'
+export { PasswordInput, PasswordInputProps } from './PasswordInput'
+export { PhoneInput, PhoneInputProps } from './PhoneInput'
+export { Select, SelectProps } from './Select'
+export { Slider, SliderProps } from './Slider'
+export { TextArea, TextAreaProps } from './TextArea'
+export { TextInput, TextInputProps } from './TextInput'
+export { AutocompleteInput, AutocompleteInputProps } from './AutocompleteInput'
+export { TextInputList, TextInputListProps } from './TextInputList'
+export { ArrayInput, ArrayInputProps, ArrayInputItemComponentProps } from './ArrayInput'
+export { Toggle, ToggleProps } from './Toggle'
 
 
 /*
   Miscellaneous
  */
-export { default as Icon, IconProps } from './Icon'
-export { default as Triangle, TriangleProps } from './Triangle'
+export { Icon, IconProps } from './Icon'
+export { Triangle, TriangleProps } from './Triangle'
 
 
 /*
   Layouts
  */
-export { default as Layout, LayoutProps } from './Layout'
-export { default as ActionBar, ActionBarProps } from './ActionBar'
-export { default as HeaderBar, HeaderBarProps } from './HeaderBar'
-export { default as Card, CardProps } from './Card'
-export { default as ExpansionPanel, ExpansionPanelProps } from './ExpansionPanel'
-export { default as ExpansionPanelItem, ExpansionPanelItemProps } from './ExpansionPanelItem'
-export { default as Loader, LoaderProps } from './Loader'
+export { Layout, LayoutProps } from './Layout'
+export { ActionBar, ActionBarProps } from './ActionBar'
+export { HeaderBar, HeaderBarProps } from './HeaderBar'
+export { Card, CardProps } from './Card'
+export { ExpansionPanel, ExpansionPanelProps } from './ExpansionPanel'
+export { ExpansionPanelItem, ExpansionPanelItemProps } from './ExpansionPanelItem'
+export { Loader, LoaderProps } from './Loader'
 export { LoaderDots, LoaderDotsProps } from './LoaderDots'
-export { default as LoadingBar, LoadingBarProps } from './LoadingBar'
+export { LoadingBar, LoadingBarProps } from './LoadingBar'
 
-export { default as SlideShow, SlideShowProps } from './SlideShow'
-export { default as Stepper, StepperProps, StepperStep } from './Stepper'
+export { SlideShow, SlideShowProps } from './SlideShow'
+export { Stepper, StepperProps, StepperStep } from './Stepper'
 
 
 /*
   Modals
  */
-export { default as LightBox, LightBoxProps } from './LightBox'
-export { default as Modal, ModalProps } from './Modal'
-export { default as prompt } from './prompt'
-export { default as confirm } from './confirm'
+export { LightBox, LightBoxProps } from './LightBox'
+export { Modal, ModalProps } from './Modal'
+export { prompt } from './prompt'
+export { confirm } from './confirm'
 
 
 /*
   Alerts
  */
-export { default as AnnouncementBanner, AnnouncementBannerProps } from './AnnouncementBanner'
-export { default as AlertBanner, AlertBannerProps } from './AlertBanner'
-export { default as Tooltip, TooltipProps } from './Tooltip'
-export { default as Badge, BadgeProps } from './Badge'
-export { default as Notification, NotificationProps } from './Notification'
-export { default as notify } from './notify'
+export { AnnouncementBanner, AnnouncementBannerProps } from './AnnouncementBanner'
+export { AlertBanner, AlertBannerProps } from './AlertBanner'
+export { Tooltip, TooltipProps } from './Tooltip'
+export { Badge, BadgeProps } from './Badge'
+export { Notification, NotificationProps } from './Notification'
+export { notify } from './notify'
 
 
 /*
   Theme
  */
-export { default as animations } from './animations'
-export { default as Background, BackgroundProps } from './Background'
-export { default as breakpoints } from './breakpoints'
-export { default as palette, Palette, Gradient } from './palette'
-export { default as theme, DesignSystemTheme } from './theme'
-export { default as useTheme } from './useTheme'
+export { animations } from './animations'
+export { Background, BackgroundProps } from './Background'
+export { breakpoints } from './breakpoints'
+export { palette, Palette, Gradient } from './palette'
+export { theme, DesignSystemTheme } from './theme'
+export { useTheme } from './useTheme'
 
 
 /*
   Utils
  */
-export { default as useResponsiveType } from './useResponsiveType'
-export { default as withLabel, WithLabel } from './withLabel'
-export { default as withMarkdown } from './withMarkdown'
-export { default as withTriggerElement } from './withTriggerElement'
+export { useResponsiveType } from './useResponsiveType'
+export { withLabel, withSemanticLabel, WithLabel } from './withLabel'
+export { withMarkdown } from './withMarkdown'
+export { withTriggerElement } from './withTriggerElement'

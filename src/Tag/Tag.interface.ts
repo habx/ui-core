@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { styledAs } from '../_internal/types'
 
-export default interface Tag
+export interface TagProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   active?: boolean
   interactive?: boolean

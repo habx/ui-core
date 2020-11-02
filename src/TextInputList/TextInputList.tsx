@@ -1,11 +1,11 @@
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
-import AutocompleteInput from '../AutocompleteInput'
-import IconButton from '../IconButton'
-import Text from '../Text'
+import { AutocompleteInput } from '../AutocompleteInput'
+import { IconButton } from '../IconButton'
+import { Text } from '../Text'
 
-import TextInputListProps from './TextInputList.interface'
+import { TextInputListProps } from './TextInputList.interface'
 import {
   TextInputListContainer,
   TextInputItem,

@@ -3,7 +3,7 @@ import * as React from 'react'
 import { isNil } from '../_internal/data'
 import { useParentLayout, LayoutChild } from '../Layout'
 
-import HeaderBarProps from './HeaderBar.interface'
+import { HeaderBarProps } from './HeaderBar.interface'
 import { HeaderBarContainer } from './HeaderBar.style'
 
 export const HeaderBar = React.forwardRef<HTMLElement, HeaderBarProps>(

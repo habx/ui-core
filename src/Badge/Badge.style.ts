@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import fontScale from '../fontScale'
-import theme from '../theme'
+import { fontScale } from '../fontScale'
+import { theme } from '../theme'
 
 export const BadgeContainer = styled.span`
   --badge-height: 16px;

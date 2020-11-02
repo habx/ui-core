@@ -1,13 +1,13 @@
 import * as React from 'react'
 
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 
-import FloatingButtonProps from './FloatingIconButton.interface'
+import { FloatingIconButtonProps } from './FloatingIconButton.interface'
 import { FloatingButtonContainer } from './FloatingIconButton.style'
 
 export const FloatingIconButton = React.forwardRef<
   HTMLButtonElement,
-  FloatingButtonProps
+  FloatingIconButtonProps
 >((props, ref) => {
   const {
     colored,

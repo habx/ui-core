@@ -1,5 +1,5 @@
-import { Menu } from './Menu'
+export { Menu } from './Menu'
 
-export { default as MenuProps } from './Menu.interface'
+export { MenuContext } from './Menu.context'
 
-export default Menu
+export { MenuProps } from './Menu.interface'

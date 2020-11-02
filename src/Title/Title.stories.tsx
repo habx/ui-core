@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
-import breakpoints from '../breakpoints'
+import { withGrid } from '../_storybook/withGrid'
+import { breakpoints } from '../breakpoints'
 
-import Title, { TitleProps, TitleTypes } from './index'
+import { Title, TitleProps, TitleTypes } from './index'
 
 const TITLE_CONTENT =
   'Devenez propriétaire d’un appartement neuf en plein centre d’Antony'

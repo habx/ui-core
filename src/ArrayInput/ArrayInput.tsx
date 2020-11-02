@@ -1,12 +1,12 @@
 import * as React from 'react'
 
-import Button from '../Button'
-import ExpansionPanel from '../ExpansionPanel'
-import withLabel from '../withLabel'
+import { Button } from '../Button'
+import { ExpansionPanel } from '../ExpansionPanel'
+import { withLabel } from '../withLabel'
 
 import { ArrayInputInnerProps } from './ArrayInput.interface'
 import { ArrayInputAction } from './ArrayInput.style'
-import Item from './Item'
+import { Item } from './Item'
 
 const DEFAULT_HANDLER = () => {}
 

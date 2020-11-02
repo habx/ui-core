@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-import zIndex from '../_internal/zIndex'
-import animations from '../animations'
+import { zIndex } from '../_internal/zIndex'
+import { animations } from '../animations'
 import { ANIMATION_DURATIONS } from '../animations'
-import Background from '../Background'
-import theme from '../theme'
+import { Background } from '../Background'
+import { theme } from '../theme'
 
 export const ANIMATION_DURATION = ANIMATION_DURATIONS.s
 

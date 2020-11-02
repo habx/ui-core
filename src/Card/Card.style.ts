@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import breakpoints from '../breakpoints'
-import Layout from '../Layout'
-import theme from '../theme'
+import { breakpoints } from '../breakpoints'
+import { Layout } from '../Layout'
+import { theme } from '../theme'
 
 export const CardContainer = styled(Layout)`
   border-radius: 4px;

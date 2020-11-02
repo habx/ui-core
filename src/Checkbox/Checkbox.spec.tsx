@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/react'
 import * as React from 'react'
 
-import Checkbox from './index'
+import { Checkbox } from './index'
 
 const Component = ({ initialState = false }) => {
   const [value, setValue] = React.useState(initialState)

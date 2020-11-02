@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { EnrichedSelectOption } from '../Select.interface'
 
-export default interface OptionsProps {
+export interface OptionsProps {
   options: EnrichedSelectOption[]
   open: boolean
   focusedOption?: any

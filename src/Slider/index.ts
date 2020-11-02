@@ -1,5 +1,3 @@
-import { Slider } from './Slider'
+export { Slider } from './Slider'
 
-export { default as SliderProps } from './Slider.interface'
-
-export default Slider
+export { SliderProps } from './Slider.interface'

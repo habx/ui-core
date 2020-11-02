@@ -1,7 +1,6 @@
-import BackgroundProps from '../Background/Background.interface'
+import { BackgroundProps } from '../Background'
 
-export default interface LayoutProps
-  extends Omit<BackgroundProps, 'backgroundColor'> {
+export interface LayoutProps extends Omit<BackgroundProps, 'backgroundColor'> {
   backgroundColor?: string
 }
 

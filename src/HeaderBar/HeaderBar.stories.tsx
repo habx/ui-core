@@ -1,14 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import CenteredComponent from '../_storybook/CenteredComponent'
-import withGrid from '../_storybook/withGrid'
-import Button from '../Button'
-import Card from '../Card'
-import palette from '../palette'
-import Title from '../Title'
+import { CenteredComponent } from '../_storybook/CenteredComponent'
+import { withGrid } from '../_storybook/withGrid'
+import { Button } from '../Button'
+import { Card } from '../Card'
+import { palette } from '../palette'
+import { Title } from '../Title'
 
-import HeaderBar, { HeaderBarProps } from './index'
+import { HeaderBar, HeaderBarProps } from './index'
 
 const CardChildrenContainer = styled.div`
   display: flex;

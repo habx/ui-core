@@ -4,8 +4,8 @@ import {
   ANIMATION_DURATIONS,
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
-import palette from '../palette'
-import theme from '../theme'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const SideElementContainer = styled.div`
   font-size: 0.9em;

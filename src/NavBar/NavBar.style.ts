@@ -4,7 +4,7 @@ import {
   ANIMATION_DURATIONS,
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
-import theme from '../theme'
+import { theme } from '../theme'
 
 const EXPANDED_SIZE = 250
 const DEFAULT_SIZE = 64

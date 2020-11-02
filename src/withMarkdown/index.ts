@@ -1,3 +1,1 @@
-import withMarkdown from './withMarkdown'
-
-export default withMarkdown
+export { withMarkdown } from './withMarkdown'

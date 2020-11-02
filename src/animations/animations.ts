@@ -84,7 +84,7 @@ const ANIMATIONS: Animations = {
   },
 }
 
-const animationGetter = <GetterProps extends {}>(
+export const animations = <GetterProps extends {}>(
   name: keyof Animations,
   config: Partial<AnimationConfig> = {}
 ) => (_props: GetterProps) => {
@@ -104,5 +104,3 @@ const animationGetter = <GetterProps extends {}>(
       ${timingFunction} 0ms 1 normal forwards;
   `
 }
-
-export default animationGetter

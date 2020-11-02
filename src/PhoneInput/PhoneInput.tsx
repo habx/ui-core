@@ -1,14 +1,14 @@
 import * as React from 'react'
 
 import { useSSRLayoutEffect } from '../_internal/ssr'
-import useHasColoredBackground from '../_internal/useHasColoredBackground'
-import Icon from '../Icon'
-import withLabel from '../withLabel'
+import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
+import { Icon } from '../Icon'
+import { withLabel } from '../withLabel'
 
-import countries, { Country } from './countries'
+import { countries, Country } from './countries'
 import { PhoneInputInnerProps } from './PhoneInput.interface'
 import { PhoneInputContainer, MainInput } from './PhoneInput.style'
-import SelectFlag from './SelectFlag'
+import { SelectFlag } from './SelectFlag'
 
 const InnerPhoneInput = React.forwardRef<
   HTMLInputElement,
@@ -31,7 +31,10 @@ const InnerPhoneInput = React.forwardRef<
     flag: () => <Icon colored icon="flag-france" />,
   })
 
-  const PHONE_REGEXP = new RegExp(`\\+([0-9]{${country.dialCode.length}})(.*)`)
+  const PHONE_REGEXP = React.useMemo(
+    () => new RegExp(`\\+([0-9]{${country.dialCode.length}})(.*)`),
+    [country.dialCode.length]
+  )
 
   const hasBackground = useHasColoredBackground()
 

@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import { isClientSide } from '../_internal/ssr'
-import useUniqID from '../_internal/useUniqId'
+import { useUniqID } from '../_internal/useUniqId'
 
-import LoaderProps from './Loader.interface'
+import { LoaderProps } from './Loader.interface'
 import {
   Container,
   LoaderContainer,

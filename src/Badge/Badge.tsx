@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { isNil } from '../_internal/data'
 
-import BadgeProps from './Badge.interface'
+import { BadgeProps } from './Badge.interface'
 import { BadgeContainer } from './Badge.style'
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(

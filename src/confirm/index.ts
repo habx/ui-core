@@ -1,3 +1,1 @@
-import confirm from './confirm'
-
-export default confirm
+export { confirm } from './confirm'

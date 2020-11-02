@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import useHasColoredBackground from '../_internal/useHasColoredBackground'
-import Icon from '../Icon'
+import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
+import { Icon } from '../Icon'
 
-import NavigationButtonProps from './NavigationButton.interface'
+import { NavigationButtonProps } from './NavigationButton.interface'
 import { NavigationButtonContainer } from './NavigationButton.style'
 
 const getIcon = (usage: 'navigation' | 'toggle', previous?: boolean) => {

@@ -2,7 +2,7 @@ import { render, within, act, fireEvent } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
-import Modal from './index'
+import { Modal } from './index'
 
 jest.useFakeTimers()
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import breakpoints from '../breakpoints'
-import Text from '../Text'
+import { breakpoints } from '../breakpoints'
+import { Text } from '../Text'
 
 export const AlertBannerContent = styled.div`
   display: flex;

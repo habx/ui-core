@@ -10,7 +10,7 @@ export type TextTypes =
   | 'caption'
   | 'captionSmall'
 
-export default interface TextProps
+export interface TextProps
   extends ThemeOverridesProps,
     React.HTMLAttributes<HTMLHeadingElement> {
   type?: TextTypes

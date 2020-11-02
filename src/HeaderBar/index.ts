@@ -1,5 +1,3 @@
-import { HeaderBar } from './HeaderBar'
+export { HeaderBar } from './HeaderBar'
 
-export { default as HeaderBarProps } from './HeaderBar.interface'
-
-export default HeaderBar
+export { HeaderBarProps } from './HeaderBar.interface'

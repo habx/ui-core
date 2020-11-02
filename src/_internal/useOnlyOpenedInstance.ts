@@ -5,7 +5,7 @@ export interface OpenableInstance {
   onClose: () => void
 }
 
-const buildUseOnlyOpenedInstanceHook = <
+export const buildUseOnlyOpenedInstanceHook = <
   Instance extends OpenableInstance
 >() => {
   let instances: React.MutableRefObject<Instance>[] = []
@@ -34,5 +34,3 @@ const buildUseOnlyOpenedInstanceHook = <
   }
   return useOnlyOneMenuOpened
 }
-
-export default buildUseOnlyOpenedInstanceHook

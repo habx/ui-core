@@ -5,9 +5,9 @@ import { isFunction, isNil, isString } from '../_internal/data'
 import { assert } from '../_internal/validityCheck'
 import { ANIMATION_DURATIONS } from '../animations'
 import { ExpansionPanelContext } from '../ExpansionPanel/ExpansionPanel.context'
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 
-import ExpansionPanelItemProps from './ExpansionPanelItem.interface'
+import { ExpansionPanelItemProps } from './ExpansionPanelItem.interface'
 import {
   ExpansionPanelItemContainer,
   HeaderBar,
@@ -18,7 +18,7 @@ import {
   HeaderBarDescription,
 } from './ExpansionPanelItem.style'
 
-const ExpansionPanelItem = React.forwardRef<
+export const ExpansionPanelItem = React.forwardRef<
   HTMLDivElement,
   ExpansionPanelItemProps
 >((props, ref) => {
@@ -172,5 +172,3 @@ const ExpansionPanelItem = React.forwardRef<
     </ExpansionPanelItemContainer>
   )
 })
-
-export default ExpansionPanelItem

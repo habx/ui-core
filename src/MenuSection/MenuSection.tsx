@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import MenuSectionProps from './MenuSection.interface'
+import { MenuSectionProps } from './MenuSection.interface'
 import { MenuSectionContainer } from './MenuSection.style'
 
 export const MenuSection = React.forwardRef<HTMLDivElement, MenuSectionProps>(

@@ -10,7 +10,7 @@ export interface DesignSystemThemePatch {
   isDark?: boolean
 }
 
-export default interface ThemeProviderProps {
+export interface ThemeProviderProps {
   theme?: DesignSystemThemePatch
   backgroundColor?: string
   children?: React.ReactNode

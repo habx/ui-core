@@ -1,8 +1,6 @@
-import { ThemeProvider } from './ThemeProvider'
+export { ThemeProvider } from './ThemeProvider'
 
 export {
-  default as ThemeProviderProps,
+  ThemeProviderProps,
   DesignSystemThemePatch,
 } from './ThemeProvider.interface'
-
-export default ThemeProvider

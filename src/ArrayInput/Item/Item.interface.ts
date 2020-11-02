@@ -6,8 +6,7 @@ export interface ArrayInputItemComponentProps {
   editing: boolean
 }
 
-export default interface ItemProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   index: number
   open: boolean
   item: any

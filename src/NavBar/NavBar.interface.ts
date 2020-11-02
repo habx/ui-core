@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Except } from '../_internal/types'
 
-export default interface NavBarProps
+export interface NavBarProps
   extends Except<React.HTMLAttributes<HTMLUListElement>, 'title'> {
   title?: React.ReactNode
   subtitle?: React.ReactNode

@@ -1,6 +1,4 @@
-import { Layout } from './Layout'
+export { Layout } from './Layout'
 
-export { default as LayoutProps, LayoutChild } from './Layout.interface'
+export { LayoutProps, LayoutChild } from './Layout.interface'
 export { useParentLayout } from './Layout.context'
-
-export default Layout

@@ -1,5 +1,3 @@
-import { ActionBar } from './ActionBar'
+export { ActionBar } from './ActionBar'
 
-export { default as ActionBarProps } from './ActionBar.interface'
-
-export default ActionBar
+export { ActionBarProps } from './ActionBar.interface'

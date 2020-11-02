@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { BreadcrumbItemContainer } from '../BreadcrumbItem/BreadcrumbItem.style'
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 
 export const BreadcrumbContainer = styled.ul`
   display: flex;

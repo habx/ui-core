@@ -1,5 +1,3 @@
-import { MenuSection } from './MenuSection'
+export { MenuSection } from './MenuSection'
 
-export { default as MenuSectionProps } from './MenuSection.interface'
-
-export default MenuSection
+export { MenuSectionProps } from './MenuSection.interface'

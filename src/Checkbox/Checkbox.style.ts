@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import Icon from '../Icon'
-import palette from '../palette'
-import theme from '../theme'
+import { Icon } from '../Icon'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const FakeInputContainer = styled.div`
   --border-radius: 4px;

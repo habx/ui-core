@@ -2,12 +2,12 @@ import * as React from 'react'
 import styled, { css, StyledComponent } from 'styled-components'
 
 import { mapValues } from '../_internal/data'
-import breakpoints from '../breakpoints'
-import fontScale, { FontScale } from '../fontScale'
-import theme from '../theme'
-import withMarkdown from '../withMarkdown'
+import { breakpoints } from '../breakpoints'
+import { fontScale, FontScale } from '../fontScale'
+import { theme } from '../theme'
+import { withMarkdown } from '../withMarkdown'
 
-import TextProps, { TextTypes } from './Text.interface'
+import { TextProps, TextTypes } from './Text.interface'
 
 const size = (name: keyof FontScale) => css`
   font-size: ${fontScale[name].size}px;

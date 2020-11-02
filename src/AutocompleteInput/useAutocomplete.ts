@@ -44,7 +44,7 @@ type UseAutocompleteOptions = {
 const MAX_AUTOCOMPLETE_OPTIONS = 3
 const DEFAULT_OPTIONS: string[] = []
 
-const useAutocomplete = ({
+export const useAutocomplete = ({
   options = DEFAULT_OPTIONS,
   ref,
   value = '',
@@ -165,5 +165,3 @@ const useAutocomplete = ({
     activeOptionIndex: state.activeOptionIndex,
   }
 }
-
-export default useAutocomplete

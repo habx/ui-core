@@ -1,14 +1,14 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import CenteredComponent from '../_storybook/CenteredComponent'
-import withGrid from '../_storybook/withGrid'
-import Button from '../Button'
-import Icon from '../Icon'
-import Text from '../Text'
-import Title from '../Title'
+import { CenteredComponent } from '../_storybook/CenteredComponent'
+import { withGrid } from '../_storybook/withGrid'
+import { Button } from '../Button'
+import { Icon } from '../Icon'
+import { Text } from '../Text'
+import { Title } from '../Title'
 
-import Card, { CardProps } from './index'
+import { Card, CardProps } from './index'
 
 const CardChildrenContainer = styled.div`
   display: flex;

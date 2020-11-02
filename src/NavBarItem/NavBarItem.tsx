@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import useMergedContext from '../_internal/useMergedContext'
+import { useMergedContext } from '../_internal/useMergedContext'
 import { assert } from '../_internal/validityCheck'
-import NavBarContext from '../NavBar/NavBar.context'
+import { NavBarContext } from '../NavBar/NavBar.context'
 
-import NavBarItemProps from './NavBarItem.interface'
+import { NavBarItemProps } from './NavBarItem.interface'
 import {
   DescriptionContainer,
   IconContainer,

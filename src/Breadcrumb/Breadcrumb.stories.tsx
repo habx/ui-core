@@ -1,10 +1,10 @@
 import * as React from 'react'
 
-import withGrid from '../_storybook/withGrid'
-import BreadcrumbItem from '../BreadcrumbItem'
-import Icon from '../Icon'
+import { withGrid } from '../_storybook/withGrid'
+import { BreadcrumbItem } from '../BreadcrumbItem'
+import { Icon } from '../Icon'
 
-import Breadcrumb, { BreadcrumbProps } from './index'
+import { Breadcrumb, BreadcrumbProps } from './index'
 
 const GRID_PROPS = {}
 

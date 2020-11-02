@@ -3,7 +3,7 @@ import * as React from 'react'
 import { styledAs } from '../_internal/types'
 import { IconProps } from '../Icon'
 
-export default interface IconButtonProps
+export interface IconButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     Pick<IconProps, 'icon' | 'colored'> {
   as?: styledAs

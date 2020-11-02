@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
-import useMergedRef from '../_internal/useMergedRef'
+import { useMergedRef } from '../_internal/useMergedRef'
 
 import {
   WithTriggerElement,
@@ -10,7 +10,7 @@ import {
   TriggerElementConfig,
 } from './withTriggerElement.interface'
 
-const withTriggerElement = <RefElement extends HTMLElement>(
+export const withTriggerElement = <RefElement extends HTMLElement>(
   config: TriggerElementConfig = {}
 ) => <Props extends TriggerInjectedProps = TriggerInjectedProps>(
   WrappedComponent: React.ComponentType<Props>
@@ -92,5 +92,3 @@ const withTriggerElement = <RefElement extends HTMLElement>(
 
   return Wrapper
 }
-
-export default withTriggerElement

@@ -11,7 +11,7 @@ export type TitleTypes =
   | 'section'
   | 'regular'
 
-export default interface TitleProps
+export interface TitleProps
   extends ThemeOverridesProps,
     React.HTMLAttributes<HTMLHeadingElement> {
   type: TitleTypes

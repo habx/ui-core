@@ -1,18 +1,18 @@
 import * as React from 'react'
 
 import { isFunction } from '../../_internal/data'
-import ExpansionPanelItem from '../../ExpansionPanelItem'
-import IconButton from '../../IconButton'
+import { ExpansionPanelItem } from '../../ExpansionPanelItem'
+import { IconButton } from '../../IconButton'
 import {
   ItemHeaderContainer,
   ItemHeaderContent,
   ItemActions,
 } from '../ArrayInput.style'
 
-import ItemProps from './Item.interface'
+import { ItemProps } from './Item.interface'
 import { ItemContent } from './Item.style'
 
-const Item: React.FunctionComponent<ItemProps> = ({
+export const Item: React.FunctionComponent<ItemProps> = ({
   item,
   index,
   canBeReordered,
@@ -85,5 +85,3 @@ const Item: React.FunctionComponent<ItemProps> = ({
     </ExpansionPanelItem>
   )
 }
-
-export default Item

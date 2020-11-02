@@ -1,5 +1,3 @@
-import { Card } from './Card'
+export { Card } from './Card'
 
-export { default as CardProps } from './Card.interface'
-
-export default Card
+export { CardProps } from './Card.interface'

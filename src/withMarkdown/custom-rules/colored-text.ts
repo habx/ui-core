@@ -133,5 +133,5 @@ function coloredText(state: StateInline, silent?: boolean) {
   return true
 }
 
-export default (md: MarkdownIt) =>
+export const coloredTextRule = (md: MarkdownIt) =>
   md.inline.ruler.after('emphasis', 'sub', coloredText)

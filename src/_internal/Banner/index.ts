@@ -1,5 +1,3 @@
-import Banner from './Banner'
+export { Banner } from './Banner'
 
-export { default as BannerProps } from './Banner.interface'
-
-export default Banner
+export { BannerProps } from './Banner.interface'

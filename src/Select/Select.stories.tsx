@@ -1,10 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
-import Icon from '../Icon'
+import { withGrid } from '../_storybook/withGrid'
+import { Icon } from '../Icon'
 
-import Select, { SelectProps } from './index'
+import { Select, SelectProps } from './index'
 import { OPTIONS, COLORED_OPTIONS } from './Select.data'
 
 const SelectContainer = styled.div`

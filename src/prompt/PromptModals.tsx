@@ -3,14 +3,14 @@ import { createPortal } from 'react-dom'
 
 import { useIsMounted, useTimeout } from '../_internal/hooks'
 import { isClientSide } from '../_internal/ssr'
-import LightBox from '../LightBox'
-import Modal from '../Modal'
+import { LightBox } from '../LightBox'
+import { Modal } from '../Modal'
 import { ANIMATION_DURATION } from '../Modal/Modal.style'
 
 import { subscribe } from './prompt'
 import { StateModal } from './PromptModals.interface'
 
-const PromptModals: React.FunctionComponent<{}> = () => {
+export const PromptModals: React.FunctionComponent<{}> = () => {
   const isMounted = useIsMounted()
   const registerTimeout = useTimeout()
 
@@ -96,5 +96,3 @@ const PromptModals: React.FunctionComponent<{}> = () => {
     </React.Fragment>
   )
 }
-
-export default PromptModals

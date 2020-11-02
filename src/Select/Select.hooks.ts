@@ -3,7 +3,8 @@ import * as React from 'react'
 import { isString } from '../_internal/data'
 import { searchInString } from '../_internal/strings'
 
-import SelectProps, {
+import {
+  SelectProps,
   ActionType,
   EnrichedSelectOption,
   SelectAction,

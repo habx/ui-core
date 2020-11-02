@@ -22,5 +22,5 @@ export interface LightBoxInnerProps extends LayoutProps {
     | ((modal: Modal<HTMLDivElement>) => React.ReactNode)
 }
 
-export default interface LightBoxProps
+export interface LightBoxProps
   extends WithTriggerElement<LightBoxInnerProps, HTMLDivElement> {}

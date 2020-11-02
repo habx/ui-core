@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import palette from '../palette'
-import theme from '../theme'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const MenuLineContainer = styled.li`
   padding: 6px 24px;

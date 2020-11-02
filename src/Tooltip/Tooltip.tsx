@@ -3,11 +3,11 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { isClientSide } from '../_internal/ssr'
-import palette from '../palette'
-import Text from '../Text'
+import { palette } from '../palette'
+import { Text } from '../Text'
 
 import { useTooltip, useOnlyOneTooltipOpened } from './Tooltip.hooks'
-import TooltipProps, { TooltipVisibilityState } from './Tooltip.interface'
+import { TooltipProps, TooltipVisibilityState } from './Tooltip.interface'
 import { ANIMATION_DURATION, TooltipContainer } from './Tooltip.style'
 
 export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(

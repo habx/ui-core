@@ -1,12 +1,12 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import Icon from '../Icon'
-import MenuLine from '../MenuLine'
-import NavBarItem from '../NavBarItem'
-import NavBarMenuItem from '../NavBarMenuItem'
+import { Icon } from '../Icon'
+import { MenuLine } from '../MenuLine'
+import { NavBarItem } from '../NavBarItem'
+import { NavBarMenuItem } from '../NavBarMenuItem'
 
-import NavBar, { NavBarProps } from './index'
+import { NavBar, NavBarProps } from './index'
 
 const Wrapper = styled.div`
   min-height: 500px;

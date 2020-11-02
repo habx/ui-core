@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-import zIndex from '../_internal/zIndex'
-import breakpoints from '../breakpoints'
-import fontScale from '../fontScale'
-import palette from '../palette'
-import theme from '../theme'
+import { zIndex } from '../_internal/zIndex'
+import { breakpoints } from '../breakpoints'
+import { fontScale } from '../fontScale'
+import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const SideElementContainer = styled.div`
   font-size: 24px;

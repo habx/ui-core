@@ -1,5 +1,3 @@
-import { MenuLine } from './MenuLine'
+export { MenuLine } from './MenuLine'
 
-export { default as MenuLineProps } from './MenuLine.interface'
-
-export default MenuLine
+export { MenuLineProps } from './MenuLine.interface'

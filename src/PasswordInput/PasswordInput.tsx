@@ -1,9 +1,9 @@
 import * as React from 'react'
 
-import useMergedRef from '../_internal/useMergedRef'
-import Icon from '../Icon'
-import TextInput from '../TextInput'
-import withLabel from '../withLabel'
+import { useMergedRef } from '../_internal/useMergedRef'
+import { Icon } from '../Icon'
+import { TextInput } from '../TextInput'
+import { withLabel } from '../withLabel'
 
 import { PasswordInputInnerProps } from './PasswordInput.interface'
 import { HiddenInputContainer, HideButton } from './PasswordInput.style'

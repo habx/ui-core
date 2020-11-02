@@ -2,9 +2,9 @@ import { render, within, fireEvent } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
-import Icon from '../Icon'
+import { Icon } from '../Icon'
 
-import FloatingButton from './index'
+import { FloatingButton } from './index'
 
 describe('FloatingButton component', () => {
   it('should display the right label', () => {

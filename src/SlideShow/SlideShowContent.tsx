@@ -12,7 +12,7 @@ type Slide = {
   item: any
 }
 
-const SlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
+const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
   items,
   renderItem,
   active,
@@ -106,4 +106,4 @@ export interface SlideShowContentProps {
   referenceSlideIndex: number
 }
 
-export default React.memo(SlideShowContent)
+export const SlideShowContent = React.memo(InnerSlideShowContent)

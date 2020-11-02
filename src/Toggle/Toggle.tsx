@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import useHasColoredBackground from '../_internal/useHasColoredBackground'
-import withLabel from '../withLabel'
+import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
+import { withLabel } from '../withLabel'
 
 import { ToggleInnerProps } from './Toggle.interface'
 import { ToggleContainer } from './Toggle.style'

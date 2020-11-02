@@ -1,5 +1,3 @@
-import { ConfirmMenu } from './ConfirmMenu'
+export { ConfirmMenu } from './ConfirmMenu'
 
-export { default as ConfirmMenuProps } from './ConfirmMenu.interface'
-
-export default ConfirmMenu
+export { ConfirmMenuProps } from './ConfirmMenu.interface'

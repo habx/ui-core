@@ -1,11 +1,11 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import withGrid from '../_storybook/withGrid'
-import Card from '../Card'
-import Icon from '../Icon'
+import { withGrid } from '../_storybook/withGrid'
+import { Card } from '../Card'
+import { Icon } from '../Icon'
 
-import FloatingButton, { FloatingButtonProps } from './index'
+import { FloatingButton, FloatingButtonProps } from './index'
 
 const Container = styled(Card)`
   width: 300px;

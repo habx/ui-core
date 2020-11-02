@@ -5,9 +5,7 @@ export type ProviderContextValue = {
   cancelLabel: string
 }
 
-const ProviderContext = React.createContext<ProviderContextValue>({
+export const ProviderContext = React.createContext<ProviderContextValue>({
   confirmLabel: 'Valider',
   cancelLabel: 'Annuler',
 })
-
-export default ProviderContext

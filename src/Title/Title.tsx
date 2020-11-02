@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import withMarkdown from '../withMarkdown'
+import { withMarkdown } from '../withMarkdown'
 
-import TitleProps from './Title.interface'
+import { TitleProps } from './Title.interface'
 import {
   HeaderMaxiTitleComponent,
   HeaderBigTitleComponent,

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-const useMergedContext = <
+export const useMergedContext = <
   ContextProps extends object,
   ComponentProps extends object
 >(
@@ -11,5 +11,3 @@ const useMergedContext = <
 
   return { ...contextProps, ...props }
 }
-
-export default useMergedContext

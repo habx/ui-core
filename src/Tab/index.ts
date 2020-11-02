@@ -1,5 +1,3 @@
-import { Tab } from './Tab'
+export { Tab } from './Tab'
 
-export { default as TabProps } from './Tab.interface'
-
-export default Tab
+export { TabProps } from './Tab.interface'

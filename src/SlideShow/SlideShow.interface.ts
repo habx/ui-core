@@ -12,7 +12,7 @@ export enum SlideChangeSource {
   'swipe' = 'swipe',
 }
 
-export default interface SlideShowProps {
+export interface SlideShowProps {
   defaultDevice?: string
   registerActions?: (actions: SlideShowActions) => void
   onCurrentSlideChange?: (
