@@ -109,7 +109,7 @@ export { AnnouncementBanner, AnnouncementBannerProps } from './AnnouncementBanne
 export { AlertBanner, AlertBannerProps } from './AlertBanner'
 export { Tooltip, TooltipProps } from './Tooltip'
 export { Badge, BadgeProps } from './Badge'
-export { Notification, NotificationProps } from './Notification'
+export { Toaster, NotificationProps } from './Toaster'
 export { notify } from './notify'
 
 

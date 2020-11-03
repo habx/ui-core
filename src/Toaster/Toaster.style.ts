@@ -1,25 +1,19 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
+import { Background } from '../Background'
 import { theme } from '../theme'
 
-export const NotificationContainer = styled.div`
-  background-color: ${palette.darkBlue[100]};
+export const NotificationContainer = styled(Background)`
   border-radius: 4px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 12px 16px 12px 24px;
-  width: 582px;
+  width: 385px;
   max-width: calc(100vw - 48px);
-  min-height: 72px;
   justify-content: space-between;
   overflow: hidden;
   box-shadow: ${theme.shadow()};
   font-family: ${theme.font()};
-
-  &[data-warning='true'] {
-    background-color: ${palette.orange[400]};
-  }
 `
 
 export const NotificationContent = styled.div`
@@ -38,6 +32,7 @@ export const IllustrationContainer = styled.div`
   justify-content: center;
   font-size: 30px;
   margin-right: 24px;
+  color: ${theme.textColor()};
 
   & img {
     height: 48px;
@@ -46,6 +41,7 @@ export const IllustrationContainer = styled.div`
 
 export const CloseContainer = styled.div`
   font-size: 24px;
+  color: ${theme.textColor({ opacity: 0.72 })};
   cursor: pointer;
   display: flex;
   align-items: center;

@@ -4,7 +4,7 @@ import * as React from 'react'
 import { Provider } from '../Provider'
 
 import { notify } from './index'
-import { SHRINK_DURATION, SLIDE_DURATION } from './NotificationList.style'
+import { SHRINK_DURATION, SLIDE_DURATION } from './ToasterList.style'
 
 jest.useFakeTimers()
 

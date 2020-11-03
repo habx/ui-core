@@ -2,33 +2,30 @@ import * as React from 'react'
 
 import { Icon } from '../Icon'
 import { Text } from '../Text'
-import { Title } from '../Title'
+import { useTheme } from '../useTheme'
 
-import { NotificationProps } from './Notification.interface'
+import { NotificationProps } from './Toaster.interface'
 import {
   NotificationContainer,
   NotificationContent,
   NotificationInformation,
   IllustrationContainer,
   CloseContainer,
-} from './Notification.style'
+} from './Toaster.style'
 
-export const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
+export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
   (props, ref) => {
-    const {
-      onClose,
-      title,
-      description,
-      illustration,
-      warning,
-      ...rest
-    } = props
+    const { onClose, message, illustration, warning, ...rest } = props
+
+    const theme = useTheme()
 
     return (
       <NotificationContainer
+        backgroundColor={
+          warning ? theme.colors.warning.base : theme.colors.secondary.base
+        }
         ref={ref}
         data-testid="notification-container"
-        data-warning={warning}
         {...rest}
       >
         <NotificationContent data-testid="notification-content">
@@ -36,8 +33,7 @@ export const Notification = React.forwardRef<HTMLDivElement, NotificationProps>(
             <IllustrationContainer>{illustration}</IllustrationContainer>
           )}
           <NotificationInformation>
-            <Title type="regular">{title}</Title>
-            {description && <Text>{description}</Text>}
+            <Text opacity={1}>{message}</Text>
           </NotificationInformation>
         </NotificationContent>
         <CloseContainer onClick={onClose}>
