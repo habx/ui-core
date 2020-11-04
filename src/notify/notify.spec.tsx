@@ -28,7 +28,7 @@ describe('notify function', () => {
     const notifications = queryAllByTestId('notification-container')
     expect(notifications).toHaveLength(1)
     expect(
-      within(notifications[0]).getByTestId('notification-content').textContent
+      within(notifications[0]).getByTestId('notification-text').textContent
     ).toEqual(MESSAGE_1)
   })
 
@@ -43,10 +43,10 @@ describe('notify function', () => {
     const notifications = getAllByTestId('notification-container')
     expect(notifications).toHaveLength(2)
     expect(
-      within(notifications[0]).getByTestId('notification-content').textContent
+      within(notifications[0]).getByTestId('notification-text').textContent
     ).toEqual(MESSAGE_1)
     expect(
-      within(notifications[1]).getByTestId('notification-content').textContent
+      within(notifications[1]).getByTestId('notification-text').textContent
     ).toEqual(MESSAGE_2)
   })
 

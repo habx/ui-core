@@ -51,6 +51,13 @@ const GRID_ITEMS = [
       warning: true,
     },
   },
+  {
+    props: {
+      message:
+        'Blueprint successfully sent\nThe blueprint has been delivered to the given adress',
+      markdown: true,
+    },
+  },
 ]
 
 const Grid = withGrid<NotificationProps>({

@@ -20,6 +20,7 @@ export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
       message,
       illustration,
       warning,
+      markdown,
       ...rest
     } = props
     const theme = useTheme()
@@ -44,7 +45,11 @@ export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
           {illustration && (
             <IllustrationContainer>{illustration}</IllustrationContainer>
           )}
-          <ToasterText data-testid="notification-text" opacity={1}>
+          <ToasterText
+            data-testid="notification-text"
+            opacity={1}
+            markdown={markdown}
+          >
             {message}
           </ToasterText>
           <CloseContainer onClick={onClose}>

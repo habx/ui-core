@@ -6,6 +6,7 @@ export interface ToasterEventProps {
   message: React.ReactNode
   illustration?: React.ReactNode
   warning?: boolean
+  markdown?: boolean
 }
 
 export interface NotificationProps
