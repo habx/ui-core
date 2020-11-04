@@ -42,7 +42,7 @@ export const ControlledExpansionPanelItem = React.forwardRef<
 
   assert(
     isInsideAnExpansionPanel,
-    'ExpansionPanelItem ControlledExpansionPanelItem should be used inside an ExpansionPanel'
+    'ExpansionPanelItem & ControlledExpansionPanelItem should be used inside an ExpansionPanel'
   )
 
   const contentRef = React.useRef<HTMLDivElement>(null)
