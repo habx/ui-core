@@ -17,20 +17,7 @@ export const ExpansionPanelItem = React.forwardRef<
   )
 
   const itemRef = React.useRef(Math.random())
-  const contentRef = React.useRef<HTMLDivElement>(null)
-  const [contentHeight, setItemHeight] = React.useState(0)
   const open = openedItems.includes(itemRef.current)
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  React.useLayoutEffect(() => {
-    if (contentRef.current) {
-      const height = contentRef.current.scrollHeight
-
-      if (height !== contentHeight) {
-        setItemHeight(height)
-      }
-    }
-  })
 
   const handleToggle = React.useCallback(
     (e?: React.MouseEvent) => {
