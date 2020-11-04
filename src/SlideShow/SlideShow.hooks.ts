@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { SwipeEvent } from 'react-easy-swipe'
 
 import { isNil, throttle } from '../_internal/data'
 import { useSSRLayoutEffect } from '../_internal/ssr'
@@ -155,7 +156,7 @@ export const useSlideShow = ({
 
   const handleSwipeMove = (
     swipePosition: { x: number; y: number },
-    event: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>
+    event: SwipeEvent
   ) =>
     dispatch({
       type: ActionType.SwipeMove,

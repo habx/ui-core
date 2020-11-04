@@ -5,7 +5,7 @@ import { Button } from '../Button'
 import { Icon } from '../Icon'
 import { notify } from '../notify'
 
-import { Notification, NotificationProps } from './index'
+import { Toaster, NotificationProps } from './index'
 
 const illustration = <Icon icon="paperClip" />
 
@@ -18,26 +18,30 @@ const GRID_LINES = [
 const GRID_ITEMS = [
   {
     props: {
-      title: 'Blueprint sent by mail',
+      message: 'Blueprint sent by mail',
     },
   },
   {
     props: {
-      title: 'Blueprint sent',
+      message: 'Do you know [habx](https://www.habx.fr) ?',
+      markdown: true,
+    },
+  },
+  {
+    props: {
+      message: 'Blueprint sent',
       illustration,
     },
   },
   {
     props: {
-      title: 'Blueprint sent',
-      description: 'Successfully sent to the given address',
+      message: 'Blueprint successfully sent to the given address',
       illustration,
     },
   },
   {
     props: {
-      title: 'Blueprint sent',
-      description: 'Successfully sent to the given address',
+      message: 'Blueprint successfully sent to the given address',
       illustration: (
         <img
           alt="Illu"
@@ -48,10 +52,16 @@ const GRID_ITEMS = [
   },
   {
     props: {
-      title: 'Blueprint failed',
-      description: 'Successfully sent to the given address',
+      message: 'Blueprint failed to be sent to the given address',
       illustration,
       warning: true,
+    },
+  },
+  {
+    props: {
+      message:
+        'Blueprint successfully sent\nThe blueprint has been delivered to the given adress',
+      markdown: true,
     },
   },
 ]
@@ -61,11 +71,11 @@ const Grid = withGrid<NotificationProps>({
   items: GRID_ITEMS,
   itemHorizontalSpace: 24,
   itemVerticalSpace: 24,
-})(Notification)
+})(Toaster)
 
 export default {
-  title: 'Alerts/Notification',
-  component: Notification,
+  title: 'Alerts/Toaster',
+  component: Toaster,
   argTypes: {
     title: {
       defaultValue: 'Blueprint sent',
@@ -76,7 +86,7 @@ export default {
   },
 }
 
-export const basic = (props: NotificationProps) => <Notification {...props} />
+export const basic = (props: NotificationProps) => <Toaster {...props} />
 
 basic.story = {
   parameters: {
