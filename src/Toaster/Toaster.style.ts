@@ -1,30 +1,31 @@
 import styled from 'styled-components'
 
 import { Background } from '../Background'
+import { breakpoints } from '../breakpoints'
+import { Text } from '../Text'
 import { theme } from '../theme'
 
-export const NotificationContainer = styled(Background)`
+export const ToasterContent = styled(Background)`
   border-radius: 4px;
-  display: flex;
-  align-items: flex-start;
-  padding: 12px 16px 12px 24px;
+  padding: 12px 12px 12px 24px;
   width: 385px;
-  max-width: calc(100vw - 48px);
-  justify-content: space-between;
   overflow: hidden;
   box-shadow: ${theme.shadow()};
   font-family: ${theme.font()};
-`
-
-export const NotificationContent = styled.div`
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.33;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-between;
+  user-select: none;
+  cursor: pointer;
+
+  @media (${breakpoints.below.phone}) {
+    width: calc(100vw - 48px);
+  }
 `
 
-export const NotificationInformation = styled.div``
+export const ToasterText = styled(Text)`
+  flex: 1 1 100%;
+`
 
 export const IllustrationContainer = styled.div`
   display: flex;

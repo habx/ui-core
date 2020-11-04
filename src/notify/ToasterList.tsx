@@ -4,15 +4,11 @@ import * as ReactDOM from 'react-dom'
 import { useIsMounted, useTimeout } from '../_internal/hooks'
 import { isClientSide } from '../_internal/ssr'
 import { ANIMATION_DURATIONS } from '../animations'
-import { ToasterEventProps } from '../Toaster'
+import { Toaster, ToasterEventProps } from '../Toaster'
 
 import { subscribe } from './notify'
 import { StateToast, ToastOptions } from './ToasterList.interface'
-import {
-  ToasterListContainer,
-  ToasterContainer,
-  Toaster,
-} from './ToasterList.style'
+import { ToasterListContainer, ToasterContainer } from './ToasterList.style'
 
 const DEFAULT_DURATION = 5_000
 
@@ -131,13 +127,10 @@ export const ToasterList: React.FunctionComponent<{}> = () => {
             key={toast.id}
             onMouseEnter={handleFreeze}
             onMouseLeave={handleResetTimers}
+            data-has-been-frozen={toast.hasBeenFrozen}
+            data-closing={!toast.open}
           >
-            <Toaster
-              onClose={() => handleClose(toast.id)}
-              data-has-been-frozen={toast.hasBeenFrozen}
-              data-closing={!toast.open}
-              {...props}
-            />
+            <Toaster onClose={() => handleClose(toast.id)} {...props} />
           </ToasterContainer>
         )
       })}

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { zIndex } from '../_internal/zIndex'
 import { animations } from '../animations'
-import { Toaster as BaseToaster } from '../Toaster'
+import { breakpoints } from '../breakpoints'
 
 export const ToasterListContainer = styled.div`
   position: fixed;
@@ -11,14 +11,17 @@ export const ToasterListContainer = styled.div`
   right: calc(50vw - 385px / 2);
   z-index: ${zIndex.notifications};
   display: flex;
+
+  @media (${breakpoints.below.phone}) {
+    left: 20px;
+    right: 20px;
+  }
 `
 
 export const ToasterContainer = styled.div`
   position: absolute;
   bottom: 0;
-`
 
-export const Toaster = styled(BaseToaster)`
   &:not([data-has-been-frozen='true']) {
     animation: ${animations('emergeSlantFromTop')};
   }

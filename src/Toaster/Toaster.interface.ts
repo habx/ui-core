@@ -12,4 +12,5 @@ export interface NotificationProps
   extends ToasterEventProps,
     Except<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   onClose?: () => void
+  onSeeMore?: () => void
 }

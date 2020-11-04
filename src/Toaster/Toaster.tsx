@@ -1,45 +1,57 @@
 import * as React from 'react'
+import Swipe from 'react-easy-swipe'
 
 import { Icon } from '../Icon'
-import { Text } from '../Text'
 import { useTheme } from '../useTheme'
 
 import { NotificationProps } from './Toaster.interface'
 import {
-  NotificationContainer,
-  NotificationContent,
-  NotificationInformation,
+  ToasterContent,
+  ToasterText,
   IllustrationContainer,
   CloseContainer,
 } from './Toaster.style'
 
 export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
   (props, ref) => {
-    const { onClose, message, illustration, warning, ...rest } = props
-
+    const {
+      onClose,
+      onSeeMore,
+      message,
+      illustration,
+      warning,
+      ...rest
+    } = props
     const theme = useTheme()
 
     return (
-      <NotificationContainer
-        backgroundColor={
-          warning ? theme.colors.warning.base : theme.colors.secondary.base
-        }
-        ref={ref}
-        data-testid="notification-container"
-        {...rest}
+      <Swipe
+        onSwipeDown={onClose}
+        onSwipeUp={onSeeMore}
+        onSwipeLeft={onSeeMore}
+        onSwipeRight={onSeeMore}
+        allowMouseEvents
+        innerRef={() => {}}
       >
-        <NotificationContent data-testid="notification-content">
+        <ToasterContent
+          backgroundColor={
+            warning ? theme.colors.warning.base : theme.colors.secondary.base
+          }
+          ref={ref}
+          data-testid="notification-container"
+          {...rest}
+        >
           {illustration && (
             <IllustrationContainer>{illustration}</IllustrationContainer>
           )}
-          <NotificationInformation>
-            <Text opacity={1}>{message}</Text>
-          </NotificationInformation>
-        </NotificationContent>
-        <CloseContainer onClick={onClose}>
-          <Icon icon="close" />
-        </CloseContainer>
-      </NotificationContainer>
+          <ToasterText data-testid="notification-text" opacity={1}>
+            {message}
+          </ToasterText>
+          <CloseContainer onClick={onClose}>
+            <Icon icon="close" />
+          </CloseContainer>
+        </ToasterContent>
+      </Swipe>
     )
   }
 )
