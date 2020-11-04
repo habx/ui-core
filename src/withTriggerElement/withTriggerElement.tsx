@@ -29,7 +29,7 @@ export const withTriggerElement = <RefElement extends HTMLElement>(
     } = props as TriggerReceivedProps<RefElement>
 
     const [open, setOpen] = React.useState(false)
-    const triggerRef = useMergedRef<HTMLElement>(rawTriggerRef)
+    const triggerRef = useMergedRef(rawTriggerRef)
 
     const handleClose = React.useCallback(
       (e: React.SyntheticEvent<RefElement>) => {
