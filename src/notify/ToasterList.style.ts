@@ -4,9 +4,6 @@ import { zIndex } from '../_internal/zIndex'
 import { animations } from '../animations'
 import { Toaster as BaseToaster } from '../Toaster'
 
-export const SLIDE_DURATION = 300
-export const SHRINK_DURATION = 200
-
 export const ToasterListContainer = styled.div`
   position: fixed;
   bottom: 24px;
@@ -22,9 +19,11 @@ export const ToasterContainer = styled.div`
 `
 
 export const Toaster = styled(BaseToaster)`
-  animation: ${animations('emergeSlantFromTop')};
+  &:not([data-has-been-frozen='true']) {
+    animation: ${animations('emergeSlantFromTop')};
+  }
 
   &[data-closing='true'] {
-    animation: ${animations('dive')};
+    animation: ${animations('diveSlant', { duration: 'l' })};
   }
 `

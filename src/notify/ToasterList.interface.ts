@@ -10,5 +10,11 @@ export type StateToast = {
   message: string | ToasterEventProps
   options: ToastOptions
   open: boolean
-  id: string | number
+  id: number
+  timeout: number | null
+
+  /**
+   * We don't want to re-trigger entering animation when un-freezing a toaster
+   */
+  hasBeenFrozen: boolean
 }

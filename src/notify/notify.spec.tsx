@@ -1,10 +1,10 @@
 import { render, within, act } from '@testing-library/react'
 import * as React from 'react'
 
+import { ANIMATION_DURATIONS } from '../animations'
 import { Provider } from '../Provider'
 
 import { notify } from './index'
-import { SHRINK_DURATION, SLIDE_DURATION } from './ToasterList.style'
 
 jest.useFakeTimers()
 
@@ -60,9 +60,7 @@ describe('notify function', () => {
     })
 
     act(() => {
-      jest.advanceTimersByTime(
-        SLIDE_DURATION + SHRINK_DURATION + duration + 5000
-      )
+      jest.advanceTimersByTime(ANIMATION_DURATIONS.l + duration + 5000)
     })
 
     rerender(<Provider />)
