@@ -87,6 +87,7 @@ export const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
       <SlideShowContainer
         onSwipeEnd={slideShow.handleSwipeEnd}
         onSwipeMove={slideShow.handleSwipeMove}
+        innerRef={() => {}}
         {...rest}
       >
         <SlideShowSlidingContainer ref={containerRef}>
