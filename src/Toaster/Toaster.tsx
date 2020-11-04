@@ -27,10 +27,10 @@ export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
 
     return (
       <Swipe
-        onSwipeDown={onClose}
         onSwipeUp={onSeeMore}
-        onSwipeLeft={onSeeMore}
-        onSwipeRight={onSeeMore}
+        onSwipeDown={onClose}
+        onSwipeLeft={onClose}
+        onSwipeRight={onClose}
         allowMouseEvents
         innerRef={() => {}}
       >
