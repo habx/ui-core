@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { isString } from '../_internal/data'
-import { BreadcrumbContext } from '../Breadcrumb'
+import { BreadcrumbContext } from '../Breadcrumb/Breadcrumb.context'
 import { Tooltip } from '../Tooltip'
 
 import { BreadcrumbItemProps } from './BreadcrumbItem.interface'
