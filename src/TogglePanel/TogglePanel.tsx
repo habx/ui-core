@@ -12,7 +12,7 @@ import { WithTriggerElement, withTriggerElement } from '../withTriggerElement'
 
 import { Container, Overlay } from './TogglePanel.style'
 
-const Context = React.createContext({ close() {} })
+const Context = React.createContext<ModalType<HTMLDivElement> | null>(null)
 
 const InnerTogglePanel = React.forwardRef<
   HTMLDivElement,
@@ -64,6 +64,8 @@ const InnerTogglePanel = React.forwardRef<
 
     React.useEffect(updateStyle, [children, size]) // eslint-disable-line react-hooks/exhaustive-deps
 
+    const parent = React.useContext(Context)
+
     if (!isClientSide) {
       return null
     }
@@ -90,7 +92,7 @@ const InnerTogglePanel = React.forwardRef<
             {content}
           </Container>
         </Context.Provider>,
-        document.body
+        parent?.ref.current ?? document.body
       )
     )
   }
