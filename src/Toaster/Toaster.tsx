@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Swipe from 'react-easy-swipe'
 
+import { useMergedRef } from '../_internal/useMergedRef'
 import { Icon } from '../Icon'
 import { useTheme } from '../useTheme'
 
@@ -24,10 +25,22 @@ export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
       ...rest
     } = props
     const theme = useTheme()
+    const containerRef = useMergedRef(ref)
+
+    const handleSeeMore = () => {
+      if (onSeeMore) {
+        onSeeMore()
+      } else if (containerRef.current) {
+        const links = containerRef.current.querySelectorAll('a')
+        if (links.length) {
+          links[0].click()
+        }
+      }
+    }
 
     return (
       <Swipe
-        onSwipeUp={onSeeMore}
+        onSwipeUp={handleSeeMore}
         onSwipeDown={onClose}
         onSwipeLeft={onClose}
         onSwipeRight={onClose}
@@ -38,7 +51,7 @@ export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
           backgroundColor={
             warning ? theme.colors.warning.base : theme.colors.secondary.base
           }
-          ref={ref}
+          ref={containerRef}
           data-testid="notification-container"
           {...rest}
         >

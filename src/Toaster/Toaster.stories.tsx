@@ -23,6 +23,12 @@ const GRID_ITEMS = [
   },
   {
     props: {
+      message: 'Do you know [habx](https://www.habx.fr) ?',
+      markdown: true,
+    },
+  },
+  {
+    props: {
       message: 'Blueprint sent',
       illustration,
     },
