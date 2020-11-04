@@ -4,11 +4,6 @@ import { zIndex } from '../_internal/zIndex'
 import { animations } from '../animations'
 import { theme } from '../theme'
 
-export const MenuTriggerContainer = styled.span`
-  position: relative;
-  align-self: flex-start;
-`
-
 export const MenuContent = styled.div`
   background-color: ${theme.color('background', { useRootTheme: true })};
   padding: 8px 0;
