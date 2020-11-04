@@ -11,7 +11,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
       active = false,
       large = false,
       small = false,
-      interactive = true,
+      interactive = false,
       type = 'button',
       elementLeft,
       elementRight,
