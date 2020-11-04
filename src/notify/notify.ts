@@ -1,9 +1,9 @@
-import { NotificationEventProps } from '../Notification'
 import { buildEventHandler } from '../Provider/Provider.events'
+import { ToasterEventProps } from '../Toaster'
 
-import { NotificationOptions } from './NotificationList.interface'
+import { ToastOptions } from './ToasterList.interface'
 
 export const { dispatch: notify, subscribe } = buildEventHandler<
-  NotificationEventProps | string,
-  NotificationOptions
+  ToasterEventProps | string,
+  ToastOptions
 >()
