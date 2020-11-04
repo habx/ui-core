@@ -25,6 +25,10 @@ export const ToasterContent = styled(Background)`
 
 export const ToasterText = styled(Text)`
   flex: 1 1 100%;
+
+  & a {
+    color: ${theme.color('secondary', { dynamic: true })};
+  }
 `
 
 export const IllustrationContainer = styled.div`
