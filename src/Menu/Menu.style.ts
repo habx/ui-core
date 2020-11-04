@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 
-import { zIndex } from '../_internal/zIndex'
-import { animations } from '../animations'
 import { theme } from '../theme'
 
-export const MenuContent = styled.div`
-  background-color: ${theme.color('background', { useRootTheme: true })};
+export const FloatingMenu = styled.ul`
+  margin: 0;
   padding: 8px 0;
+  background-color: ${theme.color('background', { useRootTheme: true })};
   box-shadow: ${theme.shadow()};
   border-radius: 4px;
 
@@ -17,40 +16,8 @@ export const MenuContent = styled.div`
   }
 `
 
-export const MenuOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: ${zIndex.dropDowns};
-`
-
-export const MenuContainer = styled.ul`
-  opacity: 1;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  position: fixed;
-
-  z-index: ${zIndex.dropDowns};
-
-  &:not([data-state='opened']) {
-    pointer-events: none;
-
-    opacity: 0;
-  }
-
-  &[data-state='opening'] {
-    animation: ${animations('emergeSlantFromBottom')};
-  }
-
-  &[data-state='closing'] {
-    animation: ${animations('diveSlant')};
-  }
-`
-
-export const MenuFullScreenContainer = styled.div`
+export const FullScreenMenu = styled.ul`
   margin: 0 calc(0px - var(--layout-right-padding)) 0
     calc(0px - var(--layout-left-padding));
+  padding: 0;
 `

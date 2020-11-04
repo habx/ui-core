@@ -1,6 +1,4 @@
-import { Modal } from '@delangle/use-modal'
-import * as React from 'react'
-
+import { TogglePanelProps } from '../TogglePanel'
 import { WithTriggerElement } from '../withTriggerElement'
 
 export interface MenuInstance {
@@ -8,23 +6,16 @@ export interface MenuInstance {
   onClose: () => void
 }
 
-export interface MenuInnerProps
-  extends React.HTMLAttributes<HTMLUListElement>,
+export interface InnerMenuProps
+  extends Omit<TogglePanelProps, 'setStyle' | keyof MenuInstance>,
     MenuInstance {
-  fullScreenOnMobile?: boolean
   scrollable?: boolean
   position?: 'horizontal' | 'vertical'
-  triggerRef?: React.RefObject<HTMLElement>
-  withOverlay?: boolean
   setPosition?: (dimensions: {
     triggerDimensions: DOMRect
     menuHeight: number
     menuWidth: number
   }) => { top?: number; left?: number; right?: number; bottom?: number }
-  children?:
-    | React.ReactNode
-    | ((modal: Modal<HTMLUListElement>) => React.ReactNode)
 }
 
-export interface MenuProps
-  extends WithTriggerElement<MenuInnerProps, HTMLUListElement> {}
+export type MenuProps = WithTriggerElement<InnerMenuProps, HTMLDivElement>
