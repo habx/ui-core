@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { NotificationList } from '../notify/NotificationList'
+import { ToasterList } from '../notify/ToasterList'
 import { PromptModals } from '../prompt/PromptModals'
 
 import { CssVariables } from './CssVariables'
@@ -11,7 +11,7 @@ export const Provider: React.FunctionComponent<ProviderProps> = ({
 }) => (
   <React.Fragment>
     {children}
-    <NotificationList />
+    <ToasterList />
     <PromptModals />
     <CssVariables />
   </React.Fragment>

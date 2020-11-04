@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { SwipeEvent } from 'react-easy-swipe'
 
 export type SlideShowActions = {
   goToSlide: (currentSlide: number) => void
@@ -53,7 +54,7 @@ export type SlideShowAction =
   | {
       type: ActionType.SwipeMove
       value: { x: number; y: number }
-      event: React.TouchEvent<HTMLDivElement> | React.MouseEvent<HTMLDivElement>
+      event: SwipeEvent
     }
   | { type: ActionType.SwipeEnd }
   | {

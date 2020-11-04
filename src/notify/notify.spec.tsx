@@ -1,10 +1,10 @@
 import { render, within, act } from '@testing-library/react'
 import * as React from 'react'
 
+import { ANIMATION_DURATIONS } from '../animations'
 import { Provider } from '../Provider'
 
 import { notify } from './index'
-import { SHRINK_DURATION, SLIDE_DURATION } from './NotificationList.style'
 
 jest.useFakeTimers()
 
@@ -28,7 +28,7 @@ describe('notify function', () => {
     const notifications = queryAllByTestId('notification-container')
     expect(notifications).toHaveLength(1)
     expect(
-      within(notifications[0]).getByTestId('notification-content').textContent
+      within(notifications[0]).getByTestId('notification-text').textContent
     ).toEqual(MESSAGE_1)
   })
 
@@ -43,10 +43,10 @@ describe('notify function', () => {
     const notifications = getAllByTestId('notification-container')
     expect(notifications).toHaveLength(2)
     expect(
-      within(notifications[0]).getByTestId('notification-content').textContent
+      within(notifications[0]).getByTestId('notification-text').textContent
     ).toEqual(MESSAGE_1)
     expect(
-      within(notifications[1]).getByTestId('notification-content').textContent
+      within(notifications[1]).getByTestId('notification-text').textContent
     ).toEqual(MESSAGE_2)
   })
 
@@ -60,9 +60,7 @@ describe('notify function', () => {
     })
 
     act(() => {
-      jest.advanceTimersByTime(
-        SLIDE_DURATION + SHRINK_DURATION + duration + 5000
-      )
+      jest.advanceTimersByTime(ANIMATION_DURATIONS.l + duration + 5000)
     })
 
     rerender(<Provider />)
