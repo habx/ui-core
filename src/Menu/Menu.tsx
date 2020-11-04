@@ -111,4 +111,4 @@ export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
   }
 )
 
-export const Menu = withTriggerElement({ fowardRef: true })(InnerMenu)
+export const Menu = withTriggerElement({ forwardRef: true })(InnerMenu)

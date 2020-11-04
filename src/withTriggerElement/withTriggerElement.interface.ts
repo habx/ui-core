@@ -26,5 +26,5 @@ export type WithTriggerElement<BaseProps, RefElement> = Omit<
   TriggerReceivedProps<RefElement>
 
 export interface TriggerElementConfig {
-  fowardRef?: boolean
+  forwardRef?: boolean
 }

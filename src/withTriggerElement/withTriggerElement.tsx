@@ -15,7 +15,7 @@ export const withTriggerElement = <RefElement extends HTMLElement>(
 ) => <Props extends TriggerInjectedProps = TriggerInjectedProps>(
   WrappedComponent: React.ComponentType<Props>
 ) => {
-  const { fowardRef = false } = config
+  const { forwardRef = false } = config
 
   const Wrapper = React.forwardRef<
     RefElement,
@@ -53,7 +53,7 @@ export const withTriggerElement = <RefElement extends HTMLElement>(
         return triggerElement({
           open,
           onClick: handleToggle,
-          ...(fowardRef ? { ref: triggerRef } : {}),
+          ...(forwardRef ? { ref: triggerRef } : {}),
         })
       }
 
