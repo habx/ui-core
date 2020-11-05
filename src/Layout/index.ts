@@ -1,4 +1,5 @@
 export { Layout } from './Layout'
-
-export { LayoutProps, LayoutChild } from './Layout.interface'
 export { useParentLayout } from './Layout.context'
+export { LayoutChild } from './Layout.interface'
+
+export type { LayoutProps } from './Layout.interface'

@@ -8,7 +8,7 @@ import { NavBarItem } from '../NavBarItem'
 import { NavBarMenuItemProps } from './NavBarMenuItem.interface'
 import { NavBarMenuItemContainer } from './NavBarMenuItem.style'
 
-const Content: React.FunctionComponent<{ modal: Modal<HTMLUListElement> }> = ({
+const Content: React.FunctionComponent<{ modal: Modal<HTMLDivElement> }> = ({
   modal,
   children,
 }) => {
@@ -24,7 +24,7 @@ const Content: React.FunctionComponent<{ modal: Modal<HTMLUListElement> }> = ({
 }
 
 export const NavBarMenuItem = React.forwardRef<
-  HTMLUListElement,
+  HTMLDivElement,
   NavBarMenuItemProps
 >(({ children, bottom, ...props }, ref) => (
   <NavBarMenuItemContainer data-bottom={bottom}>

@@ -88,6 +88,7 @@ export { ExpansionPanelItem, ExpansionPanelItemProps, ControlledExpansionPanelIt
 export { Loader, LoaderProps } from './Loader'
 export { LoaderDots, LoaderDotsProps } from './LoaderDots'
 export { LoadingBar, LoadingBarProps } from './LoadingBar'
+export { TogglePanel, TogglePanelProps } from './TogglePanel'
 
 export { SlideShow, SlideShowProps } from './SlideShow'
 export { Stepper, StepperProps, StepperStep } from './Stepper'

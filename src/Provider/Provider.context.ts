@@ -1,9 +1,6 @@
 import * as React from 'react'
 
-export type ProviderContextValue = {
-  confirmLabel: string
-  cancelLabel: string
-}
+import { ProviderContextValue } from './Provider.interface'
 
 export const ProviderContext = React.createContext<ProviderContextValue>({
   confirmLabel: 'Valider',

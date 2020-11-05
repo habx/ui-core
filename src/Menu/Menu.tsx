@@ -1,77 +1,60 @@
-import useModal, { Modal as ModalType } from '@delangle/use-modal'
+import { Modal } from '@delangle/use-modal'
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
-import { isClientSide } from '../_internal/ssr'
 import { buildUseOnlyOpenedInstanceHook } from '../_internal/useOnlyOpenedInstance'
 import { useWindowSize } from '../_internal/useWindowSize'
-import { ANIMATION_DURATIONS } from '../animations'
 import { breakpoints } from '../breakpoints'
-import { Modal } from '../Modal'
+import { TogglePanel } from '../TogglePanel'
 import { withTriggerElement } from '../withTriggerElement'
 
-import { MenuContext } from './Menu.context'
-import { MenuInstance, MenuInnerProps } from './Menu.interface'
-import {
-  MenuContent,
-  MenuContainer,
-  MenuFullScreenContainer,
-  MenuOverlay,
-} from './Menu.style'
-
-const useOnlyOneMenuOpened = buildUseOnlyOpenedInstanceHook<MenuInstance>()
+import { MenuInstance, InnerMenuProps } from './Menu.interface'
+import { FloatingMenu, FullScreenMenu } from './Menu.style'
 
 const TRIGGER_MARGIN = 12
 
-const InnerMenu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
-  (props, ref) => {
-    const {
+const useOnlyOneMenuOpened = buildUseOnlyOpenedInstanceHook<MenuInstance>()
+
+export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
+  (
+    {
       children,
-      open,
-      onClose,
-      triggerRef,
       fullScreenOnMobile = false,
-      scrollable = false,
+      onClose,
+      open,
       position = 'vertical',
-      withOverlay = true,
+      scrollable = false,
       setPosition,
-      ...rest
-    } = props
+      ...props
+    },
+    ref
+  ) => {
+    useOnlyOneMenuOpened({ open, onClose })
 
     const size = useWindowSize()
-    useOnlyOneMenuOpened({ open, onClose })
-    const [positionStyle, setPositionStyle] = React.useState<
-      React.CSSProperties
-    >()
 
-    const modal = useModal<HTMLUListElement>({
-      ref,
-      open,
-      onClose,
-      persistent: false,
-      animated: true,
-      animationDuration: ANIMATION_DURATIONS.m,
-    })
+    const getChildren = React.useCallback(
+      (modal: Modal<HTMLDivElement>) => {
+        const content = isFunction(children) ? children(modal) : children
 
-    const content = isFunction(children)
-      ? children(modal as ModalType<HTMLUListElement>)
-      : children
-
-    const updatePosition = React.useCallback(() => {
-      if (!triggerRef?.current || !modal.ref?.current) {
-        return
-      }
-
-      const triggerDimensions = triggerRef.current.getBoundingClientRect()
-      const menuHeight = modal.ref.current.clientHeight
-      const menuWidth = modal.ref.current.clientWidth
-
-      if (isFunction(setPosition)) {
-        setPositionStyle(
-          setPosition({ triggerDimensions, menuHeight, menuWidth })
+        return fullScreenOnMobile && size.width < breakpoints.raw.phone ? (
+          <FullScreenMenu>{content}</FullScreenMenu>
+        ) : (
+          <FloatingMenu data-scrollable={scrollable}>{content}</FloatingMenu>
         )
-      } else {
+      },
+      [children]
+    )
+
+    const setStyle = React.useCallback(
+      (dimensions: DOMRect, triggerDimensions: DOMRect) => {
+        const menuHeight = triggerDimensions.height
+        const menuWidth = triggerDimensions.width
+
+        if (isFunction(setPosition)) {
+          return setPosition({ triggerDimensions, menuHeight, menuWidth })
+        }
+
         if (position === 'vertical') {
           let top = triggerDimensions.bottom + TRIGGER_MARGIN
 
@@ -89,72 +72,43 @@ const InnerMenu = React.forwardRef<HTMLUListElement, MenuInnerProps>(
               ? triggerDimensions.left - menuWidth + triggerDimensions.width
               : triggerDimensions.left
 
-          setPositionStyle({ top, left, minWidth: triggerDimensions.width })
-        } else {
-          const top =
-            triggerDimensions.top + menuHeight > window.innerHeight
-              ? triggerDimensions.top + triggerDimensions.height - menuHeight
-              : triggerDimensions.top
-
-          let left = triggerDimensions.right + TRIGGER_MARGIN
-
-          if (left + menuWidth > window.innerWidth) {
-            const leftWithMenuLeftOfTrigger =
-              triggerDimensions.left - menuWidth - TRIGGER_MARGIN
-
-            if (leftWithMenuLeftOfTrigger > 0) {
-              left = leftWithMenuLeftOfTrigger
-            }
-          }
-
-          setPositionStyle({ top, left })
+          return { top, left, minWidth: triggerDimensions.width }
         }
-      }
-    }, [triggerRef, modal.ref, setPosition, position])
 
-    React.useEffect(() => {
-      if (open) {
-        updatePosition()
-      }
-    }, [open, updatePosition])
+        const top =
+          triggerDimensions.top + menuHeight > window.innerHeight
+            ? triggerDimensions.top + triggerDimensions.height - menuHeight
+            : triggerDimensions.top
 
-    React.useEffect(() => {
-      updatePosition()
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [size, children])
+        let left = triggerDimensions.right + TRIGGER_MARGIN
 
-    if (!isClientSide) {
-      return null
-    }
+        if (left + menuWidth > window.innerWidth) {
+          const leftWithMenuLeftOfTrigger =
+            triggerDimensions.left - menuWidth - TRIGGER_MARGIN
 
-    if (fullScreenOnMobile && size.width < breakpoints.raw.phone) {
-      return (
-        <MenuContext.Provider value={modal}>
-          <Modal open={open} onClose={onClose}>
-            <MenuFullScreenContainer>{content}</MenuFullScreenContainer>
-          </Modal>
-        </MenuContext.Provider>
-      )
-    }
+          if (leftWithMenuLeftOfTrigger > 0) {
+            left = leftWithMenuLeftOfTrigger
+          }
+        }
 
-    return ReactDOM.createPortal(
-      <MenuContext.Provider value={modal}>
-        {withOverlay && modal.state === 'opened' && <MenuOverlay />}
-        <MenuContainer
-          data-state={modal.state}
-          style={positionStyle}
-          ref={modal.ref}
-          data-testid="menu-container"
-          {...rest}
-        >
-          <MenuContent data-scrollable={scrollable}>{content}</MenuContent>
-        </MenuContainer>
-      </MenuContext.Provider>,
-      document.body
+        return { top, left }
+      },
+      [position, setPosition]
+    )
+
+    return (
+      <TogglePanel
+        children={getChildren}
+        data-testid="menu-container"
+        fullScreenOnMobile={fullScreenOnMobile}
+        open={open}
+        onClose={onClose}
+        ref={ref}
+        setStyle={setStyle}
+        {...props}
+      />
     )
   }
 )
 
-export const Menu = withTriggerElement<HTMLUListElement>({ fowardRef: true })<
-  MenuInnerProps
->(InnerMenu)
+export const Menu = withTriggerElement({ forwardRef: true })(InnerMenu)
