@@ -1,4 +1,4 @@
-import { render, within, fireEvent } from '@testing-library/react'
+import { render, within, fireEvent, waitFor } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
@@ -6,7 +6,9 @@ import * as validityCheck from '../_internal/validityCheck'
 import { ExpansionPanelItem } from '../ExpansionPanelItem'
 
 import { ExpansionPanel } from './index'
+
 import '@testing-library/jest-dom/extend-expect'
+import { ANIMATION_DURATIONS } from '../animations'
 
 jest.useFakeTimers()
 const sinonSandbox = sinon.createSandbox()
@@ -58,7 +60,7 @@ describe('ExpansionPanel component', () => {
     ).toHaveAttribute('data-state', 'opening')
   })
 
-  it("should close the ExpansionPanelItem when open and click on it's title bar", () => {
+  it("should open the ExpansionPanelItem when click on it's title bar and leave the other closed", () => {
     const { queryAllByTestId } = render(
       <ExpansionPanel>
         <ExpansionPanelItem />
@@ -72,12 +74,49 @@ describe('ExpansionPanel component', () => {
       within(items[1]).getByTestId('expansion-panel-item-title-bar')
     )
 
+    expect(
+      within(items[0]).getByTestId('expansion-panel-item-content')
+    ).toHaveAttribute('data-state', 'closed')
+
+    expect(
+      within(items[1]).getByTestId('expansion-panel-item-content')
+    ).toHaveAttribute('data-state', 'opening')
+  })
+
+  it('should open the ExpansionPanelItem when defaultOpen', async () => {
+    const { queryAllByTestId } = render(
+      <ExpansionPanel>
+        <ExpansionPanelItem defaultOpen />
+        <ExpansionPanelItem />
+      </ExpansionPanel>
+    )
+
+    const items = queryAllByTestId('expansion-panel-item')
+
+    await waitFor(
+      () => new Promise((resolve) => setTimeout(resolve, ANIMATION_DURATIONS.l))
+    )
+    expect(
+      within(items[0]).getByTestId('expansion-panel-item-content')
+    ).toHaveAttribute('data-state', 'opened')
+  })
+
+  it('should allow to close the ExpansionPanelItem even if defaultOpen', () => {
+    const { queryAllByTestId } = render(
+      <ExpansionPanel>
+        <ExpansionPanelItem defaultOpen />
+        <ExpansionPanelItem />
+      </ExpansionPanel>
+    )
+
+    const items = queryAllByTestId('expansion-panel-item')
+
     fireEvent.click(
       within(items[1]).getByTestId('expansion-panel-item-title-bar')
     )
 
     expect(
-      within(items[1]).getByTestId('expansion-panel-item-content')
+      within(items[0]).getByTestId('expansion-panel-item-content')
     ).toHaveAttribute('data-state', 'closed')
   })
 
@@ -185,21 +224,6 @@ describe('ExpansionPanel component', () => {
       within(items[0]).getByTestId('expansion-panel-item-title-bar')
     )
     expect(spyChildren.lastCall.args[0].state).toEqual('opening')
-  })
-
-  it('should open the ExpansionPanelItem if it has open: true', () => {
-    const { queryAllByTestId } = render(
-      <ExpansionPanel>
-        <ExpansionPanelItem open />
-        <ExpansionPanelItem />
-      </ExpansionPanel>
-    )
-
-    const items = queryAllByTestId('expansion-panel-item')
-
-    expect(
-      within(items[0]).getByTestId('expansion-panel-item-content')
-    ).toHaveAttribute('data-state', 'opening')
   })
 
   it("should call the ExpansionPanelItem onToggle props after click on it's title bar", () => {
