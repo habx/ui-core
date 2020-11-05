@@ -153,8 +153,7 @@ workflows:
       - github-pkg-publish:
           context: ts-lib-client-public
           requires:
-            - lint
-            - build
+            - npmjs-publish
           filters:
             <<: *filters_allow_tags
             <<: *filters_ignore_branches
