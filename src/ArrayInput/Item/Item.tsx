@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { isFunction } from '../../_internal/data'
-import { ExpansionPanelItem } from '../../ExpansionPanelItem'
+import { ControlledExpansionPanelItem } from '../../ExpansionPanelItem'
 import { IconButton } from '../../IconButton'
 import {
   ItemHeaderContainer,
@@ -75,13 +75,13 @@ export const Item: React.FunctionComponent<ItemProps> = ({
   )
 
   return (
-    <ExpansionPanelItem
+    <ControlledExpansionPanelItem
       header={header}
       open={open}
       data-testid="array-input-item"
       {...rest}
     >
       <ItemContent>{isFunction(renderItem) && renderItem(state)}</ItemContent>
-    </ExpansionPanelItem>
+    </ControlledExpansionPanelItem>
   )
 }
