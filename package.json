@@ -1,6 +1,6 @@
 {
   "name": "@habx/ui-core",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "HABX Design System",
   "sideEffects": false,
   "main": "./dist/index.cjs.js",
