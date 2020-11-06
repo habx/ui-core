@@ -1,4 +1,5 @@
 import { TogglePanelProps } from '../TogglePanel'
+import { Dimensions } from '../TogglePanel/TogglePanel'
 import { WithTriggerElement } from '../withTriggerElement'
 
 export interface MenuInstance {
@@ -12,7 +13,7 @@ export interface InnerMenuProps
   scrollable?: boolean
   position?: 'horizontal' | 'vertical'
   setPosition?: (dimensions: {
-    triggerDimensions: DOMRect
+    triggerDimensions: Dimensions
     menuHeight: number
     menuWidth: number
   }) => { top?: number; left?: number; right?: number; bottom?: number }
