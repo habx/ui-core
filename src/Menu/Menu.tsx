@@ -8,6 +8,7 @@ import { breakpoints } from '../breakpoints'
 import { TogglePanel, TogglePanelProps } from '../TogglePanel'
 import { withTriggerElement } from '../withTriggerElement'
 
+import { MenuContext } from './Menu.context'
 import { MenuInstance, InnerMenuProps } from './Menu.interface'
 import { FloatingMenu, FullScreenMenu } from './Menu.style'
 
@@ -37,13 +38,19 @@ export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
       (modal: Modal<HTMLDivElement>) => {
         const content = isFunction(children) ? children(modal) : children
 
-        return fullScreenOnMobile && size.width < breakpoints.raw.phone ? (
-          <FullScreenMenu>{content}</FullScreenMenu>
-        ) : (
-          <FloatingMenu data-scrollable={scrollable}>{content}</FloatingMenu>
+        return (
+          <MenuContext.Provider value={{ close: onClose }}>
+            {fullScreenOnMobile && size.width < breakpoints.raw.phone ? (
+              <FullScreenMenu>{content}</FullScreenMenu>
+            ) : (
+              <FloatingMenu data-scrollable={scrollable}>
+                {content}
+              </FloatingMenu>
+            )}
+          </MenuContext.Provider>
         )
       },
-      [children]
+      [children, fullScreenOnMobile, scrollable, size.width]
     )
 
     const setStyle = React.useCallback<Required<TogglePanelProps>['setStyle']>(

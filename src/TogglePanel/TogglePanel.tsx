@@ -78,14 +78,20 @@ const InnerTogglePanel = React.forwardRef<
       }
 
       setCustomStyle({ ...setStyle(dimensions, triggerDimensions), ...style })
-    }, [modal.ref, style, triggerRef])
+    }, [modal.ref, setStyle, style, triggerRef])
+
+    React.useEffect(() => {
+      if (open) {
+        updateStyle()
+      }
+    }, [open, updateStyle])
 
     React.useEffect(() => {
       if (open) {
         onOpen?.()
-        updateStyle()
       }
-    }, [open, updateStyle])
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [open])
 
     const size = useWindowSize()
 
