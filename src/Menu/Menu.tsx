@@ -5,7 +5,7 @@ import { isFunction } from '../_internal/data'
 import { buildUseOnlyOpenedInstanceHook } from '../_internal/useOnlyOpenedInstance'
 import { useWindowSize } from '../_internal/useWindowSize'
 import { breakpoints } from '../breakpoints'
-import { TogglePanel } from '../TogglePanel'
+import { TogglePanel, TogglePanelProps } from '../TogglePanel'
 import { withTriggerElement } from '../withTriggerElement'
 
 import { MenuInstance, InnerMenuProps } from './Menu.interface'
@@ -46,10 +46,10 @@ export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
       [children]
     )
 
-    const setStyle = React.useCallback(
-      (dimensions: DOMRect, triggerDimensions: DOMRect) => {
-        const menuHeight = triggerDimensions.height
-        const menuWidth = triggerDimensions.width
+    const setStyle = React.useCallback<Required<TogglePanelProps>['setStyle']>(
+      (dimensions, triggerDimensions) => {
+        const menuHeight = dimensions.clientHeight
+        const menuWidth = dimensions.clientWidth
 
         if (isFunction(setPosition)) {
           return setPosition({ triggerDimensions, menuHeight, menuWidth })
