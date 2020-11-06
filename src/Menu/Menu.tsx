@@ -43,7 +43,7 @@ export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
           <FloatingMenu data-scrollable={scrollable}>{content}</FloatingMenu>
         )
       },
-      [children]
+      [children, fullScreenOnMobile, scrollable, size.width]
     )
 
     const setStyle = React.useCallback<Required<TogglePanelProps>['setStyle']>(
