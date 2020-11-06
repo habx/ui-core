@@ -22,8 +22,8 @@ const InnerTogglePanel = React.forwardRef<
     {
       children,
       fullScreenOnMobile = false,
-      open,
       onClose,
+      open,
       setStyle,
       style,
       triggerRef,
@@ -44,14 +44,39 @@ const InnerTogglePanel = React.forwardRef<
     })
 
     const updateStyle = React.useCallback(() => {
-      if (!setStyle || !triggerRef?.current || !modal.ref?.current) {
-        return
+      const modalElement = modal.ref?.current
+      const triggerElement = triggerRef?.current
+
+      if (!setStyle || !triggerElement || !modalElement) {
+        return setCustomStyle(style)
       }
 
-      const dimensions = modal.ref.current.getBoundingClientRect()
-      const triggerDimensions = triggerRef.current.getBoundingClientRect()
+      const modalBoundingBox = modalElement.getBoundingClientRect()
+      const triggerBoundingBox = triggerElement.getBoundingClientRect()
 
-      setCustomStyle({ ...style, ...setStyle(dimensions, triggerDimensions) })
+      const dimensions = {
+        bottom: modalBoundingBox.bottom,
+        clientHeight: modalElement.clientHeight,
+        clientWidth: modalElement.clientWidth,
+        height: modalBoundingBox.height,
+        left: modalBoundingBox.left,
+        right: modalBoundingBox.right,
+        top: modalBoundingBox.top,
+        width: modalBoundingBox.width,
+      }
+
+      const triggerDimensions = {
+        bottom: triggerBoundingBox.bottom,
+        clientHeight: triggerElement.clientHeight,
+        clientWidth: triggerElement.clientWidth,
+        height: triggerBoundingBox.height,
+        left: triggerBoundingBox.left,
+        right: triggerBoundingBox.right,
+        top: triggerBoundingBox.top,
+        width: triggerBoundingBox.width,
+      }
+
+      setCustomStyle({ ...setStyle(dimensions, triggerDimensions), ...style })
     }, [modal.ref, style, triggerRef])
 
     React.useEffect(() => {
@@ -109,10 +134,11 @@ interface InnerTogglePanelProps
     | ((modal: ModalType<HTMLDivElement>) => React.ReactNode)
   fullScreenOnMobile?: boolean
   onClose: () => void
+  onOpen?: () => void
   open: boolean
   setStyle?: (
-    dimensions: DOMRect,
-    triggerDimensions: DOMRect
+    dimensions: Dimensions,
+    triggerDimensions: Dimensions
   ) => React.CSSProperties
   triggerRef?: React.RefObject<HTMLElement | null>
   withOverlay?: boolean
@@ -122,3 +148,14 @@ export type TogglePanelProps = WithTriggerElement<
   InnerTogglePanelProps,
   HTMLDivElement
 >
+
+export interface Dimensions {
+  bottom: number
+  clientHeight: number
+  clientWidth: number
+  height: number
+  left: number
+  right: number
+  top: number
+  width: number
+}
