@@ -23,6 +23,7 @@ const InnerTogglePanel = React.forwardRef<
       children,
       fullScreenOnMobile = false,
       onClose,
+      onOpen,
       open,
       setStyle,
       style,
@@ -81,6 +82,7 @@ const InnerTogglePanel = React.forwardRef<
 
     React.useEffect(() => {
       if (open) {
+        onOpen?.()
         updateStyle()
       }
     }, [open, updateStyle])
