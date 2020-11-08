@@ -93,7 +93,7 @@
     "storybook-addon-designs": "^5.4.2",
     "styled-components": "^5.2.1",
     "styled-normalize": "^8.0.7",
-    "ts-jest": "^25.5.1",
+    "ts-jest": "^26.4.4",
     "ts-loader": "^8.0.10",
     "typescript": "^3.8.3"
   },
