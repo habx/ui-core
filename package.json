@@ -82,7 +82,7 @@
     "bili": "^5.0.5",
     "fork-ts-checker-webpack-plugin": "^6.0.0",
     "husky": "^4.3.0",
-    "jest": "^25.1.0",
+    "jest": "^25.5.4",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "lint-staged": "^10.0.0",
     "react": "^16.13.0",
