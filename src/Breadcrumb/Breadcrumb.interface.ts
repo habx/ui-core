@@ -10,4 +10,9 @@ export interface BreadcrumbProps extends React.HTMLAttributes<HTMLDivElement> {
 
   large?: boolean
   small?: boolean
+
+  /**
+   * Should be > 2
+   */
+  maxItems?: number
 }
