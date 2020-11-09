@@ -18,7 +18,13 @@ const GRID_LINES = [
             <Icon icon="house-building-outline" />
           </BreadcrumbItem>
           <BreadcrumbItem>Lyon moselle - la fabrique</BreadcrumbItem>
-          <BreadcrumbItem>Configuration</BreadcrumbItem>
+          <BreadcrumbItem>Configuration1</BreadcrumbItem>
+          <BreadcrumbItem>Configuration2</BreadcrumbItem>
+          <BreadcrumbItem>Configuration3</BreadcrumbItem>
+          <BreadcrumbItem>Configuration4</BreadcrumbItem>
+          <BreadcrumbItem>Configuration5</BreadcrumbItem>
+          <BreadcrumbItem>Configuration6</BreadcrumbItem>
+          <BreadcrumbItem>Configuration7</BreadcrumbItem>
         </React.Fragment>
       ),
     },

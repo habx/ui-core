@@ -25,6 +25,7 @@ export const BreadcrumbItem = React.forwardRef<
         as={as}
         ref={ref}
         {...rest}
+        data-testid="breadcrumb-item"
         data-size={size}
         data-interactive={interactive}
       >

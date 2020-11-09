@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { getFlattenedChildren } from '../_internal/getFlattenedChildren'
+import { assert } from '../_internal/validityCheck'
 import { BreadcrumbItem } from '../BreadcrumbItem'
 import { Menu } from '../Menu'
 import { MenuLine } from '../MenuLine'
@@ -11,7 +12,9 @@ import { BreadcrumbContainer, BreadcrumbIcon } from './Breadcrumb.style'
 
 export const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
   (props, ref) => {
-    const { children, large, small, ...rest } = props
+    const { children, large, small, maxItems = 4, ...rest } = props
+
+    assert(maxItems > 2, 'Max items should be more than 2')
 
     const size = React.useMemo(() => {
       if (large) {
@@ -26,10 +29,15 @@ export const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
     const items = getFlattenedChildren(children)
     return (
       <BreadcrumbContext.Provider value={{ size }}>
-        <BreadcrumbContainer ref={ref} {...rest}>
-          {items.length > 5 ? (
+        <BreadcrumbContainer
+          ref={ref}
+          {...rest}
+          data-testid="breadcrumb-container"
+        >
+          {items.length > maxItems ? (
             <React.Fragment>
-              {[...items].slice(0, 2).map((item, index) => (
+              {/* First item */}
+              {[...items].slice(0, 1).map((item, index) => (
                 <React.Fragment key={`first-${index}`}>
                   {item}
                   {index < items.length - 1 && (
@@ -44,17 +52,22 @@ export const Breadcrumb = React.forwardRef<HTMLDivElement, BreadcrumbProps>(
                   </BreadcrumbItem>
                 }
               >
-                {[...items].slice(3, items.length - 3).map((item, index) => (
-                  <MenuLine key={index}>{item}</MenuLine>
-                ))}
+                {[...items]
+                  .slice(1, items.length - maxItems + 2)
+                  .map((item, index) => (
+                    <MenuLine key={index}>{item}</MenuLine>
+                  ))}
               </Menu>
+              {/* Last items */}
               <BreadcrumbIcon icon="chevron-east" />
               {[...items]
-                .slice(items.length - 2, items.length)
-                .map((item, index) => (
+                .slice(items.length - maxItems + 2, items.length)
+                .map((item, index, allItems) => (
                   <React.Fragment key={`last-${index}`}>
                     {item}
-                    {index < 1 && <BreadcrumbIcon icon="chevron-east" />}
+                    {allItems.length - 1 !== index && (
+                      <BreadcrumbIcon icon="chevron-east" />
+                    )}
                   </React.Fragment>
                 ))}
             </React.Fragment>
