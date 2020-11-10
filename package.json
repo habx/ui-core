@@ -78,7 +78,7 @@
     "@types/react-is": "^16.7.1",
     "@types/sinon": "^9.0.8",
     "@types/styled-components": "^5.1.4",
-    "babel-loader": "^8.1.0",
+    "babel-loader": "^8.2.1",
     "bili": "^5.0.5",
     "fork-ts-checker-webpack-plugin": "^6.0.1",
     "husky": "^4.3.0",
