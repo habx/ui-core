@@ -5,11 +5,24 @@
   ],
   "masterIssue": true,
   "rangeStrategy": "bump",
-  "prConcurrentLimit": 3,
-  "prHourlyLimit": 5,
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 10,
   "enabledManagers": [
     "npm"
   ],
+  "timezone": "Europe/Paris",
+  "schedule": [
+    "after 10pm and before 6:00am"
+  ],
+  "vulnerabilityAlerts": {
+    "labels": [
+      "security"
+    ],
+    "schedule": [
+      "at any time"
+    ],
+    "prPriority": 10
+  },
   "packageRules": [
     {
       "updateTypes": [
@@ -56,6 +69,9 @@
       "automerge": true,
       "labels": [
         "habx-automerge"
+      ],
+      "schedule": [
+        "at any time"
       ]
     },
     {
