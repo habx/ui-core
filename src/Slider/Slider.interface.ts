@@ -13,6 +13,11 @@ export type Indicator = {
   range: [number, number]
 }
 
+export type SliderTooltipFormatter = (
+  label: string | number | [number, number],
+  rawTooltip: string
+) => string
+
 export interface SliderInnerProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'value' | 'onChange'> {
   customValues?: string[]
@@ -23,10 +28,7 @@ export interface SliderInnerProps
   dots?: boolean
   indicators?: (Omit<Indicator, 'color' | 'position'> & { color?: string })[]
 
-  tooltipFormatter?: (
-    label: string | number | [number, number],
-    rawTooltip: string
-  ) => string
+  tooltipFormatter?: SliderTooltipFormatter
   tooltipSuffix?: string
 
   value: Value
