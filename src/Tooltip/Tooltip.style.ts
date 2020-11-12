@@ -1,18 +1,20 @@
 import styled from 'styled-components'
 
 import { zIndex } from '../_internal/zIndex'
-import { animations } from '../animations'
-import { ANIMATION_DURATIONS } from '../animations'
+import { animations, ANIMATION_DURATIONS } from '../animations'
 import { Background } from '../Background'
 import { theme } from '../theme'
 
-export const ANIMATION_DURATION = ANIMATION_DURATIONS.s
+const ANIMATION_DELAY = 500
+const DURATION = 's' as const
+
+export const ANIMATION_DURATION =
+  ANIMATION_DELAY + ANIMATION_DURATIONS[DURATION]
 
 export const TooltipContainer = styled(Background)`
   border-radius: 4px;
   padding: 6px 12px;
   max-width: 376px;
-  opacity: 0;
   pointer-events: none;
   box-shadow: ${theme.shadow('low')};
   position: fixed;
@@ -23,11 +25,12 @@ export const TooltipContainer = styled(Background)`
   }
 
   &[data-state='opening'] {
-    animation: ${animations('emerge', { duration: 's' })};
+    animation: ${animations('emerge', { duration: DURATION })};
+    animation-delay: ${ANIMATION_DELAY}ms;
   }
 
-  &[data-state='opened'] {
-    opacity: 1;
+  &:not([data-state='opened']) {
+    opacity: 0;
   }
 
   &[data-state='closing'] {
