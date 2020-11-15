@@ -54,7 +54,7 @@
     "lodash.deburr": "^4.1.0",
     "markdown-it": "^12.0.2",
     "markdown-it-sup": "^1.0.0",
-    "merge": "^1.2.1",
+    "merge": "^2.1.0",
     "react-easy-swipe": "0.0.21",
     "react-is": "^16.13.1"
   },
