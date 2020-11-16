@@ -7,13 +7,9 @@ import {
 
 import { isColorDark } from '../_internal/color'
 import { StyledTheme } from '../_internal/types'
-import { BASE_THEME, PATCH_WHITE } from '../theme'
-import { DesignSystemTheme } from '../theme/theme.interface'
+import { BASE_THEME, PATCH_WHITE, DesignSystemTheme } from '../theme'
 
-import {
-  ThemeProviderProps,
-  DesignSystemThemePatch,
-} from './ThemeProvider.interface'
+import { ThemeProviderProps } from './ThemeProvider.interface'
 
 export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
@@ -31,10 +27,11 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   const newStyledTheme = React.useMemo<StyledTheme>(() => {
     // Creating a custom theme
     if (theme) {
-      const fullTheme = merge.recursive<
-        DesignSystemTheme,
-        DesignSystemThemePatch
-      >(true, currentTheme, theme)
+      const fullTheme: DesignSystemTheme = merge.recursive(
+        true,
+        currentTheme,
+        theme
+      )
 
       const newTheme = {
         ...fullTheme,
