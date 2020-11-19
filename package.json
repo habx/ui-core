@@ -61,10 +61,10 @@
   "devDependencies": {
     "@habx/eslint-config-client": "^5.3.1",
     "@liftr/tscov": "^2.0.0",
-    "@storybook/addon-actions": "^6.0.28",
-    "@storybook/addon-docs": "^6.0.28",
+    "@storybook/addon-actions": "^6.1.0",
+    "@storybook/addon-docs": "^6.1.0",
     "@storybook/addon-viewport": "^6.1.0",
-    "@storybook/react": "^6.0.28",
+    "@storybook/react": "^6.1.0",
     "@storybook/storybook-deployer": "^2.8.7",
     "@storybook/theming": "^6.1.0",
     "@testing-library/jest-dom": "^5.11.6",
