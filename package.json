@@ -63,7 +63,7 @@
     "@liftr/tscov": "^2.0.0",
     "@storybook/addon-actions": "^6.1.2",
     "@storybook/addon-docs": "^6.1.2",
-    "@storybook/addon-viewport": "^6.1.1",
+    "@storybook/addon-viewport": "^6.1.2",
     "@storybook/react": "^6.1.2",
     "@storybook/storybook-deployer": "^2.8.7",
     "@storybook/theming": "^6.1.2",
