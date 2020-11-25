@@ -97,7 +97,7 @@ export const withLabel = <RefElement extends HTMLElement>({
         >
           <LabelContainer
             type={labelType}
-            opacity={1}
+            variation="title"
             warning={rest.error}
             data-disabled={rest.disabled}
             markdown
@@ -136,7 +136,7 @@ export const withSemanticLabel = <RefElement extends HTMLElement>({
             data-disabled={props.disabled}
             data-testid={testid}
             htmlFor={fieldId}
-            opacity={1}
+            variation="title"
             warning={props.error}
           >
             <Markdown markdown>{label}</Markdown>

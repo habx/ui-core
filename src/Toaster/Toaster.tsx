@@ -60,7 +60,7 @@ export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
           )}
           <ToasterText
             data-testid="notification-text"
-            opacity={1}
+            variation="title"
             markdown={markdown}
           >
             {message}

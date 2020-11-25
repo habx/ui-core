@@ -20,7 +20,7 @@ export const AlertBanner = React.forwardRef<HTMLDivElement, AlertBannerProps>(
     return (
       <Banner ref={ref} backgroundColor={backgroundColor} {...rest}>
         <AlertBannerContent>
-          <AlertBannerText opacity={1}>{message}</AlertBannerText>
+          <AlertBannerText variation="title">{message}</AlertBannerText>
           {onClose && <IconButton icon="close" tiny onClick={onClose} />}
         </AlertBannerContent>
       </Banner>

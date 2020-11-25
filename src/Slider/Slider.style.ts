@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { Text } from '../Text'
 import { theme } from '../theme'
 
 import { SliderBarContainer } from './SliderBar/SliderBar.style'
@@ -26,8 +25,6 @@ export const SliderTooltips = styled.div`
     }
   }
 `
-
-export const SliderTooltip = styled(Text)``
 
 export const SliderContent = styled.div`
   position: relative;

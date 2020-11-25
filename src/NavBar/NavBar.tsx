@@ -160,7 +160,7 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
               {state.isExpanded && (
                 <TitleContainer>
                   {typeof title === 'string' ? (
-                    <Text opacity={1}>{title}</Text>
+                    <Text variation="title">{title}</Text>
                   ) : (
                     title
                   )}

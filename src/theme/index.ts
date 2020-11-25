@@ -5,4 +5,5 @@ export {
   DesignSystemTheme,
   DesignSystemProviderValue,
   StyledTheme,
+  TypographyColors,
 } from './theme.interface'

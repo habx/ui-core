@@ -75,7 +75,7 @@ const shadowGetter = (
 
 const textColorGetter = <Props extends GetterProps>(
   config: TextColorGetterConfig<Props> = {}
-) => (props: Props & { textVariation?: keyof TypographyColors }) => {
+) => (props: Props) => {
   const theme = getThemeVariant(props, { useRootTheme: config.useRootTheme })
 
   let color: Color
@@ -84,8 +84,10 @@ const textColorGetter = <Props extends GetterProps>(
     color = (props[config.valuePropName] as any) as Color
   } else {
     let variation: keyof TypographyColors
-    if (props.textVariation) {
-      variation = props.textVariation
+    if (config.variationPropName && props[config.variationPropName] != null) {
+      variation = (props[
+        config.variationPropName
+      ] as any) as keyof TypographyColors
     } else if (config.variation) {
       variation = config.variation
     } else {

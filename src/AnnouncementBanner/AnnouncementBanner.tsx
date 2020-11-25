@@ -58,7 +58,7 @@ export const AnnouncementBanner = React.forwardRef<
         />
       </AnnouncementBannerShapeContainer>
       <AnnouncementBannerCenteredContent>
-        <Text opacity={1} markdown>
+        <Text variation="title" markdown>
           {message}
         </Text>
         <DesktopButton onClick={onValidate} small>

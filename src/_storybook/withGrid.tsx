@@ -126,7 +126,9 @@ export const withGrid = <Props extends object>(
                         <ItemWrapper>
                           <WrappedComponent {...fullProps} />
                         </ItemWrapper>
-                        {item.label && <Label opacity={1}>{item.label} </Label>}
+                        {item.label && (
+                          <Label variation="title">{item.label} </Label>
+                        )}
                       </ItemContainer>
                     )
                   })}

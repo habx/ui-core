@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { clamp, isFunction, isNil } from '../_internal/data'
 import { stringifyColor } from '../_internal/theme/color'
+import { Text } from '../Text'
 import { useThemeVariant } from '../useThemeVariant'
 import { withLabel } from '../withLabel'
 
@@ -17,7 +18,6 @@ import {
   SliderContent,
   SliderMainBar,
   SliderTooltips,
-  SliderTooltip,
   SliderBackgroundDot,
   SliderIndicator,
 } from './Slider.style'
@@ -350,7 +350,7 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
         </SliderContent>
         <SliderTooltips data-fixed={!shouldTooltipFollowDot}>
           {tooltips.map((tooltip, index) => (
-            <SliderTooltip
+            <Text
               key={index}
               data-testid="slider-tooltip"
               style={
@@ -362,10 +362,10 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
                     }
                   : undefined
               }
-              opacity={1}
+              variation="title"
             >
               {tooltip.content}
-            </SliderTooltip>
+            </Text>
           ))}
         </SliderTooltips>
       </SliderContainer>

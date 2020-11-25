@@ -46,7 +46,7 @@ export const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
             {elementLeft}
           </SideElementContainer>
         )}
-        <Text primary={primary} warning={warning} opacity={1}>
+        <Text primary={primary} warning={warning} variation="title">
           {children}
         </Text>
         {elementRight && (

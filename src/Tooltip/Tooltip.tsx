@@ -112,7 +112,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
               style={state.position}
               {...rest}
             >
-              <Text opacity={1} type={small ? 'caption' : 'regular'}>
+              <Text variation="title" type={small ? 'caption' : 'regular'}>
                 {title}
               </Text>
               {description && (

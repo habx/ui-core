@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { styledAs, ThemeOverridesProps } from '../_internal/types'
+import { TypographyColors } from '../theme'
 
 export type TextTypes =
   | 'veryLarge'
@@ -15,7 +16,7 @@ export interface TextProps
     React.HTMLAttributes<HTMLHeadingElement> {
   type?: TextTypes
   color?: string
-  opacity?: number
+  variation?: keyof TypographyColors
   as?: styledAs
   inline?: boolean
 }

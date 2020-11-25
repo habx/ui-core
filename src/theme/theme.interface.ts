@@ -97,17 +97,31 @@ export interface TextColorGetterConfig<Props extends GetterProps> {
   useRootTheme?: boolean
 
   /**
-   * The name of the prop we want to use to override manually the value of the text color
+   * The name of the prop we want to use to override manually the color of the text
+   * Note that if you pass a value to the prop defined here, we won't apply any variation to it
    * For instance :
    *
    * ```ts
    * const MyComponent = styled.div`
    *   color: ${theme.textColor('text', { valuePropName: 'textColor' })};
    * `
-   * <MyComponent /> => Border wil take the primary color
+   * <MyComponent /> => Text wil take the theme color in the chosen variation (as defined in config or overwritten in variationPropName)
    * <MyComponent textColor="red" /> => Text will be red
    */
   valuePropName?: keyof Props
+
+  /**
+   * The name of the prop we want to use to override manually the variation of the text
+   * For instance :
+   *
+   * ```ts
+   * const MyComponent = styled.div`
+   *   color: ${theme.textColor('text', { variationPropName: 'variation' })};
+   * `
+   * <MyComponent /> => Text wil take the theme color in the variation defined in the config (or "text" by default)
+   * <MyComponent variation="lowContrast" /> => Text will take the theme color in the "lowContrast" variation
+   */
+  variationPropName?: keyof Props
 }
 
 export interface ColorGetterConfig<Props extends GetterProps> {
