@@ -161,4 +161,6 @@ const DARK_THEME_VARIANT: ThemeVariant = {
 export const DEFAULT_THEME: DesignSystemTheme = {
   light: LIGHT_THEME_VARIANT,
   dark: DARK_THEME_VARIANT,
+  isDark: false,
+  backgroundColor: palette.white[1000],
 }

@@ -5,13 +5,14 @@ import {
   ThemeContext,
 } from 'styled-components'
 
-import { palette } from '../palette'
+import { isColorDark } from '../_internal/theme/color'
 import {
   DesignSystemTheme,
   DesignSystemProviderValue,
   StyledTheme,
   DEFAULT_THEME,
 } from '../theme'
+import { ThemeVariant } from '../theme'
 
 import { ThemeProviderProps } from './ThemeProvider.interface'
 
@@ -21,23 +22,36 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
 }) => {
   const styledTheme = React.useContext<StyledTheme>(ThemeContext)
 
-  const currentProviderValue = styledTheme?.uiCore
+  const currentTheme = styledTheme?.uiCore?.value ?? DEFAULT_THEME
 
   const newProviderValue = React.useMemo<DesignSystemProviderValue>(() => {
-    const newTheme: DesignSystemTheme = merge.recursive(
+    const newLightVariant: ThemeVariant = merge.recursive(
       true,
-      currentProviderValue?.value ?? DEFAULT_THEME,
-      theme
+      currentTheme.light,
+      theme.light ?? {}
     )
+
+    const newDarkVariant: ThemeVariant = merge.recursive(
+      true,
+      currentTheme.dark,
+      theme.dark ?? {}
+    )
+
+    const newBackgroundColor =
+      theme.backgroundColor ?? currentTheme.backgroundColor
+
+    const newTheme: DesignSystemTheme = {
+      light: newLightVariant,
+      dark: newDarkVariant,
+      isDark: isColorDark(newBackgroundColor),
+      backgroundColor: newBackgroundColor,
+    }
 
     return {
       value: newTheme,
       rootValue: newTheme,
-      isDark: currentProviderValue?.isDark ?? false,
-      backgroundColor:
-        currentProviderValue?.backgroundColor ?? palette.white[1000],
     }
-  }, [currentProviderValue, theme])
+  }, [currentTheme, theme])
 
   const newStyledTheme = React.useMemo<StyledTheme>(
     () => ({

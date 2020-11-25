@@ -56,11 +56,6 @@ export interface ThemeVariant {
 export interface DesignSystemTheme {
   light: ThemeVariant
   dark: ThemeVariant
-}
-
-export interface DesignSystemProviderValue {
-  value: DesignSystemTheme
-  rootValue: DesignSystemTheme
 
   /**
    * Automatically inferred from the background color to determine if we want to use the light theme or the dark theme
@@ -71,6 +66,11 @@ export interface DesignSystemProviderValue {
    * Background color applied on a <Background /> component
    */
   backgroundColor: Color
+}
+
+export interface DesignSystemProviderValue {
+  value: DesignSystemTheme
+  rootValue: DesignSystemTheme
 }
 
 export interface StyledTheme {

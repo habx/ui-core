@@ -3,6 +3,10 @@ import parse, { ParsedColor } from 'color-parse'
 export type Color = string | ParsedColor
 
 const parseColor = (color: Color): ParsedColor => {
+  if (color == null) {
+    throw Error('Undefined / null color given to parseColor')
+  }
+
   if ((color as ParsedColor).space) {
     return color as ParsedColor
   }
@@ -11,6 +15,10 @@ const parseColor = (color: Color): ParsedColor => {
 }
 
 export const stringifyColor = (color: Color): string => {
+  if (color == null) {
+    throw Error('Undefined / null color given to parseColor')
+  }
+
   if ((color as ParsedColor).space) {
     const parsedColor = color as ParsedColor
 

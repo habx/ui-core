@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { useMergedContext } from '../_internal/useMergedContext'
 import { assert } from '../_internal/validityCheck'
 import { NavBarContext } from '../NavBar/NavBar.context'
 
@@ -18,14 +17,14 @@ export const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
     const {
       icon,
       label,
-      isInsideANavBar,
       bottom,
       active,
       disabled,
-      color,
       description,
       ...rest
-    } = useMergedContext(NavBarContext, props)
+    } = props
+
+    const { isInsideANavBar } = React.useContext(NavBarContext)
 
     assert(
       isInsideANavBar,
@@ -44,9 +43,9 @@ export const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
       >
         <IconContainer>{icon}</IconContainer>
         <TextContainer>
-          <TitleContainer color={color}>{label}</TitleContainer>
+          <TitleContainer variation="title">{label}</TitleContainer>
           {description && (
-            <DescriptionContainer color={color}>
+            <DescriptionContainer type="caption">
               {description}
             </DescriptionContainer>
           )}

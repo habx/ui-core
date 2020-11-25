@@ -9,14 +9,14 @@ export const IconContainer = styled.span<{ url: string }>`
   min-height: 1em;
   flex: 0 0 1em;
   background-position: center;
-  
+
   &[data-colored='false'] {
     mask-size: contain;
     mask-position: top left;
     mask-repeat: no-repeat;
     mask-image: url('${({ url }) => url}');
   }
-  
+
   &[data-colored='true'] {
     background-color: transparent;
     background-size: contain;

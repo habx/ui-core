@@ -12,8 +12,20 @@ import {
 } from './theme.interface'
 import { ColorFamilies, Shadows, GetterProps } from './theme.interface'
 
-export const getCurrentBackground = (props: GetterProps) =>
-  props.theme?.uiCore?.backgroundColor ?? palette.white[1000]
+export const getCurrentBackground = (
+  props: GetterProps,
+  { useRootTheme }: { useRootTheme?: boolean } = {}
+) => {
+  const theme = props.theme?.uiCore
+
+  if (!theme) {
+    return palette.white[1000]
+  }
+
+  const themeValue = useRootTheme ? theme.rootValue : theme.value
+
+  return themeValue.backgroundColor
+}
 
 export const getThemeVariant = (
   props: GetterProps,
@@ -27,7 +39,7 @@ export const getThemeVariant = (
 
   const themeValue = useRootTheme ? theme.rootValue : theme.value
 
-  return theme.isDark ? themeValue.dark : themeValue.light
+  return themeValue.isDark ? themeValue.dark : themeValue.light
 }
 
 const fontGetter = () => (props: GetterProps) =>
@@ -119,7 +131,7 @@ const colorGetter = <Props extends GetterProps>(
     if (config.valuePropName && props[config.valuePropName] != null) {
       color = (props[config.valuePropName] as any) as Color
     } else if (colorFamily === 'background') {
-      color = getCurrentBackground(props)
+      color = getCurrentBackground(props, { useRootTheme: config.useRootTheme })
     } else {
       let realColorFamily: keyof ColorFamilies
       if (!config.dynamic) {
