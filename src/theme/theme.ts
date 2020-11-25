@@ -1,29 +1,36 @@
-import colorUtils from 'color'
-
 import { isNil } from '../_internal/data'
+import { FullGradient, palette } from '../palette'
 
-import { BASE_THEME } from './theme.data'
-import { Shadow } from './theme.interface'
+import { DEFAULT_THEME } from './theme.data'
 import {
-  DesignSystemTheme,
-  ColorFamilies,
-  ColorVariations,
-  Fonts,
-  Shadows,
-  GetterProps,
+  ColorGetterConfig,
+  Shadow,
+  TextColorGetterConfig,
+  ThemeVariant,
+  TypographyColors,
 } from './theme.interface'
+import { ColorFamilies, Shadows, GetterProps } from './theme.interface'
 
-const getTheme = (
+export const getCurrentBackground = (props: GetterProps) =>
+  props.theme?.uiCore?.backgroundColor ?? palette.white[1000]
+
+export const getThemeVariant = (
   props: GetterProps,
   { useRootTheme }: { useRootTheme?: boolean } = {}
-): DesignSystemTheme => {
-  const { theme: { uiCore = BASE_THEME, uiCoreRoot = BASE_THEME } = {} } = props
+): ThemeVariant => {
+  const theme = props.theme?.uiCore
 
-  return useRootTheme ? uiCoreRoot : uiCore
+  if (!theme) {
+    return DEFAULT_THEME.light
+  }
+
+  const themeValue = useRootTheme ? theme.rootValue : theme.value
+
+  return theme.isDark ? themeValue.dark : themeValue.light
 }
 
-const fontGetter = (variation: keyof Fonts = 'text') => (props: GetterProps) =>
-  getTheme(props).fonts[variation]
+const fontGetter = () => (props: GetterProps) =>
+  getThemeVariant(props).typography.font
 
 const shadowGetter = (
   depth: keyof Shadows = 'regular',
@@ -43,7 +50,9 @@ const shadowGetter = (
     return depth
   }
 
-  const shadowObject: Shadow[] = getTheme(props).shadows[getShadowDepth()]
+  const shadowObject: Shadow[] = getThemeVariant(props).shadows[
+    getShadowDepth()
+  ]
 
   const buildShadow = ({ x, y, blur, opacity }: Shadow) =>
     `${x}px ${y}px ${blur}px rgba(6, 26, 60, ${opacity})`
@@ -64,79 +73,30 @@ const shadowGetter = (
 }
 
 const textColorGetter = <Props extends GetterProps>(
-  config: {
-    opacity?: number
-    useRootTheme?: boolean
-    dynamic?: boolean
-    propName?: keyof Props
-  } = {}
-) => (
-  props: Props & {
-    warning?: boolean
-    primary?: boolean
-    secondary?: boolean
-    opacity?: number
-  }
-) => {
-  const { dynamic = false, useRootTheme = false, opacity, propName } = config
+  config: TextColorGetterConfig<Props> = {}
+) => (props: Props & { textVariation?: keyof TypographyColors }) => {
+  const theme = getThemeVariant(props, { useRootTheme: config.useRootTheme })
 
-  const realOpacity = isNil(props.opacity) ? opacity : props.opacity
-
-  const getColor = (): string => {
-    const theme = getTheme(props, { useRootTheme })
-
-    if (propName && !isNil(props[propName])) {
-      return (props[propName] as any) as string
-    }
-
-    if (!dynamic) {
-      return theme.textColor
-    }
-
-    if (props.warning) {
-      return theme.colors.warning.base
-    }
-
-    if (props.primary) {
-      return theme.colors.primary.base
-    }
-
-    if (props.secondary) {
-      return theme.colors.secondary.base
-    }
-
-    return theme.textColor
+  if (config.valuePropName && props[config.valuePropName] !== null) {
+    return (props[config.valuePropName] as any) as string
   }
 
-  const color = getColor()
-
-  if (isNil(realOpacity)) {
-    return color
+  let variation: keyof TypographyColors
+  if (props.textVariation) {
+    variation = props.textVariation
+  } else if (config.variation) {
+    variation = config.variation
+  } else {
+    variation = 'text'
   }
 
-  return colorUtils(color)
-    .fade(1 - realOpacity)
-    .string()
+  return theme.typography.colors[variation]
 }
 
 const colorGetter = <Props extends GetterProps>(
-  colorName: keyof ColorFamilies | 'background',
-  config: {
-    dynamic?: boolean
-    useRootTheme?: boolean
-    propName?: keyof Props
-    variation?: keyof ColorVariations
-    opacity?: number
-  } = {}
+  colorFamily: keyof ColorFamilies | 'background',
+  config: ColorGetterConfig<Props> = {}
 ) => {
-  const {
-    dynamic = false,
-    useRootTheme = false,
-    variation = 'base',
-    propName,
-    opacity,
-  } = config
-
   return (
     props: Props & {
       warning?: boolean
@@ -145,61 +105,41 @@ const colorGetter = <Props extends GetterProps>(
       opacity?: number
     }
   ) => {
-    const theme = getTheme(props, { useRootTheme })
+    const theme = getThemeVariant(props, { useRootTheme: config.useRootTheme })
 
-    const getColorName = (): keyof ColorFamilies => {
-      if (colorName === 'background') {
-        return 'primary'
-      }
-
-      if (!dynamic) {
-        return colorName
-      }
-
-      if (props.warning) {
-        return 'warning'
-      }
-
-      if (props.primary) {
-        return 'primary'
-      }
-
-      if (props.secondary) {
-        return 'secondary'
-      }
-
-      return colorName
+    if (config.valuePropName && props[config.valuePropName] !== null) {
+      return (props[config.valuePropName] as any) as string
     }
 
-    const getColorValue = () => {
-      if (propName && !isNil(props[propName])) {
-        return props[propName]
-      }
-
-      if (colorName === 'background') {
-        return theme.backgroundColor
-      }
-
-      return theme.colors[getColorName()][variation]
+    if (colorFamily === 'background') {
+      return getCurrentBackground(props)
     }
 
-    const realOpacity = isNil(props.opacity) ? opacity : props.opacity
-    const color = getColorValue()
-
-    if (isNil(realOpacity)) {
-      return color
+    let realColorFamily: keyof ColorFamilies
+    if (!config.dynamic) {
+      realColorFamily = colorFamily
+    } else if (props.warning) {
+      realColorFamily = 'warning'
+    } else if (props.primary) {
+      realColorFamily = 'primary'
+    } else if (props.secondary) {
+      realColorFamily = 'secondary'
+    } else {
+      realColorFamily = colorFamily
     }
 
-    return colorUtils(color)
-      .fade(1 - realOpacity)
-      .string()
+    return theme.colors[realColorFamily][config.variation ?? 'base']
   }
 }
+
+const neutralColorGetter = <Props extends GetterProps>(
+  strength: keyof FullGradient
+) => (props: Props) => getThemeVariant(props).neutralColor[strength]
 
 export const theme = {
   color: colorGetter,
   textColor: textColorGetter,
+  neutralColor: neutralColorGetter,
   font: fontGetter,
   shadow: shadowGetter,
-  raw: BASE_THEME,
 }

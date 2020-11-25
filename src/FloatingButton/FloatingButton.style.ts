@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 
-import { zIndex } from '../_internal/zIndex'
+import { zIndex } from '../_internal/theme/zIndex'
 import { breakpoints } from '../breakpoints'
 import { fontScale } from '../fontScale'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const SideElementContainer = styled.div`
@@ -101,7 +100,7 @@ export const FloatingButtonContainer = styled.button`
   &:hover {
     background-color: ${theme.color('primary', {
       dynamic: true,
-      variation: 'hover',
+      variation: 'loud',
     })};
     box-shadow: ${theme.shadow('low', { hover: true })};
   }
@@ -110,7 +109,7 @@ export const FloatingButtonContainer = styled.button`
   &:active {
     border-color: ${theme.color('primary', {
       dynamic: true,
-      variation: 'focus',
+      variation: 'louder',
     })};
   }
 
@@ -120,6 +119,6 @@ export const FloatingButtonContainer = styled.button`
 
   &:disabled {
     pointer-events: none;
-    background-color: ${palette.darkBlue[400]};
+    background-color: ${theme.neutralColor(400)};
   }
 `

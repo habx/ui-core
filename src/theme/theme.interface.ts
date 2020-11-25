@@ -1,7 +1,11 @@
+import { FullGradient } from '../palette'
+
 export interface ColorVariations {
+  calmer: string
+  calm: string
   base: string
-  hover: string
-  focus: string
+  loud: string
+  louder: string
   contrastText: string
 }
 
@@ -9,11 +13,8 @@ export interface ColorFamilies {
   primary: ColorVariations
   secondary: ColorVariations
   warning: ColorVariations
-}
-
-export interface Fonts {
-  title?: string
-  text?: string
+  error: ColorVariations
+  success: ColorVariations
 }
 
 export interface Shadow {
@@ -32,18 +33,132 @@ export interface Shadows {
   higher: Shadow[]
 }
 
-export interface DesignSystemTheme {
+export interface TypographyColors {
+  title: string
+  button: string
+  text: string
+  lowContrast: string
+}
+
+export interface Typography {
+  colors: TypographyColors
+  font: string
+}
+
+export interface ThemeVariant {
   colors: ColorFamilies
-  textColor: string
-  backgroundColor: string
-  fonts: Fonts
+  typography: Typography
+  neutralColor: FullGradient
   shadows: Shadows
+}
+
+export interface DesignSystemTheme {
+  light: ThemeVariant
+  dark: ThemeVariant
+}
+
+export interface DesignSystemProviderValue {
+  value: DesignSystemTheme
+  rootValue: DesignSystemTheme
+
+  /**
+   * Automatically inferred from the background color to determine if we want to use the light theme or the dark theme
+   */
   isDark: boolean
+
+  /**
+   * Background color applied on a <Background /> component
+   */
+  backgroundColor: string
+}
+
+export interface StyledTheme {
+  uiCore?: DesignSystemProviderValue
 }
 
 export interface GetterProps {
-  theme?: {
-    uiCore?: DesignSystemTheme
-    uiCoreRoot?: DesignSystemTheme
-  }
+  theme?: StyledTheme
+}
+
+export interface TextColorGetterConfig<Props extends GetterProps> {
+  /**
+   * Text color variation to apply
+   *
+   * @default "text"
+   */
+  variation?: keyof TypographyColors
+
+  /**
+   * Do not take background theme into account
+   *
+   * @default false
+   */
+  useRootTheme?: boolean
+
+  /**
+   * The name of the prop we want to use to override manually the value of the text color
+   * For instance :
+   *
+   * ```ts
+   * const MyComponent = styled.div`
+   *   color: ${theme.textColor('text', { valuePropName: 'textColor' })};
+   * `
+   * <MyComponent /> => Border wil take the primary color
+   * <MyComponent textColor="red" /> => Text will be red
+   */
+  valuePropName?: keyof Props
+}
+
+export interface ColorGetterConfig<Props extends GetterProps> {
+  /**
+   * Color variation to apply
+   *
+   * @default "base"
+   */
+  variation?: keyof ColorVariations
+
+  /**
+   * Opacity to apply to the color
+   * If the color of the theme is already in an RGBA format, we multiply the two opacities
+   *
+   * @default 1
+   */
+  opacity?: number
+
+  /**
+   * Do not take background theme into account
+   *
+   * @default false
+   */
+  useRootTheme?: boolean
+
+  /**
+   * If true, passing a key of ColorFamilies as a prop to the component will override the default family
+   * For instance for the following component:
+   *
+   * ```ts
+   * const MyComponent = styled.div`
+   *   border: 1px solid ${theme.color('primary', { dynamic: true })};
+   * `
+   *
+   * <MyComponent /> => Border will take the primary color
+   * <MyComponent warning /> => Border will take the warning color
+   * ```
+   * @default false
+   */
+  dynamic?: boolean
+
+  /**
+   * The name of the prop we want to use to override manually the value of the color
+   * Note that if you pass a value to the prop defined here, we won't apply any variation to it
+   * For instance :
+   *
+   * ```ts
+   * const MyComponent = styled.div`
+   *   border: 1px solid ${theme.color('primary', { valuePropName: 'borderColor' })};
+   * `
+   * <MyComponent /> => Border wil take the primary color
+   * <MyComponent borderColor="red" /> => Border will be red
+   */
+  valuePropName?: keyof Props
 }

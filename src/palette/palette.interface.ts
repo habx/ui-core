@@ -1,4 +1,4 @@
-export interface Gradient {
+export interface FullGradient {
   100: string
   200: string
   300: string
@@ -8,13 +8,13 @@ export interface Gradient {
   700: string
   800: string
   900: string
+  1000: string
 }
 
-export interface Palette {
-  darkBlue: Gradient
-  blue: Gradient
-  lightBlue: Gradient
-  yellow: Gradient
-  orange: Gradient
-  green: Gradient
+export interface LimitedGradient {
+  100: string
+  200: string
+  500: string
+  700: string
+  800: string
 }

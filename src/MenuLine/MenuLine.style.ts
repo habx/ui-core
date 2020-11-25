@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const MenuLineContainer = styled.li`
@@ -15,7 +14,7 @@ export const MenuLineContainer = styled.li`
     cursor: pointer;
 
     &:hover {
-      background-color: ${palette.darkBlue[200]};
+      background-color: ${theme.neutralColor(200)};
     }
   }
 

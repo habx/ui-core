@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { Text } from '../Text'
 import { TextInput } from '../TextInput'
 import { theme } from '../theme'
@@ -17,7 +16,7 @@ export const MainInput = styled(TextInput)`
 export const CountryOptions = styled.div`
   user-select: none;
   width: 110px;
-  background-color: ${palette.darkBlue[200]};
+  background-color: ${theme.neutralColor(200)};
   color: ${theme.textColor({ useRootTheme: true })};
   font-family: ${theme.font()};
   display: flex;
@@ -40,12 +39,12 @@ export const PhoneInputContainer = styled.div`
   outline: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border: solid 1.5px ${palette.darkBlue[200]};
+  border: solid 1.5px ${theme.neutralColor(200)};
   border-radius: 4px;
 
   &:hover,
   &:focus-within {
-    border-color: ${palette.darkBlue[300]};
+    border-color: ${theme.neutralColor(300)};
   }
 
   &[data-background='true'] {
@@ -57,18 +56,18 @@ export const PhoneInputContainer = styled.div`
   }
 
   &[data-error='true'] {
-    border-color: ${palette.orange[400]};
-    box-shadow: 0 1px 0 ${palette.orange[400]};
+    border-color: ${theme.color('error')};
+    box-shadow: 0 1px 0 ${theme.color('error')};
 
     & ${CountryOptions} {
-      border-color: ${palette.orange[400]};
-      color: ${palette.orange[400]};
+      border-color: ${theme.color('error')};
+      color: ${theme.color('error')};
     }
   }
 
   &[data-disabled='true'] {
     pointer-events: none;
-    border-color: ${palette.darkBlue[200]};
+    border-color: ${theme.neutralColor(200)};
 
     & ${CountryOptions} {
       border-right-color: #d0e4e6;
@@ -95,7 +94,7 @@ export const PhoneInputContainer = styled.div`
 
 export const FlagContainer = styled.div`
   border-radius: 2px;
-  border: 1px ${palette.darkBlue[200]} solid;
+  border: 1px ${theme.neutralColor(200)} solid;
   display: flex;
   overflow: hidden;
   height: 15px;
@@ -131,6 +130,6 @@ export const MenuLineTitle = styled(Text)`
 `
 
 export const MenuLineSubtitle = styled(Text)`
-  color: ${palette.darkBlue[500]};
+  color: ${theme.neutralColor(500)};
   margin-left: 12px;
 `

@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import { Background } from '../Background'
 import { breakpoints } from '../breakpoints'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const HeaderBarContainer = styled(Background)`
@@ -12,7 +11,7 @@ export const HeaderBarContainer = styled(Background)`
   align-items: center;
   justify-content: space-between;
   position: relative;
-  border-bottom: solid 1px ${palette.darkBlue[300]};
+  border-bottom: solid 1px ${theme.neutralColor(300)};
   z-index: 12;
 
   &[data-sticky='true'] {

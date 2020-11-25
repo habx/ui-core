@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const InnerCircle = styled.div`
@@ -18,7 +17,7 @@ export const FakeInput = styled.label`
   min-width: var(--radio-input-diameter);
   height: var(--radio-input-diameter);
   border-radius: 50%;
-  background: #fff;
+  background: ${theme.neutralColor(1000)};
   border: solid var(--radio-input-border-width) transparent;
   transition: all 150ms ease-in-out;
   display: flex;
@@ -66,22 +65,22 @@ export const Input = styled.input`
       border-color: ${theme.color('primary')};
 
       &:hover {
-        border-color: ${theme.color('primary', { variation: 'hover' })};
+        border-color: ${theme.color('primary', { variation: 'loud' })};
 
         & ${InnerCircle} {
-          background-color: ${theme.color('primary', { variation: 'hover' })};
+          background-color: ${theme.color('primary', { variation: 'loud' })};
         }
       }
 
       &:focus {
-        border-color: ${theme.color('primary', { variation: 'focus' })};
+        border-color: ${theme.color('primary', { variation: 'louder' })};
       }
     }
   }
 
   &:not([data-background='true']):not(:checked):not([data-error='true'])
     + ${FakeInput} {
-    border-color: ${palette.darkBlue[400]};
+    border-color: ${theme.neutralColor(400)};
   }
 
   &[data-error='true'] {
@@ -104,15 +103,15 @@ export const Input = styled.input`
         border-color: ${theme.color('warning')};
 
         &:hover {
-          border-color: ${palette.orange[500]};
+          border-color: ${theme.color('error')};
 
           & ${InnerCircle} {
-            background-color: ${palette.orange[500]};
+            background-color: ${theme.color('error', { variation: 'loud' })};
           }
         }
 
         &:focus {
-          border-color: ${palette.orange[600]};
+          border-color: ${theme.color('error', { variation: 'louder' })};
         }
       }
     }
@@ -125,19 +124,19 @@ export const Input = styled.input`
 
     &:not(:checked) {
       & + ${FakeInput} {
-        background-color: ${palette.darkBlue[400]};
+        background-color: ${theme.neutralColor(400)};
       }
     }
 
     &:checked {
       & + ${FakeInput} ${InnerCircle} {
-        background-color: ${palette.darkBlue[400]};
+        background-color: ${theme.neutralColor(400)};
       }
     }
   }
 
   &:not([data-background='true']):disabled:checked + ${FakeInput} {
-    border-color: ${palette.darkBlue[400]};
+    border-color: ${theme.neutralColor(400)};
   }
 `
 

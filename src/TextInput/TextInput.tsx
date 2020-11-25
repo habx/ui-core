@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
-import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
+import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
 import { withLabel } from '../withLabel'
 
 import { TextInputInnerProps } from './TextInput.interface'

@@ -4,7 +4,6 @@ import {
   ANIMATION_DURATIONS,
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const SideElementContainer = styled.div`
@@ -109,19 +108,19 @@ export const ButtonContainer = styled.button`
     }
 
     &:hover {
-      color: ${theme.color('primary', { dynamic: true, variation: 'hover' })};
+      color: ${theme.color('primary', { dynamic: true, variation: 'loud' })};
 
       & svg {
-        fill: ${theme.color('primary', { dynamic: true, variation: 'hover' })};
+        fill: ${theme.color('primary', { dynamic: true, variation: 'loud' })};
       }
     }
 
     &:focus,
     &:active {
-      color: ${theme.color('primary', { dynamic: true, variation: 'focus' })};
+      color: ${theme.color('primary', { dynamic: true, variation: 'louder' })};
 
       & svg {
-        fill: ${theme.color('primary', { dynamic: true, variation: 'focus' })};
+        fill: ${theme.color('primary', { dynamic: true, variation: 'louder' })};
       }
     }
 
@@ -151,7 +150,7 @@ export const ButtonContainer = styled.button`
     &:hover {
       background-color: ${theme.color('primary', {
         dynamic: true,
-        variation: 'hover',
+        variation: 'loud',
       })};
     }
 
@@ -159,7 +158,7 @@ export const ButtonContainer = styled.button`
     &:active {
       --button-border-color: ${theme.color('primary', {
         dynamic: true,
-        variation: 'focus',
+        variation: 'louder',
       })};
     }
  
@@ -173,18 +172,18 @@ export const ButtonContainer = styled.button`
     pointer-events: none;
 
     &[data-outline='false'][data-link='false'] {
-      background-color: ${palette.darkBlue[400]};
+      background-color: ${theme.neutralColor(400)};
     }
 
     &[data-outline='true'] {
       color: ${theme.color('secondary', {
-        variation: 'focus',
+        variation: 'louder',
         opacity: 0.45,
         useRootTheme: true,
       })};
       
       --button-border-color: ${theme.color('secondary', {
-        variation: 'focus',
+        variation: 'louder',
         opacity: 0.45,
         useRootTheme: true,
       })};
@@ -192,7 +191,7 @@ export const ButtonContainer = styled.button`
 
     &[data-link='true'] {
       color: ${theme.color('secondary', {
-        variation: 'focus',
+        variation: 'louder',
         opacity: 0.45,
         useRootTheme: true,
       })};
@@ -202,7 +201,7 @@ export const ButtonContainer = styled.button`
    &[data-loading="true"][data-outline='false'][data-link='false'] {
      background: ${theme.color('primary', {
        dynamic: true,
-       variation: 'hover',
+       variation: 'loud',
      })};
      cursor: initial;
     pointer-events: none;

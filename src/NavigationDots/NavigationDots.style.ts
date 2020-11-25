@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const NavigationDotsContainer = styled.div<{ width: number }>`
@@ -20,7 +19,7 @@ export const Dot = styled.div<{ secondary?: boolean }>`
   vertical-align: middle;
   transition: all 300ms ease-in-out;
 
-  --navigation-dot-empty-color: ${palette.darkBlue[400]};
+  --navigation-dot-empty-color: ${theme.neutralColor(400)};
   --navigation-dot-active-color: ${theme.color('primary')};
 
   &[data-background='true'] {

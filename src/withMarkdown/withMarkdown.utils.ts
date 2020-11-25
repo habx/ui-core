@@ -1,10 +1,6 @@
 import MarkdownIt from 'markdown-it'
-import markdownItSupPlugin from 'markdown-it-sup'
 
 import { isNil } from '../_internal/data'
-import { DesignSystemTheme } from '../theme'
-
-import { logoRule, coloredTextRule } from './custom-rules'
 
 const md = new MarkdownIt({
   html: false,
@@ -16,9 +12,6 @@ const md = new MarkdownIt({
   quotes: '“”‘’',
   highlight: () => '',
 })
-
-md.use(markdownItSupPlugin).use(logoRule)
-md.use(markdownItSupPlugin).use(coloredTextRule)
 
 const defaultRender =
   md.renderer.rules.link_open ||
@@ -51,12 +44,18 @@ const cleanValue = (value: string | null): string => {
   return value
 }
 
-export const parseInline = (
-  value: string | null,
-  env: { theme: DesignSystemTheme }
-) => md.renderInline(cleanValue(value), env)
+export const render = ({
+  inline,
+  children,
+}: {
+  inline: boolean
+  children: string
+}) => {
+  const value = cleanValue(children)
 
-export const parseFull = (
-  value: string | null,
-  env: { theme: DesignSystemTheme }
-) => md.render(cleanValue(value), env)
+  if (inline) {
+    return md.renderInline(value)
+  } else {
+    md.render(value)
+  }
+}

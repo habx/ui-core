@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
+import { theme } from '../theme'
 
 export const MenuSectionContainer = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ export const MenuSectionContainer = styled.div`
     content: '';
     height: 1px;
     margin: 4px 0;
-    background: ${palette.darkBlue[300]};
+    background: ${theme.neutralColor(300)};
   }
 
   & + &[data-section='true'] {

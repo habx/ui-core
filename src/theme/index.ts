@@ -1,4 +1,8 @@
-export { theme } from './theme'
+export { theme, getThemeVariant, getCurrentBackground } from './theme'
 
-export { BASE_THEME, PATCH_WHITE } from './theme.data'
-export { DesignSystemTheme } from './theme.interface'
+export { DEFAULT_THEME } from './theme.data'
+export {
+  DesignSystemTheme,
+  DesignSystemProviderValue,
+  StyledTheme,
+} from './theme.interface'

@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
+import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
 import { useMergedRef } from '../_internal/useMergedRef'
 import { Icon } from '../Icon'
 import { withLabel } from '../withLabel'
@@ -128,6 +128,6 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
   }
 )
 
-export const Select = withLabel<HTMLDivElement>({ orientation: 'vertical' })<
-  SelectInnerProps
->(InnerSelect)
+export const Select = withLabel<HTMLDivElement>({
+  orientation: 'vertical',
+})<SelectInnerProps>(InnerSelect)

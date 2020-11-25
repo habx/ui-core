@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const TagContainer = styled.button`
@@ -15,7 +14,7 @@ export const TagContainer = styled.button`
   text-align: left;
   text-decoration: none;
   background-color: transparent;
-  border: 1px solid ${palette.darkBlue[300]};
+  border: 1px solid ${theme.neutralColor(300)};
   font-family: ${theme.font()};
   line-height: 1;
   transition: background-color 50ms ease-in-out;
@@ -37,16 +36,16 @@ export const TagContainer = styled.button`
         &:hover,
         &:focus,
         &:active {
-          background-color: ${palette.darkBlue[200]};
+          background-color: ${theme.neutralColor(200)};
         }
 
         &:hover {
-          border-color: ${palette.darkBlue[200]};
+          border-color: ${theme.neutralColor(200)};
         }
 
         &:focus,
         &:active {
-          border-color: ${palette.blue[300]};
+          border-color: ${theme.color('primary', { variation: 'calm' })};
         }
 
         &:focus {
@@ -56,7 +55,7 @@ export const TagContainer = styled.button`
       }
 
       &[data-background='true'] {
-        color: ${theme.textColor({ opacity: 0.72, useRootTheme: true })};
+        color: ${theme.textColor({ useRootTheme: true })};
         background-color: #fff;
         border-color: #fff;
 
@@ -69,7 +68,7 @@ export const TagContainer = styled.button`
     }
 
     &:disabled {
-      color: ${palette.darkBlue[300]};
+      color: ${theme.neutralColor(300)};
 
       &[data-background='true'] {
         color: rgba(255, 255, 255, 0.3);
@@ -81,7 +80,7 @@ export const TagContainer = styled.button`
   &[data-active='true'] {
     border: none;
     color: ${theme.color('primary', { useRootTheme: true })};
-    background-color: ${palette.blue[200]};
+    background-color: ${theme.color('primary', { variation: 'calm' })};
     padding: 0 calc(var(--tag-horizontal-padding) + 1px);
 
     &[data-background='true'] {

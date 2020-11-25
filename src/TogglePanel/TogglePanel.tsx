@@ -135,7 +135,7 @@ export const TogglePanel = withTriggerElement({ forwardRef: true })(
   InnerTogglePanel
 )
 
-interface InnerTogglePanelProps
+export interface InnerTogglePanelProps
   extends React.HtmlHTMLAttributes<HTMLDivElement> {
   children?:
     | React.ReactNode

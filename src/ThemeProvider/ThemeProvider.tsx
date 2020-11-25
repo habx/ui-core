@@ -5,82 +5,47 @@ import {
   ThemeContext,
 } from 'styled-components'
 
-import { isColorDark } from '../_internal/color'
-import { StyledTheme } from '../_internal/types'
-import { BASE_THEME, PATCH_WHITE, DesignSystemTheme } from '../theme'
+import { palette } from '../palette'
+import {
+  DesignSystemTheme,
+  DesignSystemProviderValue,
+  StyledTheme,
+  DEFAULT_THEME,
+} from '../theme'
 
 import { ThemeProviderProps } from './ThemeProvider.interface'
 
 export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
-  backgroundColor,
   children,
 }) => {
   const styledTheme = React.useContext<StyledTheme>(ThemeContext)
 
-  const currentTheme =
-    styledTheme && styledTheme.uiCore ? styledTheme.uiCore : BASE_THEME
+  const currentProviderValue = styledTheme?.uiCore
 
-  const currentThemeRoot =
-    styledTheme && styledTheme.uiCoreRoot ? styledTheme.uiCoreRoot : BASE_THEME
-
-  const newStyledTheme = React.useMemo<StyledTheme>(() => {
-    // Creating a custom theme
-    if (theme) {
-      const fullTheme: DesignSystemTheme = merge.recursive(
-        true,
-        currentTheme,
-        theme
-      )
-
-      const newTheme = {
-        ...fullTheme,
-        isDark: isColorDark(fullTheme.backgroundColor),
-      }
-
-      return {
-        ...styledTheme,
-        uiCore: newTheme,
-        uiCoreRoot: newTheme,
-      }
-    }
-
-    // Applying a custom background
-    if (backgroundColor) {
-      const isDark = isColorDark(backgroundColor)
-
-      if (!isDark) {
-        return {
-          ...styledTheme,
-          uiCore: {
-            ...currentThemeRoot,
-            backgroundColor,
-            isDark: false,
-          },
-        }
-      }
-
-      return {
-        ...styledTheme,
-        uiCore: {
-          ...currentTheme,
-          backgroundColor,
-          isDark: true,
-          textColor: '#FFFFFF',
-          colors: {
-            ...currentThemeRoot.colors,
-            secondary: PATCH_WHITE,
-          },
-        },
-      }
-    }
+  const newProviderValue = React.useMemo<DesignSystemProviderValue>(() => {
+    const newTheme: DesignSystemTheme = merge.recursive(
+      true,
+      currentProviderValue?.value ?? DEFAULT_THEME,
+      theme
+    )
 
     return {
-      ...styledTheme,
-      uiCore: currentTheme,
-      uiCoreRoot: currentThemeRoot,
+      value: newTheme,
+      rootValue: newTheme,
+      isDark: currentProviderValue?.isDark ?? false,
+      backgroundColor:
+        currentProviderValue?.backgroundColor ?? palette.white[1000],
     }
-  }, [backgroundColor, currentTheme, currentThemeRoot, styledTheme, theme])
+  }, [currentProviderValue, theme])
+
+  const newStyledTheme = React.useMemo<StyledTheme>(
+    () => ({
+      ...styledTheme,
+      uiCore: newProviderValue,
+    }),
+    [newProviderValue, styledTheme]
+  )
 
   return (
     <BaseThemeProvider theme={newStyledTheme}>

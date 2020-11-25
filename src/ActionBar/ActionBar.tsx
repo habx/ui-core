@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import { getFlattenedChildren } from '../_internal/getFlattenedChildren'
+import { useCurrentBackground } from '../_internal/theme/useCurrentBackground'
 import { useParentLayout } from '../Layout'
 import { LayoutChild } from '../Layout'
-import { useTheme } from '../useTheme'
 
 import { ActionBarProps } from './ActionBar.interface'
 import { ActionBarContainer, ActionBarContent } from './ActionBar.style'
@@ -12,7 +12,7 @@ export const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
   (props, ref) => {
     const { children: rawChildren, ...rest } = props
     const parentLayout = useParentLayout()
-    const theme = useTheme()
+    const backgroundColor = useCurrentBackground()
 
     const children = getFlattenedChildren(rawChildren)
 
@@ -24,7 +24,7 @@ export const ActionBar = React.forwardRef<HTMLDivElement, ActionBarProps>(
 
     return (
       <ActionBarContainer
-        backgroundColor={theme.backgroundColor}
+        backgroundColor={backgroundColor}
         data-in-layout={parentLayout.isInLayout}
         {...rest}
         ref={ref}

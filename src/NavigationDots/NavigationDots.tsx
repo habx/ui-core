@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
+import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
 
 import { NavigationDotsProps, DotObject } from './NavigationDots.interface'
 import { NavigationDotsContainer, Dot } from './NavigationDots.style'

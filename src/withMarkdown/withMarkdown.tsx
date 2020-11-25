@@ -3,33 +3,13 @@ import styled from 'styled-components'
 
 import { isFunction } from '../_internal/data'
 import { linkStyle } from '../Link/Link.style'
-import { DesignSystemTheme } from '../theme/theme.interface'
 import { titleStyles } from '../Title/Title.style'
-import { useTheme } from '../useTheme'
 
 import {
   WithMarkdownConfig,
   WithMarkdownReceivedProps,
 } from './withMarkdown.interface'
-import { parseFull, parseInline } from './withMarkdown.utils'
-
-const parse = ({
-  inline,
-  theme,
-  children,
-}: {
-  inline: boolean
-  theme: DesignSystemTheme
-  children: string
-}) => {
-  const env = {
-    theme,
-  }
-
-  const mdParse = inline ? parseInline : parseFull
-
-  return mdParse(children || '', env)
-}
+import { render } from './withMarkdown.utils'
 
 export const withMarkdown = <
   RefElement extends HTMLElement,
@@ -104,7 +84,6 @@ export const withMarkdown = <
     Props & WithMarkdownReceivedProps & ExtraProps
   >((props, ref) => {
     const { markdown, children, ...rest } = props
-    const theme = useTheme()
 
     if (!markdown) {
       return (
@@ -122,10 +101,9 @@ export const withMarkdown = <
         {...(rest as Props)}
         data-markdown
         dangerouslySetInnerHTML={{
-          __html: parse({
+          __html: render({
             children: children as string,
             inline: isInline,
-            theme,
           }),
         }}
       />

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 import { LoadingBarProps } from './LoadingBar.interface'
@@ -12,7 +11,7 @@ export const LoadingBarStyled = styled.div`
   --loading-bar-progress: 0%;
   position: relative;
 
-  background: ${palette.darkBlue[300]};
+  background: ${theme.neutralColor(300)};
 
   &:after {
     transition: width ease-in-out 150ms;

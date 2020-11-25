@@ -5,7 +5,6 @@ import { CenteredComponent } from '../_storybook/CenteredComponent'
 import { withGrid } from '../_storybook/withGrid'
 import { Button } from '../Button'
 import { Card } from '../Card'
-import { palette } from '../palette'
 import { Title } from '../Title'
 
 import { HeaderBar, HeaderBarProps } from './index'
@@ -16,13 +15,13 @@ const CardChildrenContainer = styled.div`
   height: 400px;
   width: 360px;
   max-width: calc(100vw - 48px);
-  background-color: ${palette.darkBlue[100]};
+  background-color: ${theme.neutralColor(100)};
 `
 
 const HeaderBarWrapper = styled.div`
   width: 450px;
   height: 500px;
-  border: 1px solid ${palette.darkBlue[200]};
+  border: 1px solid ${theme.neutralColor(200)};
 `
 
 const HeaderBarCardWrapper: React.FunctionComponent<{}> = ({ children }) => (

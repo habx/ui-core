@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 import { withGrid } from '../_storybook/withGrid'
 import { Button } from '../Button'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 import { animations } from './animations'
@@ -22,7 +21,7 @@ const AnimationCardContent = styled.div<{
   width: 300px;
   box-shadow: ${theme.shadow()};
   margin-bottom: 24px;
-  background-color: ${palette.darkBlue[300]};
+  background-color: ${theme.neutralColor(300)};
 
   &:not([data-animated='true']) {
     &:not([data-visible='true']) {

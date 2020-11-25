@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
+import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
 import { withLabel } from '../withLabel'
 
 import { ToggleInnerProps } from './Toggle.interface'
@@ -37,6 +37,6 @@ const InnerToggle = React.forwardRef<HTMLInputElement, ToggleInnerProps>(
   }
 )
 
-export const Toggle = withLabel<HTMLDivElement>({ orientation: 'horizontal' })<
-  ToggleInnerProps
->(InnerToggle)
+export const Toggle = withLabel<HTMLDivElement>({
+  orientation: 'horizontal',
+})<ToggleInnerProps>(InnerToggle)

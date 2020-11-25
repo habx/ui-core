@@ -1,3 +1,3 @@
 export { palette } from './palette'
 
-export { Gradient, Palette } from './palette.interface'
+export { LimitedGradient, FullGradient } from './palette.interface'

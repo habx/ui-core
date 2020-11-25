@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { clamp, isFunction, isNil } from '../_internal/data'
-import { palette } from '../palette'
+import { useThemeVariant } from '../useThemeVariant'
 import { withLabel } from '../withLabel'
 
 import {
@@ -52,6 +52,8 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
     const barRef = React.useRef<HTMLDivElement>(null)
     const [localValue, setLocalValue] = React.useState<Value>(value)
     const localValueRef = React.useRef<Value>(value)
+    const theme = useThemeVariant()
+
     const hasValue = range
       ? !isNil((localValue as [Element, Element])[0]) &&
         !isNil((localValue as [Element, Element])[1])
@@ -79,7 +81,7 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
             indicatorMaxInRange < max ? indicatorMaxInRange : max
 
           return {
-            color: palette.orange[400],
+            color: theme.colors.error.base,
             ...indicator,
             range: [
               getPositionFromValue(indicatorMin),
@@ -87,7 +89,7 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
             ],
           }
         }),
-      [getPositionFromValue, max, min, rawIndicators]
+      [getPositionFromValue, max, min, rawIndicators, theme.colors.error.base]
     )
 
     React.useEffect(() => {
@@ -370,6 +372,6 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
   }
 )
 
-export const Slider = withLabel<HTMLDivElement>({ orientation: 'vertical' })<
-  SliderInnerProps
->(InnerSlider)
+export const Slider = withLabel<HTMLDivElement>({
+  orientation: 'vertical',
+})<SliderInnerProps>(InnerSlider)

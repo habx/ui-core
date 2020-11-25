@@ -1,9 +1,9 @@
 import * as React from 'react'
 
+import { BackgroundThemeProvider } from '../_internal/theme/BackgroundThemeProvider'
+import { useCurrentBackground } from '../_internal/theme/useCurrentBackground'
 import { Icon } from '../Icon'
-import { palette } from '../palette'
-import { ThemeProvider } from '../ThemeProvider'
-import { useTheme } from '../useTheme'
+import { useThemeVariant } from '../useThemeVariant'
 
 import { IconButtonProps } from './IconButton.interface'
 import { IconButtonContainer, IconButtonContent } from './IconButton.style'
@@ -21,20 +21,21 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       ...rest
     } = props
 
-    const theme = useTheme()
+    const theme = useThemeVariant()
+    const parentBackgroundColor = useCurrentBackground()
 
     const backgroundColor = React.useMemo(() => {
       switch (background) {
         case 'inherit':
-          return theme.backgroundColor
+          return parentBackgroundColor
         case 'white':
           return '#FFFFFF'
         case 'grey':
-          return palette.darkBlue[200]
+          return theme.neutralColor[200]
         case 'none':
           return undefined
       }
-    }, [background, theme.backgroundColor])
+    }, [background, parentBackgroundColor, theme.neutralColor])
 
     const content = (
       <IconButtonContainer
@@ -44,7 +45,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         data-large={large}
         data-tiny={tiny}
         data-has-bounding-background={
-          backgroundColor && backgroundColor !== theme.backgroundColor
+          backgroundColor && backgroundColor !== parentBackgroundColor
         }
         type={type}
         style={
@@ -60,7 +61,9 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     )
 
     return backgroundColor ? (
-      <ThemeProvider backgroundColor={backgroundColor}>{content}</ThemeProvider>
+      <BackgroundThemeProvider backgroundColor={backgroundColor}>
+        {content}
+      </BackgroundThemeProvider>
     ) : (
       content
     )

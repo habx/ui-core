@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
-import { zIndex } from '../_internal/zIndex'
+import { zIndex } from '../_internal/theme/zIndex'
 import { breakpoints } from '../breakpoints'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const FloatingButtonContainer = styled.button`
@@ -24,7 +23,7 @@ export const FloatingButtonContainer = styled.button`
     inset 0 0 0 var(--floating-icon-button-border-width)
       ${theme.color('primary', {
         dynamic: true,
-        variation: 'focus',
+        variation: 'louder',
       })};
 
   z-index: ${zIndex.floatingButtons};
@@ -93,7 +92,7 @@ export const FloatingButtonContainer = styled.button`
   &:hover {
     background-color: ${theme.color('primary', {
       dynamic: true,
-      variation: 'hover',
+      variation: 'loud',
     })};
     --floating-icon-button-outer-shadow: ${theme.shadow('lower', {
       hover: true,
@@ -111,6 +110,6 @@ export const FloatingButtonContainer = styled.button`
 
   &:disabled {
     pointer-events: none;
-    background-color: ${palette.darkBlue[400]};
+    background-color: ${theme.neutralColor(400)};
   }
 `

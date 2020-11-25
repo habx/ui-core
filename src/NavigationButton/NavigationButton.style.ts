@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 
 import { breakpoints } from '../breakpoints'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 const SIZES = {
@@ -82,7 +81,7 @@ export const NavigationButtonContainer = styled.button`
   }
 
   &:disabled {
-    color: ${palette.darkBlue[400]};
+    color: ${theme.neutralColor(400)};
   }
 
   &[data-background='true'] {

@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { useSSRLayoutEffect } from '../_internal/ssr'
-import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
+import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
 import { Icon } from '../Icon'
 import { withLabel } from '../withLabel'
 

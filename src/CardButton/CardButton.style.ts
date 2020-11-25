@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 import { Card } from '../Card'
-import { palette } from '../palette'
 import { Text } from '../Text'
+import { theme } from '../theme'
 
 export const CardButtonContainer = styled(Card)`
   padding: 24px;
@@ -11,12 +11,12 @@ export const CardButtonContainer = styled(Card)`
 export const CardButtonTitle = styled(Text)`
   font-weight: 500;
   line-height: unset;
-  color: ${palette.darkBlue[900]};
+  color: ${theme.neutralColor(900)};
   margin-bottom: 6px;
 `
 
 export const CardButtonDescription = styled(Text)`
-  color: ${palette.darkBlue[700]};
+  color: ${theme.neutralColor(700)};
   line-height: unset;
 `
 

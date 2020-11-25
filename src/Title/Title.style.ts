@@ -10,8 +10,8 @@ const size = (name: keyof FontScale) => css`
 `
 
 const baseTitleStyle = css<{ color?: string }>`
-  color: ${theme.textColor({ dynamic: true, propName: 'color' })};
-  font-family: ${theme.font('title')};
+  color: ${theme.textColor({ variation: 'title' })};
+  font-family: ${theme.font()};
   font-weight: 400;
   margin: 0;
 `

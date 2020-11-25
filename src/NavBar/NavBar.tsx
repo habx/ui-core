@@ -4,7 +4,7 @@ import { Icon } from '../Icon'
 import { palette } from '../palette'
 import { Text } from '../Text'
 import { Triangle } from '../Triangle'
-import { useTheme } from '../useTheme'
+import { useThemeVariant } from '../useThemeVariant'
 
 import { NavBarContext } from './NavBar.context'
 import {
@@ -73,7 +73,7 @@ const INITIAL_STATE: NavBarState = {
 export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
   (baseProps, ref) => {
     const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
-    const theme = useTheme()
+    const theme = useThemeVariant()
     const clickRef = React.useRef<boolean>(false)
     const stateRef = React.useRef<NavBarState>(state)
     stateRef.current = state
@@ -84,8 +84,8 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
       children,
       title,
       subtitle,
-      color = palette.darkBlue[900],
-      backgroundColor = palette.yellow[600],
+      color = theme.neutralColor[900],
+      backgroundColor = palette.yellow[500],
       ...rest
     } = props
 

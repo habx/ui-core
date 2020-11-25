@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { fontScale } from '../../fontScale'
-import { palette } from '../../palette'
 import { theme } from '../../theme'
 
 export const OptionContent = styled.div``
@@ -39,7 +38,7 @@ export const OptionContainer = styled.li`
 
   &:hover,
   &:focus {
-    background-color: ${palette.darkBlue[200]};
+    background-color: ${theme.neutralColor(200)};
     color: ${theme.color('secondary', { opacity: 1 })};
   }
 

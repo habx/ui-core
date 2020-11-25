@@ -6,7 +6,7 @@ import { withGrid } from '../_storybook/withGrid'
 import { Button } from '../Button'
 import { Card } from '../Card'
 import { Modal } from '../Modal'
-import { palette } from '../palette'
+import { theme } from '../theme'
 
 import { ActionBar, ActionBarProps } from './index'
 
@@ -16,7 +16,7 @@ const CardChildrenContainer = styled.div`
   height: 400px;
   width: 360px;
   max-width: calc(100vw - 48px);
-  background-color: ${palette.darkBlue[100]};
+  background-color: ${theme.neutralColor(100)};
 
   &[data-modal='true'] {
     width: unset;

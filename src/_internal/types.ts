@@ -1,7 +1,5 @@
 import * as React from 'react'
 
-import { DesignSystemTheme } from '../theme/theme.interface'
-
 export type Except<BaseType, ExcludedElements> = Pick<
   BaseType,
   Exclude<keyof BaseType, ExcludedElements>
@@ -43,9 +41,4 @@ export interface Button
    * large style activation
    */
   large?: boolean
-}
-
-export interface StyledTheme {
-  uiCore: DesignSystemTheme
-  uiCoreRoot: DesignSystemTheme
 }

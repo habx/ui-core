@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { Icon } from '../Icon'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const FakeInputContainer = styled.div`
@@ -53,7 +52,7 @@ export const FakeInput = styled.div`
   bottom: 0;
   left: 0;
   background-color: #fff;
-  border: 2px solid ${palette.darkBlue[400]};
+  border: 2px solid ${theme.neutralColor(400)};
   border-radius: var(--border-radius);
   transition: all 150ms ease-in-out;
 
@@ -78,7 +77,7 @@ export const FakeInput = styled.div`
 
   input:checked:hover ~ &,
   input:checked:focus ~ & {
-    background-color: ${theme.color('primary', { variation: 'hover' })};
+    background-color: ${theme.color('primary', { variation: 'loud' })};
   }
 
   [data-background='true'] > input:checked ~ & {
@@ -91,7 +90,7 @@ export const FakeInput = styled.div`
 
   input:checked:focus ~ &,
   input:checked:active ~ & {
-    border-color: ${theme.color('primary', { variation: 'focus' })};
+    border-color: ${theme.color('primary', { variation: 'louder' })};
   }
 
   [data-error='true'] > input ~ & {
@@ -100,7 +99,7 @@ export const FakeInput = styled.div`
 
   [data-error='true'] > input:checked:focus ~ &,
   [data-error='true'] > input:checked:active ~ & {
-    border-color: ${theme.color('warning', { variation: 'focus' })};
+    border-color: ${theme.color('warning', { variation: 'louder' })};
   }
 
   [data-error='true']:not([data-background='true']) > input:checked ~ & {
@@ -109,12 +108,12 @@ export const FakeInput = styled.div`
 
   [data-error='true']:not([data-background='true']) > input:checked:hover ~ &,
   [data-error='true']:not([data-background='true']) > input:checked:focus ~ & {
-    background-color: ${theme.color('warning', { variation: 'hover' })};
+    background-color: ${theme.color('warning', { variation: 'loud' })};
   }
 
   input:disabled ~ &,
   input:checked:disabled ~ & {
-    background-color: ${palette.darkBlue[400]};
+    background-color: ${theme.neutralColor(400)};
     border-color: #0000;
   }
 `

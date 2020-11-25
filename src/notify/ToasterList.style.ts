@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { zIndex } from '../_internal/zIndex'
+import { zIndex } from '../_internal/theme/zIndex'
 import { animations } from '../animations'
 import { breakpoints } from '../breakpoints'
 
