@@ -56,6 +56,6 @@ export const render = ({
   if (inline) {
     return md.renderInline(value)
   } else {
-    md.render(value)
+    return md.render(value)
   }
 }

@@ -1,6 +1,6 @@
-import colorUtils from 'color'
 import styled, { css } from 'styled-components'
 
+import { fadeColor, stringifyColor } from '../_internal/theme/color'
 import { fontScale } from '../fontScale'
 import { theme } from '../theme'
 
@@ -71,8 +71,8 @@ export const SelectContainer = styled.div`
     ${({ color }) =>
       color &&
       css`
-        --select-background-color: ${colorUtils(color).fade(0.85).string()};
-        --select-border-color: ${colorUtils(color).fade(0.75).string()};
+        --select-background-color: ${stringifyColor(fadeColor(color, 0.15))};
+        --select-border-color: ${stringifyColor(fadeColor(color, 0.25))};
       `};
 
     & ${Placeholder} {
