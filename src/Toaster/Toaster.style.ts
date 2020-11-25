@@ -46,7 +46,7 @@ export const IllustrationContainer = styled.div`
 
 export const CloseContainer = styled.div`
   font-size: 24px;
-  color: ${theme.color('secondary', { opacity: 0.72 })};
+  color: ${theme.textColor()};
   cursor: pointer;
   display: flex;
   align-items: center;

@@ -37,7 +37,7 @@ export const fadeColor = (color: Color, opacity: number): ParsedColor => {
 
 export const isColorDark = (color: Color): boolean => {
   const { values, alpha } = parseColor(color)
-  const colorDarkness = (values[0] + values[1] + values[2]) * alpha
+  const colorDarkness = (values[0] + values[1] + values[2]) / alpha
 
   return colorDarkness < (255 * 3) / 2
 }

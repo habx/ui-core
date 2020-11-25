@@ -116,7 +116,7 @@ const colorGetter = <Props extends GetterProps>(
 
     let color: Color
 
-    if (config.valuePropName && props[config.valuePropName] !== null) {
+    if (config.valuePropName && props[config.valuePropName] != null) {
       color = (props[config.valuePropName] as any) as Color
     } else if (colorFamily === 'background') {
       color = getCurrentBackground(props)
@@ -141,7 +141,6 @@ const colorGetter = <Props extends GetterProps>(
     if (opacity !== 1) {
       color = fadeColor(color, opacity)
     }
-
     return stringifyColor(color)
   }
 }

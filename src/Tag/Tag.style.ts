@@ -18,9 +18,7 @@ export const TagContainer = styled.button`
   font-family: ${theme.font()};
   line-height: 1;
   transition: background-color 50ms ease-in-out;
-  color: ${theme.color('secondary', {
-    opacity: 0.72,
-  })};
+  color: ${theme.textColor()};
 
   padding: 0 var(--tag-horizontal-padding);
   height: var(--tag-height);
