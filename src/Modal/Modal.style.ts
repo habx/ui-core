@@ -132,7 +132,6 @@ export const CloseIcon = styled(IconButton)`
 
   @media (${breakpoints.above.phone}) {
     position: absolute;
-    color: ${theme.neutralColor(700)};
   }
 
   @media (${breakpoints.below.phone}) {
