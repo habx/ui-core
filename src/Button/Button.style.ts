@@ -35,7 +35,7 @@ export const ButtonContainer = styled.button`
   vertical-align: middle;
   text-align: left;
   text-decoration: none;
-  border-radius: 2px;
+  border-radius: 6px;
   font-weight: 500;
   position: relative;
 
@@ -52,9 +52,9 @@ export const ButtonContainer = styled.button`
   transition-timing-function: ${ANIMATION_TIMING_FUNCTION};
   
   &[data-small='true'] {
-    padding: 0 16px;
+    padding: 0 12px;
     line-height: 18px;
-    height: 34px;
+    height: 36px;
     font-size: 14px;
 
     & ${SideElementContainer} {
@@ -161,7 +161,6 @@ export const ButtonContainer = styled.button`
         variation: 'louder',
       })};
     }
- 
   }
 
   &[data-full-width='true'] {
