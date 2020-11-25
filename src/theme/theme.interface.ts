@@ -1,12 +1,13 @@
+import { Color } from '../_internal/theme/color'
 import { FullGradient } from '../palette'
 
 export interface ColorVariations {
-  calmer: string
-  calm: string
-  base: string
-  loud: string
-  louder: string
-  contrastText: string
+  calmer: Color
+  calm: Color
+  base: Color
+  loud: Color
+  louder: Color
+  contrastText: Color
 }
 
 export interface ColorFamilies {
@@ -34,10 +35,10 @@ export interface Shadows {
 }
 
 export interface TypographyColors {
-  title: string
-  button: string
-  text: string
-  lowContrast: string
+  title: Color
+  button: Color
+  text: Color
+  lowContrast: Color
 }
 
 export interface Typography {
@@ -69,7 +70,7 @@ export interface DesignSystemProviderValue {
   /**
    * Background color applied on a <Background /> component
    */
-  backgroundColor: string
+  backgroundColor: Color
 }
 
 export interface StyledTheme {
@@ -143,6 +144,7 @@ export interface ColorGetterConfig<Props extends GetterProps> {
    *
    * <MyComponent /> => Border will take the primary color
    * <MyComponent warning /> => Border will take the warning color
+   * <MyComponent secondary /> => Border will take the secondary color
    * ```
    * @default false
    */

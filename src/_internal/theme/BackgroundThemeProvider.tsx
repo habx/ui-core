@@ -7,10 +7,10 @@ import {
   StyledTheme,
 } from '../../theme'
 
-import { isColorDark } from './color'
+import { Color, isColorDark } from './color'
 
 export const BackgroundThemeProvider: React.FunctionComponent<{
-  backgroundColor: string
+  backgroundColor: Color
 }> = ({ children, backgroundColor }) => {
   const styledTheme = React.useContext<StyledTheme>(ThemeContext)
 

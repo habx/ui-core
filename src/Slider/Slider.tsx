@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { clamp, isFunction, isNil } from '../_internal/data'
+import { stringifyColor } from '../_internal/theme/color'
 import { useThemeVariant } from '../useThemeVariant'
 import { withLabel } from '../withLabel'
 
@@ -81,7 +82,7 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
             indicatorMaxInRange < max ? indicatorMaxInRange : max
 
           return {
-            color: theme.colors.error.base,
+            color: stringifyColor(theme.colors.error.base),
             ...indicator,
             range: [
               getPositionFromValue(indicatorMin),
