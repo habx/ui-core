@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { ThemeOverridesProps } from '../_internal/types'
 import { theme } from '../theme'
 
 export const MenuLineContainer = styled.li`
@@ -28,10 +29,7 @@ export const MenuLineContainer = styled.li`
   }
 `
 
-export const SideElementContainer = styled.div<{
-  primary?: boolean
-  warning?: boolean
-}>`
+export const SideElementContainer = styled.div<ThemeOverridesProps>`
   font-size: 0.9em;
   display: flex;
   margin-top: 1px;

@@ -51,9 +51,9 @@ const GRID_ITEMS = [
     props: { disabled: true },
   },
   {
-    label: 'Warning',
+    label: 'Error',
     props: {
-      warning: true,
+      error: true,
     },
   },
   {

@@ -5,7 +5,7 @@ import { IconProps } from '../Icon'
 
 export interface FloatingIconButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    ThemeOverridesProps,
+    Pick<ThemeOverridesProps, 'error'>,
     Pick<IconProps, 'icon' | 'colored'> {
   position?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right'
   fixed?: boolean

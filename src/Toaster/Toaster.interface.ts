@@ -1,7 +1,5 @@
 import * as React from 'react'
 
-import { Except } from '../_internal/types'
-
 export interface ToasterEventProps {
   message: React.ReactNode
   illustration?: React.ReactNode
@@ -11,7 +9,7 @@ export interface ToasterEventProps {
 
 export interface NotificationProps
   extends ToasterEventProps,
-    Except<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   onClose?: () => void
   onSeeMore?: () => void
 }
