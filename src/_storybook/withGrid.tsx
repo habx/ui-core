@@ -86,11 +86,11 @@ export const withGrid = <Props extends object>(
     const backgroundColor = React.useMemo(() => {
       switch (background) {
         case 'dark': {
-          return palette.black[900]
+          return palette.neutralBlack[900]
         }
 
         case 'light': {
-          return palette.black[300]
+          return palette.neutralBlack[300]
         }
 
         case 'none': {

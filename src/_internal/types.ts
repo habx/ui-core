@@ -12,14 +12,21 @@ export interface ThemeOverridesProps {
    * primary style activation
    */
   primary?: boolean
+
   /**
    * secondary style activation
    */
   secondary?: boolean
+
   /**
    * warning style activation
    */
   warning?: boolean
+
+  /**
+   * error style activation
+   */
+  error?: boolean
 }
 
 export interface Button

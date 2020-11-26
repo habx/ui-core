@@ -4,6 +4,7 @@ import { ThemeProvider, ThemeContext } from 'styled-components'
 import {
   DEFAULT_THEME,
   DesignSystemProviderValue,
+  DesignSystemTheme,
   StyledTheme,
 } from '../../theme'
 
@@ -16,22 +17,16 @@ export const BackgroundThemeProvider: React.FunctionComponent<{
 
   const newProviderValue = React.useMemo<DesignSystemProviderValue>(() => {
     const currentTheme = styledTheme?.uiCore
-    const isDark = isColorDark(backgroundColor)
 
-    if (!currentTheme) {
-      return {
-        isDark,
-        backgroundColor,
-        rootValue: DEFAULT_THEME,
-        value: DEFAULT_THEME,
-      }
+    const newTheme: DesignSystemTheme = {
+      ...(currentTheme?.value ?? DEFAULT_THEME),
+      backgroundColor,
+      isDark: isColorDark(backgroundColor),
     }
 
     return {
-      isDark,
-      backgroundColor,
-      rootValue: currentTheme.rootValue,
-      value: currentTheme.value,
+      rootValue: currentTheme?.rootValue ?? DEFAULT_THEME,
+      value: newTheme,
     }
   }, [backgroundColor, styledTheme])
 

@@ -30,31 +30,31 @@ export const AnnouncementBanner = React.forwardRef<
           origin={{ top: 0, left: 0 }}
           width={240}
           height={240}
-          color={palette.yellow[500]}
+          color={palette.yellowSunlight[500]}
         />
         <Triangle
           origin={{ bottom: 0, left: 0 }}
           width={60}
           height={60}
-          color={palette.green[500]}
+          color={palette.greenNorthernLight[500]}
         />
         <Triangle
           origin={{ bottom: 0, right: -60 }}
           width={320}
           height={320}
-          color={palette.yellow[500]}
+          color={palette.yellowSunlight[500]}
         />
         <Triangle
           origin={{ top: 0, right: 0 }}
           width={120}
           height={120}
-          color={palette.red[500]}
+          color={palette.redSunset[500]}
         />
         <Triangle
           origin={{ bottom: 0, right: 0 }}
           width={60}
           height={60}
-          color={palette.black[900]}
+          color={palette.neutralBlack[900]}
         />
       </AnnouncementBannerShapeContainer>
       <AnnouncementBannerCenteredContent>
@@ -68,7 +68,10 @@ export const AnnouncementBanner = React.forwardRef<
           {validationLabel}
         </MobileButton>
       </AnnouncementBannerCenteredContent>
-      <DesktopCloseIconContainer backgroundColor={palette.black[900]} simulated>
+      <DesktopCloseIconContainer
+        backgroundColor={palette.neutralBlack[900]}
+        simulated
+      >
         <IconButton icon="close" onClick={onClose} />
       </DesktopCloseIconContainer>
       <MobileCloseIconButton>

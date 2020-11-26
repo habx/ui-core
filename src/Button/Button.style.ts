@@ -6,17 +6,18 @@ import {
 } from '../animations/animations'
 import { theme } from '../theme'
 
+import { ButtonModes } from './Button.interface'
+
 export const SideElementContainer = styled.div`
-  font-size: 0.9em;
+  font-size: 24px;
   display: flex;
-  margin-top: 1px;
 
   &[data-position='left'] {
-    margin-right: 8px;
+    margin-right: var(--button-side-element-margin);
   }
 
   &[data-position='right'] {
-    margin-left: 8px;
+    margin-left: var(--button-side-element-margin);
   }
 `
 
@@ -39,65 +40,107 @@ export const ButtonContainer = styled.button`
   font-weight: 500;
   position: relative;
 
-  padding: 0 24px;
-  height: 48px;
   max-width: 100%;
   font-size: 16px;
-  line-height: 20px;
   font-family: ${theme.font()};
   border: none;
 
   transition-property: box-shadow, background-color;
   transition-duration: ${ANIMATION_DURATIONS.m}ms;
   transition-timing-function: ${ANIMATION_TIMING_FUNCTION};
-  
+
+  box-shadow: var(--button-shadow),
+    inset 0 0 0 var(--button-border-width) var(--button-border-color),
+    0 0 0 var(--button-outline-width) var(--button-outline-color);
+
+  --button-border-width: 0;
+  --button-border-color: ${theme.color('secondary', { dynamic: true })};
+  --button-outline-width: 0;
+  --button-outline-color: ${theme.color('primary', { opacity: 0.3 })};
+  --button-shadow: 0 0 0 ${theme.neutralColor(1000)};
+
+  &:not([data-small='true']) {
+    padding: 0 24px;
+    height: 48px;
+    --button-side-element-margin: 10px;
+  }
+
   &[data-small='true'] {
     padding: 0 12px;
-    line-height: 18px;
     height: 36px;
-    font-size: 14px;
+    --button-side-element-margin: 8px;
+  }
 
-    & ${SideElementContainer} {
-      height: 11px;
+  &[data-mode='${ButtonModes.solid}'] {
+    background-color: ${theme.color('primary', { dynamic: true })};
+    color: ${theme.color('primary', {
+      variation: 'contrastText',
+      dynamic: true,
+    })};
+
+    & svg {
+      fill: ${theme.color('primary', {
+        variation: 'contrastText',
+        dynamic: true,
+      })};
+    }
+
+    &:hover {
+      background-color: ${theme.color('primary', {
+        dynamic: true,
+        variation: 'loud',
+      })};
+    }
+
+    &:active {
+      background-color: ${theme.color('primary', {
+        dynamic: true,
+        variation: 'louder',
+      })};
+    }
+
+    &:focus:not(:active) {
+      --button-outline-width: 4px;
+    }
+
+    &:not(:focus):not(:active) {
+      --button-shadow: ${theme.shadow('lower')};
+    }
+
+    &[data-loading='true'] {
+      background: ${theme.color('primary', {
+        dynamic: true,
+        variation: 'loud',
+      })};
+      cursor: initial;
+      pointer-events: none;
     }
   }
 
-  &[data-large='true'] {
-    font-size: 18px;
-    line-height: 27px;
-    height: 64px;
-    padding: 0 70px;
-    max-width: calc(100vw - 48px);
-
-    & ${SideElementContainer} {
-      height: 15px;
-    }
-  }
-
-  &[data-outline='true'] {
+  &[data-mode='${ButtonModes.outline}'] {
     --button-border-width: 2px;
-    --button-border-color: ${theme.color('secondary', { dynamic: true })};
 
     background-color: transparent;
-    box-shadow: inset 0 0 0 var(--button-border-width) var(--button-border-color);
     color: ${theme.color('secondary', { dynamic: true })};
 
     & svg {
       fill: ${theme.color('secondary', { dynamic: true })};
     }
-    }
 
-    &:hover {
+    &:hover:not(:focus) {
       --button-border-width: 4px;
     }
 
-    &:focus,
     &:active {
-      --button-border-width: 6px;
+      --button-border-width: 3px;
+    }
+
+    &:focus:not(:active) {
+      --button-outline-width: 4px;
     }
   }
 
-  &[data-link='true'] {
+  &[data-mode='${ButtonModes.link}'] {
     background-color: transparent;
     padding: 0;
     color: ${theme.color('primary', { dynamic: true })};
@@ -127,40 +170,6 @@ export const ButtonContainer = styled.button`
     &[data-small='true'] {
       height: 18px;
     }
-
-    &[data-large='true'] {
-      height: 27px;
-    }
-  }
-
-  &[data-outline='false'][data-link='false'] {
-    background-color: ${theme.color('primary', { dynamic: true })};
-    color: ${theme.color('primary', {
-      variation: 'contrastText',
-      dynamic: true,
-    })};
-
-    & svg {
-      fill: ${theme.color('primary', {
-        variation: 'contrastText',
-        dynamic: true,
-      })};
-    }
-
-    &:hover {
-      background-color: ${theme.color('primary', {
-        dynamic: true,
-        variation: 'loud',
-      })};
-    }
-
-    &:focus,
-    &:active {
-      --button-border-color: ${theme.color('primary', {
-        dynamic: true,
-        variation: 'louder',
-      })};
-    }
   }
 
   &[data-full-width='true'] {
@@ -170,25 +179,17 @@ export const ButtonContainer = styled.button`
   &:disabled {
     pointer-events: none;
 
-    &[data-outline='false'][data-link='false'] {
-      background-color: ${theme.neutralColor(400)};
+    &[data-mode='${ButtonModes.solid}'] {
+      background-color: ${theme.neutralColor(300)};
     }
 
-    &[data-outline='true'] {
-      color: ${theme.color('secondary', {
-        variation: 'louder',
-        opacity: 0.45,
-        useRootTheme: true,
-      })};
-      
-      --button-border-color: ${theme.color('secondary', {
-        variation: 'louder',
-        opacity: 0.45,
-        useRootTheme: true,
-      })};
+    &[data-mode='${ButtonModes.outline}'] {
+      color: ${theme.neutralColor(300)};
+
+      --button-border-color: ${theme.neutralColor(300)};
     }
 
-    &[data-link='true'] {
+    &[data-mode='${ButtonModes.link}'] {
       color: ${theme.color('secondary', {
         variation: 'louder',
         opacity: 0.45,
@@ -196,15 +197,6 @@ export const ButtonContainer = styled.button`
       })};
     }
   }
-    
-   &[data-loading="true"][data-outline='false'][data-link='false'] {
-     background: ${theme.color('primary', {
-       dynamic: true,
-       variation: 'loud',
-     })};
-     cursor: initial;
-    pointer-events: none;
-   }
 `
 
 export const ButtonLoadingContainer = styled.div`

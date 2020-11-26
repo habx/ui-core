@@ -25,18 +25,18 @@ const Component: React.FunctionComponent<
 )
 
 export const basic = () => (
-  <Component backgroundColor={palette.green[200]}>
+  <Component backgroundColor={palette.greenNorthernLight[200]}>
     <Text>Panel content</Text>
   </Component>
 )
 
 export const nested = () => (
   <>
-    <Component backgroundColor={palette.green[200]}>
+    <Component backgroundColor={palette.greenNorthernLight[200]}>
       <Text>Panel content at default placement</Text>
 
       <Component
-        backgroundColor={palette.yellow[200]}
+        backgroundColor={palette.yellowSunlight[200]}
         setStyle={(_, triggerDimensions) => ({
           left: triggerDimensions.right,
           top: triggerDimensions.top,

@@ -32,6 +32,30 @@ const GREEN_NORTHERN_LIGHT: LimitedGradient = {
   800: '#0B4228',
 }
 
+const RAZZMATAZZ_RED: LimitedGradient = {
+  100: '#FBE7EE',
+  200: '#EE9FBB',
+  500: '#D50F56',
+  700: '#770830',
+  800: '#4B0A21',
+}
+
+const EMERALD_GREEN: LimitedGradient = {
+  100: '#EAF5F3',
+  200: '#9FD1C8',
+  500: '#299985',
+  700: '#12433B',
+  800: '#0C2C27',
+}
+
+const GOLDEN_YELLOW: LimitedGradient = {
+  100: '#FEF7E6',
+  200: '#FBE099',
+  500: '#F6B100',
+  700: '#8F6700',
+  800: '#473300',
+}
+
 const NEUTRAL_BLACK: FullGradient = {
   100: '#FAFAFB',
   200: 'rgba(24, 20, 31, 0.05)',
@@ -59,10 +83,13 @@ const NEUTRAL_WHITE: FullGradient = {
 }
 
 export const palette = {
-  purple: PURPLE_DAWN,
-  yellow: YELLOW_SUNLIGHT,
-  red: RED_SUNSET,
-  green: GREEN_NORTHERN_LIGHT,
-  black: NEUTRAL_BLACK,
-  white: NEUTRAL_WHITE,
+  purpleDawn: PURPLE_DAWN,
+  yellowSunlight: YELLOW_SUNLIGHT,
+  redSunset: RED_SUNSET,
+  greenNorthernLight: GREEN_NORTHERN_LIGHT,
+  neutralBlack: NEUTRAL_BLACK,
+  neutralWhite: NEUTRAL_WHITE,
+  razzmatazzRed: RAZZMATAZZ_RED,
+  emeraldGreen: EMERALD_GREEN,
+  goldenYellow: GOLDEN_YELLOW,
 }

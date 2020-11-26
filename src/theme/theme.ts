@@ -1,5 +1,6 @@
 import { isNil } from '../_internal/data'
 import { Color, stringifyColor, fadeColor } from '../_internal/theme/color'
+import { ThemeOverridesProps } from '../_internal/types'
 import { FullGradient, palette } from '../palette'
 
 import { DEFAULT_THEME } from './theme.data'
@@ -19,7 +20,7 @@ export const getCurrentBackground = (
   const theme = props.theme?.uiCore
 
   if (!theme) {
-    return palette.white[1000]
+    return palette.neutralWhite[1000]
   }
 
   const themeValue = useRootTheme ? theme.rootValue : theme.value
@@ -68,7 +69,7 @@ const shadowGetter = (
   ]
 
   const buildShadow = ({ x, y, blur, opacity }: Shadow) =>
-    `${x}px ${y}px ${blur}px rgba(6, 26, 60, ${opacity})`
+    `${x}px ${y}px ${blur}px rgba(24, 20, 31, ${opacity})`
 
   if (!hover) {
     return `${shadowObject.map(buildShadow).join(', ')}`
@@ -116,14 +117,7 @@ const colorGetter = <Props extends GetterProps>(
   colorFamily: keyof ColorFamilies | 'background',
   config: ColorGetterConfig<Props> = {}
 ) => {
-  return (
-    props: Props & {
-      warning?: boolean
-      primary?: boolean
-      secondary?: boolean
-      opacity?: number
-    }
-  ) => {
+  return (props: Props & ThemeOverridesProps & { opacity?: number }) => {
     const theme = getThemeVariant(props, { useRootTheme: config.useRootTheme })
 
     let color: Color
@@ -136,6 +130,8 @@ const colorGetter = <Props extends GetterProps>(
       let realColorFamily: keyof ColorFamilies
       if (!config.dynamic) {
         realColorFamily = colorFamily
+      } else if (props.error) {
+        realColorFamily = 'error'
       } else if (props.warning) {
         realColorFamily = 'warning'
       } else if (props.primary) {

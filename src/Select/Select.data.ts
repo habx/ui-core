@@ -36,8 +36,12 @@ export const OPTIONS: SelectOption[] = [
 ]
 
 export const COLORED_OPTIONS: SelectOption[] = [
-  { label: 'Opened', value: 'opened', color: palette.yellow[700] },
-  { label: 'Resolved', value: 'resolved', color: palette.black[700] },
-  { label: 'Confirmed', value: 'confirmed', color: palette.green[700] },
-  { label: 'Cancelled', value: 'cancelled', color: palette.black[400] },
+  { label: 'Opened', value: 'opened', color: palette.yellowSunlight[700] },
+  { label: 'Resolved', value: 'resolved', color: palette.neutralBlack[700] },
+  {
+    label: 'Confirmed',
+    value: 'confirmed',
+    color: palette.greenNorthernLight[700],
+  },
+  { label: 'Cancelled', value: 'cancelled', color: palette.neutralBlack[400] },
 ]

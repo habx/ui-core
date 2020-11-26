@@ -44,7 +44,7 @@ export default {
   subcomponents: { NavBarItem, NavBarMenuItem },
   argTypes: {
     backgroundColor: {
-      defaultValue: palette.yellow[500],
+      defaultValue: palette.yellowSunlight[500],
     },
     title: {
       defaultValue: 'Title',
