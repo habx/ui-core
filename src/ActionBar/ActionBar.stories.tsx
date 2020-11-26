@@ -57,7 +57,7 @@ const GRID_ITEMS = [
     props: {
       children: (
         <React.Fragment>
-          <Button link>Cancel</Button>
+          <Button ghost>Cancel</Button>
           <Button>Save</Button>
         </React.Fragment>
       ),
@@ -68,8 +68,8 @@ const GRID_ITEMS = [
     props: {
       children: (
         <React.Fragment>
-          <Button link>Reset</Button>
-          <Button link>Cancel</Button>
+          <Button ghost>Reset</Button>
+          <Button ghost>Cancel</Button>
           <Button>Save</Button>
         </React.Fragment>
       ),
@@ -99,8 +99,8 @@ export const basic = ({ ...props }) => (
     <Card spacing="regular">
       <CardChildrenContainer />
       <ActionBar {...props}>
-        <Button link>Reset</Button>
-        <Button link>Cancel</Button>
+        <Button ghost>Reset</Button>
+        <Button ghost>Cancel</Button>
         <Button>Save</Button>
       </ActionBar>
     </Card>

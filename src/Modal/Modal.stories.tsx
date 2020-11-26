@@ -49,7 +49,7 @@ const ScrollableContentWithActionBar: React.FunctionComponent<{}> = () => (
       <Line>Item {index + 1}</Line>
     ))}
     <ActionBar>
-      <Button outline>Cancel</Button>
+      <Button ghost>Cancel</Button>
       <Button>Validate</Button>
     </ActionBar>
   </div>
