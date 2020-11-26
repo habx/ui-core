@@ -5,13 +5,13 @@ import { theme } from '../theme'
 export const linkStyle = css<{}>`
   color: ${theme.color('primary', { dynamic: true })};
   font-family: ${theme.font()};
-  font-weight: bold;
+  font-weight: 500;
   cursor: pointer;
   text-decoration: none;
-  transition: opacity 150ms ease-in-out;
+  transition: color 150ms ease-in-out;
 
   &:hover {
-    opacity: 0.72;
+    color: ${theme.color('primary', { dynamic: true, opacity: 0.72 })};
   }
 `
 

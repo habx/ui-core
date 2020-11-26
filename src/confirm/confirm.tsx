@@ -27,10 +27,10 @@ export const confirm = (config: ConfirmConfig | string) => {
       return (
         <ConfirmFormContainer>
           <ActionBar>
-            <Button error ghost onClick={() => onResolve(false)}>
+            <Button ghost onClick={() => onResolve(false)}>
               {innerConfig.cancelLabel ?? context.cancelLabel}
             </Button>
-            <Button onClick={() => onResolve(true)}>
+            <Button error onClick={() => onResolve(true)}>
               {innerConfig.confirmLabel ?? context.confirmLabel}
             </Button>
           </ActionBar>

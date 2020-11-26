@@ -37,6 +37,10 @@ const GRID_ITEMS = [
     props: { disabled: true },
   },
   {
+    label: 'Interactive',
+    props: { interactive: true },
+  },
+  {
     label: 'Active',
     props: { active: true },
   },
