@@ -12,6 +12,8 @@ export enum ButtonModes {
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     Pick<ThemeOverridesProps, 'primary' | 'secondary' | 'error'> {
+  disabled?: boolean
+
   /**
    * Left element of the Button like `<Icon icon="send" />`
    */
@@ -23,42 +25,43 @@ export interface ButtonProps
   elementRight?: React.ReactNode
 
   /**
-   * link style activation
-   * @default false
-   */
-  link?: boolean
-
-  /**
-   * full width style activation
+   * The Button will take as much width as possible
    * @default false
    */
   fullWidth?: boolean
 
   /**
-   * loading style activation
+   * Blocks interaction and display loading dots on top of your button
+   *
    * @default false
    */
   loading?: boolean
 
   /**
-   * outline style activation
+   * Outline design
+   *
+   * @default false
    */
   outline?: boolean
 
   /**
-   * disabled style activation
+   * Link design
+   *
+   * @default false
    */
-  disabled?: boolean
+  link?: boolean
 
   /**
-   * small style activation
+   * Ghost design
+   *
+   * @default false
+   */
+  ghost?: boolean
+
+  /**
+   * Small size
    */
   small?: boolean
-
-  /**
-   * large style activation
-   */
-  large?: boolean
 
   /**
    * @ignore

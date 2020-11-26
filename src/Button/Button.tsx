@@ -17,6 +17,7 @@ const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       elementLeft,
       elementRight,
       outline = false,
+      ghost = false,
       link = false,
       small = false,
       fullWidth = false,
@@ -29,6 +30,10 @@ const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const mode = React.useMemo<ButtonModes>(() => {
       if (outline) {
         return ButtonModes.outline
+      }
+
+      if (ghost) {
+        return ButtonModes.ghost
       }
 
       if (link) {

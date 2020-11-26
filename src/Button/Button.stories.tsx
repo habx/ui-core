@@ -19,12 +19,24 @@ const GRID_LINES = [
     props: { outline: true },
   },
   {
+    title: 'Ghost',
+    props: { ghost: true },
+  },
+  {
     title: 'Link',
     props: { link: true },
   },
   {
     title: 'Solid (secondary)',
     props: { secondary: true },
+  },
+  {
+    title: 'Ghost (secondary)',
+    props: { ghost: true, secondary: true },
+  },
+  {
+    title: 'Link (secondary)',
+    props: { link: true, secondary: true },
   },
   {
     title: 'Solid (error)',
@@ -37,6 +49,10 @@ const GRID_LINES = [
   {
     title: 'Outline (small)',
     props: { outline: true, small: true },
+  },
+  {
+    title: 'Ghost (small)',
+    props: { ghost: true, small: true },
   },
   {
     title: 'Link (small)',

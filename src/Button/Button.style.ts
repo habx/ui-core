@@ -78,13 +78,6 @@ export const ButtonContainer = styled.button`
       dynamic: true,
     })};
 
-    & svg {
-      fill: ${theme.color('primary', {
-        variation: 'contrastText',
-        dynamic: true,
-      })};
-    }
-
     &:hover {
       background-color: ${theme.color('primary', {
         dynamic: true,
@@ -115,6 +108,11 @@ export const ButtonContainer = styled.button`
       cursor: initial;
       pointer-events: none;
     }
+
+    &:disabled {
+      background-color: ${theme.neutralColor(300)};
+      color: ${theme.textColor({ variation: 'lowContrast' })};
+    }
   }
 
   &[data-mode='${ButtonModes.outline}'] {
@@ -122,10 +120,6 @@ export const ButtonContainer = styled.button`
 
     background-color: transparent;
     color: ${theme.color('secondary', { dynamic: true })};
-
-    & svg {
-      fill: ${theme.color('secondary', { dynamic: true })};
-    }
 
     &:hover:not(:focus) {
       --button-border-width: 4px;
@@ -138,37 +132,62 @@ export const ButtonContainer = styled.button`
     &:focus:not(:active) {
       --button-outline-width: 4px;
     }
+
+    &:disabled {
+      color: ${theme.neutralColor(300)};
+
+      --button-border-color: ${theme.neutralColor(300)};
+    }
+  }
+
+  &[data-mode='${ButtonModes.ghost}'] {
+    background-color: transparent;
+    color: ${theme.color('primary', { dynamic: true })};
+
+    &:focus:not(:active) {
+      --button-outline-width: 4px;
+    }
+
+    &:disabled {
+      background-color: ${theme.neutralColor(300)};
+      color: ${theme.textColor({ variation: 'lowContrast' })};
+    }
   }
 
   &[data-mode='${ButtonModes.link}'] {
+    display: inline-flex;
     background-color: transparent;
     padding: 0;
     color: ${theme.color('primary', { dynamic: true })};
-    height: 20px;
-
-    & svg {
-      fill: ${theme.color('primary', { dynamic: true })};
-    }
+    height: unset;
 
     &:hover {
       color: ${theme.color('primary', { dynamic: true, variation: 'loud' })};
-
-      & svg {
-        fill: ${theme.color('primary', { dynamic: true, variation: 'loud' })};
-      }
     }
 
-    &:focus,
     &:active {
       color: ${theme.color('primary', { dynamic: true, variation: 'louder' })};
+    }
 
-      & svg {
-        fill: ${theme.color('primary', { dynamic: true, variation: 'louder' })};
-      }
+    &:focus:not(:active) {
+      --button-outline-width: 4px;
     }
 
     &[data-small='true'] {
       height: 18px;
+    }
+
+    &:disabled {
+      color: ${theme.color('secondary', {
+        variation: 'louder',
+        opacity: 0.45,
+        useRootTheme: true,
+      })};
+    }
+
+    & ${ButtonContent} {
+      border-bottom: 2px solid currentColor;
+      margin: 2px 0;
     }
   }
 
@@ -178,24 +197,6 @@ export const ButtonContainer = styled.button`
 
   &:disabled {
     pointer-events: none;
-
-    &[data-mode='${ButtonModes.solid}'] {
-      background-color: ${theme.neutralColor(300)};
-    }
-
-    &[data-mode='${ButtonModes.outline}'] {
-      color: ${theme.neutralColor(300)};
-
-      --button-border-color: ${theme.neutralColor(300)};
-    }
-
-    &[data-mode='${ButtonModes.link}'] {
-      color: ${theme.color('secondary', {
-        variation: 'louder',
-        opacity: 0.45,
-        useRootTheme: true,
-      })};
-    }
   }
 `
 
