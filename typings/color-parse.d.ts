@@ -1,7 +1,9 @@
 declare module 'color-parse' {
+  export type ParsedColorValue = [number, number, number]
+
   export type ParsedColor = {
     space: 'rgb'
-    values: [number, number, number]
+    values: ParsedColorValue
     alpha: number
   }
 

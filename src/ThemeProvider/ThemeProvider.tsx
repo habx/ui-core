@@ -5,7 +5,7 @@ import {
   ThemeContext,
 } from 'styled-components'
 
-import { isColorDark } from '../_internal/theme/color'
+import { isColorDark } from '../color'
 import {
   DesignSystemTheme,
   DesignSystemProviderValue,

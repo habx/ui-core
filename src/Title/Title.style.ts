@@ -18,6 +18,7 @@ const baseTitleStyle = css<{ color?: string }>`
 
 const headerMaxiTitleStyle = css`
   ${baseTitleStyle};
+  letter-spacing: -0.5px;
 
   ${size('superNova')};
 
@@ -64,16 +65,6 @@ const headerSmallTitleStyle = css`
   }
 `
 
-const articleTitleStyle = css`
-  ${baseTitleStyle};
-
-  ${size('jupiter')};
-
-  @media (${breakpoints.below.smallTablet}) {
-    ${size('earth')};
-  }
-`
-
 const sectionTitleStyle = css`
   ${baseTitleStyle};
 
@@ -82,7 +73,6 @@ const sectionTitleStyle = css`
 
 const regularTitleStyle = css`
   ${baseTitleStyle};
-
   font-weight: 500;
 
   ${size('mars')};
@@ -93,7 +83,6 @@ export const titleStyles = {
   headerBig: headerBigTitleStyle,
   header: headerTitleStyle,
   headerSmall: headerSmallTitleStyle,
-  article: articleTitleStyle,
   section: sectionTitleStyle,
   regular: regularTitleStyle,
 }
@@ -110,12 +99,8 @@ export const HeaderTitleComponent = styled.h1`
   ${headerTitleStyle};
 `
 
-export const HeaderSmallTitleComponent = styled.h1`
+export const HeaderSmallTitleComponent = styled.h2`
   ${headerSmallTitleStyle};
-`
-
-export const ArticleTitleComponent = styled.h2`
-  ${articleTitleStyle};
 `
 
 export const SectionTitleComponent = styled.h3`

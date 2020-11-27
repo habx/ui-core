@@ -34,7 +34,10 @@ export const stringifyColor = (color: Color): string => {
   return color as string
 }
 
-export const fadeColor = (color: Color, opacity: number): ParsedColor => {
+export const applyOpacityToColor = (
+  color: Color,
+  opacity: number
+): ParsedColor => {
   const parsedColor = parseColor(color)
 
   return {

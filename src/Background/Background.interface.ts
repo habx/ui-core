@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { Color } from '../_internal/theme/color'
 import { styledAs } from '../_internal/types'
+import { Color } from '../color'
 
 export interface BackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
   /**

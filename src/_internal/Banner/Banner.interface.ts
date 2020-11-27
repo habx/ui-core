@@ -1,5 +1,5 @@
 import { BackgroundProps } from '../../Background'
-import { Color } from '../theme/color'
+import { Color } from '../../color'
 
 export interface BannerProps extends Omit<BackgroundProps, 'backgroundColor'> {
   /**

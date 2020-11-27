@@ -21,7 +21,6 @@ const types: { [key: string]: TitleTypes } = {
   'Header Big Title': 'headerBig',
   'Header Title': 'header',
   'Header Small Title': 'headerSmall',
-  'Article Title': 'article',
   'Section Title': 'section',
   'Regular Title': 'regular',
 }

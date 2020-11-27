@@ -1,14 +1,13 @@
 import * as React from 'react'
 import { ThemeProvider, ThemeContext } from 'styled-components'
 
+import { Color, isColorDark } from '../../color'
 import {
   DEFAULT_THEME,
   DesignSystemProviderValue,
   DesignSystemTheme,
   StyledTheme,
 } from '../../theme'
-
-import { Color, isColorDark } from './color'
 
 export const BackgroundThemeProvider: React.FunctionComponent<{
   backgroundColor: Color

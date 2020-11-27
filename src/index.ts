@@ -128,6 +128,7 @@ export { useThemeVariant } from './useThemeVariant'
 /*
   Utils
  */
+export { isColorDark, stringifyColor, applyOpacityToColor } from './color'
 export { useResponsiveType } from './useResponsiveType'
 export { withLabel, withSemanticLabel, WithLabel } from './withLabel'
 export { withMarkdown } from './withMarkdown'

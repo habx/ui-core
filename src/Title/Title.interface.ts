@@ -7,7 +7,6 @@ export type TitleTypes =
   | 'headerBig'
   | 'header'
   | 'headerSmall'
-  | 'article'
   | 'section'
   | 'regular'
 
