@@ -8,7 +8,7 @@ export const BackgroundContainer = styled.div<{
 }>`
   &:not([data-simulated='true']) {
     background-color: ${theme.color('primary', {
-      propName: 'backgroundColor',
+      valuePropName: 'backgroundColor',
     })};
   }
 `

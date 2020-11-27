@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
+import { ThemeOverridesProps } from '../_internal/types'
 import { theme } from '../theme'
 
 export const MenuLineContainer = styled.li`
@@ -15,7 +15,7 @@ export const MenuLineContainer = styled.li`
     cursor: pointer;
 
     &:hover {
-      background-color: ${palette.darkBlue[200]};
+      background-color: ${theme.neutralColor(200)};
     }
   }
 
@@ -29,10 +29,7 @@ export const MenuLineContainer = styled.li`
   }
 `
 
-export const SideElementContainer = styled.div<{
-  primary?: boolean
-  warning?: boolean
-}>`
+export const SideElementContainer = styled.div<ThemeOverridesProps>`
   font-size: 0.9em;
   display: flex;
   margin-top: 1px;

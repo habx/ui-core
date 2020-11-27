@@ -5,7 +5,6 @@ import {
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
 import { fontScale } from '../fontScale'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const IconButtonContainer = styled.button`
@@ -15,7 +14,7 @@ export const IconButtonContainer = styled.button`
   padding: 0;
   position: relative;
 
-  color: ${theme.textColor({ dynamic: true, opacity: 0.72 })};
+  color: ${theme.color('secondary', { dynamic: true, opacity: 0.72 })};
   transition: all ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
 
   &[data-has-bounding-background='true'] {
@@ -31,7 +30,7 @@ export const IconButtonContainer = styled.button`
   width: var(--icon-button-size);
   height: var(--icon-button-size);
   box-shadow: inset 0 0 0 var(--icon-button-border-width)
-    ${theme.textColor({ opacity: 0.2 })};
+    ${theme.color('secondary', { dynamic: true, opacity: 0.2 })};
 
   --icon-button-font-size: ${fontScale.jupiter.size}px;
   --icon-button-size: ${fontScale.jupiter.lineHeight}px;
@@ -39,7 +38,10 @@ export const IconButtonContainer = styled.button`
   --icon-button-background: var(--icon-button-base-background);
 
   &:hover {
-    --icon-button-background: ${theme.textColor({ opacity: 0.05 })};
+    --icon-button-background: ${theme.color('secondary', {
+      dynamic: true,
+      opacity: 0.05,
+    })};
   }
 
   &:focus {
@@ -92,11 +94,11 @@ export const IconButtonContainer = styled.button`
 
   &:disabled {
     pointer-events: none;
-    color: ${palette.darkBlue[400]};
+    color: ${theme.neutralColor(400)};
   }
 
   &:active {
-    color: ${theme.textColor({ dynamic: true })};
+    color: ${theme.color('secondary', { dynamic: true })};
   }
 `
 

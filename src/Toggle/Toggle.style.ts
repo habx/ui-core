@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const ToggleContainer = styled.div`
@@ -8,7 +7,7 @@ export const ToggleContainer = styled.div`
 
   width: calc(var(--toggle-circle-radius) * 3.5);
   height: calc(var(--toggle-circle-radius) * 1.5);
-  background-color: ${palette.darkBlue[500]};
+  background-color: ${theme.neutralColor(500)};
   transition: all 150ms ease-in-out;
   position: relative;
   cursor: pointer;
@@ -33,7 +32,7 @@ export const ToggleContainer = styled.div`
 
   &::after {
     box-shadow: ${theme.shadow('lower')};
-    border: 1.5px solid ${palette.darkBlue[300]};
+    border: 1.5px solid ${theme.neutralColor(300)};
   }
 
   &:hover::after {
@@ -53,7 +52,7 @@ export const ToggleContainer = styled.div`
 
   &:not([data-selected='true']) {
     &:hover {
-      background-color: ${palette.darkBlue[500]};
+      background-color: ${theme.neutralColor(500)};
     }
   }
 
@@ -71,15 +70,15 @@ export const ToggleContainer = styled.div`
     }
 
     &:hover::after {
-      background-color: ${theme.color('primary', { variation: 'hover' })};
+      background-color: ${theme.color('primary', { variation: 'loud' })};
     }
 
     &:focus::after {
-      background-color: ${theme.color('primary', { variation: 'focus' })};
+      background-color: ${theme.color('primary', { variation: 'louder' })};
     }
 
     &:active::after {
-      background-color: ${theme.color('primary', { variation: 'focus' })};
+      background-color: ${theme.color('primary', { variation: 'louder' })};
     }
   }
 
@@ -96,15 +95,15 @@ export const ToggleContainer = styled.div`
     }
 
     &:hover::after {
-      background-color: ${theme.color('warning', { variation: 'hover' })};
+      background-color: ${theme.color('warning', { variation: 'loud' })};
     }
 
     &:focus::after {
-      background-color: ${theme.color('warning', { variation: 'focus' })};
+      background-color: ${theme.color('warning', { variation: 'louder' })};
     }
 
     &:active::after {
-      background-color: ${theme.color('warning', { variation: 'focus' })};
+      background-color: ${theme.color('warning', { variation: 'louder' })};
     }
   }
 
@@ -112,10 +111,10 @@ export const ToggleContainer = styled.div`
     pointer-events: none;
 
     &:not([data-selected='true']) {
-      background-color: ${palette.darkBlue[400]};
+      background-color: ${theme.neutralColor(400)};
 
       &::after {
-        background-color: ${palette.darkBlue[400]};
+        background-color: ${theme.neutralColor(400)};
       }
     }
 

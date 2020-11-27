@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { withMarkdown } from '../withMarkdown'
 
-import { ButtonProps } from './Button.interface'
+import { ButtonModes, ButtonProps } from './Button.interface'
 import {
   ButtonContainer,
   ButtonContent,
@@ -17,35 +17,43 @@ const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       elementLeft,
       elementRight,
       outline = false,
+      ghost = false,
       link = false,
       small = false,
-      large = false,
       fullWidth = false,
       dangerouslySetInnerHTML,
       type = 'button',
       loading = false,
-      warning = false,
       ...rest
     } = props
+
+    const mode = React.useMemo<ButtonModes>(() => {
+      if (outline) {
+        return ButtonModes.outline
+      }
+
+      if (ghost) {
+        return ButtonModes.ghost
+      }
+
+      if (link) {
+        return ButtonModes.link
+      }
+
+      return ButtonModes.solid
+    }, [link, outline])
 
     return (
       <ButtonContainer
         ref={ref}
         data-loading={loading}
-        data-outline={outline}
-        data-link={link}
-        data-large={large}
+        data-mode={mode}
         data-small={small}
         data-full-width={fullWidth}
         type={type}
-        warning={warning}
         {...rest}
       >
-        <LoadingContainer
-          loading={loading && !rest.disabled}
-          large={large}
-          small={small}
-        >
+        <LoadingContainer loading={loading && !rest.disabled} small={small}>
           {elementLeft && (
             <SideElementContainer
               data-position="left"
@@ -74,6 +82,6 @@ const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 )
 
-export const Button = withMarkdown<HTMLButtonElement>({ inline: true })<
-  ButtonProps
->(InnerButton)
+export const Button = withMarkdown<HTMLButtonElement>({
+  inline: true,
+})<ButtonProps>(InnerButton)

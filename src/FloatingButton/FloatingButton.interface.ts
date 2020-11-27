@@ -1,12 +1,16 @@
 import * as React from 'react'
 
-import { Button, styledAs } from '../_internal/types'
+import { styledAs, ThemeOverridesProps } from '../_internal/types'
 
-export interface FloatingButtonProps extends Omit<Button, 'large' | 'outline'> {
+export interface FloatingButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    ThemeOverridesProps {
   elementLeft?: React.ReactNode
   elementRight?: React.ReactNode
   position?: 'bottom' | 'top'
   fixed?: boolean
+  disabled?: boolean
+  small?: boolean
 
   /**
    * @ignore

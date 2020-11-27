@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { Text } from '../Text'
+import { theme } from '../theme'
 
 export const IconContainer = styled.div`
   height: 32px;
@@ -9,6 +10,7 @@ export const IconContainer = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 24px;
+  color: ${theme.textColor({ variation: 'title' })};
 `
 
 export const NavBarItemContainer = styled.li`
@@ -51,15 +53,12 @@ export const TextContainer = styled.div`
   overflow: hidden;
 `
 
-export const TitleContainer = styled(Text).attrs(() => ({ opacity: 1 }))`
+export const TitleContainer = styled(Text)`
   margin-left: 18px;
   flex: 1 1 100%;
 `
 
-export const DescriptionContainer = styled(Text).attrs(() => ({
-  opacity: 0.6,
-  type: 'caption',
-}))`
+export const DescriptionContainer = styled(Text)`
   margin-left: 18px;
   flex: 1 1 100%;
 `

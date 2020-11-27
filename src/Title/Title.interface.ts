@@ -16,6 +16,5 @@ export interface TitleProps
     React.HTMLAttributes<HTMLHeadingElement> {
   type: TitleTypes
   color?: string
-  opacity?: number
   as?: styledAs
 }

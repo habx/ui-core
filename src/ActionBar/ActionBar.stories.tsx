@@ -6,7 +6,7 @@ import { withGrid } from '../_storybook/withGrid'
 import { Button } from '../Button'
 import { Card } from '../Card'
 import { Modal } from '../Modal'
-import { palette } from '../palette'
+import { theme } from '../theme'
 
 import { ActionBar, ActionBarProps } from './index'
 
@@ -16,7 +16,7 @@ const CardChildrenContainer = styled.div`
   height: 400px;
   width: 360px;
   max-width: calc(100vw - 48px);
-  background-color: ${palette.darkBlue[100]};
+  background-color: ${theme.neutralColor(100)};
 
   &[data-modal='true'] {
     width: unset;
@@ -57,7 +57,7 @@ const GRID_ITEMS = [
     props: {
       children: (
         <React.Fragment>
-          <Button link>Cancel</Button>
+          <Button ghost>Cancel</Button>
           <Button>Save</Button>
         </React.Fragment>
       ),
@@ -68,8 +68,8 @@ const GRID_ITEMS = [
     props: {
       children: (
         <React.Fragment>
-          <Button link>Reset</Button>
-          <Button link>Cancel</Button>
+          <Button ghost>Reset</Button>
+          <Button ghost>Cancel</Button>
           <Button>Save</Button>
         </React.Fragment>
       ),
@@ -99,8 +99,8 @@ export const basic = ({ ...props }) => (
     <Card spacing="regular">
       <CardChildrenContainer />
       <ActionBar {...props}>
-        <Button link>Reset</Button>
-        <Button link>Cancel</Button>
+        <Button ghost>Reset</Button>
+        <Button ghost>Cancel</Button>
         <Button>Save</Button>
       </ActionBar>
     </Card>

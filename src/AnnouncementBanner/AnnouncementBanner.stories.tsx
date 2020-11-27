@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 import { withGrid } from '../_storybook/withGrid'
 import { Card } from '../Card'
-import { palette } from '../palette'
 import { Text } from '../Text'
 
 import { AnnouncementBanner, AnnouncementBannerProps } from './index'
@@ -17,14 +16,13 @@ const CardChildrenContainer = styled.div`
   flex-direction: column;
   height: 100%;
   width: 100vw;
-  background-color: ${palette.darkBlue[100]};
+  background-color: ${theme.neutralColor(100)};
   padding: 12px 20px;
 `
 
-const WrappedAnnouncementBanner: React.FunctionComponent<Omit<
-  AnnouncementBannerProps,
-  'open' | 'onClose' | 'onValidate'
->> = (props) => {
+const WrappedAnnouncementBanner: React.FunctionComponent<
+  Omit<AnnouncementBannerProps, 'open' | 'onClose' | 'onValidate'>
+> = (props) => {
   const [isOpened, setOpened] = React.useState(true)
 
   return (

@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
-import { zIndex } from '../_internal/zIndex'
+import { zIndex } from '../_internal/theme/zIndex'
 import { ActionBarContent } from '../ActionBar/ActionBar.style'
 import { animations } from '../animations'
 import { breakpoints } from '../breakpoints'
@@ -132,7 +132,6 @@ export const CloseIcon = styled(IconButton)`
 
   @media (${breakpoints.above.phone}) {
     position: absolute;
-    color: ${theme.textColor({ opacity: 0.72 })};
   }
 
   @media (${breakpoints.below.phone}) {

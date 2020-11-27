@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { ThemeProvider } from '../ThemeProvider'
+import { BackgroundThemeProvider } from '../_internal/theme/BackgroundThemeProvider'
 
 import { BackgroundProps } from './Background.interface'
 import { BackgroundContainer } from './Background.style'
@@ -10,7 +10,7 @@ export const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
     const { backgroundColor, opacity = 1, simulated, ...rest } = props
 
     return (
-      <ThemeProvider backgroundColor={backgroundColor}>
+      <BackgroundThemeProvider backgroundColor={backgroundColor}>
         <BackgroundContainer
           ref={ref}
           {...rest}
@@ -18,7 +18,7 @@ export const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
           opacity={opacity}
           data-simulated={simulated}
         />
-      </ThemeProvider>
+      </BackgroundThemeProvider>
     )
   }
 )

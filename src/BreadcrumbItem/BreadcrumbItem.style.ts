@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const BreadcrumbItemContainer = styled.li`
@@ -33,16 +32,16 @@ export const BreadcrumbItemContainer = styled.li`
   &:last-child {
     max-width: initial;
     overflow: visible;
-    color: ${palette.darkBlue[900]};
+    color: ${theme.neutralColor(900)};
   }
   &:not(:last-child) {
-    color: ${palette.darkBlue[700]};
+    color: ${theme.neutralColor(700)};
   }
 
   &[data-interactive='true']:not(:last-child) {
     &:hover {
       cursor: pointer;
-      background: ${palette.darkBlue[200]};
+      background: ${theme.neutralColor(200)};
     }
   }
 `

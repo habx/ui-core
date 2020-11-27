@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const TagContainer = styled.button`
@@ -8,20 +7,17 @@ export const TagContainer = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   outline: none;
   user-select: none;
   vertical-align: middle;
   text-align: left;
   text-decoration: none;
   background-color: transparent;
-  border: 1px solid ${palette.darkBlue[300]};
+  border: 1px solid ${theme.neutralColor(300)};
   font-family: ${theme.font()};
   line-height: 1;
   transition: background-color 50ms ease-in-out;
-  color: ${theme.color('secondary', {
-    opacity: 0.72,
-  })};
+  color: ${theme.textColor()};
 
   padding: 0 var(--tag-horizontal-padding);
   height: var(--tag-height);
@@ -31,45 +27,47 @@ export const TagContainer = styled.button`
   --tag-horizontal-padding: 12px;
   --tag-height: 32px;
 
+  &[data-interactive='true'] {
+    cursor: pointer;
+  }
+
   &:not([data-active='true']) {
-    &:not(:disabled) {
-      &[data-interactive='true'] {
-        &:hover,
-        &:focus,
-        &:active {
-          background-color: ${palette.darkBlue[200]};
-        }
-
-        &:hover {
-          border-color: ${palette.darkBlue[200]};
-        }
-
-        &:focus,
-        &:active {
-          border-color: ${palette.blue[300]};
-        }
-
-        &:focus {
-          border-width: 2px;
-          padding: 0 calc(var(--tag-horizontal-padding) - 1px);
-        }
+    &[data-interactive='true'] {
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: ${theme.neutralColor(200)};
       }
 
-      &[data-background='true'] {
-        color: ${theme.textColor({ opacity: 0.72, useRootTheme: true })};
-        background-color: #fff;
-        border-color: #fff;
+      &:hover {
+        border-color: ${theme.neutralColor(200)};
+      }
 
-        &[data-interactive='true'] {
-          &:hover:not(:focus):not(:active) {
-            background-color: rgba(255, 255, 255, 0.7);
-          }
+      &:focus,
+      &:active {
+        border-color: ${theme.color('primary', { variation: 'calm' })};
+      }
+
+      &:focus {
+        border-width: 2px;
+        padding: 0 calc(var(--tag-horizontal-padding) - 1px);
+      }
+    }
+
+    &[data-background='true'] {
+      color: ${theme.textColor({ useRootTheme: true })};
+      background-color: #fff;
+      border-color: #fff;
+
+      &[data-interactive='true'] {
+        &:hover:not(:focus):not(:active) {
+          background-color: rgba(255, 255, 255, 0.7);
         }
       }
     }
 
     &:disabled {
-      color: ${palette.darkBlue[300]};
+      color: ${theme.neutralColor(300)};
 
       &[data-background='true'] {
         color: rgba(255, 255, 255, 0.3);
@@ -81,7 +79,7 @@ export const TagContainer = styled.button`
   &[data-active='true'] {
     border: none;
     color: ${theme.color('primary', { useRootTheme: true })};
-    background-color: ${palette.blue[200]};
+    background-color: ${theme.color('primary', { variation: 'calm' })};
     padding: 0 calc(var(--tag-horizontal-padding) + 1px);
 
     &[data-background='true'] {

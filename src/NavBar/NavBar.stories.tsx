@@ -5,6 +5,7 @@ import { Icon } from '../Icon'
 import { MenuLine } from '../MenuLine'
 import { NavBarItem } from '../NavBarItem'
 import { NavBarMenuItem } from '../NavBarMenuItem'
+import { palette } from '../palette'
 
 import { NavBar, NavBarProps } from './index'
 
@@ -42,6 +43,9 @@ export default {
   component: NavBar,
   subcomponents: { NavBarItem, NavBarMenuItem },
   argTypes: {
+    backgroundColor: {
+      defaultValue: palette.yellowSunlight[500],
+    },
     title: {
       defaultValue: 'Title',
     },

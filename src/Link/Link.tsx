@@ -20,6 +20,6 @@ const InnerLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
   }
 )
 
-export const Link = withMarkdown<HTMLAnchorElement>({ inline: true })<
-  LinkProps
->(InnerLink)
+export const Link = withMarkdown<HTMLAnchorElement>({
+  inline: true,
+})<LinkProps>(InnerLink)

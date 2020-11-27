@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { Text } from '../Text'
 import { theme } from '../theme'
 
@@ -56,8 +55,8 @@ export const Step = styled.div`
 
   &[data-disabled='true'] {
     pointer-events: none;
-    --stepper-step-circle-color: ${palette.darkBlue[300]};
-    --stepper-step-text-color: ${palette.darkBlue[300]};
+    --stepper-step-circle-color: ${theme.neutralColor(300)};
+    --stepper-step-text-color: ${theme.neutralColor(300)};
   }
 
   &:not([data-disabled='true']) {
@@ -77,8 +76,8 @@ export const Step = styled.div`
     }
 
     &[data-to-do='true'] {
-      --stepper-step-text-color: ${palette.darkBlue[500]};
-      --stepper-step-circle-color: ${palette.darkBlue[500]};
+      --stepper-step-text-color: ${theme.neutralColor(500)};
+      --stepper-step-circle-color: ${theme.neutralColor(500)};
 
       &:hover {
         --stepper-step-border-width: 4px;

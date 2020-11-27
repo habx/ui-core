@@ -1,10 +1,9 @@
 import * as React from 'react'
 
+import { isString } from '../_internal/data'
 import { Icon } from '../Icon'
-import { palette } from '../palette'
 import { Text } from '../Text'
 import { Triangle } from '../Triangle'
-import { useTheme } from '../useTheme'
 
 import { NavBarContext } from './NavBar.context'
 import {
@@ -12,6 +11,7 @@ import {
   ActionType,
   NavBarAction,
   NavBarState,
+  NavBarContextValue,
 } from './NavBar.interface'
 import {
   NavBarAbsoluteContainer,
@@ -71,34 +71,23 @@ const INITIAL_STATE: NavBarState = {
 }
 
 export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
-  (baseProps, ref) => {
+  (props, ref) => {
     const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
-    const theme = useTheme()
     const clickRef = React.useRef<boolean>(false)
     const stateRef = React.useRef<NavBarState>(state)
     stateRef.current = state
 
-    const props = { ...baseProps, theme }
+    const { children, title, subtitle, backgroundColor, ...rest } = props
 
-    const {
-      children,
-      title,
-      subtitle,
-      color = palette.darkBlue[900],
-      backgroundColor = palette.yellow[600],
-      ...rest
-    } = props
-
-    const context = React.useMemo(
+    const context = React.useMemo<NavBarContextValue>(
       () => ({
         isInsideANavBar: true,
         isExpanded: state.isExpanded,
         isPersistent: state.isPersistent,
         setPersistent: (value: boolean) =>
           dispatch({ type: ActionType.SetPersistent, value }),
-        color,
       }),
-      [color, state.isExpanded, state.isPersistent]
+      [state.isExpanded, state.isPersistent]
     )
 
     React.useEffect(() => {
@@ -125,6 +114,8 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
     return (
       <NavBarContext.Provider value={context}>
         <NavBarAbsoluteContainer
+          backgroundColor={backgroundColor}
+          simulated
           onMouseEnter={() =>
             dispatch({ type: ActionType.SetHover, value: true })
           }
@@ -139,7 +130,6 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
             ref={ref}
             data-expanded={state.isExpanded}
             data-hover-icon={state.isHoveringTitleIcon || state.isExpanded}
-            color={color}
             backgroundColor={backgroundColor}
           >
             <GeometricalShapesContainer data-expanded={state.isExpanded}>
@@ -159,8 +149,8 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
             <NavBarHeader>
               {state.isExpanded && (
                 <TitleContainer>
-                  {typeof title === 'string' ? (
-                    <Text opacity={1}>{title}</Text>
+                  {isString(title) ? (
+                    <Text variation="title">{title}</Text>
                   ) : (
                     title
                   )}

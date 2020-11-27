@@ -1,6 +1,3 @@
 export { ThemeProvider } from './ThemeProvider'
 
-export {
-  ThemeProviderProps,
-  DesignSystemThemePatch,
-} from './ThemeProvider.interface'
+export { ThemeProviderProps } from './ThemeProvider.interface'

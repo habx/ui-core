@@ -5,7 +5,6 @@ import {
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
 import { Layout } from '../Layout'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const ExpansionPanelItemContainer = styled.div`
@@ -16,14 +15,14 @@ export const ExpansionPanelItemContainer = styled.div`
 
   @media screen {
     &:not([data-light='true']) {
-      border-bottom: 1px solid ${palette.darkBlue[300]};
+      border-bottom: 1px solid ${theme.neutralColor(300)};
 
       &:hover {
-        border-color: ${palette.darkBlue[700]};
+        border-color: ${theme.neutralColor(700)};
       }
       &[data-state='opened'],
       &[data-state='opening'] {
-        border-color: ${palette.darkBlue[700]};
+        border-color: ${theme.neutralColor(700)};
       }
     }
   }
@@ -57,7 +56,7 @@ export const HeaderBarElement = styled.div`
   display: flex;
   align-items: center;
 
-  color: ${palette.darkBlue[900]};
+  color: ${theme.neutralColor(900)};
   font-weight: 500;
   line-height: 24px;
   font-family: ${theme.font()};
@@ -80,7 +79,7 @@ export const HeaderBarTitle = styled.span`
 
 export const HeaderBarDescription = styled.span`
   font-size: calc(var(--expansionPanelItemFontSize) - 2px);
-  color: ${palette.darkBlue[700]};
+  color: ${theme.neutralColor(700)};
 `
 
 export const ExpansionPanelItemContent = styled(Layout)<{ height: number }>`

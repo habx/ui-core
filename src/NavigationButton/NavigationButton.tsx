@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useHasColoredBackground } from '../_internal/useHasColoredBackground'
+import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
 import { Icon } from '../Icon'
 
 import { NavigationButtonProps } from './NavigationButton.interface'

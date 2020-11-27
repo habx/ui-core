@@ -105,28 +105,30 @@ const InnerTogglePanel = React.forwardRef<
 
     const content = isFunction(children) ? children(modal) : children
 
-    return fullScreenOnMobile && size.width < breakpoints.raw.phone ? (
-      <Context.Provider value={modal}>
-        <Modal onClose={onClose} open={open}>
-          {content}
-        </Modal>
-      </Context.Provider>
-    ) : (
-      ReactDOM.createPortal(
+    if (fullScreenOnMobile && size.width < breakpoints.raw.phone) {
+      return (
         <Context.Provider value={modal}>
-          {withOverlay && modal.state === 'opened' && <Overlay />}
-
-          <Container
-            data-state={modal.state}
-            ref={modal.ref}
-            style={customStyle}
-            {...props}
-          >
+          <Modal onClose={onClose} open={open}>
             {content}
-          </Container>
-        </Context.Provider>,
-        parent?.ref.current ?? document.body
+          </Modal>
+        </Context.Provider>
       )
+    }
+
+    return ReactDOM.createPortal(
+      <Context.Provider value={modal}>
+        {withOverlay && modal.state === 'opened' && <Overlay />}
+
+        <Container
+          data-state={modal.state}
+          ref={modal.ref}
+          style={customStyle}
+          {...props}
+        >
+          {content}
+        </Container>
+      </Context.Provider>,
+      parent?.ref.current ?? document.body
     )
   }
 )
@@ -135,7 +137,7 @@ export const TogglePanel = withTriggerElement({ forwardRef: true })(
   InnerTogglePanel
 )
 
-interface InnerTogglePanelProps
+export interface InnerTogglePanelProps
   extends React.HtmlHTMLAttributes<HTMLDivElement> {
   children?:
     | React.ReactNode

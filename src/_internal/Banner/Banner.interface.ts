@@ -1,4 +1,5 @@
 import { BackgroundProps } from '../../Background'
+import { Color } from '../theme/color'
 
 export interface BannerProps extends Omit<BackgroundProps, 'backgroundColor'> {
   /**
@@ -9,5 +10,5 @@ export interface BannerProps extends Omit<BackgroundProps, 'backgroundColor'> {
   /**
    * background color hex overwrite
    */
-  backgroundColor?: string
+  backgroundColor?: Color
 }

@@ -1,21 +1,17 @@
 import * as React from 'react'
 
-import { Except } from '../_internal/types'
-
 export interface NavBarProps
-  extends Except<React.HTMLAttributes<HTMLUListElement>, 'title'> {
+  extends Omit<React.HTMLAttributes<HTMLUListElement>, 'title'> {
   title?: React.ReactNode
   subtitle?: React.ReactNode
-  color?: string
-  backgroundColor?: string
+  backgroundColor: string
 }
 
-export interface NavBarContextProps {
+export interface NavBarContextValue {
   isInsideANavBar: boolean
   isExpanded: boolean
   isPersistent: boolean
   setPersistent: (isPersistent: boolean) => void
-  color: string
 }
 
 export interface NavBarState {

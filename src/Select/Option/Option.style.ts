@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { fontScale } from '../../fontScale'
-import { palette } from '../../palette'
 import { theme } from '../../theme'
 
 export const OptionContent = styled.div``
@@ -35,12 +34,12 @@ export const OptionContainer = styled.li`
   height: 48px;
   padding: 0 18px;
   font-size: ${fontScale.moon.size}px;
-  color: ${theme.color('secondary', { opacity: 0.72 })};
+  color: ${theme.textColor()};
 
   &:hover,
   &:focus {
-    background-color: ${palette.darkBlue[200]};
-    color: ${theme.color('secondary', { opacity: 1 })};
+    background-color: ${theme.neutralColor(200)};
+    color: ${theme.textColor({ variation: 'title' })};
   }
 
   &:not(:hover)[data-selected='true'] {

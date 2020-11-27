@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components'
 
 import { breakpoints } from '../breakpoints'
 import { Icon } from '../Icon'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const inputStyle = css`
@@ -22,27 +21,33 @@ export const inputStyle = css`
   }
 
   &:not([data-light='true']) {
-    border-color: ${palette.darkBlue[200]};
+    border-color: ${theme.neutralColor(200)};
     color: ${theme.textColor({ useRootTheme: true })};
-    background-color: ${palette.darkBlue[200]};
+    background-color: ${theme.neutralColor(200)};
 
     &::placeholder {
-      color: ${theme.textColor({ opacity: 0.6, useRootTheme: true })};
+      color: ${theme.textColor({
+        useRootTheme: true,
+        variation: 'lowContrast',
+      })};
     }
 
     &:disabled {
-      background-color: ${palette.darkBlue[200]};
-      color: ${palette.darkBlue[700]};
+      background-color: ${theme.neutralColor(200)};
+      color: ${theme.neutralColor(700)};
       pointer-events: none;
 
       &::placeholder {
-        color: ${theme.textColor({ opacity: 0.4, useRootTheme: true })};
+        color: ${theme.textColor({
+          useRootTheme: true,
+          variation: 'lowContrast',
+        })};
       }
     }
 
     &:hover,
     &:focus {
-      border-color: ${palette.darkBlue[300]};
+      border-color: ${theme.neutralColor(300)};
     }
 
     &:focus {
@@ -55,8 +60,8 @@ export const inputStyle = css`
     }
 
     &[data-error='true'] {
-      border-color: ${palette.orange[400]};
-      box-shadow: 0 1px 0 ${palette.orange[400]};
+      border-color: ${theme.color('error')};
+      box-shadow: 0 1px 0 ${theme.color('error')};
     }
   }
 
@@ -68,17 +73,17 @@ export const inputStyle = css`
     padding-right: 12px;
 
     &:hover:not(:focus) {
-      background-color: ${palette.darkBlue[200]};
+      background-color: ${theme.neutralColor(200)};
     }
 
     &:focus {
-      border-color: ${palette.darkBlue[300]};
+      border-color: ${theme.neutralColor(300)};
       color: ${theme.textColor({ useRootTheme: true })};
     }
   }
 
   &[data-error='true'] {
-    color: ${palette.orange[400]};
+    color: ${theme.color('error')};
   }
 
   @media (${breakpoints.below.phone}) {

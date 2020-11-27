@@ -5,7 +5,7 @@ import { IconButton } from '../IconButton'
 import { palette } from '../palette'
 import { Text } from '../Text'
 
-import { TogglePanel } from '.'
+import { TogglePanel } from './TogglePanel'
 import { TogglePanelProps } from './TogglePanel'
 
 export default {
@@ -14,33 +14,29 @@ export default {
 }
 
 const Component: React.FunctionComponent<
-  Partial<BackgroundProps> & Pick<TogglePanelProps, 'setStyle'>
+  BackgroundProps & Pick<TogglePanelProps, 'setStyle'>
 > = ({ setStyle, ...props }) => (
   <TogglePanel
     setStyle={setStyle}
     triggerElement={<IconButton icon="three-dots" small />}
   >
-    <Background
-      backgroundColor={palette.blue[200]}
-      {...props}
-      style={{ padding: 12, ...props.style }}
-    />
+    <Background {...props} style={{ padding: 12, ...props.style }} />
   </TogglePanel>
 )
 
 export const basic = () => (
-  <Component>
+  <Component backgroundColor={palette.greenNorthernLight[200]}>
     <Text>Panel content</Text>
   </Component>
 )
 
 export const nested = () => (
   <>
-    <Component>
+    <Component backgroundColor={palette.greenNorthernLight[200]}>
       <Text>Panel content at default placement</Text>
 
       <Component
-        backgroundColor={palette.orange[100]}
+        backgroundColor={palette.yellowSunlight[200]}
         setStyle={(_, triggerDimensions) => ({
           left: triggerDimensions.right,
           top: triggerDimensions.top,

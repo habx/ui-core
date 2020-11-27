@@ -42,7 +42,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
               </StepIconContainer>
               <StepLabel
                 type="caption"
-                opacity={1}
+                variation="title"
                 data-first={stepIndex === 0}
                 data-last={stepIndex === steps.length - 1}
               >

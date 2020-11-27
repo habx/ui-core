@@ -3,14 +3,13 @@ import styled from 'styled-components'
 
 import { withGrid } from '../_storybook/withGrid'
 import { Button } from '../Button'
-import { palette } from '../palette'
 
 import { LightBox, LightBoxProps } from './index'
 
 const FakeImage = styled.div`
   height: 100%;
   width: 100%;
-  background-color: ${palette.darkBlue[200]};
+  background-color: ${theme.neutralColor(200)};
 `
 
 const GRID_PROPS = {

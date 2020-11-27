@@ -2,7 +2,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import { Title } from '../Title'
-import { useTheme } from '../useTheme'
+import { useThemeVariant } from '../useThemeVariant'
 
 import { theme } from './theme'
 import { Shadows } from './theme.interface'
@@ -48,7 +48,7 @@ const Circle = styled.div<{ color?: string; depth?: keyof Shadows }>`
 `
 
 const ThemePatchPalette = () => {
-  const { colors } = useTheme()
+  const { colors } = useThemeVariant()
 
   return (
     <Container>

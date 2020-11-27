@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
-import { Text } from '../Text'
 import { theme } from '../theme'
 
 import { SliderBarContainer } from './SliderBar/SliderBar.style'
@@ -28,8 +26,6 @@ export const SliderTooltips = styled.div`
   }
 `
 
-export const SliderTooltip = styled(Text)``
-
 export const SliderContent = styled.div`
   position: relative;
   padding: 8px 0;
@@ -47,7 +43,7 @@ export const SliderContent = styled.div`
 `
 
 export const SliderMainBar = styled.div`
-  background-color: ${palette.darkBlue[300]};
+  background-color: ${theme.neutralColor(300)};
   position: absolute;
   width: 100%;
   height: 4px;
@@ -62,7 +58,7 @@ export const SliderBackgroundDot = styled.div`
   cursor: grab;
   width: 8px;
   height: 8px;
-  background-color: ${palette.darkBlue[500]};
+  background-color: ${theme.neutralColor(500)};
   box-shadow: ${theme.shadow('lower')};
   touch-action: pan-x;
   border-radius: 50%;
@@ -73,7 +69,7 @@ export const SliderIndicator = styled.div`
 
   background-color: ${theme.color('warning', {
     dynamic: true,
-    propName: 'color',
+    valuePropName: 'color',
   })};
   height: 4px;
   border-radius: 8px;

@@ -86,11 +86,11 @@ export const withGrid = <Props extends object>(
     const backgroundColor = React.useMemo(() => {
       switch (background) {
         case 'dark': {
-          return palette.darkBlue[900]
+          return palette.neutralBlack[900]
         }
 
         case 'light': {
-          return palette.blue[300]
+          return palette.neutralBlack[300]
         }
 
         case 'none': {
@@ -126,7 +126,9 @@ export const withGrid = <Props extends object>(
                         <ItemWrapper>
                           <WrappedComponent {...fullProps} />
                         </ItemWrapper>
-                        {item.label && <Label opacity={1}>{item.label} </Label>}
+                        {item.label && (
+                          <Label variation="title">{item.label} </Label>
+                        )}
                       </ItemContainer>
                     )
                   })}

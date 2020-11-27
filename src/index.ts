@@ -5,7 +5,7 @@
  */
 
 export { Provider, ProviderProps } from './Provider'
-export { ThemeProvider, ThemeProviderProps, DesignSystemThemePatch } from './ThemeProvider'
+export { ThemeProvider, ThemeProviderProps } from './ThemeProvider'
 
 
 /*
@@ -120,9 +120,9 @@ export { notify } from './notify'
 export { animations } from './animations'
 export { Background, BackgroundProps } from './Background'
 export { breakpoints } from './breakpoints'
-export { palette, Palette, Gradient } from './palette'
+export { palette, LimitedGradient, FullGradient } from './palette'
 export { theme, DesignSystemTheme } from './theme'
-export { useTheme } from './useTheme'
+export { useThemeVariant } from './useThemeVariant'
 
 
 /*

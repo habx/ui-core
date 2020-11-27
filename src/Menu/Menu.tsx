@@ -50,7 +50,7 @@ export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
           </MenuContext.Provider>
         )
       },
-      [children, fullScreenOnMobile, scrollable, size.width]
+      [children, fullScreenOnMobile, onClose, scrollable, size.width]
     )
 
     const setStyle = React.useCallback<Required<TogglePanelProps>['setStyle']>(

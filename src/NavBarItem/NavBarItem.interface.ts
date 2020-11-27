@@ -3,7 +3,6 @@ import * as React from 'react'
 import { styledAs } from '../_internal/types'
 
 export interface NavBarItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
-  backgroundColor?: string
   icon?: React.ReactNode
   label?: React.ReactNode
   description?: React.ReactNode

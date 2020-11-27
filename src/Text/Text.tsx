@@ -4,7 +4,7 @@ import styled, { css, StyledComponent } from 'styled-components'
 import { mapValues } from '../_internal/data'
 import { breakpoints } from '../breakpoints'
 import { fontScale, FontScale } from '../fontScale'
-import { theme } from '../theme'
+import { theme, TypographyColors } from '../theme'
 import { withMarkdown } from '../withMarkdown'
 
 import { TextProps, TextTypes } from './Text.interface'
@@ -14,11 +14,13 @@ const size = (name: keyof FontScale) => css`
   line-height: ${fontScale[name].lineHeight}px;
 `
 
-const baseTextStyle = css<{ color?: string }>`
+const baseTextStyle = css<{
+  color?: string
+  variation?: keyof TypographyColors
+}>`
   color: ${theme.textColor({
-    opacity: 0.72,
-    dynamic: true,
-    propName: 'color',
+    valuePropName: 'color',
+    variationPropName: 'variation',
   })};
 
   font-family: ${theme.font()};
@@ -53,13 +55,20 @@ const largeTextStyle = css`
   }
 `
 
-const emphasisTextStyle = css<{ color?: string }>`
+const emphasisTextStyle = css<{
+  color?: string
+  variation?: keyof TypographyColors
+}>`
   ${baseTextStyle};
 
   ${size('mars')};
   font-weight: 500;
 
-  color: ${theme.textColor({ dynamic: true, propName: 'color' })};
+  color: ${theme.textColor({
+    valuePropName: 'color',
+    variationPropName: 'variation',
+    variation: 'title',
+  })};
 `
 
 const regularTextStyle = css`

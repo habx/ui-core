@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const TabContainer = styled.button`
@@ -16,7 +15,7 @@ export const TabContainer = styled.button`
   text-decoration: none;
   border-radius: 2px;
   background-color: transparent;
-  border: 1.5px solid ${palette.darkBlue[300]};
+  border: 1.5px solid ${theme.neutralColor(300)};
   font-family: ${theme.font()};
   font-weight: 500;
   line-height: 1;
@@ -25,9 +24,7 @@ export const TabContainer = styled.button`
   padding: 0 12px;
   height: 28px;
   font-size: 12px;
-  color: ${theme.textColor({
-    opacity: 0.72,
-  })};
+  color: ${theme.textColor()};
 
   &[data-large='true'] {
     padding: 0 24px;
@@ -41,16 +38,16 @@ export const TabContainer = styled.button`
       &:hover,
       &:focus,
       &:active {
-        background-color: ${palette.darkBlue[200]};
+        background-color: ${theme.neutralColor(200)};
       }
 
       &:hover {
-        border-color: ${palette.darkBlue[200]};
+        border-color: ${theme.neutralColor(200)};
       }
 
       &:focus,
       &:active {
-        border-color: ${palette.blue[300]};
+        border-color: ${theme.color('primary', { variation: 'calm' })};
       }
 
       &:not([data-large='true']) {
@@ -73,7 +70,7 @@ export const TabContainer = styled.button`
         color: #fff;
 
         &:hover:not(:focus):not(:active) {
-          color: ${theme.textColor({ opacity: 0.72, useRootTheme: true })};
+          color: ${theme.textColor({ useRootTheme: true })};
           background-color: rgba(255, 255, 255, 0.7);
           border-color: transparent;
         }
@@ -85,7 +82,7 @@ export const TabContainer = styled.button`
     }
 
     &:disabled {
-      color: ${palette.darkBlue[300]};
+      color: ${theme.neutralColor(300)};
 
       &[data-background='true'] {
         color: rgba(255, 255, 255, 0.3);
@@ -97,7 +94,7 @@ export const TabContainer = styled.button`
   &[data-active='true'] {
     border: none;
     color: ${theme.color('primary', { useRootTheme: true })};
-    background-color: ${palette.blue[200]};
+    background-color: ${theme.color('primary', { variation: 'calm' })};
     padding: 0 13.5px;
 
     &[data-large='true'] {
@@ -106,7 +103,7 @@ export const TabContainer = styled.button`
 
     &[data-background='true'] {
       background-color: #fff;
-      color: ${theme.textColor({ opacity: 0.72, useRootTheme: true })};
+      color: ${theme.textColor({ useRootTheme: true })};
     }
   }
 

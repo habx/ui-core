@@ -1,8 +1,7 @@
-import colorUtils from 'color'
 import styled, { css } from 'styled-components'
 
+import { fadeColor, stringifyColor } from '../_internal/theme/color'
 import { fontScale } from '../fontScale'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 export const Placeholder = styled.div`
@@ -19,7 +18,7 @@ export const IconsContainer = styled.div`
   align-items: center;
   height: 100%;
   position: relative;
-  color: ${theme.textColor({ opacity: 0.6, useRootTheme: true })};
+  color: ${theme.textColor({ useRootTheme: true })};
 
   span {
     font-size: 18px;
@@ -46,9 +45,9 @@ export const SelectContainer = styled.div`
   background-color: var(--select-background-color);
 
   --select-height: 48px;
-  --select-background-color: ${palette.darkBlue[200]};
+  --select-background-color: ${theme.neutralColor(200)};
   --select-border-width: 0;
-  --select-border-color: ${palette.darkBlue[200]};
+  --select-border-color: ${theme.neutralColor(200)};
 
   &[data-small='true'] {
     --select-height: 36px;
@@ -66,21 +65,24 @@ export const SelectContainer = styled.div`
 
     &[data-background='true'] {
       --select-background-color: #fff;
-      --select-border-color: ${palette.darkBlue[200]};
+      --select-border-color: ${theme.neutralColor(200)};
     }
 
     ${({ color }) =>
       color &&
       css`
-        --select-background-color: ${colorUtils(color).fade(0.85).string()};
-        --select-border-color: ${colorUtils(color).fade(0.75).string()};
+        --select-background-color: ${stringifyColor(fadeColor(color, 0.15))};
+        --select-border-color: ${stringifyColor(fadeColor(color, 0.25))};
       `};
 
     & ${Placeholder} {
-      color: ${theme.textColor({ useRootTheme: true, propName: 'color' })};
+      color: ${theme.textColor({ useRootTheme: true, valuePropName: 'color' })};
 
       &[data-empty='true'] {
-        color: ${theme.textColor({ opacity: 0.6, useRootTheme: true })};
+        color: ${theme.textColor({
+          useRootTheme: true,
+          variation: 'lowContrast',
+        })};
       }
     }
   }
@@ -91,7 +93,7 @@ export const SelectContainer = styled.div`
     padding: 0 12px;
 
     & ${Placeholder}:not([data-empty='true']) {
-      color: ${theme.color('primary', { propName: 'color' })};
+      color: ${theme.color('primary', { valuePropName: 'color' })};
     }
   }
 
@@ -99,7 +101,7 @@ export const SelectContainer = styled.div`
 
   &:disabled,
   &[data-disabled='true'] {
-    color: ${palette.darkBlue[700]};
+    color: ${theme.textColor()};
     pointer-events: none;
 
     &:not([data-light='true']) {
@@ -113,14 +115,17 @@ export const SelectContainer = styled.div`
 
     &::placeholder,
     ${Placeholder} {
-      color: ${theme.textColor({ opacity: 0.4, useRootTheme: true })};
+      color: ${theme.textColor({
+        variation: 'lowContrast',
+        useRootTheme: true,
+      })};
     }
   }
 
   &:hover,
   &:focus,
   &[data-open='true'] {
-    --select-border-color: ${palette.darkBlue[300]};
+    --select-border-color: ${theme.neutralColor(300)};
 
     & ${IconsContainer} {
       color: ${theme.textColor({ useRootTheme: true })};
@@ -130,7 +135,7 @@ export const SelectContainer = styled.div`
   &:focus,
   &[data-open='true'] {
     &[data-light='true'] {
-      background-color: ${palette.darkBlue[200]};
+      background-color: ${theme.neutralColor(200)};
     }
 
     &:not([data-light='true']) {

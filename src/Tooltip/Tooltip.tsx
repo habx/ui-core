@@ -3,8 +3,8 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { isClientSide } from '../_internal/ssr'
-import { palette } from '../palette'
 import { Text } from '../Text'
+import { useThemeVariant } from '../useThemeVariant'
 
 import { useTooltip, useOnlyOneTooltipOpened } from './Tooltip.hooks'
 import { TooltipProps, TooltipVisibilityState } from './Tooltip.interface'
@@ -24,6 +24,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
     } = props
 
     const [state, actions, refs] = useTooltip(props, ref, triggerRef)
+    const theme = useThemeVariant()
 
     const isOpen = state.visibilityState === TooltipVisibilityState.Visible
     const modal = useModal<HTMLDivElement>({
@@ -102,14 +103,16 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
             <TooltipContainer
               ref={refs.tooltip}
               backgroundColor={
-                backgroundStyle === 'light' ? '#FFFFFF' : palette.darkBlue[700]
+                backgroundStyle === 'light'
+                  ? theme.neutralColor[100]
+                  : theme.neutralColor[700]
               }
               data-has-description={!!description}
               data-state={modal.state}
               style={state.position}
               {...rest}
             >
-              <Text opacity={1} type={small ? 'caption' : 'regular'}>
+              <Text variation="title" type={small ? 'caption' : 'regular'}>
                 {title}
               </Text>
               {description && (

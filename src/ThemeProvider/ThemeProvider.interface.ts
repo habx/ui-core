@@ -1,17 +1,17 @@
 import * as React from 'react'
 
-import { ColorFamilies, Fonts, Shadows } from '../theme/theme.interface'
+import { Color } from '../_internal/theme/color'
+import { ThemeVariant } from '../theme'
 
-export interface DesignSystemThemePatch {
-  colors?: Partial<ColorFamilies>
-  fonts?: Partial<Fonts>
-  shadows?: Partial<Shadows>
-  backgroundColor?: string
-  isDark?: boolean
-}
+type PartialRecursive<T> = T extends object
+  ? { [K in keyof T]?: PartialRecursive<T[K]> }
+  : T
 
 export interface ThemeProviderProps {
-  theme?: DesignSystemThemePatch
-  backgroundColor?: string
+  theme: {
+    backgroundColor?: Color
+    light?: PartialRecursive<ThemeVariant>
+    dark?: PartialRecursive<ThemeVariant>
+  }
   children?: React.ReactNode
 }

@@ -18,7 +18,7 @@ describe('NavBar component', () => {
 
   it('should render each NavBarItem', async () => {
     const { queryAllByTestId } = render(
-      <NavBar>
+      <NavBar backgroundColor="#FFFFFF">
         <NavBarItem />
         <NavBarItem />
       </NavBar>
@@ -30,7 +30,7 @@ describe('NavBar component', () => {
   it('should not log a warning if NavBarItem is called with an NavBar parent', () => {
     const logWarnStub = sinonSandbox.stub(validityCheck, 'logWarn')
     render(
-      <NavBar>
+      <NavBar backgroundColor="#FFFFFF">
         <NavBarItem />
       </NavBar>
     )

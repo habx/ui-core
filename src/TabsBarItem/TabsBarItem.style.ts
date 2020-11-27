@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 
-import { palette } from '../palette'
 import { theme } from '../theme'
+
 export const TabsBarItemContainer = styled.li`
-  --tabs-bar-item-color: ${theme.color('secondary', { opacity: 0.72 })};
+  --tabs-bar-item-color: ${theme.textColor()};
   --tabs-bar-item-active-color: ${theme.color('primary')};
 
   font-family: ${theme.font()};
@@ -40,8 +40,8 @@ export const TabsBarItemContainer = styled.li`
   }
 
   &[data-disabled='true'] {
-    --tabs-bar-item-color: ${palette.darkBlue[400]};
-    --tabs-bar-item-active-color: ${palette.darkBlue[400]};
+    --tabs-bar-item-color: ${theme.neutralColor(400)};
+    --tabs-bar-item-active-color: ${theme.neutralColor(400)};
     pointer-events: none;
   }
 `

@@ -3,8 +3,8 @@ import styled, { css, StyledComponent } from 'styled-components'
 
 import { mapValues } from '../_internal/data'
 import { useUniqID } from '../_internal/useUniqId'
-import { palette } from '../palette'
 import { Text, RawTextComponents, TextProps, TextTypes } from '../Text'
+import { theme } from '../theme'
 import { withMarkdown } from '../withMarkdown'
 
 import { WithLabel, WithSemanticLabel } from './withLabel.interface'
@@ -31,7 +31,7 @@ const labelStyle = css`
   margin: auto 0;
 
   &[data-disabled='true'] {
-    color: ${palette.darkBlue[400]};
+    color: ${theme.neutralColor(400)};
   }
 
   [data-orientation='vertical'] > & {
@@ -97,7 +97,7 @@ export const withLabel = <RefElement extends HTMLElement>({
         >
           <LabelContainer
             type={labelType}
-            opacity={1}
+            variation="title"
             warning={rest.error}
             data-disabled={rest.disabled}
             markdown
@@ -136,7 +136,7 @@ export const withSemanticLabel = <RefElement extends HTMLElement>({
             data-disabled={props.disabled}
             data-testid={testid}
             htmlFor={fieldId}
-            opacity={1}
+            variation="title"
             warning={props.error}
           >
             <Markdown markdown>{label}</Markdown>

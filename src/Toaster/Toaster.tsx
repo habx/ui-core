@@ -3,7 +3,7 @@ import Swipe from 'react-easy-swipe'
 
 import { useMergedRef } from '../_internal/useMergedRef'
 import { Icon } from '../Icon'
-import { useTheme } from '../useTheme'
+import { useThemeVariant } from '../useThemeVariant'
 
 import { NotificationProps } from './Toaster.interface'
 import {
@@ -24,7 +24,7 @@ export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
       markdown,
       ...rest
     } = props
-    const theme = useTheme()
+    const theme = useThemeVariant()
     const containerRef = useMergedRef(ref)
 
     const handleSeeMore = () => {
@@ -60,7 +60,7 @@ export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
           )}
           <ToasterText
             data-testid="notification-text"
-            opacity={1}
+            variation="title"
             markdown={markdown}
           >
             {message}

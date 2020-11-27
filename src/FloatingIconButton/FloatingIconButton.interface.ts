@@ -1,13 +1,29 @@
-import { Button, styledAs } from '../_internal/types'
+import * as React from 'react'
+
+import { styledAs, ThemeOverridesProps } from '../_internal/types'
 import { IconProps } from '../Icon'
 
 export interface FloatingIconButtonProps
-  extends Omit<Button, 'large' | 'small'>,
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    Pick<ThemeOverridesProps, 'error'>,
     Pick<IconProps, 'icon' | 'colored'> {
   position?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right'
   fixed?: boolean
+
+  /**
+   * outline style activation
+   */
+  outline?: boolean
+
+  /**
+   * disabled style activation
+   */
+  disabled?: boolean
+
+  /**
+   * small style activation
+   */
   small?: boolean
-  secondary?: boolean
 
   /**
    * @ignore

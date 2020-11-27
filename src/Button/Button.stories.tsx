@@ -12,64 +12,76 @@ const GRID_PROPS = {
 
 const GRID_LINES = [
   {
-    title: 'Solid + Regular',
+    title: 'Solid',
   },
   {
-    title: 'Solid + Small',
-    props: { small: true },
-  },
-  {
-    title: 'Solid + Large',
-    props: { large: true },
-  },
-  {
-    title: 'Outline + Regular',
+    title: 'Outline',
     props: { outline: true },
   },
   {
-    title: 'Outline + Small',
-    props: { outline: true, small: true },
+    title: 'Ghost',
+    props: { ghost: true },
   },
   {
-    title: 'Outline + Large',
-    props: { outline: true, large: true },
-  },
-  {
-    title: 'Link + Regular',
+    title: 'Link',
     props: { link: true },
   },
   {
-    title: 'Link + Small',
-    props: { link: true, small: true },
+    title: 'Solid (secondary)',
+    props: { secondary: true },
   },
   {
-    title: 'Link + Large',
-    props: { link: true, large: true },
+    title: 'Ghost (secondary)',
+    props: { ghost: true, secondary: true },
+  },
+  {
+    title: 'Link (secondary)',
+    props: { link: true, secondary: true },
+  },
+  {
+    title: 'Solid (error)',
+    props: { error: true },
+  },
+  {
+    title: 'Solid (small)',
+    props: { small: true },
+  },
+  {
+    title: 'Outline (small)',
+    props: { outline: true, small: true },
+  },
+  {
+    title: 'Ghost (small)',
+    props: { ghost: true, small: true },
+  },
+  {
+    title: 'Link (small)',
+    props: { link: true, small: true },
   },
 ]
 
 const GRID_ITEMS = [
-  {},
   {
+    label: 'Normal',
+  },
+  {
+    label: 'Disabled',
     props: { disabled: true },
   },
   {
+    label: 'Element left',
     props: {
-      elementLeft: <Icon icon="arrow-east" />,
+      elementLeft: <Icon icon="magicstick-outline" />,
     },
   },
   {
+    label: 'Element right',
     props: {
-      elementRight: <Icon icon="arrow-east" />,
+      elementRight: <Icon icon="magicstick-outline" />,
     },
   },
   {
-    props: {
-      warning: true,
-      children: 'Supprimer',
-    },
-  },
-  {
+    label: 'Loading',
     props: { loading: true },
   },
 ]

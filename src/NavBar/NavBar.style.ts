@@ -4,6 +4,7 @@ import {
   ANIMATION_DURATIONS,
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
+import { Background } from '../Background'
 import { theme } from '../theme'
 
 const EXPANDED_SIZE = 250
@@ -18,6 +19,7 @@ export const NavBarToggleButton = styled.button`
   font-size: 24px;
   margin-left: auto;
   margin-right: auto;
+  color: ${theme.textColor()};
 `
 
 export const GeometricalShapesContainer = styled.div`
@@ -40,7 +42,7 @@ export const TitleContainer = styled.div`
   align-items: baseline;
 `
 
-export const NavBarAbsoluteContainer = styled.div`
+export const NavBarAbsoluteContainer = styled(Background)`
   position: absolute;
   height: 100%;
 `
@@ -56,10 +58,7 @@ export const NavBarFakeContainer = styled.div`
   }
 `
 
-export const NavBarContainer = styled.ul<{
-  color?: string
-  backgroundColor?: string
-}>`
+export const NavBarContainer = styled.ul<{ backgroundColor: string }>`
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -72,9 +71,7 @@ export const NavBarContainer = styled.ul<{
   flex-direction: column;
   transition: width ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
   font-family: ${theme.font()};
-
-  background-color: ${({ backgroundColor }) => backgroundColor};
-  color: ${({ color }) => color};
+  background: ${(props) => props.backgroundColor};
 
   &[data-hover-icon='true'] {
     width: ${DEFAULT_SIZE + 6}px;
@@ -82,10 +79,6 @@ export const NavBarContainer = styled.ul<{
 
   &[data-expanded='true'] {
     width: ${EXPANDED_SIZE}px;
-  }
-
-  & ${NavBarToggleButton} {
-    color: ${({ color }) => color};
   }
 `
 

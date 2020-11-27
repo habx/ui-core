@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { NavBarContextProps } from './NavBar.interface'
+import { NavBarContextValue } from './NavBar.interface'
 
 const DEFAULT_CONTEXT = {
   isInsideANavBar: false,
@@ -10,6 +10,6 @@ const DEFAULT_CONTEXT = {
   color: '#FFFFFF',
 }
 
-export const NavBarContext = React.createContext<NavBarContextProps>(
+export const NavBarContext = React.createContext<NavBarContextValue>(
   DEFAULT_CONTEXT
 )
