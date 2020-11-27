@@ -1,4 +1,4 @@
-import { Color } from '../_internal/theme/color'
+import { Color } from '../color'
 import { FullGradient } from '../palette'
 
 export interface ColorVariations {

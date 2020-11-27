@@ -1,4 +1,4 @@
-import parse, { ParsedColor } from 'color-parse'
+import parse, { ParsedColor, ParsedColorValue } from 'color-parse'
 
 export type Color = string | ParsedColor
 
@@ -34,13 +34,33 @@ export const stringifyColor = (color: Color): string => {
   return color as string
 }
 
-export const fadeColor = (color: Color, opacity: number): ParsedColor => {
+export const applyOpacityToColor = (
+  color: Color,
+  opacity: number
+): ParsedColor => {
   const parsedColor = parseColor(color)
 
   return {
     ...parsedColor,
     alpha: parsedColor.alpha * opacity,
   }
+}
+
+export const lightenColor = (color: Color, ratio: number): ParsedColor => {
+  const parsedColor = parseColor(color)
+
+  if (parsedColor.space === 'rgb') {
+    return {
+      ...parsedColor,
+      values: parsedColor.values.map(
+        (value) => value + (255 - value) * ratio
+      ) as ParsedColorValue,
+    }
+  }
+
+  throw Error(
+    'lightenColor only handle colors with an rgb space (hex, rgb, rgba)'
+  )
 }
 
 export const isColorDark = (color: Color): boolean => {

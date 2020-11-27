@@ -29,7 +29,7 @@ export const withMarkdown = <
     }
 
     & h2 {
-      ${titleStyles.article};
+      ${titleStyles.headerSmall};
     }
 
     & h3 {

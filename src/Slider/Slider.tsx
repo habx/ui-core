@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { clamp, isFunction, isNil } from '../_internal/data'
-import { stringifyColor } from '../_internal/theme/color'
+import { stringifyColor } from '../color'
 import { Text } from '../Text'
 import { useThemeVariant } from '../useThemeVariant'
 import { withLabel } from '../withLabel'

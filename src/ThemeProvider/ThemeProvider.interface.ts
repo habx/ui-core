@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { Color } from '../_internal/theme/color'
+import { Color } from '../color'
 import { ThemeVariant } from '../theme'
 
 type PartialRecursive<T> = T extends object

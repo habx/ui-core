@@ -1,6 +1,6 @@
 import { isNil } from '../_internal/data'
-import { Color, stringifyColor, fadeColor } from '../_internal/theme/color'
 import { ThemeOverridesProps } from '../_internal/types'
+import { Color, stringifyColor, applyOpacityToColor } from '../color'
 import { FullGradient, palette } from '../palette'
 
 import { DEFAULT_THEME } from './theme.data'
@@ -147,7 +147,7 @@ const colorGetter = <Props extends GetterProps>(
 
     const opacity = props.opacity ?? config.opacity ?? 1
     if (opacity !== 1) {
-      color = fadeColor(color, opacity)
+      color = applyOpacityToColor(color, opacity)
     }
     return stringifyColor(color)
   }

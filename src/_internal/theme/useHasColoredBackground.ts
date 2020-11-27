@@ -1,4 +1,5 @@
-import { stringifyColor } from './color'
+import { stringifyColor } from '../../color'
+
 import { useCurrentBackground } from './useCurrentBackground'
 
 export const useHasColoredBackground = () => {
