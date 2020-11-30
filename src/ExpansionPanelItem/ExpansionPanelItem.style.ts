@@ -20,12 +20,14 @@ export const ExpansionPanelItemContainer = styled.div`
       &:hover {
         border-color: ${theme.neutralColor(700)};
       }
+
       &[data-state='opened'],
       &[data-state='opening'] {
-        border-color: ${theme.neutralColor(700)};
+        border-color: ${theme.color('primary')};
       }
     }
   }
+
   &[data-disabled='true'] {
     pointer-events: none;
     opacity: 0.7;

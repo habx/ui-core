@@ -38,7 +38,7 @@ export const nested = () => (
       <Component
         backgroundColor={palette.yellowSunlight[200]}
         setStyle={(_, triggerDimensions) => ({
-          left: triggerDimensions.right,
+          left: triggerDimensions.right + 8,
           top: triggerDimensions.top,
           width: 300,
         })}

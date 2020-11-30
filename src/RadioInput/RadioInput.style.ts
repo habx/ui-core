@@ -17,7 +17,7 @@ export const FakeInput = styled.label`
   min-width: var(--radio-input-diameter);
   height: var(--radio-input-diameter);
   border-radius: 50%;
-  background: ${theme.neutralColor(1000)};
+  background: #fff;
   border: solid var(--radio-input-border-width) transparent;
   transition: all 150ms ease-in-out;
   display: flex;
@@ -85,22 +85,22 @@ export const Input = styled.input`
 
   &[data-error='true'] {
     &:not(:checked) + ${FakeInput} {
-      border-color: ${theme.color('warning')};
+      border-color: ${theme.color('error')};
     }
 
     & + ${FakeInput}:active, &:checked + ${FakeInput}:focus {
-      border-color: ${theme.color('warning')};
+      border-color: ${theme.color('error')};
     }
 
     &:checked + ${FakeInput} {
       & ${InnerCircle} {
-        background-color: ${theme.color('warning')};
+        background-color: ${theme.color('error')};
       }
     }
 
     &:not([data-background='true']) {
       &:checked + ${FakeInput} {
-        border-color: ${theme.color('warning')};
+        border-color: ${theme.color('error')};
 
         &:hover {
           border-color: ${theme.color('error')};
@@ -145,7 +145,7 @@ export const FakeInputContainer = styled.span`
   position: relative;
 
   --radio-input-diameter: 24px;
-  --radio-input-border-width: 1.5px;
+  --radio-input-border-width: 2px;
   --radio-input-border-width-hover: 3px;
   --radio-input-border-width-focus: 4px;
   --radio-input-border-width-checked-focus: 3px;

@@ -87,23 +87,23 @@ export const ToggleContainer = styled.div`
   }
 
   &[data-error='true'] {
-    background-color: ${theme.color('warning', { opacity: 0.6 })};
+    background-color: ${theme.color('error', { opacity: 0.6 })};
 
     &::after {
-      background-color: ${theme.color('warning')};
+      background-color: ${theme.color('error')};
       border-color: #fff;
     }
 
     &:hover::after {
-      background-color: ${theme.color('warning', { variation: 'loud' })};
+      background-color: ${theme.color('error', { variation: 'loud' })};
     }
 
     &:focus::after {
-      background-color: ${theme.color('warning', { variation: 'louder' })};
+      background-color: ${theme.color('error', { variation: 'louder' })};
     }
 
     &:active::after {
-      background-color: ${theme.color('warning', { variation: 'louder' })};
+      background-color: ${theme.color('error', { variation: 'louder' })};
     }
   }
 
