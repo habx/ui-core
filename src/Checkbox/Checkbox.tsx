@@ -19,7 +19,7 @@ const InnerCheckbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
       <>
         <FakeInputContainer
           data-background={hasBackground}
-          data-error={error}
+          error={error}
           data-small={small}
         >
           <Input
@@ -29,7 +29,7 @@ const InnerCheckbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
             data-testid="checkboxInput"
             type="checkbox"
           />
-          <FakeInput />
+          <FakeInput data-error={error} />
           <CheckIcon icon="check" />
         </FakeInputContainer>
         {children}
