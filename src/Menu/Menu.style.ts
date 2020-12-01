@@ -1,13 +1,17 @@
 import styled from 'styled-components'
 
+import { Background } from '../Background'
 import { theme } from '../theme'
+
+export const FloatingMenuContainer = styled(Background)`
+  background-color: ${theme.color('background', { useRootTheme: true })};
+  box-shadow: ${theme.shadow()};
+  border-radius: 4px;
+`
 
 export const FloatingMenu = styled.ul`
   margin: 0;
   padding: 8px 0;
-  background-color: ${theme.color('background', { useRootTheme: true })};
-  box-shadow: ${theme.shadow()};
-  border-radius: 4px;
 
   &[data-scrollable='true'] {
     max-height: 324px;

@@ -181,7 +181,6 @@ export const ButtonContainer = styled.button`
       color: ${theme.color('secondary', {
         variation: 'louder',
         opacity: 0.45,
-        useRootTheme: true,
       })};
     }
 

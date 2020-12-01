@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { ThemeOverridesProps } from '../_internal/types'
+import { ANIMATION_DURATIONS } from '../animations'
 import { theme } from '../theme'
 
 export const MenuLineContainer = styled.li`
@@ -8,7 +9,7 @@ export const MenuLineContainer = styled.li`
 
   display: flex;
   align-items: center;
-  transition: all 150ms ease-in-out;
+  transition: all ${ANIMATION_DURATIONS.xs}ms ease-in-out;
   white-space: nowrap;
 
   &:not([data-active='true']) {

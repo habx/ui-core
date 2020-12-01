@@ -2,6 +2,7 @@ import { Modal } from '@delangle/use-modal'
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
+import { useCurrentBackground } from '../_internal/theme/useCurrentBackground'
 import { buildUseOnlyOpenedInstanceHook } from '../_internal/useOnlyOpenedInstance'
 import { useWindowSize } from '../_internal/useWindowSize'
 import { breakpoints } from '../breakpoints'
@@ -10,9 +11,13 @@ import { withTriggerElement } from '../withTriggerElement'
 
 import { MenuContext } from './Menu.context'
 import { MenuInstance, InnerMenuProps } from './Menu.interface'
-import { FloatingMenu, FullScreenMenu } from './Menu.style'
+import {
+  FloatingMenuContainer,
+  FloatingMenu,
+  FullScreenMenu,
+} from './Menu.style'
 
-const TRIGGER_MARGIN = 12
+const TRIGGER_MARGIN = 8
 
 const useOnlyOneMenuOpened = buildUseOnlyOpenedInstanceHook<MenuInstance>()
 
@@ -33,6 +38,7 @@ export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
     useOnlyOneMenuOpened({ open, onClose })
 
     const size = useWindowSize()
+    const background = useCurrentBackground({ useRootTheme: true })
 
     const getChildren = React.useCallback(
       (modal: Modal<HTMLDivElement>) => {
@@ -43,14 +49,23 @@ export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
             {fullScreenOnMobile && size.width < breakpoints.raw.phone ? (
               <FullScreenMenu>{content}</FullScreenMenu>
             ) : (
-              <FloatingMenu data-scrollable={scrollable}>
-                {content}
-              </FloatingMenu>
+              <FloatingMenuContainer backgroundColor={background}>
+                <FloatingMenu data-scrollable={scrollable}>
+                  {content}
+                </FloatingMenu>
+              </FloatingMenuContainer>
             )}
           </MenuContext.Provider>
         )
       },
-      [children, fullScreenOnMobile, onClose, scrollable, size.width]
+      [
+        background,
+        children,
+        fullScreenOnMobile,
+        onClose,
+        scrollable,
+        size.width,
+      ]
     )
 
     const setStyle = React.useCallback<Required<TogglePanelProps>['setStyle']>(
@@ -118,4 +133,6 @@ export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
   }
 )
 
-export const Menu = withTriggerElement({ forwardRef: true })(InnerMenu)
+export const Menu = withTriggerElement<HTMLDivElement>({ forwardRef: true })(
+  InnerMenu
+)

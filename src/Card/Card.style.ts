@@ -23,7 +23,6 @@ export const CardContainer = styled(Layout)`
   &[data-animated='true'] {
     &:hover {
       cursor: pointer;
-      transform: translateY(-4px);
 
       &:not([data-flat='true']) {
         box-shadow: ${theme.shadow('low', { hover: true })};

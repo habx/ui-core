@@ -15,7 +15,7 @@ export const Container = styled.div`
   }
 
   &[data-state='opening'] {
-    animation: ${animations('emergeSlantFromBottom')};
+    animation: ${animations('emerge')};
   }
 
   &[data-state='closing'] {

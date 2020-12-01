@@ -8,8 +8,9 @@ import { useWindowSize } from '../_internal/useWindowSize'
 import { ANIMATION_DURATIONS } from '../animations'
 import { breakpoints } from '../breakpoints'
 import { Modal } from '../Modal'
-import { WithTriggerElement, withTriggerElement } from '../withTriggerElement'
+import { withTriggerElement } from '../withTriggerElement'
 
+import { InnerTogglePanelProps } from './TogglePanel.interface'
 import { Container, Overlay } from './TogglePanel.style'
 
 const Context = React.createContext<ModalType<HTMLDivElement> | null>(null)
@@ -41,7 +42,7 @@ const InnerTogglePanel = React.forwardRef<
       onClose,
       persistent: false,
       animated: true,
-      animationDuration: ANIMATION_DURATIONS.m,
+      animationDuration: ANIMATION_DURATIONS.l,
     })
 
     const updateStyle = React.useCallback(() => {
@@ -136,36 +137,3 @@ const InnerTogglePanel = React.forwardRef<
 export const TogglePanel = withTriggerElement({ forwardRef: true })(
   InnerTogglePanel
 )
-
-export interface InnerTogglePanelProps
-  extends React.HtmlHTMLAttributes<HTMLDivElement> {
-  children?:
-    | React.ReactNode
-    | ((modal: ModalType<HTMLDivElement>) => React.ReactNode)
-  fullScreenOnMobile?: boolean
-  onClose: () => void
-  onOpen?: () => void
-  open: boolean
-  setStyle?: (
-    dimensions: Dimensions,
-    triggerDimensions: Dimensions
-  ) => React.CSSProperties
-  triggerRef?: React.RefObject<HTMLElement | null>
-  withOverlay?: boolean
-}
-
-export type TogglePanelProps = WithTriggerElement<
-  InnerTogglePanelProps,
-  HTMLDivElement
->
-
-export interface Dimensions {
-  bottom: number
-  clientHeight: number
-  clientWidth: number
-  height: number
-  left: number
-  right: number
-  top: number
-  width: number
-}
