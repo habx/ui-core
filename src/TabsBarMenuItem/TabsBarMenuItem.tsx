@@ -6,13 +6,16 @@ import { TabsBarItem } from '../TabsBarItem'
 import { TabsBarMenuItemProps } from './TabsBarMenuItem.interface'
 
 export const TabsBarMenuItem = React.forwardRef<
-  HTMLUListElement,
+  HTMLLIElement,
   TabsBarMenuItemProps
 >(({ children, label, ...props }, ref) => (
   <Menu
     position="vertical"
-    ref={ref}
-    triggerElement={<TabsBarItem {...props}>{label}</TabsBarItem>}
+    triggerElement={
+      <TabsBarItem {...props} ref={ref}>
+        {label}
+      </TabsBarItem>
+    }
   >
     {children}
   </Menu>

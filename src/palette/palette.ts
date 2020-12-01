@@ -117,7 +117,7 @@ export const palette = {
   neutralWhiteWithOpacityFading: NEUTRAL_WHITE_WITH_OPACITY_FADING,
   neutralBlackWithIntensityFading: NEUTRAL_BLACK_WITH_INTENSITY_FADING,
   neutralWhiteWithIntensityFading: NEUTRAL_WHITE_WITH_INTENSITY_FADING,
-  razzmatazzRed: RAZZMATAZZ_RED,
-  emeraldGreen: EMERALD_GREEN,
-  goldenYellow: GOLDEN_YELLOW,
+  redRazzmatazz: RAZZMATAZZ_RED,
+  greenEmerald: EMERALD_GREEN,
+  yellowGolden: GOLDEN_YELLOW,
 }

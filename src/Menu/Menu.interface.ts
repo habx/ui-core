@@ -1,5 +1,4 @@
-import { TogglePanelProps } from '../TogglePanel'
-import { Dimensions } from '../TogglePanel/TogglePanel'
+import { TogglePanelProps, Dimensions } from '../TogglePanel'
 import { WithTriggerElement } from '../withTriggerElement'
 
 export interface MenuInstance {

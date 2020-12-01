@@ -56,7 +56,7 @@ export const useAutocomplete = ({
     activeOptionIndex: null,
   })
 
-  const menuRef = React.useRef<HTMLUListElement>(null)
+  const menuRef = React.useRef<HTMLDivElement>(null)
 
   const visibleOptions = React.useMemo(
     () =>

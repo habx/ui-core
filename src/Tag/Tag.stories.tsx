@@ -47,13 +47,13 @@ const GRID_ITEMS = [
   {
     label: 'Element left',
     props: {
-      elementLeft: <Icon icon="close" />,
+      elementLeft: <Icon icon="close" style={{ cursor: 'pointer' }} />,
     },
   },
   {
     label: 'Element right',
     props: {
-      elementRight: <Icon icon="close" />,
+      elementRight: <Icon icon="close" style={{ cursor: 'pointer' }} />,
     },
   },
 ]

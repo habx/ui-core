@@ -3,8 +3,8 @@ import { ThemeContext } from 'styled-components'
 
 import { getCurrentBackground, StyledTheme } from '../../theme'
 
-export const useCurrentBackground = () => {
+export const useCurrentBackground = (config?: { useRootTheme?: boolean }) => {
   const theme = React.useContext<StyledTheme>(ThemeContext)
 
-  return getCurrentBackground({ theme })
+  return getCurrentBackground({ theme }, config)
 }
