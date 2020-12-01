@@ -41,7 +41,7 @@ export const ModalContainer = styled(Layout)`
     width: var(--modal-width);
     max-width: calc(100vw - 48px);
     max-height: calc(100vh - 96px);
-    border-radius: 2px;
+    border-radius: 6px;
 
     --layout-left-padding: 36px;
     --layout-right-padding: 36px;
