@@ -36,7 +36,7 @@ export const ButtonContainer = styled.button`
   vertical-align: middle;
   text-align: left;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 4px;
   font-weight: 500;
   position: relative;
 

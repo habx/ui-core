@@ -16,7 +16,7 @@ export const BreadcrumbItemContainer = styled.li`
   font-weight: normal;
 
   padding: 6px 12px;
-  border-radius: 2px;
+  border-radius: 4px;
 
   transition: background ease-in-out 150ms;
 
@@ -34,6 +34,7 @@ export const BreadcrumbItemContainer = styled.li`
     overflow: visible;
     color: ${theme.neutralColor(900)};
   }
+
   &:not(:last-child) {
     color: ${theme.neutralColor(700)};
   }
