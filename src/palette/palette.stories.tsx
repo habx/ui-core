@@ -1,8 +1,8 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+import { Text } from '../Text'
 import { theme } from '../theme'
-import { Title } from '../Title'
 
 import { palette } from './palette'
 
@@ -17,12 +17,12 @@ const Line = styled.div`
   align-items: center;
 `
 
-const ColorLabel = styled(Title)`
-  width: 170px;
+const ColorLabel = styled(Text)`
+  width: 250px;
 `
 
 const Color = styled.div`
-  width: 100px;
+  width: 90px;
   padding: 24px 0;
   display: flex;
   flex-direction: column;
@@ -45,7 +45,7 @@ export const gallery = () => (
   <Container>
     {Object.entries(palette).map(([colorName, colorGradient]) => (
       <Line>
-        <ColorLabel type="section">{colorName}</ColorLabel>
+        <ColorLabel variation="title">{colorName}</ColorLabel>
         {Object.values(colorGradient)
           .reverse()
           .map((color, index) => (
