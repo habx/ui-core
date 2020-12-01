@@ -1,2 +1,2 @@
 export { TogglePanel } from './TogglePanel'
-export type { TogglePanelProps } from './TogglePanel.interface'
+export type { TogglePanelProps, Dimensions } from './TogglePanel.interface'

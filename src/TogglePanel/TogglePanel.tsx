@@ -134,6 +134,6 @@ const InnerTogglePanel = React.forwardRef<
   }
 )
 
-export const TogglePanel = withTriggerElement({ forwardRef: true })(
-  InnerTogglePanel
-)
+export const TogglePanel = withTriggerElement<HTMLDivElement>({
+  forwardRef: true,
+})(InnerTogglePanel)
