@@ -1,7 +1,7 @@
 import { isNil } from '../_internal/data'
 import { ThemeOverridesProps } from '../_internal/types'
 import { Color, stringifyColor, applyOpacityToColor } from '../color'
-import { FullGradient, palette } from '../palette'
+import { Gradient, palette } from '../palette'
 
 import { DEFAULT_THEME } from './theme.data'
 import {
@@ -155,7 +155,7 @@ const colorGetter = <Props extends GetterProps>(
 }
 
 const neutralColorGetter = <Props extends GetterProps>(
-  strength: keyof FullGradient,
+  strength: keyof Gradient,
   config: NeutralColorGetterConfig = {}
 ) => (props: Props) => {
   const { gradient = 'withOpacityFading' } = config

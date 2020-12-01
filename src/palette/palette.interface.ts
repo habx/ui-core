@@ -1,4 +1,5 @@
-export interface FullGradient {
+export interface Gradient {
+  0: string
   100: string
   200: string
   300: string
@@ -9,12 +10,4 @@ export interface FullGradient {
   800: string
   900: string
   1000: string
-}
-
-export interface LimitedGradient {
-  100: string
-  200: string
-  500: string
-  700: string
-  800: string
 }
