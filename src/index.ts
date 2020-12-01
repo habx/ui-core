@@ -121,7 +121,7 @@ export { animations } from './animations'
 export { Background, BackgroundProps } from './Background'
 export { breakpoints } from './breakpoints'
 export { palette, Gradient } from './palette'
-export { theme, DesignSystemTheme } from './theme'
+export { theme, DesignSystemTheme, DEFAULT_THEME } from './theme'
 export { useThemeVariant } from './useThemeVariant'
 
 
