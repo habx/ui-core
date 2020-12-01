@@ -56,7 +56,7 @@ const GOLDEN_YELLOW: LimitedGradient = {
   800: '#473300',
 }
 
-const NEUTRAL_BLACK_OPACITY: FullGradient = {
+const NEUTRAL_BLACK_WITH_OPACITY_FADING: FullGradient = {
   100: '#FAFAFB',
   200: 'rgba(24, 20, 31, 0.05)',
   300: 'rgba(24, 20, 31, 0.15)',
@@ -69,7 +69,7 @@ const NEUTRAL_BLACK_OPACITY: FullGradient = {
   1000: '#18141F',
 }
 
-const NEUTRAL_WHITE_OPACITY: FullGradient = {
+const NEUTRAL_WHITE_WITH_OPACITY_FADING: FullGradient = {
   100: 'rgba(255, 255, 255, 0.07)',
   200: 'rgba(255, 255, 255, 0.2)',
   300: 'rgba(255, 255, 255, 0.3)',
@@ -82,7 +82,7 @@ const NEUTRAL_WHITE_OPACITY: FullGradient = {
   1000: '#FFFFFF',
 }
 
-const NEUTRAL_BLACK_INTENSITY: FullGradient = {
+const NEUTRAL_BLACK_WITH_INTENSITY_FADING: FullGradient = {
   100: '#FAFAFB',
   200: '#F3F3F4',
   300: '#DCDCDD',
@@ -95,7 +95,7 @@ const NEUTRAL_BLACK_INTENSITY: FullGradient = {
   1000: '#18141F',
 }
 
-const NEUTRAL_WHITE_INTENSITY: FullGradient = {
+const NEUTRAL_WHITE_WITH_INTENSITY_FADING: FullGradient = {
   100: '#28242F',
   200: '#46434C',
   300: '#5D5A62',
@@ -113,10 +113,10 @@ export const palette = {
   yellowSunlight: YELLOW_SUNLIGHT,
   redSunset: RED_SUNSET,
   greenNorthernLight: GREEN_NORTHERN_LIGHT,
-  neutralBlackOpacity: NEUTRAL_BLACK_OPACITY,
-  neutralWhiteOpacity: NEUTRAL_WHITE_OPACITY,
-  neutralBlackIntensity: NEUTRAL_BLACK_INTENSITY,
-  neutralWhiteIntensity: NEUTRAL_WHITE_INTENSITY,
+  neutralBlackWithOpacityFading: NEUTRAL_BLACK_WITH_OPACITY_FADING,
+  neutralWhiteWithOpacityFading: NEUTRAL_WHITE_WITH_OPACITY_FADING,
+  neutralBlackWithIntensityFading: NEUTRAL_BLACK_WITH_INTENSITY_FADING,
+  neutralWhiteWithIntensityFading: NEUTRAL_WHITE_WITH_INTENSITY_FADING,
   razzmatazzRed: RAZZMATAZZ_RED,
   emeraldGreen: EMERALD_GREEN,
   goldenYellow: GOLDEN_YELLOW,

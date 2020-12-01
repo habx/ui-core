@@ -21,7 +21,7 @@ export const getCurrentBackground = (
   const theme = props.theme?.uiCore
 
   if (!theme) {
-    return palette.neutralWhiteOpacity[1000]
+    return palette.neutralWhiteWithOpacityFading[1000]
   }
 
   const themeValue = useRootTheme ? theme.rootValue : theme.value

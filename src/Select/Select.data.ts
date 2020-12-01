@@ -40,7 +40,7 @@ export const COLORED_OPTIONS: SelectOption[] = [
   {
     label: 'Resolved',
     value: 'resolved',
-    color: palette.neutralBlackOpacity[700],
+    color: palette.neutralBlackWithOpacityFading[700],
   },
   {
     label: 'Confirmed',
@@ -50,6 +50,6 @@ export const COLORED_OPTIONS: SelectOption[] = [
   {
     label: 'Cancelled',
     value: 'cancelled',
-    color: palette.neutralBlackOpacity[400],
+    color: palette.neutralBlackWithOpacityFading[400],
   },
 ]

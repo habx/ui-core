@@ -54,7 +54,7 @@ export const AnnouncementBanner = React.forwardRef<
           origin={{ bottom: 0, right: 0 }}
           width={60}
           height={60}
-          color={palette.neutralBlackOpacity[900]}
+          color={palette.neutralBlackWithOpacityFading[900]}
         />
       </AnnouncementBannerShapeContainer>
       <AnnouncementBannerCenteredContent>
@@ -69,7 +69,7 @@ export const AnnouncementBanner = React.forwardRef<
         </MobileButton>
       </AnnouncementBannerCenteredContent>
       <DesktopCloseIconContainer
-        backgroundColor={palette.neutralBlackOpacity[900]}
+        backgroundColor={palette.neutralBlackWithOpacityFading[900]}
         simulated
       >
         <IconButton icon="close" onClick={onClose} />
