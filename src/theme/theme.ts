@@ -6,6 +6,7 @@ import { FullGradient, palette } from '../palette'
 import { DEFAULT_THEME } from './theme.data'
 import {
   ColorGetterConfig,
+  NeutralColorGetterConfig,
   Shadow,
   TextColorGetterConfig,
   ThemeVariant,
@@ -20,7 +21,7 @@ export const getCurrentBackground = (
   const theme = props.theme?.uiCore
 
   if (!theme) {
-    return palette.neutralWhite[1000]
+    return palette.neutralWhiteWithOpacityFading[1000]
   }
 
   const themeValue = useRootTheme ? theme.rootValue : theme.value
@@ -154,9 +155,13 @@ const colorGetter = <Props extends GetterProps>(
 }
 
 const neutralColorGetter = <Props extends GetterProps>(
-  strength: keyof FullGradient
-) => (props: Props) =>
-  stringifyColor(getThemeVariant(props).neutralColor[strength])
+  strength: keyof FullGradient,
+  config: NeutralColorGetterConfig = {}
+) => (props: Props) => {
+  const { gradient = 'withOpacityFading' } = config
+
+  return stringifyColor(getThemeVariant(props).neutralColor[gradient][strength])
+}
 
 export const theme = {
   color: colorGetter,

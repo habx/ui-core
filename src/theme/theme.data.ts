@@ -10,15 +10,15 @@ const LIGHT_THEME_VARIANT: ThemeVariant = {
       base: palette.purpleDawn[500],
       loud: palette.purpleDawn[700],
       louder: palette.purpleDawn[800],
-      contrastText: palette.neutralWhite[900],
+      contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
     secondary: {
-      calmer: palette.neutralWhite[1000],
-      calm: palette.neutralBlack[100],
-      base: palette.neutralBlack[900],
-      loud: palette.neutralBlack[1000],
-      louder: palette.neutralBlack[1000],
-      contrastText: palette.neutralWhite[900],
+      calmer: palette.neutralWhiteWithOpacityFading[1000],
+      calm: palette.neutralBlackWithOpacityFading[100],
+      base: palette.neutralBlackWithOpacityFading[900],
+      loud: palette.neutralBlackWithOpacityFading[1000],
+      louder: palette.neutralBlackWithOpacityFading[1000],
+      contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
     error: {
       calmer: palette.razzmatazzRed[100],
@@ -26,7 +26,7 @@ const LIGHT_THEME_VARIANT: ThemeVariant = {
       base: palette.razzmatazzRed[500],
       loud: palette.razzmatazzRed[700],
       louder: palette.razzmatazzRed[800],
-      contrastText: palette.neutralWhite[900],
+      contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
     warning: {
       calmer: palette.goldenYellow[100],
@@ -34,7 +34,7 @@ const LIGHT_THEME_VARIANT: ThemeVariant = {
       base: palette.goldenYellow[500],
       loud: palette.goldenYellow[700],
       louder: palette.goldenYellow[800],
-      contrastText: palette.neutralWhite[900],
+      contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
     success: {
       calmer: palette.emeraldGreen[100],
@@ -42,21 +42,24 @@ const LIGHT_THEME_VARIANT: ThemeVariant = {
       base: palette.emeraldGreen[500],
       loud: palette.emeraldGreen[700],
       louder: palette.emeraldGreen[800],
-      contrastText: palette.neutralWhite[900],
+      contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
   },
 
   typography: {
     colors: {
-      title: palette.neutralBlack[1000],
-      button: palette.neutralBlack[900],
-      text: palette.neutralBlack[700],
-      lowContrast: palette.neutralBlack[500],
+      title: palette.neutralBlackWithOpacityFading[1000],
+      button: palette.neutralBlackWithOpacityFading[900],
+      text: palette.neutralBlackWithOpacityFading[700],
+      lowContrast: palette.neutralBlackWithOpacityFading[500],
     },
     font: 'EuclidCircularB, sans-serif',
   },
 
-  neutralColor: palette.neutralBlack,
+  neutralColor: {
+    withOpacityFading: palette.neutralBlackWithOpacityFading,
+    withIntensityFading: palette.neutralBlackWithIntensityFading,
+  },
 
   shadows: {
     flat: [],
@@ -91,15 +94,15 @@ const DARK_THEME_VARIANT: ThemeVariant = {
       base: palette.purpleDawn[500],
       loud: palette.purpleDawn[200],
       louder: palette.purpleDawn[100],
-      contrastText: palette.neutralWhite[900],
+      contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
     secondary: {
-      calmer: palette.neutralWhite[100],
-      calm: palette.neutralBlack[200],
-      base: palette.neutralWhite[900],
-      loud: palette.neutralWhite[1000],
-      louder: palette.neutralWhite[1000],
-      contrastText: palette.neutralBlack[900],
+      calmer: palette.neutralWhiteWithOpacityFading[100],
+      calm: palette.neutralBlackWithOpacityFading[200],
+      base: palette.neutralWhiteWithOpacityFading[900],
+      loud: palette.neutralWhiteWithOpacityFading[1000],
+      louder: palette.neutralWhiteWithOpacityFading[1000],
+      contrastText: palette.neutralBlackWithOpacityFading[900],
     },
     error: {
       calmer: palette.razzmatazzRed[800],
@@ -107,7 +110,7 @@ const DARK_THEME_VARIANT: ThemeVariant = {
       base: palette.razzmatazzRed[500],
       loud: palette.razzmatazzRed[200],
       louder: palette.razzmatazzRed[100],
-      contrastText: palette.neutralWhite[900],
+      contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
     warning: {
       calmer: palette.goldenYellow[800],
@@ -115,7 +118,7 @@ const DARK_THEME_VARIANT: ThemeVariant = {
       base: palette.goldenYellow[500],
       loud: palette.goldenYellow[200],
       louder: palette.goldenYellow[100],
-      contrastText: palette.neutralWhite[900],
+      contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
     success: {
       calmer: palette.emeraldGreen[800],
@@ -123,21 +126,24 @@ const DARK_THEME_VARIANT: ThemeVariant = {
       base: palette.emeraldGreen[500],
       loud: palette.emeraldGreen[200],
       louder: palette.emeraldGreen[100],
-      contrastText: palette.neutralWhite[900],
+      contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
   },
 
   typography: {
     colors: {
-      title: palette.neutralWhite[900],
-      button: palette.neutralWhite[800],
-      text: palette.neutralWhite[500],
-      lowContrast: palette.neutralWhite[300],
+      title: palette.neutralWhiteWithOpacityFading[900],
+      button: palette.neutralWhiteWithOpacityFading[800],
+      text: palette.neutralWhiteWithOpacityFading[500],
+      lowContrast: palette.neutralWhiteWithOpacityFading[300],
     },
     font: 'EuclidCircularB, sans-serif',
   },
 
-  neutralColor: palette.neutralWhite,
+  neutralColor: {
+    withOpacityFading: palette.neutralWhiteWithOpacityFading,
+    withIntensityFading: palette.neutralWhiteWithIntensityFading,
+  },
 
   shadows: {
     flat: [],
@@ -168,5 +174,5 @@ export const DEFAULT_THEME: DesignSystemTheme = {
   light: LIGHT_THEME_VARIANT,
   dark: DARK_THEME_VARIANT,
   isDark: false,
-  backgroundColor: palette.neutralWhite[1000],
+  backgroundColor: palette.neutralWhiteWithOpacityFading[1000],
 }
