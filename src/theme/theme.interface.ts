@@ -1,5 +1,5 @@
 import { Color } from '../color'
-import { FullGradient } from '../palette'
+import { Gradient } from '../palette'
 
 export interface ColorVariations {
   calmer: Color
@@ -51,14 +51,14 @@ export interface NeutralGradients {
    * Neutral scale that fade by decreasing it's opacity
    * 1000 will have an opacity of one (or almost) and 100 will have an opacity close to zero
    */
-  withOpacityFading: FullGradient
+  withOpacityFading: Gradient
 
   /**
    * Neutral scale that fade by decreasing it's intensity
    * 1000 will be almost black or white and 100 will be almost the opposite
    * This scale is used on floating items (Modal / FloatingIconButton / Menu ...) to avoid seeing the elements behind
    */
-  withIntensityFading: FullGradient
+  withIntensityFading: Gradient
 }
 
 export interface ThemeVariant {

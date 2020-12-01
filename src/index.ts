@@ -120,8 +120,8 @@ export { notify } from './notify'
 export { animations } from './animations'
 export { Background, BackgroundProps } from './Background'
 export { breakpoints } from './breakpoints'
-export { palette, LimitedGradient, FullGradient } from './palette'
-export { theme, DesignSystemTheme } from './theme'
+export { palette, Gradient } from './palette'
+export { theme, DesignSystemTheme, DEFAULT_THEME } from './theme'
 export { useThemeVariant } from './useThemeVariant'
 
 

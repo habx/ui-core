@@ -13,7 +13,7 @@ const LIGHT_THEME_VARIANT: ThemeVariant = {
       contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
     secondary: {
-      calmer: palette.neutralWhiteWithIntensityFading[1000],
+      calmer: palette.neutralBlackWithOpacityFading[0],
       calm: palette.neutralBlackWithIntensityFading[100],
       base: palette.neutralBlackWithIntensityFading[900],
       loud: palette.neutralBlackWithIntensityFading[1000],
@@ -89,11 +89,11 @@ const LIGHT_THEME_VARIANT: ThemeVariant = {
 const DARK_THEME_VARIANT: ThemeVariant = {
   colors: {
     primary: {
-      calmer: palette.purpleDawn[100],
-      calm: palette.purpleDawn[200],
+      calmer: palette.purpleDawn[800],
+      calm: palette.purpleDawn[700],
       base: palette.purpleDawn[500],
-      loud: palette.purpleDawn[200],
-      louder: palette.purpleDawn[100],
+      loud: palette.purpleDawn[400],
+      louder: palette.purpleDawn[300],
       contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
     secondary: {
@@ -108,8 +108,8 @@ const DARK_THEME_VARIANT: ThemeVariant = {
       calmer: palette.redRazzmatazz[800],
       calm: palette.redRazzmatazz[700],
       base: palette.redRazzmatazz[500],
-      loud: palette.redRazzmatazz[200],
-      louder: palette.redRazzmatazz[100],
+      loud: palette.redRazzmatazz[400],
+      louder: palette.redRazzmatazz[300],
       contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
     warning: {
