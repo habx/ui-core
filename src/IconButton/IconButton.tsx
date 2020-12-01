@@ -31,7 +31,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         case 'white':
           return '#FFFFFF'
         case 'grey':
-          return theme.neutralColor[200]
+          return theme.neutralColor.withIntensityFading[200]
         case 'none':
           return undefined
       }

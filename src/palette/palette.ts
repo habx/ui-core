@@ -56,7 +56,7 @@ const GOLDEN_YELLOW: LimitedGradient = {
   800: '#473300',
 }
 
-const NEUTRAL_BLACK: FullGradient = {
+const NEUTRAL_BLACK_OPACITY: FullGradient = {
   100: '#FAFAFB',
   200: 'rgba(24, 20, 31, 0.05)',
   300: 'rgba(24, 20, 31, 0.15)',
@@ -69,7 +69,7 @@ const NEUTRAL_BLACK: FullGradient = {
   1000: '#18141F',
 }
 
-const NEUTRAL_WHITE: FullGradient = {
+const NEUTRAL_WHITE_OPACITY: FullGradient = {
   100: 'rgba(255, 255, 255, 0.07)',
   200: 'rgba(255, 255, 255, 0.2)',
   300: 'rgba(255, 255, 255, 0.3)',
@@ -82,13 +82,41 @@ const NEUTRAL_WHITE: FullGradient = {
   1000: '#FFFFFF',
 }
 
+const NEUTRAL_BLACK_INTENSITY: FullGradient = {
+  100: '#FAFAFB',
+  200: '#F3F3F4',
+  300: '#DCDCDD',
+  400: '#AEADB1',
+  500: '#8B898F',
+  600: '#747279',
+  700: '#49454E',
+  800: '#3B3741',
+  900: '#2F2C35',
+  1000: '#18141F',
+}
+
+const NEUTRAL_WHITE_INTENSITY: FullGradient = {
+  100: '#28242F',
+  200: '#46434C',
+  300: '#5D5A62',
+  400: '#747279',
+  500: '#8B898F',
+  600: '#AEADB1',
+  700: '#C5C4C7',
+  800: '#DCDCDD',
+  900: '#F3F3F4',
+  1000: '#FFFFFF',
+}
+
 export const palette = {
   purpleDawn: PURPLE_DAWN,
   yellowSunlight: YELLOW_SUNLIGHT,
   redSunset: RED_SUNSET,
   greenNorthernLight: GREEN_NORTHERN_LIGHT,
-  neutralBlack: NEUTRAL_BLACK,
-  neutralWhite: NEUTRAL_WHITE,
+  neutralBlackOpacity: NEUTRAL_BLACK_OPACITY,
+  neutralWhiteOpacity: NEUTRAL_WHITE_OPACITY,
+  neutralBlackIntensity: NEUTRAL_BLACK_INTENSITY,
+  neutralWhiteIntensity: NEUTRAL_WHITE_INTENSITY,
   razzmatazzRed: RAZZMATAZZ_RED,
   emeraldGreen: EMERALD_GREEN,
   goldenYellow: GOLDEN_YELLOW,
