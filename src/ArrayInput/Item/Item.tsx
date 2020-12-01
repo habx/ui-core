@@ -58,14 +58,14 @@ export const Item: React.FunctionComponent<ItemProps> = ({
             data-testid="array-input-item-mode-up"
             icon="arrow-north"
             onClick={handleMoveUp}
-            tiny
+            small
           />
         )}
         {!disabled && (
           <IconButton
             icon="trash"
             onClick={handleDelete}
-            tiny
+            small
             data-testid="array-input-item-delete"
           />
         )}

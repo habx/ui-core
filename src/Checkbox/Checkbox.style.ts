@@ -3,33 +3,6 @@ import styled from 'styled-components'
 import { Icon } from '../Icon'
 import { theme } from '../theme'
 
-export const FakeInputContainer = styled.div`
-  --border-radius: 4px;
-  --size: 21px;
-
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: var(--size);
-  height: var(--size);
-  color: #fff;
-
-  &[data-small='true'] {
-    --border-radius: 2px;
-    --size: 16px;
-  }
-
-  &[data-background='true'] {
-    color: ${theme.color('primary')};
-
-    &[data-error='true'] {
-      color: ${theme.color('warning')};
-    }
-  }
-`
-
 export const Input = styled.input`
   position: absolute;
   width: 100%;
@@ -40,7 +13,7 @@ export const Input = styled.input`
     pointer-events: none;
   }
 
-  :not(:disabled) {
+  &:not(:disabled) {
     cursor: pointer;
   }
 `
@@ -51,70 +24,91 @@ export const FakeInput = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #fff;
-  border: 2px solid ${theme.neutralColor(400)};
+  background-color: var(--checkbox-background-color);
+  box-shadow: inset 0 0 0 var(--checkbox-border-width)
+    var(--checkbox-border-color);
   border-radius: var(--border-radius);
   transition: all 150ms ease-in-out;
+`
 
-  input:focus ~ & {
-    border-width: 5px;
+export const FakeInputContainer = styled.div<{ error?: boolean }>`
+  --checkbox-border-radius: 4px;
+  --checkbox-size: 21px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  color: #fff;
+  
+  --checkbox-border-width: 2px;
+  --checkbox-border-color: ${theme.neutralColor(400)};
+  --checkbox-background-color: #fff;
+
+  &[data-small='true'] {
+    --checkbox-size: 16px;
+    
+   & > ${FakeInput} {
+       --checkbox-border-radius: 2px;
+   }
   }
 
-  input:hover ~ &,
-  input:active ~ &,
-  input:checked:focus ~ & {
-    border-width: 3px;
+  &[data-background='true'] {
+    color: ${theme.color('primary', { dynamic: true })};
   }
 
-  input:active ~ &,
-  input:focus ~ & {
-    border-color: ${theme.color('primary')};
+  & > input:focus + ${FakeInput} {
+    --checkbox-border-width: 5px;
   }
 
-  input:checked ~ & {
-    background-color: ${theme.color('primary')};
+  & > input:hover + ${FakeInput},
+    input:active + ${FakeInput},
+    input:checked:focus + ${FakeInput} {
+    --checkbox-border-width: 3px;
   }
 
-  input:checked:hover ~ &,
-  input:checked:focus ~ & {
-    background-color: ${theme.color('primary', { variation: 'loud' })};
+  &:not([data-background='true']) > input {
+    &:active + ${FakeInput}, &:focus + ${FakeInput} {
+      --checkbox-border-color: ${theme.color('primary', { dynamic: true })};
+    }
+  
+    &:checked + ${FakeInput} {
+      --checkbox-background-color: ${theme.color('primary', { dynamic: true })};
+    }
+    
+    &:checked:hover + ${FakeInput}, &:checked:focus + ${FakeInput} {
+      --checkbox-background-color: ${theme.color('primary', {
+        variation: 'loud',
+        dynamic: true,
+      })};
+    }
   }
 
-  [data-background='true'] > input:checked ~ & {
-    background-color: #fff;
+  &[data-background='true'] > input {
+    & + ${FakeInput} {
+        --checkbox-background-color: ${theme.color('primary', {
+          variation: 'contrastText',
+          dynamic: true,
+        })};
+    }
+    
+    &:not(:focus):not(:active):not(:hover) + ${FakeInput} {
+    --checkbox-border-width: 0;
+    }
   }
 
-  *:not([data-background='true']) > input:checked ~ & {
-    border-color: #0000;
+  & > input:focus + ${FakeInput}, & > input:active + ${FakeInput} {
+    --checkbox-border-color ${theme.color('primary', {
+      variation: 'louder',
+      dynamic: true,
+    })};
   }
 
-  input:checked:focus ~ &,
-  input:checked:active ~ & {
-    border-color: ${theme.color('primary', { variation: 'louder' })};
-  }
-
-  [data-error='true'] > input ~ & {
-    border-color: ${theme.color('warning')};
-  }
-
-  [data-error='true'] > input:checked:focus ~ &,
-  [data-error='true'] > input:checked:active ~ & {
-    border-color: ${theme.color('warning', { variation: 'louder' })};
-  }
-
-  [data-error='true']:not([data-background='true']) > input:checked ~ & {
-    background-color: ${theme.color('warning')};
-  }
-
-  [data-error='true']:not([data-background='true']) > input:checked:hover ~ &,
-  [data-error='true']:not([data-background='true']) > input:checked:focus ~ & {
-    background-color: ${theme.color('warning', { variation: 'loud' })};
-  }
-
-  input:disabled ~ &,
-  input:checked:disabled ~ & {
-    background-color: ${theme.neutralColor(400)};
-    border-color: #0000;
+  & input:disabled + ${FakeInput}, input:checked:disabled + ${FakeInput} {
+    --checkbox-background-color: ${theme.neutralColor(400)};
   }
 `
 

@@ -5,11 +5,12 @@ import { Layout } from '../Layout'
 import { theme } from '../theme'
 
 export const CardContainer = styled(Layout)`
-  border-radius: 4px;
+  border-radius: 6px;
   position: relative;
   transition-property: box-shadow, transform;
   transition-duration: 150ms;
   transition-timing-function: ease-in-out;
+  overflow: hidden;
   --layout-left-padding: 0;
   --layout-right-padding: 0;
   --layout-top-padding: 0;
