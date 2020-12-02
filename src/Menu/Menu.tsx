@@ -2,11 +2,11 @@ import { Modal } from '@delangle/use-modal'
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
-import { useCurrentBackground } from '../_internal/theme/useCurrentBackground'
 import { buildUseOnlyOpenedInstanceHook } from '../_internal/useOnlyOpenedInstance'
 import { useWindowSize } from '../_internal/useWindowSize'
 import { breakpoints } from '../breakpoints'
 import { TogglePanel, TogglePanelProps } from '../TogglePanel'
+import { useCurrentBackground } from '../useCurrentBackground'
 import { withTriggerElement } from '../withTriggerElement'
 
 import { MenuContext } from './Menu.context'

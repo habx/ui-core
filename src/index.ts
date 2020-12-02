@@ -123,6 +123,7 @@ export { breakpoints } from './breakpoints'
 export { palette, Gradient } from './palette'
 export { theme, DesignSystemTheme, ThemeVariant, DEFAULT_THEME } from './theme'
 export { useThemeVariant } from './useThemeVariant'
+export { useCurrentBackground } from './useCurrentBackground'
 
 
 /*
