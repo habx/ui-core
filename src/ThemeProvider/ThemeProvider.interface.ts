@@ -7,11 +7,13 @@ type PartialRecursive<T> = T extends object
   ? { [K in keyof T]?: PartialRecursive<T[K]> }
   : T
 
+export interface DesignSystemThemePatch {
+  backgroundColor?: Color
+  light?: PartialRecursive<ThemeVariant>
+  dark?: PartialRecursive<ThemeVariant>
+}
+
 export interface ThemeProviderProps {
-  theme: {
-    backgroundColor?: Color
-    light?: PartialRecursive<ThemeVariant>
-    dark?: PartialRecursive<ThemeVariant>
-  }
+  theme: DesignSystemThemePatch
   children?: React.ReactNode
 }
