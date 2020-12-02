@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import { BackgroundThemeProvider } from '../_internal/theme/BackgroundThemeProvider'
-import { useCurrentBackground } from '../_internal/theme/useCurrentBackground'
 import { Icon } from '../Icon'
+import { useCurrentBackground } from '../useCurrentBackground'
 import { useThemeVariant } from '../useThemeVariant'
 
 import { IconButtonProps } from './IconButton.interface'

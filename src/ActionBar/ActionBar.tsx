@@ -1,9 +1,9 @@
 import * as React from 'react'
 
 import { getFlattenedChildren } from '../_internal/getFlattenedChildren'
-import { useCurrentBackground } from '../_internal/theme/useCurrentBackground'
 import { useParentLayout } from '../Layout'
 import { LayoutChild } from '../Layout'
+import { useCurrentBackground } from '../useCurrentBackground'
 
 import { ActionBarProps } from './ActionBar.interface'
 import { ActionBarContainer, ActionBarContent } from './ActionBar.style'
