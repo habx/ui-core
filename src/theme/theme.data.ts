@@ -80,7 +80,7 @@ const LIGHT_THEME_VARIANT: ThemeVariant = {
       { x: 0, y: 12, blur: 24, opacity: 0.1 },
     ],
     higher: [
-      { x: 0, y: 0, blur: 1, opacity: 0.06 },
+      { x: 0, y: 0, blur: 2, opacity: 0.06 },
       { x: 0, y: 16, blur: 36, opacity: 0.15 },
     ],
   },
@@ -149,23 +149,23 @@ const DARK_THEME_VARIANT: ThemeVariant = {
     flat: [],
     lower: [
       { x: 0, y: 0, blur: 2, opacity: 0.06 },
-      { x: 0, y: 1, blur: 2, opacity: 0.1 },
+      { x: 0, y: 1, blur: 2, opacity: 0.2 },
     ],
     low: [
       { x: 0, y: 0, blur: 2, opacity: 0.06 },
-      { x: 0, y: 2, blur: 8, opacity: 0.1 },
+      { x: 0, y: 2, blur: 8, opacity: 0.2 },
     ],
     regular: [
       { x: 0, y: 0, blur: 1, opacity: 0.06 },
-      { x: 0, y: 4, blur: 12, opacity: 0.1 },
+      { x: 0, y: 4, blur: 12, opacity: 0.2 },
     ],
     high: [
       { x: 0, y: 0, blur: 2, opacity: 0.06 },
-      { x: 0, y: 12, blur: 24, opacity: 0.1 },
+      { x: 0, y: 12, blur: 24, opacity: 0.2 },
     ],
     higher: [
-      { x: 0, y: 0, blur: 1, opacity: 0.06 },
-      { x: 0, y: 16, blur: 36, opacity: 0.15 },
+      { x: 0, y: 0, blur: 2, opacity: 0.06 },
+      { x: 0, y: 16, blur: 36, opacity: 0.25 },
     ],
   },
 }

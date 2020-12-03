@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { withGrid } from '../_storybook/withGrid'
 import { Card } from '../Card'
 import { Icon } from '../Icon'
+import { useCurrentBackground } from '../useCurrentBackground'
 
 import { FloatingButton, FloatingButtonProps } from './index'
 
@@ -12,11 +13,15 @@ const Container = styled(Card)`
   height: 200px;
 `
 
-const WrappedFloatingButton = (props: FloatingButtonProps) => (
-  <Container>
-    <FloatingButton {...props} />
-  </Container>
-)
+const WrappedFloatingButton = (props: FloatingButtonProps) => {
+  const background = useCurrentBackground()
+
+  return (
+    <Container backgroundColor={background}>
+      <FloatingButton {...props} />
+    </Container>
+  )
+}
 
 const GRID_PROPS = {
   children: 'Liste',
@@ -53,7 +58,7 @@ const GRID_ITEMS = [
   },
   {
     props: {
-      warning: true,
+      error: true,
       children: 'Supprimer',
     },
   },

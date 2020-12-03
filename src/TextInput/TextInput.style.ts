@@ -22,12 +22,11 @@ export const inputStyle = css`
 
   &:not([data-light='true']) {
     border-color: ${theme.neutralColor(200)};
-    color: ${theme.textColor({ useRootTheme: true })};
+    color: ${theme.textColor()};
     background-color: ${theme.neutralColor(200)};
 
     &::placeholder {
       color: ${theme.textColor({
-        useRootTheme: true,
         variation: 'lowContrast',
       })};
     }
@@ -39,7 +38,6 @@ export const inputStyle = css`
 
       &::placeholder {
         color: ${theme.textColor({
-          useRootTheme: true,
           variation: 'lowContrast',
         })};
       }
@@ -78,7 +76,7 @@ export const inputStyle = css`
 
     &:focus {
       border-color: ${theme.neutralColor(300)};
-      color: ${theme.textColor({ useRootTheme: true })};
+      color: ${theme.textColor()};
     }
   }
 
@@ -152,11 +150,11 @@ export const Input = styled.input`
 export const InputContainer = styled.div`
   position: relative;
   width: 100%;
-  color: ${theme.textColor({ useRootTheme: true })};
+  color: ${theme.textColor()};
 
   &:hover,
   &:focus-within {
-    color: ${theme.textColor({ useRootTheme: true })};
+    color: ${theme.textColor()};
   }
 `
 
