@@ -103,6 +103,7 @@ export const InnerArrayInput = React.forwardRef<
             disabled={disabled}
             small
             onClick={() => handleAppend()}
+            link
           >
             {addButtonLabel}
           </Button>
