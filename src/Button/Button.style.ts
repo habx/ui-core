@@ -143,6 +143,7 @@ export const ButtonContainer = styled.button`
   &[data-mode='${ButtonModes.ghost}'] {
     background-color: transparent;
     color: ${theme.color('primary', { dynamic: true })};
+    padding: 0 12px;
 
     &:focus:not(:active) {
       --button-outline-width: 4px;
