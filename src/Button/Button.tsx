@@ -57,7 +57,7 @@ const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {elementLeft && (
             <SideElementContainer
               data-position="left"
-              data-testid="icon-left-container"
+              data-testid="element-left-container"
             >
               {elementLeft}
             </SideElementContainer>
@@ -71,7 +71,7 @@ const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
           {elementRight && (
             <SideElementContainer
               data-position="right"
-              data-testid="icon-right-container"
+              data-testid="element-right-container"
             >
               {elementRight}
             </SideElementContainer>

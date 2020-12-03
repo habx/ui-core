@@ -16,8 +16,8 @@ const GRID_LINES = [
     props: { secondary: true },
   },
   {
-    title: 'Warning',
-    props: { warning: true },
+    title: 'Error',
+    props: { error: true },
   },
 ]
 
