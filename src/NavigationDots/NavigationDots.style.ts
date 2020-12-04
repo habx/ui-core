@@ -22,11 +22,6 @@ export const Dot = styled.div<{ secondary?: boolean }>`
   --navigation-dot-empty-color: ${theme.neutralColor(400)};
   --navigation-dot-active-color: ${theme.color('primary')};
 
-  &[data-background='true'] {
-    --navigation-dot-empty-color: rgba(255, 255, 255, 0.3);
-    --navigation-dot-active-color: #fff;
-  }
-
   &[data-active='true'] {
     flex: 0 1 100%;
 

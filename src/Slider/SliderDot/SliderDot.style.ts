@@ -32,14 +32,14 @@ export const SliderDotContainer = styled.div`
 
   --dot-radius: 10px;
 
-  &:hover {
+  &:active {
     --dot-radius: 12px;
   }
 
   &[data-large='true'] {
     --dot-radius: 12px;
 
-    &:hover {
+    &:active {
       --dot-radius: 14px;
     }
   }

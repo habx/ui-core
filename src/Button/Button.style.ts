@@ -53,21 +53,23 @@ export const ButtonContainer = styled.button`
     inset 0 0 0 var(--button-border-width) var(--button-border-color),
     0 0 0 var(--button-outline-width) var(--button-outline-color);
 
+  height: var(--button-height);
+
   --button-border-width: 0;
   --button-border-color: ${theme.color('secondary', { dynamic: true })};
   --button-outline-width: 0;
   --button-outline-color: ${theme.color('primary', { opacity: 0.3 })};
   --button-shadow: 0 0 0 ${theme.neutralColor(1000)};
+  --button-height: 48px;
 
   &:not([data-small='true']) {
     padding: 0 24px;
-    height: 48px;
     --button-side-element-margin: 10px;
   }
 
   &[data-small='true'] {
     padding: 0 12px;
-    height: 36px;
+    --button-height: 36px;
     --button-side-element-margin: 8px;
   }
 
@@ -172,10 +174,6 @@ export const ButtonContainer = styled.button`
 
     &:focus:not(:active) {
       --button-outline-width: 4px;
-    }
-
-    &[data-small='true'] {
-      height: 18px;
     }
 
     &:disabled {

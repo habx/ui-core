@@ -1,4 +1,5 @@
 import { BackgroundProps } from '../Background'
+import { Color } from '../color'
 
 export type CardSpacing =
   | 'none'
@@ -10,6 +11,6 @@ export type CardSpacing =
 export interface CardProps extends Omit<BackgroundProps, 'backgroundColor'> {
   animated?: boolean
   flat?: boolean
-  backgroundColor?: string
+  backgroundColor?: Color
   spacing?: CardSpacing
 }
