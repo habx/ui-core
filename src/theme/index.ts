@@ -7,4 +7,6 @@ export {
   StyledTheme,
   ThemeVariant,
   TypographyColors,
+  ColorVariations,
+  ColorFamilies,
 } from './theme.interface'
