@@ -121,7 +121,7 @@ export { animations } from './animations'
 export { Background, BackgroundProps } from './Background'
 export { breakpoints } from './breakpoints'
 export { palette, Gradient } from './palette'
-export { theme, DesignSystemTheme, ThemeVariant, DEFAULT_THEME } from './theme'
+export { theme, DesignSystemTheme, ThemeVariant, ColorVariations, TypographyColors, ColorFamilies, DEFAULT_THEME } from './theme'
 export { useThemeVariant } from './useThemeVariant'
 export { useCurrentBackground } from './useCurrentBackground'
 
@@ -129,7 +129,7 @@ export { useCurrentBackground } from './useCurrentBackground'
 /*
   Utils
  */
-export { isColorDark, stringifyColor, applyOpacityToColor } from './color'
+export { isColorDark, stringifyColor, applyOpacityToColor, parseColor, ParsedColor, Color  } from './color'
 export { useResponsiveType } from './useResponsiveType'
 export { withLabel, withSemanticLabel, WithLabel } from './withLabel'
 export { withMarkdown } from './withMarkdown'

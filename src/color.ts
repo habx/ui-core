@@ -1,8 +1,14 @@
-import parse, { ParsedColor } from 'color-parse'
+import parse from 'color-parse'
+
+export type ParsedColor = {
+  space: 'rgb'
+  values: [number, number, number]
+  alpha: number
+}
 
 export type Color = string | ParsedColor
 
-const parseColor = (color: Color): ParsedColor => {
+export const parseColor = (color: Color): ParsedColor => {
   if (color == null) {
     throw Error('Undefined / null color given to parseColor')
   }
