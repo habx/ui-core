@@ -49,7 +49,7 @@ export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
       >
         <ToasterContent
           backgroundColor={
-            warning ? theme.colors.warning.base : theme.colors.secondary.base
+            warning ? theme.colors.error.base : theme.colors.secondary.base
           }
           ref={containerRef}
           data-testid="notification-container"

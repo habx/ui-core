@@ -77,11 +77,8 @@ export default {
   title: 'Alerts/Toaster',
   component: Toaster,
   argTypes: {
-    title: {
-      defaultValue: 'Blueprint sent',
-    },
-    description: {
-      defaultValue: 'Successfully sent to the given address',
+    message: {
+      defaultValue: 'Blueprint successfully sent to the given address',
     },
   },
 }

@@ -20,10 +20,10 @@ describe('Button component', () => {
       </Button>
     )
 
-    const leftIconContainer = queryAllByTestId('icon-left-container')
+    const leftIconContainer = queryAllByTestId('element-left-container')
 
     expect(leftIconContainer).toHaveLength(1)
-    expect(queryAllByTestId('icon-right-container')).toHaveLength(0)
+    expect(queryAllByTestId('element-right-container')).toHaveLength(0)
     expect(
       within(leftIconContainer[0]).queryAllByTestId('face-icon')
     ).toHaveLength(1)
@@ -36,10 +36,10 @@ describe('Button component', () => {
       </Button>
     )
 
-    const rightIconContainer = queryAllByTestId('icon-right-container')
+    const rightIconContainer = queryAllByTestId('element-right-container')
 
     expect(rightIconContainer).toHaveLength(1)
-    expect(queryAllByTestId('icon-left-container')).toHaveLength(0)
+    expect(queryAllByTestId('element-left-container')).toHaveLength(0)
     expect(
       within(rightIconContainer[0]).queryAllByTestId('face-icon')
     ).toHaveLength(1)
@@ -48,8 +48,8 @@ describe('Button component', () => {
   it('should display no icon', () => {
     const { queryAllByTestId } = render(<Button>Label</Button>)
 
-    expect(queryAllByTestId('icon-left-container')).toHaveLength(0)
-    expect(queryAllByTestId('icon-right-container')).toHaveLength(0)
+    expect(queryAllByTestId('element-left-container')).toHaveLength(0)
+    expect(queryAllByTestId('element-right-container')).toHaveLength(0)
   })
 
   it('should call the onClick property when clicked', () => {

@@ -9,7 +9,7 @@ export const Input = styled.input`
   height: 100%;
   opacity: 0;
 
-  & ~ * {
+  &:disabled {
     pointer-events: none;
   }
 
@@ -29,6 +29,20 @@ export const FakeInput = styled.div`
     var(--checkbox-border-color);
   border-radius: var(--border-radius);
   transition: all 150ms ease-in-out;
+  pointer-events: none;
+`
+
+export const CheckIcon = styled(Icon)`
+  opacity: 0;
+  transform: scale(0);
+  transition: all 150ms ease-in-out;
+  pointer-events: none;
+  color: var(--checkbox-check-color);
+
+  input:checked ~ & {
+    opacity: 1;
+    transform: scale(1);
+  }
 `
 
 export const FakeInputContainer = styled.div<{ error?: boolean }>`
@@ -42,66 +56,77 @@ export const FakeInputContainer = styled.div<{ error?: boolean }>`
   flex-shrink: 0;
   width: var(--checkbox-size);
   height: var(--checkbox-size);
-  color: #fff;
-  
+
   --checkbox-border-width: 2px;
   --checkbox-border-color: ${theme.neutralColor(400)};
   --checkbox-background-color: #fff;
+  --checkbox-check-color: ${theme.color('primary', { dynamic: true })};
 
   &[data-small='true'] {
     --checkbox-size: 16px;
-    
-   & > ${FakeInput} {
-       --checkbox-border-radius: 2px;
-   }
+
+    & > ${FakeInput} {
+      --checkbox-border-radius: 2px;
+    }
   }
 
-  &[data-background='true'] {
-    color: ${theme.color('primary', { dynamic: true })};
+  & > input:hover,
+  > input:active {
+    & + ${FakeInput} {
+      --checkbox-border-width: 3px;
+    }
   }
 
-  & > input:focus + ${FakeInput} {
-    --checkbox-border-width: 5px;
-  }
+  & > input:focus {
+    &:checked + ${FakeInput} {
+      --checkbox-border-width: 3px;
+    }
 
-  & > input:hover + ${FakeInput},
-    input:active + ${FakeInput},
-    input:checked:focus + ${FakeInput} {
-    --checkbox-border-width: 3px;
+    &:not(:checked) + ${FakeInput} {
+      --checkbox-border-width: 5px;
+    }
   }
 
   &:not([data-background='true']) > input {
-    &:active + ${FakeInput}, &:focus + ${FakeInput} {
-      --checkbox-border-color: ${theme.color('primary', { dynamic: true })};
+    &:not(:disabled) {
+      &:active + ${FakeInput}, &:focus + ${FakeInput} {
+        --checkbox-border-color: ${theme.color('primary', { dynamic: true })};
+      }
+
+      &:checked + ${FakeInput} {
+        --checkbox-background-color: ${theme.color('primary', {
+          dynamic: true,
+        })};
+      }
+
+      &:checked:hover + ${FakeInput}, &:checked:focus + ${FakeInput} {
+        --checkbox-background-color: ${theme.color('primary', {
+          variation: 'loud',
+          dynamic: true,
+        })};
+      }
     }
-  
-    &:checked + ${FakeInput} {
-      --checkbox-background-color: ${theme.color('primary', { dynamic: true })};
-    }
-    
-    &:checked:hover + ${FakeInput}, &:checked:focus + ${FakeInput} {
-      --checkbox-background-color: ${theme.color('primary', {
-        variation: 'loud',
-        dynamic: true,
-      })};
+
+    & ~ ${CheckIcon} {
+      --checkbox-check-color: #fff;
     }
   }
 
   &[data-background='true'] > input {
     & + ${FakeInput} {
-        --checkbox-background-color: ${theme.color('primary', {
-          variation: 'contrastText',
-          dynamic: true,
-        })};
+      --checkbox-background-color: ${theme.color('primary', {
+        variation: 'contrastText',
+        dynamic: true,
+      })};
     }
-    
+
     &:not(:focus):not(:active):not(:hover) + ${FakeInput} {
-    --checkbox-border-width: 0;
+      --checkbox-border-width: 0;
     }
   }
 
   & > input:focus + ${FakeInput}, & > input:active + ${FakeInput} {
-    --checkbox-border-color ${theme.color('primary', {
+    --checkbox-border-color: ${theme.color('primary', {
       variation: 'louder',
       dynamic: true,
     })};
@@ -109,20 +134,5 @@ export const FakeInputContainer = styled.div<{ error?: boolean }>`
 
   & input:disabled + ${FakeInput}, input:checked:disabled + ${FakeInput} {
     --checkbox-background-color: ${theme.neutralColor(400)};
-  }
-`
-
-export const CheckIcon = styled(Icon)`
-  opacity: 0;
-  transform: scale(0);
-  transition: all 150ms ease-in-out;
-
-  input:disabled ~ & {
-    color: #fff;
-  }
-
-  input:checked ~ & {
-    opacity: 1;
-    transform: scale(1);
   }
 `
