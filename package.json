@@ -52,7 +52,7 @@
     "@delangle/use-modal": "^1.5.49",
     "color-parse": "^1.4.2",
     "lodash.deburr": "^4.1.0",
-    "markdown-it": "^12.0.2",
+    "markdown-it": "^12.0.3",
     "merge": "^2.1.0",
     "react-easy-swipe": "0.0.21",
     "react-is": "^17.0.1"
