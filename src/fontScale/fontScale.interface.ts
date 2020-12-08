@@ -1,7 +1,19 @@
-type FontSize = {
+type FontSize =
+  | 'milkyWay'
+  | 'superNova'
+  | 'nova'
+  | 'sun'
+  | 'jupiter'
+  | 'earth'
+  | 'mars'
+  | 'moon'
+  | 'pluto'
+  | 'asteroid'
+  | 'dust'
+
+type FontSizeConfig = {
   size: number
   lineHeight: number
-  letterSpacing?: number
 }
 
-export type FontScale = { [key: string]: FontSize }
+export type FontScale = Record<FontSize, FontSizeConfig>
