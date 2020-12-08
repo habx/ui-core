@@ -162,6 +162,11 @@ export const ButtonContainer = styled.button`
       background-color: ${theme.neutralColor(300)};
       color: ${theme.textColor({ variation: 'lowContrast' })};
     }
+
+    &:hover,
+    &:active {
+      background-color: ${theme.neutralColor(100)};
+    }
   }
 
   &[data-mode='${ButtonModes.link}'] {
