@@ -23,7 +23,6 @@ export const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
       renderItem,
       defaultDevice,
       hideNavigationDots = false,
-      navigationComponent,
       onCurrentSlideChange,
       registerActions,
       circular = true,
@@ -92,9 +91,7 @@ export const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
       >
         <SlideShowSlidingContainer ref={containerRef}>
           <SlideShowSlidingContent
-            data-swiping={slideShow.isSwiping}
             data-current={slideShow.currentSlide}
-            data-navigation={!hideNavigationDots}
             style={style}
             size={slideShow.slideAmount}
           >
@@ -115,7 +112,6 @@ export const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
             circular={circular}
             size={slideShow.slideAmount}
             hideNavigationDots={hideNavigationDots}
-            navigationComponent={navigationComponent}
           />
         )}
       </SlideShowContainer>

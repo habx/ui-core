@@ -22,7 +22,6 @@ export interface SlideShowProps {
   ) => void
   circular?: boolean
   referenceSlideIndex?: number
-  navigationComponent?: React.ComponentType<any>
   hideNavigationDots?: boolean
   currentSlide?: number
   items?: any[]

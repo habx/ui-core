@@ -15,10 +15,9 @@ const InnerSlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps
   active,
   circular,
   hideNavigationDots,
-  navigationComponent,
 }) => (
   <React.Fragment>
-    <NavigationButtonContainer as={navigationComponent}>
+    <NavigationButtonContainer className="slideshow-navigation-button">
       <NavigationButton
         previous
         large
@@ -26,7 +25,10 @@ const InnerSlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps
         disabled={!circular && active === 0}
       />
     </NavigationButtonContainer>
-    <NavigationButtonContainer data-right as={navigationComponent}>
+    <NavigationButtonContainer
+      data-right
+      className="slideshow-navigation-button"
+    >
       <NavigationButton
         large
         onClick={next}
@@ -34,7 +36,7 @@ const InnerSlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps
       />
     </NavigationButtonContainer>
     {!hideNavigationDots && (
-      <NavigationDotsContainer>
+      <NavigationDotsContainer className="slideshow-navigation-dots">
         <NavigationDots size={size} activeDot={(active + size) % size} />
       </NavigationDotsContainer>
     )}
@@ -48,7 +50,6 @@ interface SlideShowNavigationProps {
   active: number
   hideNavigationDots: boolean
   circular: boolean
-  navigationComponent?: React.ComponentType<any>
 }
 
 export const SlideShowNavigation = React.memo(InnerSlideShowNavigation)
