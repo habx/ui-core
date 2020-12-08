@@ -4,6 +4,7 @@ import {
   ANIMATION_DURATIONS,
   ANIMATION_TIMING_FUNCTION,
 } from '../animations/animations'
+import { fontScale } from '../fontScale'
 import { theme } from '../theme'
 
 import { ButtonModes } from './Button.interface'
@@ -41,8 +42,8 @@ export const ButtonContainer = styled.button`
   position: relative;
 
   max-width: 100%;
-  font-size: 16px;
   font-family: ${theme.font()};
+  letter-spacing: 0.1px;
   border: none;
 
   transition-property: box-shadow, background-color;
@@ -63,14 +64,20 @@ export const ButtonContainer = styled.button`
   --button-height: 48px;
 
   &:not([data-small='true']) {
+    font-size: ${fontScale.moon.size}px;
     padding: 0 24px;
     --button-side-element-margin: 10px;
   }
 
   &[data-small='true'] {
+    font-size: ${fontScale.pluto.size}px;
     padding: 0 12px;
     --button-height: 36px;
     --button-side-element-margin: 8px;
+
+    & ${SideElementContainer} {
+      font-size: 20px;
+    }
   }
 
   &[data-mode='${ButtonModes.solid}'] {

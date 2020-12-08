@@ -41,7 +41,7 @@ const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       }
 
       return ButtonModes.solid
-    }, [link, outline])
+    }, [ghost, link, outline])
 
     return (
       <ButtonContainer
