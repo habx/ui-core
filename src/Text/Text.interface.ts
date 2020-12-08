@@ -8,6 +8,7 @@ export type TextTypes =
   | 'large'
   | 'emphasis'
   | 'regular'
+  | 'small'
   | 'caption'
   | 'captionSmall'
 

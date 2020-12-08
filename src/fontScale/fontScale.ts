@@ -33,6 +33,10 @@ export const fontScale: FontScale = {
     size: 16,
     lineHeight: 24,
   },
+  pluto: {
+    size: 14,
+    lineHeight: 22,
+  },
   asteroid: {
     size: 12,
     lineHeight: 16,
