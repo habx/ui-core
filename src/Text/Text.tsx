@@ -1,5 +1,9 @@
 import * as React from 'react'
-import styled, { css, StyledComponent } from 'styled-components'
+import styled, {
+  css,
+  FlattenInterpolation,
+  StyledComponent,
+} from 'styled-components'
 
 import { mapValues } from '../_internal/data'
 import { breakpoints } from '../breakpoints'
@@ -39,6 +43,7 @@ export const veryLargeTextStyle = css`
   ${baseTextStyle};
 
   ${size('nova')};
+  letter-spacing: 0.02px;
 
   @media (${breakpoints.below.smallTablet}) {
     ${size('sun')};
@@ -77,6 +82,12 @@ const regularTextStyle = css`
   ${size('moon')};
 `
 
+const smallTextStyle = css`
+  ${baseTextStyle};
+
+  ${size('pluto')};
+`
+
 const captionTextStyle = css`
   ${baseTextStyle};
 
@@ -89,11 +100,12 @@ const captionSmallTextStyle = css`
   ${size('dust')};
 `
 
-export const textStyles = {
+export const textStyles: Record<TextTypes, FlattenInterpolation<any>> = {
   veryLarge: veryLargeTextStyle,
   large: largeTextStyle,
   emphasis: emphasisTextStyle,
   regular: regularTextStyle,
+  small: smallTextStyle,
   caption: captionTextStyle,
   captionSmall: captionSmallTextStyle,
 }
