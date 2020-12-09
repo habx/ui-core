@@ -41,13 +41,13 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
 
     let newBackgroundColor =
       theme?.backgroundColor ?? currentTheme.backgroundColor
+    if (preset === 'dark' && !isColorDark(newBackgroundColor)) {
+      newBackgroundColor = palette.neutralBlackWithIntensityFading[900]
+    }
 
     let isDark = false
     if (preset === 'dark') {
       isDark = true
-      if (!isColorDark(newBackgroundColor)) {
-        newBackgroundColor = palette.neutralBlackWithIntensityFading[900]
-      }
     }
     if (preset === 'auto') {
       isDark = isColorDark(newBackgroundColor)
