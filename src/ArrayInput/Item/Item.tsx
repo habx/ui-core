@@ -55,7 +55,7 @@ export const Item: React.FunctionComponent<ItemProps> = ({
             small
           />
         )}
-        {!disabled && handleDelete && (
+        {!disabled && onDelete && (
           <IconButton
             icon="trash"
             onClick={handleDelete}
