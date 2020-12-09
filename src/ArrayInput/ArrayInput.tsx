@@ -17,7 +17,7 @@ export const InnerArrayInput = React.forwardRef<
   const {
     items = [],
     onAppend = DEFAULT_HANDLER,
-    onDelete = () => {},
+    onDelete,
     onReorder,
     onToggle = DEFAULT_HANDLER,
     openedItemIndex = -1,
