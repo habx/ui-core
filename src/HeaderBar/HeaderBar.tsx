@@ -2,12 +2,15 @@ import * as React from 'react'
 
 import { isNil } from '../_internal/data'
 import { useParentLayout, LayoutChild } from '../Layout'
+import { useCurrentBackground } from '../useCurrentBackground'
 
 import { HeaderBarProps } from './HeaderBar.interface'
 import { HeaderBarContainer } from './HeaderBar.style'
 
 export const HeaderBar = React.forwardRef<HTMLElement, HeaderBarProps>(
   (props, ref) => {
+    const defaultBackground = useCurrentBackground()
+
     const {
       children,
       progress,
@@ -15,7 +18,7 @@ export const HeaderBar = React.forwardRef<HTMLElement, HeaderBarProps>(
       small,
       large,
       sticky,
-      backgroundColor = '#FFFFFF',
+      backgroundColor = defaultBackground,
       ...rest
     } = props
 

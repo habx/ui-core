@@ -32,11 +32,11 @@ export const BreadcrumbItemContainer = styled.li`
   &:last-child {
     max-width: initial;
     overflow: visible;
-    color: ${theme.neutralColor(900)};
+    color: ${theme.textColor({ variation: 'title' })};
   }
 
   &:not(:last-child) {
-    color: ${theme.neutralColor(700)};
+    color: ${theme.textColor()};
   }
 
   &[data-interactive='true']:not(:last-child) {
