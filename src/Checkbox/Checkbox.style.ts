@@ -27,7 +27,7 @@ export const FakeInput = styled.div`
   background-color: var(--checkbox-background-color);
   box-shadow: inset 0 0 0 var(--checkbox-border-width)
     var(--checkbox-border-color);
-  border-radius: var(--border-radius);
+  border-radius: var(--checkbox-border-radius);
   transition: all 150ms ease-in-out;
   pointer-events: none;
 `

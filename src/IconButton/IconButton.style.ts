@@ -25,7 +25,8 @@ export const IconButtonContainer = styled.button`
     background-color: unset;
   }
 
-  border-radius: 2px;
+  border-radius: 4px;
+  overflow: hidden;
   font-size: var(--icon-button-font-size);
   width: var(--icon-button-size);
   height: var(--icon-button-size);
