@@ -33,12 +33,7 @@ export const Background = React.forwardRef<HTMLDivElement, BackgroundProps>(
 
     return (
       <BackgroundThemeProvider backgroundColor={backgroundColorWithOpacity}>
-        <BackgroundContainer
-          ref={ref}
-          {...rest}
-          backgroundColor={backgroundColorWithOpacity}
-          data-simulated={simulated}
-        />
+        <BackgroundContainer ref={ref} {...rest} data-simulated={simulated} />
       </BackgroundThemeProvider>
     )
   }

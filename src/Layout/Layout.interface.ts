@@ -1,7 +1,8 @@
 import { BackgroundProps } from '../Background'
+import { Color } from '../color'
 
 export interface LayoutProps extends Omit<BackgroundProps, 'backgroundColor'> {
-  backgroundColor?: string
+  backgroundColor?: Color
 }
 
 export enum LayoutChild {

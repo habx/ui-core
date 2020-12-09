@@ -48,7 +48,7 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
     const content = (
       <ModalOverlay data-state={modal.state} data-testid="modal-overlay">
         <ModalContainer
-          backgroundColor={backgroundColor.toString()}
+          backgroundColor={backgroundColor}
           ref={modal.ref}
           data-testid="modal-container"
           data-width={width}

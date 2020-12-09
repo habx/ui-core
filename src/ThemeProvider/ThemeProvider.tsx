@@ -5,8 +5,6 @@ import {
   ThemeContext,
 } from 'styled-components'
 
-import { isColorDark } from '../color'
-import { palette } from '../palette'
 import {
   DesignSystemTheme,
   DesignSystemProviderValue,
@@ -16,10 +14,11 @@ import {
 import { ThemeVariant } from '../theme'
 
 import { ThemeProviderProps } from './ThemeProvider.interface'
+import { ThemeProviderContainer } from './ThemeProvider.style'
 
 export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
-  preset,
+  preset = 'light',
   children,
 }) => {
   const styledTheme = React.useContext<StyledTheme>(ThemeContext)
@@ -39,25 +38,14 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
       theme?.dark ?? {}
     )
 
-    let newBackgroundColor =
-      theme?.backgroundColor ?? currentTheme.backgroundColor
-    if (preset === 'dark' && !isColorDark(newBackgroundColor)) {
-      newBackgroundColor = palette.neutralBlackWithIntensityFading[900]
-    }
-
-    let isDark = false
-    if (preset === 'dark') {
-      isDark = true
-    }
-    if (preset === 'auto') {
-      isDark = isColorDark(newBackgroundColor)
-    }
-
     const newTheme: DesignSystemTheme = {
       light: newLightVariant,
       dark: newDarkVariant,
-      isDark,
-      backgroundColor: newBackgroundColor,
+      isDark: preset === 'dark',
+      backgroundColor:
+        preset === 'dark'
+          ? newDarkVariant.defaultBackground
+          : newLightVariant.defaultBackground,
     }
 
     return {
@@ -69,7 +57,6 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
     currentTheme.dark,
     currentTheme.light,
     preset,
-    theme?.backgroundColor,
     theme?.dark,
     theme?.light,
   ])
@@ -84,7 +71,7 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
 
   return (
     <BaseThemeProvider theme={newStyledTheme}>
-      <React.Fragment>{children}</React.Fragment>
+      <ThemeProviderContainer>{children}</ThemeProviderContainer>
     </BaseThemeProvider>
   )
 }
