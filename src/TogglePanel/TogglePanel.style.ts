@@ -2,8 +2,9 @@ import styled from 'styled-components'
 
 import { zIndex } from '../_internal/theme/zIndex'
 import { animations } from '../animations'
+import { Background } from '../Background'
 
-export const Container = styled.div`
+export const Container = styled(Background)`
   position: fixed;
   opacity: 1;
   z-index: ${zIndex.dropDowns};

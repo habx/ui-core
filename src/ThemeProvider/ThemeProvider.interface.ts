@@ -14,6 +14,7 @@ export interface DesignSystemThemePatch {
 }
 
 export interface ThemeProviderProps {
-  theme: DesignSystemThemePatch
+  theme?: DesignSystemThemePatch
+  preset?: 'dark' | 'light' | 'auto'
   children?: React.ReactNode
 }

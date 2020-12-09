@@ -8,6 +8,7 @@ import { useWindowSize } from '../_internal/useWindowSize'
 import { ANIMATION_DURATIONS } from '../animations'
 import { breakpoints } from '../breakpoints'
 import { Modal } from '../Modal'
+import { useCurrentBackground } from '../useCurrentBackground'
 import { withTriggerElement } from '../withTriggerElement'
 
 import { InnerTogglePanelProps } from './TogglePanel.interface'
@@ -100,6 +101,8 @@ const InnerTogglePanel = React.forwardRef<
 
     const parent = React.useContext(Context)
 
+    const backgroundColor = useCurrentBackground({ useRootTheme: true })
+
     if (!isClientSide) {
       return null
     }
@@ -121,6 +124,7 @@ const InnerTogglePanel = React.forwardRef<
         {withOverlay && modal.state === 'opened' && <Overlay />}
 
         <Container
+          backgroundColor={backgroundColor}
           data-state={modal.state}
           ref={modal.ref}
           style={customStyle}

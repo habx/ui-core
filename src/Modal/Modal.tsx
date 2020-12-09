@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
+import { useCurrentBackground } from '../useCurrentBackground'
 import { withTriggerElement } from '../withTriggerElement'
 
 import { ModalInnerProps } from './Modal.interface'
@@ -42,10 +43,12 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
       animationDuration: ANIMATION_DURATION,
     })
 
+    const backgroundColor = useCurrentBackground({ useRootTheme: true })
+
     const content = (
       <ModalOverlay data-state={modal.state} data-testid="modal-overlay">
         <ModalContainer
-          backgroundColor="#FFFFFF"
+          backgroundColor={backgroundColor.toString()}
           ref={modal.ref}
           data-testid="modal-container"
           data-width={width}

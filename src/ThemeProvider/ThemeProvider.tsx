@@ -6,6 +6,7 @@ import {
 } from 'styled-components'
 
 import { isColorDark } from '../color'
+import { palette } from '../palette'
 import {
   DesignSystemTheme,
   DesignSystemProviderValue,
@@ -18,6 +19,7 @@ import { ThemeProviderProps } from './ThemeProvider.interface'
 
 export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
+  preset,
   children,
 }) => {
   const styledTheme = React.useContext<StyledTheme>(ThemeContext)
@@ -28,22 +30,33 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
     const newLightVariant: ThemeVariant = merge.recursive(
       true,
       currentTheme.light,
-      theme.light ?? {}
+      theme?.light ?? {}
     )
 
     const newDarkVariant: ThemeVariant = merge.recursive(
       true,
       currentTheme.dark,
-      theme.dark ?? {}
+      theme?.dark ?? {}
     )
 
-    const newBackgroundColor =
-      theme.backgroundColor ?? currentTheme.backgroundColor
+    let newBackgroundColor =
+      theme?.backgroundColor ?? currentTheme.backgroundColor
+
+    let isDark = false
+    if (preset === 'dark') {
+      isDark = true
+      if (!isColorDark(newBackgroundColor)) {
+        newBackgroundColor = palette.neutralBlackWithIntensityFading[900]
+      }
+    }
+    if (preset === 'auto') {
+      isDark = isColorDark(newBackgroundColor)
+    }
 
     const newTheme: DesignSystemTheme = {
       light: newLightVariant,
       dark: newDarkVariant,
-      isDark: isColorDark(newBackgroundColor),
+      isDark,
       backgroundColor: newBackgroundColor,
     }
 
@@ -51,7 +64,15 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
       value: newTheme,
       rootValue: newTheme,
     }
-  }, [currentTheme, theme])
+  }, [
+    currentTheme.backgroundColor,
+    currentTheme.dark,
+    currentTheme.light,
+    preset,
+    theme?.backgroundColor,
+    theme?.dark,
+    theme?.light,
+  ])
 
   const newStyledTheme = React.useMemo<StyledTheme>(
     () => ({
