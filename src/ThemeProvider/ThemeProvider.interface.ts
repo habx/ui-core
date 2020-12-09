@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { Color } from '../color'
 import { ThemeVariant } from '../theme'
 
 type PartialRecursive<T> = T extends object
@@ -8,12 +7,12 @@ type PartialRecursive<T> = T extends object
   : T
 
 export interface DesignSystemThemePatch {
-  backgroundColor?: Color
   light?: PartialRecursive<ThemeVariant>
   dark?: PartialRecursive<ThemeVariant>
 }
 
 export interface ThemeProviderProps {
-  theme: DesignSystemThemePatch
+  theme?: DesignSystemThemePatch
+  preset?: 'dark' | 'light'
   children?: React.ReactNode
 }

@@ -6,7 +6,6 @@ import { buildUseOnlyOpenedInstanceHook } from '../_internal/useOnlyOpenedInstan
 import { useWindowSize } from '../_internal/useWindowSize'
 import { breakpoints } from '../breakpoints'
 import { TogglePanel, TogglePanelProps } from '../TogglePanel'
-import { useCurrentBackground } from '../useCurrentBackground'
 import { withTriggerElement } from '../withTriggerElement'
 
 import { MenuContext } from './Menu.context'
@@ -38,7 +37,6 @@ export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
     useOnlyOneMenuOpened({ open, onClose })
 
     const size = useWindowSize()
-    const background = useCurrentBackground({ useRootTheme: true })
 
     const getChildren = React.useCallback(
       (modal: Modal<HTMLDivElement>) => {
@@ -49,7 +47,7 @@ export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
             {fullScreenOnMobile && size.width < breakpoints.raw.phone ? (
               <FullScreenMenu>{content}</FullScreenMenu>
             ) : (
-              <FloatingMenuContainer backgroundColor={background}>
+              <FloatingMenuContainer>
                 <FloatingMenu data-scrollable={scrollable}>
                   {content}
                 </FloatingMenu>
@@ -58,14 +56,7 @@ export const InnerMenu = React.forwardRef<HTMLDivElement, InnerMenuProps>(
           </MenuContext.Provider>
         )
       },
-      [
-        background,
-        children,
-        fullScreenOnMobile,
-        onClose,
-        scrollable,
-        size.width,
-      ]
+      [children, fullScreenOnMobile, onClose, scrollable, size.width]
     )
 
     const setStyle = React.useCallback<Required<TogglePanelProps>['setStyle']>(

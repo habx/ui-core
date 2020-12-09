@@ -84,6 +84,7 @@ const LIGHT_THEME_VARIANT: ThemeVariant = {
       { x: 0, y: 16, blur: 36, opacity: 0.15 },
     ],
   },
+  defaultBackground: palette.neutralWhiteWithIntensityFading[1000],
 }
 
 const DARK_THEME_VARIANT: ThemeVariant = {
@@ -168,6 +169,8 @@ const DARK_THEME_VARIANT: ThemeVariant = {
       { x: 0, y: 16, blur: 36, opacity: 0.25 },
     ],
   },
+
+  defaultBackground: palette.neutralBlackWithIntensityFading[900],
 }
 
 export const DEFAULT_THEME: DesignSystemTheme = {

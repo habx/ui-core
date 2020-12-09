@@ -1,16 +1,19 @@
 import * as React from 'react'
 
+import { useCurrentBackground } from '../useCurrentBackground'
+
 import { CardProps } from './Card.interface'
 import { CardContainer } from './Card.style'
 
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
   (props, ref) => {
+    const defaultBackgroundColor = useCurrentBackground()
     const {
       animated,
       flat,
       children,
       spacing,
-      backgroundColor = '#FFFFFF',
+      backgroundColor = defaultBackgroundColor,
       ...rest
     } = props
 

@@ -1,10 +1,8 @@
 import styled from 'styled-components'
 
-import { Background } from '../Background'
 import { theme } from '../theme'
 
-export const FloatingMenuContainer = styled(Background)`
-  background-color: ${theme.color('background', { useRootTheme: true })};
+export const FloatingMenuContainer = styled.div`
   box-shadow: ${theme.shadow()};
   border-radius: 4px;
 `

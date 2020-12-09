@@ -5,7 +5,6 @@ import {
   ThemeContext,
 } from 'styled-components'
 
-import { isColorDark } from '../color'
 import {
   DesignSystemTheme,
   DesignSystemProviderValue,
@@ -15,9 +14,11 @@ import {
 import { ThemeVariant } from '../theme'
 
 import { ThemeProviderProps } from './ThemeProvider.interface'
+import { ThemeProviderContainer } from './ThemeProvider.style'
 
 export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
+  preset = 'light',
   children,
 }) => {
   const styledTheme = React.useContext<StyledTheme>(ThemeContext)
@@ -28,30 +29,37 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
     const newLightVariant: ThemeVariant = merge.recursive(
       true,
       currentTheme.light,
-      theme.light ?? {}
+      theme?.light ?? {}
     )
 
     const newDarkVariant: ThemeVariant = merge.recursive(
       true,
       currentTheme.dark,
-      theme.dark ?? {}
+      theme?.dark ?? {}
     )
-
-    const newBackgroundColor =
-      theme.backgroundColor ?? currentTheme.backgroundColor
 
     const newTheme: DesignSystemTheme = {
       light: newLightVariant,
       dark: newDarkVariant,
-      isDark: isColorDark(newBackgroundColor),
-      backgroundColor: newBackgroundColor,
+      isDark: preset === 'dark',
+      backgroundColor:
+        preset === 'dark'
+          ? newDarkVariant.defaultBackground
+          : newLightVariant.defaultBackground,
     }
 
     return {
       value: newTheme,
       rootValue: newTheme,
     }
-  }, [currentTheme, theme])
+  }, [
+    currentTheme.backgroundColor,
+    currentTheme.dark,
+    currentTheme.light,
+    preset,
+    theme?.dark,
+    theme?.light,
+  ])
 
   const newStyledTheme = React.useMemo<StyledTheme>(
     () => ({
@@ -63,7 +71,7 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
 
   return (
     <BaseThemeProvider theme={newStyledTheme}>
-      <React.Fragment>{children}</React.Fragment>
+      <ThemeProviderContainer>{children}</ThemeProviderContainer>
     </BaseThemeProvider>
   )
 }

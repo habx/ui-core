@@ -66,6 +66,7 @@ export interface ThemeVariant {
   typography: Typography
   neutralColor: NeutralGradients
   shadows: Shadows
+  defaultBackground: Color
 }
 
 export interface DesignSystemTheme {

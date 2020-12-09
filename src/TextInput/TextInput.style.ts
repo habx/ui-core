@@ -53,8 +53,8 @@ export const inputStyle = css`
     }
 
     &[data-background='true'] {
-      background-color: #fff;
-      border-color: #fff;
+      background-color: ${theme.neutralColor(100)};
+      border-color: ${theme.neutralColor(300)};
     }
 
     &[data-error='true'] {

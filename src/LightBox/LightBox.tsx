@@ -5,6 +5,7 @@ import * as ReactDOM from 'react-dom'
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
 import { ANIMATION_DURATIONS } from '../animations'
+import { useCurrentBackground } from '../useCurrentBackground'
 import { withTriggerElement } from '../withTriggerElement'
 
 import { LightBoxInnerProps } from './LightBox.interface'
@@ -30,10 +31,12 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
       animationDuration: ANIMATION_DURATIONS.l,
     })
 
+    const backgroundColor = useCurrentBackground({ useRootTheme: true })
+
     const content = (
       <LightBoxContainer
         ref={ref}
-        backgroundColor="#FFFFFF"
+        backgroundColor={backgroundColor}
         data-state={modal.state}
         data-spacing={spacing}
         {...rest}
@@ -51,6 +54,6 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
   }
 )
 
-export const LightBox = withTriggerElement<HTMLDivElement>()<
-  LightBoxInnerProps
->(InnerLightBox)
+export const LightBox = withTriggerElement<HTMLDivElement>()<LightBoxInnerProps>(
+  InnerLightBox
+)

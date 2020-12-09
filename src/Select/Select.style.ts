@@ -64,8 +64,8 @@ export const SelectContainer = styled.div`
     --select-border-width: 1.5px;
 
     &[data-background='true'] {
-      --select-background-color: #fff;
-      --select-border-color: ${theme.neutralColor(200)};
+      --select-background-color: ${theme.neutralColor(100)};
+      --select-border-color: ${theme.neutralColor(300)};
     }
 
     ${({ color }) =>
@@ -92,7 +92,7 @@ export const SelectContainer = styled.div`
   }
 
   &[data-light='true'] {
-    --select-background-color: #fff;
+    --select-background-color: ${theme.color('background')};
     font-size: ${fontScale.mars.size}px;
     padding: 0 12px;
 
@@ -143,7 +143,7 @@ export const SelectContainer = styled.div`
     }
 
     &:not([data-light='true']) {
-      background-color: #fff;
+      background-color: ${theme.neutralColor(100)};
     }
   }
 
