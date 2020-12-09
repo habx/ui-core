@@ -11,8 +11,8 @@ export interface DesignSystemThemePatch {
   dark?: PartialRecursive<ThemeVariant>
 }
 
-export interface ThemeProviderProps {
+export interface ThemeProviderProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   theme?: DesignSystemThemePatch
   preset?: 'dark' | 'light'
-  children?: React.ReactNode
 }

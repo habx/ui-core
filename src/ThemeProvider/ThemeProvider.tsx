@@ -20,6 +20,7 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
   theme,
   preset = 'light',
   children,
+  ...props
 }) => {
   const styledTheme = React.useContext<StyledTheme>(ThemeContext)
 
@@ -71,7 +72,7 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
 
   return (
     <BaseThemeProvider theme={newStyledTheme}>
-      <ThemeProviderContainer>{children}</ThemeProviderContainer>
+      <ThemeProviderContainer {...props}>{children}</ThemeProviderContainer>
     </BaseThemeProvider>
   )
 }
