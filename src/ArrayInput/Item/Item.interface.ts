@@ -15,5 +15,5 @@ export interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   renderItem: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
   renderItemTitle: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
   onReorder?: (oldPosition: number, newPosition: number) => void
-  onDelete: (position: number) => void
+  onDelete?: (position: number) => void
 }
