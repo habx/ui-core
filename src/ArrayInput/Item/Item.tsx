@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { isFunction } from '../../_internal/data'
 import { ControlledExpansionPanelItem } from '../../ExpansionPanelItem'
 import { IconButton } from '../../IconButton'
 import {
@@ -27,17 +26,14 @@ export const Item: React.FunctionComponent<ItemProps> = ({
 }) => {
   const handleDelete = (e: React.MouseEvent) => {
     e.stopPropagation()
-
-    if (isFunction(onDelete)) {
-      onDelete(index)
-    }
+    onDelete?.(index)
   }
 
   const handleMoveUp = (e: React.MouseEvent) => {
     e.stopPropagation()
 
-    if (isFunction(onReorder) && index > 0) {
-      onReorder(index, index - 1)
+    if (index > 0) {
+      onReorder?.(index, index - 1)
     }
   }
 
@@ -48,9 +44,7 @@ export const Item: React.FunctionComponent<ItemProps> = ({
       onClick={onClick}
       data-testid="array-input-item-header"
     >
-      <ItemHeaderContent>
-        {isFunction(renderItemTitle) && renderItemTitle(state)}
-      </ItemHeaderContent>
+      <ItemHeaderContent>{renderItemTitle?.(state)}</ItemHeaderContent>
       <ItemActions>
         {!disabled && canBeReordered && (
           <IconButton
@@ -61,7 +55,7 @@ export const Item: React.FunctionComponent<ItemProps> = ({
             small
           />
         )}
-        {!disabled && (
+        {!disabled && handleDelete && (
           <IconButton
             icon="trash"
             onClick={handleDelete}
@@ -81,7 +75,7 @@ export const Item: React.FunctionComponent<ItemProps> = ({
       data-testid="array-input-item"
       {...rest}
     >
-      <ItemContent>{isFunction(renderItem) && renderItem(state)}</ItemContent>
+      <ItemContent>{renderItem?.(state)}</ItemContent>
     </ControlledExpansionPanelItem>
   )
 }
