@@ -1,5 +1,7 @@
 import * as React from 'react'
 
+import { useCurrentBackground } from '../useCurrentBackground'
+
 import { LayoutContext } from './Layout.context'
 import {
   LayoutProps,
@@ -13,7 +15,9 @@ import {
 
 export const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
   (props, ref) => {
-    const { children, backgroundColor, ...rest } = props
+    const defaultBackground = useCurrentBackground()
+
+    const { children, backgroundColor = defaultBackground, ...rest } = props
     const [registeredChildren, setRegisteredChildren] = React.useState<
       Partial<Record<LayoutChild, number[]>>
     >({})
