@@ -3,10 +3,7 @@ import * as React from 'react'
 import { NavigationButton } from '../NavigationButton'
 import { NavigationDots } from '../NavigationDots'
 
-import {
-  NavigationButtonContainer,
-  NavigationDotsContainer,
-} from './SlideShow.style'
+import { SlideShowNavigationContainer } from './SlideShow.style'
 
 const InnerSlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps> = ({
   next,
@@ -16,31 +13,34 @@ const InnerSlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps
   circular,
   hideNavigationDots,
 }) => (
-  <React.Fragment>
-    <NavigationButtonContainer className="slideshow-navigation-button">
+  <SlideShowNavigationContainer className="slideshow-navigation-container">
+    <div className="slideshow-navigation-button" data-target="previous">
       <NavigationButton
         previous
         large
         onClick={previous}
         disabled={!circular && active === 0}
+        secondary
       />
-    </NavigationButtonContainer>
-    <NavigationButtonContainer
-      data-right
-      className="slideshow-navigation-button"
-    >
+    </div>
+    {hideNavigationDots ? (
+      <div />
+    ) : (
+      <NavigationDots
+        className="slideshow-navigation-dots"
+        size={size}
+        activeDot={(active + size) % size}
+      />
+    )}
+    <div className="slideshow-navigation-button" data-target="next">
       <NavigationButton
         large
         onClick={next}
         disabled={!circular && active === size - 1}
+        secondary
       />
-    </NavigationButtonContainer>
-    {!hideNavigationDots && (
-      <NavigationDotsContainer className="slideshow-navigation-dots">
-        <NavigationDots size={size} activeDot={(active + size) % size} />
-      </NavigationDotsContainer>
-    )}
-  </React.Fragment>
+    </div>
+  </SlideShowNavigationContainer>
 )
 
 interface SlideShowNavigationProps {

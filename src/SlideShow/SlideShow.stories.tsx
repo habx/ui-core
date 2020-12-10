@@ -12,8 +12,6 @@ import { SlideShow, SlideShowProps } from './index'
 
 const Container = styled.div`
   position: relative;
-  width: 450px;
-  height: 400px;
   max-width: calc(100vw - 48px);
   max-height: calc(100vh - 48px);
 `
