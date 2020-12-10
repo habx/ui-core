@@ -61,7 +61,7 @@ export const withTriggerElement = <RefElement extends HTMLElement>(
         onClick: handleToggle,
         ref: triggerRef,
       })
-    }, [triggerElement, open])
+    }, [triggerElement, triggerRef, open])
 
     if (!fullTriggerElement) {
       return (

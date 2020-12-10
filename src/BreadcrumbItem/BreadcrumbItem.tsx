@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { isString } from '../_internal/data'
+import { useMergedRef } from '../_internal/useMergedRef'
 import { BreadcrumbContext } from '../Breadcrumb/Breadcrumb.context'
 import { Tooltip } from '../Tooltip'
 
@@ -15,15 +16,18 @@ export const BreadcrumbItem = React.forwardRef<
   const { size } = React.useContext(BreadcrumbContext)
   const tooltipTitle = isString(children) ? children : ''
 
+  const triggerRef = useMergedRef(ref)
+
   return (
     <Tooltip
       title={tooltipTitle}
       disabled={!isString(children) || !interactive}
       small
+      triggerRef={triggerRef}
     >
       <BreadcrumbItemContainer
         as={as}
-        ref={ref}
+        ref={triggerRef}
         {...rest}
         data-testid="breadcrumb-item"
         data-size={size}
