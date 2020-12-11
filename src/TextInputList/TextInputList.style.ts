@@ -21,10 +21,4 @@ export const ElementRightContainer = styled.div`
 export const TextInputListTag = styled(Tag)`
   display: flex;
   margin-right: 12px;
-
-  > span {
-    font-size: 11px;
-    margin-top: 1px;
-    margin-left: 4px;
-  }
 `

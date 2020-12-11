@@ -108,9 +108,9 @@ export const TextInputList = React.forwardRef<
               key={`${el}-${index}`}
               onClick={() => handleRemoveItem(index)}
               small
+              elementRight={<Icon icon="close" />}
             >
               {el}
-              <Icon icon="close" />
             </TextInputListTag>
           ))}
         </TagListContainer>
