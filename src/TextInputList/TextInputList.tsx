@@ -2,15 +2,15 @@ import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
 import { AutocompleteInput } from '../AutocompleteInput'
+import { Icon } from '../Icon'
 import { IconButton } from '../IconButton'
-import { Text } from '../Text'
 
 import { TextInputListProps } from './TextInputList.interface'
 import {
   TextInputListContainer,
-  TextInputItem,
   TagListContainer,
   ElementRightContainer,
+  TextInputListTag,
 } from './TextInputList.style'
 
 export const TextInputList = React.forwardRef<
@@ -103,14 +103,15 @@ export const TextInputList = React.forwardRef<
       {value?.length > 0 && (
         <TagListContainer>
           {value.map((el, index) => (
-            <TextInputItem key={index}>
-              <Text>{el}</Text>
-              <IconButton
-                tiny
-                icon="close"
-                onClick={() => handleRemoveItem(index)}
-              />
-            </TextInputItem>
+            <TextInputListTag
+              interactive
+              key={`${el}-${index}`}
+              onClick={() => handleRemoveItem(index)}
+              small
+            >
+              {el}
+              <Icon icon="close" />
+            </TextInputListTag>
           ))}
         </TagListContainer>
       )}
