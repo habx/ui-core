@@ -19,6 +19,5 @@ export const ElementRightContainer = styled.div`
 `
 
 export const TextInputListTag = styled(Tag)`
-  display: flex;
   margin-right: 12px;
 `
