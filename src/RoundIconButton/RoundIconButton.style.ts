@@ -13,6 +13,7 @@ export const RoundIconButtonContainer = styled.button`
   border: none;
   background: none;
   outline: none;
+  cursor: pointer;
   box-shadow: inset 0 0 0 var(--round-icon-button-border-width)
       var(--round-icon-button-border-color),
     0 0 0 var(--round-icon-button-outline-width)
