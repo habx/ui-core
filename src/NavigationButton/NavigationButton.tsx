@@ -22,6 +22,9 @@ const getIcon = (usage: 'navigation' | 'toggle', previous?: boolean) => {
   }
 }
 
+/**
+ * @deprecated Will be removed in 6.0, replace with RoundIconButton or IconButton. Replace `previous` with `icon='arrow-west'` or `icon='chevron-west` and `next` with `icon='arrow-east'` or `icon='chevron-east`
+ */
 export const NavigationButton = React.forwardRef<
   HTMLButtonElement,
   NavigationButtonProps
