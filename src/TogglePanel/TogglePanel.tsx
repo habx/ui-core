@@ -2,6 +2,7 @@ import useModal, { Modal as ModalType } from '@delangle/use-modal'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
+import { buildUseOnlyOneInstanceOpened } from '../_internal/buildUseOnlyOneInstanceOpened'
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
 import { useWindowSize } from '../_internal/useWindowSize'
@@ -15,6 +16,14 @@ import { InnerTogglePanelProps } from './TogglePanel.interface'
 import { Container, Overlay } from './TogglePanel.style'
 
 const Context = React.createContext<ModalType<HTMLDivElement> | null>(null)
+
+const {
+  useOnlyOneInstanceOpened,
+  useInstanceContext,
+  InstanceProvider,
+} = buildUseOnlyOneInstanceOpened()
+
+export const useParentTogglePanel = useInstanceContext
 
 const InnerTogglePanel = React.forwardRef<
   HTMLDivElement,
@@ -36,6 +45,8 @@ const InnerTogglePanel = React.forwardRef<
     ref
   ) => {
     const [customStyle, setCustomStyle] = React.useState(style)
+
+    const instanceId = useOnlyOneInstanceOpened({ open, onClose })
 
     const modal = useModal<HTMLDivElement>({
       ref,
@@ -107,7 +118,11 @@ const InnerTogglePanel = React.forwardRef<
       return null
     }
 
-    const content = isFunction(children) ? children(modal) : children
+    const content = (
+      <InstanceProvider id={instanceId} onClose={onClose}>
+        {isFunction(children) ? children(modal) : children}
+      </InstanceProvider>
+    )
 
     if (fullScreenOnMobile && size.width < breakpoints.raw.phone) {
       return (

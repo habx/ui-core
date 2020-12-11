@@ -12,7 +12,7 @@ import {
 
 export const withTriggerElement = <RefElement extends HTMLElement>(
   config: TriggerElementConfig = {}
-) => <Props extends TriggerInjectedProps = TriggerInjectedProps>(
+) => <Props extends TriggerInjectedProps>(
   WrappedComponent: React.ComponentType<Props>
 ) => {
   const { forwardRef = false } = config
