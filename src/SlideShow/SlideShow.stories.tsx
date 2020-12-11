@@ -63,11 +63,6 @@ const GRID_PROPS = {
 const GRID_LINES = [
   { title: 'Basic' },
   { title: 'Hide navigation dots', props: { hideNavigationDots: true } },
-  { title: 'Secondary', props: { secondary: true } },
-  {
-    title: 'Hide navigation buttons',
-    props: { navigationComponent: () => null },
-  },
 ]
 
 const GRID_ITEMS = [{}]

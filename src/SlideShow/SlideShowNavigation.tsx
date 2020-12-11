@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { NavigationButton } from '../NavigationButton'
 import { NavigationDots } from '../NavigationDots'
+import { RoundIconButton } from '../RoundIconButton'
 
 import { SlideShowNavigationContainer } from './SlideShow.style'
 
@@ -15,12 +15,10 @@ const InnerSlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps
 }) => (
   <SlideShowNavigationContainer className="slideshow-navigation-container">
     <div className="slideshow-navigation-button" data-target="previous">
-      <NavigationButton
-        previous
-        large
+      <RoundIconButton
+        icon="arrow-west"
         onClick={previous}
         disabled={!circular && active === 0}
-        secondary
       />
     </div>
     {hideNavigationDots ? (
@@ -33,11 +31,10 @@ const InnerSlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps
       />
     )}
     <div className="slideshow-navigation-button" data-target="next">
-      <NavigationButton
-        large
+      <RoundIconButton
+        icon="arrow-east"
         onClick={next}
         disabled={!circular && active === size - 1}
-        secondary
       />
     </div>
   </SlideShowNavigationContainer>
