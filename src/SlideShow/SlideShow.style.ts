@@ -8,7 +8,6 @@ export const DESKTOP_ANIMATION_DURATION = 500
 export const MOBILE_ANIMATION_DURATION = 300
 
 export const SlideShowContainer = styled(Swipe)`
-  overflow: hidden;
   width: 100%;
   height: 100%;
   display: flex;
@@ -22,6 +21,7 @@ export const SlideShowSlidingContainer = styled.div`
   align-items: stretch;
   justify-content: stretch;
   flex: 1 1 100%;
+  overflow: hidden;
 `
 
 export const SlideShowSlidingContent = styled.div<{ size: number }>`
@@ -64,23 +64,10 @@ export const Slide = styled.div`
   }
 `
 
-export const NavigationButtonContainer = styled.div`
-  position: absolute;
-  top: calc(50% - 28px);
-  z-index: 1;
-
-  &[data-right='true'] {
-    right: 24px;
-  }
-
-  &:not([data-right='true']) {
-    left: 24px;
-  }
-`
-
-export const NavigationDotsContainer = styled.div`
+export const SlideShowNavigationContainer = styled.div`
   display: flex;
-  justify-content: center;
-  margin-top: 24px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 48px;
   flex: 0 0 auto;
 `
