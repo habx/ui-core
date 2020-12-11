@@ -20,7 +20,7 @@ export const Dot = styled.div<{ secondary?: boolean }>`
   transition: all 300ms ease-in-out;
 
   --navigation-dot-empty-color: ${theme.neutralColor(400)};
-  --navigation-dot-active-color: ${theme.color('primary')};
+  --navigation-dot-active-color: ${theme.color('secondary')};
 
   &[data-active='true'] {
     flex: 0 1 100%;

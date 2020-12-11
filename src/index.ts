@@ -33,6 +33,7 @@ export { CardButton, CardButtonProps } from './CardButton'
 export { FloatingButton, FloatingButtonProps } from './FloatingButton'
 export { FloatingIconButton, FloatingIconButtonProps } from './FloatingIconButton'
 export { IconButton, IconButtonProps } from './IconButton'
+export { RoundIconButton, RoundIconButtonProps } from './RoundIconButton'
 export { NavigationButton, NavigationButtonProps } from './NavigationButton'
 export { Tag, TagProps } from './Tag'
 
