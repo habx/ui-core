@@ -45,7 +45,9 @@ export const SelectContainer = styled.div`
   background-color: var(--select-background-color);
 
   --select-height: 48px;
-  --select-background-color: ${theme.neutralColor(200)};
+  --select-background-color: ${theme.neutralColor(200, {
+    gradient: 'withIntensityFading',
+  })};
   --select-border-width: 0;
   --select-border-color: ${theme.neutralColor(200)};
 
@@ -64,7 +66,9 @@ export const SelectContainer = styled.div`
     --select-border-width: 1.5px;
 
     &[data-background='true'] {
-      --select-background-color: ${theme.neutralColor(100)};
+      --select-background-color: ${theme.neutralColor(100, {
+        gradient: 'withIntensityFading',
+      })};
       --select-border-color: ${theme.neutralColor(300)};
     }
 
@@ -110,9 +114,8 @@ export const SelectContainer = styled.div`
 
     &:not([data-light='true']) {
       &[data-background='true'] {
-        --select-background-color: ${theme.color('background', {
-          opacity: 0.9,
-          useRootTheme: true,
+        --select-background-color: ${theme.neutralColor(200, {
+          gradient: 'withIntensityFading',
         })};
       }
     }
