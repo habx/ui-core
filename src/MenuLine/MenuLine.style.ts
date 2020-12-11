@@ -5,7 +5,7 @@ import { ANIMATION_DURATIONS } from '../animations'
 import { theme } from '../theme'
 
 export const MenuLineContainer = styled.li`
-  padding: 6px 24px;
+  padding: 6px var(--menu-line-horizontal-padding);
 
   display: flex;
   align-items: center;

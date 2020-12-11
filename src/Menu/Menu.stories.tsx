@@ -18,7 +18,7 @@ const GRID_PROPS = {
         <MenuLine active>Feature 2 (active)</MenuLine>
         <MenuLine disabled>Feature 3 (disabled)</MenuLine>
       </MenuSection>
-      <MenuSection>
+      <MenuSection label="Optional features">
         <MenuLine>Feature 4</MenuLine>
         <MenuLine>Feature 5</MenuLine>
       </MenuSection>
