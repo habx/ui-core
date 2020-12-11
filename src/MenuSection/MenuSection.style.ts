@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { Text } from '../Text'
 import { theme } from '../theme'
 
 export const MenuSectionContainer = styled.div`
@@ -31,4 +32,14 @@ export const MenuSectionContainer = styled.div`
       display: none;
     }
   }
+`
+
+export const MenuSectionContent = styled.div`
+  &[data-has-label='true'] {
+    --menu-line-horizontal-padding: 32px;
+  }
+`
+
+export const MenuSectionLabel = styled(Text)`
+  padding: 6px var(--menu-line-horizontal-padding);
 `
