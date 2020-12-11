@@ -1,4 +1,5 @@
 import * as React from 'react'
 
-export interface MenuSectionProps
-  extends React.HTMLAttributes<HTMLDivElement> {}
+export interface MenuSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+  label?: React.ReactNode
+}
