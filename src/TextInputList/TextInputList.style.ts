@@ -1,13 +1,8 @@
 import styled from 'styled-components'
 
-export const TextInputListContainer = styled.div``
+import { Tag } from '../Tag'
 
-export const TextInputItem = styled.div`
-  position: relative;
-  padding: 0 12px 0 8px;
-  display: flex;
-  align-items: center;
-`
+export const TextInputListContainer = styled.div``
 
 export const TagListContainer = styled.div`
   margin-top: 12px;
@@ -21,4 +16,8 @@ export const ElementRightContainer = styled.div`
   * > {
     margin-left: 12px;
   }
+`
+
+export const TextInputListTag = styled(Tag)`
+  margin-right: 12px;
 `

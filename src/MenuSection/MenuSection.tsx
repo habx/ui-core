@@ -1,15 +1,24 @@
 import * as React from 'react'
 
 import { MenuSectionProps } from './MenuSection.interface'
-import { MenuSectionContainer } from './MenuSection.style'
+import {
+  MenuSectionContainer,
+  MenuSectionContent,
+  MenuSectionLabel,
+} from './MenuSection.style'
 
 export const MenuSection = React.forwardRef<HTMLDivElement, MenuSectionProps>(
   (props, ref) => {
-    const { children, ...rest } = props
+    const { children, label, ...rest } = props
 
     return (
       <MenuSectionContainer ref={ref} {...rest} data-section>
-        {children}
+        {!!label && (
+          <MenuSectionLabel variation="title">{label}</MenuSectionLabel>
+        )}
+        <MenuSectionContent data-has-label={!!label}>
+          {children}
+        </MenuSectionContent>
       </MenuSectionContainer>
     )
   }
