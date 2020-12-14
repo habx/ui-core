@@ -12,11 +12,6 @@ export interface BackgroundProps extends React.HTMLAttributes<HTMLDivElement> {
   backgroundColor: Color | ((theme: ThemeVariant) => Color)
 
   /**
-   * Opacity of the background
-   */
-  opacity?: number
-
-  /**
    * If true, it won't apply the theme background to the DOM element. It allows to "fake" the background property for children.
    * @default false
    */

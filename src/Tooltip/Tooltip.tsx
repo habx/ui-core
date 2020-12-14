@@ -2,13 +2,16 @@ import useModal from '@delangle/use-modal'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
+import { buildUseOnlyOneInstanceOpened } from '../_internal/buildUseOnlyOneInstanceOpened'
 import { isClientSide } from '../_internal/ssr'
 import { Text } from '../Text'
 import { useThemeVariant } from '../useThemeVariant'
 
-import { useTooltip, useOnlyOneTooltipOpened } from './Tooltip.hooks'
+import { useTooltip } from './Tooltip.hooks'
 import { TooltipProps, TooltipVisibilityState } from './Tooltip.interface'
 import { ANIMATION_DURATION, TooltipContainer } from './Tooltip.style'
+
+export const { useOnlyOneInstanceOpened } = buildUseOnlyOneInstanceOpened()
 
 export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
   (props, ref) => {
@@ -35,7 +38,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
       animationDuration: ANIMATION_DURATION,
     })
 
-    useOnlyOneTooltipOpened({ open: isOpen, onClose: actions.onMouseLeave })
+    useOnlyOneInstanceOpened({ open: isOpen, onClose: actions.onMouseLeave })
 
     const content = React.isValidElement(children)
       ? React.cloneElement(children, {
