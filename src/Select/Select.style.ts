@@ -185,7 +185,6 @@ export const SearchInput = styled.input.attrs(() => ({
 
 export const ElementLeftContainer = styled.div`
   margin-right: 8px;
-  align-self: stretch;
 `
 
 export const ResetIconContainer = styled.div`
