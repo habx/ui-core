@@ -8,6 +8,7 @@ export const Container = styled(Background)`
   position: fixed;
   opacity: 1;
   z-index: ${zIndex.dropDowns};
+  border-radius: 4px;
 
   &:not([data-state='opened']) {
     pointer-events: none;
