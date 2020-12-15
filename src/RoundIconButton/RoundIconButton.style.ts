@@ -11,14 +11,14 @@ export const RoundIconButtonContainer = styled.button`
   justify-content: center;
   font-size: ${fontScale.moon};
   border: none;
-  background: none;
   outline: none;
   cursor: pointer;
   box-shadow: inset 0 0 0 var(--round-icon-button-border-width)
       var(--round-icon-button-border-color),
     0 0 0 var(--round-icon-button-outline-width)
       var(--round-icon-button-outline-color);
-  color: ${theme.color('secondary', { dynamic: true })};
+  color: var(--round-icon-color);
+  background-color: var(--round-icon-background-color);
 
   transition-property: box-shadow, background-color;
   transition-duration: ${ANIMATION_DURATIONS.m}ms;
@@ -36,6 +36,8 @@ export const RoundIconButtonContainer = styled.button`
     opacity: 0.3,
   })};
   --round-icon-button-diameter: 36px;
+  --round-icon-background-color: ${theme.color('background')};
+  --round-icon-color: ${theme.color('secondary', { dynamic: true })};
 
   &:hover {
     --round-icon-button-border-width: 3px;
@@ -51,5 +53,8 @@ export const RoundIconButtonContainer = styled.button`
 
   &:disabled {
     pointer-events: none;
+    --round-icon-button-border-width: 0;
+    --round-icon-background-color: ${theme.neutralColor(300)};
+    --round-icon-color: ${theme.neutralColor(300)};
   }
 `
