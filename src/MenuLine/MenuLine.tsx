@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-import { MenuContext } from '../Menu'
 import { Text } from '../Text'
+import { useParentTogglePanel } from '../TogglePanel'
 
 import { MenuLineProps } from './MenuLine.interface'
 import { MenuLineContainer, SideElementContainer } from './MenuLine.style'
@@ -19,15 +19,16 @@ export const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
       disabled,
       ...rest
     } = props
-    const menuContext = React.useContext(MenuContext)
+    const togglePanel = useParentTogglePanel()
+
     const handleClick = React.useCallback(
       (e: React.MouseEvent<HTMLLIElement>) => {
-        menuContext.close()
+        togglePanel.close()
         if (onClick) {
           onClick(e)
         }
       },
-      [onClick, menuContext]
+      [onClick, togglePanel]
     )
     return (
       <MenuLineContainer

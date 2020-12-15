@@ -1,21 +1,14 @@
 import { TogglePanelProps, Dimensions } from '../TogglePanel'
-import { WithTriggerElement } from '../withTriggerElement'
 
-export interface MenuInstance {
-  open: boolean
-  onClose: () => void
-}
+export type PositionSetter = (dimensions: {
+  triggerDimensions: Dimensions
+  menuHeight: number
+  menuWidth: number
+  position: 'horizontal' | 'vertical'
+}) => { top?: number; left?: number; right?: number; bottom?: number }
 
-export interface InnerMenuProps
-  extends Omit<TogglePanelProps, 'setStyle' | keyof MenuInstance>,
-    MenuInstance {
+export interface MenuProps extends Omit<TogglePanelProps, 'setStyle'> {
   scrollable?: boolean
   position?: 'horizontal' | 'vertical'
-  setPosition?: (dimensions: {
-    triggerDimensions: Dimensions
-    menuHeight: number
-    menuWidth: number
-  }) => { top?: number; left?: number; right?: number; bottom?: number }
+  setPosition?: PositionSetter
 }
-
-export type MenuProps = WithTriggerElement<InnerMenuProps, HTMLDivElement>

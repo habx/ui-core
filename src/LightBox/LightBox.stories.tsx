@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 import { withGrid } from '../_storybook/withGrid'
 import { Button } from '../Button'
+import { theme } from '../theme'
 
 import { LightBox, LightBoxProps } from './index'
 
