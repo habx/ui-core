@@ -83,7 +83,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
         }
 
         return (
-          <FloatingMenuContainer data-truc={2}>
+          <FloatingMenuContainer>
             <FloatingMenu data-scrollable={scrollable}>{content}</FloatingMenu>
           </FloatingMenuContainer>
         )
