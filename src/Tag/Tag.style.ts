@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations'
 import { theme } from '../theme'
 
 export const TagContainer = styled.button`
@@ -16,7 +17,7 @@ export const TagContainer = styled.button`
   border: 1px solid ${theme.neutralColor(300)};
   font-family: ${theme.font()};
   line-height: 1;
-  transition: background-color 50ms ease-in-out;
+  transition: ${transition('background-color', { duration: 's' })};
   color: ${theme.textColor()};
 
   padding: 0 var(--tag-horizontal-padding);

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations'
 import { Background } from '../Background'
 import { breakpoints } from '../breakpoints'
 import { theme } from '../theme'
@@ -49,6 +50,6 @@ export const HeaderBarContainer = styled(Background)`
     bottom: -1px;
     right: calc(100% * (1 - var(--header-bar-progress)));
     background-color: ${theme.color('primary')};
-    transition: right 150ms ease-in-out;
+    transition: ${transition('right')};
   }
 `

@@ -11,6 +11,14 @@ export const ANIMATION_DURATIONS = {
 
 export const ANIMATION_TIMING_FUNCTION = 'cubic-bezier(.04,.8,.61,1)'
 
+export const transition = (
+  propertyKey: string,
+  config?: { duration?: keyof typeof ANIMATION_DURATIONS }
+) =>
+  `${propertyKey} ${
+    ANIMATION_DURATIONS[config?.duration ?? 'm']
+  }ms ${ANIMATION_TIMING_FUNCTION}`
+
 const ANIMATIONS: Animations = {
   emerge: {
     duration: 'l',

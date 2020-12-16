@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 
+import { transition } from '../animations'
 import { breakpoints } from '../breakpoints'
 import { Icon } from '../Icon'
 import { theme } from '../theme'
@@ -14,7 +15,7 @@ export const inputStyle = css`
   border-radius: 4px;
   border: solid 1.5px transparent;
 
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
 
   &:disabled {
     pointer-events: none;
@@ -98,7 +99,7 @@ export const LeftElementContainer = styled.div`
   align-items: center;
   font-size: 18px;
   font-family: ${theme.font()};
-  transition: all ease-in-out 150ms;
+  transition: ${transition('all')};
 
   &[data-light='true'] {
     right: 12px;

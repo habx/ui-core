@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations'
 import { Text } from '../Text'
 import { theme } from '../theme'
 
@@ -21,7 +22,7 @@ export const NavBarItemContainer = styled.li`
   outline: none;
   display: flex;
   align-items: center;
-  transition: background-color 150ms ease-in-out;
+  transition: ${transition('background-color')};
   cursor: pointer;
   white-space: nowrap;
   user-select: none;

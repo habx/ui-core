@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../../animations/animations'
 import { fontScale } from '../../fontScale'
 import { theme } from '../../theme'
 
@@ -17,12 +18,12 @@ export const SideElementContainer = styled.div`
   }
 
   & > * {
-    transition: all ease-in 150ms;
+    transition: ${transition('all')};
   }
 `
 
 export const OptionContainer = styled.li`
-  transition: all ease-in 150ms;
+  transition: ${transition('all')};
   outline: none;
   cursor: pointer;
   user-select: none;

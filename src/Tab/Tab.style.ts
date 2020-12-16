@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations'
 import { theme } from '../theme'
 
 export const TabContainer = styled.button`
@@ -19,7 +20,7 @@ export const TabContainer = styled.button`
   font-family: ${theme.font()};
   font-weight: 500;
   line-height: 1;
-  transition: background-color 50ms ease-in-out;
+  transition: ${transition('background-color', { duration: 's' })};
 
   padding: 0 12px;
   height: 28px;

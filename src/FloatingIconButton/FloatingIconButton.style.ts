@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import { zIndex } from '../_internal/theme/zIndex'
+import { ANIMATION_DURATIONS, ANIMATION_TIMING_FUNCTION } from '../animations'
 import { breakpoints } from '../breakpoints'
 import { theme } from '../theme'
 
@@ -36,8 +37,8 @@ export const FloatingButtonContainer = styled.button`
   position: absolute;
 
   transition-property: box-shadow, padding, background-color;
-  transition-duration: 50ms;
-  transition-timing-function: ease-in-out;
+  transition-duration: ${ANIMATION_DURATIONS.s};
+  transition-timing-function: ${ANIMATION_TIMING_FUNCTION};
 
   &[data-fixed='true'] {
     position: fixed;
