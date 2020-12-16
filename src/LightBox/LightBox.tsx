@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
+import { withTogglePanelReset } from '../_internal/withTogglePanelReset'
 import { ANIMATION_DURATIONS } from '../animations'
 import { useCurrentBackground } from '../useCurrentBackground'
 import { withTriggerElement } from '../withTriggerElement'
@@ -54,6 +55,6 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
   }
 )
 
-export const LightBox = withTriggerElement<HTMLDivElement>()<LightBoxInnerProps>(
-  InnerLightBox
+export const LightBox = withTogglePanelReset(
+  withTriggerElement<HTMLDivElement>()<LightBoxInnerProps>(InnerLightBox)
 )

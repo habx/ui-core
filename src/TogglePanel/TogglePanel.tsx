@@ -1,4 +1,4 @@
-import useModal, { Modal as ModalType } from '@delangle/use-modal'
+import useModal, { ModalState } from '@delangle/use-modal'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
@@ -12,10 +12,9 @@ import { Modal } from '../Modal'
 import { useCurrentBackground } from '../useCurrentBackground'
 import { withTriggerElement } from '../withTriggerElement'
 
+import { Context } from './TogglePanel.context'
 import { InnerTogglePanelProps } from './TogglePanel.interface'
 import { Container, Overlay } from './TogglePanel.style'
-
-const Context = React.createContext<ModalType<HTMLDivElement> | null>(null)
 
 const {
   useOnlyOneInstanceOpened,
@@ -136,8 +135,7 @@ const InnerTogglePanel = React.forwardRef<
 
     return ReactDOM.createPortal(
       <Context.Provider value={modal}>
-        {withOverlay && modal.state === 'opened' && <Overlay />}
-
+        {withOverlay && modal.state === ModalState.opened && <Overlay />}
         <Container
           backgroundColor={backgroundColor}
           data-state={modal.state}

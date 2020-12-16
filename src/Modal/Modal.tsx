@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
+import { withTogglePanelReset } from '../_internal/withTogglePanelReset'
 import { useCurrentBackground } from '../useCurrentBackground'
 import { withTriggerElement } from '../withTriggerElement'
 
@@ -87,6 +88,6 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
   }
 )
 
-export const Modal = withTriggerElement<HTMLDivElement>()<ModalInnerProps>(
-  InnerModal
+export const Modal = withTogglePanelReset(
+  withTriggerElement<HTMLDivElement>()<ModalInnerProps>(InnerModal)
 )
