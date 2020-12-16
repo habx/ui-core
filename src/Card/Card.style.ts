@@ -1,9 +1,6 @@
 import styled from 'styled-components'
 
-import {
-  ANIMATION_DURATIONS,
-  ANIMATION_TIMING_FUNCTION,
-} from '../animations/animations'
+import { ANIMATION_DURATIONS, ANIMATION_TIMING_FUNCTION } from '../animations'
 import { breakpoints } from '../breakpoints'
 import { Layout } from '../Layout'
 import { theme } from '../theme'

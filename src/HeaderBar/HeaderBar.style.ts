@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { transition } from '../animations/animations'
+import { transition } from '../animations'
 import { Background } from '../Background'
 import { breakpoints } from '../breakpoints'
 import { theme } from '../theme'

@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { ThemeOverridesProps } from '../_internal/types'
-import { transition } from '../animations/animations'
+import { transition } from '../animations'
 import { theme } from '../theme'
 
 export const MenuLineContainer = styled.li`

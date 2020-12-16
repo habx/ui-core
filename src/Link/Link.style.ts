@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { transition } from '../animations/animations'
+import { transition } from '../animations'
 import { theme } from '../theme'
 
 export const linkStyle = css<{}>`

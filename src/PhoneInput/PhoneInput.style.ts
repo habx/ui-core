@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { transition } from '../animations/animations'
+import { transition } from '../animations'
 import { Text } from '../Text'
 import { TextInput } from '../TextInput'
 import { theme } from '../theme'

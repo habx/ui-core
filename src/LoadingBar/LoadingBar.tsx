@@ -1,7 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import { transition } from '../animations/animations'
+import { transition } from '../animations'
 import { theme } from '../theme'
 
 import { LoadingBarProps } from './LoadingBar.interface'

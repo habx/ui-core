@@ -1,10 +1,7 @@
 import styled from 'styled-components'
 
 import { zIndex } from '../_internal/theme/zIndex'
-import {
-  ANIMATION_DURATIONS,
-  ANIMATION_TIMING_FUNCTION,
-} from '../animations/animations'
+import { ANIMATION_DURATIONS, ANIMATION_TIMING_FUNCTION } from '../animations'
 import { breakpoints } from '../breakpoints'
 import { theme } from '../theme'
 

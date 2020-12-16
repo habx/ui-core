@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { ANIMATION_DURATIONS } from '../animations'
-import { ANIMATION_TIMING_FUNCTION } from '../animations/animations'
+import { ANIMATION_TIMING_FUNCTION } from '../animations'
 import { fontScale } from '../fontScale'
 import { theme } from '../theme'
 

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 
-import { transition } from '../animations/animations'
+import { transition } from '../animations'
 import { applyOpacityToColor, stringifyColor } from '../color'
 import { fontScale } from '../fontScale'
 import { theme } from '../theme'

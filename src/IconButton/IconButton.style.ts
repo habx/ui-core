@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { transition } from '../animations/animations'
+import { transition } from '../animations'
 import { fontScale } from '../fontScale'
 import { theme } from '../theme'
 
