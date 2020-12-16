@@ -20,6 +20,7 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
       children,
       persistent,
       spacing,
+      hideCloseIcon,
       animated = true,
       ...rest
     } = props
@@ -42,7 +43,9 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
         data-spacing={spacing}
         {...rest}
       >
-        <CloseIcon icon="close" onClick={modal.close} small />
+        {!hideCloseIcon && (
+          <CloseIcon icon="close" onClick={modal.close} small />
+        )}
         {isFunction(children)
           ? children(modal as Modal<HTMLDivElement>)
           : children}
