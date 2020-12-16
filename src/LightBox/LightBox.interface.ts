@@ -16,6 +16,7 @@ export interface LightBoxInnerProps extends LayoutProps {
   onClose?: () => void
   persistent?: boolean
   animated?: boolean
+  hideCloseIcon?: boolean
   spacing?: LightBoxSpacing
   children?:
     | React.ReactNode
