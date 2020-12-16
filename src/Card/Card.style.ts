@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { ANIMATION_DURATIONS, ANIMATION_TIMING_FUNCTION } from '../animations'
 import { breakpoints } from '../breakpoints'
 import { Layout } from '../Layout'
 import { theme } from '../theme'
@@ -8,8 +9,8 @@ export const CardContainer = styled(Layout)`
   border-radius: 6px;
   position: relative;
   transition-property: box-shadow, transform;
-  transition-duration: 150ms;
-  transition-timing-function: ease-in-out;
+  transition-duration: ${ANIMATION_DURATIONS.m}ms;
+  transition-timing-function: ${ANIMATION_TIMING_FUNCTION};
   overflow: hidden;
   --layout-left-padding: 0;
   --layout-right-padding: 0;

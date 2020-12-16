@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 
+import { transition } from '../animations'
 import { theme } from '../theme'
 
 export const linkStyle = css<{}>`
@@ -8,7 +9,7 @@ export const linkStyle = css<{}>`
   font-weight: 500;
   cursor: pointer;
   text-decoration: none;
-  transition: color 150ms ease-in-out;
+  transition: ${transition('color')};
 
   &:hover {
     color: ${theme.color('primary', { dynamic: true, opacity: 0.72 })};
