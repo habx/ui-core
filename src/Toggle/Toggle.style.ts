@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { theme } from '../theme'
 
 export const ToggleContainer = styled.div`
@@ -8,7 +9,7 @@ export const ToggleContainer = styled.div`
   width: calc(var(--toggle-circle-radius) * 3.5);
   height: calc(var(--toggle-circle-radius) * 1.5);
   background-color: ${theme.neutralColor(500)};
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
   position: relative;
   cursor: pointer;
   margin: calc(var(--toggle-circle-radius) * 0.5) 0;
@@ -27,7 +28,7 @@ export const ToggleContainer = styled.div`
     height: calc(2 * var(--toggle-circle-radius));
     width: calc(2 * var(--toggle-circle-radius));
     border-radius: var(--toggle-circle-radius);
-    transition: all 150ms ease-in-out;
+    transition: ${transition('all')};
   }
 
   &::after {

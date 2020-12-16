@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { Text } from '../Text'
 import { TextInput } from '../TextInput'
 import { theme } from '../theme'
@@ -24,7 +25,7 @@ export const CountryOptions = styled.div`
   align-items: center;
   cursor: pointer;
 
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
 `
 
 export const PhoneInputContainer = styled.div`
@@ -32,7 +33,7 @@ export const PhoneInputContainer = styled.div`
   flex: 1;
   max-width: 100%;
   overflow: hidden;
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
   max-height: 48px;
   min-height: 48px;
 

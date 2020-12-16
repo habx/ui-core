@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { theme } from '../theme'
 
 export const InnerCircle = styled.div`
   height: 12px;
   width: 12px;
   border-radius: 50%;
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
 `
 
 export const FakeInput = styled.label`
@@ -19,7 +20,7 @@ export const FakeInput = styled.label`
   border-radius: 50%;
   background: #fff;
   border: solid var(--radio-input-border-width) transparent;
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
   display: flex;
   align-items: center;
   justify-content: center;

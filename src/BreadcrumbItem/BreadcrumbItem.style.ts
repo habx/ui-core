@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { theme } from '../theme'
 
 export const BreadcrumbItemContainer = styled.li`
@@ -18,7 +19,7 @@ export const BreadcrumbItemContainer = styled.li`
   padding: 6px 12px;
   border-radius: 4px;
 
-  transition: background ease-in-out 150ms;
+  transition: ${transition('background')};
 
   &[data-size='small'] {
     padding: 4px 12px;

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { Text } from '../Text'
 import { theme } from '../theme'
 
@@ -21,7 +22,7 @@ export const StepContent = styled.div`
 export const StepSeparator = styled.div`
   flex: 1 1 auto;
   height: 2px;
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
   background-color: var(--stepper-step-circle-color);
 `
 
@@ -36,7 +37,7 @@ export const StepIconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
 
   & > * {
     opacity: 0;

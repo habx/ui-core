@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { Title } from '../Title'
 import { useThemeVariant } from '../useThemeVariant'
 
@@ -36,7 +37,7 @@ const Circle = styled.div<{ color?: string; depth?: keyof Shadows }>`
   border-radius: 50%;
   background-color: ${({ color }) => color};
   box-shadow: ${theme.shadow('regular', { dynamic: true })};
-  transition: box-shadow 50ms ease-in-out;
+  transition: ${transition('box-shadow', { duration: 's' })};
 
   &:hover {
     box-shadow: ${theme.shadow('regular', { hover: true, dynamic: true })};

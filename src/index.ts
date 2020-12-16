@@ -118,7 +118,7 @@ export { notify } from './notify'
 /*
   Theme
  */
-export { animations } from './animations'
+export { animations, ANIMATION_DURATIONS, ANIMATION_TIMING_FUNCTION, transition } from './animations'
 export { Background, BackgroundProps } from './Background'
 export { breakpoints } from './breakpoints'
 export { palette, Gradient } from './palette'

@@ -1,9 +1,6 @@
 import styled from 'styled-components'
 
-import {
-  ANIMATION_DURATIONS,
-  ANIMATION_TIMING_FUNCTION,
-} from '../animations/animations'
+import { transition } from '../animations/animations'
 import { Layout } from '../Layout'
 import { theme } from '../theme'
 
@@ -11,7 +8,7 @@ export const ExpansionPanelItemContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  transition: all ease-in-out 150ms;
+  transition: ${transition('all')};
 
   @media screen {
     &:not([data-light='true']) {
@@ -85,7 +82,7 @@ export const HeaderBarDescription = styled.span`
 `
 
 export const ExpansionPanelItemContent = styled(Layout)<{ height: number }>`
-  transition: max-height ${ANIMATION_DURATIONS.l}ms ${ANIMATION_TIMING_FUNCTION};
+  transition: ${transition('max-height', { duration: 'l' })};
   overflow: hidden;
 
   --layout-top-padding: 0;

@@ -1,9 +1,6 @@
 import styled from 'styled-components'
 
-import {
-  ANIMATION_DURATIONS,
-  ANIMATION_TIMING_FUNCTION,
-} from '../animations/animations'
+import { transition } from '../animations/animations'
 import { fontScale } from '../fontScale'
 import { theme } from '../theme'
 
@@ -15,7 +12,7 @@ export const IconButtonContainer = styled.button`
   position: relative;
 
   color: ${theme.color('secondary', { dynamic: true, opacity: 0.72 })};
-  transition: all ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
+  transition: ${transition('all')};
 
   &[data-has-bounding-background='true'] {
     background-color: ${theme.color('background')};

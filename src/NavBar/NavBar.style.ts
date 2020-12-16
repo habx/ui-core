@@ -1,9 +1,6 @@
 import styled from 'styled-components'
 
-import {
-  ANIMATION_DURATIONS,
-  ANIMATION_TIMING_FUNCTION,
-} from '../animations/animations'
+import { transition } from '../animations/animations'
 import { Background } from '../Background'
 import { theme } from '../theme'
 
@@ -28,7 +25,7 @@ export const GeometricalShapesContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  transition: width ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
+  transition: ${transition('width')};
   pointer-events: none;
 
   &[data-expanded='true'] {
@@ -49,7 +46,7 @@ export const NavBarAbsoluteContainer = styled(Background)`
 
 export const NavBarFakeContainer = styled.div`
   height: 100%;
-  transition: width ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
+  transition: ${transition('width')};
   width: ${DEFAULT_SIZE}px;
   flex: 0 0 auto;
 
@@ -69,7 +66,7 @@ export const NavBarContainer = styled.ul<{ backgroundColor: string }>`
   z-index: 100;
   display: flex;
   flex-direction: column;
-  transition: width ${ANIMATION_DURATIONS.m}ms ${ANIMATION_TIMING_FUNCTION};
+  transition: ${transition('width')};
   font-family: ${theme.font()};
   background: ${(props) => props.backgroundColor};
 

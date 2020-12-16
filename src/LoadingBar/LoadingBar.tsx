@@ -1,6 +1,7 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { theme } from '../theme'
 
 import { LoadingBarProps } from './LoadingBar.interface'
@@ -14,7 +15,7 @@ export const LoadingBarStyled = styled.div`
   background: ${theme.neutralColor(300)};
 
   &:after {
-    transition: width ease-in-out 150ms;
+    transition: ${transition('width')};
 
     content: '';
     position: absolute;

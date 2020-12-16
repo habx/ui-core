@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { applyOpacityToColor, stringifyColor } from '../color'
 import { fontScale } from '../fontScale'
 import { theme } from '../theme'
@@ -9,7 +10,7 @@ export const Placeholder = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: color 150ms ease-in-out;
+  transition: ${transition('color')};
 `
 
 export const IconsContainer = styled.div`
@@ -105,7 +106,7 @@ export const SelectContainer = styled.div`
     }
   }
 
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
 
   &:disabled,
   &[data-disabled='true'] {
@@ -167,7 +168,7 @@ export const SearchInput = styled.input.attrs(() => ({
   font-size: inherit;
   align-self: stretch;
   min-width: 0;
-  transition: color 150ms ease-in-out;
+  transition: ${transition('color')};
 
   &:hover {
     cursor: pointer;
@@ -188,7 +189,7 @@ export const ElementLeftContainer = styled.div`
 `
 
 export const ResetIconContainer = styled.div`
-  transition: opacity 150ms ease-in-out;
+  transition: ${transition('opacity')};
   position: absolute;
   top: 0;
   right: 0;
@@ -205,7 +206,7 @@ export const ResetIconContainer = styled.div`
 `
 
 export const ElementRightContainer = styled.div`
-  transition: opacity 150ms ease-in-out;
+  transition: ${transition('opacity')};
 
   &:not([data-visible='true']) {
     opacity: 0;

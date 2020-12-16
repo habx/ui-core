@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { theme } from '../theme'
 
 export const TabsBarItemContainer = styled.li`
@@ -18,7 +19,7 @@ export const TabsBarItemContainer = styled.li`
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: opacity 50ms ease-in-out;
+  transition: ${transition('opacity', { duration: 's' })};
 
   &::after {
     content: '';

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { theme } from '../theme'
 
 export const NavigationDotsContainer = styled.div<{ width: number }>`
@@ -17,7 +18,7 @@ export const Dot = styled.div<{ secondary?: boolean }>`
   height: 8px;
   background-color: var(--navigation-dot-empty-color);
   vertical-align: middle;
-  transition: all 300ms ease-in-out;
+  transition: ${transition('all', { duration: 'l' })};
 
   --navigation-dot-empty-color: ${theme.neutralColor(400)};
   --navigation-dot-active-color: ${theme.color('secondary')};

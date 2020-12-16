@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { breakpoints } from '../breakpoints'
 import { theme } from '../theme'
 
@@ -38,7 +39,7 @@ export const NavigationButtonContainer = styled.button`
   z-index: 1;
   opacity: 1;
   box-shadow: ${theme.shadow('low')};
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
   padding: 0;
 
   color: ${theme.color('primary', { dynamic: true })};

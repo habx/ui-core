@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations/animations'
 import { Icon } from '../Icon'
 import { theme } from '../theme'
 
@@ -28,14 +29,14 @@ export const FakeInput = styled.div`
   box-shadow: inset 0 0 0 var(--checkbox-border-width)
     var(--checkbox-border-color);
   border-radius: var(--checkbox-border-radius);
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
   pointer-events: none;
 `
 
 export const CheckIcon = styled(Icon)`
   opacity: 0;
   transform: scale(0);
-  transition: all 150ms ease-in-out;
+  transition: ${transition('all')};
   pointer-events: none;
   color: var(--checkbox-check-color);
 
