@@ -1,7 +1,5 @@
 import * as React from 'react'
 
-import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
-
 import { TabProps } from './Tab.interface'
 import { TabContainer, SideElementContainer } from './Tab.style'
 
@@ -17,14 +15,11 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       ...rest
     } = props
 
-    const hasBackground = useHasColoredBackground()
-
     return (
       <TabContainer
         ref={ref}
         data-large={large}
         data-active={active}
-        data-background={hasBackground}
         type={type}
         {...rest}
       >

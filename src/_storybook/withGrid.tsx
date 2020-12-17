@@ -90,7 +90,7 @@ export const withGrid = <Props extends object>(
         }
 
         case 'light': {
-          return palette.neutralBlackWithIntensityFading[300]
+          return palette.neutralBlackWithIntensityFading[100]
         }
 
         case 'none': {
