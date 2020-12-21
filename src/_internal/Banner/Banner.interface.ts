@@ -1,5 +1,6 @@
 import { BackgroundProps } from '../../Background'
 import { Color } from '../../color'
+import { ThemeVariant } from '../../theme'
 
 export interface BannerProps extends Omit<BackgroundProps, 'backgroundColor'> {
   /**
@@ -10,5 +11,5 @@ export interface BannerProps extends Omit<BackgroundProps, 'backgroundColor'> {
   /**
    * background color hex overwrite
    */
-  backgroundColor?: Color
+  backgroundColor?: Color | ((theme: ThemeVariant) => Color)
 }
