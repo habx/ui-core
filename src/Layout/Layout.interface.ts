@@ -1,8 +1,9 @@
 import { BackgroundProps } from '../Background'
 import { Color } from '../color'
+import { ThemeVariant } from '../theme'
 
 export interface LayoutProps extends Omit<BackgroundProps, 'backgroundColor'> {
-  backgroundColor?: Color
+  backgroundColor?: Color | ((theme: ThemeVariant) => Color)
 }
 
 export enum LayoutChild {
