@@ -5,7 +5,7 @@ import { WithLabel } from '../withLabel'
 
 import { ArrayInputItemComponentProps } from './Item/Item.interface'
 
-export interface AddButtonComponentProps {
+export interface ArrayInputAddButtonComponentProps {
   onAppend: (value?: any) => void
   disabled?: boolean
 }
@@ -15,7 +15,7 @@ export interface ArrayInputInnerProps
     ThemeOverridesProps {
   items?: any[]
   addButtonLabel?: string
-  addButtonComponent?: React.ComponentType<AddButtonComponentProps>
+  addButtonComponent?: React.ComponentType<ArrayInputAddButtonComponentProps>
   canBeReordered?: boolean
   disabled?: boolean
   onDelete?: (position: number) => void

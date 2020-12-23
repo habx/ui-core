@@ -66,7 +66,7 @@ export { TextArea, TextAreaProps } from './TextArea'
 export { TextInput, TextInputProps } from './TextInput'
 export { AutocompleteInput, AutocompleteInputProps } from './AutocompleteInput'
 export { TextInputList, TextInputListProps } from './TextInputList'
-export { ArrayInput, ArrayInputProps, ArrayInputItemComponentProps } from './ArrayInput'
+export { ArrayInput, ArrayInputProps, ArrayInputItemComponentProps, ArrayInputAddButtonComponentProps } from './ArrayInput'
 export { Toggle, ToggleProps } from './Toggle'
 
 
