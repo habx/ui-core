@@ -1,7 +1,7 @@
 import * as React from 'react'
 
-export interface ArrayInputItemComponentProps {
-  value: any
+export interface ArrayInputItemComponentProps<Value = any> {
+  value: Value
   index: number
   editing: boolean
 }
