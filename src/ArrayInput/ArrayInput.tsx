@@ -28,8 +28,10 @@ export const InnerArrayInput = React.forwardRef<
     itemComponent: ItemComponent,
     renderItem: rawRenderItem,
     renderItemTitle: rawRenderItemTitle,
+    canItemBeDeleted,
     canBeReordered = false,
     onChange: _onChange,
+    itemDeletionImpossibleTooltip,
     ...rest
   } = props
 
@@ -89,9 +91,11 @@ export const InnerArrayInput = React.forwardRef<
           open={openedIndex === index}
           disabled={disabled}
           canBeReordered={canBeReordered}
+          canBeDeleted={canItemBeDeleted?.(item)}
           onDelete={onDelete}
           onReorder={onReorder}
           onClick={() => handleToggle(index)}
+          itemDeletionImpossibleTooltip={itemDeletionImpossibleTooltip}
         />
       ))}
       <ArrayInputAction>

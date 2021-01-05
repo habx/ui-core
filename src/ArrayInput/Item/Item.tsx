@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { ControlledExpansionPanelItem } from '../../ExpansionPanelItem'
 import { IconButton } from '../../IconButton'
+import { Tooltip } from '../../Tooltip'
 import {
   ItemHeaderContainer,
   ItemHeaderContent,
@@ -15,6 +16,7 @@ export const Item: React.FunctionComponent<ItemProps> = ({
   item,
   index,
   canBeReordered,
+  canBeDeleted = true,
   disabled,
   onReorder,
   onDelete,
@@ -22,6 +24,7 @@ export const Item: React.FunctionComponent<ItemProps> = ({
   open,
   renderItem,
   renderItemTitle,
+  itemDeletionImpossibleTooltip,
   ...rest
 }) => {
   const handleDelete = (e: React.MouseEvent) => {
@@ -38,6 +41,16 @@ export const Item: React.FunctionComponent<ItemProps> = ({
   }
 
   const state = { index, value: item, editing: open }
+
+  const deleteItemIcon = (
+    <IconButton
+      icon="trash-outline"
+      onClick={handleDelete}
+      small
+      data-testid="array-input-item-delete"
+      disabled={!canBeDeleted}
+    />
+  )
 
   const header = (
     <ItemHeaderContainer
@@ -56,12 +69,15 @@ export const Item: React.FunctionComponent<ItemProps> = ({
           />
         )}
         {!disabled && onDelete && (
-          <IconButton
-            icon="trash"
-            onClick={handleDelete}
-            small
-            data-testid="array-input-item-delete"
-          />
+          <React.Fragment>
+            {!!itemDeletionImpossibleTooltip && !canBeDeleted ? (
+              <Tooltip title={itemDeletionImpossibleTooltip}>
+                <div>{deleteItemIcon}</div>
+              </Tooltip>
+            ) : (
+              deleteItemIcon
+            )}
+          </React.Fragment>
         )}
         <IconButton icon={open ? 'chevron-north' : 'chevron-south'} small />
       </ItemActions>

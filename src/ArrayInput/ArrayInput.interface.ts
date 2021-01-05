@@ -16,13 +16,27 @@ export interface ArrayInputInnerProps
   items?: any[]
   addButtonLabel?: string
   addButtonComponent?: React.ComponentType<ArrayInputAddButtonComponentProps>
-  canBeReordered?: boolean
   disabled?: boolean
-  onDelete?: (position: number) => void
-  onReorder?: (oldPosition: number, newPosition: number) => void
   onAppend?: (value?: any) => void
   onToggle?(index: number): void
   openedItemIndex?: number
+
+  /*
+   * Reordering behavior
+   */
+  onReorder?: (oldPosition: number, newPosition: number) => void
+  canBeReordered?: boolean
+
+  /*
+   * Deletion behavior
+   */
+  onDelete?: (position: number) => void
+  canItemBeDeleted?: (item: any) => boolean
+  itemDeletionImpossibleTooltip?: string
+
+  /*
+   * Item rendering
+   */
   itemComponent?: React.ComponentType<ArrayInputItemComponentProps>
   itemTitleComponent?: React.ComponentType<ArrayInputItemComponentProps>
   renderItem?: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
