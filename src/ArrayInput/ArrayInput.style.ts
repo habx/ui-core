@@ -12,7 +12,7 @@ export const ArrayInputAction = styled.div`
 
 export const ItemHeaderContainer = styled.div`
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex: 1 1 100%;
   max-width: 100%;
 `

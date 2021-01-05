@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { isFunction } from '../_internal/data'
 import { Button } from '../Button'
 import { ExpansionPanel } from '../ExpansionPanel'
 import { withLabel } from '../withLabel'
@@ -28,8 +29,10 @@ export const InnerArrayInput = React.forwardRef<
     itemComponent: ItemComponent,
     renderItem: rawRenderItem,
     renderItemTitle: rawRenderItemTitle,
+    canItemBeDeleted,
     canBeReordered = false,
     onChange: _onChange,
+    getDeleteItemIconTooltip,
     ...rest
   } = props
 
@@ -79,21 +82,33 @@ export const InnerArrayInput = React.forwardRef<
       disabled={disabled}
       ref={ref}
     >
-      {items.map((item, index) => (
-        <Item
-          key={index}
-          renderItem={renderItem}
-          renderItemTitle={renderItemTitle}
-          item={item}
-          index={index}
-          open={openedIndex === index}
-          disabled={disabled}
-          canBeReordered={canBeReordered}
-          onDelete={onDelete}
-          onReorder={onReorder}
-          onClick={() => handleToggle(index)}
-        />
-      ))}
+      {items.map((item, index) => {
+        const canBeDeleted = isFunction(canItemBeDeleted)
+          ? canItemBeDeleted(item)
+          : canItemBeDeleted ?? true
+
+        const deleteIconTooltip = getDeleteItemIconTooltip?.(item, {
+          canBeDeleted,
+        })
+
+        return (
+          <Item
+            key={index}
+            renderItem={renderItem}
+            renderItemTitle={renderItemTitle}
+            item={item}
+            index={index}
+            open={openedIndex === index}
+            disabled={disabled}
+            canBeReordered={canBeReordered}
+            canBeDeleted={canBeDeleted}
+            onDelete={onDelete}
+            onReorder={onReorder}
+            onClick={() => handleToggle(index)}
+            deleteIconTooltip={deleteIconTooltip}
+          />
+        )
+      })}
       <ArrayInputAction>
         {AddButtonComponent ? (
           <AddButtonComponent onAppend={handleAppend} disabled={disabled} />
