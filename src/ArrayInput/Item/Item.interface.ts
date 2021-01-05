@@ -11,11 +11,19 @@ export interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   open: boolean
   item: any
   disabled?: boolean
-  canBeReordered?: boolean
   renderItem: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
   renderItemTitle: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
+
+  /*
+   * Reordering behavior
+   */
   onReorder?: (oldPosition: number, newPosition: number) => void
+  canBeReordered: boolean
+
+  /*
+   * Deletion behavior
+   */
   onDelete?: (position: number) => void
-  canBeDeleted?: boolean
-  itemDeletionImpossibleTooltip?: string
+  canBeDeleted: boolean
+  deleteIconTooltip?: string
 }

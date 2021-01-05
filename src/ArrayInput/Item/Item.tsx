@@ -24,7 +24,7 @@ export const Item: React.FunctionComponent<ItemProps> = ({
   open,
   renderItem,
   renderItemTitle,
-  itemDeletionImpossibleTooltip,
+  deleteIconTooltip,
   ...rest
 }) => {
   const handleDelete = (e: React.MouseEvent) => {
@@ -68,10 +68,10 @@ export const Item: React.FunctionComponent<ItemProps> = ({
             small
           />
         )}
-        {!disabled && onDelete && (
+        {!disabled && (
           <React.Fragment>
-            {!!itemDeletionImpossibleTooltip && !canBeDeleted ? (
-              <Tooltip title={itemDeletionImpossibleTooltip}>
+            {!!deleteIconTooltip ? (
+              <Tooltip title={deleteIconTooltip}>
                 <div>{deleteItemIcon}</div>
               </Tooltip>
             ) : (

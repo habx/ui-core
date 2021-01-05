@@ -32,7 +32,10 @@ export interface ArrayInputInnerProps
    */
   onDelete?: (position: number) => void
   canItemBeDeleted?: (item: any) => boolean
-  itemDeletionImpossibleTooltip?: string
+  getDeleteItemIconTooltip?: (
+    item: any,
+    itemStatus: { canBeDeleted: boolean }
+  ) => string | undefined
 
   /*
    * Item rendering
