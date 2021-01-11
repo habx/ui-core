@@ -1,9 +1,10 @@
 import * as React from 'react'
 
-import { styledAs } from '../_internal/types'
+import { styledAs, ThemeOverridesProps } from '../_internal/types'
 
 export interface TagProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    ThemeOverridesProps {
   active?: boolean
   interactive?: boolean
   large?: boolean

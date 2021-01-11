@@ -135,6 +135,8 @@ const colorGetter = <Props extends GetterProps>(
         realColorFamily = 'error'
       } else if (props.warning) {
         realColorFamily = 'warning'
+      } else if (props.success) {
+        realColorFamily = 'success'
       } else if (props.primary) {
         realColorFamily = 'primary'
       } else if (props.secondary) {

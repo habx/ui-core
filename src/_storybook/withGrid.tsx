@@ -42,6 +42,7 @@ const ItemContainer = styled.div<{
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: flex-start;
 `
 
 const Label = styled(Text)`
