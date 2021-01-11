@@ -7,7 +7,8 @@ import { Icon } from '../Icon'
 import { Tag, TagProps } from './index'
 
 const GRID_PROPS = {
-  children: 'Agencement 1',
+  children: 'Agencement',
+  interactive: true,
 }
 
 const GRID_LINES = [
@@ -33,15 +34,31 @@ const GRID_ITEMS = [
     label: 'Default',
   },
   {
+    label: 'Secondary',
+    props: { interactive: false },
+  },
+  {
+    label: 'Primary',
+    props: { interactive: false, primary: true },
+  },
+  {
+    label: 'Error',
+    props: { interactive: false, error: true },
+  },
+  {
+    label: 'Warning',
+    props: { interactive: false, warning: true },
+  },
+  {
+    label: 'Success',
+    props: { interactive: false, success: true },
+  },
+  {
     label: 'Disabled',
     props: { disabled: true },
   },
   {
-    label: 'Interactive',
-    props: { interactive: true },
-  },
-  {
-    label: 'Active',
+    label: 'Interactive + active',
     props: { active: true },
   },
   {
@@ -58,7 +75,7 @@ const GRID_ITEMS = [
   },
 ]
 
-const Grid = withGrid<TagProps>({
+const GridInteractive = withGrid<TagProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
@@ -90,8 +107,8 @@ basic.story = {
   },
 }
 
-export const gallery = () => <Grid />
+export const gallery = () => <GridInteractive />
 
-export const lightBackground = () => <Grid background="light" />
+export const lightBackground = () => <GridInteractive background="light" />
 
-export const darkBackground = () => <Grid background="dark" />
+export const darkBackground = () => <GridInteractive background="dark" />

@@ -22,4 +22,9 @@ export interface ThemeOverridesProps {
    * error style activation
    */
   error?: boolean
+
+  /**
+   * success style activation
+   */
+  success?: boolean
 }

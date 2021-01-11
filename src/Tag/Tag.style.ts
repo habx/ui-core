@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { transition } from '../animations'
+import { ANIMATION_DURATIONS, ANIMATION_TIMING_FUNCTION } from '../animations'
 import { theme } from '../theme'
 
 export const TagContainer = styled.button`
@@ -13,91 +13,89 @@ export const TagContainer = styled.button`
   vertical-align: middle;
   text-align: left;
   text-decoration: none;
-  background-color: transparent;
-  border: 1px solid ${theme.neutralColor(300)};
   font-family: ${theme.font()};
   line-height: 1;
-  transition: ${transition('background-color', { duration: 's' })};
-  color: ${theme.textColor()};
+  border-radius: calc(var(--tag-height) / 2);
+  border: unset;
+
+  transition-property: box-shadow, background-color;
+  transition-duration: ${ANIMATION_DURATIONS.m}ms;
+  transition-timing-function: ${ANIMATION_TIMING_FUNCTION};
 
   padding: 0 var(--tag-horizontal-padding);
   height: var(--tag-height);
-  border-radius: calc(var(--tag-height) / 2);
-  font-size: 12px;
-
   --tag-horizontal-padding: 12px;
-  --tag-height: 32px;
-
-  &[data-interactive='true'] {
-    cursor: pointer;
-  }
-
-  &:not([data-active='true']) {
-    &[data-interactive='true'] {
-      &:hover,
-      &:focus,
-      &:active {
-        background-color: ${theme.neutralColor(200)};
-      }
-
-      &:hover {
-        border-color: ${theme.neutralColor(200)};
-      }
-
-      &:focus,
-      &:active {
-        border-color: ${theme.color('primary', { variation: 'calm' })};
-      }
-
-      &:focus {
-        border-width: 2px;
-        padding: 0 calc(var(--tag-horizontal-padding) - 1px);
-      }
-    }
-
-    &[data-background='true'] {
-      color: ${theme.textColor({ useRootTheme: true })};
-      background-color: #fff;
-      border-color: #fff;
-
-      &[data-interactive='true'] {
-        &:hover:not(:focus):not(:active) {
-          background-color: rgba(255, 255, 255, 0.7);
-        }
-      }
-    }
-
-    &:disabled {
-      color: ${theme.neutralColor(300)};
-
-      &[data-background='true'] {
-        color: rgba(255, 255, 255, 0.3);
-        border-color: rgba(255, 255, 255, 0.3);
-      }
-    }
-  }
-
-  &[data-active='true'] {
-    border: none;
-    color: ${theme.color('primary', { useRootTheme: true })};
-    background-color: ${theme.color('primary', { variation: 'calm' })};
-    padding: 0 calc(var(--tag-horizontal-padding) + 1px);
-
-    &[data-background='true'] {
-      background-color: #fff;
-    }
-  }
-
-  &[data-large='true'] {
-    --tag-horizontal-padding: 16px;
-    --tag-height: 40px;
-    font-size: 16px;
-  }
+  --tag-height: 36px;
+  font-size: 14px;
 
   &[data-small='true'] {
     --tag-horizontal-padding: 8px;
     --tag-height: 24px;
     font-size: 12px;
+  }
+
+  &[data-large='true'] {
+    --tag-horizontal-padding: 24px;
+    --tag-height: 48px;
+    font-size: 16px;
+  }
+
+  /*
+   * Colors
+   */
+  box-shadow: inset 0 0 0 var(--tag-border-width) var(--tag-border-color),
+    0 0 0 var(--tag-outline-width) var(--tag-outline-color);
+  color: var(--tag-color);
+  --tag-border-width: 0;
+  --tag-border-color: transparent;
+  --tag-outline-width: 0;
+  --tag-outline-color: ${theme.color('primary', { opacity: 0.3 })};
+  --tag-color: ${theme.textColor()};
+
+  &:not([data-interactive='true']) {
+    --tag-color: ${theme.color('secondary', { dynamic: true })};
+    background-color: ${theme.color('secondary', {
+      variation: 'calmer',
+      dynamic: true,
+    })};
+  }
+
+  &[data-interactive='true'] {
+    cursor: pointer;
+    background-color: transparent;
+    --tag-border-width: 1px;
+    --tag-border-color: ${theme.neutralColor(300)};
+
+    &[data-active='true'] {
+      background-color: ${theme.color('primary', { variation: 'calmer' })};
+      --tag-border-color: transparent;
+    }
+
+    &:not([data-active='true']) {
+      &:hover {
+        background-color: ${theme.neutralColor(200)};
+        --tag-border-color: transparent;
+      }
+
+      &:focus:not(:active) {
+        --tag-outline-width: 4px;
+      }
+    }
+  }
+
+  &[data-active='true'] {
+    --tag-color: ${theme.color('primary')};
+    background-color: ${theme.color('primary', { variation: 'calm' })};
+  }
+
+  &:disabled {
+    color: ${theme.neutralColor(300)};
+    pointer-events: none;
+
+    &[data-background='true'] {
+      --tag-color: ${theme.neutralColor(200)};
+      --tag-border-color: ${theme.neutralColor(200)};
+    }
   }
 `
 

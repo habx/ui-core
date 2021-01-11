@@ -6,10 +6,7 @@ import { palette } from '../palette'
 import { Text } from '../Text'
 import { Title } from '../Title'
 
-const StorybookGridContainer = styled(Background)`
-  width: 100vw;
-  height: 100%;
-  min-height: 100vh;
+const StorybookGridContainer = styled(Background)`=
   overflow-y: auto;
   overflow-x: hidden;
   padding: 24px 36px;
@@ -17,6 +14,12 @@ const StorybookGridContainer = styled(Background)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
+  &:only-child {
+    width: 100vw;
+    height: 100%;
+    min-height: 100vh;
+  }
 `
 
 const StorybookGridContent = styled.div``
@@ -42,6 +45,7 @@ const ItemContainer = styled.div<{
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: flex-start;
 `
 
 const Label = styled(Text)`
