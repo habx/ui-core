@@ -49,7 +49,7 @@
     "styled-components": "^5.2.1"
   },
   "dependencies": {
-    "@delangle/use-modal": "^1.5.64",
+    "@delangle/use-modal": "^1.5.65",
     "color-parse": "^1.4.2",
     "lodash.deburr": "^4.1.0",
     "markdown-it": "^12.0.4",
