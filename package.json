@@ -88,7 +88,7 @@
     "rimraf": "^3.0.2",
     "rollup-plugin-typescript2": "^0.29.0",
     "sinon": "^9.2.3",
-    "storybook-addon-designs": "^5.4.2",
+    "storybook-addon-designs": "^5.4.3",
     "styled-components": "^5.2.1",
     "styled-normalize": "^8.0.7",
     "ts-jest": "^26.4.4",
