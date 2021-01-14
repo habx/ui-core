@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { withGrid } from '../_storybook/withGrid'
 import { Card } from '../Card'
 import { Text } from '../Text'
+import { theme } from '../theme'
 
 import { AlertBanner, AlertBannerProps } from './index'
 

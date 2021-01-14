@@ -70,9 +70,9 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
 
     React.useEffect(() => {
-      if (open === true) {
+      if (open) {
         dispatch({ type: ActionTypes.SetStepOpened })
-      } else if (open === false) {
+      } else if (state.step !== 'closed') {
         dispatch({ type: ActionTypes.SetStepClosing })
 
         const timeout = setTimeout(() => {
