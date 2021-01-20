@@ -32,6 +32,7 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
       persistent = false,
       alwaysRenderChildren = false,
       width = 'regular',
+      value,
       ...rest
     } = props
 
@@ -40,6 +41,7 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
       open,
       onClose,
       persistent,
+      value,
       animated,
       animationDuration: ANIMATION_DURATION,
     })

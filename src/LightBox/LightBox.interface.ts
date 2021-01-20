@@ -18,6 +18,7 @@ export interface LightBoxInnerProps extends LayoutProps {
   animated?: boolean
   hideCloseIcon?: boolean
   spacing?: LightBoxSpacing
+  value?: any
   children?:
     | React.ReactNode
     | ((modal: Modal<HTMLDivElement>) => React.ReactNode)

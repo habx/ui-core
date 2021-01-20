@@ -21,6 +21,7 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
       persistent,
       spacing,
       hideCloseIcon,
+      value,
       animated = true,
       ...rest
     } = props
@@ -29,6 +30,7 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
       open,
       onClose,
       persistent,
+      value,
       animated,
       animationDuration: ANIMATION_DURATIONS.l,
     })

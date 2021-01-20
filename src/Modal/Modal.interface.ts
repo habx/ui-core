@@ -11,6 +11,7 @@ export interface ModalInnerProps extends React.HTMLAttributes<HTMLDivElement> {
   animated?: boolean
   alwaysRenderChildren?: boolean
   width?: 'small' | 'regular' | 'large'
+  value?: any
   children?:
     | React.ReactNode
     | ((modal: Modal<HTMLDivElement>) => React.ReactNode)
