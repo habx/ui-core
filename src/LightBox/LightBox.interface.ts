@@ -18,7 +18,29 @@ export interface LightBoxInnerProps extends LayoutProps {
   animated?: boolean
   hideCloseIcon?: boolean
   spacing?: LightBoxSpacing
+
+  /**
+   * Value cached from the last time the lightbox was opening / opened
+   * Can be useful if you want to keep LightBox UI consistent during `closing` phase while resetting your application state.
+   * For instance :
+   * ```tsx
+   * const MyComponent = () => {
+   *   const [selectedRow, setSelectedRow] = React.useState(null)
+   *
+   *   return (
+   *     <React.Fragment>
+   *       <MyTable onSelectRow={setSelectedRow} />
+   *       <LightBox>
+   *         {modal => modal.state !== ModalState.closed && <EditRow value={modal.value} />}
+   *       </LightBox>
+   *     </React.Fragment>
+   *   )
+   *
+   * }
+   * ```
+   */
   value?: any
+
   children?:
     | React.ReactNode
     | ((modal: Modal<HTMLDivElement>) => React.ReactNode)
