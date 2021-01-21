@@ -102,7 +102,7 @@ export const ButtonContainer = styled.button`
       --button-outline-width: 4px;
     }
 
-    &:not(:focus):not(:active) {
+    &:not(:disabled):not(:focus):not(:active) {
       --button-shadow: ${theme.shadow('lower')};
     }
 
