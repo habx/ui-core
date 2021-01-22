@@ -132,6 +132,8 @@ export const Input = styled.input`
   background-color: transparent;
   flex: 1 1 100%;
   color: inherit;
+  font-family: ${theme.font()};
+  font-size: 16px;
 `
 
 export const InputContainer = styled.div`
