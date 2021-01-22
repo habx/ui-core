@@ -48,7 +48,6 @@ export const veryLargeTextStyle = css`
 
   @media (${breakpoints.below.smallTablet}) {
     ${size('sun')};
-    font-weight: 400;
   }
 `
 
