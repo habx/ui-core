@@ -1,7 +1,7 @@
 import { Gradient } from './palette.interface'
 
 const PURPLE_DAWN: Gradient = {
-  0: '#FFFFFFF',
+  0: '#FFFFFF',
   100: '#FBEEFB',
   200: '#E9ADE6',
   300: '#D289CF',
@@ -15,7 +15,7 @@ const PURPLE_DAWN: Gradient = {
 }
 
 const YELLOW_SUNLIGHT: Gradient = {
-  0: '#FFFFFFF',
+  0: '#FFFFFF',
   100: '#FFF8E8',
   200: '#FFEBB9',
   300: '#FFDA7A',
@@ -29,7 +29,7 @@ const YELLOW_SUNLIGHT: Gradient = {
 }
 
 const RED_SUNSET: Gradient = {
-  0: '#FFFFFFF',
+  0: '#FFFFFF',
   100: '#FFEDEC',
   200: '#FFC9C5',
   300: '#FFAAA3',
@@ -43,7 +43,7 @@ const RED_SUNSET: Gradient = {
 }
 
 const GREEN_NORTHERN_LIGHT: Gradient = {
-  0: '#FFFFFFF',
+  0: '#FFFFFF',
   100: '#EBFCF4',
   200: '#AFF2D2',
   300: '#91EDC1',
@@ -57,7 +57,7 @@ const GREEN_NORTHERN_LIGHT: Gradient = {
 }
 
 const BLUE_MOON: Gradient = {
-  0: '#FFFFFFF',
+  0: '#FFFFFF',
   100: '#E1E5EA',
   200: '#C3CBD5',
   300: '#A5B1C0',
@@ -71,7 +71,7 @@ const BLUE_MOON: Gradient = {
 }
 
 const RAZZMATAZZ_RED: Gradient = {
-  0: '#FFFFFFF',
+  0: '#FFFFFF',
   100: '#FBE7EE',
   200: '#EE9FBB',
   300: '#F45E94',
@@ -85,7 +85,7 @@ const RAZZMATAZZ_RED: Gradient = {
 }
 
 const GOLDEN_YELLOW: Gradient = {
-  0: '#FFFFFFF',
+  0: '#FFFFFF',
   100: '#FEF7E6',
   200: '#FBE099',
   300: '#FFD15C',
@@ -99,7 +99,7 @@ const GOLDEN_YELLOW: Gradient = {
 }
 
 const EMERALD_GREEN: Gradient = {
-  0: '#FFFFFFF',
+  0: '#FFFFFF',
   100: '#EAF5F3',
   200: '#9FD1C8',
   300: '#82CBBE',
@@ -113,7 +113,7 @@ const EMERALD_GREEN: Gradient = {
 }
 
 const NEUTRAL_BLACK_WITH_OPACITY_FADING: Gradient = {
-  0: '#FFFFFFF',
+  0: '#FFFFFF',
   100: '#FAFAFB',
   200: 'rgba(24, 20, 31, 0.05)',
   300: 'rgba(24, 20, 31, 0.15)',

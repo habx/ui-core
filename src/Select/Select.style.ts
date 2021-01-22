@@ -39,9 +39,9 @@ export const SelectContainer = styled.div`
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
   height: var(--select-height);
-  padding: 0 16px;
+  padding: 0 12px;
   box-shadow: inset 0 0 0 var(--select-border-width) var(--select-border-color);
   background-color: var(--select-background-color);
 
@@ -54,7 +54,6 @@ export const SelectContainer = styled.div`
 
   &[data-small='true'] {
     --select-height: 36px;
-    padding: 0 12px;
   }
 
   &[data-tiny='true'] {
@@ -147,7 +146,7 @@ export const SelectContainer = styled.div`
     }
 
     &:not([data-light='true']) {
-      background-color: ${theme.neutralColor(100)};
+      background-color: ${theme.neutralColor(0)};
     }
   }
 
@@ -207,6 +206,7 @@ export const ResetIconContainer = styled.div`
 
 export const ElementRightContainer = styled.div`
   transition: ${transition('opacity')};
+  color: ${theme.neutralColor(1000)};
 
   &:not([data-visible='true']) {
     opacity: 0;
