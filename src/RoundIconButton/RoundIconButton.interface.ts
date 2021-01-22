@@ -6,4 +6,6 @@ export interface RoundIconButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     Pick<ThemeOverridesProps, 'error'> {
   icon: string
+  large?: boolean
+  small?: boolean
 }
