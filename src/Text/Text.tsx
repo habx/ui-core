@@ -44,6 +44,7 @@ export const veryLargeTextStyle = css`
 
   ${size('nova')};
   letter-spacing: 0.02px;
+  font-weight: 300;
 
   @media (${breakpoints.below.smallTablet}) {
     ${size('sun')};

@@ -125,6 +125,7 @@ export { palette, Gradient } from './palette'
 export { theme, DesignSystemTheme, ThemeVariant, ColorVariations, TypographyColors, ColorFamilies, DEFAULT_THEME } from './theme'
 export { useThemeVariant } from './useThemeVariant'
 export { useCurrentBackground } from './useCurrentBackground'
+export { EuclidFont } from './EuclidFont'
 
 
 /*
