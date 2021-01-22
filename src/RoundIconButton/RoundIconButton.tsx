@@ -9,10 +9,15 @@ export const RoundIconButton = React.forwardRef<
   HTMLButtonElement,
   RoundIconButtonProps
 >((props, ref) => {
-  const { icon, ...rest } = props
+  const { icon, large, small, ...rest } = props
 
   return (
-    <RoundIconButtonContainer ref={ref} {...rest}>
+    <RoundIconButtonContainer
+      ref={ref}
+      data-small={small}
+      data-large={large}
+      {...rest}
+    >
       <Icon icon={icon} />
     </RoundIconButtonContainer>
   )

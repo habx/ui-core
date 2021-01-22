@@ -9,7 +9,6 @@ export const RoundIconButtonContainer = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: ${fontScale.moon};
   border: none;
   outline: none;
   cursor: pointer;
@@ -28,6 +27,7 @@ export const RoundIconButtonContainer = styled.button`
   height: var(--round-icon-button-diameter);
   width: var(--round-icon-button-diameter);
   border-radius: 50%;
+  font-size: ${fontScale.moon.size}px;
 
   --round-icon-button-border-width: 1px;
   --round-icon-button-border-color: ${theme.neutralColor(300)};
@@ -37,14 +37,29 @@ export const RoundIconButtonContainer = styled.button`
   })};
   --round-icon-button-diameter: 36px;
   --round-icon-background-color: ${theme.color('background')};
-  --round-icon-color: ${theme.color('secondary', { dynamic: true })};
+  --round-icon-color: ${theme.color('secondary', {
+    dynamic: true,
+    opacity: 0.7,
+  })};
+
+  &[data-small='true'] {
+    --round-icon-button-diameter: 24px;
+    font-size: ${fontScale.asteroid.size}px;
+  }
+
+  &[data-large='true'] {
+    --round-icon-button-diameter: 48px;
+    font-size: ${fontScale.earth.size}px;
+  }
 
   &:hover {
     --round-icon-button-border-width: 3px;
+    --round-icon-color: ${theme.color('secondary', { dynamic: true })};
   }
 
   &:active {
     --round-icon-button-border-width: 2px;
+    --round-icon-color: ${theme.color('secondary', { dynamic: true })};
   }
 
   &:focus {

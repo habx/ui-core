@@ -12,6 +12,18 @@ const GRID_LINES = [
   {
     title: 'Regular',
   },
+  {
+    title: 'Small',
+    props: {
+      small: true,
+    },
+  },
+  {
+    title: 'Large',
+    props: {
+      large: true,
+    },
+  },
 ]
 
 const GRID_ITEMS = [
