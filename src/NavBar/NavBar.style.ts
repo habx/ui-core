@@ -8,7 +8,11 @@ const EXPANDED_SIZE = 250
 const DEFAULT_SIZE = 64
 
 export const NavBarToggleButton = styled.button`
-²
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
   font-size: 24px;
   margin-left: auto;
   margin-right: auto;
