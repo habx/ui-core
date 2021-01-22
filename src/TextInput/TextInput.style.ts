@@ -10,10 +10,21 @@ export const inputStyle = css`
   font-size: 16px;
 
   outline: none;
+  border: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border-radius: 4px;
-  border: solid 1.5px transparent;
+  border-radius: 6px;
+  background-color: var(--text-input-background-color);
+
+  box-shadow: inset 0 0 0 var(--text-input-border-width)
+      var(--text-input-border-color),
+    0 0 0 var(--text-input-outline-width) var(--text-input-outline-color);
+
+  --text-input-border-width: 0;
+  --text-input-border-color: ${theme.neutralColor(300)};
+  --text-input-outline-width: 0;
+  --text-input-outline-color: ${theme.color('primary', { opacity: 0.3 })};
+  --text-input-background-color: unset;
 
   transition: ${transition('all')};
 
@@ -22,9 +33,8 @@ export const inputStyle = css`
   }
 
   &:not([data-light='true']) {
-    border-color: ${theme.neutralColor(200)};
     color: ${theme.textColor()};
-    background-color: ${theme.neutralColor(200)};
+    --text-input-background-color: ${theme.neutralColor(200)};
 
     &::placeholder {
       color: ${theme.textColor({
@@ -33,24 +43,27 @@ export const inputStyle = css`
     }
 
     &:disabled {
-      background-color: ${theme.neutralColor(200)};
-      color: ${theme.neutralColor(700)};
+      color: ${theme.neutralColor(500)};
       pointer-events: none;
 
       &::placeholder {
-        color: ${theme.textColor({
-          variation: 'lowContrast',
-        })};
+        color: ${theme.neutralColor(300)};
       }
     }
 
-    &:hover,
-    &:focus {
-      border-color: ${theme.neutralColor(300)};
+    &:hover {
+      --text-input-border-width: 1px;
+    }
+
+    &:active {
+      --text-input-border-width: 1px;
+      --text-input-background-color: unset;
     }
 
     &:focus {
-      background-color: #fff;
+      --text-input-border-width: 0;
+      --text-input-outline-width: 4px;
+      --text-input-background-color: unset;
     }
 
     &[data-background='true'] {
@@ -59,24 +72,25 @@ export const inputStyle = css`
     }
 
     &[data-error='true'] {
-      border-color: ${theme.color('error')};
-      box-shadow: 0 1px 0 ${theme.color('error')};
+      --text-input-outline-color: ${theme.color('error', { opacity: 0.2 })};
+      --text-input-outline-width: 4px;
+      --text-input-border-color: ${theme.color('error')};
+      --text-input-border-width: 1px;
     }
   }
 
   &[data-light='true'] {
     color: ${theme.color('primary')};
-    background-color: unset;
     font-size: 18px;
     padding-left: 12px;
     padding-right: 12px;
 
     &:hover:not(:focus) {
-      background-color: ${theme.neutralColor(200)};
+      --text-input-background-color: ${theme.neutralColor(200)};
     }
 
     &:focus {
-      border-color: ${theme.neutralColor(300)};
+      --text-input-border-width: 1px;
       color: ${theme.textColor()};
     }
   }
