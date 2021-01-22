@@ -5,7 +5,7 @@ import { inputStyle } from '../TextInput/TextInput.style'
 export const Input = styled.textarea`
   flex: 1;
   margin: 0;
-  padding: 10px 16px;
+  padding: 12px;
   max-width: 100%;
   min-width: 0;
   height: 14rem;

@@ -17,6 +17,7 @@ export interface TextInputInnerProps
   elementLeft?: React.ReactNode
   canReset?: boolean
   placeholder?: string
+  containerRef?: React.RefObject<HTMLDivElement>
 }
 
 export interface TextInputProps extends WithLabel<TextInputInnerProps> {}

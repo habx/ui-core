@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 
 import { transition } from '../animations'
-import { breakpoints } from '../breakpoints'
 import { Icon } from '../Icon'
 import { theme } from '../theme'
 
@@ -28,8 +27,14 @@ export const inputStyle = css`
 
   transition: ${transition('all')};
 
-  &:disabled {
-    pointer-events: none;
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
+
+  &[data-small='true'] {
+    padding: 0 12px;
+    min-height: 36px;
+    max-height: 36px;
   }
 
   &:not([data-light='true']) {
@@ -60,7 +65,7 @@ export const inputStyle = css`
       --text-input-background-color: unset;
     }
 
-    &:focus {
+    &:focus-within {
       --text-input-border-width: 0;
       --text-input-outline-width: 4px;
       --text-input-background-color: unset;
@@ -85,11 +90,11 @@ export const inputStyle = css`
     padding-left: 12px;
     padding-right: 12px;
 
-    &:hover:not(:focus) {
+    &:hover:not(:focus-within) {
       --text-input-background-color: ${theme.neutralColor(200)};
     }
 
-    &:focus {
+    &:focus-within {
       --text-input-border-width: 1px;
       color: ${theme.textColor()};
     }
@@ -99,78 +104,46 @@ export const inputStyle = css`
     color: ${theme.color('error')};
   }
 
-  @media (${breakpoints.below.phone}) {
-    font-size: 14px;
+  &:disabled {
+    pointer-events: none;
   }
 `
 
-export const LeftElementContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 16px;
+export const SideElementContainer = styled.div`
+  font-size: 24px;
   height: 100%;
   display: flex;
   align-items: center;
-  font-size: 18px;
-  font-family: ${theme.font()};
-  transition: ${transition('all')};
 
-  &[data-light='true'] {
-    right: 12px;
+  &[data-position='left'] {
+    margin-right: 8px;
   }
-`
 
-export const RightElementContainer = styled.div`
-  position: absolute;
-  top: 0;
-  right: 16px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  font-size: 18px;
-  font-family: ${theme.font()};
-
-  &[data-light='true'] {
-    right: 12px;
+  &[data-position='right'] {
+    margin-left: 8px;
   }
 `
 
 export const Input = styled.input`
-  flex: 1;
-  margin: 0;
-  padding: 0 16px;
-  max-height: 48px;
-  min-height: 48px;
-  max-width: 100%;
-  min-width: 0;
-  width: 100%;
-
-  &:focus + ${LeftElementContainer} {
-    color: ${theme.color('primary')};
-  }
-
-  &[data-small='true'] {
-    padding: 0 12px;
-    min-height: 36px;
-    max-height: 36px;
-  }
-
-  &[data-padding-left='true'] {
-    padding-left: 48px;
-  }
-
-  ${inputStyle};
+  outline: none;
+  border: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  flex: 1 1 100%;
+  color: inherit;
 `
 
 export const InputContainer = styled.div`
   position: relative;
-  width: 100%;
   color: ${theme.textColor()};
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  max-height: 48px;
+  min-height: 48px;
 
-  &:hover,
-  &:focus-within {
-    color: ${theme.textColor()};
-  }
+  ${inputStyle};
 `
 
 export const IconButton = styled(Icon)`
