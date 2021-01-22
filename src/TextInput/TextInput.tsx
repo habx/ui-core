@@ -9,8 +9,7 @@ import {
   IconButton,
   Input,
   InputContainer,
-  LeftElementContainer,
-  RightElementContainer,
+  SideElementContainer,
 } from './TextInput.style'
 
 const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
@@ -23,6 +22,7 @@ const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
       style,
       elementRight,
       elementLeft,
+      containerRef,
       canReset,
       value,
       ...rest
@@ -31,24 +31,23 @@ const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
     const hasBackground = useHasColoredBackground()
 
     return (
-      <InputContainer className={className} style={style} data-error={error}>
-        <Input
-          data-small={small}
-          data-error={error}
-          data-light={light}
-          data-padding-left={!!elementLeft}
-          data-background={hasBackground}
-          value={value ?? ''}
-          {...rest}
-          ref={ref}
-        />
+      <InputContainer
+        className={className}
+        style={style}
+        data-error={error}
+        data-small={small}
+        data-light={light}
+        data-background={hasBackground}
+        ref={containerRef}
+      >
         {elementLeft && (
-          <LeftElementContainer data-light={light}>
+          <SideElementContainer data-position="left">
             {elementLeft}
-          </LeftElementContainer>
+          </SideElementContainer>
         )}
+        <Input value={value ?? ''} {...rest} ref={ref} />
         {(elementRight || canReset) && (
-          <RightElementContainer data-light={light}>
+          <SideElementContainer data-position="right">
             {elementRight && elementRight}
             {canReset && props.value && `${props.value}`.length > 0 && (
               <IconButton
@@ -61,7 +60,7 @@ const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
                 }
               />
             )}
-          </RightElementContainer>
+          </SideElementContainer>
         )}
       </InputContainer>
     )

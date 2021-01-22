@@ -1,3 +1,4 @@
+import { ModalState } from '@delangle/use-modal'
 import * as React from 'react'
 
 import { Icon } from '../Icon'
@@ -6,9 +7,9 @@ import { MenuLine } from '../MenuLine'
 
 import { countries, Country } from './countries'
 import {
-  CountryOptions,
-  FlagContainer,
-  HiddenInput,
+  CountryFilterInput,
+  PhoneInputContainer,
+  FlagButton,
   MenuLineSubtitle,
   MenuLineTitle,
   PhoneIndicator,
@@ -17,18 +18,13 @@ import {
 export const SelectFlag: React.FunctionComponent<SelectFlagProps> = ({
   value,
   onChange,
+  inputContainerRef,
 }) => {
-  const Flag = value.flag as React.FunctionComponent
-  const [open, setOpen] = React.useState<boolean>(false)
-  const inputRef = React.useRef<HTMLInputElement>(null)
+  const Flag = value.flag
+  const filterInputRef = React.useRef<HTMLInputElement>(null)
+
+  const [isOpen, setIsOpen] = React.useState(false)
   const [filter, setFilter] = React.useState('')
-  React.useEffect(() => {
-    if (open) {
-      inputRef.current?.focus()
-    } else {
-      setFilter('')
-    }
-  }, [open])
 
   const isInFilter = React.useCallback(
     (country: Country) =>
@@ -59,21 +55,26 @@ export const SelectFlag: React.FunctionComponent<SelectFlagProps> = ({
 
   return (
     <React.Fragment>
-      <CountryOptions onClick={() => setOpen(true)}>
-        <FlagContainer>
-          {value.flag ? <Flag /> : value.iso2Code}
-          <Icon icon="chevron-south" />
-        </FlagContainer>
-        <PhoneIndicator>{`+${value.dialCode}`}</PhoneIndicator>
-      </CountryOptions>
-      <HiddenInput
-        ref={inputRef}
-        onChange={(e) => setFilter(e.target.value)}
+      <CountryFilterInput
+        ref={filterInputRef}
         value={filter}
+        onChange={(e) => setFilter(e.target.value)}
       />
-      <Menu open={open} onClose={() => setOpen(false)} scrollable>
+      <PhoneInputContainer>
+        <FlagButton onClick={() => setIsOpen(true)}>
+          {Flag ? <Flag /> : value.iso2Code}
+          <Icon icon="chevron-south" />
+        </FlagButton>
+        <PhoneIndicator>{`+${value.dialCode}`}</PhoneIndicator>
+      </PhoneInputContainer>
+      <Menu
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        triggerRef={inputContainerRef}
+        scrollable
+      >
         {(modal) =>
-          modal.state !== 'closed' && (
+          modal.state !== ModalState.closed && (
             <React.Fragment>
               {filteredCountries.map((country) => (
                 <MenuLine
@@ -98,4 +99,5 @@ export const SelectFlag: React.FunctionComponent<SelectFlagProps> = ({
 interface SelectFlagProps {
   value: Country
   onChange: (value: Country) => void
+  inputContainerRef: React.RefObject<HTMLInputElement>
 }

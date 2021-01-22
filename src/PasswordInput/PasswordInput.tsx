@@ -3,44 +3,39 @@ import * as React from 'react'
 import { useMergedRef } from '../_internal/useMergedRef'
 import { Icon } from '../Icon'
 import { TextInput } from '../TextInput'
-import { withLabel } from '../withLabel'
 
-import { PasswordInputInnerProps } from './PasswordInput.interface'
-import { HiddenInputContainer, HideButton } from './PasswordInput.style'
+import { PasswordInputProps } from './PasswordInput.interface'
+import { HideButton } from './PasswordInput.style'
 
-const InnerPasswordInput = React.forwardRef<
+export const PasswordInput = React.forwardRef<
   HTMLInputElement,
-  PasswordInputInnerProps
->((props, ref) => {
-  const domRef = useMergedRef<HTMLInputElement>(ref)
+  PasswordInputProps
+>((props, rawRef) => {
+  const ref = useMergedRef<HTMLInputElement>(rawRef)
   const [isContentHidden, setContentHidden] = React.useState(true)
 
   const handleToggleHidden = React.useCallback(() => {
-    if (domRef.current) {
-      domRef.current.focus()
+    if (ref.current) {
+      ref.current.focus()
     }
 
     setContentHidden((wasHidden) => !wasHidden)
-  }, [domRef])
+  }, [ref])
 
   return (
-    <HiddenInputContainer>
-      <TextInput
-        ref={domRef}
-        {...props}
-        type={isContentHidden ? 'password' : 'text'}
-      />
-      <HideButton
-        data-hidden={isContentHidden}
-        onClick={handleToggleHidden}
-        type="button"
-      >
-        <Icon icon="eye" />
-      </HideButton>
-    </HiddenInputContainer>
+    <TextInput
+      ref={ref}
+      type={isContentHidden ? 'password' : 'text'}
+      {...props}
+      elementRight={
+        <HideButton
+          data-hidden={isContentHidden}
+          onClick={handleToggleHidden}
+          type="button"
+        >
+          <Icon icon="eye" />
+        </HideButton>
+      }
+    />
   )
 })
-
-export const PasswordInput = withLabel<HTMLInputElement>({
-  orientation: 'vertical',
-})<PasswordInputInnerProps>(InnerPasswordInput)

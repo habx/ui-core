@@ -1,119 +1,103 @@
 import * as React from 'react'
 
 import { useSSRLayoutEffect } from '../_internal/ssr'
-import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
+import { useMergedRef } from '../_internal/useMergedRef'
 import { Icon } from '../Icon'
-import { withLabel } from '../withLabel'
+import { TextInput } from '../TextInput'
 
 import { countries, Country } from './countries'
-import { PhoneInputInnerProps } from './PhoneInput.interface'
-import { PhoneInputContainer, MainInput } from './PhoneInput.style'
+import { PhoneInputProps } from './PhoneInput.interface'
 import { SelectFlag } from './SelectFlag'
 
-const InnerPhoneInput = React.forwardRef<
-  HTMLInputElement,
-  PhoneInputInnerProps
->((props, ref) => {
-  const {
-    error = false,
-    disabled = false,
-    small = false,
-    onChange,
-    value: rawValue = '',
-    ...rest
-  } = props
+export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
+  (props, ref) => {
+    const { onChange, value: rawValue = '', ...rest } = props
 
-  const [country, setCountry] = React.useState<Country>({
-    name: 'France',
-    iso2Code: 'fr',
-    dialCode: '33',
-    areaCodes: [],
-    flag: () => <Icon colored icon="flag-france" />,
-  })
+    const inputContainerRef = useMergedRef(ref)
 
-  const PHONE_REGEXP = React.useMemo(
-    () => new RegExp(`\\+([0-9]{${country.dialCode.length}})(.*)`),
-    [country.dialCode.length]
-  )
+    const [country, setCountry] = React.useState<Country>({
+      name: 'France',
+      iso2Code: 'fr',
+      dialCode: '33',
+      areaCodes: [],
+      flag: () => <Icon colored icon="flag-france" />,
+    })
 
-  const hasBackground = useHasColoredBackground()
+    const PHONE_REGEXP = React.useMemo(
+      () => new RegExp(`\\+([0-9]{${country.dialCode.length}})(.*)`),
+      [country.dialCode.length]
+    )
 
-  const value = React.useMemo(() => {
-    const result = PHONE_REGEXP.exec(rawValue)
+    const value = React.useMemo(() => {
+      const result = PHONE_REGEXP.exec(rawValue)
 
-    if (result) {
-      const phoneNumber = result[2]
-      const cleanPhoneNumber =
-        phoneNumber !== '' &&
-        !phoneNumber.startsWith('0') &&
-        country.dialCode === '33' // avoid regression for french numbers
-          ? `0${phoneNumber}`
-          : phoneNumber
-      return cleanPhoneNumber
-        .replace(new RegExp(`(.{${country.dialCode.length}})`), ' $1')
-        .trim()
-    }
-
-    return rawValue
-  }, [rawValue, country.dialCode, PHONE_REGEXP])
-
-  const handleChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value
-
-      const cleanValue: string = newValue.replace(/[^0-9]/g, '')
-      const phoneNumber =
-        cleanValue.startsWith('0') &&
-        cleanValue !== '0' &&
-        country.dialCode === '33' // avoid regression for french numbers
-          ? cleanValue.substring(1)
-          : cleanValue
-
-      e.target.value =
-        phoneNumber.length === 0 ? '' : `+${country.dialCode}${phoneNumber}`
-
-      if (onChange) {
-        onChange(e)
+      if (result) {
+        const phoneNumber = result[2]
+        const cleanPhoneNumber =
+          phoneNumber !== '' &&
+          !phoneNumber.startsWith('0') &&
+          country.dialCode === '33' // avoid regression for french numbers
+            ? `0${phoneNumber}`
+            : phoneNumber
+        return cleanPhoneNumber
+          .replace(new RegExp(`(.{${country.dialCode.length}})`), ' $1')
+          .trim()
       }
-    },
-    [country.dialCode, onChange]
-  )
 
-  useSSRLayoutEffect(() => {
-    const result = PHONE_REGEXP.exec(rawValue)
-    if (result) {
-      const indicatorValue = result[1]
-      const countryValue = countries.find(
-        (el) => el.dialCode === indicatorValue
-      )
+      return rawValue
+    }, [rawValue, country.dialCode, PHONE_REGEXP])
 
-      if (countryValue) {
-        setCountry(countryValue)
+    const handleChange = React.useCallback(
+      (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = e.target.value
+
+        const cleanValue: string = newValue.replace(/[^0-9]/g, '')
+        const phoneNumber =
+          cleanValue.startsWith('0') &&
+          cleanValue !== '0' &&
+          country.dialCode === '33' // avoid regression for french numbers
+            ? cleanValue.substring(1)
+            : cleanValue
+
+        e.target.value =
+          phoneNumber.length === 0 ? '' : `+${country.dialCode}${phoneNumber}`
+
+        if (onChange) {
+          onChange(e)
+        }
+      },
+      [country.dialCode, onChange]
+    )
+
+    useSSRLayoutEffect(() => {
+      const result = PHONE_REGEXP.exec(rawValue)
+      if (result) {
+        const indicatorValue = result[1]
+        const countryValue = countries.find(
+          (el) => el.dialCode === indicatorValue
+        )
+
+        if (countryValue) {
+          setCountry(countryValue)
+        }
       }
-    }
-  }, [])
+    }, [])
 
-  return (
-    <PhoneInputContainer
-      data-error={error}
-      data-disabled={disabled}
-      data-small={small}
-      data-background={hasBackground}
-    >
-      <SelectFlag value={country} onChange={setCountry} />
-      <MainInput
+    return (
+      <TextInput
         ref={ref}
+        containerRef={inputContainerRef}
         {...rest}
-        error={error}
-        onChange={handleChange}
+        elementLeft={
+          <SelectFlag
+            value={country}
+            onChange={setCountry}
+            inputContainerRef={inputContainerRef}
+          />
+        }
         value={value}
-        disabled={disabled}
-        data-small={small}
+        onChange={handleChange}
       />
-    </PhoneInputContainer>
-  )
-})
-
-export const PhoneInput = withLabel<HTMLInputElement>({
-  orientation: 'vertical',
-})<PhoneInputInnerProps>(InnerPhoneInput)
+    )
+  }
+)
