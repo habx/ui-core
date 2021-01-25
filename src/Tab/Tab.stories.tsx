@@ -10,7 +10,23 @@ const GRID_PROPS = {
   children: 'Agencement 1',
 }
 
-const GRID_LINES = [{}]
+const GRID_LINES = [
+  {
+    title: 'Regular',
+  },
+  {
+    title: 'Small',
+    props: {
+      small: true,
+    },
+  },
+  {
+    title: 'Large',
+    props: {
+      large: true,
+    },
+  },
+]
 
 const GRID_ITEMS = [
   {
@@ -23,10 +39,6 @@ const GRID_ITEMS = [
   {
     label: 'Active',
     props: { active: true },
-  },
-  {
-    label: 'Large',
-    props: { large: true },
   },
   {
     label: 'Element left',

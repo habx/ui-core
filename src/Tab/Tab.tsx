@@ -1,12 +1,13 @@
 import * as React from 'react'
 
 import { TabProps } from './Tab.interface'
-import { TabContainer, SideElementContainer } from './Tab.style'
+import { TabContainer, TabContent, SideElementContainer } from './Tab.style'
 
 export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
   (props, ref) => {
     const {
       large = false,
+      small = false,
       active = false,
       type = 'button',
       elementLeft,
@@ -19,6 +20,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       <TabContainer
         ref={ref}
         data-large={large}
+        data-small={small}
         data-active={active}
         type={type}
         {...rest}
@@ -31,7 +33,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
             {elementLeft}
           </SideElementContainer>
         )}
-        {children}
+        <TabContent>{children}</TabContent>
         {elementRight && (
           <SideElementContainer
             data-position="right"
