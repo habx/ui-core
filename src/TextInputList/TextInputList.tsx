@@ -3,7 +3,6 @@ import * as React from 'react'
 import { isFunction } from '../_internal/data'
 import { AutocompleteInput } from '../AutocompleteInput'
 import { Icon } from '../Icon'
-import { IconButton } from '../IconButton'
 
 import { TextInputListProps } from './TextInputList.interface'
 import {
@@ -11,13 +10,14 @@ import {
   TagListContainer,
   ElementRightContainer,
   TextInputListTag,
+  TextInputListAddIcon,
 } from './TextInputList.style'
 
 export const TextInputList = React.forwardRef<
   HTMLInputElement,
   TextInputListProps
 >((props, ref) => {
-  const { value = [], onChange, options, elementRight, ...rest } = props
+  const { value = [], onChange, options, elementRight, small, ...rest } = props
   const [localValue, setLocalValue] = React.useState<string | number>('')
 
   const handleValidateCurrent = () => {
@@ -85,6 +85,7 @@ export const TextInputList = React.forwardRef<
     <TextInputListContainer>
       <AutocompleteInput
         {...rest}
+        small={small}
         ref={ref}
         value={localValue}
         onChange={handleChange}
@@ -95,7 +96,12 @@ export const TextInputList = React.forwardRef<
           <ElementRightContainer>
             {elementRight}
             {`${localValue}`?.length > 0 && (
-              <IconButton tiny icon="add" onClick={handleValidateCurrent} />
+              <TextInputListAddIcon
+                small
+                background="grey"
+                icon="add"
+                onClick={handleValidateCurrent}
+              />
             )}
           </ElementRightContainer>
         }
@@ -107,7 +113,7 @@ export const TextInputList = React.forwardRef<
               interactive
               key={`${el}-${index}`}
               onClick={() => handleRemoveItem(index)}
-              small
+              small={small}
               elementRight={<Icon icon="close" />}
             >
               {el}

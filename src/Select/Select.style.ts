@@ -39,7 +39,7 @@ export const SelectContainer = styled.div`
   align-items: center;
   box-sizing: border-box;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 4px;
   height: var(--select-height);
   padding: 0 12px;
   box-shadow: inset 0 0 0 var(--select-border-width) var(--select-border-color);

@@ -13,24 +13,37 @@ export const AutocompleteInput = React.forwardRef<
   HTMLInputElement,
   AutocompleteInputProps
 >((props, ref) => {
-  const { value, options, onOptionSelect, loading, ...inputProps } = props
-  const mergedRef = useMergedRef<HTMLInputElement>(ref)
+  const {
+    value,
+    options,
+    onOptionSelect,
+    loading,
+    containerRef: rawContainerRef,
+    ...inputProps
+  } = props
+  const containerRef = useMergedRef<HTMLDivElement>(rawContainerRef)
+  const inputRef = useMergedRef<HTMLInputElement>(ref)
 
   const autocomplete = useAutocomplete({
     onOptionSelect,
     options: options,
     value,
-    ref: mergedRef,
+    ref: inputRef,
     loading,
   })
 
   return (
     <React.Fragment>
-      <TextInput value={value} ref={mergedRef} {...inputProps} />
+      <TextInput
+        value={value}
+        ref={inputRef}
+        containerRef={containerRef}
+        {...inputProps}
+      />
       {autocomplete.open && (
         <Menu
           ref={autocomplete.menuRef}
-          triggerRef={mergedRef}
+          triggerRef={containerRef}
           onClose={() => {}}
           open={autocomplete.open}
           withOverlay={false}
