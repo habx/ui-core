@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { transition } from '../animations'
+import { ANIMATION_DURATIONS, ANIMATION_TIMING_FUNCTION } from '../animations'
 import { theme } from '../theme'
 
 export const TabContainer = styled.button`
@@ -8,55 +8,87 @@ export const TabContainer = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
   outline: none;
+  border: none;
   user-select: none;
   vertical-align: middle;
+  cursor: pointer;
+
+  /*
+   * Font
+   */
   text-align: left;
   text-decoration: none;
-  border: none;
-  border-radius: 4px;
-
   font-family: ${theme.font()};
-  font-weight: 500;
+  font-size: var(--tab-font-size);
   line-height: 1;
-  transition: ${transition('background-color', { duration: 's' })};
 
+  /*
+   * Dimensions
+   */
+  border-radius: 4px;
+  padding: 0 var(--tab-horizontal-padding);
+  height: var(--tab-height);
+
+  --tab-horizontal-padding: 12px;
+  --tab-height: 36px;
+  --tab-side-element-internal-margin: 6px;
+  --tab-side-element-external-margin: -2px;
+  --tab-font-size: 14px;
+
+  &[data-small='true'] {
+    --tab-horizontal-padding: 8px;
+    --tab-height: 24px;
+    --tab-side-element-internal-margin: 4px;
+    --tab-side-element-external-margin: 0;
+    --tab-font-size: 12px;
+  }
+
+  &[data-large='true'] {
+    --tab-horizontal-padding: 24px;
+    --tab-height: 48px;
+    --tab-side-element-internal-margin: 8px;
+    --tab-side-element-external-margin: -4px;
+    --tab-font-size: 16px;
+  }
+
+  /*
+   * Colors
+   */
+  transition-property: box-shadow, background-color;
+  transition-duration: ${ANIMATION_DURATIONS.m}ms;
+  transition-timing-function: ${ANIMATION_TIMING_FUNCTION};
+
+  box-shadow: inset 0 0 0 var(--tab-border-width) var(--tab-border-color),
+    0 0 0 var(--tab-outline-width) var(--tab-outline-color);
   color: var(--tab-color);
   background: var(--tab-background-color);
-  box-shadow: inset 0 0 0 var(--tab-border-width) var(--tab-border-color);
 
+  --tab-border-width: 1px;
+  --tab-border-color: ${theme.neutralColor(300, {
+    gradient: 'withIntensityFading',
+  })};
+  --tab-outline-width: 0;
+  --tab-outline-color: ${theme.color('primary', { opacity: 0.3 })};
   --tab-color: ${theme.textColor()};
   --tab-background-color: ${theme.neutralColor(0, {
     gradient: 'withIntensityFading',
   })};
-  --tab-border-color: ${theme.neutralColor(300, {
-    gradient: 'withIntensityFading',
-  })};
-  --tab-border-width: 1px;
 
-  padding: 0 12px;
-  height: 28px;
-  font-size: 12px;
-
-  &[data-large='true'] {
-    padding: 0 24px;
-    height: 48px;
-    font-size: 16px;
+  &[data-active='true'] {
+    --tab-color: ${theme.color('primary')};
+    --tab-background-color: ${theme.color('primary', { variation: 'calmer' })};
+    --tab-border-width: 0;
   }
 
-  &:not(:disabled) {
-    &:hover {
-      --tab-border-width: 3px;
-    }
+  &:hover {
+    --tab-background-color: ${theme.neutralColor(200)};
+    --tab-color: ${theme.textColor()};
+    --tab-border-color: transparent;
+  }
 
-    &:active {
-      --tab-border-width: 2px;
-    }
-
-    &:focus:not(:active) {
-      --tab-outline-width: 3px;
-    }
+  &:focus:not(:active) {
+    --tab-outline-width: 4px;
   }
 
   &:disabled {
@@ -70,22 +102,23 @@ export const TabContainer = styled.button`
     })};
     --tab-background-color: ${theme.color('background')};
   }
+`
 
-  &[data-active='true'] {
-    --tab-color: ${theme.color('primary')};
-    --tab-background-color: ${theme.color('primary', { variation: 'calmer' })};
-    --tab-border-color: ${theme.color('primary')};
-  }
+export const TabContent = styled.div`
+  position: relative;
+  white-space: nowrap;
 `
 
 export const SideElementContainer = styled.div`
   display: flex;
 
   &[data-position='left'] {
-    margin-right: 6px;
+    margin-right: var(--tab-side-element-internal-margin);
+    margin-left: var(--tab-side-element-external-margin);
   }
 
   &[data-position='right'] {
-    margin-left: 6px;
+    margin-right: var(--tab-side-element-external-margin);
+    margin-left: var(--tab-side-element-internal-margin);
   }
 `
