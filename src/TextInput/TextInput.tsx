@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
 import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
+import { useMergedRef } from '../_internal/useMergedRef'
 import { withLabel } from '../withLabel'
 
 import { TextInputInnerProps } from './TextInput.interface'
@@ -25,10 +26,12 @@ const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
       containerRef,
       canReset,
       value,
+      disabled,
       ...rest
     } = props
 
     const hasBackground = useHasColoredBackground()
+    const inputRef = useMergedRef(ref)
 
     return (
       <InputContainer
@@ -38,14 +41,22 @@ const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
         data-small={small}
         data-light={light}
         data-background={hasBackground}
+        data-disabled={disabled}
         ref={containerRef}
+        onClick={() => inputRef.current?.focus()}
+        onTouchStart={() => inputRef.current?.focus()}
       >
         {elementLeft && (
           <SideElementContainer data-position="left">
             {elementLeft}
           </SideElementContainer>
         )}
-        <Input value={value ?? ''} {...rest} ref={ref} />
+        <Input
+          value={value ?? ''}
+          disabled={disabled}
+          {...rest}
+          ref={inputRef}
+        />
         {(elementRight || canReset) && (
           <SideElementContainer data-position="right">
             {elementRight && elementRight}
