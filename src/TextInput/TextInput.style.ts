@@ -12,7 +12,7 @@ export const inputStyle = css`
   border: none;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border-radius: 6px;
+  border-radius: 4px;
   background-color: var(--text-input-background-color);
 
   box-shadow: inset 0 0 0 var(--text-input-border-width)

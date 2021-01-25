@@ -3,7 +3,7 @@ import * as React from 'react'
 import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
 
 import { TagProps } from './Tag.interface'
-import { TagContainer, SideElementContainer } from './Tag.style'
+import { TagContainer, TagContent, SideElementContainer } from './Tag.style'
 
 export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
   (props, ref) => {
@@ -40,7 +40,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
             {elementLeft}
           </SideElementContainer>
         )}
-        {children}
+        <TagContent>{children}</TagContent>
         {elementRight && (
           <SideElementContainer
             data-position="right"
