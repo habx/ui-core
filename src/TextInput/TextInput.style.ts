@@ -47,7 +47,8 @@ export const inputStyle = css`
       })};
     }
 
-    &:disabled {
+    &:disabled,
+    &[data-disabled='true'] {
       color: ${theme.neutralColor(500)};
       pointer-events: none;
 
@@ -130,6 +131,7 @@ export const Input = styled.input`
   -moz-appearance: none;
   -webkit-appearance: none;
   background-color: transparent;
+  align-self: stretch;
   flex: 1 1 100%;
   color: inherit;
   font-family: ${theme.font()};
