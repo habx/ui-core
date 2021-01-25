@@ -26,17 +26,23 @@ export const TagContainer = styled.button`
   height: var(--tag-height);
   --tag-horizontal-padding: 12px;
   --tag-height: 36px;
+  --tag-side-element-internal-margin: 6px;
+  --tag-side-element-external-margin: -2px;
   font-size: 14px;
 
   &[data-small='true'] {
     --tag-horizontal-padding: 8px;
     --tag-height: 24px;
+    --tag-side-element-internal-margin: 4px;
+    --tag-side-element-external-margin: 0;
     font-size: 12px;
   }
 
   &[data-large='true'] {
     --tag-horizontal-padding: 24px;
     --tag-height: 48px;
+    --tag-side-element-internal-margin: 8px;
+    --tag-side-element-external-margin: -4px;
     font-size: 16px;
   }
 
@@ -99,16 +105,21 @@ export const TagContainer = styled.button`
   }
 `
 
+export const TagContent = styled.div`
+  position: relative;
+  white-space: nowrap;
+`
+
 export const SideElementContainer = styled.div`
-  font-size: 0.9em;
   display: flex;
-  margin-top: 1px;
 
   &[data-position='left'] {
-    margin-right: 6px;
+    margin-right: var(--tag-side-element-internal-margin);
+    margin-left: var(--tag-side-element-external-margin);
   }
 
   &[data-position='right'] {
-    margin-left: 6px;
+    margin-right: var(--tag-side-element-external-margin);
+    margin-left: var(--tag-side-element-internal-margin);
   }
 `
