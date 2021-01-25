@@ -12,9 +12,9 @@ export type AutocompleteState = {
 }
 
 export enum AutocompleteActionTypes {
-  setOpen = 0,
-  setActiveOptionIndex = 1,
-  resetActiveOption = 2,
+  setOpen,
+  setActiveOptionIndex,
+  resetActiveOption,
 }
 
 export type AutocompleteActions =
