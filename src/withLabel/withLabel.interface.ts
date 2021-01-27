@@ -1,7 +1,9 @@
+import * as React from 'react'
+
 import { TextTypes } from '../Text'
 
 export type WithLabel<InnerProps extends {} = {}> = InnerProps & {
-  label?: string
+  label?: React.ReactNode
   labelType?: TextTypes
   error?: boolean
   disabled?: boolean

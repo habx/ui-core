@@ -5,7 +5,6 @@ import { mapValues } from '../_internal/data'
 import { useUniqID } from '../_internal/useUniqId'
 import { Text, RawTextComponents, TextProps, TextTypes } from '../Text'
 import { theme } from '../theme'
-import { withMarkdown } from '../withMarkdown'
 
 import { WithLabel, WithSemanticLabel } from './withLabel.interface'
 
@@ -100,7 +99,6 @@ export const withLabel = <RefElement extends HTMLElement>({
             variation="title"
             warning={rest.error}
             data-disabled={rest.disabled}
-            markdown
           >
             {label}
           </LabelContainer>
@@ -139,12 +137,10 @@ export const withSemanticLabel = <RefElement extends HTMLElement>({
             variation="title"
             warning={props.error}
           >
-            <Markdown markdown>{label}</Markdown>
+            {label}
           </Label>
           <WrappedComponent {...(props as Props)} ref={ref} id={fieldId} />
         </FieldWithLabelContainer>
       )
     }
   )
-
-const Markdown = withMarkdown({ inline: true })((props) => <span {...props} />)
