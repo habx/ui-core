@@ -2,14 +2,10 @@ import styled, { keyframes } from 'styled-components'
 
 import { zIndex } from '../_internal/theme/zIndex'
 import { ActionBarContent } from '../ActionBar/ActionBar.style'
-import { animations } from '../animations'
+import { ANIMATION_DURATIONS, animations } from '../animations'
 import { breakpoints } from '../breakpoints'
-import { IconButton } from '../IconButton'
 import { Layout } from '../Layout'
 import { theme } from '../theme'
-import { Title } from '../Title'
-
-export const ANIMATION_DURATION = 300
 
 const FADE_IN = keyframes`
   from {
@@ -46,8 +42,8 @@ export const ModalContainer = styled(Layout)`
 
     --layout-left-padding: 36px;
     --layout-right-padding: 36px;
-    --layout-top-padding: 48px;
-    --layout-bottom-padding: 48px;
+    --layout-top-padding: 24px;
+    --layout-bottom-padding: 24px;
   }
 
   @media (${breakpoints.below.phone}) {
@@ -57,8 +53,8 @@ export const ModalContainer = styled(Layout)`
     left: 0;
     right: 0;
 
-    --layout-top-padding: 24px;
-    --layout-bottom-padding: 24px;
+    --layout-top-padding: 20px;
+    --layout-bottom-padding: 20px;
     --layout-left-padding: 20px;
     --layout-right-padding: 20px;
   }
@@ -94,7 +90,7 @@ export const ModalOverlay = styled.div`
 
   @media (${breakpoints.above.phone}) {
     &[data-state='opening'] {
-      animation: ${FADE_IN} ${ANIMATION_DURATION}ms linear 0ms;
+      animation: ${FADE_IN} ${ANIMATION_DURATIONS.m}ms linear 0ms;
 
       & ${ModalContainer} {
         animation: ${animations('emergeSlantFromBottom')};
@@ -102,7 +98,7 @@ export const ModalOverlay = styled.div`
     }
 
     &[data-state='closing'] {
-      animation: ${FADE_IN} ${ANIMATION_DURATION}ms linear 0ms reverse;
+      animation: ${FADE_IN} ${ANIMATION_DURATIONS.m}ms linear 0ms reverse;
       pointer-events: none;
       background-color: transparent;
 
@@ -120,36 +116,25 @@ export const ModalOverlay = styled.div`
 
 export const HeaderBarContainer = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   flex: 0 0 auto;
   padding: var(--layout-top-padding) var(--layout-right-padding) 12px
     var(--layout-left-padding);
-`
-
-export const CloseIcon = styled(IconButton)`
-  top: 12px;
-  right: 12px;
 
   @media (${breakpoints.above.phone}) {
-    position: absolute;
+    align-items: baseline;
+    justify-content: space-between;
+
+    & > *:not(:last-child) {
+      margin-right: 12px;
+    }
   }
 
   @media (${breakpoints.below.phone}) {
-    position: static;
-    cursor: pointer;
-  }
-`
+    flex-direction: column-reverse;
 
-export const DesktopTitle = styled(Title)`
-  @media (${breakpoints.below.phone}) {
-    display: none;
-  }
-`
-
-export const MobileTitle = styled(Title)`
-  @media (${breakpoints.above.phone}) {
-    display: none;
+    & > *:not(:first-child) {
+      margin-bottom: 12px;
+    }
   }
 `
 

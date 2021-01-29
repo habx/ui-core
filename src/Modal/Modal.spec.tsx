@@ -52,19 +52,6 @@ describe('Modal component', () => {
 
       expect(modalContainer).toBeNull()
     })
-
-    it('should render children if prop', () => {
-      const { queryByTestId } = render(
-        <Modal onClick={() => null} alwaysRenderChildren>
-          <div data-testid="content">CONTENT</div>
-        </Modal>
-      )
-
-      const modalContainer = queryByTestId('modal-container') as HTMLElement
-
-      expect(modalContainer).toBeTruthy()
-      expect(within(modalContainer).queryByTestId('content')).toBeTruthy()
-    })
   })
 
   describe('with render props children', () => {
