@@ -55,7 +55,7 @@ describe('Modal component', () => {
   })
 
   describe('with render props children', () => {
-    it('should have state="closed" if modal is closed', () => {
+    it('should not be called children if modal is closed', () => {
       const spyChildren = sinon.spy()
 
       render(
@@ -64,7 +64,7 @@ describe('Modal component', () => {
         </Modal>
       )
 
-      expect(spyChildren.lastCall.args[0].state).toEqual('closed')
+      expect(spyChildren.callCount).toEqual(0)
     })
 
     it('should have state = "opening" if modal is mounted with open=true"', () => {
