@@ -52,23 +52,10 @@ describe('Modal component', () => {
 
       expect(modalContainer).toBeNull()
     })
-
-    it('should render children if prop', () => {
-      const { queryByTestId } = render(
-        <Modal onClick={() => null} alwaysRenderChildren>
-          <div data-testid="content">CONTENT</div>
-        </Modal>
-      )
-
-      const modalContainer = queryByTestId('modal-container') as HTMLElement
-
-      expect(modalContainer).toBeTruthy()
-      expect(within(modalContainer).queryByTestId('content')).toBeTruthy()
-    })
   })
 
   describe('with render props children', () => {
-    it('should have state="closed" if modal is closed', () => {
+    it('should not be called children if modal is closed', () => {
       const spyChildren = sinon.spy()
 
       render(
@@ -77,7 +64,7 @@ describe('Modal component', () => {
         </Modal>
       )
 
-      expect(spyChildren.lastCall.args[0].state).toEqual('closed')
+      expect(spyChildren.callCount).toEqual(0)
     })
 
     it('should have state = "opening" if modal is mounted with open=true"', () => {

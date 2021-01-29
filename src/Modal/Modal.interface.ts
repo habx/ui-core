@@ -9,7 +9,6 @@ export interface ModalInnerProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string
   persistent?: boolean
   animated?: boolean
-  alwaysRenderChildren?: boolean
   width?: 'small' | 'regular' | 'large'
 
   /**

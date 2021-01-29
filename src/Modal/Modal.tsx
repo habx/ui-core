@@ -5,6 +5,9 @@ import * as ReactDOM from 'react-dom'
 import { isFunction } from '../_internal/data'
 import { isClientSide } from '../_internal/ssr'
 import { withTogglePanelReset } from '../_internal/withTogglePanelReset'
+import { ANIMATION_DURATIONS } from '../animations'
+import { RoundIconButton } from '../RoundIconButton'
+import { Title } from '../Title'
 import { useCurrentBackground } from '../useCurrentBackground'
 import { withTriggerElement } from '../withTriggerElement'
 
@@ -12,13 +15,9 @@ import { ModalInnerProps } from './Modal.interface'
 import {
   ModalOverlay,
   ModalContainer,
-  DesktopTitle,
-  MobileTitle,
   ModalContent,
   ModalScrollableContent,
-  CloseIcon,
   HeaderBarContainer,
-  ANIMATION_DURATION,
 } from './Modal.style'
 
 const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
@@ -30,7 +29,6 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
       title,
       animated = true,
       persistent = false,
-      alwaysRenderChildren = false,
       width = 'regular',
       value,
       ...rest
@@ -43,12 +41,16 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
       persistent,
       value,
       animated,
-      animationDuration: ANIMATION_DURATION,
+      animationDuration: ANIMATION_DURATIONS.m,
     })
 
     const backgroundColor = useCurrentBackground({ useRootTheme: true })
 
-    const content = (
+    if (!modal.hasAlreadyBeenOpened || !isClientSide) {
+      return null
+    }
+
+    return ReactDOM.createPortal(
       <ModalOverlay data-state={modal.state} data-testid="modal-overlay">
         <ModalContainer
           backgroundColor={backgroundColor}
@@ -57,36 +59,25 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
           data-width={width}
           {...rest}
         >
-          <HeaderBarContainer data-has-title={!!title}>
-            {title && (
-              <React.Fragment>
-                <DesktopTitle type="section">{title}</DesktopTitle>
-                <MobileTitle type="regular">{title}</MobileTitle>
-              </React.Fragment>
+          <HeaderBarContainer>
+            {title ? (
+              <Title type="section">
+                Choisissez les prestations des appartements
+              </Title>
+            ) : (
+              <div />
             )}
-            <CloseIcon
-              data-has-title={!!title}
-              onClick={modal.close}
-              icon="close"
-              small
-            />
+            <RoundIconButton onClick={modal.close} icon="close" />
           </HeaderBarContainer>
           <ModalContent>
-            <ModalScrollableContent data-has-title={!!title}>
+            <ModalScrollableContent>
               {isFunction(children) ? children(modal as ModalType) : children}
             </ModalScrollableContent>
           </ModalContent>
         </ModalContainer>
-      </ModalOverlay>
+      </ModalOverlay>,
+      document.body
     )
-
-    if (!alwaysRenderChildren && !modal.hasAlreadyBeenOpened) {
-      return null
-    }
-
-    return isClientSide
-      ? ReactDOM.createPortal(content, document.body)
-      : content
   }
 )
 

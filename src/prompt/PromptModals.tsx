@@ -3,9 +3,9 @@ import { createPortal } from 'react-dom'
 
 import { useIsMounted, useTimeout } from '../_internal/hooks'
 import { isClientSide } from '../_internal/ssr'
+import { ANIMATION_DURATIONS } from '../animations'
 import { LightBox } from '../LightBox'
 import { Modal } from '../Modal'
-import { ANIMATION_DURATION } from '../Modal/Modal.style'
 
 import { subscribe } from './prompt'
 import { StateModal } from './PromptModals.interface'
@@ -30,7 +30,7 @@ export const PromptModals: React.FunctionComponent<{}> = () => {
             if (isMounted.current) {
               setModals((prev) => prev.filter((el) => el.id !== modal.id))
             }
-          }, ANIMATION_DURATION)
+          }, ANIMATION_DURATIONS.m)
         )
       }
 
