@@ -2,7 +2,6 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { useIsMounted, useTimeout } from '../_internal/hooks'
-import { isClientSide } from '../_internal/ssr'
 import { ANIMATION_DURATIONS } from '../animations'
 import { Toaster, ToasterEventProps } from '../Toaster'
 
@@ -12,7 +11,7 @@ import { ToasterListContainer, ToasterContainer } from './ToasterList.style'
 
 const DEFAULT_DURATION = 5_000
 
-export const ToasterList: React.FunctionComponent<{}> = () => {
+export const ToasterList: React.FunctionComponent = () => {
   const isMounted = useIsMounted()
   const registerTimeout = useTimeout()
 
@@ -114,7 +113,15 @@ export const ToasterList: React.FunctionComponent<{}> = () => {
     [planClose]
   )
 
-  const content = (
+  /*
+   * This check gives us the assurance that the ReactDOM.createPortal won't be called on SSR
+   * Because the subscription is set in a useEffect
+   */
+  if (toasts.length === 0) {
+    return null
+  }
+
+  return ReactDOM.createPortal(
     <ToasterListContainer onClick={(e) => e.stopPropagation()}>
       {toasts.map((toast) => {
         const props: ToasterEventProps = (toast.message as ToasterEventProps)
@@ -134,8 +141,7 @@ export const ToasterList: React.FunctionComponent<{}> = () => {
           </ToasterContainer>
         )
       })}
-    </ToasterListContainer>
+    </ToasterListContainer>,
+    document.body
   )
-
-  return isClientSide ? ReactDOM.createPortal(content, document.body) : content
 }

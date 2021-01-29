@@ -3,7 +3,6 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
-import { isClientSide } from '../_internal/ssr'
 import { withTogglePanelReset } from '../_internal/withTogglePanelReset'
 import { ANIMATION_DURATIONS } from '../animations'
 import { useCurrentBackground } from '../useCurrentBackground'
@@ -37,7 +36,11 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
 
     const backgroundColor = useCurrentBackground({ useRootTheme: true })
 
-    const content = (
+    if (modal.hasAlreadyBeenOpened) {
+      return null
+    }
+
+    return ReactDOM.createPortal(
       <LightBoxContainer
         ref={ref}
         backgroundColor={backgroundColor}
@@ -51,12 +54,9 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
         {isFunction(children)
           ? children(modal as Modal<HTMLDivElement>)
           : children}
-      </LightBoxContainer>
+      </LightBoxContainer>,
+      document.body
     )
-
-    return isClientSide
-      ? ReactDOM.createPortal(content, document.body)
-      : content
   }
 )
 

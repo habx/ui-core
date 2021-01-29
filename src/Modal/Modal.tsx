@@ -3,7 +3,6 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
-import { isClientSide } from '../_internal/ssr'
 import { withTogglePanelReset } from '../_internal/withTogglePanelReset'
 import { ANIMATION_DURATIONS } from '../animations'
 import { RoundIconButton } from '../RoundIconButton'
@@ -46,7 +45,7 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
 
     const backgroundColor = useCurrentBackground({ useRootTheme: true })
 
-    if (!modal.hasAlreadyBeenOpened || !isClientSide) {
+    if (!modal.hasAlreadyBeenOpened) {
       return null
     }
 

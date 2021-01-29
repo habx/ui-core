@@ -1,8 +1,6 @@
 import * as React from 'react'
-import { createPortal } from 'react-dom'
 
 import { useIsMounted, useTimeout } from '../_internal/hooks'
-import { isClientSide } from '../_internal/ssr'
 import { ANIMATION_DURATIONS } from '../animations'
 import { LightBox } from '../LightBox'
 import { Modal } from '../Modal'
@@ -67,16 +65,20 @@ export const PromptModals: React.FunctionComponent<{}> = () => {
 
         const children = Component ? <Component /> : resultProps.children
 
-        const content = fullscreen ? (
-          <LightBox
-            open={modal.open}
-            key={modal.id}
-            {...resultProps}
-            onClose={() => handleResolve(modal, undefined)}
-          >
-            {children}
-          </LightBox>
-        ) : (
+        if (fullscreen) {
+          return (
+            <LightBox
+              open={modal.open}
+              key={modal.id}
+              {...resultProps}
+              onClose={() => handleResolve(modal, undefined)}
+            >
+              {children}
+            </LightBox>
+          )
+        }
+
+        return (
           <Modal
             open={modal.open}
             key={modal.id}
@@ -86,12 +88,6 @@ export const PromptModals: React.FunctionComponent<{}> = () => {
             {children}
           </Modal>
         )
-
-        if (isClientSide) {
-          return createPortal(content, document.body)
-        }
-
-        return content
       })}
     </React.Fragment>
   )
