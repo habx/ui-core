@@ -29,6 +29,19 @@ export const ExpansionPanelItemContainer = styled.div`
     pointer-events: none;
     opacity: 0.7;
   }
+
+  padding-bottom: var(--expansion-panel-item-horizontal-padding);
+
+  --expansion-panel-item-horizontal-padding: 24px;
+  --expansion-panel-item-font-size: 16px;
+
+  &[data-size='large'] {
+    --expansion-panel-item-font-size: 18px;
+  }
+
+  &[data-size='small'] {
+    --expansion-panel-item-font-size: 12px;
+  }
 `
 
 export const HeaderBar = styled.div`
@@ -36,19 +49,13 @@ export const HeaderBar = styled.div`
   justify-content: space-between;
   align-items: center;
   min-height: 32px;
-  padding: 24px var(--layout-right-padding) 24px var(--layout-left-padding);
+
   cursor: pointer;
   user-select: none;
   color: ${theme.color('secondary')};
 
-  --expansionPanelItemFontSize: 16px;
-  &[data-size='large'] {
-    --expansionPanelItemFontSize: 18px;
-  }
-  &[data-size='small'] {
-    padding: 12px var(--layout-right-padding) 12px var(--layout-left-padding);
-    --expansionPanelItemFontSize: 12px;
-  }
+  padding: var(--expansion-panel-item-horizontal-padding)
+    var(--layout-right-padding) 0 var(--layout-left-padding);
 `
 
 export const HeaderBarElement = styled.div`
@@ -60,7 +67,7 @@ export const HeaderBarElement = styled.div`
   line-height: 24px;
   font-family: ${theme.font()};
 
-  font-size: var(--expansionPanelItemFontSize);
+  font-size: var(--expansion-panel-item-font-size);
 
   @media screen {
     &:first-child > *:not(:last-child) {
@@ -73,15 +80,15 @@ export const HeaderBarElement = styled.div`
 `
 
 export const HeaderBarTitle = styled.span`
-  font-size: var(--expansionPanelItemFontSize);
+  font-size: var(--expansion-panel-item-font-size);
 `
 
 export const HeaderBarDescription = styled.span`
-  font-size: calc(var(--expansionPanelItemFontSize) - 2px);
+  font-size: calc(var(--expansion-panel-item-font-size) - 2px);
   color: ${theme.neutralColor(700)};
 `
 
-export const ExpansionPanelItemContent = styled(Layout)<{ height: number }>`
+export const ExpansionPanelItemContent = styled(Layout)`
   transition: ${transition('max-height', { duration: 'l' })};
   overflow: hidden;
 
@@ -91,7 +98,7 @@ export const ExpansionPanelItemContent = styled(Layout)<{ height: number }>`
   @media screen {
     &[data-state='opening'],
     &[data-state='closing'] {
-      max-height: ${({ height }) => height}px;
+      max-height: var(--expansion-panel-content-height);
     }
 
     &[data-state='closed'] {
@@ -102,6 +109,6 @@ export const ExpansionPanelItemContent = styled(Layout)<{ height: number }>`
 
 export const CoreContent = styled.div`
   @media screen {
-    padding-bottom: 48px;
+    padding-top: var(--expansion-panel-item-horizontal-padding);
   }
 `

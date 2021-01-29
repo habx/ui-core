@@ -90,11 +90,11 @@ export const ControlledExpansionPanelItem = React.forwardRef<
       data-disabled={disabled}
       data-light={light}
       data-state={panel.state}
+      data-size={size}
       {...rest}
       ref={ref}
     >
       <HeaderBar
-        data-size={size}
         data-testid="expansion-panel-item-title-bar"
         onClick={onToggle}
       >
@@ -124,8 +124,12 @@ export const ControlledExpansionPanelItem = React.forwardRef<
       <ExpansionPanelItemContent
         data-testid="expansion-panel-item-content"
         ref={contentRef}
-        height={contentHeight}
         data-state={panel.state}
+        style={
+          {
+            '--expansion-panel-content-height': `${contentHeight}px`,
+          } as React.CSSProperties
+        }
       >
         <CoreContent>
           {isFunction(children) ? children(panel) : children}
