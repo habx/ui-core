@@ -46,10 +46,16 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
         backgroundColor={backgroundColor}
         data-state={modal.state}
         data-spacing={spacing}
+        data-testid="lightbox-container"
         {...rest}
       >
         {!hideCloseIcon && (
-          <CloseIcon icon="close" onClick={modal.close} small />
+          <CloseIcon
+            data-testid="lightbox-close-icon"
+            icon="close"
+            onClick={modal.close}
+            small
+          />
         )}
         {isFunction(children)
           ? children(modal as Modal<HTMLDivElement>)
