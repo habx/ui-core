@@ -36,7 +36,7 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
 
     const backgroundColor = useCurrentBackground({ useRootTheme: true })
 
-    if (modal.hasAlreadyBeenOpened) {
+    if (!modal.hasAlreadyBeenOpened) {
       return null
     }
 
