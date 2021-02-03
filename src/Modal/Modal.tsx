@@ -59,13 +59,7 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
           {...rest}
         >
           <HeaderBarContainer>
-            {title ? (
-              <Title type="section">
-                Choisissez les prestations des appartements
-              </Title>
-            ) : (
-              <div />
-            )}
+            {title ? <Title type="section">{title}</Title> : <div />}
             <RoundIconButton onClick={modal.close} icon="close" />
           </HeaderBarContainer>
           <ModalContent>
