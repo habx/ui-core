@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { Icon } from '../Icon'
 import { Menu } from '../Menu'
 import { TabsBarItem } from '../TabsBarItem'
 
@@ -12,7 +13,11 @@ export const TabsBarMenuItem = React.forwardRef<
   <Menu
     position="vertical"
     triggerElement={
-      <TabsBarItem {...props} ref={ref}>
+      <TabsBarItem
+        elementRight={<Icon icon="chevron-south" />}
+        {...props}
+        ref={ref}
+      >
         {label}
       </TabsBarItem>
     }

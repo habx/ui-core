@@ -55,7 +55,7 @@ describe('Modal component', () => {
   })
 
   describe('with render props children', () => {
-    it('should not be called children if modal is closed', () => {
+    it('should not call children if modal is closed and has never been opened', () => {
       const spyChildren = sinon.spy()
 
       render(
