@@ -7,6 +7,7 @@ import { OPTIONS } from './Select.data'
 import { SelectProps } from './Select.interface'
 
 import '@testing-library/jest-dom/extend-expect'
+import { ANIMATION_DURATIONS } from '../animations'
 
 jest.useFakeTimers()
 
@@ -55,13 +56,19 @@ describe('Select component', () => {
     })
 
     it('should open the dropdown when click on SelectContent and open = false', () => {
-      const { getByTestId } = render(<Select options={[]} />)
+      const { getByTestId, queryByTestId } = render(<Select options={[]} />)
 
-      const optionsContainer = getByTestId('options-container')
-
-      expect(optionsContainer).toHaveAttribute('data-state', 'closed')
+      expect(queryByTestId('options-container')).toBeNull()
       fireEvent.click(getByTestId('select-container'))
-      expect(optionsContainer).toHaveAttribute('data-state', 'opening')
+
+      act(() => {
+        jest.advanceTimersByTime(ANIMATION_DURATIONS.m)
+      })
+
+      expect(queryByTestId('options-container')).toHaveAttribute(
+        'data-state',
+        'opening'
+      )
     })
 
     it('should close the dropdown when click on SelectContent and open = true', () => {
