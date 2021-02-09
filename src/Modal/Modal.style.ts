@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components'
 
 import { zIndex } from '../_internal/theme/zIndex'
 import { ActionBarContent } from '../ActionBar/ActionBar.style'
-import { ANIMATION_DURATIONS, animations } from '../animations'
+import { animations } from '../animations'
 import { breakpoints } from '../breakpoints'
 import { Layout } from '../Layout'
 import { theme } from '../theme'
@@ -90,7 +90,7 @@ export const ModalOverlay = styled.div`
 
   @media (${breakpoints.above.phone}) {
     &[data-state='opening'] {
-      animation: ${FADE_IN} ${ANIMATION_DURATIONS.m}ms linear 0ms;
+      animation: ${FADE_IN} var(--modal-animation-duration) linear 0ms;
 
       & ${ModalContainer} {
         animation: ${animations('emergeSlantFromBottom')};
@@ -98,7 +98,7 @@ export const ModalOverlay = styled.div`
     }
 
     &[data-state='closing'] {
-      animation: ${FADE_IN} ${ANIMATION_DURATIONS.m}ms linear 0ms reverse;
+      animation: ${FADE_IN} var(--modal-animation-duration) linear 0ms reverse;
       pointer-events: none;
       background-color: transparent;
 

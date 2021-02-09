@@ -2,6 +2,7 @@ import { Modal } from '@delangle/use-modal'
 import * as React from 'react'
 
 import { LayoutProps } from '../Layout'
+import { WithFloatingPanelBehavior } from '../withFloatingPanelBehavior'
 import { WithTriggerElement } from '../withTriggerElement'
 
 export type LightBoxSpacing =
@@ -12,10 +13,8 @@ export type LightBoxSpacing =
   | 'narrow-horizontal-only'
 
 export interface LightBoxInnerProps extends LayoutProps {
-  open?: boolean
-  onClose?: () => void
-  persistent?: boolean
-  animated?: boolean
+  modal: Modal
+  parentFloatingPanelRef: React.RefObject<HTMLElement> | null
   hideCloseIcon?: boolean
   spacing?: LightBoxSpacing
 
@@ -47,4 +46,7 @@ export interface LightBoxInnerProps extends LayoutProps {
 }
 
 export interface LightBoxProps
-  extends WithTriggerElement<LightBoxInnerProps, HTMLDivElement> {}
+  extends WithTriggerElement<
+    WithFloatingPanelBehavior<LightBoxInnerProps>,
+    HTMLDivElement
+  > {}
