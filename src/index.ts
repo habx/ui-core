@@ -135,4 +135,5 @@ export { isColorDark, stringifyColor, applyOpacityToColor, parseColor, ParsedCol
 export { useResponsiveType } from './useResponsiveType'
 export { withLabel, withSemanticLabel, WithLabel } from './withLabel'
 export { withMarkdown } from './withMarkdown'
-export { withTriggerElement } from './withTriggerElement'
+export { withTriggerElement, WithTriggerElement } from './withTriggerElement'
+export { withFloatingPanelBehavior, WithFloatingPanelBehavior } from './withFloatingPanelBehavior'

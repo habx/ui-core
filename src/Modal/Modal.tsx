@@ -1,13 +1,15 @@
-import useModal, { Modal as ModalType } from '@delangle/use-modal'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { isFunction } from '../_internal/data'
-import { withTogglePanelReset } from '../_internal/withTogglePanelReset'
 import { ANIMATION_DURATIONS } from '../animations'
 import { RoundIconButton } from '../RoundIconButton'
 import { Title } from '../Title'
 import { useCurrentBackground } from '../useCurrentBackground'
+import {
+  withFloatingPanelBehavior,
+  WithFloatingPanelBehavior,
+} from '../withFloatingPanelBehavior'
 import { withTriggerElement } from '../withTriggerElement'
 
 import { ModalInnerProps } from './Modal.interface'
@@ -22,26 +24,13 @@ import {
 const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
   (props, ref) => {
     const {
-      open,
-      onClose,
+      modal,
+      parentFloatingPanelRef,
       children,
       title,
-      animated = true,
-      persistent = false,
       width = 'regular',
-      value,
       ...rest
     } = props
-
-    const modal = useModal({
-      ref,
-      open,
-      onClose,
-      persistent,
-      value,
-      animated,
-      animationDuration: ANIMATION_DURATIONS.m,
-    })
 
     const backgroundColor = useCurrentBackground({ useRootTheme: true })
 
@@ -50,10 +39,18 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
     }
 
     return ReactDOM.createPortal(
-      <ModalOverlay data-state={modal.state} data-testid="modal-overlay">
+      <ModalOverlay
+        data-state={modal.state}
+        data-testid="modal-overlay"
+        style={
+          {
+            '--modal-animation-duration': `${modal.animationDuration}ms`,
+          } as React.CSSProperties
+        }
+      >
         <ModalContainer
           backgroundColor={backgroundColor}
-          ref={modal.ref}
+          ref={ref}
           data-testid="modal-container"
           data-width={width}
           {...rest}
@@ -64,16 +61,22 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
           </HeaderBarContainer>
           <ModalContent>
             <ModalScrollableContent>
-              {isFunction(children) ? children(modal as ModalType) : children}
+              {isFunction(children) ? children(modal) : children}
             </ModalScrollableContent>
           </ModalContent>
         </ModalContainer>
       </ModalOverlay>,
-      document.body
+      parentFloatingPanelRef?.current ?? document.body
     )
   }
 )
 
-export const Modal = withTogglePanelReset(
-  withTriggerElement<HTMLDivElement>()<ModalInnerProps>(InnerModal)
+export const Modal = withTriggerElement<HTMLDivElement>()<
+  WithFloatingPanelBehavior<ModalInnerProps>
+>(
+  withFloatingPanelBehavior({
+    animated: true,
+    persistent: false,
+    animationDuration: ANIMATION_DURATIONS.m,
+  })(InnerModal)
 )

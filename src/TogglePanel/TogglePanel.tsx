@@ -11,7 +11,7 @@ import { Modal } from '../Modal'
 import { useCurrentBackground } from '../useCurrentBackground'
 import { withTriggerElement } from '../withTriggerElement'
 
-import { Context } from './TogglePanel.context'
+import { TogglePanelContext } from './TogglePanel.context'
 import { InnerTogglePanelProps } from './TogglePanel.interface'
 import { Container, Overlay } from './TogglePanel.style'
 
@@ -108,7 +108,7 @@ const InnerTogglePanel = React.forwardRef<
 
     React.useEffect(updateStyle, [children, size]) // eslint-disable-line react-hooks/exhaustive-deps
 
-    const parent = React.useContext(Context)
+    const parent = React.useContext(TogglePanelContext)
 
     const backgroundColor = useCurrentBackground({ useRootTheme: true })
 
@@ -124,16 +124,16 @@ const InnerTogglePanel = React.forwardRef<
 
     if (fullScreenOnMobile && size.width < breakpoints.raw.phone) {
       return (
-        <Context.Provider value={modal}>
+        <TogglePanelContext.Provider value={modal}>
           <Modal onClose={onClose} open={open}>
             {content}
           </Modal>
-        </Context.Provider>
+        </TogglePanelContext.Provider>
       )
     }
 
     return ReactDOM.createPortal(
-      <Context.Provider value={modal}>
+      <TogglePanelContext.Provider value={modal}>
         {withOverlay && modal.state === ModalState.opened && <Overlay />}
         <Container
           backgroundColor={backgroundColor}
@@ -144,7 +144,7 @@ const InnerTogglePanel = React.forwardRef<
         >
           {content}
         </Container>
-      </Context.Provider>,
+      </TogglePanelContext.Provider>,
       parent?.ref.current ?? document.body
     )
   }

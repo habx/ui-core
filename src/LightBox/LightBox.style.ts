@@ -1,7 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 
 import { zIndex } from '../_internal/theme/zIndex'
-import { ANIMATION_DURATIONS } from '../animations'
 import { breakpoints } from '../breakpoints'
 import { IconButton } from '../IconButton'
 import { Layout } from '../Layout'
@@ -66,11 +65,11 @@ export const LightBoxContainer = styled(Layout)`
   }
 
   &[data-state='opening'] {
-    animation: ${FADE_IN} ${ANIMATION_DURATIONS.l}ms linear 0ms;
+    animation: ${FADE_IN} var(--lightbox-animation-duration) linear 0ms;
   }
 
   &[data-state='closing'] {
-    animation: ${FADE_IN} ${ANIMATION_DURATIONS.l}ms linear 0ms reverse;
+    animation: ${FADE_IN} var(--lightbox-animation-duration) linear 0ms reverse;
     opacity: 0;
     pointer-events: none;
   }

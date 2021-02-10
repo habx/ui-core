@@ -5,6 +5,8 @@ import { withGrid } from '../_storybook/withGrid'
 import { ActionBar } from '../ActionBar'
 import { Button } from '../Button'
 import { PhoneInput } from '../PhoneInput'
+import { Select } from '../Select'
+import { OPTIONS } from '../Select/Select.data'
 import { Text } from '../Text'
 import { TextInput } from '../TextInput'
 
@@ -23,9 +25,10 @@ const Line = styled(Text)`
   margin-bottom: 12px;
 `
 
-const ContactForm: React.FunctionComponent<{}> = () => (
+const ContactForm: React.FunctionComponent = () => (
   <React.Fragment>
     <ModalForm>
+      <Select options={OPTIONS} />
       <TextInput placeholder="votre mail" />
       <PhoneInput placeholder="votre numéro" />
       <ActionBar>
