@@ -4,61 +4,15 @@ import * as React from 'react'
 import { isFunction } from '../_internal/data'
 import { useWindowSize } from '../_internal/useWindowSize'
 import { breakpoints } from '../breakpoints'
-import { TogglePanel, TogglePanelProps } from '../TogglePanel'
+import { TogglePanel, TogglePanelStyleSetter } from '../TogglePanel'
 
-import { MenuProps, PositionSetter } from './Menu.interface'
+import { MenuProps } from './Menu.interface'
 import {
   FloatingMenuContainer,
   FloatingMenu,
   FullScreenMenu,
 } from './Menu.style'
-
-const TRIGGER_MARGIN = 8
-
-const defaultPositionSetter: PositionSetter = ({
-  triggerDimensions,
-  menuHeight,
-  menuWidth,
-  position,
-}) => {
-  if (position === 'vertical') {
-    let top = triggerDimensions.bottom + TRIGGER_MARGIN
-
-    if (top + menuHeight > window.innerHeight) {
-      const topWithMenuAboveTrigger =
-        triggerDimensions.top - TRIGGER_MARGIN - menuHeight
-
-      if (topWithMenuAboveTrigger > 0) {
-        top = topWithMenuAboveTrigger
-      }
-    }
-
-    let left =
-      triggerDimensions.left + menuWidth > window.innerWidth
-        ? triggerDimensions.left - menuWidth + triggerDimensions.width
-        : triggerDimensions.left
-
-    return { top, left, minWidth: triggerDimensions.width }
-  }
-
-  const top =
-    triggerDimensions.top + menuHeight > window.innerHeight
-      ? triggerDimensions.top + triggerDimensions.height - menuHeight
-      : triggerDimensions.top
-
-  let left = triggerDimensions.right + TRIGGER_MARGIN
-
-  if (left + menuWidth > window.innerWidth) {
-    const leftWithMenuLeftOfTrigger =
-      triggerDimensions.left - menuWidth - TRIGGER_MARGIN
-
-    if (leftWithMenuLeftOfTrigger > 0) {
-      left = leftWithMenuLeftOfTrigger
-    }
-  }
-
-  return { top, left }
-}
+import { menuDefaultPositionSetter } from './Menu.utils'
 
 export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
   (
@@ -67,7 +21,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
       fullScreenOnMobile = false,
       position = 'vertical',
       scrollable = false,
-      setPosition = defaultPositionSetter,
+      setPosition = menuDefaultPositionSetter,
       ...props
     },
     ref
@@ -91,7 +45,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
       [children, fullScreenOnMobile, scrollable, size.width]
     )
 
-    const setStyle = React.useCallback<Required<TogglePanelProps>['setStyle']>(
+    const setStyle = React.useCallback<TogglePanelStyleSetter>(
       (dimensions, triggerDimensions) => {
         const menuHeight = dimensions.clientHeight
         const menuWidth = dimensions.clientWidth

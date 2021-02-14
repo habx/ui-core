@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import { inputStyle } from '../TextInput/TextInput.style'
+import { inputStyle } from '../TextInput'
 
 export const Input = styled.textarea`
   flex: 1;

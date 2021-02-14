@@ -1,6 +1,6 @@
 import { TogglePanelProps, Dimensions } from '../TogglePanel'
 
-export type PositionSetter = (dimensions: {
+export type MenuPositionSetter = (dimensions: {
   triggerDimensions: Dimensions
   menuHeight: number
   menuWidth: number
@@ -10,5 +10,5 @@ export type PositionSetter = (dimensions: {
 export interface MenuProps extends Omit<TogglePanelProps, 'setStyle'> {
   scrollable?: boolean
   position?: 'horizontal' | 'vertical'
-  setPosition?: PositionSetter
+  setPosition?: MenuPositionSetter
 }

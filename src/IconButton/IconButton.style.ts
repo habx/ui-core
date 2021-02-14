@@ -10,6 +10,7 @@ export const IconButtonContainer = styled.button`
   cursor: pointer;
   padding: 0;
   position: relative;
+  flex: 0 0 auto;
 
   color: ${theme.color('secondary', { dynamic: true, opacity: 0.72 })};
   transition: ${transition('all')};

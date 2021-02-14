@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
 import { useMergedRef } from '../_internal/useMergedRef'
 import { Icon } from '../Icon'
+import { useHasColoredBackground } from '../useHasColoredBackground'
 import { withLabel } from '../withLabel'
 
 import { Options } from './Options'

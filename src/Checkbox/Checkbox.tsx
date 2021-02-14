@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
+import { useHasColoredBackground } from '../useHasColoredBackground'
 import { withSemanticLabel } from '../withLabel'
 
 import { CheckboxInnerProps } from './Checkbox.interface'
