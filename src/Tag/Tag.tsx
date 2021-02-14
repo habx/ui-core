@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
+import { useHasColoredBackground } from '../useHasColoredBackground'
 
 import { TagProps } from './Tag.interface'
 import { TagContainer, TagContent, SideElementContainer } from './Tag.style'

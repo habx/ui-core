@@ -168,6 +168,7 @@ export const SearchInput = styled.input.attrs(() => ({
   align-self: stretch;
   min-width: 0;
   transition: ${transition('color')};
+  color: ${theme.textColor()};
 
   &:hover {
     cursor: pointer;

@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
-import { useHasColoredBackground } from '../_internal/theme/useHasColoredBackground'
 import { useMergedRef } from '../_internal/useMergedRef'
+import { useHasColoredBackground } from '../useHasColoredBackground'
 import { withLabel } from '../withLabel'
 
 import { TextInputInnerProps } from './TextInput.interface'

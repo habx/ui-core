@@ -1,3 +1,7 @@
 export { TogglePanel, useParentTogglePanel } from './TogglePanel'
 
-export type { TogglePanelProps, Dimensions } from './TogglePanel.interface'
+export type {
+  TogglePanelProps,
+  TogglePanelStyleSetter,
+  Dimensions,
+} from './TogglePanel.interface'
