@@ -121,27 +121,6 @@ export const menuDefaultPositionSetter: MenuPositionSetter = ({
       }
 
       return { top, bottom, left, right }
-
-      // let left =
-      //   triggerDimensions.right + MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
-      //
-      // if (left + menuWidth > window.innerWidth) {
-      //   const leftWithMenuLeftOfTrigger =
-      //     triggerDimensions.left -
-      //     menuWidth -
-      //     MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
-      //
-      //   if (leftWithMenuLeftOfTrigger > 0) {
-      //     left = leftWithMenuLeftOfTrigger
-      //   }
-      // }
-      //
-      // const top =
-      //   triggerDimensions.top + menuHeight > window.innerHeight
-      //     ? triggerDimensions.top + triggerDimensions.height - menuHeight
-      //     : triggerDimensions.top
-      //
-      // return { top, left }
     }
 
     default: {
