@@ -7,7 +7,7 @@ import { BadgeContainer } from './Badge.style'
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   (props, ref) => {
-    const { content, max, ...rest } = props
+    const { content, max, disabled, ...rest } = props
 
     const value = React.useMemo(() => {
       if (isNil(content) || Number.isNaN(content) || isNil(max)) {
@@ -22,7 +22,7 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     }, [content, max])
 
     return (
-      <BadgeContainer {...rest} ref={ref}>
+      <BadgeContainer {...rest} ref={ref} data-disabled={disabled}>
         {value}
       </BadgeContainer>
     )
