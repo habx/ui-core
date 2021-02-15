@@ -28,7 +28,7 @@ export const RoundIconButtonContainer = styled.button`
   height: var(--round-icon-button-diameter);
   width: var(--round-icon-button-diameter);
   border-radius: 50%;
-  font-size: ${fontScale.moon.size}px;
+  font-size: ${fontScale.earth.size}px;
 
   --round-icon-button-border-width: 1px;
   --round-icon-button-border-color: ${theme.neutralColor(300)};
@@ -45,7 +45,7 @@ export const RoundIconButtonContainer = styled.button`
 
   &[data-small='true'] {
     --round-icon-button-diameter: 24px;
-    font-size: ${fontScale.asteroid.size}px;
+    font-size: ${fontScale.moon.size}px;
   }
 
   &[data-large='true'] {
