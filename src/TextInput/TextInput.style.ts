@@ -66,7 +66,8 @@ export const inputStyle = css`
       --text-input-background-color: unset;
     }
 
-    &:focus-within {
+    &:focus-within,
+    &[data-focused='true'] {
       --text-input-border-width: 0;
       --text-input-outline-width: 4px;
       --text-input-background-color: unset;
