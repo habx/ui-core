@@ -19,7 +19,7 @@ export { Link, LinkProps, linkStyle } from './Link'
 /*
   Menu
  */
-export { Menu, MenuProps } from './Menu'
+export { Menu, MenuProps, menuDefaultPositionSetter } from './Menu'
 export { MenuSection, MenuSectionProps } from './MenuSection'
 export { MenuLine, MenuLineProps } from './MenuLine'
 export { ConfirmMenu, ConfirmMenuProps } from './ConfirmMenu'
@@ -63,7 +63,7 @@ export { PhoneInput, PhoneInputProps } from './PhoneInput'
 export { Select, SelectProps } from './Select'
 export { Slider, SliderProps, SliderTooltipFormatter } from './Slider'
 export { TextArea, TextAreaProps } from './TextArea'
-export { TextInput, TextInputProps } from './TextInput'
+export { TextInput, TextInputProps, inputStyle } from './TextInput'
 export { AutocompleteInput, AutocompleteInputProps } from './AutocompleteInput'
 export { TextInputList, TextInputListProps } from './TextInputList'
 export { ArrayInput, ArrayInputProps, ArrayInputItemComponentProps, ArrayInputAddButtonComponentProps } from './ArrayInput'
@@ -89,7 +89,7 @@ export { ExpansionPanelItem, ExpansionPanelItemProps, ControlledExpansionPanelIt
 export { Loader, LoaderProps } from './Loader'
 export { LoaderDots, LoaderDotsProps } from './LoaderDots'
 export { LoadingBar, LoadingBarProps } from './LoadingBar'
-export { TogglePanel, TogglePanelProps } from './TogglePanel'
+export { TogglePanel, TogglePanelProps, TogglePanelStyleSetter } from './TogglePanel'
 
 export { SlideShow, SlideShowProps } from './SlideShow'
 export { Stepper, StepperProps, StepperStep } from './Stepper'
@@ -125,6 +125,7 @@ export { palette, Gradient } from './palette'
 export { theme, DesignSystemTheme, ThemeVariant, ColorVariations, TypographyColors, ColorFamilies, DEFAULT_THEME } from './theme'
 export { useThemeVariant } from './useThemeVariant'
 export { useCurrentBackground } from './useCurrentBackground'
+export { useHasColoredBackground } from './useHasColoredBackground'
 export { EuclidFont } from './EuclidFont'
 
 

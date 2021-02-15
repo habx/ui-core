@@ -3,6 +3,11 @@ import * as React from 'react'
 
 import { WithTriggerElement } from '../withTriggerElement'
 
+export type TogglePanelStyleSetter = (
+  dimensions: Dimensions,
+  triggerDimensions: Dimensions
+) => React.CSSProperties
+
 export interface InnerTogglePanelProps
   extends React.HtmlHTMLAttributes<HTMLDivElement> {
   children?:
@@ -12,10 +17,7 @@ export interface InnerTogglePanelProps
   onClose: () => void
   onOpen?: () => void
   open: boolean
-  setStyle?: (
-    dimensions: Dimensions,
-    triggerDimensions: Dimensions
-  ) => React.CSSProperties
+  setStyle?: TogglePanelStyleSetter
   triggerRef?: React.RefObject<HTMLElement | null>
   withOverlay?: boolean
 }
