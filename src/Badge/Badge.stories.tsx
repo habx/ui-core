@@ -19,6 +19,10 @@ const GRID_LINES = [
     title: 'Error',
     props: { error: true },
   },
+  {
+    title: 'Disabled',
+    props: { disabled: true },
+  },
 ]
 
 const GRID_ITEMS = [
@@ -59,3 +63,7 @@ export default {
 export const basic = (props: BadgeProps) => <Badge {...props} />
 
 export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />

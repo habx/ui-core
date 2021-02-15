@@ -14,4 +14,6 @@ export interface BadgeProps
    * Max value of the badge
    */
   max?: number
+
+  disabled?: boolean
 }

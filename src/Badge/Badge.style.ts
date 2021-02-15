@@ -11,14 +11,20 @@ export const BadgeContainer = styled.span`
   flex: 0 0 auto;
   align-self: flex-start;
   display: inline-flex;
-  align-items: center;
-  padding: 0 6px;
+  padding: 2px 6px;
+  line-height: 1;
 
   font-family: ${theme.font()};
-  line-height: 1em;
   font-size: ${fontScale.asteroid.size}px;
   color: ${theme.color('primary', {
     variation: 'contrastText',
     dynamic: true,
   })};
+
+  &[data-disabled='true'] {
+    color: ${theme.neutralColor(500, { gradient: 'withIntensityFading' })};
+    background-color: ${theme.neutralColor(300, {
+      gradient: 'withIntensityFading',
+    })};
+  }
 `
