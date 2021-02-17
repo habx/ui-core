@@ -44,7 +44,7 @@ const cleanValue = (value: string | null): string => {
   return value
 }
 
-export const render = ({
+export const getHTMLFromMarkdown = ({
   inline,
   children,
 }: {
