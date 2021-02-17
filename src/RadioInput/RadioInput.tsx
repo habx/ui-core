@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import { useUniqID } from '../_internal/useUniqId'
-import { useHasColoredBackground } from '../useHasColoredBackground'
 import { withLabel } from '../withLabel'
 
 import { RadioInputInnerProps } from './RadioInput.interface'
@@ -16,17 +15,16 @@ const InnerRadioInput = React.forwardRef<
   HTMLInputElement,
   RadioInputInnerProps
 >((props, ref) => {
-  const { error, disabled, id, small, ...rest } = props
+  const { error, disabled, id, small = false, ...rest } = props
   const checkboxId = useUniqID(id)
-  const hasBackground = useHasColoredBackground()
 
   return (
-    <FakeInputContainer data-small={small}>
+    <FakeInputContainer>
       <Input
         ref={ref}
         {...rest}
         data-error={error}
-        data-background={hasBackground}
+        data-small={small}
         disabled={disabled}
         type="radio"
         id={checkboxId}

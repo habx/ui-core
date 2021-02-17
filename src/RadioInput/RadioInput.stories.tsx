@@ -19,11 +19,24 @@ const GRID_PROPS = {
 
 const GRID_LINES = [
   {
-    title: 'Empty',
+    title: 'Regular + Empty',
   },
   {
-    title: 'Checked',
+    title: 'Regular + Checked',
     props: {
+      checked: true,
+    },
+  },
+  {
+    title: 'Small + Empty',
+    props: {
+      small: true,
+    },
+  },
+  {
+    title: 'Small + Checked',
+    props: {
+      small: true,
       checked: true,
     },
   },
@@ -43,12 +56,6 @@ const GRID_ITEMS = [
     label: 'Disabled',
     props: {
       disabled: true,
-    },
-  },
-  {
-    label: 'Small',
-    props: {
-      small: true,
     },
   },
 ]
