@@ -9,7 +9,7 @@ import {
   WithMarkdownConfig,
   WithMarkdownReceivedProps,
 } from './withMarkdown.interface'
-import { render } from './withMarkdown.utils'
+import { getHTMLFromMarkdown } from './withMarkdown.utils'
 
 export const withMarkdown = <
   RefElement extends HTMLElement,
@@ -101,7 +101,7 @@ export const withMarkdown = <
         {...(rest as Props)}
         data-markdown
         dangerouslySetInnerHTML={{
-          __html: render({
+          __html: getHTMLFromMarkdown({
             children: children as string,
             inline: isInline,
           }),
