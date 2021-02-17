@@ -4,29 +4,40 @@ import { transition } from '../animations'
 import { theme } from '../theme'
 
 export const InnerCircle = styled.div`
-  height: 12px;
-  width: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: var(--radio-inner-circle-diameter);
+  width: var(--radio-inner-circle-diameter);
+  background-color: var(--radio-inner-circle-color);
   border-radius: 50%;
   transition: ${transition('all')};
 `
 
 export const FakeInput = styled.label`
+  flex: 0 0 auto;
+  position: relative;
   user-select: none;
   cursor: pointer;
   outline: none;
-  width: var(--radio-input-diameter);
-  min-width: var(--radio-input-diameter);
-  height: var(--radio-input-diameter);
+  border: none;
+  width: var(--radio-diameter);
+  min-width: var(--radio-diameter);
+  height: var(--radio-diameter);
   border-radius: 50%;
-  background: #fff;
-  border: solid var(--radio-input-border-width) transparent;
-  transition: ${transition('all')};
+  background: var(--radio-background-color);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: ${transition('all')};
+  box-shadow: inset 0 0 0 var(--radio-border-width) var(--radio-border-color),
+    0 0 0 var(--radio-outline-width) var(--radio-outline-color);
 
   &:hover {
-    border-width: var(--radio-input-border-width-hover);
+    --radio-border-width: var(--radio-border-width-hover);
+  }
+
+  &:focus {
+    --radio-outline-width: 4px;
   }
 `
 
@@ -34,110 +45,75 @@ export const Input = styled.input`
   align-items: center;
   display: none;
 
-  &:not(:checked) + ${FakeInput}:focus {
-    border-width: var(--radio-input-border-width-focus);
-    border-color: ${theme.color('primary')};
+  & + ${FakeInput} {
+    --radio-diameter: 22px;
   }
 
-  & + ${FakeInput}:active, &:checked + ${FakeInput}:focus {
-    border-width: var(--radio-input-border-width-checked-focus);
-    border-color: ${theme.color('primary')};
-  }
-
-  &:not(:checked) + ${FakeInput} ${InnerCircle} {
-    opacity: 0;
-    transform: scale(0);
+  &[data-small='true'] + ${FakeInput} {
+    --radio-diameter: 12px;
   }
 
   &:checked + ${FakeInput} {
-    & ${InnerCircle} {
-      opacity: 1;
-      transform: scale(1);
-      background-color: ${theme.color('primary')};
-    }
-
-    &:active ${InnerCircle} {
-      transform: scale(0.66666);
-    }
+    --radio-inner-circle-diameter: 12px;
   }
 
-  &:not([data-background='true']) {
+  &:not(:disabled) + ${FakeInput} {
+    --radio-border-color: ${theme.color('primary')};
+    --radio-inner-circle-color: ${theme.color('primary')};
+  }
+
+  &:hover {
+    & + ${FakeInput} {
+      --radio-border-width: 4px;
+    }
+
+    &[data-small='true'] + ${FakeInput} {
+      --radio-inner-circle-diameter: 0;
+    }
+
     &:checked + ${FakeInput} {
-      border-color: ${theme.color('primary')};
+      --radio-border-color: ${theme.color('primary', { variation: 'louder' })};
+    }
 
-      &:hover {
-        border-color: ${theme.color('primary', { variation: 'loud' })};
-
-        & ${InnerCircle} {
-          background-color: ${theme.color('primary', { variation: 'loud' })};
-        }
-      }
-
-      &:focus {
-        border-color: ${theme.color('primary', { variation: 'louder' })};
-      }
+    &:not([data-small='true']):not(:active):checked + ${FakeInput} {
+      --radio-inner-circle-color: ${theme.color('primary', {
+        variation: 'louder',
+      })};
+      --radio-inner-circle-diameter: 10px;
     }
   }
 
-  &:not([data-background='true']):not(:checked):not([data-error='true'])
-    + ${FakeInput} {
-    border-color: ${theme.neutralColor(400)};
-  }
-
-  &[data-error='true'] {
+  &:active {
     &:not(:checked) + ${FakeInput} {
-      border-color: ${theme.color('error')};
+      --radio-border-color: ${theme.color('primary')};
     }
 
-    & + ${FakeInput}:active, &:checked + ${FakeInput}:focus {
-      border-color: ${theme.color('error')};
+    & + ${FakeInput} {
+      --radio-border-width: 3px;
     }
 
-    &:checked + ${FakeInput} {
-      & ${InnerCircle} {
-        background-color: ${theme.color('error')};
-      }
+    &[data-small='true'] + ${FakeInput} {
+      --radio-inner-circle-diameter: 6px;
     }
+  }
 
-    &:not([data-background='true']) {
-      &:checked + ${FakeInput} {
-        border-color: ${theme.color('error')};
-
-        &:hover {
-          border-color: ${theme.color('error')};
-
-          & ${InnerCircle} {
-            background-color: ${theme.color('error', { variation: 'loud' })};
-          }
-        }
-
-        &:focus {
-          border-color: ${theme.color('error', { variation: 'louder' })};
-        }
-      }
+  &:not(:disabled):not(:hover):not(:active)[data-error='true'] {
+    & + ${FakeInput}:not(:focus) {
+      --radio-outline-width: 4px;
+      --radio-outline-color: ${theme.color('error', { opacity: 0.3 })};
+      --radio-border-color: ${theme.color('error')};
+      --radio-inner-circle-color: ${theme.color('error')};
     }
   }
 
   &:disabled {
+    pointer-events: none;
+
     & + ${FakeInput} {
       pointer-events: none;
+      --radio-background-color: ${theme.neutralColor(300)};
+      --radio-inner-circle-color: ${theme.neutralColor(300)};
     }
-
-    &:not(:checked) {
-      & + ${FakeInput} {
-        background-color: ${theme.neutralColor(400)};
-      }
-    }
-
-    &:checked {
-      & + ${FakeInput} ${InnerCircle} {
-        background-color: ${theme.neutralColor(400)};
-      }
-    }
-  }
-
-  &:not([data-background='true']):disabled:checked + ${FakeInput} {
-    border-color: ${theme.neutralColor(400)};
   }
 `
 
@@ -145,21 +121,15 @@ export const FakeInputContainer = styled.span`
   display: inline-block;
   position: relative;
 
-  --radio-input-diameter: 24px;
-  --radio-input-border-width: 2px;
-  --radio-input-border-width-hover: 3px;
-  --radio-input-border-width-focus: 4px;
-  --radio-input-border-width-checked-focus: 3px;
+  --radio-backround-color: transparent;
 
-  &[data-small='true'] {
-    --radio-input-diameter: 12px;
-    --radio-input-border-width: 2px;
-    --radio-input-border-width-hover: 4px;
-    --radio-input-border-width-checked-focus: var(--radio-input-border-width);
-    --radio-input-border-width-focus: var(--radio-input-border-width);
+  --radio-border-width: 2px;
+  --radio-border-color: ${theme.neutralColor(400)};
+  --radio-border-width-hover: 3px;
 
-    ${Input}:checked + ${FakeInput} {
-      border-width: 0;
-    }
-  }
+  --radio-outline-width: 0;
+  --radio-outline-color: ${theme.color('primary', { opacity: 0.3 })};
+
+  --radio-inner-circle-diameter: 0;
+  --radio-inner-circle-color: ${theme.neutralColor(400)};
 `
