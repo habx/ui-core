@@ -6,16 +6,26 @@ import {
   DEFAULT_THEME,
   DesignSystemProviderValue,
   DesignSystemTheme,
+  getThemeVariant,
   StyledTheme,
+  ThemeVariant,
 } from '../../theme'
+import { isFunction } from '../data'
 
-export const BackgroundThemeProvider: React.FunctionComponent<{
-  backgroundColor: Color
-}> = ({ children, backgroundColor }) => {
+export type ColorGetter = Color | ((theme: ThemeVariant) => Color)
+
+export const BackgroundThemeProvider: React.FunctionComponent<BackgroundThemeProviderProps> = ({
+  children,
+  backgroundColor: rawBackgroundColor,
+}) => {
   const styledTheme = React.useContext<StyledTheme>(ThemeContext)
 
   const newProviderValue = React.useMemo<DesignSystemProviderValue>(() => {
     const currentTheme = styledTheme?.uiCore
+
+    const backgroundColor = isFunction(rawBackgroundColor)
+      ? rawBackgroundColor(getThemeVariant({ theme: styledTheme }))
+      : rawBackgroundColor
 
     const newTheme: DesignSystemTheme = {
       ...(currentTheme?.value ?? DEFAULT_THEME),
@@ -27,7 +37,7 @@ export const BackgroundThemeProvider: React.FunctionComponent<{
       rootValue: currentTheme?.rootValue ?? DEFAULT_THEME,
       value: newTheme,
     }
-  }, [backgroundColor, styledTheme])
+  }, [rawBackgroundColor, styledTheme])
 
   const newStyledTheme = React.useMemo<StyledTheme>(
     () => ({
@@ -38,4 +48,8 @@ export const BackgroundThemeProvider: React.FunctionComponent<{
   )
 
   return <ThemeProvider theme={newStyledTheme}>{children}</ThemeProvider>
+}
+
+interface BackgroundThemeProviderProps {
+  backgroundColor: ColorGetter
 }

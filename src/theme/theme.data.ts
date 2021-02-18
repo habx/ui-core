@@ -13,7 +13,7 @@ const LIGHT_THEME_VARIANT: ThemeVariant = {
       contrastText: palette.neutralWhiteWithOpacityFading[900],
     },
     secondary: {
-      calmer: palette.neutralBlackWithOpacityFading[200],
+      calmer: palette.neutralBlackWithIntensityFading[200],
       calm: palette.neutralBlackWithIntensityFading[300],
       base: palette.neutralBlackWithIntensityFading[900],
       loud: palette.neutralBlackWithIntensityFading[1000],

@@ -1,25 +1,49 @@
 import * as React from 'react'
 
-import { CardButtonProps } from './CardButton.interface'
-import {
-  CardButtonContainer,
-  CardButtonDescription,
-  CardButtonIllustration,
-  CardButtonTitle,
-} from './CardButton.style'
+import { BackgroundThemeProvider } from '../_internal/theme/BackgroundThemeProvider'
+import { Text } from '../Text'
+import { Title } from '../Title'
+import { useCurrentBackground } from '../useCurrentBackground'
+import { useThemeVariant } from '../useThemeVariant'
 
-export const CardButton = React.forwardRef<HTMLDivElement, CardButtonProps>(
+import { CardButtonProps } from './CardButton.interface'
+import { CardButtonContainer, CardButtonIllustration } from './CardButton.style'
+
+export const CardButton = React.forwardRef<HTMLButtonElement, CardButtonProps>(
   (props, ref) => {
-    const { title, illustration, description, markdown, ...rest } = props
+    const defaultBackground = useCurrentBackground()
+    const theme = useThemeVariant()
+
+    const {
+      title,
+      illustration,
+      description,
+      markdown,
+      outline = false,
+      disabled,
+      backgroundColor: rawBackgroundColor = defaultBackground,
+      ...rest
+    } = props
+
+    const backgroundColor = disabled
+      ? theme.neutralColor.withIntensityFading[300]
+      : rawBackgroundColor
 
     return (
-      <CardButtonContainer ref={ref} animated {...rest}>
-        <CardButtonIllustration src={illustration} alt={title} />
-        <CardButtonTitle markdown={markdown}>{title}</CardButtonTitle>
-        <CardButtonDescription markdown={markdown}>
-          {description}
-        </CardButtonDescription>
-      </CardButtonContainer>
+      <BackgroundThemeProvider backgroundColor={backgroundColor}>
+        <CardButtonContainer
+          ref={ref}
+          {...rest}
+          data-outline={outline}
+          disabled={disabled}
+        >
+          <CardButtonIllustration src={illustration} alt={title} />
+          <Title type="regular" markdown={markdown}>
+            {title}
+          </Title>
+          <Text markdown={markdown}>{description}</Text>
+        </CardButtonContainer>
+      </BackgroundThemeProvider>
     )
   }
 )
