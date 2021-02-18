@@ -1,9 +1,13 @@
-import { ModalConfig, Modal } from '@delangle/use-modal'
+import { Modal } from '@delangle/use-modal'
 import * as React from 'react'
 
-export interface FloatingPanelReceivedProps extends ModalConfig {
+export interface FloatingPanelReceivedProps {
   onClose: () => void
   open: boolean
+
+  persistent?: boolean
+  animated?: boolean
+  animationDuration?: number
 
   /**
    * Value cached from the last time the modal was opening / opened
