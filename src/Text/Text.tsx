@@ -7,6 +7,7 @@ import styled, {
 
 import { mapValues } from '../_internal/data'
 import { breakpoints } from '../breakpoints'
+import { stringifyColor } from '../color'
 import { fontScale, FontScale } from '../fontScale'
 import { theme, TypographyColors } from '../theme'
 import { withMarkdown } from '../withMarkdown'
@@ -120,13 +121,14 @@ export const RawTextComponents = mapValues(
 ) as Record<TextTypes, StyledComponent<'div', any, TextProps>>
 
 const InnerText = React.forwardRef<HTMLElement, TextProps>(
-  ({ inline, type = 'regular', ...props }, ref) => {
+  ({ inline, type = 'regular', color, ...props }, ref) => {
     const Component = RawTextComponents[type]
 
     return (
       <Component
         ref={ref}
         as={inline === true ? 'span' : undefined}
+        color={color ? stringifyColor(color) : undefined}
         {...props}
       />
     )

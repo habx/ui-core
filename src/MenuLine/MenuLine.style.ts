@@ -2,10 +2,16 @@ import styled from 'styled-components'
 
 import { ThemeOverridesProps } from '../_internal/types'
 import { transition } from '../animations'
+import { Text } from '../Text'
 import { theme } from '../theme'
 
+export const MenuLineLabel = styled(Text)`
+  flex: 1 1 100%;
+`
+
 export const MenuLineContainer = styled.li`
-  padding: 6px var(--menu-line-horizontal-padding);
+  padding: 0 var(--menu-line-horizontal-padding);
+  height: 48px;
 
   display: flex;
   align-items: center;
@@ -17,11 +23,19 @@ export const MenuLineContainer = styled.li`
 
     &:hover {
       background-color: ${theme.neutralColor(200)};
+
+      &[data-error='true'] {
+        background-color: ${theme.color('error', { variation: 'calmer' })};
+      }
     }
   }
 
   &[data-active='true'] {
-    opacity: 0.72;
+    background-color: ${theme.neutralColor(200)};
+
+    & ${MenuLineLabel} {
+      font-weight: 500;
+    }
   }
 
   &[data-disabled='true'] {
@@ -31,17 +45,18 @@ export const MenuLineContainer = styled.li`
 `
 
 export const SideElementContainer = styled.div<ThemeOverridesProps>`
-  font-size: 0.9em;
   display: flex;
-  margin-top: 1px;
   color: ${theme.color('secondary', { dynamic: true })};
+  font-size: 24px;
+  flex: 0 0 auto;
 
   &[data-position='left'] {
-    margin-right: 8px;
+    margin-right: 12px;
   }
 
   &[data-position='right'] {
-    margin-left: 8px;
+    margin-left: 12px;
+    margin-right: -12px;
   }
 
   & > svg {

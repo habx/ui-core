@@ -1,69 +1,17 @@
 import * as React from 'react'
-import styled from 'styled-components'
 
 import { useUniqID } from '../_internal/useUniqId'
-import { textStyles } from '../Text'
-import { theme } from '../theme'
 
 import {
   WithLabel,
   WithLabelOptions,
   LabelReceivedProps,
 } from './withLabel.interface'
-
-const LabelContainer = styled.label<{ warning?: boolean }>`
-  user-select: none;
-
-  margin: auto 0;
-
-  &[data-disabled='true'] {
-    color: ${theme.neutralColor(400)};
-  }
-
-  [data-orientation='vertical'] > & {
-    padding-bottom: 8px;
-  }
-
-  [data-orientation='horizontal'] > & {
-    padding-right: 8px;
-  }
-
-  [data-orientation='horizontal-reverse'] > & {
-    padding-left: 8px;
-  }
-
-  &[data-type='regular'] {
-    ${textStyles.regular};
-  }
-
-  &[data-type='small'] {
-    ${textStyles.small};
-  }
-
-  &[data-type='caption'] {
-    ${textStyles.caption};
-  }
-`
-
-const FieldWithLabelContainer = styled.div`
-  display: flex;
-
-  &[data-orientation='vertical'] {
-    flex-direction: column;
-  }
-
-  &[data-orientation='horizontal'] {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  &[data-orientation='horizontal-reverse'] {
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-    align-items: center;
-  }
-`
+import {
+  LabelContainer,
+  FieldWithLabelContainer,
+  LabelElementRightContainer,
+} from './withLabel.style'
 
 export const withLabel = <RefElement extends HTMLElement>({
   padding = 'small',
@@ -77,6 +25,7 @@ export const withLabel = <RefElement extends HTMLElement>({
     const {
       label,
       labelType = defaultLabelType,
+      labelElementRight,
       id: rawId,
       ...rest
     } = props as LabelReceivedProps
@@ -94,10 +43,13 @@ export const withLabel = <RefElement extends HTMLElement>({
             data-type={labelType}
             data-disabled={rest.disabled}
             data-testid={`${componentName ?? 'input'}-label`}
-            warning={rest.error}
+            data-error={rest.error}
             htmlFor={id}
           >
             {label}
+            <LabelElementRightContainer>
+              {labelElementRight}
+            </LabelElementRightContainer>
           </LabelContainer>
           <WrappedComponent {...(rest as Props)} ref={ref} id={id} />
         </FieldWithLabelContainer>
