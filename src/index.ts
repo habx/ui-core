@@ -134,7 +134,7 @@ export { EuclidFont } from './EuclidFont'
  */
 export { isColorDark, stringifyColor, applyOpacityToColor, parseColor, ParsedColor, Color  } from './color'
 export { useResponsiveType } from './useResponsiveType'
-export { withLabel, withSemanticLabel, WithLabel } from './withLabel'
+export { withLabel, WithLabel } from './withLabel'
 export { withMarkdown, getHTMLFromMarkdown } from './withMarkdown'
 export { withTriggerElement, WithTriggerElement } from './withTriggerElement'
 export { withFloatingPanelBehavior, WithFloatingPanelBehavior } from './withFloatingPanelBehavior'

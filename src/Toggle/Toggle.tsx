@@ -39,4 +39,5 @@ const InnerToggle = React.forwardRef<HTMLInputElement, ToggleInnerProps>(
 
 export const Toggle = withLabel<HTMLDivElement>({
   orientation: 'horizontal',
+  type: 'regular',
 })<ToggleInnerProps>(InnerToggle)

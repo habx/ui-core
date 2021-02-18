@@ -8,18 +8,17 @@ const Component = ({ initialState = false }) => {
 
   return (
     <Checkbox
+      label="Label"
       checked={value}
       onChange={(event: any) => setValue(event.target.checked)}
-    >
-      Label
-    </Checkbox>
+    />
   )
 }
 
 const setup = (initialState?: boolean) => {
   const component = render(<Component initialState={initialState} />)
-  const checkbox = component.getByTestId('checkboxInput') as HTMLInputElement
-  const label = component.getByTestId('checkboxLabel')
+  const checkbox = component.getByTestId('checkbox-input') as HTMLInputElement
+  const label = component.getByTestId('checkbox-label')
 
   return { checkbox, component, label }
 }

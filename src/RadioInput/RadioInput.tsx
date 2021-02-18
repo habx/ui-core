@@ -15,8 +15,8 @@ const InnerRadioInput = React.forwardRef<
   HTMLInputElement,
   RadioInputInnerProps
 >((props, ref) => {
-  const { error, disabled, id, small = false, ...rest } = props
-  const checkboxId = useUniqID(id)
+  const { error, disabled, id: rawId, small = false, ...rest } = props
+  const id = useUniqID(rawId)
 
   return (
     <FakeInputContainer>
@@ -27,9 +27,9 @@ const InnerRadioInput = React.forwardRef<
         data-small={small}
         disabled={disabled}
         type="radio"
-        id={checkboxId}
+        id={id}
       />
-      <FakeInput tabIndex={disabled ? undefined : 0} htmlFor={checkboxId}>
+      <FakeInput tabIndex={disabled ? undefined : 0} htmlFor={id}>
         <InnerCircle />
       </FakeInput>
     </FakeInputContainer>

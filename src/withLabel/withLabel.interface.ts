@@ -1,14 +1,19 @@
-import * as React from 'react'
+type LabelType = 'regular' | 'small' | 'caption'
 
-import { TextTypes } from '../Text'
-
-export type WithLabel<InnerProps extends {} = {}> = InnerProps & {
-  label?: React.ReactNode
-  labelType?: TextTypes
+export interface LabelReceivedProps {
+  label?: string
+  labelType?: LabelType
+  id?: string
   error?: boolean
   disabled?: boolean
 }
 
-export type WithSemanticLabel<Props extends {} = {}> = WithLabel<Props> & {
-  id?: string
+export interface WithLabelOptions {
+  padding?: 'small' | 'regular' | 'large'
+  orientation?: 'vertical' | 'horizontal' | 'horizontal-reverse'
+  componentName?: string
+  type?: LabelType
 }
+
+export type WithLabel<InnerProps extends {} = {}> = InnerProps &
+  LabelReceivedProps

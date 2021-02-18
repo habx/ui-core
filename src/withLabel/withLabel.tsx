@@ -1,30 +1,17 @@
 import * as React from 'react'
-import styled, { css, StyledComponent } from 'styled-components'
+import styled from 'styled-components'
 
-import { mapValues } from '../_internal/data'
 import { useUniqID } from '../_internal/useUniqId'
-import { Text, RawTextComponents, TextProps, TextTypes } from '../Text'
+import { textStyles } from '../Text'
 import { theme } from '../theme'
 
-import { WithLabel, WithSemanticLabel } from './withLabel.interface'
+import {
+  WithLabel,
+  WithLabelOptions,
+  LabelReceivedProps,
+} from './withLabel.interface'
 
-interface LabelReceivedProps {
-  label?: string
-  labelType?: TextTypes
-  error?: boolean
-  disabled?: boolean
-}
-
-interface Options {
-  padding?: 'small' | 'regular' | 'large'
-  orientation?: 'vertical' | 'horizontal' | 'horizontal-reverse'
-}
-
-interface SemanticOptions extends Options {
-  testid: string
-}
-
-const labelStyle = css`
+const LabelContainer = styled.label<{ warning?: boolean }>`
   user-select: none;
 
   margin: auto 0;
@@ -44,10 +31,18 @@ const labelStyle = css`
   [data-orientation='horizontal-reverse'] > & {
     padding-left: 8px;
   }
-`
 
-const LabelContainer = styled(Text)`
-  ${labelStyle}
+  &[data-type='regular'] {
+    ${textStyles.regular};
+  }
+
+  &[data-type='small'] {
+    ${textStyles.small};
+  }
+
+  &[data-type='caption'] {
+    ${textStyles.caption};
+  }
 `
 
 const FieldWithLabelContainer = styled.div`
@@ -70,22 +65,23 @@ const FieldWithLabelContainer = styled.div`
   }
 `
 
-const RawLabelComponents = mapValues(
-  RawTextComponents,
-  (RawText) =>
-    styled(RawText).attrs(() => ({ as: 'label' }))`
-      ${labelStyle}
-    `
-) as Record<TextTypes, StyledComponent<'label', any, TextProps>>
-
 export const withLabel = <RefElement extends HTMLElement>({
   padding = 'small',
   orientation = 'vertical',
-}: Options = {}) => <Props extends object>(
+  type: defaultLabelType = 'small',
+  componentName,
+}: WithLabelOptions = {}) => <Props extends object>(
   WrappedComponent: React.ComponentType<Props>
 ) => {
   const Field = React.forwardRef<RefElement, WithLabel<Props>>((props, ref) => {
-    const { label, labelType, ...rest } = props as LabelReceivedProps
+    const {
+      label,
+      labelType = defaultLabelType,
+      id: rawId,
+      ...rest
+    } = props as LabelReceivedProps
+
+    const id = useUniqID(rawId)
 
     if (label) {
       return (
@@ -95,14 +91,15 @@ export const withLabel = <RefElement extends HTMLElement>({
           data-padding={padding}
         >
           <LabelContainer
-            type={labelType}
-            variation="title"
-            warning={rest.error}
+            data-type={labelType}
             data-disabled={rest.disabled}
+            data-testid={`${componentName ?? 'input'}-label`}
+            warning={rest.error}
+            htmlFor={id}
           >
             {label}
           </LabelContainer>
-          <WrappedComponent {...(rest as Props)} ref={ref} />
+          <WrappedComponent {...(rest as Props)} ref={ref} id={id} />
         </FieldWithLabelContainer>
       )
     }
@@ -112,35 +109,3 @@ export const withLabel = <RefElement extends HTMLElement>({
 
   return Field
 }
-
-export const withSemanticLabel = <RefElement extends HTMLElement>({
-  orientation = 'vertical',
-  padding = 'small',
-  testid,
-}: SemanticOptions) => <Props extends object>(
-  WrappedComponent: React.ComponentType<Props>
-) =>
-  React.forwardRef<RefElement, WithSemanticLabel<Props>>(
-    ({ label, labelType = 'regular', id, ...props }, ref) => {
-      const fieldId = useUniqID(id)
-      const Label = RawLabelComponents[labelType]
-
-      return (
-        <FieldWithLabelContainer
-          data-orientation={orientation}
-          data-padding={padding}
-        >
-          <Label
-            data-disabled={props.disabled}
-            data-testid={testid}
-            htmlFor={fieldId}
-            variation="title"
-            warning={props.error}
-          >
-            {label}
-          </Label>
-          <WrappedComponent {...(props as Props)} ref={ref} id={fieldId} />
-        </FieldWithLabelContainer>
-      )
-    }
-  )
