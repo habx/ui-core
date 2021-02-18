@@ -1,3 +1,6 @@
 export { withTriggerElement } from './withTriggerElement'
 
-export { WithTriggerElement } from './withTriggerElement.interface'
+export {
+  WithTriggerElement,
+  TriggerElement,
+} from './withTriggerElement.interface'
