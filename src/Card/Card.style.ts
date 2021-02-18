@@ -18,7 +18,7 @@ export const CardContainer = styled(Layout)`
   --layout-bottom-padding: 0;
 
   &:not([data-flat='true']) {
-    box-shadow: ${theme.shadow('low')};
+    box-shadow: ${theme.shadow('regular')};
   }
 
   &[data-animated='true'] {
@@ -26,7 +26,7 @@ export const CardContainer = styled(Layout)`
       cursor: pointer;
 
       &:not([data-flat='true']) {
-        box-shadow: ${theme.shadow('low', { hover: true })};
+        box-shadow: ${theme.shadow('regular', { hover: true })};
       }
     }
   }
