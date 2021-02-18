@@ -44,6 +44,8 @@ export const TextInputList = React.forwardRef<
     // eslint-disable-next-line default-case
     switch (event.keyCode) {
       case 188: // Enter
+        event.preventDefault()
+        event.stopPropagation()
       case 13: // Comma
         handleValidateCurrent()
 
