@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-type TriggerElement = ((state: TriggerState) => JSX.Element) | JSX.Element
+export type TriggerElement =
+  | ((state: TriggerState) => JSX.Element)
+  | JSX.Element
 
 export interface TriggerReceivedProps<RefElement> {
   triggerElement?: TriggerElement

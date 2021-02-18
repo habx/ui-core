@@ -68,6 +68,7 @@ export { AutocompleteInput, AutocompleteInputProps } from './AutocompleteInput'
 export { TextInputList, TextInputListProps } from './TextInputList'
 export { ArrayInput, ArrayInputProps, ArrayInputItemComponentProps, ArrayInputAddButtonComponentProps } from './ArrayInput'
 export { Toggle, ToggleProps } from './Toggle'
+export { SearchBar, SearchBarProps } from './SearchBar'
 
 
 /*
