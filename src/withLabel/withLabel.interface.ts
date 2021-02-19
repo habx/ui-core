@@ -1,8 +1,11 @@
+import * as React from 'react'
+
 type LabelType = 'regular' | 'small' | 'caption'
 
 export interface LabelReceivedProps {
   label?: string
   labelType?: LabelType
+  labelElementRight?: React.ReactNode
   id?: string
   error?: boolean
   disabled?: boolean

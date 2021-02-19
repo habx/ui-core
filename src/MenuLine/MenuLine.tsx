@@ -1,10 +1,14 @@
 import * as React from 'react'
 
-import { Text } from '../Text'
 import { useParentTogglePanel } from '../TogglePanel'
+import { useThemeVariant } from '../useThemeVariant'
 
 import { MenuLineProps } from './MenuLine.interface'
-import { MenuLineContainer, SideElementContainer } from './MenuLine.style'
+import {
+  MenuLineContainer,
+  MenuLineLabel,
+  SideElementContainer,
+} from './MenuLine.style'
 
 export const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
   (props, ref) => {
@@ -12,14 +16,16 @@ export const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
       children,
       active,
       elementLeft,
-      warning,
-      primary,
+      error,
       elementRight,
       onClick,
       disabled,
       ...rest
     } = props
     const togglePanel = useParentTogglePanel()
+    const theme = useThemeVariant()
+
+    const color = error ? theme.colors.error.base : undefined
 
     const handleClick = React.useCallback(
       (e: React.MouseEvent<HTMLLIElement>) => {
@@ -37,25 +43,18 @@ export const MenuLine = React.forwardRef<HTMLLIElement, MenuLineProps>(
         onClick={handleClick}
         data-disabled={disabled}
         data-active={active}
+        data-error={error}
       >
         {elementLeft && (
-          <SideElementContainer
-            primary={primary}
-            warning={warning}
-            data-position="left"
-          >
+          <SideElementContainer error={error} data-position="left">
             {elementLeft}
           </SideElementContainer>
         )}
-        <Text primary={primary} warning={warning} variation="title">
+        <MenuLineLabel color={color} variation="title">
           {children}
-        </Text>
+        </MenuLineLabel>
         {elementRight && (
-          <SideElementContainer
-            primary={primary}
-            warning={warning}
-            data-position="right"
-          >
+          <SideElementContainer error={error} data-position="right">
             {elementRight}
           </SideElementContainer>
         )}

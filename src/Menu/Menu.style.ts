@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 import { theme } from '../theme'
 
 const menuCssVariables = css`
-  --menu-line-horizontal-padding: 20px;
+  --menu-line-horizontal-padding: 24px;
 `
 
 export const FloatingMenuContainer = styled.div`

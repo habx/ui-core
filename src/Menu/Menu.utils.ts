@@ -77,7 +77,7 @@ export const menuDefaultPositionSetter: MenuPositionSetter = ({
 
       const isMenuRightOfTriggerOverflowing =
         leftWithMenuRightOfTrigger + menuWidth > window.innerWidth
-      if (isMenuRightOfTriggerOverflowing || true) {
+      if (isMenuRightOfTriggerOverflowing) {
         const rightWithMenuLeftOfTrigger =
           window.innerWidth -
           triggerDimensions.right +

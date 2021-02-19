@@ -4,7 +4,7 @@ import { styledAs, ThemeOverridesProps } from '../_internal/types'
 
 export interface MenuLineProps
   extends React.LiHTMLAttributes<HTMLLIElement>,
-    ThemeOverridesProps {
+    Pick<ThemeOverridesProps, 'error'> {
   as?: styledAs
   elementLeft?: React.ReactNode
   elementRight?: React.ReactNode

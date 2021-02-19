@@ -1,6 +1,7 @@
 import * as React from 'react'
 
-import { styledAs, ThemeOverridesProps } from '../_internal/types'
+import { styledAs } from '../_internal/types'
+import { Color } from '../color'
 import { TypographyColors } from '../theme'
 
 export type TextTypes =
@@ -13,10 +14,9 @@ export type TextTypes =
   | 'captionSmall'
 
 export interface TextProps
-  extends ThemeOverridesProps,
-    React.HTMLAttributes<HTMLHeadingElement> {
+  extends Omit<React.HTMLAttributes<HTMLHeadingElement>, 'color'> {
   type?: TextTypes
-  color?: string
+  color?: Color
   variation?: keyof TypographyColors
   as?: styledAs
   inline?: boolean
