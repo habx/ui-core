@@ -55,7 +55,13 @@ const InnerTogglePanel = React.forwardRef<
       animationDuration: ANIMATION_DURATIONS.l,
     })
 
+    const shouldRenderModal = modal.hasAlreadyBeenOpened
+
     const updateStyle = React.useCallback(() => {
+      if (!shouldRenderModal) {
+        return undefined
+      }
+
       const modalElement = modal.ref?.current
       const triggerElement = triggerRef?.current
 
@@ -89,7 +95,7 @@ const InnerTogglePanel = React.forwardRef<
       }
 
       setCustomStyle({ ...setStyle(dimensions, triggerDimensions), ...style })
-    }, [modal.ref, setStyle, style, triggerRef])
+    }, [modal.ref, setStyle, shouldRenderModal, style, triggerRef])
 
     React.useEffect(() => {
       if (open) {
@@ -112,7 +118,7 @@ const InnerTogglePanel = React.forwardRef<
 
     const backgroundColor = useCurrentBackground({ useRootTheme: true })
 
-    if (!modal.hasAlreadyBeenOpened) {
+    if (!shouldRenderModal) {
       return null
     }
 
