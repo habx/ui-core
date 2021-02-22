@@ -49,7 +49,7 @@ describe('Confirm Menu component', () => {
       jest.advanceTimersByTime(ANIMATION_DURATIONS.m)
     })
 
-    expect(queryByTestId('confirm-menu-content')?.childElementCount).toBe(2)
+    expect(queryByTestId('confirm-menu')?.childElementCount).toBe(2)
   })
 
   it('should call onConfirm on confirm click', () => {

@@ -1,11 +1,13 @@
 import * as React from 'react'
 
+import { useMergedRef } from '../_internal/useMergedRef'
 import { Button } from '../Button'
 import { IconButton } from '../IconButton'
 import { ProviderContext } from '../Provider'
+import { TogglePanelStyleSetter } from '../TogglePanel'
 
 import { ConfirmMenuProps } from './ConfirmMenu.interface'
-import { ConfirmMenuContent, Menu } from './ConfirmMenu.style'
+import { ConfirmMenuContainer } from './ConfirmMenu.style'
 
 export const ConfirmMenu = React.forwardRef<HTMLDivElement, ConfirmMenuProps>(
   (props, ref) => {
@@ -16,44 +18,47 @@ export const ConfirmMenu = React.forwardRef<HTMLDivElement, ConfirmMenuProps>(
       triggerRef: customTriggerRef,
       textual = false,
       position = 'right',
+      childrenRefPropName = 'ref',
       ...rest
     } = props
 
-    const localTriggerRef = React.useRef<HTMLDivElement>(null)
-    const triggerRef = customTriggerRef ?? localTriggerRef
+    const triggerRef = useMergedRef(customTriggerRef)
+    const containerRef = useMergedRef(ref)
+
     const content = React.isValidElement(children)
       ? React.cloneElement(children, {
-          ref: triggerRef,
+          [childrenRefPropName]: triggerRef,
         })
       : children
 
-    const confirmMenuContentRef = React.useRef<HTMLDivElement>(null)
-
     const [open, setOpen] = React.useState(false)
-    const handleFocus = () => setOpen(true)
-    const handleBlur = (e: FocusEvent) => {
-      if (
-        !e.relatedTarget ||
-        !confirmMenuContentRef.current?.contains(e.relatedTarget as Node)
-      ) {
-        setOpen(false)
-      }
-    }
 
     React.useEffect(() => {
-      if (triggerRef) {
-        const node = triggerRef.current
-        if (node) {
-          node.addEventListener('focus', handleFocus)
-          node.addEventListener('blur', handleBlur)
+      if (!triggerRef?.current) {
+        return
+      }
 
-          return () => {
-            node.removeEventListener('focus', handleFocus)
-            node.removeEventListener('blur', handleBlur)
-          }
+      const handleFocus = () => setOpen(true)
+
+      const handleBlur = (e: FocusEvent) => {
+        if (
+          !e.relatedTarget ||
+          !containerRef.current?.contains(e.relatedTarget as Node)
+        ) {
+          setOpen(false)
         }
       }
-    }, [triggerRef])
+
+      const node = triggerRef.current
+
+      node.addEventListener('focusin', handleFocus)
+      node.addEventListener('focusout', handleBlur)
+
+      return () => {
+        node.removeEventListener('focusin', handleFocus)
+        node.removeEventListener('focusout', handleBlur)
+      }
+    }, [containerRef, triggerRef])
 
     const context = React.useContext(ProviderContext)
 
@@ -66,57 +71,60 @@ export const ConfirmMenu = React.forwardRef<HTMLDivElement, ConfirmMenuProps>(
       setOpen(false)
       onClose(e)
     }
+
+    const styleSetter = React.useCallback<TogglePanelStyleSetter>(
+      (dimensions, triggerDimensions) => {
+        return {
+          top: triggerDimensions.bottom + 8,
+          left:
+            position === 'right'
+              ? triggerDimensions.right - dimensions.clientWidth
+              : triggerDimensions.left,
+        }
+      },
+      [position]
+    )
+
     return (
       <React.Fragment>
         {content}
-        <Menu
+        <ConfirmMenuContainer
           data-textual={textual}
           data-testid="confirm-menu"
           withOverlay={false}
           onClose={() => {}}
           open={open}
-          ref={ref}
+          ref={containerRef}
           triggerRef={triggerRef}
-          setPosition={(dimension) => ({
-            top: dimension.triggerDimensions.bottom + 8,
-            left:
-              position === 'right'
-                ? dimension.triggerDimensions.right - dimension.menuWidth
-                : dimension.triggerDimensions.left,
-          })}
+          setStyle={styleSetter}
           {...rest}
         >
-          <ConfirmMenuContent
-            data-testid="confirm-menu-content"
-            ref={confirmMenuContentRef}
-          >
-            {textual ? (
-              <React.Fragment>
-                <Button secondary link onClick={handleClose}>
-                  {context.cancelLabel}
-                </Button>
-                <Button link onClick={handleConfirm}>
-                  {context.confirmLabel}
-                </Button>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                <IconButton
-                  icon="close"
-                  tiny
-                  onClick={handleClose}
-                  data-testid="confirm-menu-close"
-                />
-                <IconButton
-                  icon="check"
-                  tiny
-                  onClick={handleConfirm}
-                  data-testid="confirm-menu-confirm"
-                />
-              </React.Fragment>
-            )}
-          </ConfirmMenuContent>
-        </Menu>
+          {textual ? (
+            <React.Fragment>
+              <Button secondary ghost small onClick={handleClose}>
+                {context.cancelLabel}
+              </Button>
+              <Button secondary ghost small onClick={handleConfirm}>
+                {context.confirmLabel}
+              </Button>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <IconButton
+                icon="close"
+                small
+                onClick={handleClose}
+                data-testid="confirm-menu-close"
+              />
+              <IconButton
+                icon="check"
+                small
+                onClick={handleConfirm}
+                data-testid="confirm-menu-confirm"
+              />
+            </React.Fragment>
+          )}
+        </ConfirmMenuContainer>
       </React.Fragment>
     )
   }
