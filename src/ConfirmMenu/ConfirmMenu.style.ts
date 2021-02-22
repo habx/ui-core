@@ -1,25 +1,12 @@
 import styled from 'styled-components'
 
-import { Menu as DefaultMenu } from '../Menu'
+import { theme } from '../theme'
+import { TogglePanel } from '../TogglePanel'
 
-export const ConfirmMenuContent = styled.div`
+export const ConfirmMenuContainer = styled(TogglePanel)`
+  box-shadow: ${theme.shadow()};
+  padding: 6px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 8px;
-  margin: 0 6px;
-`
-
-export const Menu = styled(DefaultMenu)`
-  > div {
-    padding: 6px 0;
-  }
-  &[data-textual='true'] {
-    > div {
-      padding: 12px 0;
-    }
-    ${ConfirmMenuContent} {
-      grid-gap: 24px;
-      margin: 0 24px;
-    }
-  }
+  grid-column-gap: 6px;
 `
