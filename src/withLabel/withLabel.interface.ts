@@ -3,7 +3,7 @@ import * as React from 'react'
 type LabelType = 'regular' | 'small' | 'caption'
 
 export interface LabelReceivedProps {
-  label?: string
+  label?: React.ReactNode
   labelType?: LabelType
   labelElementRight?: React.ReactNode
   id?: string
