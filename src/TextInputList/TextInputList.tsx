@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { isFunction } from '../_internal/data'
 import { AutocompleteInput } from '../AutocompleteInput'
 import { Icon } from '../Icon'
 
@@ -17,7 +16,16 @@ export const TextInputList = React.forwardRef<
   HTMLInputElement,
   TextInputListProps
 >((props, ref) => {
-  const { value = [], onChange, options, elementRight, small, ...rest } = props
+  const {
+    value = [],
+    onChange,
+    options,
+    elementRight,
+    small,
+    onKeyDown,
+    ...rest
+  } = props
+
   const [localValue, setLocalValue] = React.useState<string | number>('')
 
   const handleValidateCurrent = () => {
@@ -30,41 +38,32 @@ export const TextInputList = React.forwardRef<
   const handleRemoveItem = (index: number) =>
     onChange([...value.slice(0, index), ...value.slice(index + 1)])
 
-  const wrapEvent = (name: keyof typeof props, eventHandler: Function) => (
-    ...args: any[]
+  const handleKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (
+    event
   ) => {
-    eventHandler(...args)
+    onKeyDown?.(event)
 
-    if (isFunction(props[name] as Function)) {
-      props[name](...args)
-    }
-  }
-
-  const handleKeyDown = wrapEvent('onKeyDown', (event: KeyboardEvent) => {
-    // eslint-disable-next-line default-case
-    switch (event.keyCode) {
-      case 188: // Enter
+    switch (event.key) {
+      case 'Enter':
+      case ',':
         event.preventDefault()
         event.stopPropagation()
-      case 13: // Comma
         handleValidateCurrent()
-
         break
-      case 8: // Backspace
-      case 46:
-        if (localValue === '' && value?.length > 0) {
-          setLocalValue(value[0])
-          const newValue = [...value]
-          newValue.shift()
-          onChange(newValue)
 
+      case 'Backspace':
+      case 'Delete':
+        if (localValue === '' && value?.length > 0) {
           event.preventDefault()
           event.stopPropagation()
 
-          break
+          const [newLocalValue, ...newValue] = value
+          setLocalValue(newLocalValue)
+          onChange(newValue)
         }
+        break
     }
-  })
+  }
 
   const filteredAutocompleteOptions = React.useMemo(() => {
     if (!options?.length) {
@@ -97,14 +96,13 @@ export const TextInputList = React.forwardRef<
         elementRight={
           <ElementRightContainer>
             {elementRight}
-            {`${localValue}`?.length > 0 && (
-              <TextInputListAddIcon
-                small
-                background="grey"
-                icon="add"
-                onClick={handleValidateCurrent}
-              />
-            )}
+            <TextInputListAddIcon
+              small
+              background="grey"
+              icon="add"
+              onClick={handleValidateCurrent}
+              disabled={localValue.toString().length === 0}
+            />
           </ElementRightContainer>
         }
       />
