@@ -27,7 +27,7 @@ export const confirm = (config: ConfirmConfig | string) => {
       return (
         <ConfirmFormContainer>
           <ActionBar>
-            <Button outline onClick={() => onResolve(false)}>
+            <Button ghost onClick={() => onResolve(false)}>
               {innerConfig.cancelLabel ?? context.cancelLabel}
             </Button>
             <Button error onClick={() => onResolve(true)}>

@@ -33,7 +33,7 @@ export const ActionBarContent = styled.div`
 
   @media (${breakpoints.above.phone}) {
     & > *:not(:last-child) {
-      margin-right: 12px;
+      margin-right: 8px;
     }
   }
 `
