@@ -24,7 +24,7 @@ export const PromptModals: React.FunctionComponent<{}> = () => {
         )
 
         registerTimeout(
-          setTimeout(() => {
+          window.setTimeout(() => {
             if (isMounted.current) {
               setModals((prev) => prev.filter((el) => el.id !== modal.id))
             }

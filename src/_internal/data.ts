@@ -100,14 +100,14 @@ export const throttle = <Callback extends Function>(
   wait: number,
   immediate: boolean = false
 ): Callback => {
-  let timeout: number | null = null
+  let timeout: number | undefined
   let initialCall = true
 
   const wrappedCallback = (...args: any[]) => {
     const callNow = immediate && initialCall
     const next = () => {
       callback(...args)
-      timeout = null
+      timeout = undefined
     }
 
     if (callNow) {
@@ -115,8 +115,8 @@ export const throttle = <Callback extends Function>(
       next()
     }
 
-    if (!timeout) {
-      timeout = setTimeout(next, wait)
+    if (timeout === undefined) {
+      timeout = window.setTimeout(next, wait)
     }
   }
 

@@ -77,7 +77,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
 
         const timeout = setTimeout(() => {
           dispatch({ type: ActionTypes.SetStepClosed })
-        }, [ANIMATION_DURATIONS.m])
+        }, ANIMATION_DURATIONS.m)
 
         return () => {
           clearTimeout(timeout)

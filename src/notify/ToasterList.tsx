@@ -19,7 +19,7 @@ export const ToasterList: React.FunctionComponent = () => {
 
   const planDestroy = React.useCallback(
     (toastId: number) => {
-      const timeout = setTimeout(() => {
+      const timeout = window.setTimeout(() => {
         if (isMounted.current) {
           setToasts((prev) => prev.filter((el) => el.id !== toastId))
         }
@@ -49,7 +49,7 @@ export const ToasterList: React.FunctionComponent = () => {
 
   const planClose = React.useCallback(
     (toastId: number, options: ToastOptions) => {
-      const timeout = setTimeout(
+      const timeout = window.setTimeout(
         () => handleClose(toastId),
         options.duration || DEFAULT_DURATION
       )
@@ -94,7 +94,8 @@ export const ToasterList: React.FunctionComponent = () => {
       subscribe((message, options) => {
         const toastId = Math.random()
 
-        let closeToastTimeout: number | null = null
+        let closeToastTimeout: number | undefined
+
         if (options.duration !== 0) {
           closeToastTimeout = planClose(toastId, options)
         }
@@ -105,7 +106,7 @@ export const ToasterList: React.FunctionComponent = () => {
           open: true,
           hasBeenFrozen: false,
           id: toastId,
-          timeout: closeToastTimeout,
+          timeout: closeToastTimeout ?? null,
         }
 
         setToasts((prev) => [...prev, toast])
