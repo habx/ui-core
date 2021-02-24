@@ -67,7 +67,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
             }
           }
           const addAsyncMouseListener = () =>
-            setTimeout(
+            window.setTimeout(
               () =>
                 document.addEventListener('mousemove', onDocumentMouseMove, {
                   once: true,
