@@ -4,136 +4,124 @@ import { transition } from '../animations'
 import { Icon } from '../Icon'
 import { theme } from '../theme'
 
-export const Input = styled.input`
+export const CheckIcon = styled(Icon)`
   position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-
-  &:disabled {
-    pointer-events: none;
-  }
-
-  &:not(:disabled) {
-    cursor: pointer;
-  }
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--checkbox-icon-size);
+  color: var(--checkbox-check-color);
+  transition: ${transition('all')};
+  pointer-events: none;
 `
 
-export const FakeInput = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+export const FakeInput = styled.label`
+  flex: 0 0 auto;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  display: flex;
+
+  width: var(--checkbox-diameter);
+  min-width: var(--checkbox-diameter);
+  height: var(--checkbox-diameter);
+  min-height: var(--checkbox-diameter);
+  font-size: var(--checkbox-icon-size);
+  border-radius: 4px;
+
   background-color: var(--checkbox-background-color);
   box-shadow: inset 0 0 0 var(--checkbox-border-width)
-    var(--checkbox-border-color);
-  border-radius: var(--checkbox-border-radius);
-  transition: ${transition('all')};
-  pointer-events: none;
-`
+      var(--checkbox-border-color),
+    0 0 0 var(--checkbox-outline-width) var(--checkbox-outline-color);
 
-export const CheckIcon = styled(Icon)`
-  opacity: 0;
-  transform: scale(0);
   transition: ${transition('all')};
-  pointer-events: none;
-  color: var(--checkbox-check-color);
 
-  input:checked ~ & {
-    opacity: 1;
-    transform: scale(1);
+  &:focus {
+    --checkbox-outline-width: 4px;
   }
 `
 
-export const FakeInputContainer = styled.div<{ error?: boolean }>`
-  --checkbox-border-radius: 4px;
-  --checkbox-size: 21px;
+export const Input = styled.input`
+  display: none;
 
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: var(--checkbox-size);
-  height: var(--checkbox-size);
-
-  --checkbox-border-width: 2px;
-  --checkbox-border-color: ${theme.neutralColor(400)};
-  --checkbox-background-color: #fff;
-  --checkbox-check-color: ${theme.color('primary', { dynamic: true })};
-
-  &[data-small='true'] {
-    --checkbox-size: 16px;
-
-    & > ${FakeInput} {
-      --checkbox-border-radius: 2px;
-    }
+  & + ${FakeInput} {
+    --checkbox-diameter: 22px;
+    --checkbox-icon-size: 14px;
   }
 
-  & > input:hover,
-  > input:active {
-    & + ${FakeInput} {
-      --checkbox-border-width: 3px;
-    }
+  &[data-small='true'] + ${FakeInput} {
+    --checkbox-diameter: 16px;
+    --checkbox-icon-size: 10px;
   }
 
-  & > input:focus {
+  &:checked + ${FakeInput} {
+    --checkbox-background-color: ${theme.color('primary')};
+    --checkbox-border-color: transparent;
+    --checkbox-check-color: ${theme.color('background')};
+  }
+
+  &:not(:disabled):hover {
     &:checked + ${FakeInput} {
-      --checkbox-border-width: 3px;
-    }
-
-    &:not(:checked) + ${FakeInput} {
-      --checkbox-border-width: 5px;
-    }
-  }
-
-  &:not([data-background='true']) > input {
-    &:not(:disabled) {
-      &:active + ${FakeInput}, &:focus + ${FakeInput} {
-        --checkbox-border-color: ${theme.color('primary', { dynamic: true })};
-      }
-
-      &:checked + ${FakeInput} {
-        --checkbox-background-color: ${theme.color('primary', {
-          dynamic: true,
-        })};
-      }
-
-      &:checked:hover + ${FakeInput}, &:checked:focus + ${FakeInput} {
-        --checkbox-background-color: ${theme.color('primary', {
-          variation: 'loud',
-          dynamic: true,
-        })};
-      }
-    }
-
-    & ~ ${CheckIcon} {
-      --checkbox-check-color: #fff;
-    }
-  }
-
-  &[data-background='true'] > input {
-    & + ${FakeInput} {
       --checkbox-background-color: ${theme.color('primary', {
-        variation: 'contrastText',
-        dynamic: true,
+        variation: 'loud',
       })};
     }
 
-    &:not(:focus):not(:active):not(:hover) + ${FakeInput} {
-      --checkbox-border-width: 0;
+    &:not(:checked) + ${FakeInput} {
+      --checkbox-border-width: 4px;
     }
   }
 
-  & > input:focus + ${FakeInput}, & > input:active + ${FakeInput} {
-    --checkbox-border-color: ${theme.color('primary', {
-      variation: 'louder',
-      dynamic: true,
-    })};
+  &:not(:disabled):active {
+    &:checked + ${FakeInput} {
+      --checkbox-background-color: ${theme.color('primary', {
+        variation: 'louder',
+      })};
+    }
+
+    &:not(:checked) + ${FakeInput} {
+      --checkbox-border-color: ${theme.color('primary')};
+    }
   }
 
-  & input:disabled + ${FakeInput}, input:checked:disabled + ${FakeInput} {
-    --checkbox-background-color: ${theme.neutralColor(400)};
+  &:not(:disabled):not(:hover):not(:active)[data-error='true'] {
+    &:checked + ${FakeInput}:not(:focus) {
+      --checkbox-outline-width: 4px;
+      --checkbox-outline-color: ${theme.color('error', { opacity: 0.3 })};
+      --checkbox-background-color: ${theme.color('error')};
+    }
+
+    &:not(:checked) + ${FakeInput}:not(:focus) {
+      --checkbox-outline-width: 4px;
+      --checkbox-outline-color: ${theme.color('error', { opacity: 0.3 })};
+      --checkbox-border-color: ${theme.color('error')};
+    }
   }
+
+  &:disabled {
+    pointer-events: none;
+
+    & + ${FakeInput} {
+      pointer-events: none;
+      --checkbox-background-color: ${theme.neutralColor(300)};
+      --checkbox-border-color: ${theme.neutralColor(300)};
+    }
+  }
+`
+
+export const FakeInputContainer = styled.span`
+  display: inline-block;
+  position: relative;
+
+  --checkbox-background-color: transparent;
+
+  --checkbox-border-width: 2px;
+  --checkbox-border-color: ${theme.neutralColor(400)};
+
+  --checkbox-outline-width: 0;
+  --checkbox-outline-color: ${theme.color('primary', { opacity: 0.3 })};
+
+  --checkbox-check-color: transparent;
 `

@@ -22,19 +22,18 @@ export const FakeInput = styled.label`
   cursor: pointer;
   outline: none;
   border: none;
+  display: flex;
+
   width: var(--radio-diameter);
   min-width: var(--radio-diameter);
   height: var(--radio-diameter);
   border-radius: 50%;
+
   background: var(--radio-background-color);
-  display: flex;
-  transition: ${transition('all')};
   box-shadow: inset 0 0 0 var(--radio-border-width) var(--radio-border-color),
     0 0 0 var(--radio-outline-width) var(--radio-outline-color);
 
-  &:hover {
-    --radio-border-width: var(--radio-border-width-hover);
-  }
+  transition: ${transition('all')};
 
   &:focus {
     --radio-outline-width: 4px;
@@ -42,7 +41,6 @@ export const FakeInput = styled.label`
 `
 
 export const Input = styled.input`
-  align-items: center;
   display: none;
 
   & + ${FakeInput} {
@@ -121,11 +119,10 @@ export const FakeInputContainer = styled.span`
   display: inline-block;
   position: relative;
 
-  --radio-backround-color: transparent;
+  --radio-background-color: transparent;
 
   --radio-border-width: 2px;
   --radio-border-color: ${theme.neutralColor(400)};
-  --radio-border-width-hover: 3px;
 
   --radio-outline-width: 0;
   --radio-outline-color: ${theme.color('primary', { opacity: 0.3 })};
