@@ -19,11 +19,11 @@ export const LabelContainer = styled.label`
   }
 
   [data-orientation='horizontal'] > & {
-    padding-right: 8px;
+    padding-right: 12px;
   }
 
   [data-orientation='horizontal-reverse'] > & {
-    padding-left: 8px;
+    padding-left: 12px;
   }
 
   &[data-type='regular'] {
