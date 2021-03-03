@@ -97,10 +97,13 @@ basic.story = {
 
 export const gallery = () => <Grid />
 
+const eventTypes = ['warning', 'info', 'error'] as const
 export const event = () => (
   <Button
     onClick={() =>
-      notify(GRID_ITEMS[Math.floor(Math.random() * GRID_ITEMS.length)].props)
+      notify(GRID_ITEMS[Math.floor(Math.random() * GRID_ITEMS.length)].props, {
+        type: eventTypes[Math.floor(Math.random() * eventTypes.length)],
+      })
     }
   >
     Notify me

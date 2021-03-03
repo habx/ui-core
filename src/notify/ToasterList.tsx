@@ -6,6 +6,7 @@ import { ANIMATION_DURATIONS } from '../animations'
 import { Toaster, ToasterEventProps } from '../Toaster'
 
 import { subscribe } from './notify'
+import { useGetToasterBackgroundColorFromType } from './ToasterList.hooks'
 import { StateToast, ToastOptions } from './ToasterList.interface'
 import { ToasterListContainer, ToasterContainer } from './ToasterList.style'
 
@@ -114,6 +115,8 @@ export const ToasterList: React.FunctionComponent = () => {
     [planClose]
   )
 
+  const getToasterBackgroundColorFromType = useGetToasterBackgroundColorFromType()
+
   /*
    * This check gives us the assurance that the ReactDOM.createPortal won't be called on SSR
    * Because the subscription is set in a useEffect
@@ -129,6 +132,15 @@ export const ToasterList: React.FunctionComponent = () => {
           ?.message
           ? (toast.message as ToasterEventProps)
           : { message: toast.message as React.ReactNode }
+
+        if (!props.backgroundColor && toast.options?.type) {
+          const backgroundColor = getToasterBackgroundColorFromType(
+            toast.options.type
+          )
+          if (backgroundColor) {
+            props.backgroundColor = backgroundColor
+          }
+        }
 
         return (
           <ToasterContainer
