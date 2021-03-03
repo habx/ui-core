@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { ColorType } from '../_internal/theme/colorFromType'
 import { withGrid } from '../_storybook/withGrid'
 import { Button } from '../Button'
 import { Icon } from '../Icon'
@@ -97,7 +98,7 @@ basic.story = {
 
 export const gallery = () => <Grid />
 
-const eventTypes = ['warning', 'info', 'error'] as const
+const eventTypes = ['warning', 'info', 'error'] as ColorType[]
 export const event = () => (
   <Button
     onClick={() =>

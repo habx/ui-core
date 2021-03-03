@@ -2,11 +2,11 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { useIsMounted, useTimeout } from '../_internal/hooks'
+import { useGetColorFromType } from '../_internal/theme/colorFromType'
 import { ANIMATION_DURATIONS } from '../animations'
 import { Toaster, ToasterEventProps } from '../Toaster'
 
 import { subscribe } from './notify'
-import { useGetToasterBackgroundColorFromType } from './ToasterList.hooks'
 import { StateToast, ToastOptions } from './ToasterList.interface'
 import { ToasterListContainer, ToasterContainer } from './ToasterList.style'
 
@@ -115,7 +115,7 @@ export const ToasterList: React.FunctionComponent = () => {
     [planClose]
   )
 
-  const getToasterBackgroundColorFromType = useGetToasterBackgroundColorFromType()
+  const getColorFromType = useGetColorFromType()
 
   /*
    * This check gives us the assurance that the ReactDOM.createPortal won't be called on SSR
@@ -134,12 +134,7 @@ export const ToasterList: React.FunctionComponent = () => {
           : { message: toast.message as React.ReactNode }
 
         if (!props.backgroundColor && toast.options?.type) {
-          const backgroundColor = getToasterBackgroundColorFromType(
-            toast.options.type
-          )
-          if (backgroundColor) {
-            props.backgroundColor = backgroundColor
-          }
+          props.backgroundColor = getColorFromType(toast.options.type)
         }
 
         return (

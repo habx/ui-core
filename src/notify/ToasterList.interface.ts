@@ -1,7 +1,8 @@
+import { ColorType } from '../_internal/theme/colorFromType'
 import { ToasterEventProps } from '../Toaster/Toaster.interface'
 
 export type ToastOptions = {
-  type?: 'info' | 'error' | 'warning'
+  type?: ColorType
   duration?: number
   identifier?: string | number
 }

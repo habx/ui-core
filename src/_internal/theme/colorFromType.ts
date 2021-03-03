@@ -1,8 +1,10 @@
-import { useThemeVariant } from '../useThemeVariant'
+import { useThemeVariant } from '../../useThemeVariant'
 
-export const useGetToasterBackgroundColorFromType = () => {
+export type ColorType = 'info' | 'error' | 'warning'
+
+export const useGetColorFromType = () => {
   const theme = useThemeVariant()
-  return (type: 'info' | 'error' | 'warning') => {
+  return (type: ColorType) => {
     switch (type) {
       case 'error':
         return theme.colors.error.base
