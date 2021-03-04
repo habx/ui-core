@@ -1,38 +1,31 @@
 import * as React from 'react'
 
-import { useHasColoredBackground } from '../useHasColoredBackground'
+import { useUniqID } from '../_internal/useUniqId'
 import { withLabel } from '../withLabel'
 
 import { ToggleInnerProps } from './Toggle.interface'
-import { ToggleContainer } from './Toggle.style'
+import { FakeInputContainer, FakeInput, Input } from './Toggle.style'
 
 const InnerToggle = React.forwardRef<HTMLInputElement, ToggleInnerProps>(
   (props, ref) => {
-    const { error, value, disabled, onChange, onClick, ...rest } = props
+    const { error, disabled, id: rawId, checked, value, ...rest } = props
 
-    const hasBackground = useHasColoredBackground()
-
-    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-      if (onClick) {
-        onClick(e)
-      }
-
-      if (onChange) {
-        return onChange(!value)
-      }
-    }
+    const id = useUniqID(rawId)
 
     return (
-      <ToggleContainer
-        ref={ref}
-        data-selected={!!value}
-        data-disabled={disabled}
-        data-error={error}
-        data-has-background={hasBackground}
-        {...rest}
-        onClick={handleClick}
-        tabIndex={0}
-      />
+      <FakeInputContainer>
+        <Input
+          ref={ref}
+          {...rest}
+          checked={checked ?? Boolean(value)}
+          data-error={error}
+          disabled={disabled}
+          data-testid="toggle-input"
+          type="checkbox"
+          id={id}
+        />
+        <FakeInput tabIndex={disabled ? undefined : 0} htmlFor={id} />
+      </FakeInputContainer>
     )
   }
 )
@@ -40,4 +33,5 @@ const InnerToggle = React.forwardRef<HTMLInputElement, ToggleInnerProps>(
 export const Toggle = withLabel<HTMLDivElement>({
   orientation: 'horizontal',
   type: 'regular',
+  componentName: 'toggle',
 })<ToggleInnerProps>(InnerToggle)
