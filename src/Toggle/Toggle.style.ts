@@ -3,133 +3,147 @@ import styled from 'styled-components'
 import { transition } from '../animations'
 import { theme } from '../theme'
 
-export const ToggleContainer = styled.div`
-  --toggle-circle-radius: 11px;
+export const FakeInput = styled.label`
+  width: var(--toggle-bar-width);
+  height: var(--toggle-bar-height);
+  border-radius: var(--toggle-bar-height);
 
-  width: calc(var(--toggle-circle-radius) * 3.5);
-  height: calc(var(--toggle-circle-radius) * 1.5);
-  background-color: ${theme.neutralColor(500)};
+  background-color: var(--toggle-bar-background-color);
   transition: ${transition('all')};
-  position: relative;
   cursor: pointer;
-  margin: calc(var(--toggle-circle-radius) * 0.5) 0;
-  border-radius: calc(var(--toggle-circle-radius) * 0.75);
+
   outline: none;
   flex: 0 0 auto;
 
-  &::before,
-  &::after {
+  &::before {
     content: '';
     box-sizing: border-box;
-    background-color: #fff;
     position: absolute;
-    top: calc(0px - var(--toggle-circle-radius) * 0.25);
-    left: 0;
+    top: 0;
+    left: var(--toggle-circle-x-position);
     height: calc(2 * var(--toggle-circle-radius));
     width: calc(2 * var(--toggle-circle-radius));
     border-radius: var(--toggle-circle-radius);
+
+    background-color: var(--toggle-circle-background-color);
+    box-shadow: inset 0 0 0 var(--toggle-circle-border-width)
+        var(--toggle-circle-border-color),
+      0 0 0 var(--toggle-circle-outline-width)
+        var(--toggle-circle-outline-color),
+      var(--toggle-circle-shadow);
+
     transition: ${transition('all')};
   }
 
-  &::after {
-    box-shadow: ${theme.shadow('lower')};
-    border: 1.5px solid ${theme.neutralColor(300)};
+  &:focus {
+    --toggle-circle-outline-width: 4px;
   }
+`
 
-  &:hover::after {
-    box-shadow: ${theme.shadow('regular')};
-    border-width: 3px;
-  }
+export const Input = styled.input`
+  display: none;
 
-  &:focus::after {
-    box-shadow: ${theme.shadow('lower')};
-    border-width: 5px;
-  }
-
-  &:active::after {
-    box-shadow: ${theme.shadow('lower')};
-    border-width: 3px;
-  }
-
-  &:not([data-selected='true']) {
-    &:hover {
-      background-color: ${theme.neutralColor(500)};
-    }
-  }
-
-  &[data-selected='true'] {
-    &::before,
-    &::after {
-      left: calc(100% - var(--toggle-circle-radius) * 2);
+  &:not(:checked) {
+    &:hover:not(:active) + ${FakeInput} {
+      --toggle-bar-background-color: ${theme.neutralColor(700)};
+      --toggle-circle-shadow: ${theme.shadow('regular')};
     }
 
-    background-color: ${theme.color('primary', { opacity: 0.6 })};
-
-    &::after {
-      background-color: ${theme.color('primary')};
-      border-width: 0;
+    &:active + ${FakeInput} {
+      --toggle-bar-background-color: ${theme.neutralColor(700)};
+      --toggle-circle-shadow: ${theme.shadow('low')};
     }
 
-    &:hover::after {
-      background-color: ${theme.color('primary', { variation: 'loud' })};
-    }
-
-    &:focus::after {
-      background-color: ${theme.color('primary', { variation: 'louder' })};
-    }
-
-    &:active::after {
-      background-color: ${theme.color('primary', { variation: 'louder' })};
+    &:disabled + ${FakeInput} {
+      pointer-events: none;
+      --toggle-bar-background-color: ${theme.neutralColor(300, {
+        gradient: 'withIntensityFading',
+      })};
+      --toggle-circle-background-color: ${theme.neutralColor(300, {
+        gradient: 'withIntensityFading',
+      })};
+      --toggle-circle-border-color: ${theme.neutralColor(0, {
+        gradient: 'withIntensityFading',
+      })};
+      --toggle-circle-border-width: 2px;
     }
   }
 
-  &[data-has-background='true']:not([data-selected='true']):not([data-error='true']) {
-    background-color: #fff;
-  }
+  &:checked {
+    & + ${FakeInput} {
+      --toggle-bar-background-color: ${theme.color('primary', {
+        variation: 'calm',
+      })};
+      --toggle-circle-background-color: ${theme.color('primary')};
 
-  &[data-error='true'] {
-    background-color: ${theme.color('error', { opacity: 0.6 })};
-
-    &::after {
-      background-color: ${theme.color('error')};
-      border-color: #fff;
+      --toggle-circle-x-position: calc(100% - var(--toggle-circle-radius) * 2);
+      --toggle-circle-border-width: 0;
     }
 
-    &:hover::after {
-      background-color: ${theme.color('error', { variation: 'loud' })};
+    &:hover:not(:active) + ${FakeInput} {
+      --toggle-circle-background-color: ${theme.color('primary', {
+        variation: 'loud',
+      })};
+      --toggle-circle-shadow: ${theme.shadow('regular')};
     }
 
-    &:focus::after {
-      background-color: ${theme.color('error', { variation: 'louder' })};
+    &:active + ${FakeInput} {
+      --toggle-circle-shadow: ${theme.shadow('low')};
     }
 
-    &:active::after {
-      background-color: ${theme.color('error', { variation: 'louder' })};
-    }
-  }
-
-  &[data-disabled='true'] {
-    pointer-events: none;
-
-    &:not([data-selected='true']) {
-      background-color: ${theme.neutralColor(400)};
-
-      &::after {
-        background-color: ${theme.neutralColor(400)};
-      }
-    }
-
-    &[data-selected='true']::after {
-      background-color: ${theme.color('primary', { opacity: 0.6 })};
-
-      &::after {
-        background-color: ${theme.color('primary', { opacity: 0.6 })};
-      }
-    }
-
-    &::after {
-      border-width: 3px;
-      border-color: #fff;
+    &:disabled + ${FakeInput} {
+      pointer-events: none;
+      --toggle-bar-background-color: ${theme.neutralColor(300, {
+        gradient: 'withIntensityFading',
+      })};
+      --toggle-circle-background-color: ${theme.color('primary', {
+        variation: 'loud',
+      })};
+      --toggle-circle-border-color: ${theme.neutralColor(0, {
+        gradient: 'withIntensityFading',
+      })};
+      --toggle-circle-border-width: 2px;
     }
   }
+
+  &:not(:disabled):not(:hover):not(:active)[data-error='true'] {
+    &:checked + ${FakeInput}:not(:focus) {
+      --toggle-circle-outline-width: 4px;
+      --toggle-circle-outline-color: ${theme.color('error', { opacity: 0.3 })};
+      --toggle-circle-background-color: ${theme.color('error')};
+      --toggle-bar-background-color: ${theme.color('error', {
+        variation: 'calm',
+      })};
+    }
+
+    &:not(:checked) + ${FakeInput}:not(:focus) {
+      --toggle-circle-outline-width: 4px;
+      --toggle-circle-outline-color: ${theme.color('error', { opacity: 0.3 })};
+    }
+  }
+`
+
+export const FakeInputContainer = styled.span`
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  height: calc(var(--toggle-circle-radius) * 2);
+  width: calc(var(--togle-bar-width) + var(--toggle-circle-overflow) * 2);
+  padding: 0 var(--toggle-circle-overflow);
+
+  --toggle-bar-width: 38px;
+  --toggle-bar-height: 16px;
+  --toggle-bar-background-color: ${theme.neutralColor(500)};
+
+  --toggle-circle-radius: 11px;
+  --toggle-circle-background-color: ${theme.neutralColor(0, {
+    gradient: 'withIntensityFading',
+  })};
+  --toggle-circle-border-width: 1px;
+  --toggle-circle-border-color: ${theme.neutralColor(300)};
+  --toggle-circle-outline-width: 0;
+  --toggle-circle-outline-color: ${theme.color('primary', { opacity: 0.3 })};
+  --toggle-circle-shadow: ${theme.shadow('lower')};
+  --toggle-circle-overflow: 3px;
+  --toggle-circle-x-position: 0;
 `

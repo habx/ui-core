@@ -4,11 +4,11 @@ import { styledAs } from '../_internal/types'
 import { WithLabel } from '../withLabel'
 
 export interface ToggleInnerProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value'> {
+  checked?: boolean
+  value?: boolean
   error?: boolean
   disabled?: boolean
-  value?: boolean
-  onChange?: (newValue: boolean) => void
   as?: styledAs
 }
 
