@@ -2,9 +2,9 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import { useIsMounted, useTimeout } from '../_internal/hooks'
-import { useGetColorFromType } from '../_internal/theme/colorFromType'
 import { ANIMATION_DURATIONS } from '../animations'
-import { Toaster, ToasterEventProps } from '../Toaster'
+import { useGetColorFromType, stringifyColor } from '../color'
+import { NotificationProps, Toaster, ToasterEventProps } from '../Toaster'
 
 import { subscribe } from './notify'
 import { StateToast, ToastOptions } from './ToasterList.interface'
@@ -128,13 +128,15 @@ export const ToasterList: React.FunctionComponent = () => {
   return ReactDOM.createPortal(
     <ToasterListContainer onClick={(e) => e.stopPropagation()}>
       {toasts.map((toast) => {
-        const props: ToasterEventProps = (toast.message as ToasterEventProps)
+        const props: NotificationProps = (toast.message as ToasterEventProps)
           ?.message
           ? (toast.message as ToasterEventProps)
           : { message: toast.message as React.ReactNode }
 
         if (!props.backgroundColor && toast.options?.type) {
-          props.backgroundColor = getColorFromType(toast.options.type)
+          props.backgroundColor = stringifyColor(
+            getColorFromType(toast.options.type)
+          )
         }
 
         return (

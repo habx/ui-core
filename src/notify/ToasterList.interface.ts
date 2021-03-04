@@ -1,4 +1,4 @@
-import { ColorType } from '../_internal/theme/colorFromType'
+import { ColorType } from '../color'
 import { ToasterEventProps } from '../Toaster/Toaster.interface'
 
 export type ToastOptions = {

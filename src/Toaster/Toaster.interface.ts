@@ -12,4 +12,5 @@ export interface NotificationProps
     Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   onClose?: () => void
   onSeeMore?: () => void
+  backgroundColor?: string
 }
