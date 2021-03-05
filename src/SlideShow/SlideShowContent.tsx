@@ -21,7 +21,7 @@ const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
 }) => {
   const slideAmount = items.length
 
-  const slides = React.useMemo<SlideContent[]>(() => {
+  const slides = React.useMemo<Slide[]>(() => {
     if (items.length === 0) {
       return []
     }
@@ -36,7 +36,7 @@ const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
       }),
     }))
 
-    const mostLeftSlide = minBy<SlideContent>(
+    const mostLeftSlide = minBy<Slide>(
       slidesWithPosition,
       (slide) => slide.position
     )
@@ -49,11 +49,11 @@ const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
           }
         : null
 
-    const mostRightSlide = maxBy<SlideContent>(
+    const mostRightSlide = maxBy<Slide>(
       slidesWithPosition,
       (slide) => slide.position
     )
-    const additionalLeftSlide: SlideContent | null =
+    const additionalLeftSlide: Slide | null =
       slideAmount < 4
         ? {
             ...mostRightSlide,
@@ -66,7 +66,7 @@ const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
       additionalLeftSlide,
       additionalRightSlide,
       ...slidesWithPosition,
-    ].filter((el) => !isNil(el)) as SlideContent[]
+    ].filter((el) => !isNil(el)) as Slide[]
 
     return circular
       ? rawSlides
@@ -75,19 +75,19 @@ const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
 
   return (
     <React.Fragment>
-      <Slide data-first>
+      <SlideContent data-first>
         {renderItem(items[referenceSlideIndex], referenceSlideIndex)}
-      </Slide>
+      </SlideContent>
       {slides.map((slide) => {
         return (
-          <Slide
+          <SlideContent
             key={slide.position}
             style={{
               left: `${slide.position * 100}%`,
             }}
           >
             {renderItem(slide.item, slide.index, slide.isDuplicate)}
-          </Slide>
+          </SlideContent>
         )
       })}
     </React.Fragment>
