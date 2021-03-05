@@ -112,7 +112,7 @@ export const withGrid = <Props extends object>(
               <LineContainer>
                 <Title type="section">{line.title}</Title>
                 <LineContent>
-                  {items.map((item) => {
+                  {items.map((item, index) => {
                     const fullProps = {
                       ...props,
                       ...line.props,
@@ -121,6 +121,7 @@ export const withGrid = <Props extends object>(
 
                     return (
                       <ItemContainer
+                        key={index}
                         itemHorizontalSpace={itemHorizontalSpace}
                         itemVerticalSpace={itemVerticalSpace}
                       >

@@ -9,13 +9,13 @@ const SIZES = {
 
 type sizes = 'desktop' | 'tablet' | 'smallTablet' | 'phone'
 
-type breakpoints = {
+type Breakpoints = {
   above: { [key in sizes]: string }
   below: { [key in sizes]: string }
   raw: { [key in sizes]: number }
 }
 
-export const breakpoints: breakpoints = {
+export const breakpoints: Breakpoints = {
   above: mapValues(
     SIZES,
     (value: number): string => `min-width: ${(value + 1) / 16}em`
