@@ -100,5 +100,7 @@
   "storybook-deployer": {
     "commitMessage": "[SKIP CI] Deploy Storybook to GitHub Pages"
   },
-  "publishConfig": "https://npm.pkg.github.com/"
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }
