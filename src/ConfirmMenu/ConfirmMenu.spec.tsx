@@ -2,10 +2,11 @@ import { act, fireEvent, render } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
+import { ANIMATION_DURATIONS } from '../animations'
+
 import { ConfirmMenu, ConfirmMenuProps } from './index'
 
 import '@testing-library/jest-dom/extend-expect'
-import { ANIMATION_DURATIONS } from '../animations'
 
 jest.useFakeTimers()
 

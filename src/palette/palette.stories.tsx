@@ -44,7 +44,7 @@ export default {
 export const gallery = () => (
   <Container>
     {Object.entries(palette).map(([colorName, colorGradient]) => (
-      <Line>
+      <Line key={colorName}>
         <ColorLabel variation="title">{colorName}</ColorLabel>
         {Object.values(colorGradient)
           .reverse()

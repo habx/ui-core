@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { isNil, minBy, maxBy } from '../_internal/data'
 
-import { Slide } from './SlideShow.style'
+import { SlideContent } from './SlideShow.style'
 import { getClosestSlidePosition } from './SlideShow.utils'
 
 type Slide = {
@@ -21,7 +21,7 @@ const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
 }) => {
   const slideAmount = items.length
 
-  const slides = React.useMemo<Slide[]>(() => {
+  const slides = React.useMemo<SlideContent[]>(() => {
     if (items.length === 0) {
       return []
     }
@@ -36,7 +36,7 @@ const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
       }),
     }))
 
-    const mostLeftSlide = minBy<Slide>(
+    const mostLeftSlide = minBy<SlideContent>(
       slidesWithPosition,
       (slide) => slide.position
     )
@@ -49,11 +49,11 @@ const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
           }
         : null
 
-    const mostRightSlide = maxBy<Slide>(
+    const mostRightSlide = maxBy<SlideContent>(
       slidesWithPosition,
       (slide) => slide.position
     )
-    const additionalLeftSlide: Slide | null =
+    const additionalLeftSlide: SlideContent | null =
       slideAmount < 4
         ? {
             ...mostRightSlide,
@@ -66,7 +66,7 @@ const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
       additionalLeftSlide,
       additionalRightSlide,
       ...slidesWithPosition,
-    ].filter((el) => !isNil(el)) as Slide[]
+    ].filter((el) => !isNil(el)) as SlideContent[]
 
     return circular
       ? rawSlides

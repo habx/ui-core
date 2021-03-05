@@ -3,12 +3,12 @@ import * as React from 'react'
 import sinon from 'sinon'
 
 import * as validityCheck from '../_internal/validityCheck'
+import { ANIMATION_DURATIONS } from '../animations'
 import { ExpansionPanelItem } from '../ExpansionPanelItem'
 
 import { ExpansionPanel } from './index'
 
 import '@testing-library/jest-dom/extend-expect'
-import { ANIMATION_DURATIONS } from '../animations'
 
 jest.useFakeTimers()
 const sinonSandbox = sinon.createSandbox()

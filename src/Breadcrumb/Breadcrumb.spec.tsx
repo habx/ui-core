@@ -2,12 +2,12 @@ import { render } from '@testing-library/react'
 import * as React from 'react'
 import sinon from 'sinon'
 
+import * as validityCheck from '../_internal/validityCheck'
 import { BreadcrumbItem } from '../BreadcrumbItem'
 
 import { Breadcrumb } from './index'
 
 import '@testing-library/jest-dom/extend-expect'
-import * as validityCheck from '../_internal/validityCheck'
 
 jest.useFakeTimers()
 const sinonSandbox = sinon.createSandbox()

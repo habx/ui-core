@@ -124,15 +124,16 @@ export const useSlideShow = ({
 
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
 
-  const throttledKeyboardGoTo = React.useCallback(
-    throttle<(delta: 1 | -1) => void>((delta) => {
-      return dispatch({
-        type: ActionType.GoToSlide,
-        value: delta,
-        isRelative: true,
-        source: SlideChangeSource.keyboard,
-      })
-    }, DESKTOP_ANIMATION_DURATION),
+  const throttledKeyboardGoTo = React.useMemo(
+    () =>
+      throttle<(delta: 1 | -1) => void>((delta) => {
+        return dispatch({
+          type: ActionType.GoToSlide,
+          value: delta,
+          isRelative: true,
+          source: SlideChangeSource.keyboard,
+        })
+      }, DESKTOP_ANIMATION_DURATION),
     []
   )
 
