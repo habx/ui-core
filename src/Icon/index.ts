@@ -1,3 +1,3 @@
 export { Icon } from './Icon'
 
-export { IconProps } from './Icon.interface'
+export { IconProps, IconKey } from './Icon.interface'

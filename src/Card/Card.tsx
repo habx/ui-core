@@ -13,6 +13,7 @@ export const Card = React.forwardRef<
   const {
     animated,
     flat,
+    outline,
     children,
     spacing,
     backgroundColor = defaultBackgroundColor,
@@ -26,6 +27,7 @@ export const Card = React.forwardRef<
       backgroundColor={backgroundColor}
       data-animated={animated}
       data-flat={flat}
+      data-outline={outline}
       data-spacing={spacing}
     >
       {children}

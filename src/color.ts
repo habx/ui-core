@@ -1,7 +1,5 @@
 import parse from 'color-parse'
 
-import { useThemeVariant } from './useThemeVariant'
-
 export type ParsedColor = {
   space: 'rgb'
   values: [number, number, number]
@@ -59,20 +57,4 @@ export const isColorDark = (color: Color): boolean => {
   const colorDarkness = (values[0] + values[1] + values[2]) / alpha
 
   return colorDarkness < (255 * 3) / 2
-}
-
-export type ColorType = 'info' | 'error' | 'warning'
-
-export const useGetColorFromType = () => {
-  const theme = useThemeVariant()
-  return (type: ColorType) => {
-    switch (type) {
-      case 'error':
-        return theme.colors.error.base
-      case 'warning':
-        return theme.colors.warning.base
-      case 'info':
-        return theme.colors.secondary.base
-    }
-  }
 }

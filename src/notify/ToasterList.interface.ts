@@ -1,5 +1,5 @@
-import { ColorType } from '../color'
-import { ToasterEventProps } from '../Toaster/Toaster.interface'
+import { ToasterEventProps } from '../Toaster'
+import { ColorType } from '../useGetColorFromType'
 
 export type ToastOptions = {
   type?: ColorType

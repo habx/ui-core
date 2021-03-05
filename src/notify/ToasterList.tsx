@@ -3,8 +3,9 @@ import * as ReactDOM from 'react-dom'
 
 import { useIsMounted, useTimeout } from '../_internal/hooks'
 import { ANIMATION_DURATIONS } from '../animations'
-import { useGetColorFromType, stringifyColor } from '../color'
+import { stringifyColor } from '../color'
 import { NotificationProps, Toaster, ToasterEventProps } from '../Toaster'
+import { useGetColorFromType } from '../useGetColorFromType'
 
 import { subscribe } from './notify'
 import { StateToast, ToastOptions } from './ToasterList.interface'
