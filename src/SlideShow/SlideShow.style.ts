@@ -45,7 +45,7 @@ export const SlideShowSlidingContent = styled.div<{ size: number }>`
   }
 `
 
-export const Slide = styled.div`
+export const SlideContent = styled.div`
   width: 100%;
   min-height: 100%;
   max-height: 100%;

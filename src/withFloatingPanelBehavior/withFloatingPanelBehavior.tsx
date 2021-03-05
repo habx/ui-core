@@ -8,9 +8,9 @@ import {
   FloatingPanelInjectedProps,
 } from './withFloatingPanelBehavior.interface'
 
-const FloatingPanelContext = React.createContext<React.RefObject<HTMLElement> | null>(
-  null
-)
+const FloatingPanelContext = React.createContext<React.RefObject<
+  HTMLElement
+> | null>(null)
 
 export const withFloatingPanelBehavior = (
   defaultModalConfig: Omit<

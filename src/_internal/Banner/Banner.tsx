@@ -83,7 +83,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
           clearTimeout(timeout)
         }
       }
-    }, [open])
+    }, [open, state.step])
 
     if (state.step === 'closed') {
       return null

@@ -53,14 +53,7 @@ export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
       value: newTheme,
       rootValue: newTheme,
     }
-  }, [
-    currentTheme.backgroundColor,
-    currentTheme.dark,
-    currentTheme.light,
-    preset,
-    theme?.dark,
-    theme?.light,
-  ])
+  }, [currentTheme.dark, currentTheme.light, preset, theme?.dark, theme?.light])
 
   const newStyledTheme = React.useMemo<StyledTheme>(
     () => ({

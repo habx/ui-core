@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { isNil, minBy, maxBy } from '../_internal/data'
 
-import { Slide } from './SlideShow.style'
+import { SlideContent } from './SlideShow.style'
 import { getClosestSlidePosition } from './SlideShow.utils'
 
 type Slide = {
@@ -75,19 +75,19 @@ const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
 
   return (
     <React.Fragment>
-      <Slide data-first>
+      <SlideContent data-first>
         {renderItem(items[referenceSlideIndex], referenceSlideIndex)}
-      </Slide>
+      </SlideContent>
       {slides.map((slide) => {
         return (
-          <Slide
+          <SlideContent
             key={slide.position}
             style={{
               left: `${slide.position * 100}%`,
             }}
           >
             {renderItem(slide.item, slide.index, slide.isDuplicate)}
-          </Slide>
+          </SlideContent>
         )
       })}
     </React.Fragment>

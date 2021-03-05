@@ -35,7 +35,7 @@ const GRID_LINES = [
       children: (
         <React.Fragment>
           {new Array(10).fill(0).map((_, index) => (
-            <BreadcrumbItem>Branch {index + 1}</BreadcrumbItem>
+            <BreadcrumbItem key={index}>Branch {index + 1}</BreadcrumbItem>
           ))}
         </React.Fragment>
       ),
