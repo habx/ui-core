@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import { ThemeOverridesProps } from '../_internal/types'
-import { IconKey } from '../Icon/Icon.interface'
+import { IconKey } from '../Icon'
 
 export interface RoundIconButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,

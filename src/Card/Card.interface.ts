@@ -11,6 +11,7 @@ export type CardSpacing =
 export interface CardProps extends Omit<BackgroundProps, 'backgroundColor'> {
   animated?: boolean
   flat?: boolean
+  outline?: boolean
   backgroundColor?: ColorGetter
   spacing?: CardSpacing
 }

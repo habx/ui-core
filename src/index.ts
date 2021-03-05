@@ -74,7 +74,7 @@ export { SearchBar, SearchBarProps } from './SearchBar'
 /*
   Miscellaneous
  */
-export { Icon, IconProps } from './Icon'
+export { Icon, IconProps, IconKey } from './Icon'
 export { Triangle, TriangleProps } from './Triangle'
 
 

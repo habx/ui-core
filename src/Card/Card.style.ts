@@ -17,15 +17,19 @@ export const CardContainer = styled(Layout)`
   --layout-top-padding: 0;
   --layout-bottom-padding: 0;
 
-  &:not([data-flat='true']) {
+  &:not([data-flat='true']):not([data-outline='true']) {
     box-shadow: ${theme.shadow('regular')};
+  }
+
+  &[data-outline='true'] {
+    border: 1px solid ${theme.neutralColor(300)};
   }
 
   &[data-animated='true'] {
     &:hover {
       cursor: pointer;
 
-      &:not([data-flat='true']) {
+      &:not([data-flat='true']):not([data-outline='true']) {
         box-shadow: ${theme.shadow('regular', { hover: true })};
       }
     }
