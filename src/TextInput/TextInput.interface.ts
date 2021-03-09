@@ -13,6 +13,7 @@ export interface TextInputInnerProps
   small?: boolean
   error?: boolean
   light?: boolean
+  bare?: boolean
   elementRight?: React.ReactNode
   elementLeft?: React.ReactNode
   canReset?: boolean

@@ -29,6 +29,10 @@ const GRID_LINES = [
     props: { light: true },
   },
   {
+    title: 'Bare',
+    props: { bare: true },
+  },
+  {
     title: 'With label',
     props: {
       label: 'Mail address',

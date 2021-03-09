@@ -32,7 +32,7 @@ export const SelectContainer = styled.div`
   width: 100%;
   flex: 0 0 auto;
   font-family: ${theme.font()};
-  font-size: ${fontScale.moon.size}px;
+  font-size: var(--select-font-size);
   outline: none;
   user-select: none;
   display: flex;
@@ -44,22 +44,26 @@ export const SelectContainer = styled.div`
   padding: 0 12px;
   box-shadow: inset 0 0 0 var(--select-border-width) var(--select-border-color);
   background-color: var(--select-background-color);
+  color: var(--select-color);
 
+  --select-color: ${theme.textColor()};
   --select-height: 48px;
   --select-background-color: ${theme.neutralColor(200, {
     gradient: 'withIntensityFading',
   })};
   --select-border-width: 0;
   --select-border-color: ${theme.neutralColor(200)};
+  --select-font-size: ${fontScale.moon.size}px;
 
   &[data-small='true'] {
     --select-height: 36px;
+    --select-font-size: ${fontScale.pluto.size}px;
   }
 
   &[data-tiny='true'] {
     --select-height: 24px;
+    --select-font-size: ${fontScale.asteroid.size}px;
     padding: 0 6px;
-    font-size: ${fontScale.asteroid.size}px;
   }
 
   &:not([data-light='true']) {
@@ -93,6 +97,13 @@ export const SelectContainer = styled.div`
         })};
       }
     }
+  }
+
+  &[data-bare='true'] {
+    --select-border-color: ${theme.neutralColor(300)};
+    --select-color: ${theme.neutralColor(600)};
+    --select-background-color: ${theme.color('background')};
+    --select-border-width: 1px;
   }
 
   &[data-light='true'] {
@@ -207,7 +218,7 @@ export const ResetIconContainer = styled.div`
 
 export const ElementRightContainer = styled.div`
   transition: ${transition('opacity')};
-  color: ${theme.neutralColor(1000)};
+  color: var(--select-color);
 
   &:not([data-visible='true']) {
     opacity: 0;

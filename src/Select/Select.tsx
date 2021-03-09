@@ -24,6 +24,7 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
     const {
       multi = false,
       light = false,
+      bare = false,
       small = false,
       tiny = false,
       filterable = false,
@@ -65,6 +66,7 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           data-background={hasBackground}
           data-light={light}
           data-small={small}
+          data-bare={bare}
           data-tiny={tiny}
           data-testid="select-container"
           onClick={actions.onOpen}
