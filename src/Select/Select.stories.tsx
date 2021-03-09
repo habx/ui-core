@@ -59,6 +59,12 @@ const GRID_LINES = [
     },
   },
   {
+    title: 'Bare',
+    props: {
+      bare: true,
+    },
+  },
+  {
     title: 'With label',
     props: {
       label: 'Pick a country',

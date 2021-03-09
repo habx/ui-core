@@ -26,6 +26,7 @@ export interface SelectInnerProps
   small?: boolean
   tiny?: boolean
   light?: boolean
+  bare?: boolean
 
   elementRight?: React.ReactNode
   elementLeft?: React.ReactNode

@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components'
 
 import { transition } from '../animations'
+import { fontScale } from '../fontScale'
 import { Icon } from '../Icon'
 import { theme } from '../theme'
 
 export const inputStyle = css`
   font-family: ${theme.font()};
-  font-size: 16px;
-
+  font-size: var(--text-input-font-size);
   outline: none;
   border: none;
   -moz-appearance: none;
@@ -20,6 +20,7 @@ export const inputStyle = css`
     0 0 0 var(--text-input-outline-width) var(--text-input-outline-color);
 
   --text-input-border-width: 0;
+  --text-input-font-size: ${fontScale.moon.size}px;
   --text-input-border-color: ${theme.neutralColor(300)};
   --text-input-outline-width: 0;
   --text-input-outline-color: ${theme.color('primary', { opacity: 0.3 })};
@@ -35,6 +36,7 @@ export const inputStyle = css`
     padding: 0 12px;
     min-height: 36px;
     max-height: 36px;
+    --text-input-font-size: ${fontScale.pluto.size}px;
   }
 
   &:not([data-light='true']) {
@@ -74,8 +76,8 @@ export const inputStyle = css`
     }
 
     &[data-background='true'] {
-      background-color: ${theme.neutralColor(100)};
-      border-color: ${theme.neutralColor(300)};
+      --text-input-background-color: ${theme.neutralColor(100)};
+      --text-input-border-color: ${theme.neutralColor(300)};
     }
 
     &[data-error='true'] {
@@ -84,6 +86,12 @@ export const inputStyle = css`
       --text-input-border-color: ${theme.color('error')};
       --text-input-border-width: 1px;
     }
+  }
+
+  &[data-bare='true'] {
+    --text-input-border-width: 1px;
+    --text-input-border-color: ${theme.neutralColor(300)};
+    --text-input-background-color: ${theme.color('background')};
   }
 
   &[data-light='true'] {
@@ -112,7 +120,7 @@ export const inputStyle = css`
 `
 
 export const SideElementContainer = styled.div`
-  font-size: 24px;
+  font-size: 18px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -136,7 +144,7 @@ export const Input = styled.input`
   flex: 1 1 100%;
   color: inherit;
   font-family: ${theme.font()};
-  font-size: 16px;
+  font-size: var(--text-input-font-size);
 `
 
 export const InputContainer = styled.div`

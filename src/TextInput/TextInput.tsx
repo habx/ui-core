@@ -19,6 +19,7 @@ const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
       small = false,
       error = false,
       light = false,
+      bare = false,
       className,
       style,
       elementRight,
@@ -40,6 +41,7 @@ const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
         data-error={error}
         data-small={small}
         data-light={light}
+        data-bare={bare}
         data-background={hasBackground}
         data-disabled={disabled}
         ref={containerRef}
