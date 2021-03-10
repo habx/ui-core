@@ -57,7 +57,9 @@ export const inputStyle = css`
   }
 
   &:not([data-light='true']) {
-    --text-input-background-color: ${theme.neutralColor(200)};
+    --text-input-background-color: ${theme.neutralColor(200, {
+      gradient: 'withIntensityFading',
+    })};
 
     &:disabled,
     &[data-disabled='true'] {
@@ -86,7 +88,9 @@ export const inputStyle = css`
     }
 
     &[data-background='true'] {
-      --text-input-background-color: ${theme.neutralColor(100)};
+      --text-input-background-color: ${theme.neutralColor(100, {
+        gradient: 'withIntensityFading',
+      })};
       --text-input-border-color: ${theme.neutralColor(300)};
     }
 
@@ -111,7 +115,9 @@ export const inputStyle = css`
     padding-right: 12px;
 
     &:hover:not(:focus-within) {
-      --text-input-background-color: ${theme.neutralColor(200)};
+      --text-input-background-color: ${theme.neutralColor(200, {
+        gradient: 'withIntensityFading',
+      })};
     }
 
     &:focus-within {
