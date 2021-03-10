@@ -25,6 +25,9 @@ export interface SelectInnerProps
   // Visual
   small?: boolean
   tiny?: boolean
+  /**
+   * @deprecated use bare instead
+   */
   light?: boolean
   bare?: boolean
 
