@@ -50,6 +50,12 @@ export const inputStyle = css`
     --text-input-font-size: ${fontScale.pluto.size}px;
   }
 
+  &[data-tiny='true'] {
+    min-height: 24px;
+    max-height: 24px;
+    --text-input-font-size: ${fontScale.asteroid.size}px;
+  }
+
   &:not([data-light='true']) {
     --text-input-background-color: ${theme.neutralColor(200)};
 
