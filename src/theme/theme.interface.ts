@@ -197,4 +197,11 @@ export interface ColorGetterConfig<Props extends GetterProps> {
 
 export interface NeutralColorGetterConfig {
   gradient?: keyof NeutralGradients
+  /**
+   * Opacity to apply to the color
+   * If the color of the theme is already in an RGBA format, we multiply the two opacities
+   *
+   * @default 1
+   */
+  opacity?: number
 }

@@ -159,10 +159,16 @@ const colorGetter = <Props extends GetterProps>(
 const neutralColorGetter = <Props extends GetterProps>(
   strength: keyof Gradient,
   config: NeutralColorGetterConfig = {}
-) => (props: Props) => {
+) => (props: Props & { opacity?: number }) => {
   const { gradient = 'withOpacityFading' } = config
 
-  return stringifyColor(getThemeVariant(props).neutralColor[gradient][strength])
+  let color: Color = getThemeVariant(props).neutralColor[gradient][strength]
+
+  const opacity = props.opacity ?? config.opacity ?? 1
+  if (opacity !== 1) {
+    color = applyOpacityToColor(color, opacity)
+  }
+  return stringifyColor(color)
 }
 
 export const theme = {

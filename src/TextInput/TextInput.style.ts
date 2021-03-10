@@ -31,7 +31,7 @@ export const inputStyle = css`
   --text-input-border-color: ${theme.neutralColor(300)};
   --text-input-outline-width: 0;
   --text-input-outline-color: ${theme.color('primary', { opacity: 0.3 })};
-  --text-input-background-color: unset;
+  --text-input-background-color: ${theme.color('background')};
   --text-input-color: ${theme.textColor()};
   --text-input-placeholder-color: ${theme.textColor({
     variation: 'lowContrast',
