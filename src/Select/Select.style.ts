@@ -1,8 +1,7 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { transition } from '../animations'
-import { applyOpacityToColor, stringifyColor } from '../color'
-import { fontScale } from '../fontScale'
+import { inputStyle } from '../TextInput'
 import { theme } from '../theme'
 
 export const Placeholder = styled.div`
@@ -28,137 +27,21 @@ export const IconsContainer = styled.div`
 `
 
 export const SelectContainer = styled.div`
-  position: relative;
+  ${inputStyle};
+
   width: 100%;
-  flex: 0 0 auto;
-  font-family: ${theme.font()};
-  font-size: var(--select-font-size);
-  outline: none;
-  user-select: none;
   display: flex;
   align-items: center;
-  box-sizing: border-box;
-  cursor: pointer;
-  border-radius: 4px;
+
   height: var(--select-height);
   padding: 0 12px;
-  box-shadow: inset 0 0 0 var(--select-border-width) var(--select-border-color);
-  background-color: var(--select-background-color);
-  color: var(--select-color);
-
-  --select-color: ${theme.textColor()};
   --select-height: 48px;
-  --select-background-color: ${theme.neutralColor(200, {
-    gradient: 'withIntensityFading',
-  })};
-  --select-border-width: 0;
-  --select-border-color: ${theme.neutralColor(200)};
-  --select-font-size: ${fontScale.moon.size}px;
 
-  &[data-small='true'] {
-    --select-height: 36px;
-    --select-font-size: ${fontScale.pluto.size}px;
-  }
+  cursor: pointer;
 
   &[data-tiny='true'] {
     --select-height: 24px;
-    --select-font-size: ${fontScale.asteroid.size}px;
     padding: 0 6px;
-  }
-
-  &:not([data-light='true']) {
-    --select-border-width: 1.5px;
-
-    &[data-background='true'] {
-      --select-background-color: ${theme.neutralColor(100, {
-        gradient: 'withIntensityFading',
-      })};
-      --select-border-color: ${theme.neutralColor(300)};
-    }
-
-    ${({ color }) =>
-      color &&
-      css`
-        --select-background-color: ${stringifyColor(
-          applyOpacityToColor(color, 0.15)
-        )};
-        --select-border-color: ${stringifyColor(
-          applyOpacityToColor(color, 0.25)
-        )};
-      `};
-
-    & ${Placeholder} {
-      color: ${theme.textColor({ useRootTheme: true, valuePropName: 'color' })};
-
-      &[data-empty='true'] {
-        color: ${theme.textColor({
-          useRootTheme: true,
-          variation: 'lowContrast',
-        })};
-      }
-    }
-  }
-
-  &[data-bare='true'] {
-    --select-border-color: ${theme.neutralColor(300)};
-    --select-color: ${theme.neutralColor(600)};
-    --select-background-color: ${theme.color('background')};
-    --select-border-width: 1px;
-  }
-
-  &[data-light='true'] {
-    --select-background-color: ${theme.color('background')};
-    font-size: ${fontScale.mars.size}px;
-    padding: 0 12px;
-
-    & ${Placeholder}:not([data-empty='true']) {
-      color: ${theme.color('primary', { valuePropName: 'color' })};
-    }
-  }
-
-  transition: ${transition('all')};
-
-  &:disabled,
-  &[data-disabled='true'] {
-    color: ${theme.textColor()};
-    pointer-events: none;
-
-    &:not([data-light='true']) {
-      &[data-background='true'] {
-        --select-background-color: ${theme.neutralColor(200, {
-          gradient: 'withIntensityFading',
-        })};
-      }
-    }
-
-    &::placeholder,
-    ${Placeholder} {
-      color: ${theme.textColor({
-        variation: 'lowContrast',
-        useRootTheme: true,
-      })};
-    }
-  }
-
-  &:hover,
-  &:focus,
-  &[data-open='true'] {
-    --select-border-color: ${theme.neutralColor(300)};
-
-    & ${IconsContainer} {
-      color: ${theme.textColor({ useRootTheme: true })};
-    }
-  }
-
-  &:focus,
-  &[data-open='true'] {
-    &[data-light='true'] {
-      background-color: ${theme.neutralColor(200)};
-    }
-
-    &:not([data-light='true']) {
-      background-color: ${theme.neutralColor(0)};
-    }
   }
 
   &[data-open='true'] {
@@ -197,6 +80,7 @@ export const SearchInput = styled.input.attrs(() => ({
 
 export const ElementLeftContainer = styled.div`
   margin-right: 8px;
+  color: var(--text-input-placeholder-color);
 `
 
 export const ResetIconContainer = styled.div`
@@ -209,6 +93,7 @@ export const ResetIconContainer = styled.div`
   z-index: 1;
   display: flex;
   align-items: center;
+  color: var(--text-input-placeholder-color);
 
   &:not([data-visible='true']) {
     opacity: 0;
@@ -218,7 +103,7 @@ export const ResetIconContainer = styled.div`
 
 export const ElementRightContainer = styled.div`
   transition: ${transition('opacity')};
-  color: var(--select-color);
+  color: var(--text-input-placeholder-color);
 
   &:not([data-visible='true']) {
     opacity: 0;

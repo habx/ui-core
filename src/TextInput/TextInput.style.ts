@@ -19,12 +19,23 @@ export const inputStyle = css`
       var(--text-input-border-color),
     0 0 0 var(--text-input-outline-width) var(--text-input-outline-color);
 
+  color: var(--text-input-color);
+
+  &::placeholder {
+    transition: ${transition('color')};
+    color: var(--text-input-placeholder-color);
+  }
+
   --text-input-border-width: 0;
   --text-input-font-size: ${fontScale.moon.size}px;
   --text-input-border-color: ${theme.neutralColor(300)};
   --text-input-outline-width: 0;
   --text-input-outline-color: ${theme.color('primary', { opacity: 0.3 })};
   --text-input-background-color: unset;
+  --text-input-color: ${theme.textColor()};
+  --text-input-placeholder-color: ${theme.textColor({
+    variation: 'lowContrast',
+  })};
 
   transition: ${transition('all')};
 
@@ -40,27 +51,19 @@ export const inputStyle = css`
   }
 
   &:not([data-light='true']) {
-    color: ${theme.textColor()};
     --text-input-background-color: ${theme.neutralColor(200)};
-
-    &::placeholder {
-      color: ${theme.textColor({
-        variation: 'lowContrast',
-      })};
-    }
 
     &:disabled,
     &[data-disabled='true'] {
-      color: ${theme.neutralColor(500)};
+      --text-input-color: ${theme.neutralColor(500)};
       pointer-events: none;
 
-      &::placeholder {
-        color: ${theme.neutralColor(300)};
-      }
+      --text-input-placeholder-color: ${theme.neutralColor(300)};
     }
 
     &:hover {
-      --text-input-border-width: 1px;
+      --text-input-color: ${theme.neutralColor(900)};
+      --text-input-placeholder-color: ${theme.neutralColor(900)};
     }
 
     &:active {
@@ -69,6 +72,7 @@ export const inputStyle = css`
     }
 
     &:focus-within,
+    &[data-open='true'],
     &[data-focused='true'] {
       --text-input-border-width: 0;
       --text-input-outline-width: 4px;
@@ -95,7 +99,7 @@ export const inputStyle = css`
   }
 
   &[data-light='true'] {
-    color: ${theme.color('primary')};
+    --text-input-color: ${theme.color('primary')};
     font-size: 18px;
     padding-left: 12px;
     padding-right: 12px;
@@ -106,7 +110,7 @@ export const inputStyle = css`
 
     &:focus-within {
       --text-input-border-width: 1px;
-      color: ${theme.textColor()};
+      --text-input-color: ${theme.textColor()};
     }
   }
 
@@ -124,6 +128,7 @@ export const SideElementContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  color: var(--text-input-placeholder-color);
 
   &[data-position='left'] {
     margin-right: 8px;
@@ -142,14 +147,20 @@ export const Input = styled.input`
   background-color: transparent;
   align-self: stretch;
   flex: 1 1 100%;
-  color: inherit;
+  color: var(--text-input-color);
   font-family: ${theme.font()};
   font-size: var(--text-input-font-size);
+
+  transition: ${transition('all')};
+
+  &::placeholder {
+    transition: ${transition('color')};
+    color: var(--text-input-placeholder-color);
+  }
 `
 
 export const InputContainer = styled.div`
   position: relative;
-  color: ${theme.textColor()};
   display: flex;
   align-items: center;
   padding: 0 12px;

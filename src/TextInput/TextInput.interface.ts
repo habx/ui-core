@@ -12,6 +12,9 @@ export interface TextInputInnerProps
 
   small?: boolean
   error?: boolean
+  /**
+   * @deprecated use bare instead
+   */
   light?: boolean
   bare?: boolean
   elementRight?: React.ReactNode
