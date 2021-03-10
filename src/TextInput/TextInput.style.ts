@@ -148,6 +148,7 @@ export const SideElementContainer = styled.div`
 export const Input = styled.input`
   outline: none;
   border: none;
+  width: 100%;
   -moz-appearance: none;
   -webkit-appearance: none;
   background-color: transparent;
