@@ -7,6 +7,7 @@ const DATE_PICKER_CONTEXT_DEFAULT_VALUE: DatePickerRangeContextValue = {
   endDate: null,
   locale: undefined,
   focusedDate: null,
+  numberOfMonths: 1,
   isDateFocused: () => false,
   isDateSelected: () => false,
   isDateHovered: () => false,
