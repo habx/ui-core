@@ -69,7 +69,7 @@
     "@storybook/theming": "^6.1.21",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
-    "@types/jest": "^26.0.20",
+    "@types/jest": "^26.0.21",
     "@types/lodash.deburr": "^4.1.6",
     "@types/markdown-it": "12.0.1",
     "@types/react": "^17.0.3",
