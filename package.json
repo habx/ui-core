@@ -44,8 +44,8 @@
   },
   "homepage": "https://github.com/habx/ui-core#readme",
   "peerDependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "styled-components": "^5.2.1"
   },
   "dependencies": {
@@ -55,7 +55,7 @@
     "markdown-it": "^12.0.4",
     "merge": "^2.1.1",
     "react-easy-swipe": "0.0.21",
-    "react-is": "^17.0.1"
+    "react-is": "^17.0.2"
   },
   "devDependencies": {
     "@habx/config-ci-front": "^0.7.0",
@@ -85,8 +85,8 @@
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "lint-staged": "^10.5.4",
     "node-fetch": "^2.6.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "rimraf": "^3.0.2",
     "rollup-plugin-typescript2": "^0.30.0",
     "sinon": "^9.2.4",
