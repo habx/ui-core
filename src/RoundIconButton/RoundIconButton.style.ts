@@ -11,6 +11,7 @@ export const RoundIconButtonContainer = styled.button`
   justify-content: center;
   border: none;
   outline: none;
+  padding: 0; // needed in safari mobile
   cursor: pointer;
   flex: 0 0 auto;
   box-shadow: inset 0 0 0 var(--round-icon-button-border-width)
