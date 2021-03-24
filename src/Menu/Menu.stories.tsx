@@ -32,6 +32,10 @@ const GRID_LINES = [
     title: 'Position horizontal',
     props: { position: 'horizontal' as 'horizontal' },
   },
+  {
+    title: 'Position centered',
+    props: { position: 'centered' as 'centered' },
+  },
 ]
 
 const GRID_ITEMS = [
