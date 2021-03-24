@@ -6,7 +6,7 @@ import {
   DatePickerRangeValue,
 } from '../DatePickerRange'
 
-export const DatePickerSingle: React.VoidFunctionComponent<DatePickerSingleProps> = ({
+export const DatePicker: React.VoidFunctionComponent<DatePickerProps> = ({
   value,
   onChange,
   ...props
@@ -32,7 +32,7 @@ export const DatePickerSingle: React.VoidFunctionComponent<DatePickerSingleProps
   )
 }
 
-export interface DatePickerSingleProps
+export interface DatePickerProps
   extends Omit<
     DatePickerRangeProps,
     'value' | 'onChange' | 'exactMinBookingDays'

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 import { withGrid } from '../_storybook/withGrid'
 
-import { DatePickerSingle, DatePickerSingleProps } from './index'
+import { DatePicker, DatePickerProps } from './index'
 
 const DatePickerContainer = styled.div`
   display: flex;
@@ -54,21 +54,19 @@ const GRID_ITEMS = [
   },
 ]
 
-const Grid = withGrid<DatePickerSingleProps>({
+const Grid = withGrid<DatePickerProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
   itemWrapper: DatePickerContainer,
-})(DatePickerSingle)
+})(DatePicker)
 
 export default {
-  title: 'Input/DatePickerSingle',
-  component: DatePickerSingle,
+  title: 'Input/DatePicker',
+  component: DatePicker,
 }
 
-export const basic = (props: DatePickerSingleProps) => (
-  <DatePickerSingle {...props} />
-)
+export const basic = (props: DatePickerProps) => <DatePicker {...props} />
 
 export const gallery = () => <Grid />
 

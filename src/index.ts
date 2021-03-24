@@ -70,7 +70,7 @@ export { ArrayInput, ArrayInputProps, ArrayInputItemComponentProps, ArrayInputAd
 export { Toggle, ToggleProps } from './Toggle'
 export { SearchBar, SearchBarProps } from './SearchBar'
 export { DatePickerRange, DatePickerRangeProps } from './DatePickerRange'
-export { DatePickerSingle, DatePickerSingleProps } from './DatePickerSingle'
+export { DatePicker, DatePickerProps } from './DatePicker'
 
 
 /*
