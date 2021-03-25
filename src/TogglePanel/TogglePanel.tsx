@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom'
 
 import { buildUseOnlyOneInstanceOpened } from '../_internal/buildUseOnlyOneInstanceOpened'
 import { isFunction } from '../_internal/data'
+import { useDisableScroll } from '../_internal/useDisableScroll'
 import { useWindowSize } from '../_internal/useWindowSize'
 import { ANIMATION_DURATIONS } from '../animations'
 import { breakpoints } from '../breakpoints'
@@ -45,6 +46,7 @@ const InnerTogglePanel = React.forwardRef<
     const [customStyle, setCustomStyle] = React.useState(style)
 
     const instanceId = useOnlyOneInstanceOpened({ open, onClose })
+    useDisableScroll(open)
 
     const modal = useModal<HTMLDivElement>({
       ref,
