@@ -42,6 +42,7 @@ export const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
         placeholder={placeholder}
         onChange={onChange}
         value={value}
+        autoComplete="off"
         {...rest}
       />
     )
