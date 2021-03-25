@@ -63,7 +63,6 @@ export const SearchPanel: React.VoidFunctionComponent<SearchPanelProps> = ({
     triggerRef={triggerRef}
     triggerElement={triggerElement}
     setStyle={setPanelStyle}
-    onClick={(e) => e.stopPropagation()}
   >
     {(modal) =>
       modal.state !== ModalState.closed && <InnerSearchPanel {...rest} />
