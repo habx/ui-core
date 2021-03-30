@@ -15,7 +15,7 @@ export const CardItem = React.forwardRef<HTMLButtonElement, CardItemProps>(
 
     return (
       <CardItemContainer ref={ref} {...rest}>
-        {icon && <Icon icon={icon} />}
+        {icon}
         <CardItemContent>{children}</CardItemContent>
         <ChevronIconContainer>
           <Icon icon="chevron-east" />

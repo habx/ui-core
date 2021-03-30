@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { CenteredComponent } from '../_storybook/CenteredComponent'
 import { withGrid } from '../_storybook/withGrid'
 import { Card } from '../Card'
+import { Icon } from '../Icon'
 import { Text } from '../Text'
 
 import { CardItem, CardItemProps } from './index'
@@ -22,7 +23,9 @@ const GRID_PROPS = {
 const GRID_LINES = [
   {
     title: 'Regular',
-    props: { children: <CardItem icon="edit">Item 1</CardItem> },
+    props: {
+      children: <CardItem icon={<Icon icon="edit" />}>Item 1</CardItem>,
+    },
   },
   {
     title: 'Without icon',
@@ -44,7 +47,7 @@ const GRID_LINES = [
     title: 'With complex children',
     props: {
       children: (
-        <CardItem icon="shower-head">
+        <CardItem icon={<Icon icon="shower-head" />}>
           <Text>Options TMAs</Text>
           <Text type="caption">23 elements with overlaping text</Text>
         </CardItem>
@@ -73,7 +76,7 @@ export default {
 export const basic = (props: CardItemProps) => (
   <CenteredComponent>
     <CardContainer>
-      <CardItem icon="edit" {...props}>
+      <CardItem iicon={<Icon icon="edit" />} {...props}>
         Item 1
       </CardItem>
     </CardContainer>

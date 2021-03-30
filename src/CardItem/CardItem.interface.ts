@@ -1,8 +1,6 @@
 import * as React from 'react'
 
-import { IconKey } from '../Icon'
-
 export interface CardItemProps extends React.HTMLAttributes<HTMLButtonElement> {
-  icon?: IconKey
+  icon?: React.ReactNode
   disabled?: boolean
 }
