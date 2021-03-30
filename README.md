@@ -1,4 +1,13 @@
-# @habx/ui-core
+
+<p align="center">
+  <a href="https://habx.github.io/concrete-docs/">
+    <img width="200" src="https://habx.github.io/concrete-docs/img/logo.svg">
+  </a>
+</p>
+
+<h1 align="center">@habx/ui-core</h1>
+
+<div align="center">
 
 [![CircleCI](https://img.shields.io/circleci/build/github/habx/ui-core)](https://app.circleci.com/pipelines/github/habx/ui-core)
 [![Version](https://img.shields.io/npm/v/@habx/ui-core)](https://www.npmjs.com/package/@habx/ui-core)
