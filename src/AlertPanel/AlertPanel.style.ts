@@ -12,18 +12,8 @@ export const AlertBannerContainer = styled.div`
   padding: 12px 24px;
   border-radius: 6px;
 
-  background: ${theme.color('primary', { variation: 'calmer' })};
-  color: ${theme.color('primary', { variation: 'loud' })};
-
-  &[data-warning='true'] {
-    background: ${theme.color('warning', { variation: 'calmer' })};
-    color: ${theme.color('warning', { variation: 'loud' })};
-  }
-
-  &[data-error='true'] {
-    background: ${theme.color('error', { variation: 'calmer' })};
-    color: ${theme.color('error', { variation: 'loud' })};
-  }
+  background: ${theme.color('primary', { variation: 'calmer', dynamic: true })};
+  color: ${theme.color('primary', { variation: 'loud', dynamic: true })};
 `
 
 export const IconContainer = styled.div`
