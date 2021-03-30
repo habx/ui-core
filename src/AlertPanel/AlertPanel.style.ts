@@ -6,6 +6,7 @@ export const AlertBannerContainer = styled.div`
   font-family: ${theme.font()};
 
   display: flex;
+  flex: 0 0 auto;
   flex-direction: row;
   align-items: flex-start;
 
