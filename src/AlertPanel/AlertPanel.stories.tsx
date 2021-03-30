@@ -44,6 +44,12 @@ const GRID_ITEMS = [
       error: true,
     },
   },
+  {
+    label: 'With title',
+    props: {
+      title: 'Title',
+    },
+  },
 ]
 
 const Grid = withGrid<AlertPanelProps>({

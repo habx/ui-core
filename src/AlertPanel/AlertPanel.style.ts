@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { Text } from '../Text'
 import { theme } from '../theme'
 
 export const AlertBannerContainer = styled.div`
@@ -18,6 +19,11 @@ export const AlertBannerContainer = styled.div`
 `
 
 export const IconContainer = styled.div`
-  margin-right: 16px;
-  margin-top: 2px;
+  margin: 2px 12px 0 -12px;
+`
+
+export const AlertPanelTitle = styled(Text)`
+  color: ${theme.color('primary', { variation: 'loud', dynamic: true })};
+  font-weight: 500;
+  margin-top: -2px;
 `
