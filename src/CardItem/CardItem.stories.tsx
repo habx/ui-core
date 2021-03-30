@@ -13,26 +13,32 @@ const CardContainer = styled(Card).attrs(() => ({ spacing: 'narrow' }))`
   width: 300px;
 `
 
-const GRID_PROPS = {
-  title: 'Rocket launcher',
-  description: 'Accédez au résumé de vos choix, recevez le par mail',
-  illustration:
-    '//res.cloudinary.com/habx/image/upload/illustrations/habxmojies/rocket.svg',
-}
+const GRID_LINES = [{}]
 
-const GRID_LINES = [
+const GRID_ITEMS = [
   {
-    title: 'Regular',
+    label: 'Regular',
     props: {
       children: <CardItem icon={<Icon icon="edit" />}>Item 1</CardItem>,
     },
   },
   {
-    title: 'Without icon',
+    label: 'Without icon',
     props: { children: <CardItem>Item 1</CardItem> },
   },
   {
-    title: 'Mutliple items',
+    label: 'With complex children',
+    props: {
+      children: (
+        <CardItem icon={<Icon icon="shower-head" />}>
+          <Text>Options TMAs</Text>
+          <Text type="caption">23 elements with overlaping text</Text>
+        </CardItem>
+      ),
+    },
+  },
+  {
+    label: 'Mutliple items',
     props: {
       children: (
         <React.Fragment>
@@ -43,27 +49,9 @@ const GRID_LINES = [
       ),
     },
   },
-  {
-    title: 'With complex children',
-    props: {
-      children: (
-        <CardItem icon={<Icon icon="shower-head" />}>
-          <Text>Options TMAs</Text>
-          <Text type="caption">23 elements with overlaping text</Text>
-        </CardItem>
-      ),
-    },
-  },
-]
-
-const GRID_ITEMS = [
-  {
-    label: 'Normal',
-  },
 ]
 
 const Grid = withGrid({
-  props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
 })(CardContainer)
@@ -76,7 +64,7 @@ export default {
 export const basic = (props: CardItemProps) => (
   <CenteredComponent>
     <CardContainer>
-      <CardItem iicon={<Icon icon="edit" />} {...props}>
+      <CardItem icon={<Icon icon="edit" />} {...props}>
         Item 1
       </CardItem>
     </CardContainer>
