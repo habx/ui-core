@@ -8,6 +8,7 @@ export const CardItemContainer = styled.button`
   outline: none;
 
   font-family: ${theme.font()};
+  font-size: 16px;
 
   flex: 1 1 auto;
   display: flex;
