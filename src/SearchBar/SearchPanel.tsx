@@ -36,6 +36,10 @@ const InnerSearchPanel: React.VoidFunctionComponent<InnerSearchPanelProps> = ({
     inputRef.current?.focus()
   }, [])
 
+  // Stop click propagation to avoid focusing search bar when click happens
+  // inside SearchPanel
+  const handleStopPropagation = (e: React.MouseEvent) => e.stopPropagation()
+
   return (
     <React.Fragment>
       <SearchPanelInputContainer>
@@ -49,7 +53,9 @@ const InnerSearchPanel: React.VoidFunctionComponent<InnerSearchPanelProps> = ({
           placeholder={placeholder}
         />
       </SearchPanelInputContainer>
-      <SearchPanelContent>{renderPanel()}</SearchPanelContent>
+      <SearchPanelContent onClick={handleStopPropagation}>
+        {renderPanel()}
+      </SearchPanelContent>
     </React.Fragment>
   )
 }
