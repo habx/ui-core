@@ -26,29 +26,58 @@ const GRID_LINES = [
         'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque autem dignissimos ea eum, expedita id ipsam, libero maxime neque, obcaecati officia possimus quod quos reiciendis sint tempora tenetur velit!',
     },
   },
+  {
+    title: 'With illustration',
+    props: {
+      illustration: (
+        <img
+          src="//res.cloudinary.com/habx/image/upload/illustrations/habxmojies/paint-bucket.svg"
+          alt="illustration"
+        />
+      ),
+      children:
+        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet atque autem dignissimos ea eum, expedita id ipsam, libero maxime neque, obcaecati officia possimus quod quos reiciendis sint tempora tenetur velit!',
+    },
+  },
 ]
 
 const GRID_ITEMS = [
   {
     label: 'Normal',
+    props: {
+      title: 'Title',
+    },
+  },
+  {
+    label: 'Success',
+    props: {
+      title: 'Title',
+      success: true,
+    },
   },
   {
     label: 'Warning',
     props: {
+      title: 'Title',
       warning: true,
     },
   },
   {
     label: 'Error',
     props: {
+      title: 'Title',
       error: true,
     },
   },
   {
-    label: 'With title',
+    label: 'Bare',
     props: {
       title: 'Title',
+      bare: true,
     },
+  },
+  {
+    label: 'Without title',
   },
 ]
 
@@ -76,4 +105,18 @@ export const basic = (props: AlertPanelProps) => (
   </Container>
 )
 
+basic.story = {
+  parameters: {
+    design: {
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/oTNjqlhFKMjVds2cyD3OpS/%F0%9F%A7%A9----Alert-Panel?node-id=102%3A773',
+    },
+  },
+}
+
 export const gallery = () => <Grid />
+
+export const lightBackground = () => <Grid background="light" />
+
+export const darkBackground = () => <Grid background="dark" />
