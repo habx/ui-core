@@ -74,5 +74,5 @@ export const useDisableScroll = (params: UseDisableScrollParams) => {
       enableScroll()
     }
     return enableScroll
-  }, [params])
+  }, [params.ignoreRef, params.enabled])
 }
