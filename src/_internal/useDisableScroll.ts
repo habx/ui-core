@@ -7,15 +7,6 @@ import { isClientSide } from './ssr'
 
 const SCROLL_KEYS = { 37: 1, 38: 1, 39: 1, 40: 1 }
 
-const preventDefault = (e: Event) => e.preventDefault()
-
-function preventDefaultForScrollKeys(e: KeyboardEvent) {
-  if (SCROLL_KEYS[e.keyCode as keyof typeof SCROLL_KEYS]) {
-    preventDefault(e)
-    return false
-  }
-}
-
 // modern Chrome requires { passive: false } when adding event
 let supportsPassive = false
 try {
@@ -37,29 +28,51 @@ const wheelEvent =
     ? 'wheel'
     : 'mousewheel'
 
-const disableScroll = () => {
-  window.addEventListener('DOMMouseScroll', preventDefault, false)
-  window.addEventListener('touchmove', preventDefault, wheelOpt)
-  window.addEventListener('keydown', preventDefaultForScrollKeys, false)
-  window.addEventListener(wheelEvent, preventDefault, wheelOpt)
+export type UseDisableScrollParams = {
+  enabled: boolean
+  ignoreRef?: React.RefObject<HTMLElement>
 }
 
-const enableScroll = () => {
-  window.removeEventListener('DOMMouseScroll', preventDefault, false)
-  window.removeEventListener('keydown', preventDefaultForScrollKeys, false)
-  // @ts-ignore
-  window.removeEventListener('touchmove', preventDefault, wheelOpt)
-  // @ts-ignore
-  window.removeEventListener(wheelEvent, preventDefault, wheelOpt)
-}
-
-export const useDisableScroll = (condition: boolean) => {
+export const useDisableScroll = (params: UseDisableScrollParams) => {
   React.useEffect(() => {
-    if (condition) {
+    const preventDefault = (e: Event) => {
+      if (
+        params.ignoreRef &&
+        e.target &&
+        !params.ignoreRef?.current?.contains(e.target as Node)
+      ) {
+        e.preventDefault()
+      }
+    }
+
+    const preventDefaultForScrollKeys = (e: KeyboardEvent) => {
+      if (SCROLL_KEYS[e.keyCode as keyof typeof SCROLL_KEYS]) {
+        preventDefault(e)
+        return false
+      }
+    }
+
+    const disableScroll = () => {
+      window.addEventListener('DOMMouseScroll', preventDefault, false)
+      window.addEventListener('touchmove', preventDefault, wheelOpt)
+      window.addEventListener('keydown', preventDefaultForScrollKeys, false)
+      window.addEventListener(wheelEvent, preventDefault, wheelOpt)
+    }
+
+    const enableScroll = () => {
+      window.removeEventListener('DOMMouseScroll', preventDefault, false)
+      window.removeEventListener('keydown', preventDefaultForScrollKeys, false)
+      // @ts-ignore
+      window.removeEventListener('touchmove', preventDefault, wheelOpt)
+      // @ts-ignore
+      window.removeEventListener(wheelEvent, preventDefault, wheelOpt)
+    }
+
+    if (params.enabled) {
       disableScroll()
     } else {
       enableScroll()
     }
     return enableScroll
-  }, [condition])
+  }, [params.ignoreRef, params.enabled])
 }
