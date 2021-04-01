@@ -1,7 +1,7 @@
 
 <p align="center">
   <a href="https://habx.github.io/concrete-docs/">
-    <img width="200" src="https://habx.github.io/concrete-docs/img/logo.svg">
+    <img width="200" src="https://habx.github.io/concrete-docs/img/concrete-cover.svg">
   </a>
 </p>
 
