@@ -46,7 +46,6 @@ const InnerTogglePanel = React.forwardRef<
     const [customStyle, setCustomStyle] = React.useState(style)
 
     const instanceId = useOnlyOneInstanceOpened({ open, onClose })
-    useDisableScroll(open)
 
     const modal = useModal<HTMLDivElement>({
       ref,
@@ -56,6 +55,8 @@ const InnerTogglePanel = React.forwardRef<
       animated: true,
       animationDuration: ANIMATION_DURATIONS.l,
     })
+
+    useDisableScroll({ enabled: open, ignoreRef: modal.ref })
 
     const shouldRenderModal = modal.hasAlreadyBeenOpened
 

@@ -155,7 +155,7 @@ export const useAutocomplete = ({
     }
   }, [handleFakeOnChange, options, ref, state, visibleOptions])
 
-  useDisableScroll(state.open)
+  useDisableScroll({ enabled: state.open, ignoreRef: menuRef })
 
   return {
     menuRef,
