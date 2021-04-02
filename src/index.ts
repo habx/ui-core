@@ -30,6 +30,7 @@ export { ConfirmMenu, ConfirmMenuProps } from './ConfirmMenu'
  */
 export { Button, ButtonProps } from './Button'
 export { CardButton, CardButtonProps } from './CardButton'
+export { CardButtonWithIllustration, CardButtonWithIllustrationProps } from './CardButtonWithIllustration'
 export { CardItem, CardItemProps } from './CardItem'
 export { FloatingButton, FloatingButtonProps } from './FloatingButton'
 export { FloatingIconButton, FloatingIconButtonProps } from './FloatingIconButton'

@@ -2,28 +2,59 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import { withGrid } from '../_storybook/withGrid'
+import { Icon } from '../Icon'
+import { Text } from '../Text'
 
 import { CardButton, CardButtonProps } from './index'
 
-const Container = styled.div`
-  height: 180px;
-  width: 376px;
+const Container = styled.div``
+
+const RegularCardButtonContent = styled.div`
+  display: flex;
+  flex-direction: column;
 `
 
-const GRID_PROPS = {
-  title: 'Rocket launcher',
-  description: 'Accédez au résumé de vos choix, recevez le par mail',
-  illustration:
-    '//res.cloudinary.com/habx/image/upload/illustrations/habxmojies/rocket.svg',
-}
+const NarrowCardButtonContent = styled.div`
+  display: flex;
+  align-items: center;
+  width: 480px;
+  white-space: nowrap;
+
+  & > *:not(:first-child):not(:last-child) {
+    flex: 1 1 100%;
+    margin: 0 12px;
+  }
+`
 
 const GRID_LINES = [
   {
-    title: 'Regular',
+    title: 'Spacing "regular"',
+    props: {
+      spacing: 'regular' as const,
+      children: (
+        <RegularCardButtonContent>
+          <Text>Version du 17/03/2021</Text>
+          <Text type="caption" variation="lowContrast">
+            14 références
+          </Text>
+        </RegularCardButtonContent>
+      ),
+    },
   },
   {
-    title: 'Outline',
-    props: { outline: true },
+    title: 'Spacing "narrow"',
+    props: {
+      spacing: 'narrow' as const,
+      children: (
+        <NarrowCardButtonContent>
+          <Icon icon="clock-restore-outline" />
+          <Text>Version du 17/03/2021</Text>
+          <Text type="caption" variation="lowContrast">
+            14 références
+          </Text>
+        </NarrowCardButtonContent>
+      ),
+    },
   },
 ]
 
@@ -35,10 +66,17 @@ const GRID_ITEMS = [
     label: 'Disabled',
     props: { disabled: true },
   },
+  {
+    label: 'Outline',
+    props: { outline: true },
+  },
+  {
+    label: 'Active',
+    props: { active: true },
+  },
 ]
 
 const Grid = withGrid<CardButtonProps>({
-  props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
   itemWrapper: Container,
@@ -47,18 +85,6 @@ const Grid = withGrid<CardButtonProps>({
 export default {
   title: 'Actions/CardButton',
   component: CardButton,
-  argTypes: {
-    title: {
-      defaultValue: 'Rocket launcher',
-    },
-    description: {
-      defaultValue: 'Accédez au résumé de vos choix, recevez le par mail',
-    },
-    illustration: {
-      defaultValue:
-        '//res.cloudinary.com/habx/image/upload/illustrations/habxmojies/rocket.svg',
-    },
-  },
 }
 
 export const basic = (props: CardButtonProps) => <CardButton {...props} />
