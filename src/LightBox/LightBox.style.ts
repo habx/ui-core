@@ -24,6 +24,7 @@ export const LightBoxContainer = styled(Layout)`
   z-index: ${zIndex.modals};
   display: flex;
   flex-direction: column;
+  overflow: auto;
 
   --layout-left-padding: 0;
   --layout-right-padding: 0;
@@ -81,7 +82,7 @@ export const LightBoxContainer = styled(Layout)`
 `
 
 export const CloseIcon = styled(IconButton)`
-  position: absolute;
+  position: fixed;
   top: 12px;
   right: 24px;
   z-index: 13;
