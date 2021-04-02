@@ -2,14 +2,13 @@ import { ModalState } from '@delangle/use-modal'
 import { format } from 'date-fns'
 import * as React from 'react'
 
+import { FakeInput } from '../FakeInput'
 import { menuDefaultPositionSetter } from '../Menu'
 import { TogglePanel, TogglePanelStyleSetter } from '../TogglePanel'
 import { useHasColoredBackground } from '../useHasColoredBackground'
-import { withLabel } from '../withLabel'
 
 import { DatePickerPanel } from './DatePickerPanel'
-import { DatePickerRangeInnerProps } from './DatePickerRange.interface'
-import { DatePickerFakeInput } from './DatePickerRange.style'
+import { DatePickerRangeProps } from './DatePickerRange.interface'
 
 const togglePanelStyleSetter: TogglePanelStyleSetter = (
   dimensions,
@@ -26,7 +25,7 @@ const togglePanelStyleSetter: TogglePanelStyleSetter = (
   })
 }
 
-const InnerDatePicker: React.VoidFunctionComponent<DatePickerRangeInnerProps> = ({
+export const DatePickerRange: React.VoidFunctionComponent<DatePickerRangeProps> = ({
   value,
   onChange,
   exactMinBookingDays,
@@ -95,23 +94,17 @@ const InnerDatePicker: React.VoidFunctionComponent<DatePickerRangeInnerProps> = 
           )
         }
       </TogglePanel>
-      <DatePickerFakeInput
+      <FakeInput
         ref={triggerRef}
         onFocus={handleTextInputFocus}
-        tabIndex={0}
-        data-error={error}
-        data-small={small}
+        error={error}
+        small={small}
         data-background={hasBackground}
-        data-disabled={disabled}
-        data-focused={isOpened}
+        disabled={disabled}
+        focused={isOpened}
+        value={inputValue}
         {...props}
-      >
-        {inputValue}
-      </DatePickerFakeInput>
+      />
     </React.Fragment>
   )
 }
-
-export const DatePickerRange = withLabel<HTMLDivElement>({
-  orientation: 'vertical',
-})<DatePickerRangeInnerProps>(InnerDatePicker)

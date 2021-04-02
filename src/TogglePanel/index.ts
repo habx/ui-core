@@ -1,6 +1,6 @@
 export { TogglePanel, useParentTogglePanel } from './TogglePanel'
 
-export type {
+export {
   TogglePanelProps,
   TogglePanelStyleSetter,
   Dimensions,

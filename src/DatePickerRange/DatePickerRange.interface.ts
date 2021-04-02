@@ -3,9 +3,8 @@ import {
   useDatepicker,
   UseDatepickerProps,
 } from '@datepicker-react/hooks'
-import * as React from 'react'
 
-import { WithLabel } from '../withLabel'
+import { FakeInputProps } from '../FakeInput'
 
 export interface DatePickerRangeContextValue
   extends Pick<
@@ -31,14 +30,11 @@ export type DatePickerRangeValue = {
   end: Date | null
 } | null
 
-export interface DatePickerRangeInnerProps
+export interface DatePickerRangeProps
   extends Pick<UseDatepickerProps, 'exactMinBookingDays'>,
-    Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+    Omit<FakeInputProps, 'onChange' | 'value'> {
   onChange: (value: DatePickerRangeValue) => void
   value: DatePickerRangeValue
-  small?: boolean
-  disabled?: boolean
-  error?: boolean
   locale: Locale
 
   /**
@@ -51,9 +47,6 @@ export interface DatePickerRangeInnerProps
    */
   inputDateFormat?: string
 }
-
-export interface DatePickerRangeProps
-  extends WithLabel<DatePickerRangeInnerProps> {}
 
 export interface DatePickerPanelProps
   extends Pick<UseDatepickerProps, 'exactMinBookingDays' | 'numberOfMonths'> {

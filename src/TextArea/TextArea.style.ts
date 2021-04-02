@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-import { inputStyle } from '../TextInput'
+import { transition } from '../animations'
+import { inputStyle } from '../FakeInput'
 
 export const Input = styled.textarea`
   flex: 1;
@@ -14,6 +15,11 @@ export const Input = styled.textarea`
 
   &[data-small='true'] {
     height: 8rem;
+  }
+
+  &::placeholder {
+    transition: ${transition('color')};
+    color: var(--input-placeholder-color);
   }
 
   ${inputStyle};

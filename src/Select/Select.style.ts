@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { transition } from '../animations'
-import { inputStyle } from '../TextInput'
+import { inputStyle } from '../FakeInput'
 import { theme } from '../theme'
 
 export const Placeholder = styled.div`
@@ -80,7 +80,7 @@ export const SearchInput = styled.input.attrs(() => ({
 
 export const ElementLeftContainer = styled.div`
   margin-right: 8px;
-  color: var(--text-input-placeholder-color);
+  color: var(--input-placeholder-color);
 `
 
 export const ResetIconContainer = styled.div`
@@ -93,7 +93,7 @@ export const ResetIconContainer = styled.div`
   z-index: 1;
   display: flex;
   align-items: center;
-  color: var(--text-input-placeholder-color);
+  color: var(--input-placeholder-color);
 
   &:not([data-visible='true']) {
     opacity: 0;
@@ -103,7 +103,7 @@ export const ResetIconContainer = styled.div`
 
 export const ElementRightContainer = styled.div`
   transition: ${transition('opacity')};
-  color: var(--text-input-placeholder-color);
+  color: var(--input-placeholder-color);
 
   &:not([data-visible='true']) {
     opacity: 0;
