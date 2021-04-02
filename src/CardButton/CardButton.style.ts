@@ -1,23 +1,18 @@
 import styled from 'styled-components'
 
+import { transition } from '../animations'
 import { theme } from '../theme'
-
-export const CardButtonIllustration = styled.img`
-  height: 48px;
-  margin-bottom: 12px;
-`
 
 export const CardButtonContainer = styled.button`
   outline: none;
   border: none;
-  padding: 24px;
   border-radius: 6px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
   text-align: left;
   cursor: pointer;
+  color: ${theme.textColor()};
+  user-select: none;
+  transition: ${transition('background-color', { duration: 's' })};
 
   --card-button-border-width: 0;
   --card-button-border-color: ${theme.neutralColor(300)};
@@ -32,7 +27,12 @@ export const CardButtonContainer = styled.button`
 
   background-color: var(--card-button-background-color);
 
-  &[data-outline='true']:not(:focus):not(:disabled) {
+  &[data-active='true']:not(:focus) {
+    --card-button-border-width: 2px;
+    --card-button-border-color: ${theme.color('primary')};
+  }
+
+  &[data-outline='true']:not(:focus):not(:disabled):not([data-active='true']) {
     --card-button-border-width: 1px;
 
     &:hover {
@@ -40,7 +40,7 @@ export const CardButtonContainer = styled.button`
     }
   }
 
-  &:not([data-outline='true']):not(:focus):not(:disabled) {
+  &:not([data-outline='true']):not(:focus):not(:disabled):not([data-active='true']) {
     --card-button-shadow: ${theme.shadow('low')};
 
     &:hover {
@@ -54,13 +54,17 @@ export const CardButtonContainer = styled.button`
 
   &:disabled {
     pointer-events: none;
+    filter: grayscale();
+    opacity: 0.5;
+  }
 
-    & > ${CardButtonIllustration} {
-      opacity: 0.3;
-    }
+  padding: 0;
 
-    & > *:not(${CardButtonIllustration}) {
-      opacity: 0.5;
-    }
+  &[data-spacing='regular'] {
+    padding: 24px;
+  }
+
+  &[data-spacing='narrow'] {
+    padding: 12px;
   }
 `
