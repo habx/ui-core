@@ -1,3 +1,3 @@
 export { RoundIconButton } from './RoundIconButton'
 
-export type { RoundIconButtonProps } from './RoundIconButton.interface'
+export { RoundIconButtonProps } from './RoundIconButton.interface'

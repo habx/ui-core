@@ -1,6 +1,6 @@
 export { DatePickerRange } from './DatePickerRange'
 
-export type {
+export {
   DatePickerRangeProps,
   DatePickerRangeValue,
 } from './DatePickerRange.interface'

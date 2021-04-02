@@ -1,3 +1,3 @@
 export { SlideShow } from './SlideShow'
 
-export type { SlideShowProps } from './SlideShow.interface'
+export { SlideShowProps } from './SlideShow.interface'

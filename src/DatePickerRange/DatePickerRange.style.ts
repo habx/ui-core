@@ -2,20 +2,7 @@ import styled from 'styled-components'
 
 import { Layout } from '../Layout'
 import { Text } from '../Text'
-import { inputStyle } from '../TextInput'
 import { theme } from '../theme'
-
-export const DatePickerFakeInput = styled.div`
-  ${inputStyle};
-
-  position: relative;
-  color: ${theme.textColor()};
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  max-height: 48px;
-  min-height: 48px;
-`
 
 export const DatePickerPanelContainer = styled(Layout)`
   box-shadow: ${theme.shadow()};

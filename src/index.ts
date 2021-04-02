@@ -64,7 +64,7 @@ export { PhoneInput, PhoneInputProps } from './PhoneInput'
 export { Select, SelectProps } from './Select'
 export { Slider, SliderProps, SliderTooltipFormatter } from './Slider'
 export { TextArea, TextAreaProps } from './TextArea'
-export { TextInput, TextInputProps, inputStyle } from './TextInput'
+export { TextInput, TextInputProps } from './TextInput'
 export { AutocompleteInput, AutocompleteInputProps } from './AutocompleteInput'
 export { TextInputList, TextInputListProps } from './TextInputList'
 export { ArrayInput, ArrayInputProps, ArrayInputItemComponentProps, ArrayInputAddButtonComponentProps } from './ArrayInput'
@@ -72,6 +72,7 @@ export { Toggle, ToggleProps } from './Toggle'
 export { SearchBar, SearchBarProps } from './SearchBar'
 export { DatePickerRange, DatePickerRangeProps } from './DatePickerRange'
 export { DatePicker, DatePickerProps } from './DatePicker'
+export { FakeInput, FakeInputProps, inputStyle } from './FakeInput'
 
 
 /*
