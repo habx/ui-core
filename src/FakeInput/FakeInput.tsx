@@ -6,6 +6,7 @@ import { FakeInputInnerProps } from './FakeInput.interface'
 import {
   FakeInputContainer,
   FakeInputContent,
+  IconButton,
   SideElementContainer,
 } from './FakeInput.style'
 
@@ -16,6 +17,7 @@ const InnerFakeInput = React.forwardRef<HTMLInputElement, FakeInputInnerProps>(
       tiny = false,
       error = false,
       focused,
+      canReset,
       disabled,
       elementLeft,
       elementRight,
@@ -40,12 +42,25 @@ const InnerFakeInput = React.forwardRef<HTMLInputElement, FakeInputInnerProps>(
             {elementLeft}
           </SideElementContainer>
         )}
+
         <FakeInputContent data-placeholder={!value}>
           {value ?? placeholder ?? ''}
         </FakeInputContent>
-        {elementRight && (
+
+        {(elementRight || canReset) && (
           <SideElementContainer data-position="right">
             {elementRight}
+
+            {canReset && value && `${value}`.length > 0 && (
+              <IconButton
+                icon="close"
+                onClick={(e) =>
+                  props.onChange?.({
+                    target: { ...e.target, value: '' },
+                  } as React.ChangeEvent<HTMLInputElement>)
+                }
+              />
+            )}
           </SideElementContainer>
         )}
       </FakeInputContainer>

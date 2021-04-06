@@ -53,16 +53,19 @@ const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
             {elementLeft}
           </SideElementContainer>
         )}
+
         <Input
           value={value ?? ''}
           disabled={disabled}
           {...rest}
           ref={inputRef}
         />
+
         {(elementRight || canReset) && (
           <SideElementContainer data-position="right">
-            {elementRight && elementRight}
-            {canReset && props.value && `${props.value}`.length > 0 && (
+            {elementRight}
+
+            {canReset && value && `${value}`.length > 0 && (
               <IconButton
                 icon="close"
                 onClick={(e) =>

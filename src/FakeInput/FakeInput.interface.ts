@@ -4,15 +4,16 @@ import { WithLabel } from '../withLabel'
 
 export interface FakeInputInnerProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  small?: boolean
-  tiny?: boolean
+  canReset?: boolean
+  disabled?: boolean
   elementLeft?: React.ReactNode
   elementRight?: React.ReactNode
-  placeholder?: string
-  value?: string
-  focused?: boolean
-  disabled?: boolean
   error?: boolean
+  focused?: boolean
+  placeholder?: string
+  small?: boolean
+  tiny?: boolean
+  value?: string
 }
 
 export interface FakeInputProps extends WithLabel<FakeInputInnerProps> {}
