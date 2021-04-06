@@ -67,7 +67,7 @@ export const DatePickerRange: React.VoidFunctionComponent<DatePickerRangeProps> 
     const startLabel = value.start ? format(value.start, inputDateFormat) : '?'
     const endLabel = value.end ? format(value.end, inputDateFormat) : '?'
 
-    return `${startLabel}  – ${endLabel}`
+    return `${startLabel} – ${endLabel}`
   }, [exactMinBookingDays, inputDateFormat, placeholder, value])
 
   return (
@@ -103,6 +103,11 @@ export const DatePickerRange: React.VoidFunctionComponent<DatePickerRangeProps> 
         disabled={disabled}
         focused={isOpened}
         value={inputValue}
+        onChange={
+          props.canReset
+            ? () => onChange({ start: null, end: null })
+            : undefined
+        }
         {...props}
       />
     </React.Fragment>
