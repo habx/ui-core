@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 
 import { transition } from '../animations'
 import { fontScale } from '../fontScale'
+import { Icon } from '../Icon'
 import { theme } from '../theme'
 
 export const inputStyle = css`
@@ -176,5 +177,11 @@ export const SideElementContainer = styled.div`
 
   &[data-position='right'] {
     margin-left: 8px;
+  }
+`
+
+export const IconButton = styled(Icon)`
+  &:hover {
+    cursor: pointer;
   }
 `

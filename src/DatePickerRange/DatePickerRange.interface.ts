@@ -33,9 +33,10 @@ export type DatePickerRangeValue = {
 export interface DatePickerRangeProps
   extends Pick<UseDatepickerProps, 'exactMinBookingDays'>,
     Omit<FakeInputProps, 'onChange' | 'value'> {
+  canReset?: boolean
   onChange: (value: DatePickerRangeValue) => void
   value: DatePickerRangeValue
-  locale: Locale
+  locale?: Locale
 
   /**
    * @default 2
@@ -51,7 +52,7 @@ export interface DatePickerRangeProps
 export interface DatePickerPanelProps
   extends Pick<UseDatepickerProps, 'exactMinBookingDays' | 'numberOfMonths'> {
   onAbort: () => void
-  locale: Locale
+  locale?: Locale
   value: DatePickerRangeValue
   onChange: (value: DatePickerRangeValue) => void
 }
