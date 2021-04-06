@@ -20,7 +20,10 @@ export interface FloatingPanelReceivedProps {
    *   return (
    *     <React.Fragment>
    *       <MyTable onSelectRow={setSelectedRow} />
-   *       <Modal>
+   *       <Modal
+   *         open={!!selectedRow}
+   *         value={selectedRow}
+   *       >
    *         {modal => modal.state !== ModalState.closed && <EditRow value={modal.value} />}
    *       </Modal>
    *     </React.Fragment>
