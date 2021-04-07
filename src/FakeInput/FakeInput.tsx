@@ -54,11 +54,14 @@ const InnerFakeInput = React.forwardRef<HTMLInputElement, FakeInputInnerProps>(
             {canReset && value && `${value}`.length > 0 && (
               <IconButton
                 icon="close"
-                onClick={(e) =>
+                tabIndex={-1}
+                onFocus={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation()
                   props.onChange?.({
                     target: { ...e.target, value: '' },
                   } as React.ChangeEvent<HTMLInputElement>)
-                }
+                }}
               />
             )}
           </SideElementContainer>
