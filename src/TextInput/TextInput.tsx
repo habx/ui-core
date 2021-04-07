@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { isFunction } from '../_internal/data'
 import { useMergedRef } from '../_internal/useMergedRef'
 import { useHasColoredBackground } from '../useHasColoredBackground'
 import { withLabel } from '../withLabel'
@@ -69,8 +68,7 @@ const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
               <IconButton
                 icon="close"
                 onClick={(e) =>
-                  isFunction(props.onChange) &&
-                  props.onChange({
+                  props.onChange?.({
                     target: { ...e.target, value: '' },
                   } as React.ChangeEvent<HTMLInputElement>)
                 }
