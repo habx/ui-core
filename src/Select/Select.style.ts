@@ -32,12 +32,17 @@ export const SelectContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  font-weight: 400;
 
   height: var(--select-height);
   padding: 0 12px;
   --select-height: 48px;
 
   cursor: pointer;
+
+  &[data-small='true'] {
+    --select-height: 36px;
+  }
 
   &[data-tiny='true'] {
     --select-height: 24px;
