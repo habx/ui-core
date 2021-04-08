@@ -88,10 +88,6 @@ basic.story = {
 
 export const gallery = () => <Grid />
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
 export default {
   title: 'Input/FakeInput',
   component: FakeInput,

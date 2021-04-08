@@ -1,8 +1,11 @@
 import * as React from 'react'
 import { createGlobalStyle } from 'styled-components'
 import styledNormalize from 'styled-normalize'
+import { useDarkMode } from 'storybook-dark-mode';
 
 import { Provider } from '../src/Provider'
+import { Background } from '../src/Background'
+import { palette } from '../src/palette'
 
 const FONT_ROOT = 'https://cdn.habx.com/assets/fonts'
 
@@ -57,11 +60,16 @@ const GlobalStyle = createGlobalStyle`
 
 `
 
-export const providerDecorator = (storyFn) => (
-  <React.Fragment>
+export const providerDecorator = (storyFn) => {
+  const isDark = useDarkMode()
+  return (
+    <React.Fragment>
       <Provider>
-        <GlobalStyle />
-        {storyFn()}
+        <GlobalStyle/>
+        <Background backgroundColor={isDark ? palette.neutralBlackWithIntensityFading[800] :  palette.neutralBlackWithIntensityFading[0]}>
+          {storyFn()}
+        </Background>
       </Provider>
-  </React.Fragment>
-)
+    </React.Fragment>
+  )
+}

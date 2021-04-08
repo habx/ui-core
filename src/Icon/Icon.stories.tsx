@@ -54,11 +54,3 @@ gallery.story = {
     },
   },
 }
-
-export const lightBackground = () => (
-  <Grid backgroundColor={palette.neutralBlackWithIntensityFading[100]} />
-)
-
-export const darkBackground = () => (
-  <Grid backgroundColor={palette.neutralBlackWithIntensityFading[900]} />
-)

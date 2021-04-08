@@ -1,12 +1,10 @@
 import * as React from 'react'
 import styled from 'styled-components'
 
-import { Background } from '../Background'
-import { palette } from '../palette'
 import { Text } from '../Text'
 import { Title } from '../Title'
 
-const StorybookGridContainer = styled(Background)`
+const StorybookGridContainer = styled.div`
   width: 100vw;
   height: 100%;
   min-height: 100vh;
@@ -81,31 +79,9 @@ export const withGrid = <Props extends object>(
     itemVerticalSpace = 12,
   } = config
 
-  const Component: React.FunctionComponent<{
-    background?: 'light' | 'dark' | 'none'
-  }> = ({ background = 'none' }) => {
-    const backgroundColor = React.useMemo(() => {
-      switch (background) {
-        case 'dark': {
-          return palette.neutralBlackWithIntensityFading[900]
-        }
-
-        case 'light': {
-          return palette.neutralBlackWithIntensityFading[100]
-        }
-
-        case 'none': {
-          return palette.neutralBlackWithIntensityFading[0]
-        }
-
-        default: {
-          return palette.neutralBlackWithIntensityFading[0]
-        }
-      }
-    }, [background])
-
+  const Component: React.FunctionComponent = () => {
     return (
-      <StorybookGridContainer backgroundColor={backgroundColor}>
+      <StorybookGridContainer>
         <StorybookGridContent>
           {lines.map((line, lineIndex) => {
             const content = (
