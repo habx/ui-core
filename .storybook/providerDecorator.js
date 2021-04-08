@@ -5,7 +5,7 @@ import { useDarkMode } from 'storybook-dark-mode';
 
 import { Provider } from '../src/Provider'
 import { Background } from '../src/Background'
-import {palette} from '../src'
+import { palette } from '../src/palette'
 
 const FONT_ROOT = 'https://cdn.habx.com/assets/fonts'
 
