@@ -12,6 +12,6 @@ const DEFAULT_CONTEXT = {
   expandIconPosition: 'left',
 }
 
-export const ExpansionPanelContext = React.createContext<
-  ExpansionPanelContextType
->(DEFAULT_CONTEXT as ExpansionPanelContextType)
+export const ExpansionPanelContext = React.createContext<ExpansionPanelContextType>(
+  DEFAULT_CONTEXT as ExpansionPanelContextType
+)
