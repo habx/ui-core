@@ -1,5 +1,4 @@
 import { addDecorator, addParameters } from '@storybook/react'
-import { create } from '@storybook/theming'
 import { themes } from '@storybook/theming';
 
 import { providerDecorator } from './providerDecorator'
@@ -43,10 +42,6 @@ addParameters({
       ],
     },
     sortStoriesByKind: true,
-    theme: create({
-      base: 'light',
-      brandTitle: 'Habx'
-    })
   },
   info: {},
   darkMode: theme,

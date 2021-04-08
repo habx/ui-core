@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { withGrid } from '../_storybook/withGrid'
 import { Card } from '../Card'
 import { Text } from '../Text'
+import { theme } from '../theme'
 
 import { AnnouncementBanner, AnnouncementBannerProps } from './index'
 
@@ -79,13 +80,11 @@ export const basic = (
   props: Omit<AnnouncementBannerProps, 'onClose' | 'onValidate'>
 ) => <AnnouncementBanner onClose={() => {}} onValidate={() => {}} {...props} />
 
-basic.story = {
-  parameters: {
-    design: {
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1828%3A13',
-    },
+basic.parameters = {
+  design: {
+    type: 'figma',
+    url:
+      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1828%3A13',
   },
 }
 

@@ -1,10 +1,8 @@
 import * as React from 'react'
 
-import {
-  DatePickerRange,
-  DatePickerRangeProps,
-  DatePickerRangeValue,
-} from '../DatePickerRange'
+import { DatePickerRange, DatePickerRangeValue } from '../DatePickerRange'
+
+import { DatePickerProps } from './DatePicker.interface'
 
 export const DatePicker: React.VoidFunctionComponent<DatePickerProps> = ({
   value,
@@ -30,13 +28,4 @@ export const DatePicker: React.VoidFunctionComponent<DatePickerProps> = ({
       {...props}
     />
   )
-}
-
-export interface DatePickerProps
-  extends Omit<
-    DatePickerRangeProps,
-    'value' | 'onChange' | 'exactMinBookingDays'
-  > {
-  value: Date | null
-  onChange: (value: Date | null) => void
 }

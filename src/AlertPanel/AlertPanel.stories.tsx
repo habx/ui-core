@@ -105,13 +105,11 @@ export const basic = (props: AlertPanelProps) => (
   </Container>
 )
 
-basic.story = {
-  parameters: {
-    design: {
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/oTNjqlhFKMjVds2cyD3OpS/%F0%9F%A7%A9----Alert-Panel?node-id=102%3A773',
-    },
+basic.parameters = {
+  design: {
+    type: 'figma',
+    url:
+      'https://www.figma.com/file/oTNjqlhFKMjVds2cyD3OpS/%F0%9F%A7%A9----Alert-Panel?node-id=102%3A773',
   },
 }
 

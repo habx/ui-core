@@ -1,3 +1,3 @@
 export { Select } from './Select'
 
-export { SelectProps } from './Select.interface'
+export type { SelectProps } from './Select.interface'

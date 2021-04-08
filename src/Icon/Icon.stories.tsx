@@ -45,12 +45,10 @@ export default {
 
 export const gallery = () => <Grid />
 
-gallery.story = {
-  parameters: {
-    design: {
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/xFbiz8LXs8yRdasUXgMJDn/Icons-%26-illustrations?node-id=10%3A2',
-    },
+gallery.parameters = {
+  design: {
+    type: 'figma',
+    url:
+      'https://www.figma.com/file/xFbiz8LXs8yRdasUXgMJDn/Icons-%26-illustrations?node-id=10%3A2',
   },
 }

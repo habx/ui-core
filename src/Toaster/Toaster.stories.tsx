@@ -86,16 +86,13 @@ export default {
 
 export const basic = (props: NotificationProps) => <Toaster {...props} />
 
-basic.story = {
-  parameters: {
-    design: {
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=60%3A4',
-    },
+basic.parameters = {
+  design: {
+    type: 'figma',
+    url:
+      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=60%3A4',
   },
 }
-
 export const gallery = () => <Grid />
 
 const eventTypes = ['warning', 'info', 'error'] as ColorType[]
