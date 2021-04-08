@@ -127,13 +127,11 @@ export default {
 
 export const basic = (props: SliderProps) => <Slider {...props} />
 
-basic.story = {
-  parameters: {
-    design: {
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=60%3A6',
-    },
+basic.parameters = {
+  design: {
+    type: 'figma',
+    url:
+      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=60%3A6',
   },
 }
 

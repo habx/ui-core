@@ -1,3 +1,3 @@
 export { AutocompleteInput } from './AutocompleteInput'
 
-export { AutocompleteInputProps } from './AutocompleteInput.interface'
+export type { AutocompleteInputProps } from './AutocompleteInput.interface'

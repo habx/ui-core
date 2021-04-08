@@ -82,13 +82,11 @@ export const basic = (props: TooltipProps) => (
   </CenteredComponent>
 )
 
-basic.story = {
-  parameters: {
-    design: {
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A2116',
-    },
+basic.parameters = {
+  design: {
+    type: 'figma',
+    url:
+      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A2116',
   },
 }
 

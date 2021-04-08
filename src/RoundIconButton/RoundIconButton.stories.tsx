@@ -61,13 +61,11 @@ export const basic = (props: RoundIconButtonProps) => (
   <RoundIconButton {...props} />
 )
 
-basic.story = {
-  parameters: {
-    design: {
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/ZQa5Akqvf8svk5NaKpQtK3/habx---2020-identity?node-id=573%3A4511',
-    },
+basic.parameters = {
+  design: {
+    type: 'figma',
+    url:
+      'https://www.figma.com/file/ZQa5Akqvf8svk5NaKpQtK3/habx---2020-identity?node-id=573%3A4511',
   },
 }
 

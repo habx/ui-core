@@ -42,13 +42,11 @@ export const basic = (props: LightBoxProps) => (
   <LightBox triggerElement={<Button outline>Open</Button>} {...props} />
 )
 
-basic.story = {
-  parameters: {
-    design: {
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=62%3A2',
-    },
+basic.parameters = {
+  design: {
+    type: 'figma',
+    url:
+      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=62%3A2',
   },
 }
 

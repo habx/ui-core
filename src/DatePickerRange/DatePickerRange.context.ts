@@ -18,6 +18,6 @@ const DATE_PICKER_CONTEXT_DEFAULT_VALUE: DatePickerRangeContextValue = {
   onDateSelect: () => {},
 }
 
-export const DatePickerRangeContext = React.createContext<
-  DatePickerRangeContextValue
->(DATE_PICKER_CONTEXT_DEFAULT_VALUE)
+export const DatePickerRangeContext = React.createContext<DatePickerRangeContextValue>(
+  DATE_PICKER_CONTEXT_DEFAULT_VALUE
+)

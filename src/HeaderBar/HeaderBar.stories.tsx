@@ -5,6 +5,7 @@ import { CenteredComponent } from '../_storybook/CenteredComponent'
 import { withGrid } from '../_storybook/withGrid'
 import { Button } from '../Button'
 import { Card } from '../Card'
+import { theme } from '../theme'
 import { Title } from '../Title'
 
 import { HeaderBar, HeaderBarProps } from './index'

@@ -118,13 +118,11 @@ export const basic = (props: CardProps) => (
   </CenteredComponent>
 )
 
-basic.story = {
-  parameters: {
-    design: {
-      type: 'figma',
-      url:
-        'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=4%3A0',
-    },
+basic.parameters = {
+  design: {
+    type: 'figma',
+    url:
+      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=4%3A0',
   },
 }
 

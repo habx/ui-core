@@ -1,0 +1,142 @@
+import { Meta, Canvas } from "@storybook/addon-docs/blocks";
+import { linkTo } from "@storybook/addon-links";
+import styled from "styled-components";
+
+import { ActionBar } from "./ActionBar";
+import { Breadcrumb } from "./Breadcrumb";
+import { BreadcrumbItem } from "./BreadcrumbItem";
+import { Button } from "./Button";
+import { Card } from "./Card";
+import { HeaderBar } from "./HeaderBar";
+import { Icon } from "./Icon";
+import { NavBar } from "./NavBar";
+import { NavBarItem } from "./NavBarItem";
+import { palette } from "./palette";
+import { Select } from "./Select";
+import { TextInput } from "./TextInput";
+import { Title } from "./Title";
+
+<Meta title="Introduction" />
+
+export const CenteredContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+`;
+
+<CenteredContainer>
+  <a href="https://habx.github.io/concrete-docs/">
+    <img
+      height="300"
+      src="https://habx.github.io/concrete-docs/img/concrete-cover.svg"
+      alt="logo"
+    />
+  </a>
+</CenteredContainer>
+
+# Global concepts
+
+For global concepts refer to our [documentation](https://habx.github.io/concrete-docs/docs)
+
+# Examples
+
+Here are some examples you could use to build your UI
+
+## Basic Page Layout
+
+<br />
+
+export const BasicPageContainer = styled.div`
+  display: flex;
+  flex: 1 1 auto;
+  height: 400px;
+  width: 100%;
+`;
+
+export const BasicPageContent = styled.div`
+  width: 100%;
+`;
+
+<Canvas>
+  <BasicPageContainer>
+    <NavBar backgroundColor={palette.blueMoon[600]}>
+      <NavBarItem icon={<Icon icon="house-building-outline" />} />
+      <NavBarItem icon={<Icon icon="person-outline" />} />
+    </NavBar>
+    <BasicPageContent>
+      <HeaderBar small>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            <Icon icon="house" />
+          </BreadcrumbItem>
+          <BreadcrumbItem>Section 1</BreadcrumbItem>
+          <BreadcrumbItem>Section 2</BreadcrumbItem>
+        </Breadcrumb>
+      </HeaderBar>
+    </BasicPageContent>
+  </BasicPageContainer>
+</Canvas>
+
+### Components stories
+
+export const basicPageComponents = [
+  { label: "NavBar", value: "Navigation/NavBar" },
+  { label: "Breadcrumb", value: "Navigation/Breadcrumb" },
+  { label: "HeaderBar", value: "Layouts/HeaderBar" },
+];
+
+<br />
+<ul>
+  {basicPageComponents.map((component) => (
+    <li key={component.value}>
+      <Button onClick={linkTo(component.value)} link>
+        {component.label}
+      </Button>
+    </li>
+  ))}
+</ul>
+
+## Basic Form
+
+<Canvas>
+  <Card outline spacing="regular">
+    <Title type="section">Form title</Title>
+    <br />
+    <TextInput label="Your name" />
+    <br />
+    <Select
+      options={[
+        { label: "Mexico", value: 1 },
+        { label: "Paris", value: 2 },
+      ]}
+      label="City"
+    />
+    <br />
+    <ActionBar>
+      <Button ghost>Cancel</Button>
+      <Button type="submit">Submit</Button>
+    </ActionBar>
+  </Card>
+</Canvas>
+
+### Components stories
+
+export const basicFormComponents = [
+  { label: "TextInput", value: "Input/TextInput" },
+  { label: "Select", value: "Input/Select" },
+  { label: "Title", value: "Typography/Title" },
+  { label: "Button", value: "Actions/Button" },
+  { label: "Card", value: "Layouts/Card" },
+  { label: "ActionBar", value: "Layouts/ActionBar" },
+];
+
+<br />
+<ul>
+  {basicFormComponents.map((component) => (
+    <li key={component.value}>
+      <Button onClick={linkTo(component.value)} link>
+        {component.label}
+      </Button>
+    </li>
+  ))}
+</ul>
