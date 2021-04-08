@@ -108,7 +108,3 @@ basic.story = {
 }
 
 export const gallery = () => <GridInteractive />
-
-export const lightBackground = () => <GridInteractive background="light" />
-
-export const darkBackground = () => <GridInteractive background="dark" />

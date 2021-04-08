@@ -10,6 +10,8 @@ export const CardItemContainer = styled.button`
   font-family: ${theme.font()};
   font-size: 16px;
 
+  color: ${theme.textColor()};
+
   flex: 1 1 auto;
   display: flex;
   align-items: center;

@@ -182,7 +182,3 @@ export const basic = (props: ArrayInputProps) => (
 )
 
 export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />

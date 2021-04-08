@@ -74,10 +74,9 @@ export default {
   component: TextInputList,
 }
 
-const AutoCompleteTextInput: React.FunctionComponent<Omit<
-  TextInputListProps,
-  'value' | 'onChange' | 'options'
->> = () => {
+const AutoCompleteTextInput: React.FunctionComponent<
+  Omit<TextInputListProps, 'value' | 'onChange' | 'options'>
+> = () => {
   const [value, setValue] = React.useState<(string | number)[]>([])
 
   return (
@@ -118,7 +117,3 @@ export const autocomplete = (
 )
 
 export const gallery = () => <Grid />
-
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />

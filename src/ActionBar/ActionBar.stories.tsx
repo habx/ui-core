@@ -109,8 +109,4 @@ export const basic = ({ ...props }) => (
 
 export const gallery = () => <Grid />
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
 export const inModal = () => <GridInModal />

@@ -107,8 +107,4 @@ export const basic = (props: ExpansionPanelProps) => (
 
 export const gallery = () => <Grid />
 
-export const lightBackground = () => <Grid background="light" />
-
-export const darkBackground = () => <Grid background="dark" />
-
 export const inCard = () => <GridInCard />
