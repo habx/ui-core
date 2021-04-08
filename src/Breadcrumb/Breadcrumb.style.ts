@@ -11,7 +11,7 @@ export const BreadcrumbContainer = styled.ul`
   padding: 0;
 
   > :first-child {
-    ${BreadcrumbItemContainer} {
+    &${BreadcrumbItemContainer}, ${BreadcrumbItemContainer} {
       margin-left: -12px;
     }
   }
