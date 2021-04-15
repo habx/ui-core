@@ -6,10 +6,10 @@ import {fontScale} from "../fontScale";
 
 export const AlertBannerContainer = styled.div`
   font-family: ${theme.font()};
-  font-size: ${fontScale.moon.size};
+  font-size: ${fontScale.moon.size}px;
 
   &[data-small="true"] {
-    font-size: ${fontScale.pluto.size};
+    font-size: ${fontScale.pluto.size}px;
   }
   
   display: flex;
