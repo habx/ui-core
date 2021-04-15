@@ -30,6 +30,7 @@ export const ControlledExpansionPanelItem = React.forwardRef<
     header,
     description,
     disabled,
+    sticky,
     ...rest
   } = props
 
@@ -97,6 +98,7 @@ export const ControlledExpansionPanelItem = React.forwardRef<
       <HeaderBar
         data-testid="expansion-panel-item-title-bar"
         onClick={onToggle}
+        data-sticky={open && sticky}
       >
         {header && (isFunction(header) ? header(panel) : header)}
         {!header && (
