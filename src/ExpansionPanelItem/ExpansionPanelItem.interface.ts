@@ -11,6 +11,10 @@ export interface ExpansionPanelItemProps
   header?: React.ReactNode | ((state: Modal) => React.ReactNode)
   disabled?: boolean
   defaultOpen?: boolean
+  /**
+   * Positionb sticky when opened
+   */
+  sticky?: boolean
 }
 
 export interface ControlledExpansionPanelItemProps
