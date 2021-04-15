@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { zIndex } from '../_internal/theme/zIndex'
 import { transition } from '../animations'
 import { Layout } from '../Layout'
 import { theme } from '../theme'
@@ -55,7 +56,17 @@ export const HeaderBar = styled.div`
   color: ${theme.color('secondary')};
 
   padding: var(--expansion-panel-item-horizontal-padding)
-    var(--layout-right-padding) 0 var(--layout-left-padding);
+    var(--layout-right-padding) var(--expansion-panel-item-horizontal-padding)
+    var(--layout-left-padding);
+  // Needed to keep bottom space when position sticky: true
+  margin-bottom: calc(-1 * var(--expansion-panel-item-horizontal-padding));
+
+  &[data-sticky='true'] {
+    position: sticky;
+    top: 0;
+    z-index: ${zIndex.dropDowns};
+    background: ${theme.color('background')};
+  }
 `
 
 export const HeaderBarElement = styled.div`
