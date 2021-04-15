@@ -75,6 +75,12 @@ const GRID_ITEMS = [
       title: 'Title',
       bare: true,
     },
+  },  {
+    label: 'Small',
+    props: {
+      title: 'Title',
+      small: true,
+    },
   },
   {
     label: 'Without title',
