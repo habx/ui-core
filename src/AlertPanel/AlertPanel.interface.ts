@@ -6,6 +6,7 @@ export interface AlertPanelProps extends React.HTMLAttributes<HTMLDivElement> {
   success?: boolean
   error?: boolean
   bare?: boolean
+  small?: boolean
   icon?: React.ReactNode
   illustration?: React.ReactNode
 }

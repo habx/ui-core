@@ -1,10 +1,16 @@
 import styled from 'styled-components'
 
+import { fontScale } from '../fontScale'
 import { Text } from '../Text'
 import { theme } from '../theme'
 
 export const AlertBannerContainer = styled.div`
   font-family: ${theme.font()};
+  font-size: ${fontScale.moon.size}px;
+
+  &[data-small='true'] {
+    font-size: ${fontScale.pluto.size}px;
+  }
 
   display: flex;
   flex: 0 0 auto;

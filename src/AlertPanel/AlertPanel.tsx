@@ -18,6 +18,7 @@ export const AlertPanel = React.forwardRef<HTMLDivElement, AlertPanelProps>(
       error,
       success,
       bare,
+      small,
       children,
       ...rest
     } = props
@@ -29,6 +30,7 @@ export const AlertPanel = React.forwardRef<HTMLDivElement, AlertPanelProps>(
         data-error={error}
         data-success={success}
         data-bare={bare}
+        data-small={small}
         {...rest}
       >
         {illustration && (
@@ -36,7 +38,11 @@ export const AlertPanel = React.forwardRef<HTMLDivElement, AlertPanelProps>(
         )}
         {icon && <IconContainer>{icon}</IconContainer>}
         <div>
-          {title && <AlertPanelTitle>{title}</AlertPanelTitle>}
+          {title && (
+            <AlertPanelTitle type={small ? 'small' : 'regular'}>
+              {title}
+            </AlertPanelTitle>
+          )}
           {children}
         </div>
       </AlertBannerContainer>
