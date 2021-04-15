@@ -38,7 +38,11 @@ export const AlertPanel = React.forwardRef<HTMLDivElement, AlertPanelProps>(
         )}
         {icon && <IconContainer>{icon}</IconContainer>}
         <div>
-          {title && <AlertPanelTitle type={small ? 'small' : 'regular'}>{title}</AlertPanelTitle>}
+          {title && (
+            <AlertPanelTitle type={small ? 'small' : 'regular'}>
+              {title}
+            </AlertPanelTitle>
+          )}
           {children}
         </div>
       </AlertBannerContainer>
