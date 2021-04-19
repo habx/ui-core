@@ -5,6 +5,7 @@ import { ActionBarContent } from '../ActionBar/ActionBar.style'
 import { animations } from '../animations'
 import { breakpoints } from '../breakpoints'
 import { Layout } from '../Layout'
+import { mixins } from '../mixins'
 import { theme } from '../theme'
 
 const FADE_IN = keyframes`
@@ -21,7 +22,6 @@ export const ModalContainer = styled(Layout)`
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 0;
   overflow: hidden;
 
   --modal-width: 448px;
@@ -117,8 +117,11 @@ export const ModalOverlay = styled.div`
 export const HeaderBarContainer = styled.div`
   display: flex;
   flex: 0 0 auto;
-  padding: var(--layout-top-padding) var(--layout-right-padding) 12px
-    var(--layout-left-padding);
+
+  ${mixins.removeLayoutPadding({ top: true, right: true, left: true })};
+  ${mixins.addLayoutPadding({ top: true, right: true, left: true })};
+
+  padding-bottom: 12px;
 
   @media (${breakpoints.above.phone}) {
     align-items: baseline;
@@ -142,6 +145,8 @@ export const ModalContent = styled.div`
   flex: 1 1 100%;
   min-height: 0;
   display: flex;
+
+  ${mixins.removeLayoutPadding({ right: true, bottom: true, left: true })};
 `
 
 export const ModalScrollableContent = styled.div`
@@ -151,8 +156,8 @@ export const ModalScrollableContent = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
 
-  padding: 12px var(--layout-right-padding) var(--layout-bottom-padding)
-    var(--layout-left-padding);
+  ${mixins.addLayoutPadding({ right: true, bottom: true, left: true })};
+  padding-top: 12px;
 
   @media (${breakpoints.below.phone}) {
     padding-bottom: 72px;

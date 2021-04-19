@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 
 import { theme } from '../theme'
+import {mixins} from "../mixins";
 
 const menuCssVariables = css`
   --menu-line-horizontal-padding: 24px;
@@ -25,8 +26,8 @@ export const FloatingMenu = styled.ul`
 `
 
 export const FullScreenMenu = styled.ul`
-  margin: 0 calc(0px - var(--layout-right-padding)) 0
-    calc(0px - var(--layout-left-padding));
+  ${mixins.removeLayoutPadding({ right: true, left: true })};
+  
   padding: 0;
 
   ${menuCssVariables};
