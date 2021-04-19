@@ -7,18 +7,18 @@ import {
 import { Background } from '../Background'
 import { breakpoints } from '../breakpoints'
 import { HeaderBarContainer } from '../HeaderBar/HeaderBar.style'
+import { mixins } from '../mixins'
 
 const style = css`
-  padding: var(--layout-top-padding) var(--layout-right-padding)
-    var(--layout-bottom-padding) var(--layout-left-padding);
+  ${mixins.addLayoutPadding()};
 
   &[data-has-action-bar='true'] {
     --layout-bottom-padding: 0 !important;
 
     & ${ActionBarContainer} {
       @media (${breakpoints.above.phone}) {
-        margin: 0 calc(0px - var(--layout-right-padding)) 0
-          calc(0px - var(--layout-left-padding));
+        ${mixins.removeLayoutPadding({ right: true, left: true })};
+
         position: sticky;
         bottom: 0;
 
@@ -39,13 +39,12 @@ const style = css`
   }
 
   &[data-has-header-bar='true'] {
-    --layout-top-padding: 0 !important;
-
     & ${HeaderBarContainer} {
+      ${mixins.removeLayoutPadding({ top: true, right: true, left: true })};
+
+      margin-bottom: var(--layout-top-padding);
       position: sticky;
-      top: 0;
-      margin: 0 calc(0px - var(--layout-right-padding)) 24px
-        calc(0px - var(--layout-left-padding));
+      top: calc(0px - var(--layout-top-padding));
     }
   }
 `

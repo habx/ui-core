@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
+import { mixins } from '../mixins'
+
 export const ExpansionPanelContainer = styled.div`
-  margin: 0 calc(0px - var(--layout-left-padding)) 0
-    calc(0px - var(--layout-right-padding));
+  ${mixins.removeLayoutPadding({ right: true, left: true })};
 
   &[data-disabled='true'] {
     pointer-events: none;
