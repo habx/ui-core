@@ -65,23 +65,23 @@ const LIGHT_THEME_VARIANT: ThemeVariant = {
     flat: [],
     lower: [
       { x: 0, y: 0, blur: 2, opacity: 0.06 },
-      { x: 0, y: 1, blur: 2, opacity: 0.1 },
+      { x: 0, y: 1, blur: 2, opacity: 0.1, isImpactedByHover: true },
     ],
     low: [
       { x: 0, y: 0, blur: 2, opacity: 0.06 },
-      { x: 0, y: 2, blur: 8, opacity: 0.1 },
+      { x: 0, y: 2, blur: 8, opacity: 0.1, isImpactedByHover: true },
     ],
     regular: [
       { x: 0, y: 0, blur: 1, opacity: 0.06 },
-      { x: 0, y: 4, blur: 12, opacity: 0.1 },
+      { x: 0, y: 4, blur: 12, opacity: 0.1, isImpactedByHover: true },
     ],
     high: [
       { x: 0, y: 0, blur: 2, opacity: 0.06 },
-      { x: 0, y: 12, blur: 24, opacity: 0.1 },
+      { x: 0, y: 12, blur: 24, opacity: 0.1, isImpactedByHover: true },
     ],
     higher: [
       { x: 0, y: 0, blur: 2, opacity: 0.06 },
-      { x: 0, y: 16, blur: 36, opacity: 0.15 },
+      { x: 0, y: 16, blur: 36, opacity: 0.15, isImpactedByHover: true },
     ],
   },
   defaultBackground: palette.neutralWhiteWithIntensityFading[1000],

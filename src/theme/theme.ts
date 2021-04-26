@@ -77,10 +77,10 @@ const shadowGetter = (
   }
 
   return `${shadowObject
-    .map((shadow, index) =>
+    .map((shadow) =>
       buildShadow(
-        index === 0
-          ? { ...shadow, opacity: shadow.opacity + 0.1, y: shadow.y + 4 }
+        shadow.isImpactedByHover
+          ? { ...shadow, opacity: shadow.opacity + 0.1 }
           : shadow
       )
     )

@@ -23,6 +23,11 @@ export interface Shadow {
   y: number
   blur: number
   opacity: number
+
+  /**
+   * If true, the hover version of this shadow will have an 10% opacity increase
+   */
+  isImpactedByHover?: boolean
 }
 
 export interface Shadows {
