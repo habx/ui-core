@@ -25,6 +25,6 @@ export interface LightBoxInnerProps extends LayoutProps {
 
 export interface LightBoxProps
   extends WithTriggerElement<
-    WithFloatingPanelBehavior<LightBoxInnerProps>,
+    Omit<WithFloatingPanelBehavior<LightBoxInnerProps>, 'persistent'>,
     HTMLDivElement
   > {}

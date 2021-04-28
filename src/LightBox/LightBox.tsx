@@ -61,7 +61,7 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
 )
 
 export const LightBox = withTriggerElement<HTMLDivElement>()<
-  WithFloatingPanelBehavior<LightBoxInnerProps>
+  Omit<WithFloatingPanelBehavior<LightBoxInnerProps>, 'persistent'>
 >(
   withFloatingPanelBehavior({
     animated: true,
