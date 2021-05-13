@@ -38,8 +38,8 @@ export const menuDefaultPositionSetter: MenuPositionSetter = ({
         const isMenuAboveTriggerOverflowing =
           bottomWithMenuAboveTrigger + menuHeight > innerHeight
         if (isMenuAboveTriggerOverflowing) {
-          // If the menu can't be placed without vertical overflowing then we place it below the trigger
-          top = topWithMenuBelowTrigger
+          // If the menu can't be placed without vertical overflowing then we place it at the very bottom
+          bottom = MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
         } else {
           // If the menu is only overflowing if placed below, then we place it above the trigger
           bottom = bottomWithMenuAboveTrigger
@@ -117,8 +117,8 @@ export const menuDefaultPositionSetter: MenuPositionSetter = ({
         const isMenuAlignedTopOverflowing =
           topWithMenuAlignedTop + menuHeight > innerWidth
         if (isMenuAlignedTopOverflowing) {
-          // If the menu can't be placed without vertical overflowing then we aligned it on the bottom of the trigger
-          bottom = bottomWithMenuAlignedBottom
+          // If the menu can't be placed without vertical overflowing then we place it at the very bottom
+          bottom = MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
         } else {
           // If the menu is only overflowing if aligned on the bottom, the we align it on the top
           top = topWithMenuAlignedTop
@@ -153,8 +153,8 @@ export const menuDefaultPositionSetter: MenuPositionSetter = ({
         const isMenuAboveTriggerOverflowing =
           bottomWithMenuAboveTrigger + menuHeight > innerHeight
         if (isMenuAboveTriggerOverflowing) {
-          // If the menu can't be placed without vertical overflowing then we place it below the trigger
-          top = topWithMenuBelowTrigger
+          // If the menu can't be placed without vertical overflowing then we place it at the very bottom
+          bottom = MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
         } else {
           // If the menu is only overflowing if placed below, then we place it above the trigger
           bottom = bottomWithMenuAboveTrigger
