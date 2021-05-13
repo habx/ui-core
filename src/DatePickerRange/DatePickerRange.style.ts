@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { ActionBarContainer } from '../ActionBar/ActionBar.style'
 import { Layout } from '../Layout'
 import { Text } from '../Text'
 import { theme } from '../theme'
@@ -12,6 +13,10 @@ export const DatePickerPanelContainer = styled(Layout)`
   --layout-right-padding: 24px;
   --layout-top-padding: 24px;
   --layout-bottom-padding: 24px;
+
+  & ${ActionBarContainer} {
+    position: initial !important; // remove sticky position
+  }
 `
 
 export const DatePickerPanelContent = styled.div`
