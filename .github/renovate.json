@@ -44,7 +44,7 @@
       ],
       "automerge": true,
       "labels": [
-        "automerge",
+        "automerge-noupdate",
         "dependencies"
       ]
     },
@@ -58,7 +58,7 @@
       ],
       "automerge": true,
       "labels": [
-        "automerge",
+        "automerge-noupdate",
         "dependencies"
       ]
     },
@@ -81,7 +81,7 @@
       ],
       "automerge": true,
       "labels": [
-        "automerge",
+        "automerge-noupdate",
         "dependencies"
       ]
     },
@@ -106,7 +106,7 @@
       "automerge": true,
       "prPriority": -5,
       "labels": [
-        "automerge",
+        "automerge-noupdate",
         "dependencies"
       ]
     },
@@ -122,13 +122,14 @@
       "automerge": true,
       "prPriority": -10,
       "labels": [
-        "automerge",
+        "automerge-noupdate",
         "dependencies"
       ]
     },
     {
       "packageNames": [
         "three",
+        "@types/three",
         "react-scripts"
       ],
       "automerge": false,
