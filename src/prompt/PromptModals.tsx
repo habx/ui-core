@@ -8,7 +8,7 @@ import { Modal } from '../Modal'
 import { subscribe } from './prompt'
 import { StateModal } from './PromptModals.interface'
 
-export const PromptModals: React.FunctionComponent<{}> = () => {
+export const PromptModals: React.VoidFunctionComponent = () => {
   const isMounted = useIsMounted()
   const registerTimeout = useTimeout()
 
@@ -18,9 +18,7 @@ export const PromptModals: React.FunctionComponent<{}> = () => {
     (modal: StateModal, response: unknown) => {
       if (isMounted.current) {
         setModals((prev) =>
-          prev.map<StateModal>((el) =>
-            el.id === modal.id ? { ...el, open: false } : el
-          )
+          prev.map((el) => (el.id === modal.id ? { ...el, open: false } : el))
         )
 
         registerTimeout(
@@ -41,54 +39,40 @@ export const PromptModals: React.FunctionComponent<{}> = () => {
     () =>
       subscribe(
         (props, options) =>
-          new Promise((resolve) => {
-            const modal: StateModal = {
-              props,
-              options,
-              resolve,
-              open: true,
-              id: Math.random(),
-            }
-
-            setModals((prev) => [...prev, modal])
-          })
+          new Promise((resolve) =>
+            setModals((prev) => [
+              ...prev,
+              {
+                options,
+                props,
+                resolve,
+                id: Math.random(),
+                open: true,
+              },
+            ])
+          )
       ),
     []
   )
 
   return (
-    <React.Fragment>
-      {modals.map((modal: StateModal) => {
-        const { Component, fullscreen, ...resultProps } = modal.props({
+    <>
+      {modals.map((modal) => {
+        const { Component, children, ...rest } = modal.props({
           onResolve: (response) => handleResolve(modal, response),
         })
 
-        const children = Component ? <Component /> : resultProps.children
+        rest.open ??= modal.open
 
-        if (fullscreen) {
-          return (
-            <LightBox
-              open={modal.open}
-              key={modal.id}
-              {...resultProps}
-              onClose={() => handleResolve(modal, undefined)}
-            >
-              {children}
-            </LightBox>
-          )
+        const props = {
+          ...rest,
+          children: Component ? <Component children={children} /> : children,
+          key: modal.id,
+          onClose: () => handleResolve(modal, undefined),
         }
 
-        return (
-          <Modal
-            open={modal.open}
-            key={modal.id}
-            {...resultProps}
-            onClose={() => handleResolve(modal, undefined)}
-          >
-            {children}
-          </Modal>
-        )
+        return props.fullscreen ? <LightBox {...props} /> : <Modal {...props} />
       })}
-    </React.Fragment>
+    </>
   )
 }

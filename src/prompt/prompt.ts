@@ -4,5 +4,6 @@ import { PromptMessage } from './PromptModals.interface'
 
 export const { dispatch: prompt, subscribe } = buildEventHandler<
   PromptMessage,
-  NotificationOptions
+  NotificationOptions,
+  Promise<any>
 >()

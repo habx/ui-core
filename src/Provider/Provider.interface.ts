@@ -1,3 +1,7 @@
+export interface Dispatch<Message, Options, Return> {
+  (message: Message, options?: Options): Return | void
+}
+
 export interface ProviderContextValue {
   confirmLabel: string
   cancelLabel: string
@@ -5,7 +9,10 @@ export interface ProviderContextValue {
 
 export interface ProviderProps {}
 
-export type subscriptionCallback<Message, Options> = (
-  message: Message,
-  options: Options
-) => Promise<any> | void
+export interface Subscribe<Message, Options, Return> {
+  (callback: SubscriptionCallback<Message, Options, Return>): () => void
+}
+
+export interface SubscriptionCallback<Message, Options, Return> {
+  (message: Message, options?: Options): Return
+}

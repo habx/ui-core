@@ -13,7 +13,7 @@ import { ToasterListContainer, ToasterContainer } from './ToasterList.style'
 
 const DEFAULT_DURATION = 5_000
 
-export const ToasterList: React.FunctionComponent = () => {
+export const ToasterList: React.VoidFunctionComponent = () => {
   const isMounted = useIsMounted()
   const registerTimeout = useTimeout()
 
@@ -93,7 +93,7 @@ export const ToasterList: React.FunctionComponent = () => {
 
   React.useEffect(
     () =>
-      subscribe((message, options) => {
+      subscribe((message, options = {}) => {
         const toastId = Math.random()
 
         let closeToastTimeout: number | undefined

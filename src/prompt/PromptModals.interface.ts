@@ -3,16 +3,19 @@ import * as React from 'react'
 import { LightBoxProps } from '../LightBox'
 import { ModalProps } from '../Modal'
 
-export type PromptMessage = (
-  injectedProps: PromptInjectedProps
-) => // doesn't work: https://github.com/microsoft/TypeScript/issues/241
-Omit<
-  PromptInjectedProps extends { fullscreen: true } ? LightBoxProps : ModalProps,
-  'onClose'
-> & {
-  fullscreen?: boolean
-  Component?: React.ComponentType<{}>
-}
+export type PromptMessage =
+  | ((
+      injectedProps: PromptInjectedProps
+    ) => Omit<LightBoxProps, 'onClose'> & {
+      fullscreen: true
+      Component?: React.ComponentType
+    })
+  | ((
+      injectedProps: PromptInjectedProps
+    ) => Omit<ModalProps, 'onClose'> & {
+      fullscreen?: false
+      Component?: React.ComponentType
+    })
 
 export type StateModal = {
   props: PromptMessage
@@ -22,6 +25,6 @@ export type StateModal = {
   id: number
 }
 
-export interface PromptInjectedProps {
+interface PromptInjectedProps {
   onResolve: (result: unknown) => void
 }

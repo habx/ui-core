@@ -9,10 +9,10 @@ import { ProviderProps } from './Provider.interface'
 export const Provider: React.FunctionComponent<ProviderProps> = ({
   children,
 }) => (
-  <React.Fragment>
+  <>
     {children}
     <ToasterList />
     <PromptModals />
     <CssVariables />
-  </React.Fragment>
+  </>
 )

@@ -8,16 +8,8 @@ import { ProviderContext } from '../Provider'
 
 import { ConfirmFormContainer } from './confirm.style'
 
-type ConfirmConfig = {
-  message: string
-  confirmLabel?: string
-  cancelLabel?: string
-}
-
 export const confirm = (config: ConfirmConfig | string) => {
-  const innerConfig: ConfirmConfig = isString(config)
-    ? { message: config }
-    : config
+  const innerConfig = isString(config) ? { message: config } : config
 
   return prompt(({ onResolve }) => ({
     title: innerConfig.message,
@@ -38,5 +30,11 @@ export const confirm = (config: ConfirmConfig | string) => {
       )
     },
     onClose: () => onResolve(false),
-  }))
+  })) as Promise<boolean> | void
+}
+
+interface ConfirmConfig {
+  message: string
+  confirmLabel?: string
+  cancelLabel?: string
 }
