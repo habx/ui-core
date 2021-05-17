@@ -1,5 +1,5 @@
 export interface Dispatch<Message, Options, Return> {
-  (message: Message, options?: Options): Return | void
+  <R = Return>(message: Message, options?: Options): Promise<R> | void
 }
 
 export interface ProviderContextValue {
@@ -9,10 +9,10 @@ export interface ProviderContextValue {
 
 export interface ProviderProps {}
 
-export interface Subscribe<Message, Options, Return> {
-  (callback: SubscriptionCallback<Message, Options, Return>): () => void
+export interface Subscribe<Message, Options> {
+  (callback: SubscriptionCallback<Message, Options>): () => void
 }
 
-export interface SubscriptionCallback<Message, Options, Return> {
-  (message: Message, options?: Options): Return
+export interface SubscriptionCallback<Message, Options> {
+  (message: Message, options?: Options): any
 }

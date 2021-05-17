@@ -5,12 +5,12 @@ export const buildEventHandler = <
   Options = {},
   Return = void
 >() => {
-  let subscription: SubscriptionCallback<Message, Options, Return> | null = null
+  let subscription: SubscriptionCallback<Message, Options> | null = null
 
   const dispatch: Dispatch<Message, Options, Return> = (message, options) =>
     subscription?.(message, options)
 
-  const subscribe: Subscribe<Message, Options, Return> = (callback) => {
+  const subscribe: Subscribe<Message, Options> = (callback) => {
     subscription = callback
 
     return () => {
