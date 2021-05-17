@@ -1,24 +1,20 @@
-import { isFunction } from '../_internal/data'
+import { Dispatch, Subscribe, SubscriptionCallback } from './Provider.interface'
 
-import { subscriptionCallback } from './Provider.interface'
+export const buildEventHandler = <
+  Message = string,
+  Options = {},
+  Return = void
+>() => {
+  let subscription: SubscriptionCallback<Message, Options> | null = null
 
-export const buildEventHandler = <Message = string, Options = {}>() => {
-  let subscription: subscriptionCallback<Message, Options> | null
+  const dispatch: Dispatch<Message, Options, Return> = (message, options) =>
+    subscription?.(message, options)
 
-  const subscribe = (callback: subscriptionCallback<Message, Options>) => {
+  const subscribe: Subscribe<Message, Options> = (callback) => {
     subscription = callback
 
     return () => {
       subscription = null
-    }
-  }
-
-  const dispatch = (
-    message: Message,
-    options: Options = {} as Options
-  ): Promise<any> | void => {
-    if (isFunction(subscription)) {
-      return subscription(message, options)
     }
   }
 

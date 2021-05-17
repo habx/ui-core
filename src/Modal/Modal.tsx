@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import { isFunction } from '../_internal/data'
+import { isFunction, isString } from '../_internal/data'
 import { ANIMATION_DURATIONS } from '../animations'
 import { RoundIconButton } from '../RoundIconButton'
 import { Title } from '../Title'
@@ -56,7 +56,11 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
           {...rest}
         >
           <HeaderBarContainer>
-            {title ? <Title type="section">{title}</Title> : <div />}
+            {isString(title) ? (
+              <Title type="section">{title}</Title>
+            ) : (
+              title ?? <div />
+            )}
             <RoundIconButton onClick={modal.close} icon="close" />
           </HeaderBarContainer>
           <ModalContent>
