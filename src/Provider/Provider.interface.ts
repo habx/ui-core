@@ -1,5 +1,5 @@
 export interface Dispatch<Message, Options, Return> {
-  <R = Return>(message: Message, options?: Options): Promise<R> | void
+  <R = Return>(message: Message, options?: Options): Promise<R> | undefined
 }
 
 export interface ProviderContextValue {
