@@ -105,7 +105,7 @@ export { Stepper, StepperProps, StepperStep } from './Stepper'
   Modals
  */
 export { LightBox, LightBoxProps } from './LightBox'
-export { Modal, ModalProps } from './Modal'
+export { Modal, ModalProps, ModalState } from './Modal'
 export { prompt } from './prompt'
 export { confirm } from './confirm'
 

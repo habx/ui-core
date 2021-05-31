@@ -20,3 +20,10 @@ export interface ModalProps
     WithFloatingPanelBehavior<ModalInnerProps>,
     HTMLDivElement
   > {}
+
+export enum ModalState {
+  opening = 'opening',
+  opened = 'opened',
+  closing = 'closing',
+  closed = 'closed',
+}
