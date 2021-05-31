@@ -106,6 +106,7 @@ export { Stepper, StepperProps, StepperStep } from './Stepper'
  */
 export { LightBox, LightBoxProps } from './LightBox'
 export { Modal, ModalProps } from './Modal'
+export { ModalState } from '@delangle/use-modal' 
 export { prompt } from './prompt'
 export { confirm } from './confirm'
 
