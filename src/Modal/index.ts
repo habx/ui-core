@@ -1,3 +1,3 @@
 export { Modal } from './Modal'
 
-export { ModalProps, ModalState } from './Modal.interface'
+export { ModalProps } from './Modal.interface'
