@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { AlertList } from '../alert/AlertList'
 import { ToasterList } from '../notify/ToasterList'
 import { PromptModals } from '../prompt/PromptModals'
 
@@ -10,6 +11,7 @@ export const Provider: React.FunctionComponent<ProviderProps> = ({
   children,
 }) => (
   <>
+    <AlertList />
     {children}
     <ToasterList />
     <PromptModals />

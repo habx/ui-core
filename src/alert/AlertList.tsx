@@ -1,16 +1,14 @@
 import * as React from 'react'
-// import * as ReactDOM from 'react-dom'
 
-import { useIsMounted, useTimeout } from '../_internal/hooks'
+import { useIsMounted } from '../_internal/hooks'
+import { AlertBannerProps } from '../AlertBanner'
+import { AlertBanner } from '../AlertBanner/AlertBanner'
 
 import { subscribe } from './alert'
-import { AlertOptions, StateAlert } from './AlertList.interface'
-
-const DEFAULT_DURATION = 5_000
+import { StateAlert } from './AlertList.interface'
 
 export const AlertList: React.VoidFunctionComponent = () => {
   const isMounted = useIsMounted()
-  const registerTimeout = useTimeout()
 
   const [alerts, setAlerts] = React.useState<StateAlert[]>([])
 
@@ -25,46 +23,40 @@ export const AlertList: React.VoidFunctionComponent = () => {
     [isMounted]
   )
 
-  const planClose = React.useCallback(
-    (alertId: number, options: AlertOptions) => {
-      const timeout = window.setTimeout(
-        () => handleClose(alertId),
-        options.duration || DEFAULT_DURATION
-      )
+  React.useEffect(() =>
+    subscribe((message, options = {}) => {
+      const alertId = Math.random()
 
-      registerTimeout(timeout)
+      const alert: StateAlert = {
+        message,
+        options,
+        open: true,
+        id: alertId,
+      }
 
-      return timeout
-    },
-    [handleClose, registerTimeout]
-  )
-
-  React.useEffect(
-    () =>
-      subscribe((message, options = {}) => {
-        const alertId = Math.random()
-
-        let closeToastTimeout: number | undefined
-
-        if (options.duration !== 0) {
-          closeToastTimeout = planClose(alertId, options)
-        }
-
-        const toast: StateAlert = {
-          message,
-          options,
-          open: true,
-          id: alertId,
-          timeout: closeToastTimeout ?? null,
-        }
-
-        setAlerts((prev) => [...prev, toast])
-      }),
-    [planClose]
+      setAlerts((prev) => [...prev, alert])
+    })
   )
 
   if (alerts.length === 0) {
     return null
   }
-  return <></>
+
+  return (
+    <>
+      {alerts.map((alert) => {
+        const props = (alert.message as AlertBannerProps)?.message
+          ? (alert.message as AlertBannerProps)
+          : { message: alert.message as string }
+
+        return (
+          <AlertBanner
+            onClose={() => handleClose(alert.id)}
+            {...props}
+            open={alert.open}
+          />
+        )
+      })}
+    </>
+  )
 }

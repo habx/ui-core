@@ -2,6 +2,8 @@ import * as React from 'react'
 import styled from 'styled-components'
 
 import { withGrid } from '../_storybook/withGrid'
+import { alert } from '../alert'
+import { Button } from '../Button'
 import { Card } from '../Card'
 import { Text } from '../Text'
 import { theme } from '../theme'
@@ -84,3 +86,16 @@ basic.parameters = {
 }
 
 export const gallery = () => <Grid />
+
+export const event = () => (
+  <Button
+    onClick={() =>
+      alert(
+        GRID_LINES[Math.floor(Math.random() * GRID_LINES.length)]
+          .props as AlertBannerProps
+      )
+    }
+  >
+    Alert me
+  </Button>
+)

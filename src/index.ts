@@ -116,6 +116,7 @@ export { confirm } from './confirm'
  */
 export { AnnouncementBanner, AnnouncementBannerProps } from './AnnouncementBanner'
 export { AlertBanner, AlertBannerProps } from './AlertBanner'
+export { alert } from './alert'
 export { AlertPanel, AlertPanelProps } from './AlertPanel'
 export { Tooltip, TooltipProps } from './Tooltip'
 export { Badge, BadgeProps } from './Badge'
