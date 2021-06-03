@@ -25,12 +25,11 @@ export const AlertList: React.VoidFunctionComponent = () => {
   )
 
   React.useEffect(() =>
-    subscribe((message, options = {}) => {
+    subscribe((message) => {
       const alertId = Math.random()
 
       const alert: StateAlert = {
         message,
-        options,
         open: true,
         id: alertId,
       }
