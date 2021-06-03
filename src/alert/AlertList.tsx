@@ -6,6 +6,7 @@ import { AlertBanner } from '../AlertBanner/AlertBanner'
 
 import { subscribe } from './alert'
 import { StateAlert } from './AlertList.interface'
+import { AlertContainer } from './AlertList.style'
 
 export const AlertList: React.VoidFunctionComponent = () => {
   const isMounted = useIsMounted()
@@ -43,7 +44,7 @@ export const AlertList: React.VoidFunctionComponent = () => {
   }
 
   return (
-    <>
+    <AlertContainer>
       {alerts.map((alert) => {
         const props = (alert.message as AlertBannerProps)?.message
           ? (alert.message as AlertBannerProps)
@@ -57,6 +58,6 @@ export const AlertList: React.VoidFunctionComponent = () => {
           />
         )
       })}
-    </>
+    </AlertContainer>
   )
 }
