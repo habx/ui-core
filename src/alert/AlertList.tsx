@@ -51,6 +51,7 @@ export const AlertList: React.VoidFunctionComponent = () => {
 
         return (
           <AlertBanner
+            key={alert.id}
             onClose={() => handleClose(alert.id)}
             {...props}
             open={alert.open}
