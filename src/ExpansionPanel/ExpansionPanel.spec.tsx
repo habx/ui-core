@@ -84,6 +84,7 @@ describe('ExpansionPanel component', () => {
   })
 
   it('should open the ExpansionPanelItem when defaultOpen', async () => {
+    jest.useRealTimers()
     const { queryAllByTestId } = render(
       <ExpansionPanel>
         <ExpansionPanelItem defaultOpen />
@@ -94,7 +95,10 @@ describe('ExpansionPanel component', () => {
     const items = queryAllByTestId('expansion-panel-item')
 
     await waitFor(
-      () => new Promise((resolve) => setTimeout(resolve, ANIMATION_DURATIONS.l))
+      () =>
+        new Promise((resolve) => {
+          setTimeout(resolve, ANIMATION_DURATIONS.l)
+        })
     )
     expect(
       within(items[0]).getByTestId('expansion-panel-item-content')
