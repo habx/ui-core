@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@datepicker-react/hooks": "^2.8.0",
-    "@delangle/use-modal": "^1.9.16",
+    "@delangle/use-modal": "^1.9.18",
     "color-parse": "^1.4.2",
     "date-fns": "^2.22.1",
     "lodash.deburr": "^4.1.0",
