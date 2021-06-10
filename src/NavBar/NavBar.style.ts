@@ -55,7 +55,7 @@ export const NavBarContainer = styled.ul<{ backgroundColor: string }>`
   flex-direction: column;
   transition: ${transition('width')};
   font-family: ${theme.font()};
-  background: ${palette.purpleDawn[800]};
+  background: ${palette.purpleDawn[900]};
 
   &[data-hover-icon='true'] {
     width: ${DEFAULT_SIZE + 6}px;
