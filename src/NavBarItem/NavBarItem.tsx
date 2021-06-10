@@ -24,7 +24,7 @@ export const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
       ...rest
     } = props
 
-    const { isInsideANavBar } = React.useContext(NavBarContext)
+    const { isInsideANavBar, isExpanded } = React.useContext(NavBarContext)
 
     assert(
       isInsideANavBar,
@@ -38,6 +38,7 @@ export const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
         data-bottom={bottom}
         data-active={active}
         data-disabled={disabled}
+        data-expanded={isExpanded}
         {...rest}
         ref={ref}
       >

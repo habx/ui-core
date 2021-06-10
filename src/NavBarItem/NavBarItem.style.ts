@@ -28,7 +28,7 @@ export const NavBarItemContainer = styled.li`
   user-select: none;
 
   &:hover {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.07);
   }
 
   &[data-bottom='true'] {
@@ -39,14 +39,20 @@ export const NavBarItemContainer = styled.li`
     margin-top: initial;
   }
 
-  &[data-active='true'],
-  &.active {
-    background-color: rgba(255, 255, 255, 0.3);
-  }
-
   &[data-disabled='true'] {
     pointer-events: none;
     opacity: 0.4;
+  }
+
+  &[data-expanded='true'] {
+    border-radius: 4px;
+    margin-right: 12px;
+    margin-left: 12px;
+
+    &[data-active='true'],
+    &.active {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
   }
 `
 
