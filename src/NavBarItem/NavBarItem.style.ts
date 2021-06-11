@@ -18,7 +18,7 @@ export const NavBarItemContainer = styled.li`
   position: relative;
   font-size: 12px;
   font-weight: bold;
-  padding: 8px 20px;
+  padding: 8px 18px;
   outline: none;
   display: flex;
   align-items: center;
