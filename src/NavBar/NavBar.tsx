@@ -3,7 +3,6 @@ import * as React from 'react'
 import { isString } from '../_internal/data'
 import { Icon } from '../Icon'
 import { Text } from '../Text'
-import { Triangle } from '../Triangle'
 
 import { NavBarContext } from './NavBar.context'
 import {
@@ -21,7 +20,6 @@ import {
   NavBarItemsContainer,
   NavBarToggleButton,
   TitleContainer,
-  GeometricalShapesContainer,
 } from './NavBar.style'
 
 const HOVER_AUTO_OPENING_DELAY = 750
@@ -132,20 +130,6 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
             data-hover-icon={state.isHoveringTitleIcon || state.isExpanded}
             backgroundColor={backgroundColor}
           >
-            <GeometricalShapesContainer data-expanded={state.isExpanded}>
-              <Triangle
-                height={120}
-                width={120}
-                origin={{ bottom: 0, left: 0 }}
-                color="rgba(255, 255, 255, 0.2)"
-              />
-              <Triangle
-                height={220}
-                width={250}
-                origin={{ bottom: 0, right: 0 }}
-                color="rgba(255, 255, 255, 0.2)"
-              />
-            </GeometricalShapesContainer>{' '}
             <NavBarHeader>
               {state.isExpanded && (
                 <TitleContainer>

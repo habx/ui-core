@@ -2,10 +2,11 @@ import styled from 'styled-components'
 
 import { transition } from '../animations'
 import { Background } from '../Background'
+import { palette } from '../palette'
 import { theme } from '../theme'
 
-const EXPANDED_SIZE = 250
-const DEFAULT_SIZE = 64
+const EXPANDED_SIZE = 332
+const DEFAULT_SIZE = 60
 
 export const NavBarToggleButton = styled.button`
   background: none;
@@ -17,20 +18,6 @@ export const NavBarToggleButton = styled.button`
   margin-left: auto;
   margin-right: auto;
   color: ${theme.textColor()};
-`
-
-export const GeometricalShapesContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  transition: ${transition('width')};
-  pointer-events: none;
-
-  &[data-expanded='true'] {
-    width: 250px;
-  }
 `
 
 export const TitleContainer = styled.div`
@@ -68,7 +55,7 @@ export const NavBarContainer = styled.ul<{ backgroundColor: string }>`
   flex-direction: column;
   transition: ${transition('width')};
   font-family: ${theme.font()};
-  background: ${(props) => props.backgroundColor};
+  background: ${palette.purpleDawn[900]};
 
   &[data-hover-icon='true'] {
     width: ${DEFAULT_SIZE + 6}px;
