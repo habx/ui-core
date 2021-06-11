@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import { transition } from '../animations'
 import { Background } from '../Background'
-import { palette } from '../palette'
 import { theme } from '../theme'
 
 const EXPANDED_SIZE = 332
@@ -55,7 +54,7 @@ export const NavBarContainer = styled.ul<{ backgroundColor: string }>`
   flex-direction: column;
   transition: ${transition('width')};
   font-family: ${theme.font()};
-  background: ${palette.purpleDawn[900]};
+  background: ${(props) => props.backgroundColor};
 
   &[data-hover-icon='true'] {
     width: ${DEFAULT_SIZE + 6}px;
