@@ -26,14 +26,19 @@ const Content: React.FunctionComponent<{ modal: Modal<HTMLDivElement> }> = ({
 export const NavBarMenuItem = React.forwardRef<
   HTMLDivElement,
   NavBarMenuItemProps
->(({ children, bottom, ...props }, ref) => (
-  <NavBarMenuItemContainer data-bottom={bottom}>
-    <Menu
-      position="horizontal"
-      ref={ref}
-      triggerElement={<NavBarItem {...props} />}
-    >
-      {(modal) => <Content modal={modal}>{children}</Content>}
-    </Menu>
-  </NavBarMenuItemContainer>
-))
+>(({ children, bottom, ...props }, ref) => {
+  const [isOpen, setIsOpen] = React.useState(false)
+  return (
+    <NavBarMenuItemContainer data-bottom={bottom}>
+      <Menu
+        onOpen={() => setIsOpen(true)}
+        onClose={() => setIsOpen(false)}
+        position="horizontal"
+        ref={ref}
+        triggerElement={<NavBarItem active={isOpen} {...props} />}
+      >
+        {(modal) => <Content modal={modal}>{children}</Content>}
+      </Menu>
+    </NavBarMenuItemContainer>
+  )
+})
