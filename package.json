@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@datepicker-react/hooks": "^2.8.0",
-    "@delangle/use-modal": "^1.9.18",
+    "@delangle/use-modal": "^1.9.20",
     "color-parse": "^1.4.2",
     "date-fns": "^2.22.1",
     "lodash.deburr": "^4.1.0",
@@ -60,16 +60,16 @@
     "react-is": "^17.0.2"
   },
   "devDependencies": {
-    "@habx/config-ci-front": "^0.11.0",
+    "@habx/config-ci-front": "^0.13.0",
     "@habx/eslint-config-client": "^6.0.0",
     "@liftr/tscov": "^2.0.0",
     "@storybook/addon-docs": "^6.2.9",
     "@storybook/addon-essentials": "^6.2.9",
     "@storybook/addon-links": "^6.2.9",
     "@storybook/react": "^6.2.9",
-    "@storybook/storybook-deployer": "^2.8.8",
+    "@storybook/storybook-deployer": "^2.8.10",
     "@storybook/theming": "^6.2.9",
-    "@testing-library/jest-dom": "^5.13.0",
+    "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@types/jest": "^26.0.23",
     "@types/lodash.deburr": "^4.1.6",
@@ -99,8 +99,8 @@
     "styled-normalize": "^8.0.7",
     "ts-jest": "^27.0.3",
     "ts-loader": "^9.2.3",
-    "tslib": "2.2",
-    "typescript": "^4.3.2"
+    "tslib": "2.3",
+    "typescript": "^4.3.4"
   },
   "storybook-deployer": {
     "commitMessage": "[SKIP CI] Deploy Storybook to GitHub Pages"
