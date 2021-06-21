@@ -84,4 +84,10 @@ export const NavBarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  & img {
+    height: ${DEFAULT_SIZE}px;
+    width: ${DEFAULT_SIZE}px;
+    object-fit: contain;
+  }
 `
