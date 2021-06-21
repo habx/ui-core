@@ -85,6 +85,7 @@ export const TextInputList = React.forwardRef<
   return (
     <TextInputListContainer>
       <AutocompleteInput
+        autoComplete="off"
         {...rest}
         small={small}
         ref={ref}
