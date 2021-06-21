@@ -38,6 +38,7 @@ export const AutocompleteInput = React.forwardRef<
         value={value}
         ref={inputRef}
         containerRef={containerRef}
+        autoComplete="off"
         {...inputProps}
       />
       {autocomplete.open && (

@@ -79,6 +79,7 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           )}
           {filterable && state.isOpened ? (
             <SearchInput
+              autoComplete="off"
               data-testid="select-input"
               value={state.query}
               onChange={actions.onSearch}
