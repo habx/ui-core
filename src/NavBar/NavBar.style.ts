@@ -88,5 +88,6 @@ export const NavBarHeader = styled.div`
   & img {
     height: ${DEFAULT_SIZE}px;
     width: ${DEFAULT_SIZE}px;
+    object-fit: contain;
   }
 `
