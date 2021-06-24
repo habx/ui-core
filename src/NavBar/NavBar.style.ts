@@ -80,10 +80,11 @@ export const NavBarItemsContainer = styled.div`
 export const NavBarHeader = styled.div`
   font-size: 20px;
   padding: 18px 12px;
+  margin-bottom: 12px;
   height: 72px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 
   & img {
     height: ${DEFAULT_SIZE}px;

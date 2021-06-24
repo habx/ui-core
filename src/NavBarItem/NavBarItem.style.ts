@@ -49,6 +49,9 @@ export const NavBarItemContainer = styled.li`
   }
 
   &[data-expanded='true'] {
+    margin-right: 12px;
+    margin-left: 12px;
+
     &[data-active='true'],
     &.active {
       background-color: rgba(255, 255, 255, 0.2);
