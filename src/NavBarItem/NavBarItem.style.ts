@@ -26,9 +26,6 @@ export const NavBarItemContainer = styled.li`
   cursor: pointer;
   white-space: nowrap;
   user-select: none;
-
-  margin-right: 6px;
-  margin-left: 6px;
   border-radius: 4px;
 
   &:hover {
@@ -49,9 +46,6 @@ export const NavBarItemContainer = styled.li`
   }
 
   &[data-expanded='true'] {
-    margin-right: 12px;
-    margin-left: 12px;
-
     &[data-active='true'],
     &.active {
       background-color: rgba(255, 255, 255, 0.2);
