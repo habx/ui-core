@@ -11,9 +11,9 @@ export const menuDefaultPositionSetter: MenuPositionSetter = ({
   const innerHeight = window.innerHeight
   const innerWidth = window.innerWidth
   const verticalScrollBarWidth =
-    window.innerWidth - document.documentElement.clientWidth
+    innerWidth - document.documentElement.clientWidth
   const horizontalScrollBarHeight =
-    window.innerHeight - document.documentElement.clientHeight
+    innerHeight - document.documentElement.clientHeight
 
   switch (position) {
     case 'vertical': {
@@ -110,12 +110,12 @@ export const menuDefaultPositionSetter: MenuPositionSetter = ({
         innerHeight - triggerDimensions.bottom - horizontalScrollBarHeight
 
       const isMenuAlignedBottomOverflowing =
-        bottomWithMenuAlignedBottom + menuHeight > innerWidth
+        bottomWithMenuAlignedBottom + menuHeight > innerHeight
       if (isMenuAlignedBottomOverflowing) {
         const topWithMenuAlignedTop = triggerDimensions.top
 
         const isMenuAlignedTopOverflowing =
-          topWithMenuAlignedTop + menuHeight > innerWidth
+          topWithMenuAlignedTop + menuHeight > innerHeight
         if (isMenuAlignedTopOverflowing) {
           // If the menu can't be placed without vertical overflowing then we place it at the very bottom
           bottom = MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN

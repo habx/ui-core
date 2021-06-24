@@ -44,13 +44,14 @@ export const NavBarFakeContainer = styled.div`
 export const NavBarContainer = styled.ul<{ backgroundColor: string }>`
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 18px 6px;
   flex: 0 0 auto;
   height: 100%;
   width: ${DEFAULT_SIZE}px;
   position: relative;
   z-index: 100;
   display: flex;
+  row-gap: 24px;
   flex-direction: column;
   transition: ${transition('width')};
   font-family: ${theme.font()};
@@ -62,11 +63,11 @@ export const NavBarContainer = styled.ul<{ backgroundColor: string }>`
 
   &[data-expanded='true'] {
     width: ${EXPANDED_SIZE}px;
+    padding: 18px 12px;
   }
 `
 
 export const NavBarItemsContainer = styled.div`
-  padding: 12px 0;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -79,11 +80,10 @@ export const NavBarItemsContainer = styled.div`
 
 export const NavBarHeader = styled.div`
   font-size: 20px;
-  padding: 18px 12px;
-  height: 72px;
+  height: 48px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 
   & img {
     height: ${DEFAULT_SIZE}px;
