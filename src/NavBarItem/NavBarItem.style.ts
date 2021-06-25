@@ -34,13 +34,24 @@ export const NavBarItemContainer = styled.li`
 
   &[data-bottom='true'] {
     margin-top: auto;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      right: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
   }
 
-  &[data-bottom='true'] + [data-bottom='true'] {
-    margin-top: initial;
-    border-top: none;
+  [data-bottom='true'] ~ &[data-bottom='true'] {
+    margin-top: unset;
+
+    &::before {
+      content: unset;
+    }
   }
 
   &[data-disabled='true'] {
