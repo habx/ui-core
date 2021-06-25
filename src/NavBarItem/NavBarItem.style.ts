@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 
 import { transition } from '../animations'
-import { Text } from '../Text'
 import { theme } from '../theme'
 
 export const IconContainer = styled.div`
-  height: 32px;
-  width: 24px;
+  height: 36px;
+  width: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,6 +21,7 @@ export const NavBarItemContainer = styled.li`
   outline: none;
   display: flex;
   align-items: center;
+  column-gap: 12px;
   transition: ${transition('background-color')};
   cursor: pointer;
   white-space: nowrap;
@@ -68,15 +68,6 @@ export const NavBarItemContainer = styled.li`
 `
 
 export const TextContainer = styled.div`
+  width: 100%;
   overflow: hidden;
-`
-
-export const TitleContainer = styled(Text)`
-  margin-left: 18px;
-  flex: 1 1 100%;
-`
-
-export const DescriptionContainer = styled(Text)`
-  margin-left: 18px;
-  flex: 1 1 100%;
 `
