@@ -2,14 +2,13 @@ import * as React from 'react'
 
 import { assert } from '../_internal/validityCheck'
 import { NavBarContext } from '../NavBar/NavBar.context'
+import { Text } from '../Text'
 
 import { NavBarItemProps } from './NavBarItem.interface'
 import {
-  DescriptionContainer,
   IconContainer,
   NavBarItemContainer,
   TextContainer,
-  TitleContainer,
 } from './NavBarItem.style'
 
 export const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
@@ -44,12 +43,8 @@ export const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
       >
         <IconContainer>{icon}</IconContainer>
         <TextContainer>
-          <TitleContainer variation="title">{label}</TitleContainer>
-          {description && (
-            <DescriptionContainer type="caption">
-              {description}
-            </DescriptionContainer>
-          )}
+          <Text variation="title">{label}</Text>
+          {description && <Text type="caption">{description}</Text>}
         </TextContainer>
       </NavBarItemContainer>
     )
