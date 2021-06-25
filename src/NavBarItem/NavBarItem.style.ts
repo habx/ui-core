@@ -68,6 +68,11 @@ export const NavBarItemContainer = styled.li`
 `
 
 export const TextContainer = styled.div`
-  width: 100%;
+  flex: 1;
   overflow: hidden;
+  > * {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 `
