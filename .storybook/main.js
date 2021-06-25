@@ -6,7 +6,4 @@ module.exports = {
     'storybook-addon-designs/register',
     '@storybook/addon-essentials'
   ],
-  typescript: {
-    reactDocgen: 'none', // TODO: enabled this when https://github.com/storybookjs/storybook/issues/15067 is resolved
-  }
 }
