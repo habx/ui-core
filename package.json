@@ -70,7 +70,7 @@
     "@storybook/storybook-deployer": "^2.8.10",
     "@storybook/theming": "^6.3.0",
     "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.7",
+    "@testing-library/react": "^12.0.0",
     "@types/jest": "^26.0.23",
     "@types/lodash.deburr": "^4.1.6",
     "@types/markdown-it": "12.0.2",
