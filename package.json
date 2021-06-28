@@ -84,7 +84,7 @@
     "eslint-plugin-mdx": "^1.13.0",
     "fork-ts-checker-webpack-plugin": "^6.2.12",
     "husky": "^4.3.8",
-    "jest": "^27.0.5",
+    "jest": "^27.0.6",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "lint-staged": "^11.0.0",
     "node-fetch": "^2.6.1",
