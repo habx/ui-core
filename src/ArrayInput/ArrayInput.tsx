@@ -29,6 +29,7 @@ export const InnerArrayInput = React.forwardRef<
     itemComponent: ItemComponent,
     renderItem: rawRenderItem,
     renderItemTitle: rawRenderItemTitle,
+    renderItemActions,
     canItemBeDeleted,
     canBeReordered = false,
     onChange: _onChange,
@@ -96,6 +97,7 @@ export const InnerArrayInput = React.forwardRef<
             key={index}
             renderItem={renderItem}
             renderItemTitle={renderItemTitle}
+            renderItemActions={renderItemActions}
             item={item}
             index={index}
             open={openedIndex === index}

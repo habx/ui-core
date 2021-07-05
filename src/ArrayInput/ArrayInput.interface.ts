@@ -44,6 +44,9 @@ export interface ArrayInputInnerProps
   itemTitleComponent?: React.ComponentType<ArrayInputItemComponentProps>
   renderItem?: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
   renderItemTitle?: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
+  renderItemActions?: (
+    itemProps: ArrayInputItemComponentProps
+  ) => React.ReactNode
 }
 
 export interface ArrayInputProps extends WithLabel<ArrayInputInnerProps> {}

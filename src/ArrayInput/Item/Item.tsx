@@ -24,6 +24,7 @@ export const Item: React.FunctionComponent<ItemProps> = ({
   open,
   renderItem,
   renderItemTitle,
+  renderItemActions,
   deleteIconTooltip,
   ...rest
 }) => {
@@ -58,9 +59,11 @@ export const Item: React.FunctionComponent<ItemProps> = ({
       data-testid="array-input-item-header"
     >
       <ItemHeaderContent>{renderItemTitle?.(state)}</ItemHeaderContent>
-      <ItemActions>
-        {!disabled && canBeReordered && (
+      <ItemActions onClick={(e) => e.stopPropagation()}>
+        {renderItemActions?.(state)}
+        {!disabled && !!onReorder && (
           <IconButton
+            disabled={!canBeReordered}
             data-disabled={index === 0}
             data-testid="array-input-item-mode-up"
             icon="arrow-north"
@@ -68,7 +71,7 @@ export const Item: React.FunctionComponent<ItemProps> = ({
             small
           />
         )}
-        {!disabled && (
+        {!disabled && (!!onDelete || !!deleteIconTooltip) && (
           <React.Fragment>
             {!!deleteIconTooltip ? (
               <Tooltip title={deleteIconTooltip}>
@@ -79,7 +82,11 @@ export const Item: React.FunctionComponent<ItemProps> = ({
             )}
           </React.Fragment>
         )}
-        <IconButton icon={open ? 'chevron-north' : 'chevron-south'} small />
+        <IconButton
+          icon={open ? 'chevron-north' : 'chevron-south'}
+          small
+          onClick={onClick}
+        />
       </ItemActions>
     </ItemHeaderContainer>
   )
