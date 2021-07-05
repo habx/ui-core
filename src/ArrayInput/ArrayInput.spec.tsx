@@ -129,19 +129,19 @@ describe('ArrayInput component', () => {
   })
 
   describe('reorder features', () => {
-    it('should display a reorder icon per line if canBeReordered = true', async () => {
+    it('should display a reorder icon per line if canBeReordered = true and reorder function provided', async () => {
       const { findAllByTestId } = render(
-        <ArrayInput items={DEFAULT_ITEMS} canBeReordered />
+        <ArrayInput items={DEFAULT_ITEMS} canBeReordered onReorder={() => {}} />
       )
 
-      const deleteIcons = await findAllByTestId('array-input-item-mode-up')
+      const moveIcons = await findAllByTestId('array-input-item-mode-up')
 
-      expect(deleteIcons).toHaveLength(2)
+      expect(moveIcons).toHaveLength(2)
     })
 
-    it('should not display any reorder icon if no canBeReordered given', async () => {
+    it('should not display any reorder icon if no canBeReordered given even if reorder function is provided', async () => {
       const { findAllByTestId, queryAllByTestId } = render(
-        <ArrayInput items={DEFAULT_ITEMS} />
+        <ArrayInput items={DEFAULT_ITEMS} onReorder={() => {}} />
       )
 
       await findAllByTestId('array-input-item')
