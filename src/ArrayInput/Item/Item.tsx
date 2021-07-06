@@ -12,6 +12,9 @@ import {
 import { ItemProps } from './Item.interface'
 import { ItemContent } from './Item.style'
 
+// Do not open expansion panel item if we click inside ActionsContainer
+const stopPropagation = (e: React.MouseEvent) => e.stopPropagation()
+
 export const Item: React.FunctionComponent<ItemProps> = ({
   item,
   index,
@@ -24,17 +27,15 @@ export const Item: React.FunctionComponent<ItemProps> = ({
   open,
   renderItem,
   renderItemTitle,
+  renderItemActions,
   deleteIconTooltip,
   ...rest
 }) => {
-  const handleDelete = (e: React.MouseEvent) => {
-    e.stopPropagation()
+  const handleDelete = () => {
     onDelete?.(index)
   }
 
-  const handleMoveUp = (e: React.MouseEvent) => {
-    e.stopPropagation()
-
+  const handleMoveUp = () => {
     if (index > 0) {
       onReorder?.(index, index - 1)
     }
@@ -58,17 +59,19 @@ export const Item: React.FunctionComponent<ItemProps> = ({
       data-testid="array-input-item-header"
     >
       <ItemHeaderContent>{renderItemTitle?.(state)}</ItemHeaderContent>
-      <ItemActions>
-        {!disabled && canBeReordered && (
+      <ItemActions onClick={stopPropagation}>
+        {renderItemActions?.(state)}
+        {!disabled && !!onReorder && (
           <IconButton
+            disabled={!canBeReordered}
             data-disabled={index === 0}
-            data-testid="array-input-item-mode-up"
+            data-testid="array-input-item-move-up"
             icon="arrow-north"
             onClick={handleMoveUp}
             small
           />
         )}
-        {!disabled && (
+        {!disabled && (!!onDelete || !!deleteIconTooltip) && (
           <React.Fragment>
             {!!deleteIconTooltip ? (
               <Tooltip title={deleteIconTooltip}>
@@ -79,7 +82,11 @@ export const Item: React.FunctionComponent<ItemProps> = ({
             )}
           </React.Fragment>
         )}
-        <IconButton icon={open ? 'chevron-north' : 'chevron-south'} small />
+        <IconButton
+          icon={open ? 'chevron-north' : 'chevron-south'}
+          small
+          onClick={onClick}
+        />
       </ItemActions>
     </ItemHeaderContainer>
   )
