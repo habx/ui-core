@@ -66,5 +66,6 @@ export const LightBox = withTriggerElement<HTMLDivElement>()<
   withFloatingPanelBehavior({
     animated: true,
     animationDuration: ANIMATION_DURATIONS.l,
+    persistent: true, // Lightbox is always persistent since it is displayed fullscreen
   })(InnerLightBox)
 )
