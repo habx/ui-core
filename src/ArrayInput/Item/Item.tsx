@@ -65,7 +65,7 @@ export const Item: React.FunctionComponent<ItemProps> = ({
           <IconButton
             disabled={!canBeReordered}
             data-disabled={index === 0}
-            data-testid="array-input-item-mode-up"
+            data-testid="array-input-item-move-up"
             icon="arrow-north"
             onClick={handleMoveUp}
             small

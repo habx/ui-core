@@ -1,4 +1,6 @@
 import { render, within, fireEvent, act } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
+
 import * as React from 'react'
 import sinon from 'sinon'
 
@@ -134,7 +136,7 @@ describe('ArrayInput component', () => {
         <ArrayInput items={DEFAULT_ITEMS} canBeReordered onReorder={() => {}} />
       )
 
-      const moveIcons = await findAllByTestId('array-input-item-mode-up')
+      const moveIcons = await findAllByTestId('array-input-item-move-up')
 
       expect(moveIcons).toHaveLength(2)
     })
@@ -146,7 +148,9 @@ describe('ArrayInput component', () => {
 
       await findAllByTestId('array-input-item')
 
-      expect(queryAllByTestId('array-input-item-move-up')).toHaveLength(0)
+      queryAllByTestId('array-input-item-move-up').forEach(($el) => {
+        expect($el).toBeDisabled()
+      })
     })
 
     it('should not display any reorder icon if canBeReordered = true and disabled = true', async () => {
@@ -170,7 +174,7 @@ describe('ArrayInput component', () => {
         />
       )
 
-      const deleteIcons = await findAllByTestId('array-input-item-mode-up')
+      const deleteIcons = await findAllByTestId('array-input-item-move-up')
 
       fireEvent.click(deleteIcons[1])
 
@@ -189,7 +193,7 @@ describe('ArrayInput component', () => {
         />
       )
 
-      const deleteIcons = await findAllByTestId('array-input-item-mode-up')
+      const deleteIcons = await findAllByTestId('array-input-item-move-up')
 
       fireEvent.click(deleteIcons[0])
 
