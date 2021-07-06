@@ -1,4 +1,6 @@
 import { render, within, fireEvent, act } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
+
 import * as React from 'react'
 import sinon from 'sinon'
 
@@ -129,24 +131,26 @@ describe('ArrayInput component', () => {
   })
 
   describe('reorder features', () => {
-    it('should display a reorder icon per line if canBeReordered = true', async () => {
+    it('should display a reorder icon per line if canBeReordered = true and reorder function provided', async () => {
       const { findAllByTestId } = render(
-        <ArrayInput items={DEFAULT_ITEMS} canBeReordered />
+        <ArrayInput items={DEFAULT_ITEMS} canBeReordered onReorder={() => {}} />
       )
 
-      const deleteIcons = await findAllByTestId('array-input-item-mode-up')
+      const moveIcons = await findAllByTestId('array-input-item-move-up')
 
-      expect(deleteIcons).toHaveLength(2)
+      expect(moveIcons).toHaveLength(2)
     })
 
-    it('should not display any reorder icon if no canBeReordered given', async () => {
+    it('should not display any reorder icon if no canBeReordered given even if reorder function is provided', async () => {
       const { findAllByTestId, queryAllByTestId } = render(
-        <ArrayInput items={DEFAULT_ITEMS} />
+        <ArrayInput items={DEFAULT_ITEMS} onReorder={() => {}} />
       )
 
       await findAllByTestId('array-input-item')
 
-      expect(queryAllByTestId('array-input-item-move-up')).toHaveLength(0)
+      queryAllByTestId('array-input-item-move-up').forEach(($el) => {
+        expect($el).toBeDisabled()
+      })
     })
 
     it('should not display any reorder icon if canBeReordered = true and disabled = true', async () => {
@@ -170,7 +174,7 @@ describe('ArrayInput component', () => {
         />
       )
 
-      const deleteIcons = await findAllByTestId('array-input-item-mode-up')
+      const deleteIcons = await findAllByTestId('array-input-item-move-up')
 
       fireEvent.click(deleteIcons[1])
 
@@ -189,7 +193,7 @@ describe('ArrayInput component', () => {
         />
       )
 
-      const deleteIcons = await findAllByTestId('array-input-item-mode-up')
+      const deleteIcons = await findAllByTestId('array-input-item-move-up')
 
       fireEvent.click(deleteIcons[0])
 

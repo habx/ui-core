@@ -13,6 +13,9 @@ export interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   disabled?: boolean
   renderItem: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
   renderItemTitle: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
+  renderItemActions?: (
+    itemProps: ArrayInputItemComponentProps
+  ) => React.ReactNode
 
   /*
    * Reordering behavior
@@ -26,4 +29,6 @@ export interface ItemProps extends React.HTMLAttributes<HTMLDivElement> {
   onDelete?: (position: number) => void
   canBeDeleted: boolean
   deleteIconTooltip?: string
+
+  onClick: (e: React.MouseEvent) => void
 }
