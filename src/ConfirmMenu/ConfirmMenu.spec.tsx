@@ -3,8 +3,9 @@ import * as React from 'react'
 import sinon from 'sinon'
 
 import { ANIMATION_DURATIONS } from '../animations'
+import { Provider } from '../Provider'
 
-import { ConfirmMenu, ConfirmMenuProps } from './index'
+import { ConfirmMenu, ConfirmMenuProps } from '.'
 
 import '@testing-library/jest-dom/extend-expect'
 
@@ -20,14 +21,17 @@ const InputWithConfirm = (props: ConfirmMenuProps) => {
   )
 }
 
+const renderConfirm = (element: React.ReactElement<ConfirmMenuProps>) =>
+  render(element, { wrapper: Provider })
+
 describe('Confirm Menu component', () => {
   it('should not be opened when input not focused', () => {
-    const { queryByTestId } = render(<InputWithConfirm />)
+    const { queryByTestId } = renderConfirm(<InputWithConfirm />)
     expect(queryByTestId('confirm-menu')).toBeNull()
   })
 
   it('should be opened when input focused', () => {
-    const { queryByTestId } = render(<InputWithConfirm />)
+    const { queryByTestId } = renderConfirm(<InputWithConfirm />)
 
     fireEvent.focus(queryByTestId('input') as Element)
 
@@ -42,7 +46,7 @@ describe('Confirm Menu component', () => {
   })
 
   it('should display 2 menu elements only', () => {
-    const { queryByTestId } = render(<InputWithConfirm />)
+    const { queryByTestId } = renderConfirm(<InputWithConfirm />)
 
     fireEvent.focus(queryByTestId('input') as Element)
 
@@ -55,7 +59,7 @@ describe('Confirm Menu component', () => {
 
   it('should call onConfirm on confirm click', () => {
     const spyOnConfirm = sinon.spy()
-    const { queryByTestId } = render(
+    const { queryByTestId } = renderConfirm(
       <InputWithConfirm onConfirm={spyOnConfirm} />
     )
 
@@ -72,7 +76,9 @@ describe('Confirm Menu component', () => {
 
   it('should call onClose on close click', () => {
     const spyOnClose = sinon.spy()
-    const { queryByTestId } = render(<InputWithConfirm onClose={spyOnClose} />)
+    const { queryByTestId } = renderConfirm(
+      <InputWithConfirm onClose={spyOnClose} />
+    )
 
     fireEvent.focus(queryByTestId('input') as Element)
 
