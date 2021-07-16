@@ -2,7 +2,7 @@ import { Modal } from '@delangle/use-modal'
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
-import { useWindowSize } from '../_internal/useWindowSize'
+import { useWindowWidth } from '../_internal/useWindowSize'
 import { breakpoints } from '../breakpoints'
 import { TogglePanel, TogglePanelStyleSetter } from '../TogglePanel'
 
@@ -26,13 +26,13 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
     },
     ref
   ) => {
-    const size = useWindowSize()
+    const width = useWindowWidth()
 
     const getChildren = React.useCallback(
       (modal: Modal<HTMLDivElement>) => {
         const content = isFunction(children) ? children(modal) : children
 
-        if (fullScreenOnMobile && size.width < breakpoints.raw.phone) {
+        if (fullScreenOnMobile && width < breakpoints.raw.phone) {
           return <FullScreenMenu>{content}</FullScreenMenu>
         }
 
@@ -42,21 +42,17 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
           </FloatingMenuContainer>
         )
       },
-      [children, fullScreenOnMobile, scrollable, size.width]
+      [children, fullScreenOnMobile, scrollable, width]
     )
 
     const setStyle = React.useCallback<TogglePanelStyleSetter>(
-      (dimensions, triggerDimensions) => {
-        const menuHeight = dimensions.clientHeight
-        const menuWidth = dimensions.clientWidth
-
-        return setPosition({
+      (dimensions, triggerDimensions) =>
+        setPosition({
           triggerDimensions,
-          menuHeight,
-          menuWidth,
+          menuHeight: dimensions.height,
+          menuWidth: dimensions.width,
           position,
-        })
-      },
+        }),
       [position, setPosition]
     )
 

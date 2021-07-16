@@ -12,5 +12,6 @@ export type MenuPositionSetter = (dimensions: {
 export interface MenuProps extends Omit<TogglePanelProps, 'setStyle'> {
   scrollable?: boolean
   position?: MenuPosition
+  /** This method must be static or memoized. */
   setPosition?: MenuPositionSetter
 }

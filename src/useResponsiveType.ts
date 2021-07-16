@@ -1,5 +1,5 @@
-import { useWindowWidth } from './_internal/hooks'
 import { isClientSide } from './_internal/ssr'
+import { useWindowWidth } from './_internal/useWindowSize'
 import { breakpoints } from './breakpoints'
 
 export const useResponsiveType = (defaultValue = 'phone') => {

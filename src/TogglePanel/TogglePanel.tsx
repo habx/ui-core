@@ -75,36 +75,29 @@ const InnerTogglePanel = React.forwardRef<
       const modalBoundingBox = modalElement.getBoundingClientRect()
       const triggerBoundingBox = triggerElement.getBoundingClientRect()
 
-      const dimensions = {
-        bottom: modalBoundingBox.bottom,
-        clientHeight: modalElement.clientHeight,
-        clientWidth: modalElement.clientWidth,
-        height: modalBoundingBox.height,
-        left: modalBoundingBox.left,
-        right: modalBoundingBox.right,
-        top: modalBoundingBox.top,
-        width: modalBoundingBox.width,
-      }
+      /*
+       * The dimensions returned by `getBoundingClientRect` take into account CSS transformations.
+       * `offsetWidth` and `offsetHeight` includes scrollbars and borders.
+       * Overriding the width and height prevents wrong placement of the panel, especially during opening transitions.
+       */
+      modalBoundingBox.width = modalElement.offsetWidth
+      modalBoundingBox.height = modalElement.offsetHeight
 
-      const triggerDimensions = {
-        bottom: triggerBoundingBox.bottom,
-        clientHeight: triggerElement.clientHeight,
-        clientWidth: triggerElement.clientWidth,
-        height: triggerBoundingBox.height,
-        left: triggerBoundingBox.left,
-        right: triggerBoundingBox.right,
-        top: triggerBoundingBox.top,
-        width: triggerBoundingBox.width,
-      }
+      setCustomStyle({
+        ...setStyle(modalBoundingBox, triggerBoundingBox),
+        ...style,
+      })
+    }, [modal.ref, setStyle, shouldRenderModal, triggerRef])
 
-      setCustomStyle({ ...setStyle(dimensions, triggerDimensions), ...style })
-    }, [modal.ref, setStyle, shouldRenderModal, style, triggerRef])
+    const parent = React.useContext(TogglePanelContext)
+    const backgroundColor = useCurrentBackground({ useRootTheme: true })
+    const dimension = useWindowSize()
 
     React.useEffect(() => {
       if (open) {
         updateStyle()
       }
-    }, [open, updateStyle])
+    }, [dimension, open, updateStyle])
 
     React.useEffect(() => {
       if (open) {
@@ -112,14 +105,6 @@ const InnerTogglePanel = React.forwardRef<
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open])
-
-    const size = useWindowSize()
-
-    React.useEffect(updateStyle, [children, size]) // eslint-disable-line react-hooks/exhaustive-deps
-
-    const parent = React.useContext(TogglePanelContext)
-
-    const backgroundColor = useCurrentBackground({ useRootTheme: true })
 
     if (!shouldRenderModal) {
       return null
@@ -131,7 +116,7 @@ const InnerTogglePanel = React.forwardRef<
       </InstanceProvider>
     )
 
-    if (fullScreenOnMobile && size.width < breakpoints.raw.phone) {
+    if (fullScreenOnMobile && dimension.width < breakpoints.raw.phone) {
       return (
         <TogglePanelContext.Provider value={modal}>
           <Modal onClose={onClose} open={open}>
