@@ -3,8 +3,9 @@ import * as React from 'react'
 import sinon from 'sinon'
 
 import { ANIMATION_DURATIONS } from '../animations'
+import { Provider } from '../Provider'
 
-import { Select } from './index'
+import { Select } from '.'
 import { OPTIONS } from './Select.data'
 import { SelectProps } from './Select.interface'
 
@@ -12,8 +13,11 @@ import '@testing-library/jest-dom/extend-expect'
 
 jest.useFakeTimers()
 
+const renderSelect = (element: React.ReactElement<SelectProps>) =>
+  render(element, { wrapper: Provider })
+
 const renderOpenedSelect = (element: React.ReactElement<SelectProps>) => {
-  const result = render(element)
+  const result = renderSelect(element)
 
   fireEvent.click(result.getByTestId('select-container'))
 
@@ -33,7 +37,7 @@ describe('Select component', () => {
     })
 
     it('should render placeholder inside Placeholder if no value given', () => {
-      const { queryByTestId } = render(
+      const { queryByTestId } = renderSelect(
         <Select options={OPTIONS} placeholder="Placeholder test content" />
       )
 
@@ -43,7 +47,7 @@ describe('Select component', () => {
     })
 
     it('should render value inside Placeholder if value is given', () => {
-      const { queryByTestId } = render(
+      const { queryByTestId } = renderSelect(
         <Select
           options={OPTIONS}
           placeholder="Placeholder test content"
@@ -57,7 +61,9 @@ describe('Select component', () => {
     })
 
     it('should open the dropdown when click on SelectContent and open = false', () => {
-      const { getByTestId, queryByTestId } = render(<Select options={[]} />)
+      const { getByTestId, queryByTestId } = renderSelect(
+        <Select options={[]} />
+      )
 
       expect(queryByTestId('options-container')).toBeNull()
       fireEvent.click(getByTestId('select-container'))
@@ -90,7 +96,7 @@ describe('Select component', () => {
     })
 
     it('should render no reset icon if canReset = false', () => {
-      const { queryByTestId } = render(
+      const { queryByTestId } = renderSelect(
         <Select options={OPTIONS} canReset={false} />
       )
 
@@ -102,7 +108,9 @@ describe('Select component', () => {
 
   describe('UI: filterable', () => {
     it('should not render an input if options closed', () => {
-      const { queryByTestId } = render(<Select options={OPTIONS} filterable />)
+      const { queryByTestId } = renderSelect(
+        <Select options={OPTIONS} filterable />
+      )
       expect(queryByTestId('select-input')).toBeFalsy()
     })
 

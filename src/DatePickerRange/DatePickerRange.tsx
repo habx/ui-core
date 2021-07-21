@@ -13,17 +13,13 @@ import { DatePickerRangeProps } from './DatePickerRange.interface'
 const togglePanelStyleSetter: TogglePanelStyleSetter = (
   dimensions,
   triggerDimensions
-) => {
-  const menuHeight = dimensions.clientHeight
-  const menuWidth = dimensions.clientWidth
-
-  return menuDefaultPositionSetter({
-    triggerDimensions,
-    menuHeight,
-    menuWidth,
+) =>
+  menuDefaultPositionSetter({
+    menuHeight: dimensions.height,
+    menuWidth: dimensions.width,
     position: 'centered',
+    triggerDimensions,
   })
-}
 
 export const DatePickerRange: React.VoidFunctionComponent<DatePickerRangeProps> = ({
   value,
@@ -57,11 +53,7 @@ export const DatePickerRange: React.VoidFunctionComponent<DatePickerRangeProps> 
     }
 
     if (exactMinBookingDays) {
-      if (!value.start) {
-        return ''
-      }
-
-      return format(value.start, inputDateFormat)
+      return value.start ? format(value.start, inputDateFormat) : ''
     }
 
     const startLabel = value.start ? format(value.start, inputDateFormat) : '?'
