@@ -4,13 +4,18 @@ import sinon from 'sinon'
 
 import * as validityCheck from '../_internal/validityCheck'
 import { BreadcrumbItem } from '../BreadcrumbItem'
+import { Provider } from '../Provider'
 
-import { Breadcrumb } from './index'
+import { Breadcrumb } from '.'
 
 import '@testing-library/jest-dom/extend-expect'
+import { BreadcrumbProps } from './Breadcrumb.interface'
 
 jest.useFakeTimers()
 const sinonSandbox = sinon.createSandbox()
+
+const renderBreadcrumb = (element: React.ReactElement<BreadcrumbProps>) =>
+  render(element, { wrapper: Provider })
 
 describe('Breadcrumb component', () => {
   afterEach(() => {
@@ -18,7 +23,7 @@ describe('Breadcrumb component', () => {
   })
 
   it('should render each BreadcrumbItem', async () => {
-    const { queryAllByTestId } = render(
+    const { queryAllByTestId } = renderBreadcrumb(
       <Breadcrumb>
         <BreadcrumbItem />
         <BreadcrumbItem />
@@ -31,7 +36,7 @@ describe('Breadcrumb component', () => {
   })
 
   it('should render right amont of children', async () => {
-    const { queryByTestId } = render(
+    const { queryByTestId } = renderBreadcrumb(
       <Breadcrumb>
         <BreadcrumbItem />
         <BreadcrumbItem />
@@ -46,7 +51,7 @@ describe('Breadcrumb component', () => {
 
   it('should not render more than max items', async () => {
     const MAX_ITEMS = 3
-    const { queryByTestId } = render(
+    const { queryByTestId } = renderBreadcrumb(
       <Breadcrumb maxItems={MAX_ITEMS}>
         <BreadcrumbItem />
         <BreadcrumbItem />
@@ -64,7 +69,7 @@ describe('Breadcrumb component', () => {
   it('should warn if maxItems < 3', async () => {
     const logWarnStub = sinonSandbox.stub(validityCheck, 'logWarn')
 
-    render(<Breadcrumb maxItems={0} />)
+    renderBreadcrumb(<Breadcrumb maxItems={0} />)
 
     expect(logWarnStub.called).toBe(true)
   })

@@ -29,23 +29,3 @@ export const useIsMounted = () => {
 
   return isMounted
 }
-
-export const useWindowWidth = () => {
-  const [width, setWidth] = React.useState(
-    typeof window === 'object' ? window.innerWidth : 0
-  )
-
-  React.useEffect(() => {
-    if (typeof window === 'object') {
-      const handleResize = () => setWidth(window.innerWidth)
-
-      window.addEventListener('resize', handleResize)
-
-      return () => {
-        window.removeEventListener('resize', handleResize)
-      }
-    }
-  }, [])
-
-  return width
-}

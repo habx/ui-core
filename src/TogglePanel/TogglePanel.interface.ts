@@ -17,6 +17,7 @@ export interface InnerTogglePanelProps
   onClose: () => void
   onOpen?: () => void
   open: boolean
+  /** This method must be static or memoized. */
   setStyle?: TogglePanelStyleSetter
   triggerRef?: React.RefObject<HTMLElement | null>
   withOverlay?: boolean
@@ -29,8 +30,6 @@ export type TogglePanelProps = WithTriggerElement<
 
 export interface Dimensions {
   bottom: number
-  clientHeight: number
-  clientWidth: number
   height: number
   left: number
   right: number
