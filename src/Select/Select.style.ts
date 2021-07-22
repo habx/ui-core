@@ -1,6 +1,7 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { transition } from '../animations'
+import { applyOpacityToColor, stringifyColor } from '../color'
 import { inputStyle } from '../FakeInput'
 import { theme } from '../theme'
 
@@ -33,6 +34,15 @@ export const SelectContainer = styled.div`
   display: flex;
   align-items: center;
   font-weight: 400;
+
+  ${({ color }) =>
+    color &&
+    css`
+      &:not([data-bare='true']) {
+        background-color: ${stringifyColor(applyOpacityToColor(color, 0.15))};
+        border-color: ${stringifyColor(applyOpacityToColor(color, 0.25))};
+      }
+    `}
 
   height: var(--select-height);
   padding: 0 12px;
