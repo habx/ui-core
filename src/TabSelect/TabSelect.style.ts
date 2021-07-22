@@ -4,48 +4,36 @@ import { theme } from '..'
 
 export const TabSelectContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 0px;
-  cursor: pointer;
-  border-radius: 4px;
-  border: 1px solid
-    ${theme.neutralColor(300, {
-      gradient: 'withIntensityFading',
-    })};
-
-  & > *:not(:first-child):not(:last-child) {
-    border-radius: 0px;
-    border-right: 1px solid
-      ${theme.neutralColor(300, {
-        gradient: 'withIntensityFading',
-      })};
-    border-left: 1px solid
-      ${theme.neutralColor(300, {
-        gradient: 'withIntensityFading',
-      })};
-  }
-
-  & > :first-child {
-    border-radius: 4px 0px 0px 4px;
-  }
-
-  & > :last-child {
-    border-radius: 0px 4px 4px 0px;
-  }
-
   & > * {
+    border: 1px solid
+      ${theme.neutralColor(300, {
+        gradient: 'withIntensityFading',
+      })};
+    margin: -1px;
+
     --tab-border-width: 0;
     --tab-outline-width: 0;
 
     &:focus:not(:active) {
-      --tab-outline-width: 0px;
+      --tab-outline-width: 0;
       --tab-color: ${theme.color('primary')};
       --tab-background-color: ${theme.color('primary', {
         variation: 'calmer',
       })};
       --tab-border-width: 0;
     }
+  }
+
+  & > *:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  & > :first-child {
+    border-radius: 4px 0 0 4px;
+  }
+
+  & > :last-child {
+    border-radius: 0 4px 4px 0;
   }
 
   &[data-small='true'] {
