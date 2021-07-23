@@ -43,10 +43,12 @@ export const Options: React.FunctionComponent<OptionsProps> = ({
             )}
             {options.map((option) => (
               <Option
-                key={option.value}
-                onClick={() => onSelect(option)}
+                disabled={option.disabled}
                 focused={option.value === focusedOption}
-                {...option}
+                key={option.value}
+                label={option.label}
+                onClick={() => onSelect(option)}
+                selected={option.selected}
               />
             ))}
           </React.Fragment>
