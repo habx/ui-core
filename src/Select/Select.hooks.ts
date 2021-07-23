@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { isString } from '../_internal/data'
 import { searchInString } from '../_internal/strings'
+import { stringifyColor } from '../color'
 
 import {
   SelectProps,
@@ -129,10 +130,11 @@ export const useSelect = ({
     [selectedOptions]
   )
 
-  const color = React.useMemo(
-    () => selectedOptions.find((el) => el.color)?.color,
-    [selectedOptions]
-  )
+  const color = React.useMemo(() => {
+    const result = selectedOptions.find((el) => el.color)?.color
+
+    return result && stringifyColor(result)
+  }, [selectedOptions])
 
   const areAllOptionsSelected = React.useMemo(() => {
     if (multi && Array.isArray(value)) {
