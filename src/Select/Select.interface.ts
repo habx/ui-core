@@ -1,5 +1,6 @@
 import * as React from 'react'
 
+import { Color } from '../color'
 import { WithLabel } from '../withLabel'
 
 export interface SelectContextValue {
@@ -11,7 +12,7 @@ export type SelectOption = {
   label: React.ReactNode
   value: any
   disabled?: boolean
-  color?: string
+  color?: Color
   keywords?: string[]
 }
 
