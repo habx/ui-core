@@ -1,18 +1,16 @@
 import * as React from 'react'
 
-import { Tab } from '..'
-
 import { CenteredComponent } from '../_storybook/CenteredComponent'
 import { withGrid } from '../_storybook/withGrid'
 
-import { TabSelect, TabSelectProps } from './index'
+import { TabSelect, TabSelectOption, TabSelectProps } from './index'
 
 const GRID_PROPS = {
   children: (
     <React.Fragment>
-      <Tab>Choix 1</Tab>
-      <Tab>Choix 2</Tab>
-      <Tab>Choix 3</Tab>
+      <TabSelectOption>Choix 1</TabSelectOption>
+      <TabSelectOption>Choix 2</TabSelectOption>
+      <TabSelectOption>Choix 3</TabSelectOption>
     </React.Fragment>
   ),
 }
@@ -50,15 +48,15 @@ const Grid = withGrid<TabSelectProps>({
 export default {
   title: 'Input/TabSelect',
   component: TabSelect,
-  subcomponents: { Tab },
+  subcomponents: { TabSelectOption },
 }
 
 export const basic = (props: TabSelectProps) => (
   <CenteredComponent>
     <TabSelect {...props}>
-      <Tab>Choix 1</Tab>
-      <Tab>Choix 2</Tab>
-      <Tab>Choix 3</Tab>
+      <TabSelectOption>Choix 1</TabSelectOption>
+      <TabSelectOption>Choix 2</TabSelectOption>
+      <TabSelectOption>Choix 3</TabSelectOption>
     </TabSelect>
   </CenteredComponent>
 )
