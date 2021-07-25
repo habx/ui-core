@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 
 /*
-  Providers
+ *Providers
  */
 
 export { Provider, ProviderProps } from './Provider'
@@ -9,7 +9,7 @@ export { ThemeProvider, ThemeProviderProps, DesignSystemThemePatch } from './The
 
 
 /*
-  Typography
+ *Typography
  */
 export { Text, TextProps, textStyles } from './Text'
 export { Title, TitleProps, titleStyles } from './Title'
@@ -17,7 +17,7 @@ export { Link, LinkProps, linkStyle } from './Link'
 
 
 /*
-  Menu
+ *Menu
  */
 export { Menu, MenuProps, menuDefaultPositionSetter } from './Menu'
 export { MenuSection, MenuSectionProps } from './MenuSection'
@@ -26,7 +26,7 @@ export { ConfirmMenu, ConfirmMenuProps } from './ConfirmMenu'
 
 
 /*
-  Buttons / Tags
+ *Buttons / Tags
  */
 export { Button, ButtonProps } from './Button'
 export { CardButton, CardButtonProps } from './CardButton'
@@ -41,7 +41,7 @@ export { Tag, TagProps } from './Tag'
 
 
 /*
-  Navigation
+ *Navigation
  */
 export { NavBar,  NavBarProps } from './NavBar'
 export { NavBarItem,  NavBarItemProps } from './NavBarItem'
@@ -56,7 +56,7 @@ export { BreadcrumbItem, BreadcrumbItemProps } from './BreadcrumbItem'
 
 
 /*
-  Inputs
+ *Inputs
  */
 export { Checkbox, CheckboxProps } from './Checkbox'
 export { RadioInput, RadioInputProps } from './RadioInput'
@@ -74,17 +74,18 @@ export { SearchBar, SearchBarProps } from './SearchBar'
 export { DatePickerRange, DatePickerRangeProps } from './DatePickerRange'
 export { DatePicker, DatePickerProps } from './DatePicker'
 export { FakeInput, FakeInputProps, inputStyle } from './FakeInput'
+export { TabSelect, TabSelectProps } from './TabSelect'
 
 
 /*
-  Miscellaneous
+ *Miscellaneous
  */
 export { Icon, IconProps, IconKey } from './Icon'
 export { Triangle, TriangleProps } from './Triangle'
 
 
 /*
-  Layouts
+ *Layouts
  */
 export { Layout, LayoutProps } from './Layout'
 export { ActionBar, ActionBarProps } from './ActionBar'
@@ -102,7 +103,7 @@ export { Stepper, StepperProps, StepperStep } from './Stepper'
 
 
 /*
-  Modals
+ *Modals
  */
 export { LightBox, LightBoxProps } from './LightBox'
 export { Modal, ModalProps } from './Modal'
@@ -112,7 +113,7 @@ export { confirm } from './confirm'
 
 
 /*
-  Alerts
+ *Alerts
  */
 export { AnnouncementBanner, AnnouncementBannerProps } from './AnnouncementBanner'
 export { AlertBanner, AlertBannerProps } from './AlertBanner'
@@ -125,7 +126,7 @@ export { notify } from './notify'
 
 
 /*
-  Theme
+ *Theme
  */
 export { animations, ANIMATION_DURATIONS, ANIMATION_TIMING_FUNCTION, transition } from './animations'
 export { Background, BackgroundProps } from './Background'
@@ -139,7 +140,7 @@ export { EuclidFont } from './EuclidFont'
 
 
 /*
-  Utils
+ *Utils
  */
 export { isColorDark, stringifyColor, applyOpacityToColor, parseColor, ParsedColor, Color  } from './color'
 export { useResponsiveType } from './useResponsiveType'
