@@ -74,7 +74,7 @@ export { SearchBar, SearchBarProps } from './SearchBar'
 export { DatePickerRange, DatePickerRangeProps } from './DatePickerRange'
 export { DatePicker, DatePickerProps } from './DatePicker'
 export { FakeInput, FakeInputProps, inputStyle } from './FakeInput'
-export { TabSelect, TabSelectProps } from './TabSelect'
+export { TabSelect, TabSelectProps, TabSelectOption } from './TabSelect'
 
 
 /*
