@@ -59,11 +59,9 @@ export const NavBarItemContainer = styled.li`
     opacity: 0.4;
   }
 
-  &[data-expanded='true'] {
-    &[data-active='true'],
-    &.active {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
+  &[data-active='true'],
+  &.active {
+    background-color: rgba(255, 255, 255, 0.2);
   }
 `
 
