@@ -86,7 +86,8 @@ export const TextInputList = React.forwardRef<
           <ElementRightContainer>
             {elementRight}
             <TextInputListAddIcon
-              small
+              small={!small}
+              tiny={small}
               background="grey"
               icon="add"
               onClick={handleValidateCurrent}

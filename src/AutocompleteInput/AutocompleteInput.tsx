@@ -47,6 +47,7 @@ export const AutocompleteInput = React.forwardRef<
           triggerRef={containerRef}
           onClose={() => {}}
           open={autocomplete.open}
+          position="vertical-stretched"
           withOverlay={false}
         >
           {loading && <Loader size="small" />}
