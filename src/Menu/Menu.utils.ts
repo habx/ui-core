@@ -1,6 +1,6 @@
 import { MenuPositionSetter } from './Menu.interface'
 
-const MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN = 8
+const MARGIN = 8
 
 export const menuDefaultPositionSetter: MenuPositionSetter = ({
   triggerDimensions,
@@ -8,163 +8,139 @@ export const menuDefaultPositionSetter: MenuPositionSetter = ({
   menuWidth,
   position,
 }) => {
-  const innerHeight = window.innerHeight
-  const innerWidth = window.innerWidth
-  const verticalScrollBarWidth =
-    innerWidth - document.documentElement.clientWidth
-  const horizontalScrollBarHeight =
-    innerHeight - document.documentElement.clientHeight
+  const { clientHeight, clientWidth } = document.documentElement
+
+  let bottom: number | undefined
+  let left: number | undefined
+  let right: number | undefined
+  let top: number | undefined
 
   switch (position) {
-    case 'vertical': {
-      let top: number | undefined = undefined
-      let bottom: number | undefined = undefined
-      let left: number | undefined = undefined
-      let right: number | undefined = undefined
-
-      const topWithMenuBelowTrigger =
-        triggerDimensions.bottom + MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
-
-      const isMenuBelowTriggerOverflowing =
-        topWithMenuBelowTrigger + menuHeight > innerHeight
-      if (isMenuBelowTriggerOverflowing) {
-        const bottomWithMenuAboveTrigger =
-          innerHeight -
-          triggerDimensions.bottom +
-          triggerDimensions.height -
-          verticalScrollBarWidth +
-          MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
-
-        const isMenuAboveTriggerOverflowing =
-          bottomWithMenuAboveTrigger + menuHeight > innerHeight
-        if (isMenuAboveTriggerOverflowing) {
-          // If the menu can't be placed without vertical overflowing then we place it at the very bottom
-          bottom = MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
-        } else {
-          // If the menu is only overflowing if placed below, then we place it above the trigger
-          bottom = bottomWithMenuAboveTrigger
-        }
-      } else {
-        // If the menu is not overflowing if placed below, then we place it below the trigger
-        top = topWithMenuBelowTrigger
-      }
-
-      let leftWithMenuAlignedLeft = triggerDimensions.left
-
-      const isMenuAlignedLeftOverflowing =
-        leftWithMenuAlignedLeft + menuWidth > innerWidth
-      if (isMenuAlignedLeftOverflowing) {
-        const rightWithMenuAlignedRight =
-          innerWidth - triggerDimensions.right - verticalScrollBarWidth
-
-        const isMenuAlignedRightOverflowing =
-          rightWithMenuAlignedRight + menuWidth > innerWidth
-        if (isMenuAlignedRightOverflowing) {
-          // If the menu can't be placed without horizontal overflowing then we aligned it on the left of the trigger
-          left = leftWithMenuAlignedLeft
-        } else {
-          // If the menu is only overflowing if aligned on the left, the we align it on the right
-          right = rightWithMenuAlignedRight
-        }
-      } else {
-        // If the menu is not overflowing if aligned on the right, then we align it on the right
-        left = leftWithMenuAlignedLeft
-      }
-
-      return { top, bottom, left, right, minWidth: triggerDimensions.width }
-    }
-
     case 'horizontal': {
-      let top: number | undefined = undefined
-      let bottom: number | undefined = undefined
-      let left: number | undefined = undefined
-      let right: number | undefined = undefined
+      const rightOfTrigger = triggerDimensions.right + MARGIN
+      const spaceAtRightOfTrigger = clientWidth - rightOfTrigger - MARGIN
 
-      const leftWithMenuRightOfTrigger =
-        triggerDimensions.right + MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
+      if (menuWidth > spaceAtRightOfTrigger) {
+        const leftOfTrigger = triggerDimensions.left - MARGIN
+        const spaceAtLeftOfTrigger = leftOfTrigger - MARGIN
 
-      const isMenuRightOfTriggerOverflowing =
-        leftWithMenuRightOfTrigger + menuWidth > innerWidth
-      if (isMenuRightOfTriggerOverflowing) {
-        const rightWithMenuLeftOfTrigger =
-          innerWidth -
-          triggerDimensions.right +
-          triggerDimensions.width +
-          MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
-
-        const isMenuLeftOfTriggerOverflowing =
-          rightWithMenuLeftOfTrigger + menuWidth > innerWidth
-        if (isMenuLeftOfTriggerOverflowing) {
-          // If the menu can't be placed without horizontal overflowing then we place it on the right of the trigger
-          left = leftWithMenuRightOfTrigger
+        if (menuWidth > spaceAtLeftOfTrigger) {
+          // Place the menu where there is more room and constrains its width.
+          if (spaceAtLeftOfTrigger > spaceAtRightOfTrigger) {
+            left = MARGIN
+            right = clientWidth - leftOfTrigger
+          } else {
+            left = rightOfTrigger
+            right = MARGIN
+          }
         } else {
-          // If the menu is only overflowing if placed on the right, then we place it on the left of the trigger
-          right = rightWithMenuLeftOfTrigger
+          right = clientWidth - leftOfTrigger
         }
       } else {
-        // If the menu is not overflowing if placed on the right, then we place it on the right of the trigger
-        left = leftWithMenuRightOfTrigger
+        left = rightOfTrigger
       }
 
-      let bottomWithMenuAlignedBottom =
-        innerHeight - triggerDimensions.bottom - horizontalScrollBarHeight
-
-      const isMenuAlignedBottomOverflowing =
-        bottomWithMenuAlignedBottom + menuHeight > innerHeight
-      if (isMenuAlignedBottomOverflowing) {
-        const topWithMenuAlignedTop = triggerDimensions.top
-
-        const isMenuAlignedTopOverflowing =
-          topWithMenuAlignedTop + menuHeight > innerHeight
-        if (isMenuAlignedTopOverflowing) {
-          // If the menu can't be placed without vertical overflowing then we place it at the very bottom
-          bottom = MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
-        } else {
-          // If the menu is only overflowing if aligned on the bottom, the we align it on the top
-          top = topWithMenuAlignedTop
-        }
+      if (menuHeight + 2 * MARGIN > clientHeight) {
+        bottom = MARGIN
+        top = MARGIN
       } else {
-        // If the menu is not overflowing if aligned on the bottom, then we align it on the bottom
-        bottom = bottomWithMenuAlignedBottom
+        const spaceFromTopOfTrigger =
+          clientHeight - triggerDimensions.top - MARGIN
+
+        if (menuHeight > spaceFromTopOfTrigger) {
+          const spaceToBottomOfTrigger = triggerDimensions.bottom - MARGIN
+
+          if (menuHeight > spaceToBottomOfTrigger) {
+            if (spaceToBottomOfTrigger > spaceFromTopOfTrigger) {
+              top = MARGIN
+            } else {
+              bottom = MARGIN
+            }
+          } else {
+            bottom = clientHeight - triggerDimensions.bottom
+          }
+        } else {
+          top = triggerDimensions.top
+        }
       }
 
-      return { top, bottom, left, right }
+      return { top, right, bottom, left }
     }
 
-    case 'centered': {
-      let top: number | undefined = undefined
-      let bottom: number | undefined = undefined
-      const left =
-        triggerDimensions.left + (triggerDimensions.width - menuWidth) / 2
+    case 'centered':
+    case 'vertical':
+    case 'vertical-centered':
+    case 'vertical-stretched': {
+      let minWidth: number | undefined
 
-      const topWithMenuBelowTrigger =
-        triggerDimensions.bottom + MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
+      const bottomOfTrigger = triggerDimensions.bottom + MARGIN
+      const spaceBelowTrigger = clientHeight - bottomOfTrigger - MARGIN
 
-      const isMenuBelowTriggerOverflowing =
-        topWithMenuBelowTrigger + menuHeight > innerHeight
-      if (isMenuBelowTriggerOverflowing) {
-        const bottomWithMenuAboveTrigger =
-          innerHeight -
-          triggerDimensions.bottom +
-          triggerDimensions.height -
-          verticalScrollBarWidth +
-          MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
+      if (menuHeight > spaceBelowTrigger) {
+        const topOfTrigger = triggerDimensions.top - MARGIN
+        const spaceAboveTrigger = topOfTrigger - MARGIN
 
-        const isMenuAboveTriggerOverflowing =
-          bottomWithMenuAboveTrigger + menuHeight > innerHeight
-        if (isMenuAboveTriggerOverflowing) {
-          // If the menu can't be placed without vertical overflowing then we place it at the very bottom
-          bottom = MENU_DEFAULT_POSITION_SETTER_TRIGGER_MARGIN
+        if (menuHeight > spaceAboveTrigger) {
+          // Place the menu where there is more room and constrains its height.
+          if (spaceAboveTrigger > spaceBelowTrigger) {
+            bottom = clientHeight - topOfTrigger
+            top = MARGIN
+          } else {
+            bottom = MARGIN
+            top = bottomOfTrigger
+          }
         } else {
-          // If the menu is only overflowing if placed below, then we place it above the trigger
-          bottom = bottomWithMenuAboveTrigger
+          bottom = clientHeight - topOfTrigger
         }
       } else {
-        // If the menu is not overflowing if placed below, then we place it below the trigger
-        top = topWithMenuBelowTrigger
+        top = bottomOfTrigger
       }
 
-      return { top, bottom, left }
+      if (menuWidth + 2 * MARGIN > clientWidth) {
+        left = MARGIN
+        right = MARGIN
+      } else if (position === 'centered' || position === 'vertical-centered') {
+        const menuCenterOffset = (menuWidth - triggerDimensions.width) / 2
+        const spaceAtRightOfTrigger =
+          clientWidth - triggerDimensions.right - MARGIN
+
+        if (menuCenterOffset > spaceAtRightOfTrigger) {
+          right = MARGIN
+        } else {
+          const spaceAtLeftOfTrigger = triggerDimensions.left - MARGIN
+
+          if (menuCenterOffset > spaceAtLeftOfTrigger) {
+            left = MARGIN
+          } else {
+            left = triggerDimensions.left - menuCenterOffset
+          }
+        }
+      } else {
+        const spaceFromLeftOfTrigger =
+          clientWidth - triggerDimensions.left - MARGIN
+
+        if (menuWidth > spaceFromLeftOfTrigger) {
+          const spaceToRightOfTrigger = triggerDimensions.right - MARGIN
+
+          if (menuWidth > spaceToRightOfTrigger) {
+            if (spaceToRightOfTrigger > spaceFromLeftOfTrigger) {
+              left = MARGIN
+            } else {
+              right = MARGIN
+            }
+          } else {
+            right = clientWidth - triggerDimensions.right
+          }
+        } else {
+          left = triggerDimensions.left
+        }
+
+        if (position === 'vertical-stretched') {
+          minWidth = triggerDimensions.width
+        }
+      }
+
+      return { top, right, bottom, left, minWidth }
     }
 
     default: {

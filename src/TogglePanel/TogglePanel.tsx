@@ -94,9 +94,7 @@ const InnerTogglePanel = React.forwardRef<
     const dimension = useWindowSize()
 
     React.useEffect(() => {
-      if (open) {
-        updateStyle()
-      }
+      updateStyle()
     }, [dimension, open, updateStyle])
 
     React.useEffect(() => {

@@ -19,8 +19,8 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
     {
       children,
       fullScreenOnMobile = false,
-      position = 'vertical',
-      scrollable = false,
+      position = 'vertical-stretched',
+      scrollable,
       setPosition = menuDefaultPositionSetter,
       ...props
     },
