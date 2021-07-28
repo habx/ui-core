@@ -50,18 +50,6 @@ export const TextInputList = React.forwardRef<
         event.stopPropagation()
         handleValidateCurrent()
         break
-
-      case 'Backspace':
-      case 'Delete':
-        if (localValue === '' && value?.length > 0) {
-          event.preventDefault()
-          event.stopPropagation()
-
-          const [newLocalValue, ...newValue] = value
-          setLocalValue(newLocalValue)
-          onChange(newValue)
-        }
-        break
     }
   }
 
