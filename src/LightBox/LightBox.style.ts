@@ -2,8 +2,8 @@ import styled, { keyframes } from 'styled-components'
 
 import { zIndex } from '../_internal/theme/zIndex'
 import { breakpoints } from '../breakpoints'
-import { IconButton } from '../IconButton'
 import { Layout } from '../Layout'
+import { RoundIconButton } from '../RoundIconButton'
 
 export const FADE_IN = keyframes`
   from {
@@ -81,9 +81,9 @@ export const LightBoxContainer = styled(Layout)`
   }
 `
 
-export const CloseIcon = styled(IconButton)`
+export const CloseIcon = styled(RoundIconButton)`
   position: fixed;
   top: 12px;
-  right: 24px;
+  right: 36px;
   z-index: 13;
 `
