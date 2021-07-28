@@ -11,7 +11,7 @@ export const TabsBarMenuItem = React.forwardRef<
   TabsBarMenuItemProps
 >(({ children, label, ...props }, ref) => (
   <Menu
-    position="vertical"
+    position="vertical-stretched"
     triggerElement={
       <TabsBarItem
         elementRight={<Icon icon="chevron-south" />}
