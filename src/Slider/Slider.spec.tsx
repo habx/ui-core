@@ -137,8 +137,10 @@ describe('Slider component', () => {
       const dot = queryByTestId('slider-dot')
 
       fireEvent.mouseDown(dot as HTMLElement)
-      // fireEvent.mouseMove(dot, new MouseEvent('mousemove', { bubbles: true, pageX: 300 }))
-      // JS DOM refuse pageX attribute on mousemove.
+      /*
+       * fireEvent.mouseMove(dot, new MouseEvent('mousemove', { bubbles: true, pageX: 300 }))
+       * JS DOM refuse pageX attribute on mousemove.
+       */
     })
   })
 })
