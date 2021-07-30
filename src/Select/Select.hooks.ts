@@ -73,10 +73,7 @@ export const useSelect = ({
   multi,
   options,
   onChange = DEFAULT_ON_CHANGE,
-}: Pick<
-  SelectProps,
-  'value' | 'multi' | 'options' | 'onChange' | 'canReset'
->) => {
+}: Pick<SelectProps, 'value' | 'multi' | 'options' | 'onChange'>) => {
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
 
   const value = React.useMemo(() => {

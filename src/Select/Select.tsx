@@ -50,7 +50,6 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
       options,
       multi,
       value,
-      canReset,
     })
 
     const context = React.useMemo<SelectContextValue>(
