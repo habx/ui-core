@@ -73,7 +73,6 @@ export const useSelect = ({
   multi,
   options,
   onChange = DEFAULT_ON_CHANGE,
-  canReset,
 }: Pick<
   SelectProps,
   'value' | 'multi' | 'options' | 'onChange' | 'canReset'
@@ -215,21 +214,6 @@ export const useSelect = ({
     [multi, onChange]
   )
 
-  const handleMouseEnterIcons = (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-
-    if (canReset && selectedOptions.length > 0) {
-      dispatch({ type: ActionType.SetShowResetIcon, value: true })
-    }
-  }
-
-  const handleMouseLeaveIcons = (e: React.MouseEvent) => {
-    dispatch({ type: ActionType.SetShowResetIcon, value: false })
-    e.preventDefault()
-    e.stopPropagation()
-  }
-
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const { key, shiftKey } = event
@@ -298,8 +282,6 @@ export const useSelect = ({
     onSelectAll: handleSelectAll,
     onSelect: handleSelect,
     onSearch: handleSearch,
-    onMouseEnterIcons: handleMouseEnterIcons,
-    onMouseLeaveIcons: handleMouseLeaveIcons,
   }
 
   const fullState = {
@@ -308,6 +290,7 @@ export const useSelect = ({
     visibleOptions,
     areAllOptionsSelected,
     color,
+    selectedOptions,
   }
 
   return [fullState, actions] as const

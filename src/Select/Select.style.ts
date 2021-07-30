@@ -22,7 +22,7 @@ export const IconsContainer = styled.div`
   color: ${theme.textColor({ useRootTheme: true })};
 
   span {
-    font-size: 18px;
+    font-size: 24px;
     margin-left: 6px;
   }
 `
@@ -100,28 +100,17 @@ export const ElementLeftContainer = styled.div`
 
 export const ResetIconContainer = styled.div`
   transition: ${transition('opacity')};
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 1;
   display: flex;
   align-items: center;
   color: var(--input-placeholder-color);
+`
 
-  &:not([data-visible='true']) {
-    opacity: 0;
-    pointer-events: none;
-  }
+export const Line = styled.div`
+  border-left: 1px solid rgba(24, 20, 31, 0.15);
+  margin-left: 6px;
+  height: 24px;
 `
 
 export const ElementRightContainer = styled.div`
-  transition: ${transition('opacity')};
   color: var(--input-placeholder-color);
-
-  &:not([data-visible='true']) {
-    opacity: 0;
-    pointer-events: none;
-  }
 `
