@@ -95,7 +95,7 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
             </Placeholder>
           )}
           <IconsContainer>
-            {state.selectedOptions.length > 0 && (
+            {state.selectedOptions.length > 0 && canReset && (
               <ResetIconContainer>
                 <Icon
                   data-testid="select-reset-icon"

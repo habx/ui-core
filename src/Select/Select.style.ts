@@ -106,7 +106,7 @@ export const ResetIconContainer = styled.div`
 `
 
 export const Line = styled.div`
-  border-left: 1px solid rgba(24, 20, 31, 0.15);
+  border-left: 1px solid ${theme.neutralColor(300)};
   margin-left: 6px;
   height: 24px;
 `
