@@ -17,6 +17,7 @@ import {
   ResetIconContainer,
   SearchInput,
   SelectContainer,
+  Line,
 } from './Select.style'
 
 const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
@@ -49,7 +50,6 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
       options,
       multi,
       value,
-      canReset,
     })
 
     const context = React.useMemo<SelectContextValue>(
@@ -93,20 +93,18 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
               {state.label ?? placeholder}
             </Placeholder>
           )}
-          <IconsContainer
-            onMouseEnter={actions.onMouseEnterIcons}
-            onMouseLeave={actions.onMouseLeaveIcons}
-          >
-            {state.showResetIcon && (
-              <ResetIconContainer data-visible={state.showResetIcon}>
+          <IconsContainer>
+            {state.selectedOptions.length > 0 && canReset && (
+              <ResetIconContainer>
                 <Icon
                   data-testid="select-reset-icon"
                   onClick={actions.onReset}
                   icon="close"
                 />
+                <Line />
               </ResetIconContainer>
             )}
-            <ElementRightContainer data-visible={!state.showResetIcon}>
+            <ElementRightContainer>
               {elementRight ?? (
                 <Icon
                   icon={state.isOpened ? 'chevron-north' : 'chevron-south'}
