@@ -72,19 +72,33 @@ const InnerTogglePanel = React.forwardRef<
         return setCustomStyle(style)
       }
 
-      const modalBoundingBox = modalElement.getBoundingClientRect()
-      const triggerBoundingBox = triggerElement.getBoundingClientRect()
-
-      /*
-       * The dimensions returned by `getBoundingClientRect` take into account CSS transformations.
-       * `offsetWidth` and `offsetHeight` includes scrollbars and borders.
-       * Overriding the width and height prevents wrong placement of the panel, especially during opening transitions.
-       */
-      modalBoundingBox.width = modalElement.offsetWidth
-      modalBoundingBox.height = modalElement.offsetHeight
+      const modalBoundingRect = modalElement.getBoundingClientRect()
+      const triggerBoundingRect = triggerElement.getBoundingClientRect()
 
       setCustomStyle({
-        ...setStyle(modalBoundingBox, triggerBoundingBox),
+        ...setStyle(
+          {
+            /*
+             * The dimensions returned by `getBoundingClientRect` take into account CSS transformations.
+             * `offsetWidth` and `offsetHeight` includes scrollbars and borders.
+             * Overriding the width and height prevents wrong placement of the panel, especially during opening transitions.
+             */
+            bottom: modalBoundingRect.bottom,
+            height: modalElement.offsetHeight,
+            left: modalBoundingRect.left,
+            right: modalBoundingRect.right,
+            top: modalBoundingRect.top,
+            width: modalElement.offsetWidth,
+          },
+          {
+            bottom: triggerBoundingRect.bottom,
+            height: triggerBoundingRect.height,
+            left: triggerBoundingRect.left,
+            right: triggerBoundingRect.right,
+            top: triggerBoundingRect.top,
+            width: triggerBoundingRect.width,
+          }
+        ),
         ...style,
       })
     }, [modal.ref, setStyle, shouldRenderModal, triggerRef])
