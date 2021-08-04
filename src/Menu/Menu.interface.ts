@@ -36,11 +36,13 @@ export type MenuPositionSetter = (dimensions: {
   triggerDimensions: Dimensions
   menuHeight: number
   menuWidth: number
+  // eslint-disable-next-line deprecation/deprecation
   position: MenuPosition | MenuPositionLegacy
 }) => { top?: number; left?: number; right?: number; bottom?: number }
 
 export interface MenuProps extends Omit<TogglePanelProps, 'setStyle'> {
   scrollable?: true
+  // eslint-disable-next-line deprecation/deprecation
   position?: MenuPosition | MenuPositionLegacy
   /** This method must be static or memoized. */
   setPosition?: MenuPositionSetter

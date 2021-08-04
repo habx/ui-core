@@ -17,6 +17,7 @@ const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
     const {
       small = false,
       error = false,
+      // eslint-disable-next-line deprecation/deprecation
       light = false,
       bare = false,
       className,

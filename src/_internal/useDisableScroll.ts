@@ -5,7 +5,7 @@ import React from 'react'
 
 import { isClientSide } from './ssr'
 
-const SCROLL_KEYS = { 37: 1, 38: 1, 39: 1, 40: 1 }
+const SCROLL_KEYS = { ArrowLeft: 1, ArrowUp: 1, ArrowRight: 1, ArrowDown: 1 }
 
 // modern Chrome requires { passive: false } when adding event
 let supportsPassive = false
@@ -46,7 +46,7 @@ export const useDisableScroll = (params: UseDisableScrollParams) => {
     }
 
     const preventDefaultForScrollKeys = (e: KeyboardEvent) => {
-      if (SCROLL_KEYS[e.keyCode as keyof typeof SCROLL_KEYS]) {
+      if (SCROLL_KEYS[e.code as keyof typeof SCROLL_KEYS]) {
         preventDefault(e)
         return false
       }

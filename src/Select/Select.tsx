@@ -24,6 +24,7 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
   (props, ref) => {
     const {
       multi = false,
+      // eslint-disable-next-line deprecation/deprecation
       light = false,
       bare = false,
       small = false,
