@@ -1,3 +1,5 @@
+/* eslint-disable deprecation/deprecation */
+
 import * as React from 'react'
 
 import { withGrid } from '../_storybook/withGrid'

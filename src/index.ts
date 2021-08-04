@@ -36,6 +36,7 @@ export { FloatingButton, FloatingButtonProps } from './FloatingButton'
 export { FloatingIconButton, FloatingIconButtonProps } from './FloatingIconButton'
 export { IconButton, IconButtonProps } from './IconButton'
 export { RoundIconButton, RoundIconButtonProps } from './RoundIconButton'
+// eslint-disable-next-line deprecation/deprecation
 export { NavigationButton, NavigationButtonProps } from './NavigationButton'
 export { Tag, TagProps } from './Tag'
 
@@ -107,7 +108,7 @@ export { Stepper, StepperProps, StepperStep } from './Stepper'
  */
 export { LightBox, LightBoxProps } from './LightBox'
 export { Modal, ModalProps } from './Modal'
-export { ModalState } from '@delangle/use-modal' 
+export { ModalState } from '@delangle/use-modal'
 export { prompt } from './prompt'
 export { confirm } from './confirm'
 
