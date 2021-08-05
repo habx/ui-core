@@ -69,4 +69,12 @@ export const IconButton = styled(Icon)`
   &:hover {
     cursor: pointer;
   }
+  font-size: 24px;
+  color: ${theme.textColor()};
+`
+
+export const Line = styled.div`
+  border-left: 1px solid ${theme.neutralColor(300)};
+  margin: 0 8px;
+  height: 24px;
 `

@@ -9,6 +9,7 @@ import {
   IconButton,
   Input,
   InputContainer,
+  Line,
   SideElementContainer,
 } from './TextInput.style'
 
@@ -63,18 +64,20 @@ const InnerTextInput = React.forwardRef<HTMLInputElement, TextInputInnerProps>(
 
         {(elementRight || canReset) && (
           <SideElementContainer data-position="right">
-            {elementRight}
-
             {canReset && value && `${value}`.length > 0 && (
-              <IconButton
-                icon="close"
-                onClick={(e) =>
-                  props.onChange?.({
-                    target: { ...e.target, value: '' },
-                  } as React.ChangeEvent<HTMLInputElement>)
-                }
-              />
+              <>
+                <IconButton
+                  icon="close"
+                  onClick={(e) =>
+                    props.onChange?.({
+                      target: { ...e.target, value: '' },
+                    } as React.ChangeEvent<HTMLInputElement>)
+                  }
+                />
+                {elementRight && <Line />}
+              </>
             )}
+            {elementRight}
           </SideElementContainer>
         )}
       </InputContainer>
