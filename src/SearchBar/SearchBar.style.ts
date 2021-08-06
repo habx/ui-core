@@ -13,6 +13,7 @@ export const SearchPanelInputContainer = styled.div`
   align-items: center;
   padding: 0 12px;
   color: ${theme.textColor()};
+  border-bottom: 1px solid ${theme.neutralColor(300)};
 `
 
 export const SearchPanelInputElementLeft = styled.div`
@@ -51,4 +52,9 @@ export const SearchPanelInput = styled.input.attrs(() => ({
 
 export const SearchPanelContent = styled.div`
   padding: 24px;
+`
+
+export const TriggerElementContainer = styled.div`
+  box-shadow: 0 0 0 4px ${theme.color('primary', { opacity: 0.3 })};
+  border-radius: 4px;
 `

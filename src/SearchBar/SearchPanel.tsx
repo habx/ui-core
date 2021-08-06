@@ -4,6 +4,7 @@ import * as React from 'react'
 import { Icon } from '../Icon'
 import { TextInputProps } from '../TextInput'
 import { TogglePanelProps, TogglePanelStyleSetter } from '../TogglePanel'
+import { TriggerElement } from '../withTriggerElement'
 
 import {
   SearchPanelContainer,
@@ -11,6 +12,7 @@ import {
   SearchPanelInput,
   SearchPanelInputElementLeft,
   SearchPanelContent,
+  TriggerElementContainer,
 } from './SearchBar.style'
 
 const setPanelStyle: TogglePanelStyleSetter = (
@@ -29,6 +31,7 @@ const InnerSearchPanel: React.VoidFunctionComponent<InnerSearchPanelProps> = ({
   onChange,
   placeholder,
   renderPanel,
+  triggerElement,
 }) => {
   const inputRef = React.useRef<HTMLInputElement>(null)
 
@@ -58,6 +61,9 @@ const InnerSearchPanel: React.VoidFunctionComponent<InnerSearchPanelProps> = ({
           onChange={onChange}
           placeholder={placeholder}
         />
+        {!!triggerElement && (
+          <TriggerElementContainer>{triggerElement}</TriggerElementContainer>
+        )}
       </SearchPanelInputContainer>
       <SearchPanelContent onClick={handleStopPropagation}>
         {renderPanel()}
@@ -77,7 +83,9 @@ export const SearchPanel: React.VoidFunctionComponent<SearchPanelProps> = ({
     setStyle={setPanelStyle}
   >
     {(modal) =>
-      modal.state !== ModalState.closed && <InnerSearchPanel {...rest} />
+      modal.state !== ModalState.closed && (
+        <InnerSearchPanel triggerElement={triggerElement} {...rest} />
+      )
     }
   </SearchPanelContainer>
 )
@@ -85,6 +93,7 @@ export const SearchPanel: React.VoidFunctionComponent<SearchPanelProps> = ({
 interface InnerSearchPanelProps
   extends Pick<TextInputProps, 'value' | 'onChange' | 'placeholder'> {
   renderPanel: () => React.ReactNode
+  triggerElement?: TriggerElement
 }
 
 interface SearchPanelProps
