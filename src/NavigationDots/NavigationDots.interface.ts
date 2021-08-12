@@ -4,6 +4,7 @@ export interface NavigationDotsProps
   extends React.HTMLAttributes<HTMLDivElement> {
   size: number
   activeDot?: number
+  darkMode?: boolean
 
   /**
    * @default false
