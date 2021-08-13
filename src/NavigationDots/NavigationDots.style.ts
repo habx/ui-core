@@ -50,21 +50,11 @@ export const Dot = styled.div<{ secondary?: boolean }>`
     --navigation-dot-empty-color: ${theme.neutralColor(300)};
     pointer-events: none;
     max-width: 8px;
-    &[data-dark-mode='true'] {
-      --navigation-dot-empty-color: ${theme.neutralColor(200)};
-    }
   }
 
   &[data-small='true'] {
     height: 4px;
     min-width: 4px;
-  }
-
-  &[data-dark-mode='true'] {
-    --navigation-dot-empty-color: ${theme.neutralColor(300)};
-    &[data-active='true'] {
-      --navigation-dot-active-color: ${theme.neutralColor(100)};
-    }
   }
 
   &:first-child {

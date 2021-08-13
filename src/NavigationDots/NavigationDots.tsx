@@ -11,7 +11,7 @@ export const NavigationDots = React.forwardRef<
   HTMLDivElement,
   NavigationDotsProps
 >((props, ref) => {
-  const { size, disabled, darkMode, activeDot = 0, onClickDot, ...rest } = props
+  const { size, disabled, activeDot = 0, onClickDot, ...rest } = props
 
   const hasBackground = useHasColoredBackground()
 
@@ -66,7 +66,6 @@ export const NavigationDots = React.forwardRef<
           data-interactive={!!onClickDot}
           data-background={hasBackground}
           data-small={dot.small}
-          data-dark-mode={darkMode}
           data-disabled={disabled}
           onClick={onClickDot ? () => onClickDot(dot.index) : undefined}
         />

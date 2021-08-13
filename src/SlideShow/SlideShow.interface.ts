@@ -23,7 +23,6 @@ export interface SlideShowProps {
   circular?: boolean
   referenceSlideIndex?: number
   hideNavigationDots?: boolean
-  darkMode?: boolean
   disabled?: boolean
   currentSlide?: number
   items?: any[]

@@ -15,12 +15,6 @@ const GRID_LINES = [
   {
     title: 'Regular',
   },
-  {
-    title: 'DarkMode',
-    props: {
-      darkMode: true,
-    },
-  },
 ]
 
 const GRID_ITEMS = [

@@ -12,7 +12,6 @@ const InnerSlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps
   active,
   circular,
   hideNavigationDots,
-  darkMode,
   disabled,
 }) => (
   <SlideShowNavigationContainer className="slideshow-navigation-container">
@@ -30,7 +29,6 @@ const InnerSlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps
         className="slideshow-navigation-dots"
         size={size}
         activeDot={(active + size) % size}
-        darkMode={darkMode}
         disabled={disabled}
       />
     )}
@@ -50,7 +48,6 @@ interface SlideShowNavigationProps {
   size: number
   active: number
   hideNavigationDots: boolean
-  darkMode: boolean
   disabled: boolean
   circular: boolean
 }

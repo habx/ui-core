@@ -28,7 +28,6 @@ export const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
       circular = true,
       currentSlide,
       referenceSlideIndex = 0,
-      darkMode = false,
       disabled = false,
       ...rest
     } = props
@@ -114,7 +113,6 @@ export const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
             circular={circular}
             size={slideShow.slideAmount}
             hideNavigationDots={hideNavigationDots}
-            darkMode={darkMode}
             disabled={disabled}
           />
         )}
