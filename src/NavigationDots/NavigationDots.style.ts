@@ -3,11 +3,9 @@ import styled from 'styled-components'
 import { transition } from '../animations'
 import { theme } from '../theme'
 
-export const NavigationDotsContainer = styled.div<{ width: number }>`
+export const NavigationDotsContainer = styled.div`
   display: flex;
   align-items: center;
-
-  width: ${({ width }) => width}px;
 `
 
 export const Dot = styled.div<{ secondary?: boolean }>`
