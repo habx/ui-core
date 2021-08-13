@@ -8,7 +8,7 @@ export const NavigationDotsContainer = styled.div`
   align-items: center;
 `
 
-export const Dot = styled.div<{ secondary?: boolean }>`
+export const Dot = styled.div`
   display: inline-block;
   margin: 0 3px;
   border-radius: 4px;
