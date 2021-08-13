@@ -23,6 +23,7 @@ export interface SlideShowProps {
   circular?: boolean
   referenceSlideIndex?: number
   hideNavigationDots?: boolean
+  disabled?: boolean
   currentSlide?: number
   items?: any[]
   renderItem: (
