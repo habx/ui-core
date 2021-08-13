@@ -50,13 +50,6 @@ export const NavigationDots = React.forwardRef<
     }))
   }, [activeDot, size])
 
-  /*
-   * const width = visibleDots.reduce(
-   *   (acc, el) => acc + (el.active ? 16 : el.small ? 4 : 8) + 6,
-   *   -6
-   * )
-   */
-
   return (
     <NavigationDotsContainer ref={ref} {...rest}>
       {visibleDots.map((dot) => (
