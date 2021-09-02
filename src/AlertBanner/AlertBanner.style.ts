@@ -8,6 +8,7 @@ export const AlertBannerContent = styled.div`
   justify-content: center;
   align-items: center;
   flex: 1 1 100%;
+  flex-shrink: 0;
   padding: 12px 24px;
 
   @media (${breakpoints.below.smallTablet}) {
