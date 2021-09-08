@@ -6,6 +6,8 @@ import { breakpoints } from '../../breakpoints'
 
 export const BannerContainer = styled(Background)`
   display: flex;
+  flex-shrink: 0;
+
   align-items: center;
   justify-content: space-between;
   transition: ${transition('margin-top')};
