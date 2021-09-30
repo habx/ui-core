@@ -50,7 +50,6 @@ const InnerLightBox = React.forwardRef<HTMLDivElement, LightBoxInnerProps>(
             data-testid="lightbox-close-icon"
             icon="close"
             onClick={modal.close}
-            large
           />
         )}
         {isFunction(children) ? children(modal) : children}
