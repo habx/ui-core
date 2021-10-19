@@ -81,7 +81,7 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
       title,
       subtitle,
       backgroundColor,
-      useBreadcrumb,
+      collapsable,
       ...rest
     } = props
 
@@ -137,9 +137,9 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
             data-expanded={state.isExpanded}
             data-hover-icon={state.isHoveringTitleIcon || state.isExpanded}
             backgroundColor={backgroundColor}
-            data-useBreadcrumb={useBreadcrumb}
+            data-collapsable={collapsable}
           >
-            <NavBarHeader data-useBreadcrumb={useBreadcrumb}>
+            <NavBarHeader data-collapsable={collapsable}>
               {state.isExpanded && (
                 <TitleContainer>
                   {isString(title) ? (
@@ -160,7 +160,7 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
                   dispatch({ type: ActionType.ToggleOpen, isPersistent: true })
                 }
               >
-                {useBreadcrumb ? (
+                {collapsable ? (
                   <RoundIconButton
                     onMouseEnter={() =>
                       dispatch({

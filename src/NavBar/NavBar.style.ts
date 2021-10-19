@@ -58,10 +58,8 @@ export const NavBarContainer = styled.ul<{ backgroundColor: string }>`
   font-family: ${theme.font()};
   background: ${(props) => props.backgroundColor};
 
-  &[data-useBreadcrumb='true'] {
-    &:not([data-expanded='true']) {
-      background: unset;
-    }
+  &[data-collapsable='true']&:not([data-expanded='true']) {
+    background: unset;
   }
 
   &[data-hover-icon='true'] {
@@ -91,7 +89,7 @@ export const NavBarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  &[data-useBreadcrumb='true'] {
+  &[data-collapsable='true'] {
     flex-direction: row-reverse;
     & > :last-child {
       margin-right: 12px;
@@ -110,8 +108,8 @@ export const RoundIconButton = styled(BaseRoundIcon)`
   top: 24px;
   left: 36px;
   box-shadow: ${theme.shadow('regular')};
-  background-color: white;
-  color: black;
+  background-color: ${theme.color('secondary', { variation: 'louder' })};
+  color: ${theme.color('secondary', { variation: 'calmer' })};
 
   &[data-expanded='true'] {
     position: unset;
