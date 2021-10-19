@@ -5,6 +5,7 @@ export interface NavBarProps
   title?: React.ReactNode
   subtitle?: React.ReactNode
   backgroundColor: string
+  useBreadcrumb?: boolean
 }
 
 export interface NavBarContextValue {
