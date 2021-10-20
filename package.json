@@ -46,7 +46,7 @@
   "peerDependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.3"
   },
   "dependencies": {
     "@datepicker-react/hooks": "^2.8.0",
@@ -82,9 +82,9 @@
     "babel-loader": "^8.2.2",
     "bili": "^5.0.5",
     "eslint-plugin-mdx": "^1.15.1",
-    "fork-ts-checker-webpack-plugin": "^6.3.4",
+    "fork-ts-checker-webpack-plugin": "^6.3.5",
     "husky": "^4.3.8",
-    "jest": "^27.3.0",
+    "jest": "^27.3.1",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "lint-staged": "^11.2.3",
     "node-fetch": "^2.6.5",
@@ -95,7 +95,7 @@
     "sinon": "^11.1.2",
     "storybook-addon-designs": "^6.2.0",
     "storybook-dark-mode": "^1.0.8",
-    "styled-components": "^5.3.1",
+    "styled-components": "^5.3.3",
     "styled-normalize": "^8.0.7",
     "ts-jest": "^27.0.7",
     "ts-loader": "^9.2.6",
