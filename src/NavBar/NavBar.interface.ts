@@ -5,7 +5,7 @@ export interface NavBarProps
   title?: React.ReactNode
   subtitle?: React.ReactNode
   backgroundColor: string
-  collapsable?: boolean
+  collapsible?: boolean
 }
 
 export interface NavBarContextValue {
