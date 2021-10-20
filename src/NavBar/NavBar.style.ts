@@ -108,8 +108,8 @@ export const RoundIconButton = styled(BaseRoundIcon)`
   top: 24px;
   left: 36px;
   box-shadow: ${theme.shadow('regular')};
-  background-color: ${theme.color('secondary', { variation: 'louder' })};
-  color: ${theme.color('secondary', { variation: 'calmer' })};
+  background-color: ${theme.color('background', { useRootTheme: true })};
+  color: ${theme.neutralColor(900)};
 
   &[data-expanded='true'] {
     position: unset;
