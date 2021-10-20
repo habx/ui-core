@@ -20,6 +20,7 @@ import {
   NavBarItemsContainer,
   NavBarToggleButton,
   TitleContainer,
+  RoundIconButton,
 } from './NavBar.style'
 
 const HOVER_AUTO_OPENING_DELAY = 750
@@ -75,7 +76,14 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
     const stateRef = React.useRef<NavBarState>(state)
     stateRef.current = state
 
-    const { children, title, subtitle, backgroundColor, ...rest } = props
+    const {
+      children,
+      title,
+      subtitle,
+      backgroundColor,
+      collapsable,
+      ...rest
+    } = props
 
     const context = React.useMemo<NavBarContextValue>(
       () => ({
@@ -129,8 +137,9 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
             data-expanded={state.isExpanded}
             data-hover-icon={state.isHoveringTitleIcon || state.isExpanded}
             backgroundColor={backgroundColor}
+            data-collapsable={collapsable}
           >
-            <NavBarHeader>
+            <NavBarHeader data-collapsable={collapsable}>
               {state.isExpanded && (
                 <TitleContainer>
                   {isString(title) ? (
@@ -151,25 +160,49 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
                   dispatch({ type: ActionType.ToggleOpen, isPersistent: true })
                 }
               >
-                <Icon
-                  onMouseEnter={() =>
-                    dispatch({
-                      type: ActionType.SetHoverTitleIcon,
-                      value: true,
-                    })
-                  }
-                  onMouseLeave={() =>
-                    dispatch({
-                      type: ActionType.SetHoverTitleIcon,
-                      value: false,
-                    })
-                  }
-                  icon={
-                    state.isExpanded
-                      ? 'burger-menu-light-minimize'
-                      : 'burger-menu-light'
-                  }
-                />
+                {collapsable ? (
+                  <RoundIconButton
+                    onMouseEnter={() =>
+                      dispatch({
+                        type: ActionType.SetHoverTitleIcon,
+                        value: true,
+                      })
+                    }
+                    onMouseLeave={() =>
+                      dispatch({
+                        type: ActionType.SetHoverTitleIcon,
+                        value: false,
+                      })
+                    }
+                    icon={
+                      state.isExpanded
+                        ? 'burger-menu-light-minimize'
+                        : 'burger-menu-light'
+                    }
+                    data-expanded={state.isExpanded}
+                    large
+                  />
+                ) : (
+                  <Icon
+                    onMouseEnter={() =>
+                      dispatch({
+                        type: ActionType.SetHoverTitleIcon,
+                        value: true,
+                      })
+                    }
+                    onMouseLeave={() =>
+                      dispatch({
+                        type: ActionType.SetHoverTitleIcon,
+                        value: false,
+                      })
+                    }
+                    icon={
+                      state.isExpanded
+                        ? 'burger-menu-light-minimize'
+                        : 'burger-menu-light'
+                    }
+                  />
+                )}
               </NavBarToggleButton>
             </NavBarHeader>
             <NavBarItemsContainer>{children}</NavBarItemsContainer>

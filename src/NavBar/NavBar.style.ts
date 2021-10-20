@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 import { transition } from '../animations'
 import { Background } from '../Background'
+import { RoundIconButton as BaseRoundIcon } from '../RoundIconButton'
 import { theme } from '../theme'
 
 const EXPANDED_SIZE = 332
@@ -57,6 +58,10 @@ export const NavBarContainer = styled.ul<{ backgroundColor: string }>`
   font-family: ${theme.font()};
   background: ${(props) => props.backgroundColor};
 
+  &[data-collapsable='true']&:not([data-expanded='true']) {
+    background: unset;
+  }
+
   &[data-hover-icon='true'] {
     width: ${DEFAULT_SIZE + 6}px;
   }
@@ -84,10 +89,29 @@ export const NavBarHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  &[data-collapsable='true'] {
+    flex-direction: row-reverse;
+    & > :last-child {
+      margin-right: 12px;
+    }
+  }
 
   & img {
     height: ${DEFAULT_SIZE}px;
     width: ${DEFAULT_SIZE}px;
     object-fit: contain;
+  }
+`
+
+export const RoundIconButton = styled(BaseRoundIcon)`
+  position: absolute;
+  top: 24px;
+  left: 36px;
+  box-shadow: ${theme.shadow('regular')};
+  background-color: ${theme.color('background', { useRootTheme: true })};
+  color: ${theme.neutralColor(900)};
+
+  &[data-expanded='true'] {
+    position: unset;
   }
 `
