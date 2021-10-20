@@ -1,8 +1,8 @@
 import * as React from 'react'
 
 import { isString } from '../_internal/data'
-import { Icon } from '../Icon'
 import { Text } from '../Text'
+import { useCurrentBackground } from '../useCurrentBackground'
 
 import { NavBarContext } from './NavBar.context'
 import {
@@ -16,15 +16,16 @@ import {
   NavBarAbsoluteContainer,
   NavBarContainer,
   NavBarFakeContainer,
+  NavBarFloatingContainer,
   NavBarHeader,
   NavBarItemsContainer,
-  NavBarToggleButton,
   TitleContainer,
   RoundIconButton,
+  NavBarToggle,
 } from './NavBar.style'
 
-const HOVER_AUTO_OPENING_DELAY = 750
-const HOVER_AUTO_CLOSE_DELAY = 500
+const HOVER_AUTO_OPENING_DELAY = 1500
+const HOVER_AUTO_CLOSE_DELAY = 1000
 
 const reducer: React.Reducer<NavBarState, NavBarAction> = (state, action) => {
   switch (action.type) {
@@ -76,12 +77,14 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
     const stateRef = React.useRef<NavBarState>(state)
     stateRef.current = state
 
+    const rootBackground = useCurrentBackground({ useRootTheme: true })
+
     const {
       children,
       title,
       subtitle,
       backgroundColor,
-      collapsable,
+      collapsible,
       ...rest
     } = props
 
@@ -117,29 +120,48 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
       }
     }, [state.isHovering])
 
+    const toggleOpen = () =>
+      dispatch({ type: ActionType.ToggleOpen, isPersistent: true })
+
     return (
       <NavBarContext.Provider value={context}>
         <NavBarAbsoluteContainer
           backgroundColor={backgroundColor}
           simulated
-          onMouseEnter={() =>
-            dispatch({ type: ActionType.SetHover, value: true })
-          }
-          onMouseLeave={() =>
-            dispatch({ type: ActionType.SetHover, value: false })
-          }
-          onClick={() => (clickRef.current = true)}
+          {...(collapsible
+            ? { 'data-collapsible': true }
+            : {
+                'data-hover-icon':
+                  state.isHoveringTitleIcon || state.isExpanded,
+                onClick: () => (clickRef.current = true),
+                onMouseEnter: () =>
+                  dispatch({ type: ActionType.SetHover, value: true }),
+                onMouseLeave: () =>
+                  dispatch({ type: ActionType.SetHover, value: false }),
+              })}
+          data-expanded={state.isExpanded}
         >
           <NavBarContainer
             data-testid="nav-bar-container"
             {...rest}
             ref={ref}
-            data-expanded={state.isExpanded}
-            data-hover-icon={state.isHoveringTitleIcon || state.isExpanded}
             backgroundColor={backgroundColor}
-            data-collapsable={collapsable}
           >
-            <NavBarHeader data-collapsable={collapsable}>
+            {collapsible && (
+              <NavBarFloatingContainer backgroundColor={rootBackground}>
+                <RoundIconButton
+                  onClick={toggleOpen}
+                  icon={
+                    state.isExpanded
+                      ? 'burger-menu-light-minimize'
+                      : 'burger-menu-light'
+                  }
+                  large
+                />
+              </NavBarFloatingContainer>
+            )}
+
+            <NavBarHeader>
               {state.isExpanded && (
                 <TitleContainer>
                   {isString(title) ? (
@@ -155,60 +177,33 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
                   )}
                 </TitleContainer>
               )}
-              <NavBarToggleButton
-                onClick={() =>
-                  dispatch({ type: ActionType.ToggleOpen, isPersistent: true })
-                }
-              >
-                {collapsable ? (
-                  <RoundIconButton
-                    onMouseEnter={() =>
-                      dispatch({
-                        type: ActionType.SetHoverTitleIcon,
-                        value: true,
-                      })
-                    }
-                    onMouseLeave={() =>
-                      dispatch({
-                        type: ActionType.SetHoverTitleIcon,
-                        value: false,
-                      })
-                    }
-                    icon={
-                      state.isExpanded
-                        ? 'burger-menu-light-minimize'
-                        : 'burger-menu-light'
-                    }
-                    data-expanded={state.isExpanded}
-                    large
-                  />
-                ) : (
-                  <Icon
-                    onMouseEnter={() =>
-                      dispatch({
-                        type: ActionType.SetHoverTitleIcon,
-                        value: true,
-                      })
-                    }
-                    onMouseLeave={() =>
-                      dispatch({
-                        type: ActionType.SetHoverTitleIcon,
-                        value: false,
-                      })
-                    }
-                    icon={
-                      state.isExpanded
-                        ? 'burger-menu-light-minimize'
-                        : 'burger-menu-light'
-                    }
-                  />
-                )}
-              </NavBarToggleButton>
+              {!collapsible && (
+                <NavBarToggle
+                  onClick={toggleOpen}
+                  onMouseEnter={() =>
+                    dispatch({
+                      type: ActionType.SetHoverTitleIcon,
+                      value: true,
+                    })
+                  }
+                  onMouseLeave={() =>
+                    dispatch({
+                      type: ActionType.SetHoverTitleIcon,
+                      value: false,
+                    })
+                  }
+                  icon={
+                    state.isExpanded
+                      ? 'burger-menu-light-minimize'
+                      : 'burger-menu-light'
+                  }
+                />
+              )}
             </NavBarHeader>
             <NavBarItemsContainer>{children}</NavBarItemsContainer>
           </NavBarContainer>
         </NavBarAbsoluteContainer>
-        <NavBarFakeContainer data-expanded={state.isExpanded} />
+        <NavBarFakeContainer />
       </NavBarContext.Provider>
     )
   }
