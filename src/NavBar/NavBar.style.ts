@@ -84,6 +84,9 @@ export const NavBarAbsoluteContainer = styled(Background)`
   height: 100%;
   z-index: ${zIndex.modals};
 
+  transition: ${transition('transform', { duration: 'l' })};
+  transform: translateX(0);
+
   &[data-hover-icon='true'] {
     width: ${DEFAULT_SIZE + 6}px;
   }
@@ -113,7 +116,7 @@ export const NavBarAbsoluteContainer = styled(Background)`
 
 export const NavBarFakeContainer = styled.div`
   height: 100%;
-  transition: ${transition('width')};
+  transition: ${transition('width', { duration: 'l' })};
   width: ${DEFAULT_SIZE}px;
   flex: 0 0 auto;
 
