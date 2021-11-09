@@ -78,3 +78,27 @@ export const basic = (props: NavBarProps) => (
     </NavBarMenuItem>
   </NavBar>
 )
+
+export const Collapsible = (props: NavBarProps) => (
+  <NavBar {...props} collapsible>
+    <NavBarItem
+      icon={<Icon icon="house-building-outline" />}
+      label="Programmes"
+      active
+    />
+    <NavBarItem icon={<Icon icon="person-outline" />} label="Contacts" />
+    <NavBarItem
+      icon={<Icon icon="calendar-event-outline" />}
+      label="Événements"
+      description="Super event !"
+    />
+    <NavBarItem
+      icon={<Icon icon="share" />}
+      label="Partager le super long texte"
+      disabled
+    />
+    <NavBarMenuItem icon={<Icon icon="settings" />} label="Mon compte" bottom>
+      <MenuLine>Menu</MenuLine>
+    </NavBarMenuItem>
+  </NavBar>
+)
