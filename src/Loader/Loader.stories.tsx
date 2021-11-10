@@ -16,14 +16,6 @@ const GRID_LINES = [
   {
     title: 'Regular',
   },
-  {
-    title: 'Outlined',
-    props: { outline: true },
-  },
-  {
-    title: 'Grey',
-    props: { colored: false },
-  },
 ]
 
 const GRID_ITEMS = [
