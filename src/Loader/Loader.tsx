@@ -9,7 +9,7 @@ export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(
       <Container {...props} ref={ref}>
         <LoaderImg
           data-size={size}
-          src="https://res.cloudinary.com/habx/image/upload/illustrations/gif/loader-geometric-low.gif"
+          src="https://res.cloudinary.com/habx/image/upload/illustrations/gif/loader-geometric-high.gif"
           alt="loading"
         />
       </Container>
