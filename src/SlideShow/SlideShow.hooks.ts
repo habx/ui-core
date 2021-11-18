@@ -165,6 +165,15 @@ export const useSlideShow = ({
       event,
     })
 
+  // Reset the state when items change
+  React.useEffect(() => {
+    dispatch({
+      type: ActionType.GoToSlide,
+      value: 0,
+      source: SlideChangeSource.initial,
+    })
+  }, [items])
+
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
