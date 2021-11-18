@@ -71,7 +71,7 @@
     "@storybook/theming": "^6.3.12",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^12.1.2",
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^27.0.3",
     "@types/lodash.deburr": "^4.1.6",
     "@types/markdown-it": "12.2.3",
     "@types/react": "^17.0.35",
