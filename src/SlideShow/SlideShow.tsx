@@ -16,10 +16,12 @@ import {
 import { SlideShowContent } from './SlideShowContent'
 import { SlideShowNavigation } from './SlideShowNavigation'
 
+const DEFAULT_ITEMS: any[] = []
+
 export const SlideShow = React.forwardRef<HTMLDivElement, SlideShowProps>(
   (props, ref) => {
     const {
-      items = [],
+      items = DEFAULT_ITEMS,
       renderItem,
       defaultDevice,
       hideNavigationDots = false,
