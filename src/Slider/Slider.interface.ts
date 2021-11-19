@@ -26,6 +26,8 @@ export interface SliderInnerProps
   step?: number
   range?: boolean
   dots?: boolean
+  dotType?: 'regular' | 'tag'
+  reversed?: boolean
   indicators?: (Omit<Indicator, 'color' | 'position'> & { color?: string })[]
 
   tooltipFormatter?: SliderTooltipFormatter

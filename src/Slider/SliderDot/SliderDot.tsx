@@ -1,7 +1,12 @@
 import * as React from 'react'
 
 import { SliderDotProps } from './SliderDot.interface'
-import { SliderDotContainer, SliderDotContent } from './SliderDot.style'
+import {
+  SliderDotContainer,
+  SliderDotContent,
+  Tag,
+  TagContainer,
+} from './SliderDot.style'
 
 type Listeners = {
   mousemove?: EventListener
@@ -91,6 +96,8 @@ export const SliderDot: React.FunctionComponent<SliderDotProps> = ({
   onRest,
   innerColor,
   large = false,
+  dotType,
+  tooltip,
 }) => {
   const eventProps = useMouseMove({ onMove, onRest })
 
@@ -99,9 +106,18 @@ export const SliderDot: React.FunctionComponent<SliderDotProps> = ({
       data-testid="slider-dot"
       style={{ left: `${position}%` }}
       data-large={large}
+      data-dotType={dotType}
       {...eventProps}
     >
-      <SliderDotContent style={{ backgroundColor: innerColor }} />
+      <SliderDotContent
+        style={{ backgroundColor: innerColor }}
+        data-dotType={dotType}
+      />
+      {dotType === 'tag' && !!tooltip.content && (
+        <TagContainer>
+          <Tag interactive>{tooltip.content}</Tag>
+        </TagContainer>
+      )}
     </SliderDotContainer>
   )
 }

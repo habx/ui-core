@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { TagContainer } from '../Tag/Tag.style'
 import { theme } from '../theme'
 
 import { SliderBarContainer } from './SliderBar/SliderBar.style'
@@ -39,6 +40,11 @@ export const SliderContent = styled.div`
     opacity: 0.7;
     pointer-events: none;
     filter: grayscale();
+    ${TagContainer} {
+      color: ${theme.neutralColor(400)};
+      background-color: ${theme.color('secondary', { variation: 'calmer' })};
+      box-shadow: unset;
+    }
   }
 `
 
@@ -46,7 +52,7 @@ export const SliderMainBar = styled.div`
   background-color: ${theme.neutralColor(300)};
   position: absolute;
   width: 100%;
-  height: 4px;
+  height: 3px;
   border-radius: 2px;
 `
 
@@ -71,7 +77,7 @@ export const SliderIndicator = styled.div`
     dynamic: true,
     valuePropName: 'color',
   })};
-  height: 4px;
+  height: 3px;
   border-radius: 8px;
   z-index: 4;
 `

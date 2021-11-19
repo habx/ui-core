@@ -1,12 +1,15 @@
 import styled from 'styled-components'
 
+import { Tag as BaseTag } from '../../Tag'
 import { theme } from '../../theme'
 
 export const SliderDotContent = styled.div`
   width: calc(var(--dot-radius) * 2);
   height: calc(var(--dot-radius) * 2);
   box-shadow: ${theme.shadow('low')};
-  border: 2px solid #fff;
+  &:not([data-dotType='tag']) {
+    border: 2px solid #fff;
+  }
   border-radius: 50%;
   background-color: ${theme.color('primary', { dynamic: true })};
 
@@ -32,7 +35,7 @@ export const SliderDotContainer = styled.div`
 
   --dot-radius: 10px;
 
-  &:active {
+  &:active&:not([data-dotType='tag']) {
     --dot-radius: 12px;
   }
 
@@ -48,4 +51,31 @@ export const SliderDotContainer = styled.div`
   height: calc(var(--dot-radius) * 3);
   margin-left: calc(var(--dot-radius) * -1.5);
   margin-top: calc(var(--dot-radius) * -1.5 + 2px);
+`
+
+export const TagContainer = styled.div`
+  position: absolute;
+  &:active {
+    transform: translateY(-100%);
+  }
+`
+
+export const Tag = styled(BaseTag)`
+  background-color: ${theme.color('primary', {
+    variation: 'calmer',
+  })};
+  color: ${theme.color('primary')};
+  box-shadow: unset;
+
+  &:active {
+    background-color: ${theme.color('primary')};
+    color: ${theme.neutralColor(0)};
+    border-color: transparent;
+  }
+
+  &:hover {
+    background-color: ${theme.color('primary')};
+    color: ${theme.neutralColor(0)};
+    border-color: transparent;
+  }
 `

@@ -35,16 +35,27 @@ const GRID_LINES = [
     title: 'Regular',
     props: {
       value: 40,
+      dotType: 'regular',
+    },
+  },
+  {
+    title: 'With tag',
+    props: {
+      value: 40,
+      dotType: 'tag',
     },
   },
   {
     title: 'No value',
-    props: {},
+    props: {
+      dotType: 'regular',
+    },
   },
   {
     title: 'No value range',
     props: {
       range: true,
+      dotType: 'regular',
     },
   },
   {
@@ -67,6 +78,7 @@ const GRID_LINES = [
       value: [0, 30] as [number, number],
       indicators: [{ range: [70, 100] as [number, number] }],
       range: true,
+      dotType: 'regular',
     },
   },
   {
@@ -105,9 +117,10 @@ const GRID_ITEMS = [
     },
   },
   {
-    label: 'Fixed tooltip',
+    label: 'Fixed tooltip (regular dot only)',
     props: {
       shouldTooltipFollowDot: false,
+      dotType: 'regular',
     },
   },
 ]

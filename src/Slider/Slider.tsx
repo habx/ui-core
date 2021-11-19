@@ -42,6 +42,8 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
       step: rawStep = 5,
       dots: rawDots,
       value: rawValue,
+      reversed = false,
+      dotType = 'tag',
       ...rest
     } = props
 
@@ -70,6 +72,40 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
       },
       [max, min]
     )
+
+    const tooltips = React.useMemo<Tooltip[]>(() => {
+      const buildTooltip = (tooltipValue: number): Tooltip => {
+        const label = customValues ? customValues[tooltipValue] : tooltipValue
+        const raw = `${isNil(label) ? '' : label}${tooltipSuffix}`
+
+        const content = isFunction(tooltipFormatter)
+          ? tooltipFormatter(tooltipValue, raw)
+          : raw
+
+        return {
+          content,
+          position: getPositionFromValue(tooltipValue),
+        }
+      }
+
+      if (range) {
+        const rangeLocalValue = localValue as [number, number]
+
+        return [
+          buildTooltip(rangeLocalValue[0]),
+          buildTooltip(rangeLocalValue[1]),
+        ]
+      }
+
+      return [buildTooltip(localValue as number)]
+    }, [
+      customValues,
+      getPositionFromValue,
+      localValue,
+      range,
+      tooltipFormatter,
+      tooltipSuffix,
+    ])
 
     const indicators = React.useMemo<Indicator[]>(
       () =>
@@ -172,6 +208,8 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
           onRest={() => handleChange(localValueRef.current)}
           innerColor={matchingIndicator ? matchingIndicator.color : undefined}
           large={rangeIndex > 0}
+          dotType={dotType}
+          tooltip={tooltips[rangeIndex]}
         />
       )
     }
@@ -249,10 +287,15 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
         })
       }
 
-      return getComponent({
-        from: min,
-        to: (hasValue ? localValue : min) as number,
-      })
+      return reversed
+        ? getComponent({
+            from: (hasValue ? localValue : min) as number,
+            to: max,
+          })
+        : getComponent({
+            from: min,
+            to: (hasValue ? localValue : min) as number,
+          })
     }, [
       customValues,
       getPositionFromValue,
@@ -288,40 +331,6 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
       [indicators]
     )
 
-    const tooltips = React.useMemo<Tooltip[]>(() => {
-      const buildTooltip = (tooltipValue: number): Tooltip => {
-        const label = customValues ? customValues[tooltipValue] : tooltipValue
-        const raw = `${isNil(label) ? '' : label}${tooltipSuffix}`
-
-        const content = isFunction(tooltipFormatter)
-          ? tooltipFormatter(tooltipValue, raw)
-          : raw
-
-        return {
-          content,
-          position: getPositionFromValue(tooltipValue),
-        }
-      }
-
-      if (range) {
-        const rangeLocalValue = localValue as [number, number]
-
-        return [
-          buildTooltip(rangeLocalValue[0]),
-          buildTooltip(rangeLocalValue[1]),
-        ]
-      }
-
-      return [buildTooltip(localValue as number)]
-    }, [
-      customValues,
-      getPositionFromValue,
-      localValue,
-      range,
-      tooltipFormatter,
-      tooltipSuffix,
-    ])
-
     const possibleValues = Array.from(
       { length: (max - min) / step + 1 },
       (_, i) => (min + i) * step
@@ -348,26 +357,28 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
               />
             ))}
         </SliderContent>
-        <SliderTooltips data-fixed={!shouldTooltipFollowDot}>
-          {tooltips.map((tooltip, index) => (
-            <Text
-              key={index}
-              data-testid="slider-tooltip"
-              style={
-                shouldTooltipFollowDot
-                  ? {
-                      paddingLeft: `${tooltip.position}%`,
-                      top: 0,
-                      position: 'absolute',
-                    }
-                  : undefined
-              }
-              variation="title"
-            >
-              {tooltip.content}
-            </Text>
-          ))}
-        </SliderTooltips>
+        {dotType === 'regular' && (
+          <SliderTooltips data-fixed={!shouldTooltipFollowDot}>
+            {tooltips.map((tooltip, index) => (
+              <Text
+                key={index}
+                data-testid="slider-tooltip"
+                style={
+                  shouldTooltipFollowDot
+                    ? {
+                        paddingLeft: `${tooltip.position}%`,
+                        top: 0,
+                        position: 'absolute',
+                      }
+                    : undefined
+                }
+                variation="title"
+              >
+                {tooltip.content}
+              </Text>
+            ))}
+          </SliderTooltips>
+        )}
       </SliderContainer>
     )
   }
