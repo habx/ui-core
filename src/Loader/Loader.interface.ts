@@ -1,8 +1,9 @@
 import * as React from 'react'
 
-export interface LoaderProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @default true
+   * @deprecated not used anymore
    */
   colored?: boolean
 
@@ -13,6 +14,7 @@ export interface LoaderProps extends React.HTMLAttributes<HTMLSpanElement> {
 
   /**
    * @default false
+   * @deprecated not used anymore
    */
   outline?: boolean
 }
