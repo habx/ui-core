@@ -113,7 +113,7 @@ export const SliderDot: React.FunctionComponent<SliderDotProps> = ({
         style={{ backgroundColor: innerColor }}
         data-dotType={dotType}
       />
-      {dotType === 'tag' && !!tooltip.content && (
+      {dotType === 'tag' && (
         <TagContainer>
           <Tag interactive>{tooltip.content}</Tag>
         </TagContainer>

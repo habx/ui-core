@@ -88,8 +88,11 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
         }
       }
 
-      if (range) {
-        const rangeLocalValue = localValue as [number, number]
+      if (range && Array.isArray(localValue)) {
+        const rangeLocalValue =
+          isNil(localValue[0]) || isNil(localValue[1])
+            ? [min, max]
+            : (localValue as [number, number])
 
         return [
           buildTooltip(rangeLocalValue[0]),
@@ -97,7 +100,7 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
         ]
       }
 
-      return [buildTooltip(localValue as number)]
+      return [buildTooltip(isNil(localValue) ? min : (localValue as number))]
     }, [
       customValues,
       getPositionFromValue,
