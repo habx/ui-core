@@ -61,20 +61,6 @@ describe('Slider component', () => {
 
       expect(getByTestId('slider-tooltip').textContent).toEqual('50m²')
     })
-
-    it('should position the tooltip under the dot', () => {
-      const { getByTestId } = render(<Slider value={50} />)
-
-      expect(getByTestId('slider-tooltip')).toHaveStyle('padding-left: 50%')
-    })
-
-    it('should update the tooltip position when the dot is programmatically moved', () => {
-      const { queryByTestId, rerender } = render(<Slider value={50} />)
-
-      rerender(<Slider value={0} />)
-
-      expect(queryByTestId('slider-tooltip')).toHaveStyle('padding-left: 0%')
-    })
   })
 
   describe('UI: range = true', () => {

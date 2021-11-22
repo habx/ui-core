@@ -365,7 +365,6 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
             {tooltips.map((tooltip, index) => (
               <Text
                 key={index}
-                data-testid="slider-tooltip"
                 style={
                   shouldTooltipFollowDot
                     ? {

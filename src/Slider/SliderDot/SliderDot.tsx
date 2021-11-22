@@ -115,7 +115,9 @@ export const SliderDot: React.FunctionComponent<SliderDotProps> = ({
       />
       {dotType === 'tag' && (
         <TagContainer>
-          <Tag interactive>{tooltip.content}</Tag>
+          <Tag interactive data-testid="slider-tooltip">
+            {tooltip.content}
+          </Tag>
         </TagContainer>
       )}
     </SliderDotContainer>
