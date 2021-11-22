@@ -6,6 +6,6 @@ export interface SliderDotProps {
   onRest: () => void
   innerColor?: string
   large?: boolean
-  dotType?: 'regular' | 'tag'
+  dotType: 'regular' | 'tag'
   tooltip: Tooltip
 }

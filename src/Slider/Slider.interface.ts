@@ -26,6 +26,9 @@ export interface SliderInnerProps
   step?: number
   range?: boolean
   dots?: boolean
+  /**
+   * @default 'tag'
+   */
   dotType?: 'regular' | 'tag'
   reversed?: boolean
   indicators?: (Omit<Indicator, 'color' | 'position'> & { color?: string })[]

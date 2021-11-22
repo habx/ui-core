@@ -5,7 +5,7 @@ import { withGrid } from '../_storybook/withGrid'
 
 import { Slider, SliderProps } from './index'
 
-type Props = Omit<SliderProps, 'onChange'>
+type Props = Omit<SliderProps, 'onChange' | 'dotType'>
 
 const SliderWithState: React.FunctionComponent<Props> = ({
   value: initialValue,
