@@ -100,7 +100,11 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
         ]
       }
 
-      return [buildTooltip(isNil(localValue) ? min : (localValue as number))]
+      return [
+        buildTooltip(
+          !localValue || isNil(localValue) ? min : (localValue as number)
+        ),
+      ]
     }, [
       customValues,
       getPositionFromValue,
