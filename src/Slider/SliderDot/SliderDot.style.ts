@@ -39,7 +39,7 @@ export const SliderDotContainer = styled.div`
     --dot-radius: 12px;
   }
 
-  &[data-large='true'] {
+  &[data-large='true']&:not([data-dotType='tag']) {
     --dot-radius: 12px;
 
     &:active {

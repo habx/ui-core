@@ -8,7 +8,11 @@ import { SliderBarContainer } from './SliderBar/SliderBar.style'
 export const SliderContainer = styled.div`
   position: relative;
   margin: 0 4px;
-  padding-top: 32px;
+  padding: 16px 0;
+  &[data-dotType='regular'] {
+    padding-bottom: 8px;
+    padding-top: 32px;
+  }
 `
 
 export const SliderTooltips = styled.div`
@@ -29,7 +33,6 @@ export const SliderTooltips = styled.div`
 
 export const SliderContent = styled.div`
   position: relative;
-  padding: 8px 0;
   cursor: pointer;
 
   & ${SliderBarContainer}[data-main='true'] {
@@ -59,11 +62,10 @@ export const SliderMainBar = styled.div`
 export const SliderBackgroundDot = styled.div`
   position: absolute;
   margin-left: -4px;
-  margin-top: -2px;
-  z-index: 3;
+  z-index: 5;
   cursor: grab;
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
   background-color: ${theme.neutralColor(500)};
   box-shadow: ${theme.shadow('lower')};
   touch-action: pan-x;

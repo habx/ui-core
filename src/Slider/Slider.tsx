@@ -34,7 +34,6 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
       range = false,
       onChange = () => {},
       tooltipFormatter,
-      tooltipSuffix = '',
       customValues,
       indicators: rawIndicators = [],
       min = 0,
@@ -76,7 +75,7 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
     const tooltips = React.useMemo<Tooltip[]>(() => {
       const buildTooltip = (tooltipValue: number): Tooltip => {
         const label = customValues ? customValues[tooltipValue] : tooltipValue
-        const raw = `${isNil(label) ? '' : label}${tooltipSuffix}`
+        const raw = `${isNil(label) ? '' : label}`
 
         const content = isFunction(tooltipFormatter)
           ? tooltipFormatter(tooltipValue, raw)
@@ -111,7 +110,8 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
       localValue,
       range,
       tooltipFormatter,
-      tooltipSuffix,
+      min,
+      max,
     ])
 
     const indicators = React.useMemo<Indicator[]>(
@@ -344,7 +344,7 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
     )
 
     return (
-      <SliderContainer>
+      <SliderContainer data-dotType={dotType}>
         <SliderContent
           {...rest}
           data-disabled={disabled}
