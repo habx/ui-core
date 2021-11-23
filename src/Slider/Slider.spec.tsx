@@ -56,12 +56,6 @@ describe('Slider component', () => {
       expect(getByTestId('slider-tag').textContent).toEqual('50')
     })
 
-    it('should add the tooltipSuffix to the value', () => {
-      const { getByTestId } = render(<Slider value={50} tooltipSuffix="m²" />)
-
-      expect(getByTestId('slider-tag').textContent).toEqual('50m²')
-    })
-
     it('should position the tooltip under the dot when dotType is regular', () => {
       const { getByTestId } = render(<Slider dotType="regular" value={50} />)
 
