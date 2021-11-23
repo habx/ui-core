@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import { Tab } from '../../Tab'
-import { theme } from '../../theme'
 
 export const TabSelectOptionContainer = styled(Tab)`
   --tab-border-width: 0;
@@ -12,11 +11,7 @@ export const TabSelectOptionContainer = styled(Tab)`
   }
 
   &:focus:not(:active) {
-    --tab-outline-width: 0;
-    --tab-color: ${theme.color('primary')};
-    --tab-background-color: ${theme.color('primary', {
-      variation: 'calmer',
-    })};
+    z-index: 100;
   }
 
   &:not(:first-child):not(:last-child) {
