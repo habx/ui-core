@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { TagContainer } from '../Tag/Tag.style'
 import { theme } from '../theme'
 
 import { SliderBarContainer } from './SliderBar/SliderBar.style'
@@ -7,7 +8,11 @@ import { SliderBarContainer } from './SliderBar/SliderBar.style'
 export const SliderContainer = styled.div`
   position: relative;
   margin: 0 4px;
-  padding-top: 32px;
+  padding: 16px 0;
+  &[data-dotType='regular'] {
+    padding-bottom: 8px;
+    padding-top: 32px;
+  }
 `
 
 export const SliderTooltips = styled.div`
@@ -28,7 +33,6 @@ export const SliderTooltips = styled.div`
 
 export const SliderContent = styled.div`
   position: relative;
-  padding: 8px 0;
   cursor: pointer;
 
   & ${SliderBarContainer}[data-main='true'] {
@@ -39,6 +43,11 @@ export const SliderContent = styled.div`
     opacity: 0.7;
     pointer-events: none;
     filter: grayscale();
+    ${TagContainer} {
+      color: ${theme.neutralColor(400)};
+      background-color: ${theme.color('secondary', { variation: 'calmer' })};
+      box-shadow: unset;
+    }
   }
 `
 
@@ -46,18 +55,17 @@ export const SliderMainBar = styled.div`
   background-color: ${theme.neutralColor(300)};
   position: absolute;
   width: 100%;
-  height: 4px;
+  height: 3px;
   border-radius: 2px;
 `
 
 export const SliderBackgroundDot = styled.div`
   position: absolute;
   margin-left: -4px;
-  margin-top: -2px;
-  z-index: 3;
+  z-index: 5;
   cursor: grab;
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
   background-color: ${theme.neutralColor(500)};
   box-shadow: ${theme.shadow('lower')};
   touch-action: pan-x;
@@ -71,7 +79,7 @@ export const SliderIndicator = styled.div`
     dynamic: true,
     valuePropName: 'color',
   })};
-  height: 4px;
+  height: 3px;
   border-radius: 8px;
   z-index: 4;
 `
