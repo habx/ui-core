@@ -50,10 +50,18 @@ describe('Slider component', () => {
       expect(bar).toHaveStyle('right: 50%')
     })
 
-    it('should put the current value as tooltip if no tooltipSuffix and tooltipFormatter given', () => {
+    it('should put the current value as tooltip if no tooltipFormatter given', () => {
       const { getByTestId } = render(<Slider value={50} />)
 
       expect(getByTestId('slider-tag').textContent).toEqual('50')
+    })
+
+    it('should take into account the tooltipFormatter given', () => {
+      const { getByTestId } = render(
+        <Slider value={50} tooltipFormatter={(value) => `${value} m²`} />
+      )
+
+      expect(getByTestId('slider-tag').textContent).toEqual('50 m²')
     })
 
     it('should position the tooltip under the dot when dotType is regular', () => {
