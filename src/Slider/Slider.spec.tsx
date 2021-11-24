@@ -50,29 +50,30 @@ describe('Slider component', () => {
       expect(bar).toHaveStyle('right: 50%')
     })
 
-    it('should put the current value as tooltip if no tooltipSuffix and tooltipFormatter given', () => {
+    it('should put the current value as tooltip if no tooltipFormatter given', () => {
       const { getByTestId } = render(<Slider value={50} />)
 
-      expect(getByTestId('slider-tooltip').textContent).toEqual('50')
+      expect(getByTestId('slider-tag').textContent).toEqual('50')
     })
 
-    it('should add the tooltipSuffix to the value', () => {
-      const { getByTestId } = render(<Slider value={50} tooltipSuffix="m²" />)
+    it('should take into account the tooltipFormatter given', () => {
+      const { getByTestId } = render(
+        <Slider value={50} tooltipFormatter={(value) => `${value} m²`} />
+      )
 
-      expect(getByTestId('slider-tooltip').textContent).toEqual('50m²')
+      expect(getByTestId('slider-tag').textContent).toEqual('50 m²')
     })
 
-    it('should position the tooltip under the dot', () => {
-      const { getByTestId } = render(<Slider value={50} />)
+    it('should position the tooltip under the dot when dotType is regular', () => {
+      const { getByTestId } = render(<Slider dotType="regular" value={50} />)
 
       expect(getByTestId('slider-tooltip')).toHaveStyle('padding-left: 50%')
     })
 
-    it('should update the tooltip position when the dot is programmatically moved', () => {
+    it('should update the tooltip position when the dot is programmatically moved when dotType is regular', () => {
       const { queryByTestId, rerender } = render(<Slider value={50} />)
 
-      rerender(<Slider value={0} />)
-
+      rerender(<Slider dotType="regular" value={0} />)
       expect(queryByTestId('slider-tooltip')).toHaveStyle('padding-left: 0%')
     })
   })
