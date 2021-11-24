@@ -4,6 +4,7 @@ import { Tab } from '../../Tab'
 
 export const TabSelectOptionContainer = styled(Tab)`
   --tab-border-width: 0;
+  flex-grow: 1;
   border: 1px solid var(--tab-border-color);
 
   &:not(:first-child) {
