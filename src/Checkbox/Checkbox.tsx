@@ -29,12 +29,12 @@ const InnerCheckbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
       <FakeInputContainer>
         <Input
           ref={ref}
+          data-testid="checkbox-input"
           {...rest}
           checked={checked ?? Boolean(value)}
           data-error={error}
           data-small={small}
           disabled={disabled}
-          data-testid="checkbox-input"
           type="checkbox"
           id={id}
         />
