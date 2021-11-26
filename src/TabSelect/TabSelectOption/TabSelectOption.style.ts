@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
+import { zIndex } from '../../_internal/theme/zIndex'
 import { Tab } from '../../Tab'
 
 export const TabSelectOptionContainer = styled(Tab)`
   --tab-border-width: 0;
-  flex-grow: 1;
   border: 1px solid var(--tab-border-color);
 
   &:not(:first-child) {
@@ -12,7 +12,7 @@ export const TabSelectOptionContainer = styled(Tab)`
   }
 
   &:focus:not(:active) {
-    z-index: 100;
+    z-index: ${zIndex.floatingButtons};
   }
 
   &:not(:first-child):not(:last-child) {

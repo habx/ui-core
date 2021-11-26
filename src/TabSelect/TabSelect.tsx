@@ -5,13 +5,20 @@ import { TabSelectContainer } from './TabSelect.style'
 
 export const TabSelect = React.forwardRef<HTMLDivElement, TabSelectProps>(
   (props, ref) => {
-    const { large = false, small = false, children, ...rest } = props
+    const {
+      large = false,
+      small = false,
+      fullWidth = false,
+      children,
+      ...rest
+    } = props
 
     return (
       <TabSelectContainer
         ref={ref}
         data-large={large}
         data-small={small}
+        data-fullWidth={fullWidth}
         {...rest}
       >
         {children}

@@ -3,6 +3,9 @@ import styled from 'styled-components'
 export const TabSelectContainer = styled.div`
   display: flex;
 
+  &[data-fullWidth='true'] > * {
+    flex-grow: 1;
+  }
   &[data-small='true'] > * {
     --tab-horizontal-padding: 8px;
     --tab-height: 24px;
