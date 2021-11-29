@@ -1,8 +1,7 @@
 import { addDecorator, addParameters } from '@storybook/react'
-import { themes } from '@storybook/theming';
+import { themes } from '@storybook/theming'
 
 import { providerDecorator } from './providerDecorator'
-import React from 'react'
 import { palette } from '../src/palette'
 
 addDecorator(providerDecorator)
