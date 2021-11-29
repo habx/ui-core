@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createGlobalStyle } from 'styled-components'
 import styledNormalize from 'styled-normalize'
-import { useDarkMode } from 'storybook-dark-mode';
+import { useDarkMode } from 'storybook-dark-mode'
 
 import { Provider } from '../src/Provider'
 import { Background } from '../src/Background'
