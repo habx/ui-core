@@ -37,6 +37,7 @@ const WrappedAnnouncementBanner: React.FunctionComponent<
 const GRID_LINES = [
   {
     props: {
+      success: true,
       message: 'Votre mot de passe a été modifié. Vous pouvez vous connecter',
     },
   },
@@ -45,6 +46,18 @@ const GRID_LINES = [
       warning: true,
       message:
         'Le lien pour réinitaliser le mot de passe est expiré. Veuillez faire une nouvelle demande',
+    },
+  },
+  {
+    props: {
+      error: true,
+      message: "Le lien n'existe pas",
+    },
+  },
+  {
+    props: {
+      primary: true,
+      message: 'Votre mot de passe a été modifié. Vous pouvez vous connecter',
     },
   },
   {
@@ -80,8 +93,7 @@ export const basic = (props: AlertBannerProps) => <AlertBanner {...props} />
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1828%3A13',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1828%3A13',
   },
 }
 
