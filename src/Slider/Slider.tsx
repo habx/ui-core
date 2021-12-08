@@ -24,8 +24,6 @@ import {
 import { SliderBar } from './SliderBar'
 import { SliderDot } from './SliderDot'
 
-const EMPTY_RANGE: [Element, Element] = [null, null]
-
 const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
   (props, ref) => {
     const {
@@ -49,7 +47,8 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
     const max = customValues ? customValues.length - 1 : rawMax
     const step = customValues ? 1 : rawStep
     const dots = customValues ? true : rawDots
-    const value = !Array.isArray(rawValue) && range ? EMPTY_RANGE : rawValue
+    const emptyRange: [Element, Element] = React.useMemo(() => [min, max], [])
+    const value = !Array.isArray(rawValue) && range ? emptyRange : rawValue
 
     const barRef = React.useRef<HTMLDivElement>(null)
     const [localValue, setLocalValue] = React.useState<Value>(value)
