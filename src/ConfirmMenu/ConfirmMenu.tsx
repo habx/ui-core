@@ -73,13 +73,13 @@ export const ConfirmMenu = React.forwardRef<HTMLDivElement, ConfirmMenuProps>(
     }
 
     const styleSetter = React.useCallback<TogglePanelStyleSetter>(
-      (_, triggerDimensions) => {
-        const top = triggerDimensions.bottom + 8
-
-        return position === 'right'
-          ? { top, right: triggerDimensions.right }
-          : { top, left: triggerDimensions.left }
-      },
+      (dimensions, triggerDimensions) => ({
+        left:
+          position === 'right'
+            ? triggerDimensions.right - dimensions.width
+            : triggerDimensions.left,
+        top: triggerDimensions.bottom + 8,
+      }),
       [position]
     )
 
