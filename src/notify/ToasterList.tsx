@@ -51,6 +51,9 @@ export const ToasterList: React.VoidFunctionComponent = () => {
 
   const planClose = React.useCallback(
     (toastId: number, options: ToastOptions) => {
+      if (options.duration === Infinity) {
+        return
+      }
       const timeout = window.setTimeout(
         () => handleClose(toastId),
         options.duration || DEFAULT_DURATION
