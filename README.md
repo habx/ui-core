@@ -14,7 +14,7 @@
 
 Design System used on all the applications developed by HABX
 
-## Instalation
+## Installation
 ```shell 
 npm i @habx/ui-core
  ```
@@ -39,4 +39,4 @@ const App: React.FunctionComponent = ({ children }) => {
 
 [documentation](https://habx.github.io/concrete-docs/)
 
-Test all our component in our [Storybook](https://habx.github.io/ui-core/)
+Test all our components in our [Storybook](https://habx.github.io/ui-core/)
