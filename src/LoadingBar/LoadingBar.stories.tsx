@@ -15,7 +15,10 @@ const GRID_PROPS = {}
 const GRID_LINES = [
   {
     title: 'Regular',
-    props: { total: 100, loaded: 50 },
+  },
+  {
+    title: 'Small',
+    props: { size: 'small' as const },
   },
 ]
 
@@ -31,6 +34,10 @@ const GRID_ITEMS = [
   {
     label: 'Full',
     props: { total: 100, loaded: 100 },
+  },
+  {
+    label: 'Infinite',
+    props: {},
   },
 ]
 
