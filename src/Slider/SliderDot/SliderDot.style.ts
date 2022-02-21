@@ -51,6 +51,11 @@ export const SliderDotContainer = styled.div`
   height: calc(var(--dot-radius) * 3);
   margin-left: calc(var(--dot-radius) * -1.5);
   margin-top: calc(var(--dot-radius) * -1.5 + 2px);
+
+  // Fix color in dark mode
+  &[data-dark='true'] button {
+    color: ${theme.neutralColor(500)};
+  }
 `
 
 export const TagContainer = styled.div`
