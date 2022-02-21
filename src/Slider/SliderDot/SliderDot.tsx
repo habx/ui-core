@@ -1,5 +1,8 @@
 import * as React from 'react'
 
+import { isColorDark } from '../../color'
+import { useCurrentBackground } from '../../useCurrentBackground'
+
 import { SliderDotProps } from './SliderDot.interface'
 import {
   SliderDotContainer,
@@ -101,12 +104,15 @@ export const SliderDot: React.FunctionComponent<SliderDotProps> = ({
 }) => {
   const eventProps = useMouseMove({ onMove, onRest })
 
+  const background = useCurrentBackground()
+
   return (
     <SliderDotContainer
       data-testid="slider-dot"
       style={{ left: `${position}%` }}
       data-large={large}
       data-dotType={dotType}
+      data-dark={isColorDark(background)}
       {...eventProps}
     >
       <SliderDotContent
