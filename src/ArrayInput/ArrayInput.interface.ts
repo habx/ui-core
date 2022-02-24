@@ -1,6 +1,7 @@
 import * as React from 'react'
 
 import { ThemeOverridesProps } from '../_internal/types'
+import { ExpansionPanelProps } from '../ExpansionPanel'
 import { WithLabel } from '../withLabel'
 
 import { ArrayInputItemComponentProps } from './Item/Item.interface'
@@ -11,7 +12,7 @@ export interface ArrayInputAddButtonComponentProps {
 }
 
 export interface ArrayInputInnerProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends ExpansionPanelProps,
     ThemeOverridesProps {
   items?: any[]
   addButtonLabel?: string
