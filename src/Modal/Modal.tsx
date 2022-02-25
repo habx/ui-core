@@ -29,6 +29,7 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
       children,
       title,
       width = 'regular',
+      hideCloseIcon,
       ...rest
     } = props
 
@@ -55,14 +56,18 @@ const InnerModal = React.forwardRef<HTMLDivElement, ModalInnerProps>(
           data-width={width}
           {...rest}
         >
-          <HeaderBarContainer>
-            {isString(title) ? (
-              <Title type="section">{title}</Title>
-            ) : (
-              title ?? <div />
-            )}
-            <RoundIconButton onClick={modal.close} icon="close" />
-          </HeaderBarContainer>
+          {(title || !hideCloseIcon) && (
+            <HeaderBarContainer>
+              {isString(title) ? (
+                <Title type="section">{title}</Title>
+              ) : (
+                title ?? <div />
+              )}
+              {!hideCloseIcon && (
+                <RoundIconButton onClick={modal.close} icon="close" />
+              )}
+            </HeaderBarContainer>
+          )}
           <ModalContent>
             <ModalScrollableContent>
               {isFunction(children) ? children(modal) : children}

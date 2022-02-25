@@ -10,6 +10,7 @@ export interface ModalInnerProps
   parentFloatingPanelRef: React.RefObject<HTMLElement> | null
   title?: React.ReactNode
   width?: 'small' | 'regular' | 'large'
+  hideCloseIcon?: boolean
   children?:
     | React.ReactNode
     | ((modal: Modal<HTMLDivElement>) => React.ReactNode)
