@@ -5,6 +5,7 @@ export interface Dispatch<Message, Options, Return> {
 export interface ProviderContextValue {
   confirmLabel: string
   cancelLabel: string
+  deleteLabel: string
 }
 
 export interface ProviderProps {}
