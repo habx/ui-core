@@ -24,11 +24,13 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
   (props, ref) => {
     const {
       multi = false,
+      round = false,
       // eslint-disable-next-line deprecation/deprecation
       light = false,
       bare = false,
       small = false,
       tiny = false,
+      valuePosition = 'left',
       filterable = false,
       disabled = false,
       canSelectAll = false,
@@ -66,6 +68,7 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           data-open={state.isOpened}
           data-background={hasBackground}
           data-light={light}
+          data-round={round}
           data-small={small}
           data-bare={bare}
           data-tiny={tiny}
@@ -90,6 +93,7 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
             <Placeholder
               data-testid="select-placeholder"
               data-empty={!state.label}
+              data-position={valuePosition}
             >
               {state.label ?? placeholder}
             </Placeholder>

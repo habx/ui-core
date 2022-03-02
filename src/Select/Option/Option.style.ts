@@ -9,11 +9,13 @@ export const OptionContent = styled.div``
 export const SideElementContainer = styled.div`
   position: relative;
   font-size: 20px;
+  min-height: 20px;
+  vertical-align: middle;
 
   & > *[data-hover='true'] {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     opacity: 0;
   }
 

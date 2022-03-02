@@ -3,9 +3,10 @@ import styled from 'styled-components'
 
 import { withGrid } from '../_storybook/withGrid'
 import { Icon } from '../Icon'
+import { RoundIconButton } from '../RoundIconButton'
 
 import { Select, SelectProps } from './index'
-import { OPTIONS, COLORED_OPTIONS } from './Select.data'
+import { OPTIONS, COLORED_OPTIONS, SELECTOR_OPTIONS } from './Select.data'
 
 const SelectContainer = styled.div`
   display: flex;
@@ -61,6 +62,19 @@ const GRID_LINES = [
   {
     title: 'Bare',
     props: {
+      bare: true,
+    },
+  },
+  {
+    title: 'Round',
+    props: {
+      round: true,
+    },
+  },
+  {
+    title: 'Bare & Round',
+    props: {
+      round: true,
       bare: true,
     },
   },
@@ -124,6 +138,26 @@ const GRID_ITEMS = [
       elementRight: <Icon icon="house-building-outline" />,
     },
   },
+  {
+    label: 'With description in options',
+    props: {
+      options: OPTIONS.map((option) => ({
+        ...option,
+        description: 'Description',
+      })),
+    },
+  },
+  {
+    label: 'With option groups',
+    props: {
+      options: [
+        { value: 'group 1', label: 'group 1', group: 'group' },
+        { value: 'group 2', label: 'group 2', group: 'group' },
+        ...OPTIONS,
+      ],
+    },
+    OPTIONS,
+  },
 ]
 
 const Grid = withGrid<SelectProps>({
@@ -141,12 +175,26 @@ export const basic = (props: SelectProps) => (
   <Select options={OPTIONS} {...props} />
 )
 
+export const selector = (props: SelectProps) => (
+  <Select
+    options={SELECTOR_OPTIONS}
+    valuePosition="center"
+    value={SELECTOR_OPTIONS[2].value}
+    canReset={false}
+    bare
+    round
+    elementRight={<RoundIconButton icon="chevron-north" />}
+    elementLeft={<RoundIconButton icon="chevron-south" />}
+    style={{ padding: '0 6px' }}
+    {...props}
+  />
+)
+
 export const gallery = () => <Grid />
 
 gallery.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1846',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1846',
   },
 }

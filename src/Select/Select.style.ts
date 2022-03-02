@@ -11,6 +11,13 @@ export const Placeholder = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   transition: ${transition('color')};
+
+  &[data-position='right'] {
+    text-align: right;
+  }
+  &[data-position='center'] {
+    text-align: center;
+  }
 `
 
 export const IconsContainer = styled.div`
@@ -20,11 +27,7 @@ export const IconsContainer = styled.div`
   height: 100%;
   position: relative;
   color: ${theme.textColor({ useRootTheme: true })};
-
-  span {
-    font-size: 24px;
-    margin-left: 6px;
-  }
+  font-size: var(--select-icon-size);
 `
 
 export const SelectContainer = styled.div`
@@ -47,6 +50,7 @@ export const SelectContainer = styled.div`
   height: var(--select-height);
   padding: 0 12px;
   --select-height: 48px;
+  --select-icon-size: 24px;
 
   cursor: pointer;
 
@@ -56,12 +60,17 @@ export const SelectContainer = styled.div`
 
   &[data-tiny='true'] {
     --select-height: 24px;
+    --select-icon-size: 16px;
     padding: 0 6px;
   }
 
   &[data-open='true'] {
     transition: z-index ease-in 0s;
     z-index: 10;
+  }
+
+  &[data-round='true'] {
+    border-radius: 100px;
   }
 `
 
@@ -113,4 +122,5 @@ export const Line = styled.div`
 
 export const ElementRightContainer = styled.div`
   color: var(--input-placeholder-color);
+  margin-left: 6px;
 `

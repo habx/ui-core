@@ -1,6 +1,8 @@
 import * as React from 'react'
 
 import { Icon } from '../../Icon'
+import { Text } from '../../Text'
+import { useThemeVariant } from '../../useThemeVariant'
 import { SelectContext } from '../Select.context'
 
 import { OptionProps } from './Option.interface'
@@ -12,6 +14,7 @@ import {
 
 const InnerOption: React.FunctionComponent<OptionProps> = ({
   label,
+  description,
   selected,
   focused,
   disabled,
@@ -26,6 +29,8 @@ const InnerOption: React.FunctionComponent<OptionProps> = ({
     }
   }, [focused])
 
+  const theme = useThemeVariant()
+
   return (
     <OptionContainer
       data-testid="option-container"
@@ -36,11 +41,20 @@ const InnerOption: React.FunctionComponent<OptionProps> = ({
       {...props}
     >
       <OptionContent>{label}</OptionContent>
-      {multi && (
+      {(multi || description) && (
         <SideElementContainer>
-          {selected && (
+          {description && (
+            <Text
+              type="captionSmall"
+              variation="lowContrast"
+              color={selected ? theme.colors.primary.base : undefined}
+            >
+              {description}
+            </Text>
+          )}
+          {selected && multi && (
             <React.Fragment>
-              <Icon icon="check" />
+              {!description && <Icon icon="check" />}
               <Icon icon="close" data-hover />
             </React.Fragment>
           )}
