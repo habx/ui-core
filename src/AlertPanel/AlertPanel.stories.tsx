@@ -31,7 +31,7 @@ const GRID_LINES = [
     props: {
       illustration: (
         <img
-          src="//res.cloudinary.com/habx/image/upload/illustrations/habxmojies/paint-bucket.svg"
+          src="https://cdn.habx.com/image/upload/illustrations/habxmojies/paint-bucket.svg"
           alt="illustration"
         />
       ),
@@ -115,8 +115,7 @@ export const basic = (props: AlertPanelProps) => (
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/oTNjqlhFKMjVds2cyD3OpS/%F0%9F%A7%A9----Alert-Panel?node-id=102%3A773',
+    url: 'https://www.figma.com/file/oTNjqlhFKMjVds2cyD3OpS/%F0%9F%A7%A9----Alert-Panel?node-id=102%3A773',
   },
 }
 

@@ -17,7 +17,7 @@ const GRID_PROPS = {
   title: 'Rocket launcher',
   description: 'Accédez au résumé de vos choix, recevez le par mail',
   illustration:
-    '//res.cloudinary.com/habx/image/upload/v1611596609/illustrations/concept/crank.svg',
+    'https://cdn.habx.com/image/upload/v1611596609/illustrations/concept/crank.svg',
 }
 
 const GRID_LINES = [
@@ -59,7 +59,7 @@ export default {
     },
     illustration: {
       defaultValue:
-        '//res.cloudinary.com/habx/image/upload/v1611596609/illustrations/concept/crank.svg',
+        'https://cdn.habx.com/image/upload/v1611596609/illustrations/concept/crank.svg',
     },
   },
 }
@@ -71,8 +71,7 @@ export const basic = (props: CardButtonWithIllustrationProps) => (
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=4%3A0',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=4%3A0',
   },
 }
 
