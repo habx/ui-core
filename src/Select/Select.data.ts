@@ -53,3 +53,32 @@ export const COLORED_OPTIONS: SelectOption[] = [
     color: palette.neutralBlackWithOpacityFading[400],
   },
 ]
+
+export const SELECTOR_OPTIONS = [
+  {
+    label: 'Vue drone',
+    value: 'drone',
+    group: 'view',
+  },
+  {
+    label: 'Vue aérienne',
+    value: 'aerial',
+    group: 'view',
+  },
+  {
+    label: 'Toit',
+    value: 'roof',
+    group: 'floor',
+  },
+  {
+    label: '2ème étage',
+    value: '2',
+    group: 'floor',
+    description: '3 lots disponibles',
+  },
+  {
+    label: '1er étage',
+    value: '1',
+    group: 'floor',
+  },
+]

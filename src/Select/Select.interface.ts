@@ -14,6 +14,8 @@ export type SelectOption = {
   disabled?: boolean
   color?: Color
   keywords?: string[]
+  description?: string
+  group?: string
 }
 
 export type EnrichedSelectOption = SelectOption & { selected: boolean }
@@ -31,6 +33,11 @@ export interface SelectInnerProps
    */
   light?: boolean
   bare?: boolean
+  round?: boolean
+
+  // Value positioning
+  /** @default left **/
+  valuePosition?: 'center' | 'left' | 'right'
 
   elementRight?: React.ReactNode
   elementLeft?: React.ReactNode
