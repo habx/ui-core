@@ -10,7 +10,8 @@ export const SideElementContainer = styled.div`
   position: relative;
   font-size: 20px;
   min-height: 20px;
-  vertical-align: middle;
+  display: flex;
+  align-items: center;
 
   & > *[data-hover='true'] {
     position: absolute;
