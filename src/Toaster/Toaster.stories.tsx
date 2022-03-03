@@ -46,7 +46,7 @@ const GRID_ITEMS = [
       illustration: (
         <img
           alt="Illu"
-          src="https://res.cloudinary.com/habx/image/upload/v1561731410/illustrations/habxmojies/sun-inlove.svg"
+          src="https:https://cdn.habx.com/image/upload/v1561731410/illustrations/habxmojies/sun-inlove.svg"
         />
       ),
     },
@@ -89,8 +89,7 @@ export const basic = (props: NotificationProps) => <Toaster {...props} />
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=60%3A4',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=60%3A4',
   },
 }
 export const gallery = () => <Grid />
