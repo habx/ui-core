@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { isString } from '../_internal/data'
 import { ActionBar } from '../ActionBar'
 import { Button } from '../Button'
 import { Icon } from '../Icon'
@@ -11,7 +10,7 @@ import { Text } from '../Text'
 import { ConfirmFormContainer } from './confirm.style'
 
 export const confirm = (config: ConfirmConfig | string) => {
-  const innerConfig = isString(config) ? { message: config } : config
+  const innerConfig = typeof config === 'string' ? { message: config } : config
 
   return prompt<boolean>(({ onResolve }) => ({
     title: innerConfig.title,
@@ -22,10 +21,10 @@ export const confirm = (config: ConfirmConfig | string) => {
 
       return (
         <ConfirmFormContainer>
-          {'message' in innerConfig ? (
+          {typeof innerConfig.message === 'string' ? (
             <Text>{innerConfig.message}</Text>
           ) : (
-            innerConfig.children
+            innerConfig.message
           )}
 
           <ActionBar>
@@ -56,11 +55,12 @@ export const confirm = (config: ConfirmConfig | string) => {
   }))
 }
 
-type ConfirmConfig = {
+interface ConfirmConfig {
+  message: React.ReactNode
   title?: string
   confirmLabel?: string
   cancelLabel?: string
   confirmIcon?: React.ReactElement
   /** @default info **/
   type?: 'info' | 'delete'
-} & ({ message: string } | { children: React.ReactNode })
+}
