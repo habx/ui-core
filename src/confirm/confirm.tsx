@@ -22,7 +22,12 @@ export const confirm = (config: ConfirmConfig | string) => {
 
       return (
         <ConfirmFormContainer>
-          <Text>{innerConfig.message}</Text>
+          {'message' in innerConfig ? (
+            <Text>{innerConfig.message}</Text>
+          ) : (
+            innerConfig.children
+          )}
+
           <ActionBar>
             <Button ghost secondary onClick={() => onResolve(false)}>
               {innerConfig.cancelLabel ?? context.cancelLabel}
@@ -51,12 +56,11 @@ export const confirm = (config: ConfirmConfig | string) => {
   }))
 }
 
-interface ConfirmConfig {
-  message: string
+type ConfirmConfig = {
   title?: string
   confirmLabel?: string
   cancelLabel?: string
   confirmIcon?: React.ReactElement
   /** @default info **/
   type?: 'info' | 'delete'
-}
+} & ({ message: string } | { children: React.ReactNode })
