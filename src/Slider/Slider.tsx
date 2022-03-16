@@ -44,7 +44,7 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
       ...rest
     } = props
 
-    const max = customValues ? customValues.length : rawMax
+    const max = customValues ? customValues.length - 1 : rawMax
 
     const step = customValues ? 1 : rawStep
     const dots = customValues ? true : rawDots
@@ -74,9 +74,7 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
 
     const tooltips = React.useMemo<Tooltip[]>(() => {
       const buildTooltip = (tooltipValue: number): Tooltip => {
-        const label = customValues
-          ? customValues[tooltipValue - 1]
-          : tooltipValue
+        const label = customValues ? customValues[tooltipValue] : tooltipValue
         const raw = `${isNil(label) ? '' : label}`
 
         const content = isFunction(tooltipFormatter)
