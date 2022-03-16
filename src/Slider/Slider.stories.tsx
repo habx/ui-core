@@ -92,7 +92,6 @@ const GRID_LINES = [
   {
     title: 'Custom values',
     props: {
-      value: 2,
       customValues: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6'],
       range: true,
     },
@@ -144,8 +143,7 @@ export const basic = (props: SliderProps) => <Slider {...props} />
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=60%3A6',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=60%3A6',
   },
 }
 
