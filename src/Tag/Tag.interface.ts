@@ -9,6 +9,7 @@ export interface TagProps
   interactive?: boolean
   large?: boolean
   small?: boolean
+  icon?: boolean
   as?: styledAs
   elementRight?: React.ReactNode
   elementLeft?: React.ReactNode

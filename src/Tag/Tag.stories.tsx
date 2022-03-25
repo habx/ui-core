@@ -27,6 +27,13 @@ const GRID_LINES = [
       large: true,
     },
   },
+  {
+    title: 'Icon',
+    props: {
+      icon: true,
+      children: <Icon icon="close" style={{ cursor: 'pointer' }} />,
+    },
+  },
 ]
 
 const GRID_ITEMS = [
@@ -100,8 +107,7 @@ export const basic = (props: TagProps) => (
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1475%3A0',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1475%3A0',
   },
 }
 

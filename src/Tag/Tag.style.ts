@@ -78,6 +78,16 @@ export const TagContainer = styled.button`
     })};
   }
 
+  &[data-icon='true'] {
+    --tag-border-width: 1px;
+    --tag-border-color: ${theme.neutralColor(200)};
+    pointer-events: none;
+    &:not([data-children='string']) {
+      width: var(--tag-height);
+      border-radius: 50%;
+    }
+  }
+
   &[data-interactive='true'] {
     cursor: pointer;
     --tag-border-width: 1px;
