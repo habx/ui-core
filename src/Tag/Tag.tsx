@@ -12,7 +12,6 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
       large = false,
       small = false,
       interactive = false,
-      icon = false,
       type = 'button',
       elementLeft,
       elementRight,
@@ -30,12 +29,10 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
         data-large={large}
         data-interactive={interactive}
         data-background={hasBackground}
-        data-icon={icon}
-        data-children={typeof children}
         type={type}
         {...rest}
       >
-        {elementLeft && !icon && (
+        {elementLeft && (
           <SideElementContainer
             data-position="left"
             data-testid="element-left-container"
@@ -44,7 +41,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
           </SideElementContainer>
         )}
         <TagContent>{children}</TagContent>
-        {elementRight && !icon && (
+        {elementRight && (
           <SideElementContainer
             data-position="right"
             data-testid="element-right-container"

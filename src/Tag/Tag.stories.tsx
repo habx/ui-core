@@ -27,13 +27,6 @@ const GRID_LINES = [
       large: true,
     },
   },
-  {
-    title: 'Icon',
-    props: {
-      icon: true,
-      children: <Icon icon="close" style={{ cursor: 'pointer' }} />,
-    },
-  },
 ]
 
 const GRID_ITEMS = [

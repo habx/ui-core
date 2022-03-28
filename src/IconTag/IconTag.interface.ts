@@ -1,15 +1,14 @@
 import * as React from 'react'
 
 import { styledAs, ThemeOverridesProps } from '../_internal/types'
+import { IconProps } from '../Icon/Icon.interface'
 
-export interface TagProps
+export interface IconTagProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    Pick<IconProps, 'icon'>,
     ThemeOverridesProps {
-  active?: boolean
-  interactive?: boolean
   large?: boolean
+  neutral?: boolean
   small?: boolean
   as?: styledAs
-  elementRight?: React.ReactNode
-  elementLeft?: React.ReactNode
 }
