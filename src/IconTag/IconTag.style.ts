@@ -24,26 +24,25 @@ export const IconTagContainer = styled.button`
   height: var(--tag-height);
   width: var(--tag-height);
 
-  --tag-horizontal-padding: 12px;
+  --tag-horizontal-padding: 6px;
   --tag-height: 36px;
   --tag-side-element-internal-margin: 6px;
   --tag-side-element-external-margin: -2px;
-  --tag-font-size: 14px;
+  --tag-font-size: 24px;
 
   &[data-small='true'] {
-    --tag-horizontal-padding: 8px;
+    --tag-horizontal-padding: 4px;
     --tag-height: 24px;
     --tag-side-element-internal-margin: 4px;
     --tag-side-element-external-margin: 0;
-    --tag-font-size: 12px;
+    --tag-font-size: 16px;
   }
 
   &[data-large='true'] {
-    --tag-horizontal-padding: 24px;
+    --tag-horizontal-padding: 12px;
     --tag-height: 48px;
     --tag-side-element-internal-margin: 8px;
     --tag-side-element-external-margin: -4px;
-    --tag-font-size: 16px;
   }
 
   /*
@@ -55,19 +54,18 @@ export const IconTagContainer = styled.button`
   color: var(--tag-color);
   background-color: var(--tag-background-color);
 
-  --tag-border-width: 1px;
-  --tag-border-color: ${theme.neutralColor(200)};
   --tag-outline-width: 0;
   --tag-outline-color: ${theme.color('primary', { opacity: 0.3 })};
-  --tag-color: ${theme.textColor()};
-  --tag-background-color: transparent;
+  --tag-color: ${theme.color('secondary', { dynamic: true })};
+  --tag-background-color: ${theme.color('secondary', {
+    variation: 'calmer',
+    dynamic: true,
+  })};
 
-  &:not([data-neutral='true']) {
-    --tag-color: ${theme.color('secondary', { dynamic: true })};
-    --tag-background-color: ${theme.color('secondary', {
-      variation: 'calmer',
-      dynamic: true,
-    })};
+  &[data-bare='true'] {
+    --tag-border-width: 1px;
+    --tag-border-color: ${theme.neutralColor(200)};
+    --tag-background-color: ${theme.neutralColor(0)};
   }
 `
 

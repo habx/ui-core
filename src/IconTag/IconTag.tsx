@@ -11,7 +11,7 @@ export const IconTag = React.forwardRef<HTMLButtonElement, IconTagProps>(
     const {
       icon,
       large = false,
-      neutral = false,
+      bare = false,
       small = false,
       type = 'button',
       ...rest
@@ -25,7 +25,7 @@ export const IconTag = React.forwardRef<HTMLButtonElement, IconTagProps>(
         data-small={small}
         data-large={large}
         data-background={hasBackground}
-        data-neutral={neutral}
+        data-bare={bare}
         type={type}
         {...rest}
       >

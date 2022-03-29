@@ -32,8 +32,8 @@ const GRID_ITEMS = [
     label: 'Default',
   },
   {
-    label: 'Neutral',
-    props: { neutral: true },
+    label: 'Bare',
+    props: { bare: true },
   },
   {
     label: 'Primary',

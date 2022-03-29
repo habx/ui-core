@@ -8,7 +8,7 @@ export interface IconTagProps
     Pick<IconProps, 'icon'>,
     ThemeOverridesProps {
   large?: boolean
-  neutral?: boolean
+  bare?: boolean
   small?: boolean
   as?: styledAs
 }
