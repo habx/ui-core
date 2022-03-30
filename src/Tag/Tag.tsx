@@ -24,12 +24,13 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
     return (
       <TagContainer
         ref={ref}
+        as={interactive ? 'button' : undefined}
         data-active={active}
         data-small={small}
         data-large={large}
         data-interactive={interactive}
         data-background={hasBackground}
-        type={type}
+        type={interactive ? type : undefined}
         {...rest}
       >
         {elementLeft && (

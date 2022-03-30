@@ -8,14 +8,7 @@ import { IconTagContainer, IconTagContent } from './IconTag.style'
 
 export const IconTag = React.forwardRef<HTMLButtonElement, IconTagProps>(
   (props, ref) => {
-    const {
-      icon,
-      large = false,
-      bare = false,
-      small = false,
-      type = 'button',
-      ...rest
-    } = props
+    const { icon, large = false, bare = false, small = false, ...rest } = props
 
     const hasBackground = useHasColoredBackground()
 
@@ -26,7 +19,6 @@ export const IconTag = React.forwardRef<HTMLButtonElement, IconTagProps>(
         data-large={large}
         data-background={hasBackground}
         data-bare={bare}
-        type={type}
         {...rest}
       >
         <IconTagContent>
