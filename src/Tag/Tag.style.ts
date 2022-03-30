@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { ANIMATION_DURATIONS, ANIMATION_TIMING_FUNCTION } from '../animations'
 import { theme } from '../theme'
 
-export const TagContainer = styled.button`
+export const TagContainer = styled.div`
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
