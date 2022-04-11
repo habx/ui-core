@@ -67,11 +67,9 @@ export const buildUseOnlyOneInstanceOpened = () => {
     return instanceId
   }
 
-  const InstanceProvider: React.FunctionComponent<ProviderProps> = ({
-    id,
-    onClose,
-    children,
-  }) => {
+  const InstanceProvider: React.FunctionComponent<
+    React.PropsWithChildren<ProviderProps>
+  > = ({ id, onClose, children }) => {
     const { parentIds } = useInstanceContext()
 
     const contextValue = React.useMemo<InstanceContextValue>(

@@ -63,63 +63,66 @@ interface StorybookGridConfig<Props> {
   items: GridItem<Props>[]
   itemHorizontalSpace?: number
   itemVerticalSpace?: number
-  itemWrapper?: React.ComponentType<any>
+  itemWrapper?: React.ComponentType<React.PropsWithChildren<any>>
   showBackgroundVariations?: boolean
 }
 
-export const withGrid = <Props extends object>(
-  config: StorybookGridConfig<Props>
-) => (WrappedComponent: React.ComponentType<Props>) => {
-  const {
-    props = {},
-    lines,
-    items,
-    itemWrapper: ItemWrapper = React.Fragment,
-    itemHorizontalSpace = 18,
-    itemVerticalSpace = 12,
-  } = config
+export const withGrid =
+  <Props extends object>(config: StorybookGridConfig<Props>) =>
+  (WrappedComponent: React.ComponentType<React.PropsWithChildren<Props>>) => {
+    const {
+      props = {},
+      lines,
+      items,
+      itemWrapper: ItemWrapper = React.Fragment,
+      itemHorizontalSpace = 18,
+      itemVerticalSpace = 12,
+    } = config
 
-  const Component: React.FunctionComponent = () => {
-    return (
-      <StorybookGridContainer>
-        <StorybookGridContent>
-          {lines.map((line, lineIndex) => {
-            const content = (
-              <LineContainer>
-                <Title type="section">{line.title}</Title>
-                <LineContent>
-                  {items.map((item, index) => {
-                    const fullProps = {
-                      ...props,
-                      ...line.props,
-                      ...item.props,
-                    } as Props
+    const Component: React.FunctionComponent<React.PropsWithChildren<unknown>> =
+      () => {
+        return (
+          <StorybookGridContainer>
+            <StorybookGridContent>
+              {lines.map((line, lineIndex) => {
+                const content = (
+                  <LineContainer>
+                    <Title type="section">{line.title}</Title>
+                    <LineContent>
+                      {items.map((item, index) => {
+                        const fullProps = {
+                          ...props,
+                          ...line.props,
+                          ...item.props,
+                        } as Props
 
-                    return (
-                      <ItemContainer
-                        key={index}
-                        itemHorizontalSpace={itemHorizontalSpace}
-                        itemVerticalSpace={itemVerticalSpace}
-                      >
-                        <ItemWrapper>
-                          <WrappedComponent {...fullProps} />
-                        </ItemWrapper>
-                        {item.label && (
-                          <Label variation="title">{item.label} </Label>
-                        )}
-                      </ItemContainer>
-                    )
-                  })}
-                </LineContent>
-              </LineContainer>
-            )
+                        return (
+                          <ItemContainer
+                            key={index}
+                            itemHorizontalSpace={itemHorizontalSpace}
+                            itemVerticalSpace={itemVerticalSpace}
+                          >
+                            <ItemWrapper>
+                              <WrappedComponent {...fullProps} />
+                            </ItemWrapper>
+                            {item.label && (
+                              <Label variation="title">{item.label} </Label>
+                            )}
+                          </ItemContainer>
+                        )
+                      })}
+                    </LineContent>
+                  </LineContainer>
+                )
 
-            return <React.Fragment key={lineIndex}>{content}</React.Fragment>
-          })}
-        </StorybookGridContent>
-      </StorybookGridContainer>
-    )
+                return (
+                  <React.Fragment key={lineIndex}>{content}</React.Fragment>
+                )
+              })}
+            </StorybookGridContent>
+          </StorybookGridContainer>
+        )
+      }
+
+    return Component
   }
-
-  return Component
-}

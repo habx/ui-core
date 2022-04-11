@@ -5,7 +5,9 @@ import { RoundIconButton } from '../RoundIconButton'
 
 import { SlideShowNavigationContainer } from './SlideShow.style'
 
-const InnerSlideShowNavigation: React.FunctionComponent<SlideShowNavigationProps> = ({
+const InnerSlideShowNavigation: React.FunctionComponent<
+  React.PropsWithChildren<SlideShowNavigationProps>
+> = ({
   next,
   previous,
   size,

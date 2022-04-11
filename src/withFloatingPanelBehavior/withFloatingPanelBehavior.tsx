@@ -8,26 +8,23 @@ import {
   FloatingPanelInjectedProps,
 } from './withFloatingPanelBehavior.interface'
 
-const FloatingPanelContext = React.createContext<React.RefObject<HTMLElement> | null>(
-  null
-)
+const FloatingPanelContext =
+  React.createContext<React.RefObject<HTMLElement> | null>(null)
 
-export const withFloatingPanelBehavior = (
-  defaultModalConfig: Omit<
-    ModalConfig,
-    'open' | 'onClose' | 'value' | 'ref'
-  > = {}
-) => <
-  RefElement extends HTMLDivElement,
-  Props extends FloatingPanelInjectedProps
->(
-  WrappedComponent: React.ComponentType<Props>
-) => {
-  const Field = React.forwardRef<RefElement, WithFloatingPanelBehavior<Props>>(
-    (
-      { children, open, onClose, persistent, value, animated, ...rest },
-      ref
-    ) => {
+export const withFloatingPanelBehavior =
+  (
+    defaultModalConfig: Omit<
+      ModalConfig,
+      'open' | 'onClose' | 'value' | 'ref'
+    > = {}
+  ) =>
+  <RefElement extends HTMLDivElement, Props extends FloatingPanelInjectedProps>(
+    WrappedComponent: React.ComponentType<Props>
+  ) => {
+    const Field = React.forwardRef<
+      RefElement,
+      WithFloatingPanelBehavior<Props>
+    >(({ open, onClose, persistent, value, animated, ...rest }, ref) => {
       const modal = useModal({
         ref,
         open,
@@ -40,23 +37,20 @@ export const withFloatingPanelBehavior = (
 
       const parentFloatingPanelRef = React.useContext(FloatingPanelContext)
 
-      const props = ({
+      const props = {
         modal,
         parentFloatingPanelRef,
         ...rest,
-      } as any) as Props
+      } as any as Props
 
       return (
         <TogglePanelContext.Provider value={modal}>
           <FloatingPanelContext.Provider value={modal.ref}>
-            <WrappedComponent {...props} ref={modal.ref}>
-              {children}
-            </WrappedComponent>
+            <WrappedComponent {...props} ref={modal.ref} />
           </FloatingPanelContext.Provider>
         </TogglePanelContext.Provider>
       )
-    }
-  )
+    })
 
-  return Field
-}
+    return Field
+  }

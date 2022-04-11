@@ -9,7 +9,9 @@ const WidthContext = React.createContext(0)
 
 const SubscriptionContext = React.createContext<(() => () => void) | null>(null)
 
-export const Provider: React.FunctionComponent = (props) => {
+export const Provider: React.FunctionComponent<
+  React.PropsWithChildren<unknown>
+> = (props) => {
   const [subscribers, setSubscribers] = React.useState(0)
 
   const [dimension, setDimension] = React.useState(

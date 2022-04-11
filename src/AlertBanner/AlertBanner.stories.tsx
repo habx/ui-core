@@ -24,7 +24,7 @@ const CardChildrenContainer = styled.div`
 `
 
 const WrappedAnnouncementBanner: React.FunctionComponent<
-  Omit<AlertBannerProps, 'open'>
+  React.PropsWithChildren<Omit<AlertBannerProps, 'open'>>
 > = (props) => (
   <CardContainer>
     <AlertBanner open {...props} />

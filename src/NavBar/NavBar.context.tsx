@@ -10,6 +10,5 @@ const DEFAULT_CONTEXT = {
   color: '#FFFFFF',
 }
 
-export const NavBarContext = React.createContext<NavBarContextValue>(
-  DEFAULT_CONTEXT
-)
+export const NavBarContext =
+  React.createContext<NavBarContextValue>(DEFAULT_CONTEXT)

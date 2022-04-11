@@ -16,7 +16,9 @@ export interface ArrayInputInnerProps
     ThemeOverridesProps {
   items?: any[]
   addButtonLabel?: string
-  addButtonComponent?: React.ComponentType<ArrayInputAddButtonComponentProps>
+  addButtonComponent?: React.ComponentType<
+    React.PropsWithChildren<ArrayInputAddButtonComponentProps>
+  >
   disabled?: boolean
   onAppend?: (value?: any) => void
   onToggle?(index: number): void
@@ -41,8 +43,12 @@ export interface ArrayInputInnerProps
   /*
    * Item rendering
    */
-  itemComponent?: React.ComponentType<ArrayInputItemComponentProps>
-  itemTitleComponent?: React.ComponentType<ArrayInputItemComponentProps>
+  itemComponent?: React.ComponentType<
+    React.PropsWithChildren<ArrayInputItemComponentProps>
+  >
+  itemTitleComponent?: React.ComponentType<
+    React.PropsWithChildren<ArrayInputItemComponentProps>
+  >
   renderItem?: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
   renderItemTitle?: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
   renderItemActions?: (

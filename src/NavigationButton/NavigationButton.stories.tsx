@@ -68,8 +68,7 @@ export const basic = (props: NavigationButtonProps) => (
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A2116',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A2116',
   },
 }
 

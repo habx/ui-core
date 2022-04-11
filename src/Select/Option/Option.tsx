@@ -12,14 +12,9 @@ import {
   SideElementContainer,
 } from './Option.style'
 
-const InnerOption: React.FunctionComponent<OptionProps> = ({
-  label,
-  description,
-  selected,
-  focused,
-  disabled,
-  ...props
-}) => {
+const InnerOption: React.FunctionComponent<
+  React.PropsWithChildren<OptionProps>
+> = ({ label, description, selected, focused, disabled, ...props }) => {
   const ref = React.useRef<HTMLLIElement>(null)
   const { multi } = React.useContext(SelectContext)
 

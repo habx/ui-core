@@ -10,85 +10,85 @@ import {
   TriggerElementConfig,
 } from './withTriggerElement.interface'
 
-export const withTriggerElement = <RefElement extends HTMLElement>(
-  config: TriggerElementConfig = {}
-) => <Props extends TriggerInjectedProps>(
-  WrappedComponent: React.ComponentType<Props>
-) => {
-  const { forwardRef = false } = config
+export const withTriggerElement =
+  <RefElement extends HTMLElement>(config: TriggerElementConfig = {}) =>
+  <Props extends TriggerInjectedProps>(
+    WrappedComponent: React.ComponentType<Props>
+  ) => {
+    const { forwardRef = false } = config
 
-  const Wrapper = React.forwardRef<
-    RefElement,
-    WithTriggerElement<Props, RefElement>
-  >((props, ref) => {
-    const {
-      triggerElement,
-      triggerRef: rawTriggerRef,
-      onClose,
-      ...rest
-    } = props as TriggerReceivedProps<RefElement>
+    const Wrapper = React.forwardRef<
+      RefElement,
+      WithTriggerElement<Props, RefElement>
+    >((props, ref) => {
+      const {
+        triggerElement,
+        triggerRef: rawTriggerRef,
+        onClose,
+        ...rest
+      } = props as TriggerReceivedProps<RefElement>
 
-    const [open, setOpen] = React.useState(false)
-    const triggerRef = useMergedRef(rawTriggerRef)
+      const [open, setOpen] = React.useState(false)
+      const triggerRef = useMergedRef(rawTriggerRef)
 
-    const handleClose = React.useCallback(
-      (e: React.SyntheticEvent<RefElement>) => {
-        if (isFunction(onClose)) {
-          onClose(e)
+      const handleClose = React.useCallback(
+        (e: React.SyntheticEvent<RefElement>) => {
+          if (isFunction(onClose)) {
+            onClose(e)
+          }
+
+          setOpen(false)
+        },
+        [onClose]
+      )
+
+      const fullTriggerElement = React.useMemo(() => {
+        const handleToggle = () => setOpen((wasOpen) => !wasOpen)
+
+        if (!triggerElement) {
+          return null
         }
 
-        setOpen(false)
-      },
-      [onClose]
-    )
+        if (isFunction(triggerElement)) {
+          return triggerElement({
+            open,
+            onClick: handleToggle,
+            ...(forwardRef ? { ref: triggerRef } : {}),
+          })
+        }
 
-    const fullTriggerElement = React.useMemo(() => {
-      const handleToggle = () => setOpen((wasOpen) => !wasOpen)
-
-      if (!triggerElement) {
-        return null
-      }
-
-      if (isFunction(triggerElement)) {
-        return triggerElement({
-          open,
+        return React.cloneElement(triggerElement, {
           onClick: handleToggle,
-          ...(forwardRef ? { ref: triggerRef } : {}),
+          ref: triggerRef,
         })
+      }, [triggerElement, triggerRef, open])
+
+      if (!fullTriggerElement) {
+        return (
+          <WrappedComponent
+            {...(rest as Props)}
+            onClose={onClose}
+            ref={ref}
+            triggerRef={rawTriggerRef}
+          />
+        )
       }
 
-      return React.cloneElement(triggerElement, {
-        onClick: handleToggle,
-        ref: triggerRef,
-      })
-    }, [triggerElement, triggerRef, open])
-
-    if (!fullTriggerElement) {
       return (
-        <WrappedComponent
-          {...(rest as Props)}
-          onClose={onClose}
-          ref={ref}
-          triggerRef={rawTriggerRef}
-        />
+        <React.Fragment>
+          {fullTriggerElement}
+          <WrappedComponent
+            triggerRef={triggerRef}
+            ref={ref}
+            {...(rest as Props)}
+            open={open}
+            onClose={handleClose}
+          />
+        </React.Fragment>
       )
-    }
+    })
 
-    return (
-      <React.Fragment>
-        {fullTriggerElement}
-        <WrappedComponent
-          triggerRef={triggerRef}
-          ref={ref}
-          {...(rest as Props)}
-          open={open}
-          onClose={handleClose}
-        />
-      </React.Fragment>
-    )
-  })
+    Wrapper.displayName = WrappedComponent.displayName || WrappedComponent.name
 
-  Wrapper.displayName = WrappedComponent.displayName || WrappedComponent.name
-
-  return Wrapper
-}
+    return Wrapper
+  }

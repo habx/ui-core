@@ -8,10 +8,9 @@ import { NavBarItem } from '../NavBarItem'
 import { NavBarMenuItemProps } from './NavBarMenuItem.interface'
 import { NavBarMenuItemContainer } from './NavBarMenuItem.style'
 
-const Content: React.FunctionComponent<{ modal: Modal<HTMLDivElement> }> = ({
-  modal,
-  children,
-}) => {
+const Content: React.FunctionComponent<
+  React.PropsWithChildren<{ modal: Modal<HTMLDivElement> }>
+> = ({ modal, children }) => {
   const { setPersistent } = React.useContext(NavBarContext)
 
   const isOpened = modal.state !== ModalState.closed

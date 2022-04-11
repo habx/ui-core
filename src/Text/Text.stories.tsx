@@ -49,11 +49,12 @@ const GRID_ITEMS = [
   },
 ]
 
-const WrappedText: React.FunctionComponent<TextProps> = (props) => (
-  <TextContainer>
-    <Text {...props} />
-  </TextContainer>
-)
+const WrappedText: React.FunctionComponent<React.PropsWithChildren<TextProps>> =
+  (props) => (
+    <TextContainer>
+      <Text {...props} />
+    </TextContainer>
+  )
 
 const Grid = withGrid<TextProps>({
   lines: GRID_LINES,
@@ -73,8 +74,7 @@ export const basic = (props: TextProps) => (
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A2',
+    url: 'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A2',
   },
 }
 

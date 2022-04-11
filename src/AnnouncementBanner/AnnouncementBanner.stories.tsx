@@ -22,7 +22,9 @@ const CardChildrenContainer = styled.div`
 `
 
 const WrappedAnnouncementBanner: React.FunctionComponent<
-  Omit<AnnouncementBannerProps, 'open' | 'onClose' | 'onValidate'>
+  React.PropsWithChildren<
+    Omit<AnnouncementBannerProps, 'open' | 'onClose' | 'onValidate'>
+  >
 > = (props) => {
   const [isOpened, setOpened] = React.useState(true)
 
@@ -83,8 +85,7 @@ export const basic = (
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1828%3A13',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=1828%3A13',
   },
 }
 

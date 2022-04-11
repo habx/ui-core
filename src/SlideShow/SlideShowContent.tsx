@@ -12,13 +12,9 @@ type Slide = {
   item: any
 }
 
-const InnerSlideShowContent: React.FunctionComponent<SlideShowContentProps> = ({
-  items,
-  renderItem,
-  active,
-  circular,
-  referenceSlideIndex,
-}) => {
+const InnerSlideShowContent: React.FunctionComponent<
+  React.PropsWithChildren<SlideShowContentProps>
+> = ({ items, renderItem, active, circular, referenceSlideIndex }) => {
   const slideAmount = items.length
 
   const slides = React.useMemo<Slide[]>(() => {

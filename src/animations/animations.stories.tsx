@@ -41,11 +41,9 @@ interface AnimationCardProps {
   animation: string
 }
 
-const AnimationCard: React.FunctionComponent<AnimationCardProps> = ({
-  visible = true,
-  duration,
-  animation,
-}) => {
+const AnimationCard: React.FunctionComponent<
+  React.PropsWithChildren<AnimationCardProps>
+> = ({ visible = true, duration, animation }) => {
   const [isAnimated, setAnimated] = React.useState<boolean>(false)
 
   React.useEffect(() => {
@@ -163,8 +161,7 @@ export const basic = ({
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=849%3A0',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=849%3A0',
   },
 }
 

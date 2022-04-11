@@ -16,11 +16,8 @@ import { TogglePanelContext } from './TogglePanel.context'
 import { InnerTogglePanelProps } from './TogglePanel.interface'
 import { Container, Overlay } from './TogglePanel.style'
 
-const {
-  useOnlyOneInstanceOpened,
-  useInstanceContext,
-  InstanceProvider,
-} = buildUseOnlyOneInstanceOpened()
+const { useOnlyOneInstanceOpened, useInstanceContext, InstanceProvider } =
+  buildUseOnlyOneInstanceOpened()
 
 export const useParentTogglePanel = useInstanceContext
 

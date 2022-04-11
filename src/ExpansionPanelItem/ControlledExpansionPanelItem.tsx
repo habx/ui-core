@@ -34,12 +34,8 @@ export const ControlledExpansionPanelItem = React.forwardRef<
     ...rest
   } = props
 
-  const {
-    light,
-    isInsideAnExpansionPanel,
-    expandIconPosition,
-    size,
-  } = React.useContext(ExpansionPanelContext)
+  const { light, isInsideAnExpansionPanel, expandIconPosition, size } =
+    React.useContext(ExpansionPanelContext)
 
   assert(
     isInsideAnExpansionPanel,

@@ -93,7 +93,9 @@ const useMouseMove = ({
   return { onMouseDown: handleMouseDown, onTouchStart: handleTouchStart }
 }
 
-export const SliderDot: React.FunctionComponent<SliderDotProps> = ({
+export const SliderDot: React.FunctionComponent<
+  React.PropsWithChildren<SliderDotProps>
+> = ({
   position,
   onMove,
   onRest,

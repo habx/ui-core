@@ -16,12 +16,9 @@ import { ThemeVariant } from '../theme'
 import { ThemeProviderProps } from './ThemeProvider.interface'
 import { ThemeProviderContainer } from './ThemeProvider.style'
 
-export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = ({
-  theme,
-  preset = 'light',
-  children,
-  ...props
-}) => {
+export const ThemeProvider: React.FunctionComponent<
+  React.PropsWithChildren<ThemeProviderProps>
+> = ({ theme, preset = 'light', children, ...props }) => {
   const styledTheme = React.useContext<StyledTheme>(ThemeContext)
 
   const currentTheme = styledTheme?.uiCore?.value ?? DEFAULT_THEME

@@ -12,7 +12,7 @@ export type LightBoxSpacing =
   | 'regular-horizontal-only'
   | 'narrow-horizontal-only'
 
-export interface LightBoxInnerProps extends LayoutProps {
+export interface LightBoxInnerProps extends Omit<LayoutProps, 'children'> {
   modal: Modal
   parentFloatingPanelRef: React.RefObject<HTMLElement> | null
   hideCloseIcon?: boolean

@@ -86,8 +86,7 @@ export const colors = () => <ThemePatchPalette />
 colors.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A3',
+    url: 'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=8%3A3',
   },
 }
 
@@ -109,7 +108,6 @@ export const shadows = () => (
 shadows.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=10%3A214',
+    url: 'https://www.figma.com/file/f5tJXjQSoOhy7K3r99pv21Fd/Brand-assets-%26-colors?node-id=10%3A214',
   },
 }

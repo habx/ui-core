@@ -75,7 +75,9 @@ export default {
 }
 
 const AutoCompleteTextInput: React.FunctionComponent<
-  Omit<TextInputListProps, 'value' | 'onChange' | 'options'>
+  React.PropsWithChildren<
+    Omit<TextInputListProps, 'value' | 'onChange' | 'options'>
+  >
 > = () => {
   const [value, setValue] = React.useState<(string | number)[]>([])
 
@@ -99,8 +101,7 @@ export const basic = (props: TextInputListProps) => (
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1845',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1845',
   },
 }
 export const autocomplete = (

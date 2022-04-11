@@ -21,87 +21,90 @@ const togglePanelStyleSetter: TogglePanelStyleSetter = (
     triggerDimensions,
   })
 
-export const DatePickerRange: React.VoidFunctionComponent<DatePickerRangeProps> = ({
-  value,
-  onChange,
-  exactMinBookingDays,
-  onFocus,
-  inputDateFormat = 'dd / MM / yyyy',
-  small,
-  disabled,
-  error,
-  placeholder,
-  locale,
-  numberOfMonths,
-  ...props
-}) => {
-  const triggerRef = React.useRef<HTMLDivElement>(null)
-  const [isOpened, setIsOpened] = React.useState(false)
-  const hasBackground = useHasColoredBackground()
+export const DatePickerRange: React.VoidFunctionComponent<DatePickerRangeProps> =
+  ({
+    value,
+    onChange,
+    exactMinBookingDays,
+    onFocus,
+    inputDateFormat = 'dd / MM / yyyy',
+    small,
+    disabled,
+    error,
+    placeholder,
+    locale,
+    numberOfMonths,
+    ...props
+  }) => {
+    const triggerRef = React.useRef<HTMLDivElement>(null)
+    const [isOpened, setIsOpened] = React.useState(false)
+    const hasBackground = useHasColoredBackground()
 
-  const handleTextInputFocus = React.useCallback(
-    (e: React.FocusEvent<HTMLInputElement>) => {
-      onFocus?.(e)
-      setIsOpened(true)
-    },
-    [onFocus]
-  )
+    const handleTextInputFocus = React.useCallback(
+      (e: React.FocusEvent<HTMLInputElement>) => {
+        onFocus?.(e)
+        setIsOpened(true)
+      },
+      [onFocus]
+    )
 
-  const inputValue = React.useMemo(() => {
-    if (!value) {
-      return placeholder ?? ''
-    }
+    const inputValue = React.useMemo(() => {
+      if (!value) {
+        return placeholder ?? ''
+      }
 
-    if (exactMinBookingDays) {
-      return value.start ? format(value.start, inputDateFormat) : ''
-    }
+      if (exactMinBookingDays) {
+        return value.start ? format(value.start, inputDateFormat) : ''
+      }
 
-    const startLabel = value.start ? format(value.start, inputDateFormat) : '?'
-    const endLabel = value.end ? format(value.end, inputDateFormat) : '?'
+      const startLabel = value.start
+        ? format(value.start, inputDateFormat)
+        : '?'
+      const endLabel = value.end ? format(value.end, inputDateFormat) : '?'
 
-    return `${startLabel} – ${endLabel}`
-  }, [exactMinBookingDays, inputDateFormat, placeholder, value])
+      return `${startLabel} – ${endLabel}`
+    }, [exactMinBookingDays, inputDateFormat, placeholder, value])
 
-  return (
-    <React.Fragment>
-      <TogglePanel
-        triggerRef={triggerRef}
-        open={isOpened}
-        onClose={() => setIsOpened(false)}
-        setStyle={togglePanelStyleSetter}
-      >
-        {(modal) =>
-          modal.state !== ModalState.closed && (
-            <DatePickerPanel
-              value={value}
-              onChange={(newValue) => {
-                onChange(newValue)
-                modal.close()
-              }}
-              onAbort={modal.close}
-              exactMinBookingDays={exactMinBookingDays}
-              locale={locale}
-              numberOfMonths={numberOfMonths}
-            />
-          )
-        }
-      </TogglePanel>
-      <FakeInput
-        ref={triggerRef}
-        onFocus={handleTextInputFocus}
-        error={error}
-        small={small}
-        data-background={hasBackground}
-        disabled={disabled}
-        focused={isOpened}
-        value={inputValue}
-        onChange={
-          props.canReset
-            ? () => onChange({ start: null, end: null })
-            : undefined
-        }
-        {...props}
-      />
-    </React.Fragment>
-  )
-}
+    return (
+      <React.Fragment>
+        <TogglePanel
+          triggerRef={triggerRef}
+          open={isOpened}
+          onClose={() => setIsOpened(false)}
+          setStyle={togglePanelStyleSetter}
+        >
+          {(modal) =>
+            modal.state !== ModalState.closed && (
+              <DatePickerPanel
+                value={value}
+                onChange={(newValue) => {
+                  onChange(newValue)
+                  modal.close()
+                }}
+                onAbort={modal.close}
+                exactMinBookingDays={exactMinBookingDays}
+                locale={locale}
+                numberOfMonths={numberOfMonths}
+              />
+            )
+          }
+        </TogglePanel>
+        <FakeInput
+          ref={triggerRef}
+          onFocus={handleTextInputFocus}
+          error={error}
+          small={small}
+          data-background={hasBackground}
+          disabled={disabled}
+          focused={isOpened}
+          value={inputValue}
+          onChange={
+            props.canReset
+              ? () => onChange({ start: null, end: null })
+              : undefined
+          }
+          {...props}
+        />
+      </React.Fragment>
+    )
+  }

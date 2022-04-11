@@ -5,7 +5,7 @@ import { WithFloatingPanelBehavior } from '../withFloatingPanelBehavior'
 import { WithTriggerElement } from '../withTriggerElement'
 
 export interface ModalInnerProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title' | 'children'> {
   modal: Modal
   parentFloatingPanelRef: React.RefObject<HTMLElement> | null
   title?: React.ReactNode

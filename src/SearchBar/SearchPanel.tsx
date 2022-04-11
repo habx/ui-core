@@ -4,7 +4,6 @@ import * as React from 'react'
 import { Icon } from '../Icon'
 import { TextInputProps } from '../TextInput'
 import { TogglePanelProps, TogglePanelStyleSetter } from '../TogglePanel'
-import { TriggerElement } from '../withTriggerElement'
 
 import {
   SearchPanelContainer,
@@ -93,9 +92,9 @@ export const SearchPanel: React.VoidFunctionComponent<SearchPanelProps> = ({
 interface InnerSearchPanelProps
   extends Pick<TextInputProps, 'value' | 'onChange' | 'placeholder'> {
   renderPanel: () => React.ReactNode
-  triggerElement?: TriggerElement
+  triggerElement?: JSX.Element
 }
 
 interface SearchPanelProps
-  extends Pick<TogglePanelProps, 'triggerRef' | 'triggerElement'>,
+  extends Pick<TogglePanelProps, 'triggerRef'>,
     InnerSearchPanelProps {}

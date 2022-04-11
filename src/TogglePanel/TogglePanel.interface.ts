@@ -9,7 +9,7 @@ export type TogglePanelStyleSetter = (
 ) => React.CSSProperties
 
 export interface InnerTogglePanelProps
-  extends React.HtmlHTMLAttributes<HTMLDivElement> {
+  extends Omit<React.HtmlHTMLAttributes<HTMLDivElement>, 'children'> {
   children?:
     | React.ReactNode
     | ((modal: ModalType<HTMLDivElement>) => React.ReactNode)

@@ -25,28 +25,32 @@ const Line = styled(Text)`
   margin-bottom: 12px;
 `
 
-const ContactForm: React.FunctionComponent = () => (
-  <React.Fragment>
-    <ModalForm>
-      <Select options={OPTIONS} />
-      <TextInput placeholder="votre mail" />
-      <PhoneInput placeholder="votre numéro" />
-      <ActionBar>
-        <Button>{"Valider l'horaire"}</Button>
-      </ActionBar>
-    </ModalForm>
-  </React.Fragment>
-)
+const ContactForm: React.FunctionComponent<React.PropsWithChildren<unknown>> =
+  () => (
+    <React.Fragment>
+      <ModalForm>
+        <Select options={OPTIONS} />
+        <TextInput placeholder="votre mail" />
+        <PhoneInput placeholder="votre numéro" />
+        <ActionBar>
+          <Button>{"Valider l'horaire"}</Button>
+        </ActionBar>
+      </ModalForm>
+    </React.Fragment>
+  )
 
-const ScrollableContent: React.FunctionComponent<{}> = () => (
-  <React.Fragment>
-    {Array.from({ length: 20 }, (_, index) => (
-      <Line>Element n°{index + 1}</Line>
-    ))}
-  </React.Fragment>
-)
+const ScrollableContent: React.FunctionComponent<React.PropsWithChildren<{}>> =
+  () => (
+    <React.Fragment>
+      {Array.from({ length: 20 }, (_, index) => (
+        <Line>Element n°{index + 1}</Line>
+      ))}
+    </React.Fragment>
+  )
 
-const ScrollableContentWithActionBar: React.FunctionComponent<{}> = () => (
+const ScrollableContentWithActionBar: React.FunctionComponent<
+  React.PropsWithChildren<{}>
+> = () => (
   <div>
     {Array.from({ length: 20 }, (_, index) => (
       <Line>Item {index + 1}</Line>
@@ -117,8 +121,7 @@ export const basic = (props: ModalProps) => (
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=62%3A2',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=62%3A2',
   },
 }
 

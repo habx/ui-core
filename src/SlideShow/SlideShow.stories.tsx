@@ -67,7 +67,9 @@ const GRID_LINES = [
 
 const GRID_ITEMS = [{}]
 
-const WrappedSlideShow: React.FunctionComponent<SlideShowProps> = (props) => (
+const WrappedSlideShow: React.FunctionComponent<
+  React.PropsWithChildren<SlideShowProps>
+> = (props) => (
   <Container>
     <SlideShow {...props} />
   </Container>

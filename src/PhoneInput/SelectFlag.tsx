@@ -15,11 +15,9 @@ import {
   PhoneIndicator,
 } from './PhoneInput.style'
 
-export const SelectFlag: React.FunctionComponent<SelectFlagProps> = ({
-  value,
-  onChange,
-  inputContainerRef,
-}) => {
+export const SelectFlag: React.FunctionComponent<
+  React.PropsWithChildren<SelectFlagProps>
+> = ({ value, onChange, inputContainerRef }) => {
   const Flag = value.flag
   const filterInputRef = React.useRef<HTMLInputElement>(null)
 

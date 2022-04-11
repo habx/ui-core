@@ -48,7 +48,6 @@ export const gallery = () => <Grid />
 gallery.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/xFbiz8LXs8yRdasUXgMJDn/Icons-%26-illustrations?node-id=10%3A2',
+    url: 'https://www.figma.com/file/xFbiz8LXs8yRdasUXgMJDn/Icons-%26-illustrations?node-id=10%3A2',
   },
 }

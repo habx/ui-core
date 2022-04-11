@@ -14,7 +14,7 @@ export default {
 }
 
 const Component: React.FunctionComponent<
-  BackgroundProps & Pick<TogglePanelProps, 'setStyle'>
+  React.PropsWithChildren<BackgroundProps & Pick<TogglePanelProps, 'setStyle'>>
 > = ({ setStyle, ...props }) => (
   <TogglePanel
     setStyle={setStyle}

@@ -5,11 +5,9 @@ import { Indicator } from '../Slider.interface'
 import { SliderBarProps } from './SliderBar.interface'
 import { SliderBarContainer } from './SliderBar.style'
 
-export const SliderBar: React.FunctionComponent<SliderBarProps> = ({
-  from,
-  to,
-  indicators,
-}) => {
+export const SliderBar: React.FunctionComponent<
+  React.PropsWithChildren<SliderBarProps>
+> = ({ from, to, indicators }) => {
   const indicatorRanges = React.useMemo<
     { raw: Indicator; ranges: [number, number][] }[]
   >(
