@@ -58,7 +58,7 @@ export const useAutocomplete = ({
 
   const menuRef = React.useRef<HTMLDivElement>(null)
 
-  const deferredQuery = React.useDeferredValue(value)
+  const deferredValue = React.useDeferredValue(value)
   const visibleOptions = React.useMemo(
     () =>
       loading
@@ -66,11 +66,11 @@ export const useAutocomplete = ({
         : options
             ?.filter(
               (option) =>
-                searchInString(option, `${deferredQuery}`) &&
-                option !== deferredQuery
+                searchInString(option, `${deferredValue}`) &&
+                option !== deferredValue
             )
             .slice(0, MAX_AUTOCOMPLETE_OPTIONS) ?? [],
-    [options, deferredQuery, loading]
+    [options, deferredValue, loading]
   )
 
   React.useEffect(() => {
