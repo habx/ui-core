@@ -16,9 +16,7 @@ export interface ArrayInputInnerProps
     ThemeOverridesProps {
   items?: any[]
   addButtonLabel?: string
-  addButtonComponent?: React.ComponentType<
-    React.PropsWithChildren<ArrayInputAddButtonComponentProps>
-  >
+  addButtonComponent?: React.ComponentType<ArrayInputAddButtonComponentProps>
   disabled?: boolean
   onAppend?: (value?: any) => void
   onToggle?(index: number): void

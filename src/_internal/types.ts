@@ -1,8 +1,6 @@
 import * as React from 'react'
 
-export type styledAs =
-  | keyof JSX.IntrinsicElements
-  | React.ComponentType<React.PropsWithChildren<any>>
+export type styledAs = keyof JSX.IntrinsicElements | React.ComponentType<any>
 
 export interface ThemeOverridesProps {
   /**

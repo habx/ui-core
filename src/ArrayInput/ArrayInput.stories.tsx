@@ -64,61 +64,58 @@ const CountryArrayInputElement = ({
   )
 }
 
-const CountryArrayInput: React.FunctionComponent<React.PropsWithChildren<any>> =
-  (props) => {
-    const [items, setItems] = React.useState(FIELDS)
+const CountryArrayInput: React.FunctionComponent<any> = (props) => {
+  const [items, setItems] = React.useState(FIELDS)
 
-    const handleChange = (value: field, index: number) =>
-      setItems((prev) => [
-        ...prev.slice(0, index),
-        value,
-        ...prev.slice(index + 1),
-      ])
+  const handleChange = (value: field, index: number) =>
+    setItems((prev) => [
+      ...prev.slice(0, index),
+      value,
+      ...prev.slice(index + 1),
+    ])
 
-    const handleAppend = () => setItems((prev) => [...prev, DEFAULT_FIELD])
+  const handleAppend = () => setItems((prev) => [...prev, DEFAULT_FIELD])
 
-    const handleDelete = (index: number) =>
-      setItems((prev) => [...prev.slice(0, index), ...prev.slice(index + 1)])
+  const handleDelete = (index: number) =>
+    setItems((prev) => [...prev.slice(0, index), ...prev.slice(index + 1)])
 
-    const handleReorder = (oldPosition: number, newPosition: number) => {
-      setItems((prev) => {
-        const reorderedItems = [...prev]
+  const handleReorder = (oldPosition: number, newPosition: number) => {
+    setItems((prev) => {
+      const reorderedItems = [...prev]
 
-        reorderedItems.splice(
-          newPosition > oldPosition ? newPosition + 1 : newPosition,
-          0,
-          reorderedItems[oldPosition]
-        )
-        reorderedItems.splice(
-          newPosition > oldPosition ? oldPosition : oldPosition + 1,
-          1
-        )
+      reorderedItems.splice(
+        newPosition > oldPosition ? newPosition + 1 : newPosition,
+        0,
+        reorderedItems[oldPosition]
+      )
+      reorderedItems.splice(
+        newPosition > oldPosition ? oldPosition : oldPosition + 1,
+        1
+      )
 
-        return reorderedItems
-      })
-    }
-
-    return (
-      <Container>
-        <Context.Provider value={{ onChange: handleChange }}>
-          <ArrayInput
-            items={items}
-            onAppend={handleAppend}
-            onDelete={handleDelete}
-            onReorder={handleReorder}
-            onToggle={action('toggle')}
-            itemComponent={CountryArrayInputElement}
-            itemTitleComponent={ItemTitle}
-            {...props}
-          />
-        </Context.Provider>
-      </Container>
-    )
+      return reorderedItems
+    })
   }
 
-const ItemTitle: React.FunctionComponent<React.PropsWithChildren<any>> = ({
-  value,
-}) => (
+  return (
+    <Container>
+      <Context.Provider value={{ onChange: handleChange }}>
+        <ArrayInput
+          items={items}
+          onAppend={handleAppend}
+          onDelete={handleDelete}
+          onReorder={handleReorder}
+          onToggle={action('toggle')}
+          itemComponent={CountryArrayInputElement}
+          itemTitleComponent={ItemTitle}
+          {...props}
+        />
+      </Context.Provider>
+    </Container>
+  )
+}
+
+const ItemTitle: React.FunctionComponent<any> = ({ value }) => (
   <Text>
     {value.name ? `${value.name} (${value.country})` : 'Empty element'}
   </Text>

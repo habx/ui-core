@@ -63,7 +63,7 @@ interface StorybookGridConfig<Props> {
   items: GridItem<Props>[]
   itemHorizontalSpace?: number
   itemVerticalSpace?: number
-  itemWrapper?: React.ComponentType<React.PropsWithChildren<any>>
+  itemWrapper?: React.ComponentType<any>
   showBackgroundVariations?: boolean
 }
 
