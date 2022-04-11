@@ -37,13 +37,14 @@ export const withTriggerElement =
             onClose(e)
           }
 
-          setOpen(false)
+          React.startTransition(() => setOpen(false))
         },
         [onClose]
       )
 
       const fullTriggerElement = React.useMemo(() => {
-        const handleToggle = () => setOpen((wasOpen) => !wasOpen)
+        const handleToggle = () =>
+          React.startTransition(() => setOpen((wasOpen) => !wasOpen))
 
         if (!triggerElement) {
           return null
