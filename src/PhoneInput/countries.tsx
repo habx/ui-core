@@ -3,7 +3,7 @@ import * as React from 'react'
 import { Icon } from '../Icon'
 
 export type Country = {
-  flag?: React.FunctionComponent<React.PropsWithChildren<{}>>
+  flag?: React.FunctionComponent<{}>
   name: string
   iso2Code: string
   dialCode: string

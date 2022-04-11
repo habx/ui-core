@@ -20,9 +20,7 @@ const TinySelectContainer = styled.div`
   width: 120px;
 `
 
-const WrappedSelect: React.FunctionComponent<
-  React.PropsWithChildren<SelectProps>
-> = (props) =>
+const WrappedSelect: React.FunctionComponent<SelectProps> = (props) =>
   props.tiny ? (
     <TinySelectContainer>
       <Select {...props} />

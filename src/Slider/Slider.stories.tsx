@@ -7,18 +7,20 @@ import { Slider, SliderProps } from './index'
 
 type Props = Omit<SliderProps, 'onChange' | 'dotType'>
 
-const SliderWithState: React.FunctionComponent<React.PropsWithChildren<Props>> =
-  ({ value: initialValue, ...props }) => {
-    const [value, setValue] = React.useState(initialValue)
+const SliderWithState: React.FunctionComponent<Props> = ({
+  value: initialValue,
+  ...props
+}) => {
+  const [value, setValue] = React.useState(initialValue)
 
-    return (
-      <Slider
-        {...props}
-        onChange={(newValue) => setValue(newValue)}
-        value={value}
-      />
-    )
-  }
+  return (
+    <Slider
+      {...props}
+      onChange={(newValue) => setValue(newValue)}
+      value={value}
+    />
+  )
+}
 
 const TextInputContainer = styled.div`
   display: flex;
