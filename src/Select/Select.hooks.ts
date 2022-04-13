@@ -77,9 +77,8 @@ export const useSelect = ({
   value: rawValue,
   multi,
   options,
-  openOnHover,
   onChange = DEFAULT_ON_CHANGE,
-}: Pick<SelectProps, 'value' | 'multi' | 'options' | 'onChange' | 'openOnHover'>) => {
+}: Pick<SelectProps, 'value' | 'multi' | 'options' | 'onChange'>) => {
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
 
   const value = React.useMemo(() => {
@@ -158,11 +157,9 @@ export const useSelect = ({
   }
     , [])
 
-  const handleHover = React.useCallback(() => {
-    if (openOnHover) {
+  const handleHover = React.useCallback(() => 
       dispatch({ type: ActionType.Open })
-    }
-  }, [])
+  , [])
 
   const handleClose = React.useCallback(
     () => dispatch({ type: ActionType.Close })

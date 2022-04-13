@@ -54,7 +54,6 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
       options,
       multi,
       value,
-      openOnHover,
     })
 
     const context = React.useMemo<SelectContextValue>(
@@ -62,7 +61,7 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
       [multi, canSelectAll]
     )
 
-    const onMouseOver = actions.onHover
+    const onMouseOver = openOnHover ? actions.onHover : undefined
     const onMouseLeave = openOnHover && !state.isFocused ? actions.onClose : undefined
 
     return (

@@ -2,7 +2,6 @@ import { Modal as ModalType } from '@delangle/use-modal'
 import * as React from 'react'
 
 import { WithTriggerElement } from '../withTriggerElement'
-import { ColorGetter } from '../_internal/theme/BackgroundThemeProvider'
 
 export type TogglePanelStyleSetter = (
   dimensions: Dimensions,
@@ -22,7 +21,6 @@ export interface InnerTogglePanelProps
   setStyle?: TogglePanelStyleSetter
   triggerRef?: React.RefObject<HTMLElement | null>
   withOverlay?: boolean
-  backgroundColor?: ColorGetter
   simulated?: boolean
 }
 

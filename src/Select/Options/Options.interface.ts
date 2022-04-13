@@ -13,6 +13,6 @@ export interface OptionsProps {
   onClose: () => void
   containerRef: React.RefObject<HTMLDivElement>
   withOverlay?: boolean
-  onMouseOver: () => void
+  onMouseOver: (() => void) | undefined
   onMouseLeave: (() => void) | undefined
 }
