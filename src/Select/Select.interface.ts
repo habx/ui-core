@@ -47,6 +47,7 @@ export interface SelectInnerProps
   canSelectAll?: boolean
   canReset?: boolean
   filterable?: boolean
+  openOnHover?: boolean
 
   // Data
   options: SelectOption[]
@@ -59,6 +60,7 @@ export interface SelectProps extends WithLabel<SelectInnerProps> {}
 
 export interface SelectState {
   isOpened: boolean
+  isFocused: boolean
   query: string
   focusedOption: any
   showResetIcon: boolean
@@ -67,6 +69,7 @@ export interface SelectState {
 export enum ActionType {
   UpdateQuery = 'UPDATE_QUERY',
   Open = 'OPEN',
+  Focus = 'FOCUS',
   Close = 'CLOSE',
   SetFocusedOption = 'SET_FOCUSED_OPTION',
   SetShowResetIcon = 'SET_SHOW_RESET_ICON',
@@ -75,6 +78,7 @@ export enum ActionType {
 export type SelectAction =
   | { type: ActionType.Open }
   | { type: ActionType.Close }
+  | { type: ActionType.Focus }
   | { type: ActionType.UpdateQuery; value: string }
   | { type: ActionType.SetFocusedOption; value: any }
   | { type: ActionType.SetShowResetIcon; value: boolean }

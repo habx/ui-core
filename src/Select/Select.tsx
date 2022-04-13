@@ -35,6 +35,7 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
       disabled = false,
       canSelectAll = false,
       canReset = true,
+      openOnHover = false,
       elementLeft,
       elementRight,
       selectAllLabel,
@@ -60,6 +61,9 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
       [multi, canSelectAll]
     )
 
+    const onMouseOver = openOnHover ? actions.onHover : undefined
+    const onMouseLeave = openOnHover && !state.isFocused ? actions.onClose : undefined
+
     return (
       <SelectContext.Provider value={context}>
         <SelectContainer
@@ -73,13 +77,18 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           data-bare={bare}
           data-tiny={tiny}
           data-testid="select-container"
-          onClick={actions.onOpen}
+          onClick={actions.onClick}
           color={state.color}
           tabIndex={0}
+          onMouseOver={onMouseOver}
+          onMouseLeave={onMouseLeave}
           {...rest}
         >
           {elementLeft && (
-            <ElementLeftContainer>{elementLeft}</ElementLeftContainer>
+            <ElementLeftContainer onMouseOver={(e) => {
+              e.stopPropagation()
+              onMouseLeave?.()
+            }}>{elementLeft}</ElementLeftContainer>
           )}
           {filterable && state.isOpened ? (
             <SearchInput
@@ -109,7 +118,10 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
                 <Line />
               </ResetIconContainer>
             )}
-            <ElementRightContainer>
+            <ElementRightContainer onMouseOver={(e) => {
+              e.stopPropagation()
+              onMouseLeave?.()
+              }}>
               {elementRight ?? (
                 <Icon
                   icon={state.isOpened ? 'chevron-north' : 'chevron-south'}
@@ -117,17 +129,20 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
               )}
             </ElementRightContainer>
           </IconsContainer>
-        </SelectContainer>
-        <Options
-          options={state.visibleOptions}
-          open={state.isOpened}
-          allSelected={state.areAllOptionsSelected}
-          onSelect={actions.onSelect}
-          onSelectAll={actions.onSelectAll}
-          focusedOption={state.focusedOption}
-          selectAllLabel={selectAllLabel}
-          onClose={actions.onClose}
-          containerRef={containerRef}
+      </SelectContainer>
+      <Options
+            options={state.visibleOptions}
+            open={state.isOpened}
+            allSelected={state.areAllOptionsSelected}
+            onSelect={actions.onSelect}
+            onSelectAll={actions.onSelectAll}
+            focusedOption={state.focusedOption}
+            selectAllLabel={selectAllLabel}
+            onClose={actions.onClose}
+            containerRef={containerRef}
+            withOverlay={!openOnHover}
+            onMouseOver={onMouseOver}
+            onMouseLeave={onMouseLeave}
         />
       </SelectContext.Provider>
     )

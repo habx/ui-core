@@ -9,15 +9,17 @@ const menuCssVariables = css`
 
 export const FloatingMenuContainer = styled.div`
   height: 100%;
-  box-shadow: ${theme.shadow()};
-  border-radius: 4px;
+  padding: 8px 0;
 `
 
 export const FloatingMenu = styled.ul`
   margin: 0;
   padding: 8px 0;
   height: inherit;
+  box-shadow: ${theme.shadow()};
+  border-radius: 4px;
   overflow: hidden auto;
+  background-color: ${theme.color('background')};
 
   ${menuCssVariables};
 

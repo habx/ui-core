@@ -40,7 +40,11 @@ const reducer: React.Reducer<SelectState, SelectAction> = (state, action) => {
         return state
       }
 
-      return { ...state, isOpened: false }
+      return { ...state, isFocused: false, isOpened: false }
+    }
+
+    case ActionType.Focus: {
+      return { ...state, isFocused: true, isOpened: true }
     }
 
     case ActionType.SetShowResetIcon: {
@@ -66,6 +70,7 @@ const INITIAL_STATE: SelectState = {
   query: '',
   showResetIcon: false,
   focusedOption: null,
+  isFocused: false,
 }
 
 export const useSelect = ({
@@ -80,7 +85,6 @@ export const useSelect = ({
     if (multi) {
       return rawValue ?? DEFAULT_MULTI_VALUE
     }
-
     return rawValue
   }, [multi, rawValue])
 
@@ -147,9 +151,15 @@ export const useSelect = ({
     []
   )
 
-  const handleOpen = React.useCallback(() => {
-    dispatch({ type: ActionType.Open })
-  }, [])
+  const handleClick = React.useCallback(
+    () => dispatch({ type: ActionType.Focus }),
+    []
+  )
+
+  const handleHover = React.useCallback(
+    () => dispatch({ type: ActionType.Open }),
+    []
+  )
 
   const handleClose = React.useCallback(
     () => dispatch({ type: ActionType.Close }),
@@ -274,7 +284,8 @@ export const useSelect = ({
 
   const actions = {
     onReset: handleReset,
-    onOpen: handleOpen,
+    onClick: handleClick,
+    onHover: handleHover,
     onClose: handleClose,
     onSelectAll: handleSelectAll,
     onSelect: handleSelect,
