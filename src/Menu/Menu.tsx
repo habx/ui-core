@@ -22,6 +22,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
       position = 'vertical-stretched',
       scrollable,
       setPosition = menuDefaultPositionSetter,
+      withOverlay,
       ...props
     },
     ref
@@ -63,6 +64,8 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
         fullScreenOnMobile={fullScreenOnMobile}
         ref={ref}
         setStyle={setStyle}
+        withOverlay={withOverlay}
+        simulated
         {...props}
       />
     )

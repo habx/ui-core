@@ -40,7 +40,11 @@ const reducer: React.Reducer<SelectState, SelectAction> = (state, action) => {
         return state
       }
 
-      return { ...state, isOpened: false }
+      return { ...state, isFocused: false, isOpened: false }
+    }
+
+    case ActionType.Focus: {
+      return { ...state, isFocused: true }
     }
 
     case ActionType.SetShowResetIcon: {
@@ -66,21 +70,22 @@ const INITIAL_STATE: SelectState = {
   query: '',
   showResetIcon: false,
   focusedOption: null,
+  isFocused: false,
 }
 
 export const useSelect = ({
   value: rawValue,
   multi,
   options,
+  openOnHover,
   onChange = DEFAULT_ON_CHANGE,
-}: Pick<SelectProps, 'value' | 'multi' | 'options' | 'onChange'>) => {
+}: Pick<SelectProps, 'value' | 'multi' | 'options' | 'onChange' | 'openOnHover'>) => {
   const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
 
   const value = React.useMemo(() => {
     if (multi) {
       return rawValue ?? DEFAULT_MULTI_VALUE
     }
-
     return rawValue
   }, [multi, rawValue])
 
@@ -147,12 +152,21 @@ export const useSelect = ({
     []
   )
 
-  const handleOpen = React.useCallback(() => {
-    dispatch({ type: ActionType.Open })
+  const handleClick = React.useCallback(() => {
+      dispatch({ type: ActionType.Focus })
+      dispatch({ type: ActionType.Open })
+  }
+    , [])
+
+  const handleHover = React.useCallback(() => {
+    if (openOnHover) {
+      dispatch({ type: ActionType.Open })
+    }
   }, [])
 
   const handleClose = React.useCallback(
-    () => dispatch({ type: ActionType.Close }),
+    () => dispatch({ type: ActionType.Close })
+    ,
     []
   )
 
@@ -274,7 +288,8 @@ export const useSelect = ({
 
   const actions = {
     onReset: handleReset,
-    onOpen: handleOpen,
+    onClick: handleClick,
+    onHover: handleHover,
     onClose: handleClose,
     onSelectAll: handleSelectAll,
     onSelect: handleSelect,
