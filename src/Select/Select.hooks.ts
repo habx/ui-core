@@ -44,7 +44,7 @@ const reducer: React.Reducer<SelectState, SelectAction> = (state, action) => {
     }
 
     case ActionType.Focus: {
-      return { ...state, isFocused: true }
+      return { ...state, isFocused: true, isOpened: true }
     }
 
     case ActionType.SetShowResetIcon: {
@@ -151,19 +151,18 @@ export const useSelect = ({
     []
   )
 
-  const handleClick = React.useCallback(() => {
-      dispatch({ type: ActionType.Focus })
-      dispatch({ type: ActionType.Open })
-  }
-    , [])
+  const handleClick = React.useCallback(
+    () => dispatch({ type: ActionType.Focus }),
+    []
+  )
 
-  const handleHover = React.useCallback(() => 
-      dispatch({ type: ActionType.Open })
-  , [])
+  const handleHover = React.useCallback(
+    () => dispatch({ type: ActionType.Open }),
+    []
+  )
 
   const handleClose = React.useCallback(
-    () => dispatch({ type: ActionType.Close })
-    ,
+    () => dispatch({ type: ActionType.Close }),
     []
   )
 
