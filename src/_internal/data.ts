@@ -79,7 +79,7 @@ const extremumBy = <Value = any>(
   )
 
   if (!bestPair) {
-    return (null as any) as Value
+    return null as any as Value
   }
 
   return bestPair[1]
@@ -120,5 +120,5 @@ export const throttle = <Callback extends Function>(
     }
   }
 
-  return (wrappedCallback as any) as Callback
+  return wrappedCallback as any as Callback
 }

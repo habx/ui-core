@@ -11,9 +11,9 @@ const Container = styled(Card)`
   height: 200px;
 `
 
-const WrappedFloatingIconButton: React.FunctionComponent<FloatingIconButtonProps> = (
-  props
-) => (
+const WrappedFloatingIconButton: React.FunctionComponent<
+  React.PropsWithChildren<FloatingIconButtonProps>
+> = (props) => (
   <Container>
     <FloatingIconButton {...props} />
   </Container>
@@ -87,8 +87,7 @@ export const basic = (props: FloatingIconButtonProps) => (
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1250',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=18%3A1250',
   },
 }
 

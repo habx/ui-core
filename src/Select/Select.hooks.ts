@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ChangeEvent } from 'react'
 
 import { isString } from '../_internal/data'
 import { searchInString } from '../_internal/strings'
@@ -147,7 +148,8 @@ export const useSelect = ({
   }, [multi, options.length, value])
 
   const handleSearch = React.useCallback(
-    (e) => dispatch({ type: ActionType.UpdateQuery, value: e.target.value }),
+    (e: ChangeEvent<HTMLInputElement>) =>
+      dispatch({ type: ActionType.UpdateQuery, value: e.target.value }),
     []
   )
 
@@ -175,7 +177,7 @@ export const useSelect = ({
   )
 
   const handleSelectMulti = React.useCallback(
-    (option) => {
+    (option: SelectOption) => {
       const multiValue = (value ?? []) as any[]
 
       const newValue = multiValue.includes(option.value)
@@ -188,7 +190,7 @@ export const useSelect = ({
   )
 
   const handleSelect = React.useCallback(
-    (option) => {
+    (option: SelectOption) => {
       dispatch({ type: ActionType.SetFocusedOption, value: undefined })
 
       if (multi) {
@@ -213,7 +215,7 @@ export const useSelect = ({
   )
 
   const handleReset = React.useCallback(
-    (e) => {
+    (e: React.MouseEvent) => {
       e.stopPropagation()
       dispatch({ type: ActionType.SetShowResetIcon, value: false })
       onChange(multi ? [] : null)

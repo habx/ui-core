@@ -8,7 +8,7 @@ import { subscribe } from './alert'
 import { StateAlert } from './AlertList.interface'
 import { AlertContainer } from './AlertList.style'
 
-export const AlertList: React.VoidFunctionComponent = () => {
+export const AlertList: React.FunctionComponent = () => {
   const isMounted = useIsMounted()
 
   const [alerts, setAlerts] = React.useState<StateAlert[]>([])

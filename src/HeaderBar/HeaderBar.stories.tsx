@@ -25,7 +25,9 @@ const HeaderBarWrapper = styled.div`
   border: 1px solid ${theme.neutralColor(200)};
 `
 
-const HeaderBarCardWrapper: React.FunctionComponent<{}> = ({ children }) => (
+const HeaderBarCardWrapper: React.FunctionComponent<
+  React.PropsWithChildren<{}>
+> = ({ children }) => (
   <Card spacing="regular">
     {children}
     <CardChildrenContainer />

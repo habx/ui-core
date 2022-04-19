@@ -47,72 +47,73 @@ export const getThemeVariant = (
 const fontGetter = () => (props: GetterProps) =>
   getThemeVariant(props).typography.font
 
-const shadowGetter = (
-  depth: keyof Shadows = 'regular',
-  config: {
-    hover?: boolean
-    dynamic?: boolean
-    propName?: string
-  } = {}
-) => (props: GetterProps & { depth?: keyof Shadows }) => {
-  const { hover = false, dynamic = false } = config
+const shadowGetter =
+  (
+    depth: keyof Shadows = 'regular',
+    config: {
+      hover?: boolean
+      dynamic?: boolean
+      propName?: string
+    } = {}
+  ) =>
+  (props: GetterProps & { depth?: keyof Shadows }) => {
+    const { hover = false, dynamic = false } = config
 
-  const getShadowDepth = (): keyof Shadows => {
-    if (dynamic && !isNil(props.depth)) {
-      return props.depth
+    const getShadowDepth = (): keyof Shadows => {
+      if (dynamic && !isNil(props.depth)) {
+        return props.depth
+      }
+
+      return depth
     }
 
-    return depth
-  }
+    const shadowObject: Shadow[] =
+      getThemeVariant(props).shadows[getShadowDepth()]
 
-  const shadowObject: Shadow[] = getThemeVariant(props).shadows[
-    getShadowDepth()
-  ]
+    const buildShadow = ({ x, y, blur, opacity }: Shadow) =>
+      `${x}px ${y}px ${blur}px rgba(24, 20, 31, ${opacity})`
 
-  const buildShadow = ({ x, y, blur, opacity }: Shadow) =>
-    `${x}px ${y}px ${blur}px rgba(24, 20, 31, ${opacity})`
+    if (!hover) {
+      return `${shadowObject.map(buildShadow).join(', ')}`
+    }
 
-  if (!hover) {
-    return `${shadowObject.map(buildShadow).join(', ')}`
-  }
-
-  return `${shadowObject
-    .map((shadow) =>
-      buildShadow(
-        shadow.isImpactedByHover
-          ? { ...shadow, opacity: shadow.opacity + 0.1 }
-          : shadow
+    return `${shadowObject
+      .map((shadow) =>
+        buildShadow(
+          shadow.isImpactedByHover
+            ? { ...shadow, opacity: shadow.opacity + 0.1 }
+            : shadow
+        )
       )
-    )
-    .join(', ')}`
-}
-
-const textColorGetter = <Props extends GetterProps>(
-  config: TextColorGetterConfig<Props> = {}
-) => (props: Props) => {
-  const theme = getThemeVariant(props, { useRootTheme: config.useRootTheme })
-
-  let color: Color
-
-  if (config.valuePropName && props[config.valuePropName] != null) {
-    color = (props[config.valuePropName] as any) as Color
-  } else {
-    let variation: keyof TypographyColors
-    if (config.variationPropName && props[config.variationPropName] != null) {
-      variation = (props[
-        config.variationPropName
-      ] as any) as keyof TypographyColors
-    } else if (config.variation) {
-      variation = config.variation
-    } else {
-      variation = 'text'
-    }
-
-    color = theme.typography.colors[variation]
+      .join(', ')}`
   }
 
-  return stringifyColor(color)
-}
+const textColorGetter =
+  <Props extends GetterProps>(config: TextColorGetterConfig<Props> = {}) =>
+  (props: Props) => {
+    const theme = getThemeVariant(props, { useRootTheme: config.useRootTheme })
+
+    let color: Color
+
+    if (config.valuePropName && props[config.valuePropName] != null) {
+      color = props[config.valuePropName] as any as Color
+    } else {
+      let variation: keyof TypographyColors
+      if (config.variationPropName && props[config.variationPropName] != null) {
+        variation = props[
+          config.variationPropName
+        ] as any as keyof TypographyColors
+      } else if (config.variation) {
+        variation = config.variation
+      } else {
+        variation = 'text'
+      }
+
+      color = theme.typography.colors[variation]
+    }
+
+    return stringifyColor(color)
+  }
 
 const colorGetter = <Props extends GetterProps>(
   colorFamily: keyof ColorFamilies | 'background',
@@ -124,7 +125,7 @@ const colorGetter = <Props extends GetterProps>(
     let color: Color
 
     if (config.valuePropName && props[config.valuePropName] != null) {
-      color = (props[config.valuePropName] as any) as Color
+      color = props[config.valuePropName] as any as Color
     } else if (colorFamily === 'background') {
       color = getCurrentBackground(props, { useRootTheme: config.useRootTheme })
     } else {
@@ -156,20 +157,22 @@ const colorGetter = <Props extends GetterProps>(
   }
 }
 
-const neutralColorGetter = <Props extends GetterProps>(
-  strength: keyof Gradient,
-  config: NeutralColorGetterConfig = {}
-) => (props: Props & { opacity?: number }) => {
-  const { gradient = 'withOpacityFading' } = config
+const neutralColorGetter =
+  <Props extends GetterProps>(
+    strength: keyof Gradient,
+    config: NeutralColorGetterConfig = {}
+  ) =>
+  (props: Props & { opacity?: number }) => {
+    const { gradient = 'withOpacityFading' } = config
 
-  let color: Color = getThemeVariant(props).neutralColor[gradient][strength]
+    let color: Color = getThemeVariant(props).neutralColor[gradient][strength]
 
-  const opacity = props.opacity ?? config.opacity ?? 1
-  if (opacity !== 1) {
-    color = applyOpacityToColor(color, opacity)
+    const opacity = props.opacity ?? config.opacity ?? 1
+    if (opacity !== 1) {
+      color = applyOpacityToColor(color, opacity)
+    }
+    return stringifyColor(color)
   }
-  return stringifyColor(color)
-}
 
 export const theme = {
   color: colorGetter,

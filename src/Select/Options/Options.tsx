@@ -12,7 +12,9 @@ import { SelectAllOption } from './Options.style'
 
 const DEFAULT_GROUP = 'default'
 
-export const Options: React.FunctionComponent<OptionsProps> = ({
+export const Options: React.FunctionComponent<
+  React.PropsWithChildren<OptionsProps>
+> = ({
   options,
   open,
   focusedOption,

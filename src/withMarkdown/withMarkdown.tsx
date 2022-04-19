@@ -11,104 +11,105 @@ import {
 } from './withMarkdown.interface'
 import { getHTMLFromMarkdown } from './withMarkdown.utils'
 
-export const withMarkdown = <
-  RefElement extends HTMLElement,
-  ExtraProps extends {} = {}
->({ inline = false }: WithMarkdownConfig = {}) => <Props extends object>(
-  WrappedComponent: React.ComponentType<Props>
-) => {
-  const StyledComponent = styled(WrappedComponent)`
-    & p {
-      &:not(:first-child) {
-        margin-top: 12px;
+export const withMarkdown =
+  <RefElement extends HTMLElement, ExtraProps extends {} = {}>({
+    inline = false,
+  }: WithMarkdownConfig = {}) =>
+  <Props extends object>(
+    WrappedComponent: React.ComponentType<React.PropsWithChildren<Props>>
+  ) => {
+    const StyledComponent = styled(WrappedComponent)`
+      & p {
+        &:not(:first-child) {
+          margin-top: 12px;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 12px;
+        }
       }
 
-      &:not(:last-child) {
-        margin-bottom: 12px;
-      }
-    }
-
-    & h2 {
-      ${titleStyles.headerSmall};
-    }
-
-    & h3 {
-      ${titleStyles.section};
-
-      &:not(:first-child) {
-        margin-top: 48px;
-      }
-    }
-
-    & h4 {
-      ${titleStyles.regular};
-
-      &:not(:first-child) {
-        margin-top: 24px;
-      }
-    }
-
-    & strong {
-      font-weight: 600;
-    }
-
-    & a {
-      ${linkStyle};
-    }
-
-    & ul {
-      list-style-type: none;
-      padding-inline-start: 0;
-    }
-
-    & li {
-      position: relative;
-      display: block;
-      padding-left: 0.8em;
-
-      &:first-letter {
-        text-transform: capitalize;
+      & h2 {
+        ${titleStyles.headerSmall};
       }
 
-      &::after {
-        content: '•';
-        position: absolute;
-        left: 0;
-        top: 0;
+      & h3 {
+        ${titleStyles.section};
+
+        &:not(:first-child) {
+          margin-top: 48px;
+        }
       }
-    }
-  ` as React.ForwardRefExoticComponent<Props>
 
-  const Component = React.forwardRef<
-    RefElement,
-    Props & WithMarkdownReceivedProps & ExtraProps
-  >((props, ref) => {
-    const { markdown, children, ...rest } = props
+      & h4 {
+        ${titleStyles.regular};
 
-    if (!markdown) {
+        &:not(:first-child) {
+          margin-top: 24px;
+        }
+      }
+
+      & strong {
+        font-weight: 600;
+      }
+
+      & a {
+        ${linkStyle};
+      }
+
+      & ul {
+        list-style-type: none;
+        padding-inline-start: 0;
+      }
+
+      & li {
+        position: relative;
+        display: block;
+        padding-left: 0.8em;
+
+        &:first-letter {
+          text-transform: capitalize;
+        }
+
+        &::after {
+          content: '•';
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+      }
+    ` as React.ForwardRefExoticComponent<Props>
+
+    const Component = React.forwardRef<
+      RefElement,
+      Props & WithMarkdownReceivedProps & ExtraProps
+    >((props, ref) => {
+      const { markdown, children, ...rest } = props
+
+      if (!markdown) {
+        return (
+          <WrappedComponent ref={ref} {...(rest as Props)}>
+            {children}
+          </WrappedComponent>
+        )
+      }
+
+      const isInline = isFunction(inline) ? inline(props) : !!inline
+
       return (
-        <WrappedComponent ref={ref} {...(rest as Props)}>
-          {children}
-        </WrappedComponent>
+        <StyledComponent
+          ref={ref}
+          {...(rest as Props)}
+          data-markdown
+          dangerouslySetInnerHTML={{
+            __html: getHTMLFromMarkdown({
+              children: children as string,
+              inline: isInline,
+            }),
+          }}
+        />
       )
-    }
+    })
 
-    const isInline = isFunction(inline) ? inline(props) : !!inline
-
-    return (
-      <StyledComponent
-        ref={ref}
-        {...(rest as Props)}
-        data-markdown
-        dangerouslySetInnerHTML={{
-          __html: getHTMLFromMarkdown({
-            children: children as string,
-            inline: isInline,
-          }),
-        }}
-      />
-    )
-  })
-
-  return Component
-}
+    return Component
+  }

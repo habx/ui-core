@@ -38,7 +38,7 @@ const ContactForm: React.FunctionComponent = () => (
   </React.Fragment>
 )
 
-const ScrollableContent: React.FunctionComponent<{}> = () => (
+const ScrollableContent: React.FunctionComponent = () => (
   <React.Fragment>
     {Array.from({ length: 20 }, (_, index) => (
       <Line>Element n°{index + 1}</Line>
@@ -46,7 +46,7 @@ const ScrollableContent: React.FunctionComponent<{}> = () => (
   </React.Fragment>
 )
 
-const ScrollableContentWithActionBar: React.FunctionComponent<{}> = () => (
+const ScrollableContentWithActionBar: React.FunctionComponent = () => (
   <div>
     {Array.from({ length: 20 }, (_, index) => (
       <Line>Item {index + 1}</Line>
@@ -117,8 +117,7 @@ export const basic = (props: ModalProps) => (
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=62%3A2',
+    url: 'https://www.figma.com/file/LfGEUbovutcTpygwzrfTYbl5/Desktop-components?node-id=62%3A2',
   },
 }
 

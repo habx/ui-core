@@ -13,15 +13,8 @@ import {
 
 export const NavBarItem = React.forwardRef<HTMLLIElement, NavBarItemProps>(
   (props, ref) => {
-    const {
-      icon,
-      label,
-      bottom,
-      active,
-      disabled,
-      description,
-      ...rest
-    } = props
+    const { icon, label, bottom, active, disabled, description, ...rest } =
+      props
 
     const { isInsideANavBar, isExpanded } = React.useContext(NavBarContext)
 

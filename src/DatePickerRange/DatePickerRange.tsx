@@ -21,7 +21,7 @@ const togglePanelStyleSetter: TogglePanelStyleSetter = (
     triggerDimensions,
   })
 
-export const DatePickerRange: React.VoidFunctionComponent<DatePickerRangeProps> = ({
+export const DatePickerRange: React.FunctionComponent<DatePickerRangeProps> = ({
   value,
   onChange,
   exactMinBookingDays,

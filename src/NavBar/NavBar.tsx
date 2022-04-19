@@ -79,14 +79,8 @@ export const NavBar = React.forwardRef<HTMLUListElement, NavBarProps>(
 
     const rootBackground = useCurrentBackground({ useRootTheme: true })
 
-    const {
-      children,
-      title,
-      subtitle,
-      backgroundColor,
-      collapsible,
-      ...rest
-    } = props
+    const { children, title, subtitle, backgroundColor, collapsible, ...rest } =
+      props
 
     const context = React.useMemo<NavBarContextValue>(
       () => ({

@@ -23,16 +23,18 @@ const CardChildrenContainer = styled.div`
   }
 `
 
-const WrappedActionBar: React.FunctionComponent<ActionBarProps> = (props) => (
+const WrappedActionBar: React.FunctionComponent<
+  React.PropsWithChildren<ActionBarProps>
+> = (props) => (
   <Card spacing="regular">
     <CardChildrenContainer />
     <ActionBar {...props} />
   </Card>
 )
 
-const WrappedActionBarInModal: React.FunctionComponent<ActionBarProps> = (
-  props
-) => (
+const WrappedActionBarInModal: React.FunctionComponent<
+  React.PropsWithChildren<ActionBarProps>
+> = (props) => (
   <Modal triggerElement={<Button>Open</Button>}>
     <form>
       <CardChildrenContainer data-modal />

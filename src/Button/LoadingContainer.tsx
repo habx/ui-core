@@ -11,12 +11,9 @@ const ChildrenContainer = styled.div`
 
 const ButtonLoaderContainer = styled.div``
 
-const ButtonLoader: React.FunctionComponent<LoaderDotsProps> = ({
-  children,
-  large,
-  small,
-  ...props
-}) => {
+const ButtonLoader: React.FunctionComponent<
+  React.PropsWithChildren<LoaderDotsProps>
+> = ({ children, large, small, ...props }) => {
   return (
     <ButtonLoaderContainer {...props}>
       <LoaderDots large={large} small={small} />
@@ -25,11 +22,9 @@ const ButtonLoader: React.FunctionComponent<LoaderDotsProps> = ({
   )
 }
 
-export const LoadingContainer: React.FunctionComponent<LoadingContainerProps> = ({
-  children,
-  loading,
-  ...props
-}) =>
+export const LoadingContainer: React.FunctionComponent<
+  React.PropsWithChildren<LoadingContainerProps>
+> = ({ children, loading, ...props }) =>
   loading ? (
     <ButtonLoadingContainer>
       <ButtonLoader {...props}>{children}</ButtonLoader>

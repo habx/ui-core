@@ -92,7 +92,6 @@ export const gallery = () => <Grid />
 gallery.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/sG4JGDFLEBB7PYlJe4Uvzr/%F0%9F%A7%A9----Date-Picker?node-id=1%3A106',
+    url: 'https://www.figma.com/file/sG4JGDFLEBB7PYlJe4Uvzr/%F0%9F%A7%A9----Date-Picker?node-id=1%3A106',
   },
 }

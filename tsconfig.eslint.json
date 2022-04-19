@@ -1,4 +1,5 @@
 {
   "extends": "@habx/config-ci-front/typescript/library.json",
   "include": ["./src"],
+  "exclude": ["typings"]
 }

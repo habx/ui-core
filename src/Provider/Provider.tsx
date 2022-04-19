@@ -8,9 +8,9 @@ import { PromptModals } from '../prompt/PromptModals'
 import { CssVariables } from './CssVariables'
 import { ProviderProps } from './Provider.interface'
 
-export const Provider: React.FunctionComponent<ProviderProps> = ({
-  children,
-}) => (
+export const Provider: React.FunctionComponent<
+  React.PropsWithChildren<ProviderProps>
+> = ({ children }) => (
   <WindowProvider>
     <AlertList />
     {children}

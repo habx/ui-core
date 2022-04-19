@@ -4,7 +4,7 @@ import { DatePickerRange, DatePickerRangeValue } from '../DatePickerRange'
 
 import { DatePickerProps } from './DatePicker.interface'
 
-export const DatePicker: React.VoidFunctionComponent<DatePickerProps> = ({
+export const DatePicker: React.FunctionComponent<DatePickerProps> = ({
   value,
   onChange,
   ...props

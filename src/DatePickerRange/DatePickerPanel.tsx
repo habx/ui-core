@@ -24,7 +24,7 @@ import {
 } from './DatePickerRange.style'
 import { Month } from './Month'
 
-export const DatePickerPanel: React.VoidFunctionComponent<DatePickerPanelProps> = ({
+export const DatePickerPanel: React.FunctionComponent<DatePickerPanelProps> = ({
   value,
   onChange,
   onAbort,

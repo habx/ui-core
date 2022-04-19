@@ -64,8 +64,7 @@ export const basic = (props: TabSelectProps) => (
 basic.parameters = {
   design: {
     type: 'figma',
-    url:
-      'https://www.figma.com/file/sGKYmpfx5rf2LWLZrMDSZN/%F0%9F%A7%A9----Tag-%26-Tab?node-id=1%3A106',
+    url: 'https://www.figma.com/file/sGKYmpfx5rf2LWLZrMDSZN/%F0%9F%A7%A9----Tag-%26-Tab?node-id=1%3A106',
   },
 }
 

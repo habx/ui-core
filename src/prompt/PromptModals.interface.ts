@@ -4,17 +4,21 @@ import { LightBoxProps } from '../LightBox'
 import { ModalProps } from '../Modal'
 
 export type PromptMessage =
-  | ((
-      injectedProps: PromptInjectedProps
-    ) => Omit<LightBoxProps, 'onClose'> & {
+  | ((injectedProps: PromptInjectedProps) => Omit<
+      LightBoxProps,
+      'onClose' | 'children'
+    > & {
       fullscreen: true
-      Component?: React.ComponentType
+      children?: React.ReactNode
+      Component?: React.ComponentType<React.PropsWithChildren<{}>>
     })
-  | ((
-      injectedProps: PromptInjectedProps
-    ) => Omit<ModalProps, 'onClose'> & {
+  | ((injectedProps: PromptInjectedProps) => Omit<
+      ModalProps,
+      'onClose' | 'children'
+    > & {
       fullscreen?: false
-      Component?: React.ComponentType
+      children?: React.ReactNode
+      Component?: React.ComponentType<React.PropsWithChildren<{}>>
     })
 
 export type StateModal = {

@@ -92,23 +92,25 @@ const ANIMATIONS: Animations = {
   },
 }
 
-export const animations = <GetterProps extends {}>(
-  name: keyof Animations,
-  config: Partial<AnimationConfig> = {}
-) => (_props: GetterProps) => {
-  const animation = ANIMATIONS[name]
+export const animations =
+  <GetterProps extends {}>(
+    name: keyof Animations,
+    config: Partial<AnimationConfig> = {}
+  ) =>
+  (_props: GetterProps) => {
+    const animation = ANIMATIONS[name]
 
-  const {
-    keyframes,
-    duration,
-    timingFunction = ANIMATION_TIMING_FUNCTION,
-  }: Animation = {
-    ...animation,
-    ...config,
-  }
+    const {
+      keyframes,
+      duration,
+      timingFunction = ANIMATION_TIMING_FUNCTION,
+    }: Animation = {
+      ...animation,
+      ...config,
+    }
 
-  return css`
-    ${keyframes} ${ANIMATION_DURATIONS[duration]}ms
+    return css`
+      ${keyframes} ${ANIMATION_DURATIONS[duration]}ms
       ${timingFunction} 0ms 1 normal forwards;
-  `
-}
+    `
+  }

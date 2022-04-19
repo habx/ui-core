@@ -62,7 +62,8 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
     )
 
     const onMouseOver = openOnHover ? actions.onHover : undefined
-    const onMouseLeave = openOnHover && !state.isFocused ? actions.onClose : undefined
+    const onMouseLeave =
+      openOnHover && !state.isFocused ? actions.onClose : undefined
 
     return (
       <SelectContext.Provider value={context}>
@@ -85,10 +86,14 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           {...rest}
         >
           {elementLeft && (
-            <ElementLeftContainer onMouseOver={(e) => {
-              e.stopPropagation()
-              onMouseLeave?.()
-            }}>{elementLeft}</ElementLeftContainer>
+            <ElementLeftContainer
+              onMouseOver={(e) => {
+                e.stopPropagation()
+                onMouseLeave?.()
+              }}
+            >
+              {elementLeft}
+            </ElementLeftContainer>
           )}
           {filterable && state.isOpened ? (
             <SearchInput
@@ -118,10 +123,12 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
                 <Line />
               </ResetIconContainer>
             )}
-            <ElementRightContainer onMouseOver={(e) => {
-              e.stopPropagation()
-              onMouseLeave?.()
-              }}>
+            <ElementRightContainer
+              onMouseOver={(e) => {
+                e.stopPropagation()
+                onMouseLeave?.()
+              }}
+            >
               {elementRight ?? (
                 <Icon
                   icon={state.isOpened ? 'chevron-north' : 'chevron-south'}
@@ -129,20 +136,20 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
               )}
             </ElementRightContainer>
           </IconsContainer>
-      </SelectContainer>
-      <Options
-            options={state.visibleOptions}
-            open={state.isOpened}
-            allSelected={state.areAllOptionsSelected}
-            onSelect={actions.onSelect}
-            onSelectAll={actions.onSelectAll}
-            focusedOption={state.focusedOption}
-            selectAllLabel={selectAllLabel}
-            onClose={actions.onClose}
-            containerRef={containerRef}
-            withOverlay={!openOnHover}
-            onMouseOver={onMouseOver}
-            onMouseLeave={onMouseLeave}
+        </SelectContainer>
+        <Options
+          options={state.visibleOptions}
+          open={state.isOpened}
+          allSelected={state.areAllOptionsSelected}
+          onSelect={actions.onSelect}
+          onSelectAll={actions.onSelectAll}
+          focusedOption={state.focusedOption}
+          selectAllLabel={selectAllLabel}
+          onClose={actions.onClose}
+          containerRef={containerRef}
+          withOverlay={!openOnHover}
+          onMouseOver={onMouseOver}
+          onMouseLeave={onMouseLeave}
         />
       </SelectContext.Provider>
     )

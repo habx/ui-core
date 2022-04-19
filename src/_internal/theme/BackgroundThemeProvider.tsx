@@ -14,10 +14,9 @@ import { isFunction } from '../data'
 
 export type ColorGetter = Color | ((theme: ThemeVariant) => Color)
 
-export const BackgroundThemeProvider: React.FunctionComponent<BackgroundThemeProviderProps> = ({
-  children,
-  backgroundColor: rawBackgroundColor,
-}) => {
+export const BackgroundThemeProvider: React.FunctionComponent<
+  React.PropsWithChildren<BackgroundThemeProviderProps>
+> = ({ children, backgroundColor: rawBackgroundColor }) => {
   const styledTheme = React.useContext<StyledTheme>(ThemeContext)
 
   const newProviderValue = React.useMemo<DesignSystemProviderValue>(() => {

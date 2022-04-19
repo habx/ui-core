@@ -5,10 +5,7 @@ import * as React from 'react'
 import { DatePickerRangeContext } from './DatePickerRange.context'
 import { DayContainer } from './DatePickerRange.style'
 
-export const Day: React.VoidFunctionComponent<DayProps> = ({
-  date,
-  dayLabel,
-}) => {
+export const Day: React.FunctionComponent<DayProps> = ({ date, dayLabel }) => {
   const dayRef = React.useRef<HTMLButtonElement>(null)
   const {
     focusedDate,

@@ -41,8 +41,12 @@ export interface ArrayInputInnerProps
   /*
    * Item rendering
    */
-  itemComponent?: React.ComponentType<ArrayInputItemComponentProps>
-  itemTitleComponent?: React.ComponentType<ArrayInputItemComponentProps>
+  itemComponent?: React.ComponentType<
+    React.PropsWithChildren<ArrayInputItemComponentProps>
+  >
+  itemTitleComponent?: React.ComponentType<
+    React.PropsWithChildren<ArrayInputItemComponentProps>
+  >
   renderItem?: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
   renderItemTitle?: (itemProps: ArrayInputItemComponentProps) => React.ReactNode
   renderItemActions?: (

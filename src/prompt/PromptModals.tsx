@@ -8,7 +8,7 @@ import { Modal } from '../Modal'
 import { subscribe } from './prompt'
 import { StateModal } from './PromptModals.interface'
 
-export const PromptModals: React.VoidFunctionComponent = () => {
+export const PromptModals: React.FunctionComponent = () => {
   const isMounted = useIsMounted()
   const registerTimeout = useTimeout()
 
