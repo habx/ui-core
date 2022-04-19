@@ -11,6 +11,7 @@ export const Placeholder = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   transition: ${transition('color')};
+  user-select: none;
 
   &[data-position='right'] {
     text-align: right;

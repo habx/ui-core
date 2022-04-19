@@ -24,6 +24,9 @@ export const Options: React.FunctionComponent<
   selectAllLabel,
   onClose,
   containerRef,
+  withOverlay,
+  onMouseOver,
+  onMouseLeave,
 }) => {
   const { multi, canSelectAll } = React.useContext(SelectContext)
 
@@ -45,6 +48,9 @@ export const Options: React.FunctionComponent<
       triggerRef={containerRef}
       fullScreenOnMobile
       scrollable
+      withOverlay={withOverlay}
+      onMouseOver={onMouseOver}
+      onMouseLeave={onMouseLeave}
     >
       {(modal) =>
         modal.state !== ModalState.closed && (

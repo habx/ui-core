@@ -21,6 +21,7 @@ export interface InnerTogglePanelProps
   setStyle?: TogglePanelStyleSetter
   triggerRef?: React.RefObject<HTMLElement | null>
   withOverlay?: boolean
+  simulated?: boolean
 }
 
 export type TogglePanelProps = WithTriggerElement<

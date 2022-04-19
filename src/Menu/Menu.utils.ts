@@ -73,11 +73,11 @@ export const menuDefaultPositionSetter: MenuPositionSetter = ({
     case 'vertical-stretched': {
       let minWidth: number | undefined
 
-      const bottomOfTrigger = triggerDimensions.bottom + MARGIN
+      const bottomOfTrigger = triggerDimensions.bottom
       const spaceBelowTrigger = clientHeight - bottomOfTrigger - MARGIN
 
       if (menuHeight > spaceBelowTrigger) {
-        const topOfTrigger = triggerDimensions.top - MARGIN
+        const topOfTrigger = triggerDimensions.top
         const spaceAboveTrigger = topOfTrigger - MARGIN
 
         if (menuHeight > spaceAboveTrigger) {
@@ -105,12 +105,12 @@ export const menuDefaultPositionSetter: MenuPositionSetter = ({
           clientWidth - triggerDimensions.right - MARGIN
 
         if (menuCenterOffset > spaceAtRightOfTrigger) {
-          right = MARGIN
+          right = 0
         } else {
           const spaceAtLeftOfTrigger = triggerDimensions.left - MARGIN
 
           if (menuCenterOffset > spaceAtLeftOfTrigger) {
-            left = MARGIN
+            left = 0
           } else {
             left = triggerDimensions.left - menuCenterOffset
           }
@@ -124,9 +124,9 @@ export const menuDefaultPositionSetter: MenuPositionSetter = ({
 
           if (menuWidth > spaceToRightOfTrigger) {
             if (spaceToRightOfTrigger > spaceFromLeftOfTrigger) {
-              left = MARGIN
+              left = 0
             } else {
-              right = MARGIN
+              right = 0
             }
           } else {
             right = clientWidth - triggerDimensions.right
