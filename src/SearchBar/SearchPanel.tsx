@@ -25,7 +25,7 @@ const setPanelStyle: TogglePanelStyleSetter = (
   minHeight: triggerDimensions.height,
 })
 
-const InnerSearchPanel: React.VoidFunctionComponent<InnerSearchPanelProps> = ({
+const InnerSearchPanel: React.FunctionComponent<InnerSearchPanelProps> = ({
   value,
   onChange,
   placeholder,
@@ -71,7 +71,7 @@ const InnerSearchPanel: React.VoidFunctionComponent<InnerSearchPanelProps> = ({
   )
 }
 
-export const SearchPanel: React.VoidFunctionComponent<SearchPanelProps> = ({
+export const SearchPanel: React.FunctionComponent<SearchPanelProps> = ({
   triggerRef,
   triggerElement,
   ...rest

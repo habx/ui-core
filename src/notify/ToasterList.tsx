@@ -13,7 +13,7 @@ import { ToasterListContainer, ToasterContainer } from './ToasterList.style'
 
 const DEFAULT_DURATION = 5_000
 
-export const ToasterList: React.VoidFunctionComponent = () => {
+export const ToasterList: React.FunctionComponent = () => {
   const isMounted = useIsMounted()
   const registerTimeout = useTimeout()
 

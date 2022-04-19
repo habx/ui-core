@@ -5,7 +5,7 @@ import { Indicator } from '../Slider.interface'
 import { SliderBarProps } from './SliderBar.interface'
 import { SliderBarContainer } from './SliderBar.style'
 
-export const SliderBar: React.VoidFunctionComponent<SliderBarProps> = ({
+export const SliderBar: React.FunctionComponent<SliderBarProps> = ({
   from,
   to,
   indicators,

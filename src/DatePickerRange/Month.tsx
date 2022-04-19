@@ -16,7 +16,7 @@ import {
 } from './DatePickerRange.style'
 import { Day } from './Day'
 
-export const Month: React.VoidFunctionComponent<MonthProps> = ({
+export const Month: React.FunctionComponent<MonthProps> = ({
   year,
   month,
   firstDayOfWeek,
