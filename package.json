@@ -72,7 +72,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
     "@types/jest": "^27.4.1",
-    "@types/lodash.deburr": "^4.1.6",
+    "@types/lodash.deburr": "^4.1.7",
     "@types/markdown-it": "12.2.3",
     "@types/react": "^18.0.1",
     "@types/react-dom": "^18.0.0",
