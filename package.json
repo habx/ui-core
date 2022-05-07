@@ -89,7 +89,7 @@
     "react-dom": "^18.1.0",
     "rimraf": "^3.0.2",
     "rollup-plugin-typescript2": "^0.31.2",
-    "sinon": "^13.0.2",
+    "sinon": "^14.0.0",
     "storybook-addon-designs": "^6.2.1",
     "storybook-dark-mode": "^1.1.0",
     "styled-components": "^5.3.5",
