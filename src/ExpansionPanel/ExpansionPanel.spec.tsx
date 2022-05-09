@@ -97,7 +97,7 @@ describe('ExpansionPanel component', () => {
     await waitFor(
       () =>
         new Promise((resolve) => {
-          setTimeout(resolve, ANIMATION_DURATIONS.l)
+          setTimeout(resolve, ANIMATION_DURATIONS.l + 10)
         })
     )
     expect(
