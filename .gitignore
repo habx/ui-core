@@ -42,3 +42,4 @@ flow-coverage/
 
 .storybook-static/
 storybook-deploy
+junit.xml
