@@ -82,7 +82,9 @@ export const TabContainer = styled.button`
   }
 
   &:hover {
-    --tab-background-color: ${theme.neutralColor(200)};
+    --tab-background-color: ${theme.neutralColor(200, {
+      gradient: 'withIntensityFading',
+    })};
     --tab-color: ${theme.textColor()};
     --tab-border-color: transparent;
   }
