@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "@habx/config-ci-front": "^2.4.0",
-    "@habx/eslint-config-client": "^6.8.0",
+    "@habx/eslint-config-client": "^6.9.0",
     "@liftr/tscov": "^2.0.0",
     "@storybook/addon-docs": "^6.5.3",
     "@storybook/addon-essentials": "^6.5.3",
