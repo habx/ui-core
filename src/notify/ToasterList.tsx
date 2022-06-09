@@ -18,6 +18,7 @@ export const ToasterList: React.FunctionComponent = () => {
   const registerTimeout = useTimeout()
 
   const [toasts, setToasts] = React.useState<StateToast[]>([])
+  const containerRef = React.useRef<HTMLDivElement>(null)
 
   const planDestroy = React.useCallback(
     (toastId: number) => {
@@ -105,6 +106,8 @@ export const ToasterList: React.FunctionComponent = () => {
           closeToastTimeout = planClose(toastId, options)
         }
 
+        const top = containerRef.current?.getBoundingClientRect().height ?? 0
+
         const toast: StateToast = {
           message,
           options,
@@ -112,9 +115,19 @@ export const ToasterList: React.FunctionComponent = () => {
           hasBeenFrozen: false,
           id: toastId,
           timeout: closeToastTimeout ?? null,
+          top,
+          bottom: 0,
         }
 
-        setToasts((prev) => [...prev, toast])
+        setToasts((prev) => {
+          return [
+            ...prev,
+            {
+              ...toast,
+              bottom: !!prev.length ? prev[prev.length - 1].bottom + top : 0,
+            },
+          ]
+        })
       }),
     [planClose]
   )
@@ -146,10 +159,14 @@ export const ToasterList: React.FunctionComponent = () => {
         return (
           <ToasterContainer
             key={toast.id}
+            ref={containerRef}
             onMouseEnter={handleFreeze}
             onMouseLeave={handleResetTimers}
             data-has-been-frozen={toast.hasBeenFrozen}
             data-closing={!toast.open}
+            style={{
+              bottom: toast.bottom,
+            }}
           >
             <Toaster onClose={() => handleClose(toast.id)} {...props} />
           </ToasterContainer>
