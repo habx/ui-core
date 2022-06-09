@@ -1,7 +1,9 @@
 import * as React from 'react'
 
 export interface ToasterEventProps {
-  message: React.ReactNode
+  message:
+    | React.ReactNode
+    | ((params: { close: (() => void) | undefined }) => React.ReactNode)
   illustration?: React.ReactNode
   warning?: boolean
   markdown?: boolean
