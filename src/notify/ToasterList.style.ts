@@ -11,6 +11,8 @@ export const ToasterListContainer = styled.div`
   right: calc(50vw - 385px / 2);
   z-index: ${zIndex.notifications};
   display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
 
   @media (${breakpoints.below.phone}) {
     left: 20px;
@@ -19,9 +21,6 @@ export const ToasterListContainer = styled.div`
 `
 
 export const ToasterContainer = styled.div`
-  position: absolute;
-  bottom: 0;
-
   &:not([data-has-been-frozen='true']) {
     animation: ${animations('emergeSlantFromTop')};
   }

@@ -12,9 +12,7 @@ export type StateToast = {
   options: ToastOptions
   open: boolean
   id: number
-  timeout: number | null | undefined
-  height: number
-  bottom: number
+  timeout?: number | null | undefined
 
   /**
    * We don't want to re-trigger entering animation when un-freezing a toaster

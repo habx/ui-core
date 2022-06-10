@@ -9,9 +9,9 @@ import { useGetColorFromType } from '../useGetColorFromType'
 
 import { subscribe } from './notify'
 import { StateToast, ToastOptions } from './ToasterList.interface'
-import { ToasterListContainer, ToasterContainer } from './ToasterList.style'
+import { ToasterContainer, ToasterListContainer } from './ToasterList.style'
 
-const DEFAULT_DURATION = 5_000
+const DEFAULT_DURATION = 1_000
 
 export const ToasterList: React.FunctionComponent = () => {
   const isMounted = useIsMounted()
@@ -38,13 +38,30 @@ export const ToasterList: React.FunctionComponent = () => {
   const handleClose = React.useCallback(
     (toastId: number) => {
       if (isMounted.current) {
-        const timeout = planDestroy(toastId)
+        const destroyTimeout = planDestroy(toastId)
 
-        setToasts((prev) =>
-          prev.map((el) =>
-            el.id === toastId ? { ...el, open: false, timeout } : el
+        setToasts((prev) => {
+          let prevToasts = [...prev]
+          let toastToCloseIndex = prevToasts.findIndex(
+            (el) => el.id === toastId
           )
-        )
+          if (prevToasts[toastToCloseIndex]) {
+            prevToasts[toastToCloseIndex].open = false
+            prevToasts[toastToCloseIndex].timeout = destroyTimeout
+            if (toastToCloseIndex === 0) {
+              const nextToastIndex = prevToasts.findIndex(
+                (el, i) => i > toastToCloseIndex && el.open
+              )
+              if (prevToasts[nextToastIndex]?.open) {
+                prevToasts[nextToastIndex].timeout = planClose(
+                  prevToasts[nextToastIndex].id,
+                  prevToasts[nextToastIndex].options
+                )
+              }
+            }
+          }
+          return prevToasts
+        })
       }
     },
     [isMounted, planDestroy]
@@ -100,42 +117,19 @@ export const ToasterList: React.FunctionComponent = () => {
       subscribe((message, options = {}) => {
         const toastId = Math.random()
 
-        let closeToastTimeout: number | undefined
-
-        if (options.duration !== 0) {
-          closeToastTimeout = planClose(toastId, options)
-        }
-
-        const height = containerRef.current?.getBoundingClientRect().height ?? 0
-
         const toast: StateToast = {
           message,
           options,
           open: true,
           hasBeenFrozen: false,
           id: toastId,
-          timeout: closeToastTimeout ?? null,
-          height,
-          bottom: 0,
         }
 
         setToasts((prev) => {
-          return [
-            ...prev,
-            {
-              ...toast,
-              bottom: !!prev.length
-                ? prev[prev.length - 1].bottom + height
-                : height,
-              options: {
-                ...options,
-                duration: !!prev.length
-                  ? (prev[prev.length - 1].options.duration ??
-                      DEFAULT_DURATION) + (options.duration ?? DEFAULT_DURATION)
-                  : options.duration ?? DEFAULT_DURATION,
-              },
-            },
-          ]
+          if (!prev.length) {
+            toast.timeout = planClose(toast.id, toast.options)
+          }
+          return [...prev, toast]
         })
       }),
     [planClose]
@@ -173,9 +167,6 @@ export const ToasterList: React.FunctionComponent = () => {
             onMouseLeave={handleResetTimers}
             data-has-been-frozen={toast.hasBeenFrozen}
             data-closing={!toast.open}
-            style={{
-              bottom: toast.bottom,
-            }}
           >
             <Toaster onClose={() => handleClose(toast.id)} {...props} />
           </ToasterContainer>
