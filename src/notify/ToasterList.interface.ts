@@ -13,7 +13,7 @@ export type StateToast = {
   open: boolean
   id: number
   timeout: number | null | undefined
-  top: number
+  height: number
   bottom: number
 
   /**

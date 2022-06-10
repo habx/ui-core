@@ -106,7 +106,7 @@ export const ToasterList: React.FunctionComponent = () => {
           closeToastTimeout = planClose(toastId, options)
         }
 
-        const top = containerRef.current?.getBoundingClientRect().height ?? 0
+        const height = containerRef.current?.getBoundingClientRect().height ?? 0
 
         const toast: StateToast = {
           message,
@@ -115,7 +115,7 @@ export const ToasterList: React.FunctionComponent = () => {
           hasBeenFrozen: false,
           id: toastId,
           timeout: closeToastTimeout ?? null,
-          top,
+          height,
           bottom: 0,
         }
 
@@ -124,7 +124,16 @@ export const ToasterList: React.FunctionComponent = () => {
             ...prev,
             {
               ...toast,
-              bottom: !!prev.length ? prev[prev.length - 1].bottom + top : 0,
+              bottom: !!prev.length
+                ? prev[prev.length - 1].bottom + height
+                : height,
+              options: {
+                ...options,
+                duration: !!prev.length
+                  ? (prev[prev.length - 1].options.duration ??
+                      DEFAULT_DURATION) + (options.duration ?? DEFAULT_DURATION)
+                  : options.duration ?? DEFAULT_DURATION,
+              },
             },
           ]
         })
