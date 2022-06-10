@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 import { zIndex } from '../_internal/theme/zIndex'
-import { animations } from '../animations'
+import { animations, transition } from '../animations'
 import { breakpoints } from '../breakpoints'
 
 export const ToasterListContainer = styled.div`
@@ -24,8 +24,12 @@ export const ToasterContainer = styled.div`
   &:not([data-has-been-frozen='true']) {
     animation: ${animations('emergeSlantFromTop')};
   }
+  height: auto;
+  max-height: 100px;
+  transition: ${transition('max-height', { duration: 'm' })};
 
   &[data-closing='true'] {
     animation: ${animations('diveSlant', { duration: 'l' })};
+    max-height: 0;
   }
 `
