@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Swipe from 'react-easy-swipe'
 
+import { isFunction } from '../_internal/data'
 import { useMergedRef } from '../_internal/useMergedRef'
 import { Icon } from '../Icon'
 import { useThemeVariant } from '../useThemeVariant'
@@ -63,7 +64,7 @@ export const Toaster = React.forwardRef<HTMLDivElement, NotificationProps>(
             variation="title"
             markdown={markdown}
           >
-            {message}
+            {isFunction(message) ? message({ close: onClose }) : message}
           </ToasterText>
           <CloseContainer onClick={onClose}>
             <Icon icon="close" />
