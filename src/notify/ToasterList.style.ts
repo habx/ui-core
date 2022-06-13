@@ -12,7 +12,6 @@ export const ToasterListContainer = styled.div`
   z-index: ${zIndex.notifications};
   display: flex;
   flex-direction: column-reverse;
-  gap: 8px;
 
   @media (${breakpoints.below.phone}) {
     left: 20px;
@@ -27,9 +26,11 @@ export const ToasterContainer = styled.div`
   height: auto;
   max-height: 100px;
   transition: ${transition('max-height', { duration: 'm' })};
+  margin-top: 8px;
 
   &[data-closing='true'] {
     animation: ${animations('diveSlant', { duration: 'l' })};
     max-height: 0;
+    margin-top: 0px;
   }
 `
