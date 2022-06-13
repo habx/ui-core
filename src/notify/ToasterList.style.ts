@@ -25,7 +25,7 @@ export const ToasterContainer = styled.div`
   }
   height: auto;
   max-height: 100px;
-  transition: ${transition('max-height', { duration: 'm' })};
+  transition: ${transition('all', { duration: 'm' })};
   margin-top: 8px;
 
   &[data-closing='true'] {
