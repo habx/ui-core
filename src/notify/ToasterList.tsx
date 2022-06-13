@@ -11,7 +11,7 @@ import { subscribe } from './notify'
 import { StateToast, ToastOptions } from './ToasterList.interface'
 import { ToasterContainer, ToasterListContainer } from './ToasterList.style'
 
-const DEFAULT_DURATION = 1_000
+const DEFAULT_DURATION = 5_000
 
 export const ToasterList: React.FunctionComponent = () => {
   const isMounted = useIsMounted()
