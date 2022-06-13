@@ -120,6 +120,7 @@ export const ToasterList: React.FunctionComponent = () => {
           open: true,
           hasBeenFrozen: false,
           id: toastId,
+          timeout: null,
         }
 
         setToasts((prev) => {
