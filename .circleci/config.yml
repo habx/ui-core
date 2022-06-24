@@ -31,9 +31,6 @@ alias:
       command: |
         echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
 # - Node modules - #
-  - &install_npm
-    node/npm_install:
-      version: "7.6.0"
   - &install_dependencies
     node/install-packages:
       cache-version: "{{ .Environment.CACHE_VERSION }}"
@@ -52,7 +49,6 @@ jobs:
     <<: *node_executor
     steps:
       - checkout
-      - *install_npm
       - *install_dependencies
       - run: export NODE_ENV=production; npm run build
       - persist_to_workspace:
@@ -66,7 +62,6 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/project
-      - *install_npm
       - *install_dependencies
       - run: npm run storybook:build
 
@@ -74,7 +69,6 @@ jobs:
     <<: *node_executor
     steps:
       - checkout
-      - *install_npm
       - *install_dependencies
       - run: npm run lint
 
@@ -82,7 +76,6 @@ jobs:
     <<: *node_executor
     steps:
       - checkout
-      - *install_npm
       - *install_dependencies
       - run: npm run test
 
@@ -93,7 +86,6 @@ jobs:
       - attach_workspace:
           at: ~/project
       - *preconfig-github-pkg
-      - *install_npm
       - *install_dependencies
       - run: rm .npmrc || echo ".npmrc not found"
       - run: npm publish
@@ -105,7 +97,6 @@ jobs:
       - attach_workspace:
           at: ~/project
       - *preconfig-npmjs
-      - *install_npm
       - *install_dependencies
       - run: jq -M 'del(.publishConfig)' package.json > _package.json; mv _package.json package.json
       - run: npm publish
@@ -116,7 +107,6 @@ jobs:
       - checkout
       - attach_workspace:
           at: ~/project
-      - *install_npm
       - *install_dependencies
       - run: npm run storybook:deploy
 
@@ -127,7 +117,6 @@ jobs:
       - attach_workspace:
           at: ~/project
       - *preconfig-npmjs
-      - *install_npm
       - *install_dependencies
       - *instalGhPagesDep
       - run:
