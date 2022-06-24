@@ -32,7 +32,7 @@ alias:
         echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
 # - Node modules - #
   - &install_npm
-    node/install-npm:
+    node/npm_install:
       version: "7.6.0"
   - &install_dependencies
     node/install-packages:
