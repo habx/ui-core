@@ -48,7 +48,7 @@ export const DatePickerRange: React.FunctionComponent<DatePickerRangeProps> = ({
   )
 
   const inputValue = React.useMemo(() => {
-    if (!value) {
+    if (!value || (!value.start && !value.end)) {
       return placeholder ?? ''
     }
 
