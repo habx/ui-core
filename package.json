@@ -18,6 +18,7 @@
     "storybook:build": "build-storybook -c .storybook -o .storybook-static",
     "storybook:deploy": "storybook-to-ghpages -s storybook:build --ci -t=GITHUB_TOKEN",
     "test": "jest --runInBand",
+    "test-ci": "jest --runInBand",
     "test:coverage": "jest --coverage",
     "type:coverage": "tscov"
   },
