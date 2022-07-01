@@ -110,7 +110,8 @@ export const DayContainer = styled.button`
   }
 
   &[data-state='selected-start'],
-  &[data-state='selected-end'] {
+  &[data-state='selected-end'],
+  &[data-state='selected-single'] {
     --day-color: ${theme.color('primary', {
       variation: 'contrastText',
     })};
@@ -127,7 +128,16 @@ export const DayContainer = styled.button`
     border-top-right-radius: 4px;
   }
 
+  &[data-state='selected-single'] {
+    border-radius: 4px;
+  }
+
   &:focus {
     outline: none;
+  }
+
+  &:hover:not([data-state='selected']):not([data-state='selected-start']):not([data-state='selected-end']):not([data-state='selected-single']) {
+    background-color: ${theme.neutralColor(200)};
+    border-radius: 4px;
   }
 `

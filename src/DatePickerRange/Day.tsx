@@ -44,6 +44,16 @@ export const Day: React.FunctionComponent<DayProps> = ({ date, dayLabel }) => {
   })
 
   const state = React.useMemo(() => {
+    if (
+      startDate &&
+      isSameDay(startDate, date) &&
+      endDate &&
+      isSameDay(endDate, date) &&
+      startDate?.getTime() === endDate?.getTime()
+    ) {
+      return 'selected-single'
+    }
+
     if (startDate && isSameDay(startDate, date)) {
       return 'selected-start'
     }
