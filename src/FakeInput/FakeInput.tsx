@@ -51,7 +51,7 @@ const InnerFakeInput = React.forwardRef<HTMLInputElement, FakeInputInnerProps>(
           <SideElementContainer data-position="right">
             {elementRight}
 
-            {canReset && value && `${value}`.length > 0 && (
+            {canReset && !!value && (
               <IconButton
                 icon="close"
                 tabIndex={-1}
