@@ -85,7 +85,7 @@
     "eslint": "^8.18.0",
     "eslint-plugin-mdx": "^2.0.1",
     "husky": "^4.3.8",
-    "jest": "^28.1.1",
+    "jest": "^28.1.2",
     "jest-environment-jsdom": "^28.1.1",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "jest-junit": "^14.0.0",
