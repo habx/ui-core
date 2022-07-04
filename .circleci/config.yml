@@ -49,7 +49,7 @@ workflows:
     jobs:
       - node/build:
           filters:
-            <<: *filters_only_branch
+            <<: *filters_only_tags
       # Release to github packages
       - node/npm-publish:
           context: ts-lib-client-public
