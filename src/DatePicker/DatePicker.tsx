@@ -7,6 +7,7 @@ import { DatePickerProps } from './DatePicker.interface'
 export const DatePicker: React.FunctionComponent<DatePickerProps> = ({
   value,
   onChange,
+  numberOfMonths = 1,
   ...props
 }) => {
   const cleanValue = React.useMemo<DatePickerRangeValue>(
@@ -25,6 +26,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = ({
       value={cleanValue}
       onChange={handleChange}
       exactMinBookingDays
+      numberOfMonths={numberOfMonths}
       {...props}
     />
   )
