@@ -99,7 +99,7 @@
     "storybook-dark-mode": "^1.1.0",
     "styled-components": "^5.3.5",
     "styled-normalize": "^8.0.7",
-    "ts-jest": "^28.0.6",
+    "ts-jest": "^28.0.7",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   },
