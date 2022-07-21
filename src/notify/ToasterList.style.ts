@@ -24,7 +24,8 @@ export const ToasterContainer = styled.div`
     animation: ${animations('emergeSlantFromTop')};
   }
   height: auto;
-  max-height: 100px;
+  max-height: 500px;
+  overflow: hidden;
   transition: ${transition('all', { duration: 'm' })};
   margin-top: 8px;
 
