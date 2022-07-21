@@ -9,7 +9,8 @@ import {
   WithMarkdownConfig,
   WithMarkdownReceivedProps,
 } from './withMarkdown.interface'
-import { getHTMLFromMarkdown } from './withMarkdown.utils'
+
+const Markdown = React.lazy(() => import('./Markdown'))
 
 export const withMarkdown =
   <RefElement extends HTMLElement, ExtraProps extends {} = {}>({
@@ -97,17 +98,17 @@ export const withMarkdown =
       const isInline = isFunction(inline) ? inline(props) : !!inline
 
       return (
-        <StyledComponent
-          ref={ref}
-          {...(rest as Props)}
-          data-markdown
-          dangerouslySetInnerHTML={{
-            __html: getHTMLFromMarkdown({
-              children: children as string,
-              inline: isInline,
-            }),
-          }}
-        />
+        <React.Suspense>
+          <Markdown
+            ref={ref}
+            Component={StyledComponent}
+            {...(rest as Props)}
+            data-markdown
+            isInline={isInline}
+          >
+            {children as string}
+          </Markdown>
+        </React.Suspense>
       )
     })
 
