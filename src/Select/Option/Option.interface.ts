@@ -5,5 +5,5 @@ export interface OptionProps extends React.LiHTMLAttributes<HTMLLIElement> {
   label: React.ReactNode
   selected: boolean
   disabled?: boolean
-  description?: string
+  description?: React.ReactNode
 }

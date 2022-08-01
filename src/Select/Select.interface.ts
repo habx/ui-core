@@ -14,7 +14,7 @@ export type SelectOption = {
   disabled?: boolean
   color?: Color
   keywords?: string[]
-  description?: string
+  description?: React.ReactNode
   group?: string
 }
 
