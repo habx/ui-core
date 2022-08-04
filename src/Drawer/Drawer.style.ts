@@ -19,6 +19,8 @@ export const DrawerContainer = styled(Card)`
   width: 100%;
   padding-top: 32px;
 
+  border-radius: 24px 24px 0 0;
+
   transition: ${transition('top', { duration: 's' })};
 `
 
