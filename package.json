@@ -76,7 +76,7 @@
     "@types/jest": "^27.5.2",
     "@types/lodash.deburr": "^4.1.7",
     "@types/markdown-it": "12.2.3",
-    "@types/react": "^18.0.16",
+    "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
     "@types/react-is": "^17.0.3",
     "@types/sinon": "^10.0.13",
