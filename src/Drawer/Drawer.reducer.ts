@@ -33,11 +33,14 @@ export type DrawerActions =
       containerHeight: number
     }
 
-const getSteps = (containerHeight: number): Record<DrawerStep, number> => ({
+export const getStepHeights = (
+  containerHeight: number
+): Record<DrawerStep, number> => ({
   [DrawerStep.closed]: 32,
   [DrawerStep.slight]: 70,
   [DrawerStep.middle]: 360,
   [DrawerStep.full]: containerHeight,
+  [DrawerStep.transitioning]: NaN,
 })
 
 export const reducer: React.Reducer<DrawerReducerState, DrawerActions> = (
@@ -49,9 +52,10 @@ export const reducer: React.Reducer<DrawerReducerState, DrawerActions> = (
       return {
         ...state,
         dragStarted: true,
+        drawerStep: DrawerStep.transitioning,
       }
     case DrawerActionTypes.EndDrag:
-      const drawerSteps = getSteps(action.containerHeight)
+      const drawerSteps = getStepHeights(action.containerHeight)
       const stepEntries = Object.entries(drawerSteps)
       const currentPos = action.containerHeight - (state.position ?? 0)
       const closestStep = stepEntries.reduce((prev, curr) => {
@@ -78,7 +82,9 @@ export const reducer: React.Reducer<DrawerReducerState, DrawerActions> = (
       return {
         ...state,
         drawerStep: action.value,
-        position: getSteps(action?.containerHeight)[action.value],
+        position:
+          action.containerHeight -
+          getStepHeights(action?.containerHeight)[action.value],
       }
   }
 }

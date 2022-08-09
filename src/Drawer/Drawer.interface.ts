@@ -5,6 +5,7 @@ export enum DrawerStep {
   slight = 'slight',
   middle = 'middle',
   full = 'full',
+  transitioning = 'transitioning',
 }
 export interface DrawerProps {
   state?: DrawerStep

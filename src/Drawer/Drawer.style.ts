@@ -13,8 +13,9 @@ export const RemoveRefresh = createGlobalStyle`
 
 export const DrawerContainer = styled(Card)`
   --drawer-touch-area-height: 32px;
+  --drawer-position: calc(100% - var(--drawer-touch-area-height));
   position: absolute;
-  top: calc(100% - var(--drawer-touch-area-height));
+  top: var(--drawer-position);
   height: 100%;
   width: 100%;
   padding-top: 32px;
@@ -22,6 +23,11 @@ export const DrawerContainer = styled(Card)`
   border-radius: 24px 24px 0 0;
 
   transition: ${transition('top', { duration: 's' })};
+`
+
+export const DrawerContent = styled.div`
+  height: calc(100% - var(--drawer-position) - var(--drawer-touch-area-height));
+  width: 100%;
 `
 
 export const DrawerBar = styled.div`
@@ -42,7 +48,7 @@ export const DrawerBar = styled.div`
     top: 0;
     bottom: 0;
 
-    height: 8px;
+    height: 6px;
     width: 64px;
 
     margin: auto;

@@ -8,7 +8,12 @@ import {
   DrawerReducerState,
   reducer,
 } from './Drawer.reducer'
-import { DrawerBar, DrawerContainer, RemoveRefresh } from './Drawer.style'
+import {
+  DrawerBar,
+  DrawerContainer,
+  DrawerContent,
+  RemoveRefresh,
+} from './Drawer.style'
 
 const INITIAL_STATE: DrawerReducerState = {
   drawerStep: DrawerStep.closed,
@@ -21,16 +26,21 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     const { children, state: stateProp, onStateChange } = props
     const mergedRef = useMergedRef(ref)
     const [state, dispatch] = React.useReducer(reducer, INITIAL_STATE)
+    const initialized = React.useRef(INITIAL_STATE.drawerStep === stateProp)
+
     React.useEffect(() => {
-      onStateChange?.(state.drawerStep)
+      if (stateProp !== state.drawerStep && initialized.current) {
+        onStateChange?.(state.drawerStep)
+      }
     }, [state.drawerStep]) // eslint-disable-line react-hooks/exhaustive-deps
     React.useEffect(() => {
-      if (stateProp) {
+      if (stateProp && stateProp !== state.drawerStep) {
         dispatch({
           type: DrawerActionTypes.ChangeStep,
           value: stateProp,
           containerHeight: mergedRef.current?.clientHeight ?? 0,
         })
+        initialized.current = true
       }
     }, [stateProp]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -78,10 +88,15 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
         ref={mergedRef}
         flat
         backgroundColor={(theme) => theme.defaultBackground}
-        style={{
-          top: Number.isInteger(state.position) ? state.position! : undefined,
-          borderRadius: state.position === 0 ? 0 : undefined,
-        }}
+        style={
+          {
+            '--drawer-position': Number.isInteger(state.position)
+              ? `${state.position}px`
+              : undefined,
+            borderRadius: state.position === 0 ? 0 : undefined,
+          } as React.CSSProperties
+        }
+        data-step={state.drawerStep}
         spacing="regular"
       >
         <RemoveRefresh />
@@ -89,7 +104,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
           onTouchStart={() => dispatch({ type: DrawerActionTypes.StartDrag })}
           onMouseDown={() => dispatch({ type: DrawerActionTypes.StartDrag })}
         />
-        {children}
+        <DrawerContent>{children}</DrawerContent>
       </DrawerContainer>
     )
   }
