@@ -7,7 +7,9 @@ import { theme } from '../theme'
 export const RemoveRefresh = createGlobalStyle`
   html,
   body {
-    overscroll-behavior-y: contain;
+    overscroll-behavior-y: none;
+    position: fixed;
+    overflow: hidden;
   }
 `
 
