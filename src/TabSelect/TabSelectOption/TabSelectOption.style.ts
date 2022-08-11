@@ -5,6 +5,7 @@ import { Tab } from '../../Tab'
 
 export const TabSelectOptionContainer = styled(Tab)`
   --tab-border-width: 0;
+  margin: 0;
   border: 1px solid var(--tab-border-color);
 
   &:not(:first-child) {
