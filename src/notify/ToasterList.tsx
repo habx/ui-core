@@ -165,7 +165,13 @@ export const ToasterList: React.FunctionComponent = () => {
             data-has-been-frozen={toast.hasBeenFrozen}
             data-closing={!toast.open}
           >
-            <Toaster onClose={() => handleClose(toast.id)} {...props} />
+            <Toaster
+              onClose={() => {
+                handleClose(toast.id)
+                toast.options.onClose?.()
+              }}
+              {...props}
+            />
           </ToasterContainer>
         )
       })}

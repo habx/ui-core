@@ -5,6 +5,7 @@ export type ToastOptions = {
   type?: ColorType
   duration?: number
   identifier?: string | number
+  onClose?: () => void
 }
 
 export type StateToast = {
