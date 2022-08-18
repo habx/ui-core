@@ -54,7 +54,7 @@
     "@datepicker-react/hooks": "^2.8.4",
     "@delangle/use-modal": "^1.9.41",
     "color-parse": "^1.4.2",
-    "date-fns": "^2.29.1",
+    "date-fns": "^2.29.2",
     "lodash.deburr": "^4.1.0",
     "markdown-it": "^13.0.1",
     "merge": "^2.1.1",
