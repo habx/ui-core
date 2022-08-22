@@ -102,7 +102,7 @@ export { ActionBar, ActionBarProps } from './ActionBar'
 export { HeaderBar, HeaderBarProps } from './HeaderBar'
 export { Card, CardProps } from './Card'
 export { ExpansionPanel, ExpansionPanelProps } from './ExpansionPanel'
-export { Drawer,  DrawerProps, DrawerStep } from './Drawer'
+export { Drawer, DrawerProps, DrawerStep } from './Drawer'
 export {
   ExpansionPanelItem,
   ExpansionPanelItemProps,
@@ -112,6 +112,7 @@ export {
 export { Loader, LoaderProps } from './Loader'
 export { LoaderDots, LoaderDotsProps } from './LoaderDots'
 export { LoadingBar, LoadingBarProps } from './LoadingBar'
+export { SidePanel, SidePanelProps } from './SidePanel'
 export {
   TogglePanel,
   TogglePanelProps,
