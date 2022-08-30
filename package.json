@@ -101,7 +101,7 @@
     "styled-normalize": "^8.0.7",
     "ts-jest": "^28.0.8",
     "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.8.2"
   },
   "storybook-deployer": {
     "commitMessage": "[SKIP CI] Deploy Storybook to GitHub Pages"
