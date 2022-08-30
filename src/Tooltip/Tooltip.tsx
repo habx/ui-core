@@ -46,7 +46,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           onMouseEnter: actions.onMouseEnter,
           onMouseLeave: actions.onMouseLeave,
           ...(onClick ? { onClick } : {}),
-        })
+        } as any)
       : children
 
     /**
