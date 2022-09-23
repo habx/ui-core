@@ -112,7 +112,6 @@ export {
 export { Loader, LoaderProps } from './Loader'
 export { LoaderDots, LoaderDotsProps } from './LoaderDots'
 export { LoadingBar, LoadingBarProps } from './LoadingBar'
-export { SidePanel, SidePanelProps } from './SidePanel'
 export {
   TogglePanel,
   TogglePanelProps,
@@ -130,6 +129,7 @@ export { Modal, ModalProps } from './Modal'
 export { ModalState } from '@delangle/use-modal'
 export { prompt } from './prompt'
 export { confirm } from './confirm'
+export { SidePanel, SidePanelProps } from './SidePanel'
 
 /*
  *Alerts
