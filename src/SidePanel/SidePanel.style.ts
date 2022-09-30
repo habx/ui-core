@@ -29,6 +29,7 @@ export const SidePanelContainer = styled(Layout)`
   overflow: auto;
   overflow: overlay;
   padding: 36px;
+  box-shadow: ${theme.shadow('regular')};
   z-index: ${zIndex.modals};
 
   --modal-width: 480px;
@@ -49,16 +50,6 @@ export const SidePanelContainer = styled(Layout)`
 `
 
 export const SidePanelOverlay = styled.div`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(50, 50, 50, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   @media (${breakpoints.below.phone}) {
     background-color: transparent;
 
