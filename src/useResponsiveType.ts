@@ -1,6 +1,6 @@
 import { isClientSide } from './_internal/ssr'
-import { useWindowWidth } from './_internal/useWindowSize'
 import { breakpoints } from './breakpoints'
+import { useWindowWidth } from './useWindowSize'
 
 export const useResponsiveType = (defaultValue = 'phone') => {
   const width = useWindowWidth()
