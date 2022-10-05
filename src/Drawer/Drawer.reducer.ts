@@ -79,12 +79,19 @@ export const reducer: React.Reducer<DrawerReducerState, DrawerActions> = (
         position: action.value - 24,
       }
     case DrawerActionTypes.ChangeStep:
+      let position =
+        action.containerHeight -
+        getStepHeights(action?.containerHeight)[action.value]
+      if (
+        action.containerHeight <
+        getStepHeights(action?.containerHeight)[action.value]
+      ) {
+        position = 0
+      }
       return {
         ...state,
         drawerStep: action.value,
-        position:
-          action.containerHeight -
-          getStepHeights(action?.containerHeight)[action.value],
+        position,
       }
   }
 }
