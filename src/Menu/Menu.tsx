@@ -2,9 +2,9 @@ import { Modal } from '@delangle/use-modal'
 import * as React from 'react'
 
 import { isFunction } from '../_internal/data'
-import { useWindowWidth } from '../_internal/useWindowSize'
 import { breakpoints } from '../breakpoints'
 import { TogglePanel, TogglePanelStyleSetter } from '../TogglePanel'
+import { useWindowWidth } from '../useWindowSize'
 
 import { MenuProps } from './Menu.interface'
 import {

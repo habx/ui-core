@@ -184,6 +184,7 @@ export {
   Color,
 } from './color'
 export { useResponsiveType } from './useResponsiveType'
+export { useWindowWidth, useWindowSize, useWindowHeight } from './useWindowSize'
 export { withLabel, WithLabel } from './withLabel'
 export { withMarkdown, getHTMLFromMarkdown } from './withMarkdown'
 export { withTriggerElement, WithTriggerElement } from './withTriggerElement'

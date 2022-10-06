@@ -1,7 +1,7 @@
 import { debounce } from 'lodash'
 import * as React from 'react'
 
-import { isClientSide } from './ssr'
+import { isClientSide } from './_internal/ssr'
 
 const HeightContext = React.createContext(0)
 
