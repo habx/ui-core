@@ -35,12 +35,19 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     }, [state.drawerStep]) // eslint-disable-line react-hooks/exhaustive-deps
     React.useEffect(() => {
       if (stateProp && stateProp !== state.drawerStep) {
-        dispatch({
-          type: DrawerActionTypes.ChangeStep,
-          value: stateProp,
-          containerHeight: mergedRef.current?.clientHeight ?? 0,
-        })
+        const initializedStep = () => {
+          dispatch({
+            type: DrawerActionTypes.ChangeStep,
+            value: stateProp,
+            containerHeight: mergedRef.current?.clientHeight ?? 0,
+          })
+        }
+        initializedStep()
         initialized.current = true
+        window.addEventListener('resize', initializedStep)
+        return () => {
+          window.removeEventListener('resize', initializedStep)
+        }
       }
     }, [stateProp]) // eslint-disable-line react-hooks/exhaustive-deps
 
