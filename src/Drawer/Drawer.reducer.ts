@@ -58,11 +58,11 @@ export const reducer: React.Reducer<DrawerReducerState, DrawerActions> = (
       const drawerSteps = getStepHeights(action.containerHeight)
       const stepEntries = Object.entries(drawerSteps)
       const currentPos = action.containerHeight - (state.position ?? 0)
-      const closestStep = stepEntries.reduce((prev, curr) => {
-        return Math.abs(curr[1] - currentPos) < Math.abs(prev[1] - currentPos)
+      const closestStep = stepEntries.reduce((prev, curr) =>
+        Math.abs(curr[1] - currentPos) < Math.abs(prev[1] - currentPos)
           ? curr
           : prev
-      })
+      )
 
       return {
         ...state,

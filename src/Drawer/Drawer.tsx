@@ -1,3 +1,4 @@
+import { debounce } from 'lodash'
 import * as React from 'react'
 
 import { useMergedRef } from '../_internal/useMergedRef'
@@ -35,12 +36,23 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     }, [state.drawerStep]) // eslint-disable-line react-hooks/exhaustive-deps
     React.useEffect(() => {
       if (stateProp && stateProp !== state.drawerStep) {
-        dispatch({
-          type: DrawerActionTypes.ChangeStep,
-          value: stateProp,
-          containerHeight: mergedRef.current?.clientHeight ?? 0,
-        })
+        const initializedStep = debounce(
+          () => {
+            dispatch({
+              type: DrawerActionTypes.ChangeStep,
+              value: stateProp,
+              containerHeight: mergedRef.current?.clientHeight ?? 0,
+            })
+          },
+          200,
+          { leading: true, trailing: false }
+        )
+        initializedStep()
         initialized.current = true
+        window.addEventListener('resize', initializedStep)
+        return () => {
+          window.removeEventListener('resize', initializedStep)
+        }
       }
     }, [stateProp]) // eslint-disable-line react-hooks/exhaustive-deps
 
