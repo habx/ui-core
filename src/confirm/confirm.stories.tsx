@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions'
 import * as React from 'react'
 
 import { withGrid } from '../_storybook/withGrid'
@@ -18,14 +17,12 @@ const GRID_ITEMS = [
     label: 'With full config',
     props: {
       onClick: async () => {
-        const response = await confirm({
+        await confirm({
           title: 'Are you sure?',
           message: 'You really want to delete this ?',
           confirmLabel: 'Yes',
           cancelLabel: 'No',
         })
-
-        action('Confirm Modal response')(response)
       },
     },
   },
@@ -33,9 +30,7 @@ const GRID_ITEMS = [
     label: 'With simple message',
     props: {
       onClick: async () => {
-        const response = await confirm('Are you sure ?')
-
-        action('Confirm Modal response')(response)
+        await confirm('Are you sure ?')
       },
     },
   },
@@ -43,14 +38,12 @@ const GRID_ITEMS = [
     label: 'With deletion',
     props: {
       onClick: async () => {
-        const response = await confirm({
+        await confirm({
           message: 'Are you sure ?',
           title: 'Deletion',
           confirmLabel: 'Delete',
           type: 'delete',
         })
-
-        action('Confirm Modal response')(response)
       },
     },
   },
@@ -58,15 +51,13 @@ const GRID_ITEMS = [
     label: 'With custom icon',
     props: {
       onClick: async () => {
-        const response = await confirm({
+        await confirm({
           message: 'Are you sure ?',
           title: 'Deletion',
           confirmLabel: 'Archive',
           type: 'delete',
           confirmIcon: <Icon icon="archivebox" />,
         })
-
-        action('Confirm Modal response')(response)
       },
     },
   },
