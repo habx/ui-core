@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions'
 import * as React from 'react'
 
 import { withGrid } from '../_storybook/withGrid'
@@ -6,7 +5,6 @@ import { withGrid } from '../_storybook/withGrid'
 import { NavigationDots, NavigationDotsProps } from './index'
 
 const GRID_PROPS = {
-  onClickDot: action('Click dot'),
   size: 3,
   activeDot: 0,
 }

@@ -1,4 +1,3 @@
-import { action } from '@storybook/addon-actions'
 import * as React from 'react'
 import styled from 'styled-components'
 
@@ -105,7 +104,6 @@ const CountryArrayInput: React.FunctionComponent<any> = (props) => {
           onAppend={handleAppend}
           onDelete={handleDelete}
           onReorder={handleReorder}
-          onToggle={action('toggle')}
           itemComponent={CountryArrayInputElement}
           itemTitleComponent={ItemTitle}
           {...props}
