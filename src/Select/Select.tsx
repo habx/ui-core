@@ -106,10 +106,12 @@ const InnerSelect = React.forwardRef<HTMLDivElement, SelectInnerProps>(
           ) : (
             <Placeholder
               data-testid="select-placeholder"
-              data-empty={!state.label}
+              data-empty={!state.label?.length}
               data-position={valuePosition}
             >
-              {state.label ?? placeholder}
+              {(state.label ?? [<>{placeholder}</>]).map((label, index) => (
+                <span key={index}>{label}</span>
+              ))}
             </Placeholder>
           )}
           <IconsContainer>

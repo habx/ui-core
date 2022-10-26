@@ -19,6 +19,10 @@ export const Placeholder = styled.div`
   &[data-position='center'] {
     text-align: center;
   }
+
+  > :not(:first-child)::before {
+    content: ', ';
+  }
 `
 
 export const IconsContainer = styled.div`

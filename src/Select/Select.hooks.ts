@@ -126,7 +126,7 @@ export const useSelect = ({
   const label = React.useMemo(
     () =>
       selectedOptions.length > 0
-        ? selectedOptions.map((option) => option.label).join(', ')
+        ? selectedOptions.map((option) => option.label)
         : null,
     [selectedOptions]
   )
