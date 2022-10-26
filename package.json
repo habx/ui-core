@@ -69,7 +69,7 @@
     "@storybook/addon-essentials": "^6.5.12",
     "@storybook/addon-links": "^6.5.12",
     "@storybook/react": "^6.5.12",
-    "@storybook/storybook-deployer": "^2.8.12",
+    "@storybook/storybook-deployer": "^2.8.16",
     "@storybook/theming": "^6.5.12",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
