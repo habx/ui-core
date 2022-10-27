@@ -1,18 +1,28 @@
 import React from 'react'
 
+import { Icon } from '../Icon'
+
 import { MosaicProps } from './Mosaic.interface'
-import { GridContainer, MosaicItem, Item } from './Mosaic.style'
+import {
+  GridContainer,
+  MosaicItem,
+  Item,
+  FavouriteLayout,
+  IconContainer,
+} from './Mosaic.style'
 
 export const Mosaic: React.FunctionComponent<MosaicProps> = (props) => {
   const structure = React.useMemo((): React.ReactNode[] => {
-    const createMosaic = (items: React.ReactNode[]) => {
-      return (
-        <MosaicItem data-items-length={items.length}>
+    const createMosaic = (items: React.ReactNode[], columnNumber: number) => {
+      const mosaic = (
+        <MosaicItem
+          data-items-length={items.length}
+          data-spacing={props.spacing}
+        >
           {items
             .map((item, i) => (
               <Item
-                key={`item-${i}`}
-                data-spacing={props.spacing}
+                key={`column-${columnNumber}-item-${i}`}
                 data-rounded={props.rounded}
               >
                 {item}
@@ -20,6 +30,17 @@ export const Mosaic: React.FunctionComponent<MosaicProps> = (props) => {
             ))
             .reverse()}
         </MosaicItem>
+      )
+
+      return columnNumber === 1 ? (
+        <FavouriteLayout>
+          {mosaic}
+          <IconContainer>
+            <Icon icon="star" />
+          </IconContainer>
+        </FavouriteLayout>
+      ) : (
+        mosaic
       )
     }
 
@@ -34,22 +55,25 @@ export const Mosaic: React.FunctionComponent<MosaicProps> = (props) => {
             : 4
 
         return [
-          createMosaic(items.slice(0, limit)),
+          createMosaic(items.slice(0, limit), remainingColumns),
           ...buildColumns(
             items.slice(limit, items.length),
             remainingColumns - 1
           ),
         ]
       } else {
-        return [items.length > 0 ? createMosaic(items) : undefined]
+        return [items.length > 0 ? createMosaic(items, 1) : undefined]
       }
     }
 
-    return buildColumns(
-      [...props.items].reverse(),
-      props.columns ?? 4
-    ).reverse()
+    const columnsCount = !!props.columns
+      ? props.columns
+      : props.items.length > 3
+      ? 4
+      : props.items.length
+
+    return buildColumns([...props.items].reverse(), columnsCount).reverse()
   }, [props.items])
 
-  return <GridContainer>{structure}</GridContainer>
+  return <GridContainer data-spacing={props.spacing}>{structure}</GridContainer>
 }

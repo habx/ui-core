@@ -13,12 +13,25 @@ const ItemContainer = styled.div`
   background: #dcdcdd;
 `
 const Container = styled.div`
-  height: 72px;
+  > * {
+    height: 142px;
+  }
+`
+
+const GridContainer = styled.div`
+  min-width: 800px;
+  margin: 0;
+  padding: 0;
+  > * {
+    height: 142px;
+  }
 `
 
 const array = new Array(10)
   .fill(null)
-  .map((a, i) => <ItemContainer key={i + 1}>{i + 1}</ItemContainer>)
+  .map((a, i) => (
+    <ItemContainer key={`ìtem-container-${i + 1}`}>{i + 1}</ItemContainer>
+  ))
 
 const GRID_LINES = [
   {
@@ -115,6 +128,7 @@ const Grid = withGrid<MosaicProps>({
   props: GRID_PROPS,
   lines: GRID_LINES,
   items: GRID_ITEMS,
+  itemWrapper: GridContainer,
 })(Mosaic)
 
 export default {
@@ -125,7 +139,7 @@ export default {
 export const basic = (props: MosaicProps) => {
   return (
     <Container>
-      <Mosaic {...props} items={GRID_PROPS.items as React.ReactNode[]} />
+      <Mosaic {...props} items={array} />
     </Container>
   )
 }

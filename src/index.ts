@@ -120,6 +120,7 @@ export {
 
 export { SlideShow, SlideShowProps } from './SlideShow'
 export { Stepper, StepperProps, StepperStep } from './Stepper'
+export { Mosaic, MosaicProps } from './Mosaic'
 
 /*
  *Modals
