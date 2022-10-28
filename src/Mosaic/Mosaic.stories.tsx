@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { withGrid } from '../_storybook/withGrid'
 
-import { Background, palette } from '..'
+import { Background, theme } from '..'
 
 import { Mosaic, MosaicProps } from '.'
 
@@ -22,19 +22,21 @@ const GridContainer = styled.div`
   }
 `
 
-const array = new Array(10).fill(null).map((a, i) => (
-  <Background
-    key={`ìtem-container-${i + 1}`}
-    backgroundColor={palette.neutralBlackWithIntensityFading[300]}
-    style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  >
-    {i + 1}
-  </Background>
-))
+const BackgroundItem = styled(Background).attrs(() => ({
+  backgroundColor: theme.neutralColor(700, { opacity: 0.15 }),
+}))`
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const array = new Array(10)
+  .fill(null)
+  .map((a, i) => (
+    <BackgroundItem key={`ìtem-container-${i + 1}`}>{i + 1}</BackgroundItem>
+  ))
 
 const GRID_LINES = [
   {

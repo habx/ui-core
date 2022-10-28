@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import { theme } from '../theme'
-
 export const GridContainer = styled.div`
   display: grid;
   grid-auto-flow: column;
@@ -9,32 +7,6 @@ export const GridContainer = styled.div`
 
   &[data-spacing='true'] {
     gap: 4px;
-  }
-`
-
-export const FavouriteLayout = styled.div`
-  position: relative;
-  > *:nth-child(1) {
-    inset: 0;
-    position: absolute;
-  }
-`
-
-export const IconContainer = styled.div`
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  top: 12px;
-  right: 12px;
-  background-color: ${theme.neutralColor(200, { opacity: 0.95 })};
-  border-radius: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  > * {
-    padding: 6px;
-    background-color: ${theme.neutralColor(0)};
   }
 `
 

@@ -1,39 +1,19 @@
 import React from 'react'
 
-import { Icon } from '../Icon'
-
 import { MosaicProps } from './Mosaic.interface'
-import {
-  GridContainer,
-  MosaicItem,
-  FavouriteLayout,
-  IconContainer,
-} from './Mosaic.style'
+import { GridContainer, MosaicItem } from './Mosaic.style'
 
 export const Mosaic = React.forwardRef<HTMLDivElement, MosaicProps>(
   ({ children, spacing, rounded, columns, ...rest }, ref) => {
-    const createMosaic = (items: React.ReactNode[], columnNumber: number) => {
-      const mosaic = (
-        <MosaicItem
-          data-items-length={items.length}
-          data-spacing={spacing}
-          data-rounded={rounded}
-        >
-          {items.map((item) => item).reverse()}
-        </MosaicItem>
-      )
-
-      return columnNumber === 1 ? (
-        <FavouriteLayout>
-          {mosaic}
-          <IconContainer>
-            <Icon icon="star" />
-          </IconContainer>
-        </FavouriteLayout>
-      ) : (
-        mosaic
-      )
-    }
+    const createMosaic = (items: React.ReactNode[]) => (
+      <MosaicItem
+        data-items-length={items.length}
+        data-spacing={spacing}
+        data-rounded={rounded}
+      >
+        {items.map((item) => item).reverse()}
+      </MosaicItem>
+    )
 
     const buildColumns = (
       items: React.ReactNode[],
@@ -46,14 +26,14 @@ export const Mosaic = React.forwardRef<HTMLDivElement, MosaicProps>(
             : 4
 
         return [
-          createMosaic(items.slice(0, limit), remainingColumns),
+          createMosaic(items.slice(0, limit)),
           ...buildColumns(
             items.slice(limit, items.length),
             remainingColumns - 1
           ),
         ]
       } else {
-        return [items.length > 0 ? createMosaic(items, 1) : undefined]
+        return [items.length > 0 ? createMosaic(items) : undefined]
       }
     }
 
