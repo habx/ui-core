@@ -73,13 +73,6 @@ export const MosaicItem = styled.div`
   &[data-spacing='true'] {
     gap: 4px;
   }
-`
-
-export const Item = styled.div`
-  > * {
-    height: 100%;
-    width: 100%;
-  }
 
   &[data-rounded='true'] > * {
     border-radius: 6px;
