@@ -72,11 +72,16 @@ export const Provider: React.FunctionComponent<React.PropsWithChildren<{}>> = (
 const useListener = () => {
   const subscription = React.useContext(SubscriptionContext)
 
-  if (!subscription) {
-    throw new Error('`useWindow` hooks called outside their context.')
-  }
-
-  React.useEffect(subscription, [])
+  React.useEffect(() => {
+    if (!subscription) {
+      // TODO: use import.meta.env when migrating to vitejs
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn(`'useWindow' hooks called outside their context.`) // eslint-disable-line no-console
+      }
+      return
+    }
+    subscription()
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 }
 
 export const useWindowSize = () => {
