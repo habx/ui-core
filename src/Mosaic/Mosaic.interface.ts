@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-export interface MosaicProps {
+export interface MosaicProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode[]
   columns?: number
   rounded?: boolean
