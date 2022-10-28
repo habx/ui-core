@@ -80,7 +80,7 @@ const useListener = () => {
       }
       return
     }
-    subscription()
+    return subscription()
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 }
 
