@@ -7,7 +7,7 @@ import { Title } from '../Title'
 import { Drawer } from './Drawer'
 
 export default {
-  title: 'Layout/Drawer',
+  title: 'Layouts/Drawer',
   component: Drawer,
 }
 
