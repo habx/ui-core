@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const TabSelectContainer = styled.div`
   display: flex;
 
-  &[data-fullWidth='true'] > * {
+  &[data-full-width='true'] > * {
     flex-grow: 1;
   }
   &[data-small='true'] > * {
