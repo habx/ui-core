@@ -1,7 +1,5 @@
 import * as React from 'react'
 
-import { useUniqID } from './useUniqId'
-
 export interface InstanceStatus {
   open: boolean
   onClose: () => void
@@ -31,7 +29,7 @@ export const buildUseOnlyOneInstanceOpened = () => {
   const useOnlyOneInstanceOpened = (
     inputInstanceStatus: Omit<InstanceStatus, 'id'>
   ) => {
-    const instanceId = useUniqID()
+    const instanceId = React.useId()
     const { parentIds } = useInstanceContext()
 
     const instanceStatus: InstanceStatus = {
