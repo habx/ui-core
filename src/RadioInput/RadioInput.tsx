@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { useUniqID } from '../_internal/useUniqId'
 import { withLabel } from '../withLabel'
 
 import { RadioInputInnerProps } from './RadioInput.interface'
@@ -15,21 +14,19 @@ const InnerRadioInput = React.forwardRef<
   HTMLInputElement,
   RadioInputInnerProps
 >((props, ref) => {
-  const { error, disabled, id: rawId, small = false, ...rest } = props
-  const id = useUniqID(rawId)
+  const { error, small = false, ...rest } = props
 
   return (
     <FakeInputContainer>
       <Input
-        ref={ref}
         {...rest}
         data-error={error}
         data-small={small}
-        disabled={disabled}
+        ref={ref}
         type="radio"
-        id={id}
       />
-      <FakeInput tabIndex={disabled ? undefined : 0} htmlFor={id}>
+
+      <FakeInput htmlFor={rest.id} tabIndex={rest.disabled ? undefined : 0}>
         <InnerCircle />
       </FakeInput>
     </FakeInputContainer>

@@ -1,6 +1,5 @@
 import * as React from 'react'
 
-import { useUniqID } from '../_internal/useUniqId'
 import { withLabel } from '../withLabel'
 
 import { ToggleInnerProps } from './Toggle.interface'
@@ -8,23 +7,20 @@ import { FakeInputContainer, FakeInput, Input } from './Toggle.style'
 
 const InnerToggle = React.forwardRef<HTMLInputElement, ToggleInnerProps>(
   (props, ref) => {
-    const { error, disabled, id: rawId, checked, value, ...rest } = props
-
-    const id = useUniqID(rawId)
+    const { checked, error, value, ...rest } = props
 
     return (
       <FakeInputContainer>
         <Input
-          ref={ref}
           {...rest}
           checked={checked ?? Boolean(value)}
           data-error={error}
-          disabled={disabled}
           data-testid="toggle-input"
+          ref={ref}
           type="checkbox"
-          id={id}
         />
-        <FakeInput tabIndex={disabled ? undefined : 0} htmlFor={id} />
+
+        <FakeInput htmlFor={rest.id} tabIndex={rest.disabled ? undefined : 0} />
       </FakeInputContainer>
     )
   }

@@ -1,44 +1,32 @@
 import * as React from 'react'
 
-import { useUniqID } from '../_internal/useUniqId'
 import { withLabel } from '../withLabel'
 
 import { CheckboxInnerProps } from './Checkbox.interface'
 import {
-  Input,
-  FakeInputContainer,
-  FakeInput,
   CheckIcon,
+  FakeInput,
+  FakeInputContainer,
+  Input,
 } from './Checkbox.style'
 
 const InnerCheckbox = React.forwardRef<HTMLInputElement, CheckboxInnerProps>(
   (props, ref) => {
-    const {
-      error,
-      disabled,
-      small = false,
-      id: rawId,
-      checked,
-      value,
-      ...rest
-    } = props
-
-    const id = useUniqID(rawId)
+    const { checked, error, small = false, value, ...rest } = props
 
     return (
       <FakeInputContainer>
         <Input
-          ref={ref}
-          data-testid="checkbox-input"
           {...rest}
           checked={checked ?? Boolean(value)}
           data-error={error}
           data-small={small}
-          disabled={disabled}
+          data-testid="checkbox-input"
+          ref={ref}
           type="checkbox"
-          id={id}
         />
-        <FakeInput tabIndex={disabled ? undefined : 0} htmlFor={id}>
+
+        <FakeInput htmlFor={rest.id} tabIndex={rest.disabled ? undefined : 0}>
           <CheckIcon icon="check" />
         </FakeInput>
       </FakeInputContainer>
