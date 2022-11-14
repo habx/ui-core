@@ -18,7 +18,7 @@ export const TabSelect = React.forwardRef<HTMLDivElement, TabSelectProps>(
         ref={ref}
         data-large={large}
         data-small={small}
-        data-fullWidth={fullWidth}
+        data-full-width={fullWidth}
         {...rest}
       >
         {children}

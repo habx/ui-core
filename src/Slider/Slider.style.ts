@@ -9,7 +9,7 @@ export const SliderContainer = styled.div`
   position: relative;
   margin: 0 4px;
   padding: 16px 0;
-  &[data-dotType='regular'] {
+  &[data-dot-type='regular'] {
     padding-bottom: 8px;
     padding-top: 32px;
   }

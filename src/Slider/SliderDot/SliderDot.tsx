@@ -111,13 +111,13 @@ export const SliderDot: React.FunctionComponent<SliderDotProps> = ({
       data-testid="slider-dot"
       style={{ left: `${position}%` }}
       data-large={large}
-      data-dotType={dotType}
+      data-dot-type={dotType}
       data-dark={isColorDark(background)}
       {...eventProps}
     >
       <SliderDotContent
         style={{ backgroundColor: innerColor }}
-        data-dotType={dotType}
+        data-dot-type={dotType}
       />
       {dotType === 'tag' && (
         <TagContainer>
