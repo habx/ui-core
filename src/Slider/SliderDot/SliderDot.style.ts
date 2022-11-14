@@ -7,7 +7,7 @@ export const SliderDotContent = styled.div`
   width: calc(var(--dot-radius) * 2);
   height: calc(var(--dot-radius) * 2);
   box-shadow: ${theme.shadow('low')};
-  &:not([data-dotType='tag']) {
+  &:not([data-dot-type='tag']) {
     border: 2px solid #fff;
   }
   border-radius: 50%;
@@ -35,11 +35,11 @@ export const SliderDotContainer = styled.div`
 
   --dot-radius: 10px;
 
-  &:active&:not([data-dotType='tag']) {
+  &:active&:not([data-dot-type='tag']) {
     --dot-radius: 12px;
   }
 
-  &[data-large='true']&:not([data-dotType='tag']) {
+  &[data-large='true']&:not([data-dot-type='tag']) {
     --dot-radius: 12px;
 
     &:active {

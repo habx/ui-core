@@ -344,7 +344,7 @@ const InnerSlider = React.forwardRef<HTMLDivElement, SliderInnerProps>(
     )
 
     return (
-      <SliderContainer data-dotType={dotType}>
+      <SliderContainer data-dot-type={dotType}>
         <SliderContent
           {...rest}
           data-disabled={disabled}
