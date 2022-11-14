@@ -59,7 +59,7 @@ export const withLabel =
           )
         }
 
-        return <WrappedComponent {...(rest as Props)} ref={ref} />
+        return <WrappedComponent {...(rest as Props)} id={id} ref={ref} />
       }
     )
 
