@@ -62,7 +62,7 @@
     "react-is": "^18.2.0"
   },
   "devDependencies": {
-    "@habx/config-ci-front": "^3.7.0",
+    "@habx/config-ci-front": "^3.8.1",
     "@habx/eslint-config-client": "^6.10.0",
     "@liftr/tscov": "^2.0.0",
     "@storybook/addon-docs": "^6.5.13",
