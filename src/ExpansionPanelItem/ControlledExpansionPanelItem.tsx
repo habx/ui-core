@@ -24,13 +24,14 @@ export const ControlledExpansionPanelItem = React.forwardRef<
 >((props, ref) => {
   const {
     children,
-    title,
-    open,
-    onToggle,
-    header,
     description,
     disabled,
+    header,
+    inCard,
+    open,
+    onToggle,
     sticky,
+    title,
     ...rest
   } = props
 
@@ -95,6 +96,7 @@ export const ControlledExpansionPanelItem = React.forwardRef<
         data-testid="expansion-panel-item-title-bar"
         onClick={onToggle}
         data-sticky={open && sticky}
+        data-isOpened={open && inCard}
       >
         {header && (isFunction(header) ? header(panel) : header)}
         {!header && (

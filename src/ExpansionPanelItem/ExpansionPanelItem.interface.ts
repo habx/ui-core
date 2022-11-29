@@ -15,6 +15,7 @@ export interface ExpansionPanelItemProps
    * Positionb sticky when opened
    */
   sticky?: boolean
+  inCard?: boolean
 }
 
 export interface ControlledExpansionPanelItemProps

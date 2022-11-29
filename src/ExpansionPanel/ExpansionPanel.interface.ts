@@ -2,12 +2,12 @@ import * as React from 'react'
 
 export interface ExpansionPanelProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  multiOpen?: boolean
   disabled?: boolean
-  light?: boolean
-  large?: boolean
-  small?: boolean
   expandIconPosition?: 'left' | 'right'
+  large?: boolean
+  light?: boolean
+  multiOpen?: boolean
+  small?: boolean
 }
 
 export type ExpansionPanelContextType = {
