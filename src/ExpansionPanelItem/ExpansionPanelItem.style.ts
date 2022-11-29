@@ -12,7 +12,7 @@ export const ExpansionPanelItemContainer = styled.div`
   transition: ${transition('all')};
 
   @media screen {
-    &:not([data-light='true']) {
+    &:not([data-light='true']):not(:last-child) {
       border-bottom: 1px solid ${theme.neutralColor(300)};
 
       &:hover {
@@ -66,6 +66,10 @@ export const HeaderBar = styled.div`
     top: 0;
     z-index: ${zIndex.dropDowns};
     background: ${theme.color('background')};
+  }
+  &[data-isOpened='true'] {
+    background: ${theme.neutralColor(100)};
+    margin-bottom: unset;
   }
 `
 

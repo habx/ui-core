@@ -101,6 +101,7 @@ export { Layout, LayoutProps } from './Layout'
 export { ActionBar, ActionBarProps } from './ActionBar'
 export { HeaderBar, HeaderBarProps } from './HeaderBar'
 export { Card, CardProps } from './Card'
+export { ExpansionCard, ExpansionCardProps } from './ExpansionCard'
 export { ExpansionPanel, ExpansionPanelProps } from './ExpansionPanel'
 export { Drawer, DrawerProps, DrawerStep } from './Drawer'
 export {
