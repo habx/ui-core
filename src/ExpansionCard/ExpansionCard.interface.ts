@@ -12,7 +12,7 @@ export interface ExpansionCardProps
   header?: React.ReactNode | ((state: Modal) => React.ReactNode)
   onToggle?: (e?: React.MouseEvent) => void
   /**
-   * Positionb sticky when opened
+   * Position sticky when opened
    */
   sticky?: boolean
   title?: string | React.ReactNode
