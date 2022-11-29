@@ -20,6 +20,7 @@ const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       ghost = false,
       link = false,
       small = false,
+      tiny = false,
       fullWidth = false,
       dangerouslySetInnerHTML,
       type = 'button',
@@ -49,6 +50,7 @@ const InnerButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         data-loading={loading}
         data-mode={mode}
         data-small={small}
+        data-tiny={tiny}
         data-full-width={fullWidth}
         type={type}
         {...rest}

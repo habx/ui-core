@@ -77,6 +77,17 @@ export const ButtonContainer = styled.button`
     }
   }
 
+  &[data-tiny='true'] {
+    font-size: ${fontScale.asteroid.size}px;
+    padding: 0 12px;
+    --button-height: 36px;
+    --button-side-element-margin: 8px;
+
+    & ${SideElementContainer} {
+      font-size: 20px;
+    }
+  }
+
   &[data-mode='${ButtonModes.solid}'] {
     background-color: ${theme.color('primary', { dynamic: true })};
     color: ${theme.color('primary', {
