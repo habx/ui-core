@@ -64,6 +64,11 @@ export interface ButtonProps
   small?: boolean
 
   /**
+   * Tiny size
+   */
+  tiny?: boolean
+
+  /**
    * @ignore
    */
   as?: styledAs
