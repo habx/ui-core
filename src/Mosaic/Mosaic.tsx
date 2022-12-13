@@ -5,12 +5,12 @@ import { GridContainer, MosaicItem } from './Mosaic.style'
 
 export const Mosaic = React.forwardRef<HTMLDivElement, MosaicProps>(
   ({ children, spacing, rounded, columns, ...rest }, ref) => {
-    const CreateMosaic = (items: React.ReactNode[]) => (
+    const createMosaic = (items: React.ReactNode[], columnNumber: number) => (
       <MosaicItem
         data-items-length={items.length}
         spacing={spacing}
         data-rounded={rounded}
-        key={React.useId()}
+        key={`column_${columnNumber}`}
       >
         {items.reverse()}
       </MosaicItem>
@@ -27,14 +27,14 @@ export const Mosaic = React.forwardRef<HTMLDivElement, MosaicProps>(
             : 4
 
         return [
-          CreateMosaic(items.slice(0, limit)),
+          createMosaic(items.slice(0, limit), remainingColumns),
           ...buildColumns(
             items.slice(limit, items.length),
             remainingColumns - 1
           ),
         ]
       } else {
-        return [items.length > 0 ? CreateMosaic(items) : undefined]
+        return [items.length > 0 ? createMosaic(items, 1) : undefined]
       }
     }
 
