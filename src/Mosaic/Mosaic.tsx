@@ -8,7 +8,7 @@ export const Mosaic = React.forwardRef<HTMLDivElement, MosaicProps>(
     const createMosaic = (items: React.ReactNode[]) => (
       <MosaicItem
         data-items-length={items.length}
-        data-spacing={spacing}
+        spacing={spacing}
         data-rounded={rounded}
       >
         {items.map((item) => item).reverse()}
@@ -49,7 +49,7 @@ export const Mosaic = React.forwardRef<HTMLDivElement, MosaicProps>(
     ).reverse()
 
     return (
-      <GridContainer ref={ref} data-spacing={spacing} {...rest}>
+      <GridContainer ref={ref} spacing={spacing} {...rest}>
         {structure}
       </GridContainer>
     )
