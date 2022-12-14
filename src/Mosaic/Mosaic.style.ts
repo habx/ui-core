@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 
-export const GridContainer = styled.div`
+import { Spacing } from './Mosaic.interface'
+
+export const GridContainer = styled.div<{ spacing?: Spacing }>`
   display: grid;
   grid-auto-flow: column;
   width: 100%;
-
-  &[data-spacing='true'] {
-    gap: 4px;
-  }
+  gap: ${(props) => props.spacing ?? '0px'};
 `
 
-export const MosaicItem = styled.div`
+export const MosaicItem = styled.div<{ spacing?: Spacing }>`
   display: grid;
+  gap: ${(props) => props.spacing ?? '0px'};
   grid-template: repeat(2, 1fr) / repeat(2, 1fr);
 
   &[data-items-length='1'] > * {

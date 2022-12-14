@@ -6,6 +6,7 @@ import { withGrid } from '../_storybook/withGrid'
 import { Background, theme } from '..'
 
 import { Mosaic, MosaicProps } from '.'
+import { Spacing } from './Mosaic.interface'
 
 const Container = styled.div`
   > * {
@@ -103,7 +104,7 @@ const GRID_LINES = [
     title: 'Spaced',
     props: {
       children: array,
-      spacing: true,
+      spacing: '6px' as Spacing,
     },
   },
   {
@@ -116,7 +117,7 @@ const GRID_LINES = [
   {
     title: 'Spaced + Rounded',
     props: {
-      spacing: true,
+      spacing: '2px' as Spacing,
       children: array,
       rounded: true,
     },
