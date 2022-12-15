@@ -11,26 +11,28 @@ import {
 export const AlertPanel = React.forwardRef<HTMLDivElement, AlertPanelProps>(
   (props, ref) => {
     const {
-      title,
-      illustration,
-      icon,
-      warning,
-      error,
-      success,
       bare,
-      small,
       children,
+      error,
+      icon,
+      illustration,
+      primary,
+      small,
+      success,
+      title,
+      warning,
       ...rest
     } = props
 
     return (
       <AlertBannerContainer
+        $bare={bare}
+        $error={error}
+        $primary={primary}
+        $small={small}
+        $success={success}
+        $warning={warning}
         ref={ref}
-        data-warning={warning}
-        data-error={error}
-        data-success={success}
-        data-bare={bare}
-        data-small={small}
         {...rest}
       >
         {illustration && (
