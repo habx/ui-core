@@ -4,10 +4,11 @@ import { styledAs } from '../_internal/types'
 
 export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  large?: boolean
-  small?: boolean
   active?: boolean
   as?: styledAs
-  elementRight?: React.ReactNode
   elementLeft?: React.ReactNode
+  elementRight?: React.ReactNode
+  large?: boolean
+  small?: boolean
+  tiny?: boolean
 }
