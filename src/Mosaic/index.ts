@@ -1,2 +1,2 @@
 export { Mosaic } from './Mosaic'
-export { type MosaicProps } from './Mosaic.interface'
+export { type MosaicProps, Spacing } from './Mosaic.interface'
