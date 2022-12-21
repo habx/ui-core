@@ -9,13 +9,14 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
   (props, ref) => {
     const {
       active = false,
-      large = false,
-      small = false,
-      interactive = false,
-      type = 'button',
+      children,
       elementLeft,
       elementRight,
-      children,
+      interactive = false,
+      large = false,
+      small = false,
+      tiny = false,
+      type = 'button',
       ...rest
     } = props
 
@@ -23,13 +24,14 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
 
     return (
       <TagContainer
-        ref={ref}
+        $tiny={tiny}
         as={interactive ? 'button' : undefined}
         data-active={active}
-        data-small={small}
-        data-large={large}
-        data-interactive={interactive}
         data-background={hasBackground}
+        data-interactive={interactive}
+        data-large={large}
+        data-small={small}
+        ref={ref}
         type={interactive ? type : undefined}
         {...rest}
       >

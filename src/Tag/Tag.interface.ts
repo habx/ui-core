@@ -6,10 +6,11 @@ export interface TagProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     ThemeOverridesProps {
   active?: boolean
+  as?: styledAs
+  elementLeft?: React.ReactNode
+  elementRight?: React.ReactNode
   interactive?: boolean
   large?: boolean
   small?: boolean
-  as?: styledAs
-  elementRight?: React.ReactNode
-  elementLeft?: React.ReactNode
+  tiny?: boolean
 }
