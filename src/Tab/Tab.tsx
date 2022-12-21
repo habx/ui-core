@@ -6,22 +6,24 @@ import { TabContainer, TabContent, SideElementContainer } from './Tab.style'
 export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
   (props, ref) => {
     const {
-      large = false,
-      small = false,
       active = false,
-      type = 'button',
+      children,
       elementLeft,
       elementRight,
-      children,
+      large = false,
+      small = false,
+      tiny = false,
+      type = 'button',
       ...rest
     } = props
 
     return (
       <TabContainer
-        ref={ref}
+        $tiny={tiny}
+        data-active={active}
         data-large={large}
         data-small={small}
-        data-active={active}
+        ref={ref}
         type={type}
         {...rest}
       >
