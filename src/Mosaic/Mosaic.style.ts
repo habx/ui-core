@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-import { Text, theme } from '..'
+import { palette } from '../palette'
+import { Text } from '../Text'
+import { theme } from '../theme'
 
 import { Spacing } from './Mosaic.interface'
 
@@ -58,10 +60,13 @@ export const RemainingItemsOverlay = styled(Text).attrs(() => ({
   variation: 'title',
 }))`
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   color: ${theme.color('primary', { variation: 'contrastText' })};
-  text-shadow: 0px 0px 20px black;
+  text-shadow: 0px 0px 20px ${palette.neutralWhiteWithIntensityFading[0]};
 `
