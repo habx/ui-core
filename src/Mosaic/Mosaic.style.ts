@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Text, theme } from '..'
+
 import { Spacing } from './Mosaic.interface'
 
 export const GridContainer = styled.div<{ spacing?: Spacing }>`
@@ -41,12 +43,25 @@ export const MosaicItem = styled.div<{ spacing?: Spacing }>`
   &[data-items-length='4'] {
     grid-auto-flow: column;
   }
+`
 
-  &[data-spacing='true'] {
-    gap: 4px;
+export const RemainingItemsContainer = styled.div`
+  position: relative;
+  > * {
+    width: 100%;
+    height: 100%;
   }
+`
 
-  &[data-rounded='true'] > * {
-    border-radius: 6px;
-  }
+export const RemainingItemsOverlay = styled(Text).attrs(() => ({
+  type: 'large',
+  variation: 'title',
+}))`
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${theme.color('primary', { variation: 'contrastText' })};
+  text-shadow: 0px 0px 20px black;
 `
