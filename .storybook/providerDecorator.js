@@ -7,7 +7,7 @@ import { Provider } from '../src/Provider'
 import { Background } from '../src/Background'
 import { palette } from '../src/palette'
 
-const FONT_ROOT = 'https://cdn.habx.com/assets/fonts'
+const FONT_ROOT = 'https://raw.githubusercontent.com/habx/ui-core/gh-pages/fonts'
 
 const GlobalStyle = createGlobalStyle`
   ${styledNormalize};
