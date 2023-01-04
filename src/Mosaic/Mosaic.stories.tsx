@@ -33,7 +33,7 @@ const BackgroundItem = styled(Background).attrs(() => ({
   align-items: center;
 `
 
-const array = new Array(10)
+const array = new Array(20)
   .fill(null)
   .map((a, i) => (
     <BackgroundItem key={`ìtem-container-${i + 1}`}>{i + 1}</BackgroundItem>
@@ -95,31 +95,16 @@ const GRID_LINES = [
     },
   },
   {
-    title: '10 items',
+    title: '20 items',
     props: {
       children: array,
     },
   },
   {
-    title: 'Spaced',
+    title: 'Spaced 6px',
     props: {
       children: array,
       spacing: '6px' as Spacing,
-    },
-  },
-  {
-    title: 'Rounded',
-    props: {
-      children: array,
-      rounded: true,
-    },
-  },
-  {
-    title: 'Spaced + Rounded',
-    props: {
-      spacing: '2px' as Spacing,
-      children: array,
-      rounded: true,
     },
   },
 ]
