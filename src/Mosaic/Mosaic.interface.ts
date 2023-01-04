@@ -7,6 +7,5 @@ export type Spacing = `${number}${Unit}`
 export interface MosaicProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode[]
   columns?: number
-  rounded?: boolean
   spacing?: Spacing
 }
