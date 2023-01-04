@@ -31,7 +31,7 @@ const GRID_LINES = [
     props: {
       illustration: (
         <img
-          src="https://cdn.habx.com/image/upload/illustrations/habxmojies/paint-bucket.svg"
+          src="https://habx.github.io/ui-core/illustrations/habxmojies/paint-bucket.svg"
           alt="illustration"
         />
       ),

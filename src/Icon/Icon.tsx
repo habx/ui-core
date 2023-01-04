@@ -6,7 +6,7 @@ import { IconContainer } from './Icon.style'
 export const Icon = React.forwardRef<HTMLSpanElement, IconProps>(
   (props, ref) => {
     const { icon, colored = false, ...rest } = props
-    const url = `https://cdn.habx.com/image/upload/fl_sanitize/icons/${icon}.svg`
+    const url = `https://habx.github.io/ui-core/icons/${icon}.svg`
 
     return (
       <IconContainer ref={ref} data-colored={colored} {...rest} url={url} />

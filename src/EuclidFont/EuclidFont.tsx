@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-const FONT_ROOT = 'https://cdn.habx.com/assets/fonts'
+const FONT_ROOT = 'https://habx.github.io/ui-core/focnts'
 
 export const EuclidFont = createGlobalStyle`
   @font-face {

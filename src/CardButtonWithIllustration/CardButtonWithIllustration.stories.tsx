@@ -17,7 +17,7 @@ const GRID_PROPS = {
   title: 'Rocket launcher',
   description: 'Accédez au résumé de vos choix, recevez le par mail',
   illustration:
-    'https://cdn.habx.com/image/upload/v1611596609/illustrations/concept/crank.svg',
+    'https://habx.github.io/ui-core/illustrations/concept/crank.svg',
 }
 
 const GRID_LINES = [
@@ -59,7 +59,7 @@ export default {
     },
     illustration: {
       defaultValue:
-        'https://cdn.habx.com/image/upload/v1611596609/illustrations/concept/crank.svg',
+        'https://habx.github.io/ui-core/illustrations/concept/crank.svg',
     },
   },
 }
