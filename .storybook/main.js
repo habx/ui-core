@@ -6,4 +6,5 @@ module.exports = {
     'storybook-addon-designs/register',
     '@storybook/addon-essentials'
   ],
+   staticDirs: ['../public']
 }

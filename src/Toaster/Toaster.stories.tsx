@@ -46,7 +46,7 @@ const GRID_ITEMS = [
       illustration: (
         <img
           alt="Illu"
-          src="https://raw.githubusercontent.com/habx/ui-core/gh-pages/illustrations/habxmojies/sun-inlove.svg"
+          src="https://habx.github.io/ui-core/illustrations/habxmojies/sun-inlove.svg"
         />
       ),
     },
