@@ -22,9 +22,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - run: npm ci
     - run: npm run build 
     - run: npm run storybook:build
     - run: npm run storybook:deploy
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
